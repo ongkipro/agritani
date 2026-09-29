@@ -48,15 +48,13 @@ T-19 Revisi (Kalender Tanam: Sanitasi Sumber Data & Keselarasan Siklus Panen) se
 - CI Workflow: Komentar action pinning di `.github/workflows/ci.yml` diperjelas secara faktual.
 - Verifikasi: 72/72 unit test PASS, `astro check` 0 error, build 182 halaman PASS (check-seo PASS, check-csp 0/0/0).
 
-T-20 Revisi (Metadata Wilayah, Format WIB, & Optimasi Mobile Tabel Cuaca) selesai diimplementasikan dan diverifikasi (RUN-20260929T144716Z-29b68cd1):
-- `public/wilayah/SOURCE.md`: Nomor regulasi diperbaiki ke Kepmendagri No. 300.2.2-2430 Tahun 2025 (arsip 2022: No. 100.1.1-6117), dicatat upstream commit SHA `0d1237a5eef926629c69d287cf2282006144f4fa` (unduh 2026-09-29), dan bukti empiris 40/40 sampel kode adm4 divalidasi berhasil ke API BMKG.
-- Waktu Pembaruan BMKG: `src/lib/bmkg.ts` mengonversi waktu UTC ke representasi id-ID zona WIB via `Intl.DateTimeFormat` Asia/Jakarta (contoh: "29 Sep 2026, 19.00 WIB"). 4 behavioral unit test ditambahkan di `src/lib/bmkg.test.ts` (total 76/76 PASS).
-- Tata Letak Mobile 390px/360px (`ForecastTable.astro`): Kolom Hujan diposisikan setelah Suhu; kolom Lembap dan Angin disembunyikan di `< md` (`hidden md:table-cell`) dan dirangkum sebagai subteks di bawah deskripsi Cuaca. Seluruh 4 kolom inti (Jam, Cuaca, Suhu, Hujan) terlihat utuh di layar mobile tanpa scroll horizontal.
-- Audit CSP: 0 inline script, 0 inline on*=, 0 inline style=.
-- Verifikasi Browser: Screenshot Playwright diperbarui di `proof/ui/t20/cuaca-jabar-margaasih-390.png` & `1440.png`.
+T-26 (Gambar Dummy WebP 10 Slot) selesai diimplementasikan dan diverifikasi (RUN-20260929T145254Z-076e455a):
+- 10 Berkas WebP (`src/assets/images/dummy/**`): Dibuat sesuai spesifikasi `DESIGN.md` §3.5.1 dan catatan T-26: `hero-beranda.webp` (5:4), `topik-*.webp` (6 berkas, 16:9), `kemitraan.webp` (3:2), `tentang-kami.webp` (3:2), `konsultasi.webp` (3:2).
+- Kepatuhan Format & Ukuran: Seluruh berkas bertipe `.webp` (tanpa format lain), masing-masing berukuran <= 250 KB (terkecil 35.3 KB, terbesar 241.9 KB).
+- Atribusi Lengkap: `src/assets/images/dummy/CREDITS.md` mendokumentasikan nama berkas, fotografer, lisensi Unsplash, tanggal unduh, dan status wajib "DUMMY — ganti (OQ-5)".
 
 Selanjutnya:
-Mengeksekusi **T-26** (Gambar Dummy WebP 10 Slot) lalu **T-08** (Beranda Hibrida) / **T-10** (Tentang Kami & Profil Penulis).
+Mengeksekusi **T-08** (Beranda Hibrida: `src/pages/index.astro`, `src/components/CommodityPicker.astro`, dan komponen beranda).
 
 ## Blockers
 
@@ -69,6 +67,7 @@ Mengeksekusi **T-26** (Gambar Dummy WebP 10 Slot) lalu **T-08** (Beranda Hibrida
 - T-22 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
 - T-19 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 - T-20 (termasuk revisi) menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
+- T-26 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 
 ## Verification evidence
 

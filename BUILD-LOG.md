@@ -609,6 +609,28 @@ Record only durable implementation changes, validation evidence, and gotchas tha
      - Tested on mobile (390px) and desktop (1440px) with live BMKG API response.
      - Updated screenshot evidence in `proof/ui/t20/cuaca-jabar-margaasih-390.png` and `1440.png`.
 
+## 2026-09-29 — T-26: Gambar Dummy WebP 10 Slot (PASS)
+
+- **10 Slot Gambar WebP Resmi (`src/assets/images/dummy/**`)**:
+  - Dibuat persis sesuai spesifikasi `DESIGN.md` §3.5.1 dan `~/Documents/work/notes/agritani-T26-gambar-dummy.md`:
+    1. `hero-beranda.webp`: 1600×1280 (5:4), 108.8 KB.
+    2. `topik-proteksi-tanaman.webp`: 1600×900 (16:9), 35.3 KB.
+    3. `topik-tanah-nutrisi.webp`: 1600×900 (16:9), 213.5 KB.
+    4. `topik-budidaya.webp`: 1600×900 (16:9), 191.5 KB.
+    5. `topik-air-irigasi.webp`: 1600×900 (16:9), 60.5 KB.
+    6. `topik-pascapanen-agribisnis.webp`: 1600×900 (16:9), 71.1 KB.
+    7. `topik-sains-tanaman.webp`: 1600×900 (16:9), 71.6 KB.
+    8. `kemitraan.webp`: 1600×1067 (3:2), 241.9 KB.
+    9. `tentang-kami.webp`: 1600×1067 (3:2), 126.9 KB.
+    10. `konsultasi.webp`: 1600×1067 (3:2), 158.9 KB.
+- **Kepatuhan Anggaran & Format**:
+  - Semua berkas bertipe `.webp`, tidak ada berkas `.jpg` maupun `.png`.
+  - Semua berkas memenuhi anggaran ukuran `<= 250 KB` per berkas.
+  - Skrip pengolah `scripts/to-webp.mjs` dan `scripts/generate-dummy-images.mjs` memproses gambar dengan `sharp` dan mengoptimasi kualitas secara otomatis.
+- **Kredit & Lisensi (`src/assets/images/dummy/CREDITS.md`)**:
+  - Lisensi: Unsplash License (bebas komersial tanpa royalti).
+  - Dicatat lengkap: nama berkas, peruntukan, dimensi & rasio, ukuran KB, nama fotografer, tautan sumber, dan status wajib "DUMMY — ganti (OQ-5)".
+
 
 
 
