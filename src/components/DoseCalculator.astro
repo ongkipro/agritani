@@ -1,0 +1,392 @@
+---
+/**
+ * src/components/DoseCalculator.astro
+ * Interactive & SSR spray dose calculator component (REQ-11, DESIGN §2.6.3)
+ */
+import { calculateDose, formatNumber, type DoseInput } from '../lib/dose';
+import ConsultPrompt from './ConsultPrompt.astro';
+
+// Initial default calculation for SSR / No-JS fallback
+const defaultInput: DoseInput = {
+  dose: 2,
+  doseUnit: 'ml/L',
+  tankVolume: 16,
+  area: 1,
+  areaUnit: 'ha',
+  sprayVolumePerHa: 200,
+};
+
+const initialResult = calculateDose(defaultInput);
+---
+
+<div class="space-y-8" id="dose-calculator-root">
+  <!-- Input Form -->
+  <form id="dose-form" class="bg-[var(--color-surface)] p-6 md:p-8 border border-[var(--color-border)] rounded-[2px] shadow-none space-y-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      
+      <!-- Field 1: Dosis Label -->
+      <div>
+        <label for="input-dose" class="block text-sm font-semibold text-[var(--color-text)] mb-1.5">
+          Dosis Konsentrasi pada Label <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+        </label>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <input
+            type="number"
+            id="input-dose"
+            name="dose"
+            value="2"
+            step="any"
+            min="0.001"
+            required
+            class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] tabular-nums"
+            aria-describedby="dose-unit-desc"
+          />
+          <select
+            id="input-dose-unit"
+            name="doseUnit"
+            class="w-full px-3 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)]"
+          >
+            <option value="ml/L" selected>ml / Liter (Cair)</option>
+            <option value="g/L">g / Liter (Bubuk / WP)</option>
+            <option value="ml/tangki">ml / tangki</option>
+            <option value="g/tangki">g / tangki</option>
+          </select>
+        </div>
+        <p id="dose-unit-desc" class="text-xs text-[var(--color-text-muted)] mt-1.5">
+          Sesuai angka petunjuk anjuran di botol / kemasan produk.
+        </p>
+        <p id="err-dose" class="text-xs text-[var(--color-danger)] mt-1 hidden"></p>
+      </div>
+
+      <!-- Field 2: Volume Tangki -->
+      <div>
+        <label for="input-tank-vol" class="block text-sm font-semibold text-[var(--color-text)] mb-1.5">
+          Kapasitas Tangki Semprot (Liter) <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="number"
+          id="input-tank-vol"
+          name="tankVolume"
+          value="16"
+          step="any"
+          min="1"
+          max="1000"
+          required
+          class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] tabular-nums"
+          aria-describedby="tank-vol-desc"
+        />
+        <p id="tank-vol-desc" class="text-xs text-[var(--color-text-muted)] mt-1.5">
+          Umumnya 14–17 Liter untuk tangki semprot knapsack gendong.
+        </p>
+        <p id="err-tank-vol" class="text-xs text-[var(--color-danger)] mt-1 hidden"></p>
+      </div>
+
+      <!-- Field 3: Luas Lahan -->
+      <div>
+        <label for="input-area" class="block text-sm font-semibold text-[var(--color-text)] mb-1.5">
+          Luas Lahan Semprot <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+        </label>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <input
+            type="number"
+            id="input-area"
+            name="area"
+            value="1"
+            step="any"
+            min="0.001"
+            required
+            class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] tabular-nums"
+            aria-describedby="area-desc"
+          />
+          <select
+            id="input-area-unit"
+            name="areaUnit"
+            class="w-full px-3 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)]"
+          >
+            <option value="ha" selected>Hektar (ha)</option>
+            <option value="m2">Meter persegi (m²)</option>
+          </select>
+        </div>
+        <p id="area-desc" class="text-xs text-[var(--color-text-muted)] mt-1.5">
+          Gunakan satuan baku m² atau ha. Satuan lokal tidak seragam antar daerah.
+        </p>
+        <p id="err-area" class="text-xs text-[var(--color-danger)] mt-1 hidden"></p>
+      </div>
+
+      <!-- Field 4: Volume Semprot per Ha -->
+      <div>
+        <label for="input-spray-vol" class="block text-sm font-semibold text-[var(--color-text)] mb-1.5">
+          Volume Semprot Larutan (L/ha) <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="number"
+          id="input-spray-vol"
+          name="sprayVolumePerHa"
+          value="200"
+          step="any"
+          min="50"
+          max="1000"
+          required
+          class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] tabular-nums"
+          aria-describedby="spray-vol-desc"
+        />
+        <p id="spray-vol-desc" class="text-xs text-[var(--color-text-muted)] mt-1.5">
+          Kebutuhan air per hektar sesuai kalibrasi nozzle (standar 200–400 L/ha).
+        </p>
+        <p id="err-spray-vol" class="text-xs text-[var(--color-danger)] mt-1 hidden"></p>
+      </div>
+
+    </div>
+  </form>
+
+  <noscript>
+    <div class="p-4 bg-[var(--color-tint)] border border-[var(--color-border)] rounded-[2px] text-xs text-[var(--color-text-muted)]">
+      Kalkulator otomatis membutuhkan peramban dengan JavaScript aktif. Angka hasil di bawah menampilkan kalkulasi standar awal (1 ha, 2 ml/L, tangki 16 L).
+    </div>
+  </noscript>
+
+  <!-- Output Results Panel -->
+  <section aria-labelledby="calc-result-heading" aria-live="polite" class="space-y-6">
+    <div class="flex items-center justify-between border-b border-[var(--color-border)] pb-3">
+      <h2 id="calc-result-heading" class="text-xl font-bold text-[var(--color-brand)]">
+        Hasil Rekomendasi Takaran
+      </h2>
+      <span class="text-xs text-[var(--color-text-muted)]">Otomatis dihitung</span>
+    </div>
+
+    <!-- 3 Big Numbers Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      
+      <!-- 1. Per Tangki -->
+      <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px]">
+        <span class="text-xs font-semibold text-[var(--color-soil)] uppercase tracking-wider block">
+          Kebutuhan per Tangki
+        </span>
+        <div class="text-3xl md:text-4xl font-extrabold text-[var(--color-brand)] tabular-nums mt-2">
+          <span id="res-per-tank">{formatNumber(initialResult.perTank)}</span>
+          <span id="res-per-tank-unit" class="text-lg font-normal text-[var(--color-text-muted)]">{initialResult.perTankUnit}</span>
+        </div>
+        <p class="text-xs text-[var(--color-text-muted)] mt-1.5">
+          Campurkan ke dalam satu tangki air penuh.
+        </p>
+      </div>
+
+      <!-- 2. Jumlah Tangki -->
+      <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px]">
+        <span class="text-xs font-semibold text-[var(--color-soil)] uppercase tracking-wider block">
+          Jumlah Tangki Semprot
+        </span>
+        <div class="text-3xl md:text-4xl font-extrabold text-[var(--color-brand)] tabular-nums mt-2">
+          <span id="res-total-tanks">{initialResult.totalTanks}</span>
+          <span class="text-lg font-normal text-[var(--color-text-muted)]">tangki</span>
+        </div>
+        <p class="text-xs text-[var(--color-text-muted)] mt-1.5">
+          Dibulatkan ke atas dari <span id="res-exact-tanks" class="tabular-nums font-semibold">{formatNumber(initialResult.exactTanks, 1)}</span> tangki.
+        </p>
+      </div>
+
+      <!-- 3. Total Produk -->
+      <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px]">
+        <span class="text-xs font-semibold text-[var(--color-soil)] uppercase tracking-wider block">
+          Total Kebutuhan Produk
+        </span>
+        <div class="text-3xl md:text-4xl font-extrabold text-[var(--color-brand)] tabular-nums mt-2">
+          <span id="res-total-product-large">{formatNumber(initialResult.totalProductLarge, 2)}</span>
+          <span id="res-total-product-large-unit" class="text-lg font-normal text-[var(--color-text-muted)]">{initialResult.totalProductLargeUnit}</span>
+        </div>
+        <p class="text-xs text-[var(--color-text-muted)] mt-1.5">
+          Setara <span id="res-total-product-small" class="tabular-nums font-semibold">{formatNumber(initialResult.totalProductSmall)}</span> <span id="res-total-product-small-unit">{initialResult.totalProductSmallUnit}</span> untuk seluruh lahan.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Rincian Cara Hitung (Collapsible) -->
+    <details class="p-4 md:p-5 bg-[var(--color-tint)] border border-[var(--color-border)] rounded-[2px] transition-all" id="calc-steps-details">
+      <summary class="font-semibold text-sm cursor-pointer select-none text-[var(--color-text)] hover:text-[var(--color-brand-strong)]">
+        Lihat rincian langkah perhitungan & rumus
+      </summary>
+      <ul id="res-steps" class="mt-3.5 space-y-2 text-xs md:text-sm text-[var(--color-text)] list-disc pl-5">
+        {initialResult.calculationSteps.map((step) => (
+          <li>{step}</li>
+        ))}
+      </ul>
+    </details>
+
+    <!-- Peringatan Keamanan Label -->
+    <div class="p-4 bg-[var(--color-harvest-tint)] border border-[var(--color-harvest)]/40 rounded-[2px] text-xs md:text-sm text-[var(--color-text)] space-y-1">
+      <p class="font-semibold text-[var(--color-soil)]">Peringatan Penting Label Kemasan:</p>
+      <p>
+        Selalu ikuti takaran dosis dan petunjuk keselamatan pada label kemasan resmi produk yang terdaftar di Kementerian Pertanian. Kalkulator ini hanya instrumen bantu hitungan matematis volume semprot di lahan.
+      </p>
+    </div>
+
+    <!-- Tautan Kontekstual -->
+    <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div>
+        <p class="text-sm font-bold text-[var(--color-text)]">Sebelum Mulai Menyemprot:</p>
+        <p class="text-xs text-[var(--color-text-muted)] mt-0.5">
+          Periksa prakiraan curah hujan dan kecepatan angin di desa Anda agar larutan tidak tercuci atau terbawa angin.
+        </p>
+      </div>
+      <a
+        href="/alat/cuaca-tani/"
+        class="inline-flex items-center gap-2 px-4 py-2 min-h-[44px] text-xs md:text-sm font-semibold rounded-[2px] border border-[var(--color-border-control)] text-[var(--color-brand-strong)] hover:bg-[var(--color-tint)] transition-colors whitespace-nowrap"
+      >
+        <span>Buka Cuaca Tani</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m9 18 6-6-6-6"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- One WhatsApp Consult CTA (DESIGN §2.8) -->
+    <div id="dose-consult-wrapper">
+      <ConsultPrompt
+        source="[Web·Kalkulator]"
+        title="Butuh konsultasi kalibrasi semprot atau pencampuran produk?"
+        description="Hubungi tim agronomi Agritani bila Anda ragu mengenai pencampuran bahan aktif (kompatibilitas tangki) atau penyesuaian nozzle."
+        label="Tanya Tim Agronomi"
+        variant="secondary"
+      />
+    </div>
+
+  </section>
+</div>
+
+<script>
+  import { calculateDose, formatNumber, type DoseInput, type DoseUnit, type AreaUnit } from '../lib/dose';
+
+  function initDoseCalculator() {
+    const doseForm = document.getElementById('dose-form') as HTMLFormElement | null;
+    if (doseForm) {
+      doseForm.addEventListener('submit', (e) => e.preventDefault());
+    }
+
+    const inputDose = document.getElementById('input-dose') as HTMLInputElement | null;
+    const inputDoseUnit = document.getElementById('input-dose-unit') as HTMLSelectElement | null;
+    const inputTankVol = document.getElementById('input-tank-vol') as HTMLInputElement | null;
+    const inputArea = document.getElementById('input-area') as HTMLInputElement | null;
+    const inputAreaUnit = document.getElementById('input-area-unit') as HTMLSelectElement | null;
+    const inputSprayVol = document.getElementById('input-spray-vol') as HTMLInputElement | null;
+
+    // Result elements
+    const resPerTank = document.getElementById('res-per-tank');
+    const resPerTankUnit = document.getElementById('res-per-tank-unit');
+    const resTotalTanks = document.getElementById('res-total-tanks');
+    const resExactTanks = document.getElementById('res-exact-tanks');
+    const resTotalProductLarge = document.getElementById('res-total-product-large');
+    const resTotalProductLargeUnit = document.getElementById('res-total-product-large-unit');
+    const resTotalProductSmall = document.getElementById('res-total-product-small');
+    const resTotalProductSmallUnit = document.getElementById('res-total-product-small-unit');
+    const resSteps = document.getElementById('res-steps');
+
+    // Error elements
+    const errDose = document.getElementById('err-dose');
+    const errTankVol = document.getElementById('err-tank-vol');
+    const errArea = document.getElementById('err-area');
+    const errSprayVol = document.getElementById('err-spray-vol');
+
+    if (!inputDose || !inputDoseUnit || !inputTankVol || !inputArea || !inputAreaUnit || !inputSprayVol) {
+      return;
+    }
+
+    function recompute() {
+      const dose = parseFloat(inputDose?.value || '0');
+      const doseUnit = (inputDoseUnit?.value || 'ml/L') as DoseUnit;
+      const tankVolume = parseFloat(inputTankVol?.value || '0');
+      const area = parseFloat(inputArea?.value || '0');
+      const areaUnit = (inputAreaUnit?.value || 'ha') as AreaUnit;
+      const sprayVolumePerHa = parseFloat(inputSprayVol?.value || '0');
+
+      const input: DoseInput = {
+        dose,
+        doseUnit,
+        tankVolume,
+        area,
+        areaUnit,
+        sprayVolumePerHa,
+      };
+
+      const result = calculateDose(input);
+
+      // Handle validation error messages
+      if (errDose) {
+        if (result.errors.dose) {
+          errDose.textContent = result.errors.dose;
+          errDose.classList.remove('hidden');
+        } else {
+          errDose.classList.add('hidden');
+        }
+      }
+
+      if (errTankVol) {
+        if (result.errors.tankVolume) {
+          errTankVol.textContent = result.errors.tankVolume;
+          errTankVol.classList.remove('hidden');
+        } else {
+          errTankVol.classList.add('hidden');
+        }
+      }
+
+      if (errArea) {
+        if (result.errors.area) {
+          errArea.textContent = result.errors.area;
+          errArea.classList.remove('hidden');
+        } else {
+          errArea.classList.add('hidden');
+        }
+      }
+
+      if (errSprayVol) {
+        if (result.errors.sprayVolumePerHa) {
+          errSprayVol.textContent = result.errors.sprayVolumePerHa;
+          errSprayVol.classList.remove('hidden');
+        } else {
+          errSprayVol.classList.add('hidden');
+        }
+      }
+
+      if (!result.isValid) {
+        return;
+      }
+
+      // Update numbers
+      if (resPerTank) resPerTank.textContent = formatNumber(result.perTank);
+      if (resPerTankUnit) resPerTankUnit.textContent = result.perTankUnit;
+      if (resTotalTanks) resTotalTanks.textContent = String(result.totalTanks);
+      if (resExactTanks) resExactTanks.textContent = formatNumber(result.exactTanks, 1);
+      if (resTotalProductLarge) resTotalProductLarge.textContent = formatNumber(result.totalProductLarge, 2);
+      if (resTotalProductLargeUnit) resTotalProductLargeUnit.textContent = result.totalProductLargeUnit;
+      if (resTotalProductSmall) resTotalProductSmall.textContent = formatNumber(result.totalProductSmall);
+      if (resTotalProductSmallUnit) resTotalProductSmallUnit.textContent = result.totalProductSmallUnit;
+
+      // Update calculation steps
+      if (resSteps) {
+        resSteps.innerHTML = '';
+        result.calculationSteps.forEach((step) => {
+          const li = document.createElement('li');
+          li.textContent = step;
+          resSteps.appendChild(li);
+        });
+      }
+    }
+
+    const listeners: [HTMLElement, string][] = [
+      [inputDose, 'input'],
+      [inputDoseUnit, 'change'],
+      [inputTankVol, 'input'],
+      [inputArea, 'input'],
+      [inputAreaUnit, 'change'],
+      [inputSprayVol, 'input'],
+    ];
+
+    listeners.forEach(([elem, evt]) => {
+      elem.addEventListener(evt, recompute);
+    });
+  }
+
+  // Support direct and view transitions
+  initDoseCalculator();
+  document.addEventListener('astro:page-load', initDoseCalculator);
+</script>

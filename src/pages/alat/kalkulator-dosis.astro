@@ -1,0 +1,46 @@
+---
+/**
+ * src/pages/alat/kalkulator-dosis.astro
+ * Dedicated page for the spray dose and tank calculator tool (REQ-11, DESIGN §2.6.3, §4.2.3)
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import DoseCalculator from '../../components/DoseCalculator.astro';
+import type { SeoInput } from '../../lib/seo';
+
+const breadcrumbs = [
+  { name: 'Beranda', url: '/' },
+  { name: 'Alat Tani', url: '/alat/' },
+  { name: 'Kalkulator Dosis', url: '/alat/kalkulator-dosis/' },
+];
+
+const seo: SeoInput = {
+  title: 'Kalkulator Dosis Semprot',
+  description:
+    'Hitung takaran pestisida atau pupuk daun per tangki semprot dan total kebutuhan larutan untuk luas lahan Anda secara cepat dan akurat di lapangan.',
+  canonicalPath: '/alat/kalkulator-dosis/',
+  breadcrumbs,
+  pageType: 'website',
+};
+---
+
+<BaseLayout seo={seo} currentPath="/alat/kalkulator-dosis/">
+  <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+
+    <!-- Page Header (Lapangan Layout) -->
+    <header class="my-6 sm:my-8 max-w-[68ch]">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--color-text)] mb-3 leading-tight tracking-tight">
+        Kalkulator Dosis Semprot
+      </h1>
+      <p class="text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed">
+        Hitung takaran produk per tangki semprot dan total kebutuhan larutan untuk luas lahan Anda.
+      </p>
+    </header>
+
+    <!-- Main Tool Container -->
+    <div class="max-w-[48rem]">
+      <DoseCalculator />
+    </div>
+  </div>
+</BaseLayout>
