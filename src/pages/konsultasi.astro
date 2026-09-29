@@ -1,0 +1,371 @@
+---
+/**
+ * src/pages/konsultasi.astro
+ * Consultation landing page & WhatsApp message composer (REQ-12, DESIGN §2.7, §2.8, §4.2.3)
+ * Strictly adheres to 1 WhatsApp CTA per page, G-6 source formatting, and CSP invariants.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { waLink } from '../lib/whatsapp';
+import type { SeoInput } from '../lib/seo';
+
+const breadcrumbs = [
+  { name: 'Beranda', url: '/' },
+  { name: 'Konsultasi', url: '/konsultasi/' },
+];
+
+const seo: SeoInput = {
+  title: 'Konsultasi Agronomi Langsung',
+  description:
+    'Layanan konsultasi teknis budidaya dan perlindungan tanaman langsung bersama tim agronomi PT Agritani Internasional melalui WhatsApp resmi.',
+  canonicalPath: '/konsultasi/',
+  breadcrumbs,
+  pageType: 'website',
+};
+
+// Fallback link for No-JS users
+const fallbackWaUrl = waLink({
+  source: 'Web·Konsultasi',
+  fields: [
+    { label: 'Komoditas', value: '-' },
+    { label: 'Umur tanaman', value: '-' },
+    { label: 'Lokasi', value: '-' },
+    { label: 'Masalah', value: 'Konsultasi agronomi' },
+  ],
+  note: '(Saya akan kirim foto setelah pesan ini)',
+});
+---
+
+<BaseLayout seo={seo} currentPath="/konsultasi/">
+  <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+
+    <!-- Page Header (Lapangan Layout) -->
+    <header class="my-6 sm:my-8 max-w-[68ch]">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--color-text)] mb-3 leading-tight tracking-tight">
+        Konsultasi Agronomi Langsung
+      </h1>
+      <p class="text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed">
+        Layanan konsultasi teknis budidaya dan penanganan masalah tanaman langsung bersama tim agronomi PT Agritani Internasional melalui WhatsApp.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+      
+      <!-- Left Column: Service Details & Preparation Checklist -->
+      <div class="lg:col-span-5 space-y-6">
+        
+        <!-- Tim & Layanan Card -->
+        <section class="p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-4">
+          <h2 class="text-lg font-bold text-[var(--color-brand)]">
+            Siapa yang Menjawab?
+          </h2>
+          <div class="space-y-3 text-sm text-[var(--color-text)] leading-relaxed">
+            <p>
+              Konsultasi dijawab langsung oleh <strong>Tim Agronomi Lapangan PT Agritani Internasional</strong> yang berpengalaman dalam budidaya tanaman pangan, hortikultura, dan perkebunan.
+            </p>
+            <p class="text-xs text-[var(--color-text-muted)]">
+              Prof. Arif Prabowo bertindak sebagai penasihat ilmiah dan moderator konten Jurnal Tani yang menyusun acuan penanganan standar (TODO(OQ-4)).
+            </p>
+          </div>
+
+          <div class="pt-3 border-t border-[var(--color-border)]">
+            <h3 class="text-xs font-semibold text-[var(--color-soil)] uppercase tracking-wider mb-1">
+              Jam Layanan Operasional
+            </h3>
+            <p class="text-sm font-semibold text-[var(--color-text)]">
+              Senin – Sabtu, 08.00 – 17.00 WIB
+            </p>
+            <p class="text-xs text-[var(--color-text-muted)] mt-0.5">
+              Pesan di luar jam kerja akan direspons pada hari kerja berikutnya.
+            </p>
+          </div>
+        </section>
+
+        <!-- Preparation Checklist -->
+        <section class="p-6 bg-[var(--color-tint)] border border-[var(--color-border)] rounded-[2px] space-y-3">
+          <h2 class="text-base font-bold text-[var(--color-text)]">
+            Hal yang Perlu Disiapkan Petani:
+          </h2>
+          <p class="text-xs text-[var(--color-text-muted)]">
+            Untuk mempercepat analisa dan akurasi rekomendasi agronom kami, siapkan informasi berikut:
+          </p>
+          <ul class="space-y-2 text-xs sm:text-sm text-[var(--color-text)]">
+            <li class="flex items-start gap-2">
+              <span class="text-[var(--color-brand)] font-bold">1.</span>
+              <span><strong>Foto jelas tanaman:</strong> ambil 1 foto jarak dekat bagian yang sakit (daun/buah/batang) dan 1 foto keseluruhan pohon.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[var(--color-brand)] font-bold">2.</span>
+              <span><strong>Komoditas & Varietas:</strong> jenis tanaman yang dibudidayakan.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[var(--color-brand)] font-bold">3.</span>
+              <span><strong>Umur Tanaman:</strong> Hari Setelah Tanam (HST) atau umur pohon.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[var(--color-brand)] font-bold">4.</span>
+              <span><strong>Lokasi Kebun:</strong> nama Kabupaten dan Provinsi lahan Anda.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[var(--color-brand)] font-bold">5.</span>
+              <span><strong>Riwayat Perlakuan:</strong> aplikasi pupuk atau semprotan terakhir dalam 2 minggu.</span>
+            </li>
+          </ul>
+        </section>
+
+      </div>
+
+      <!-- Right Column: WhatsApp Message Composer Form -->
+      <div class="lg:col-span-7">
+        <section class="p-6 sm:p-8 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-6">
+          <div class="border-b border-[var(--color-border)] pb-4">
+            <h2 class="text-xl font-bold text-[var(--color-brand)]">
+              Formulir Konsultasi WhatsApp
+            </h2>
+            <p class="text-xs sm:text-sm text-[var(--color-text-muted)] mt-1">
+              Isi data kebun Anda di bawah. Sistem akan otomatis menyusun format pesan rapi sebelum dialihkan ke WhatsApp resmi.
+            </p>
+          </div>
+
+          <form id="consult-form" class="space-y-5">
+            <!-- Field 1: Komoditas -->
+            <div>
+              <label for="consult-commodity" class="block text-sm font-semibold text-[var(--color-text)] mb-1.5">
+                Komoditas Tanaman <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="text"
+                id="consult-commodity"
+                name="commodity"
+                required
+                placeholder="Contoh: Cabai merah keriting, Padi sawah, Kelapa sawit"
+                class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] text-sm"
+              />
+              <p id="err-commodity" class="text-xs text-[var(--color-danger)] mt-1 hidden"></p>
+            </div>
+
+            <!-- Field 2: Umur Tanaman -->
+            <div>
+              <label for="consult-age" class="block text-sm font-semibold text-[var(--color-text)] mb-1.5">
+                Umur Tanaman Saat Ini <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="text"
+                id="consult-age"
+                name="age"
+                required
+                placeholder="Contoh: 45 HST, 2 bulan setelah semai, atau 3 tahun"
+                class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] text-sm"
+              />
+              <p id="err-age" class="text-xs text-[var(--color-danger)] mt-1 hidden"></p>
+            </div>
+
+            <!-- Field 3: Lokasi Kebun -->
+            <div>
+              <label for="consult-location" class="block text-sm font-semibold text-[var(--color-text)] mb-1.5">
+                Lokasi Kebun (Kabupaten & Provinsi) <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="text"
+                id="consult-location"
+                name="location"
+                required
+                placeholder="Contoh: Kab. Garut, Jawa Barat atau Kab. Asahan, Sumut"
+                class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] text-sm"
+              />
+              <p id="err-location" class="text-xs text-[var(--color-danger)] mt-1 hidden"></p>
+            </div>
+
+            <!-- Field 4: Masalah -->
+            <div>
+              <label for="consult-problem" class="block text-sm font-semibold text-[var(--color-text)] mb-1.5">
+                Gejala Masalah atau Pertanyaan Agronomi <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+              </label>
+              <textarea
+                id="consult-problem"
+                name="problem"
+                rows="4"
+                required
+                placeholder="Jelaskan perubahan fisik tanaman (daun kuning/keriting, batang busuk, buah rontok), riwayat penyemprotan, atau pertanyaan yang ingin dikonsultasikan..."
+                class="w-full px-3.5 py-2.5 bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] text-sm leading-relaxed"
+              ></textarea>
+              <p id="err-problem" class="text-xs text-[var(--color-danger)] mt-1 hidden"></p>
+              <p class="text-xs text-[var(--color-text-muted)] mt-1.5">
+                <em>Foto tanaman dapat langsung Anda kirimkan di chat WhatsApp setelah pesan terkirim.</em>
+              </p>
+            </div>
+
+            <!-- Single Primary WhatsApp Button (DESIGN §2.8) -->
+            <div class="pt-2">
+              <button
+                type="submit"
+                id="btn-submit-consult"
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3 min-h-[44px] text-base font-bold rounded-[2px] bg-[var(--color-brand)] text-white hover:bg-[var(--color-brand-strong)] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-brand-strong)] cursor-pointer"
+              >
+                <!-- Monochrome MessageCircle Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                </svg>
+                <span>Lanjutkan ke WhatsApp</span>
+              </button>
+            </div>
+
+            <!-- Post-submission helper note -->
+            <div id="consult-success-panel" class="hidden p-4 bg-[var(--color-tint)] border border-[var(--color-brand)]/40 rounded-[2px] text-xs sm:text-sm text-[var(--color-text)] space-y-2">
+              <p class="font-bold text-[var(--color-brand)]">Silakan Lanjutkan Percakapan di WhatsApp</p>
+              <p>
+                Jendela WhatsApp sedang dibuka. Jika aplikasi atau web WhatsApp tidak otomatis terbuka, klik tombol cadangan di bawah:
+              </p>
+              <div>
+                <a
+                  id="direct-wa-link"
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 font-bold text-[var(--color-brand-strong)] underline hover:text-[var(--color-brand)] min-h-[44px]"
+                >
+                  <span>Buka Chat WhatsApp Resmi</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                    <polyline points="15 3 21 3 21 9"/>
+                    <line x1="10" y1="14" x2="21" y2="3"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <noscript>
+              <div class="p-4 bg-[var(--color-tint)] border border-[var(--color-border)] rounded-[2px] text-xs text-[var(--color-text)] space-y-2">
+                <p>Peramban Anda tidak menjalankan JavaScript. Anda dapat langsung membuka WhatsApp kami melalui tautan berikut:</p>
+                <a
+                  href={fallbackWaUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-block px-4 py-2 bg-[var(--color-brand)] text-white font-bold rounded-[2px] min-h-[44px]"
+                >
+                  Buka WhatsApp Konsultasi
+                </a>
+              </div>
+            </noscript>
+
+          </form>
+        </section>
+      </div>
+
+    </div>
+
+    <!-- Fixed Agronomic Disclaimer (DESIGN §2.7) -->
+    <footer class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] text-xs md:text-sm text-[var(--color-text-muted)] space-y-1">
+      <p class="font-bold text-[var(--color-soil)]">Pernyataan Batasan Layanan:</p>
+      <p class="leading-relaxed">
+        Saran dan rekomendasi konsultasi adalah instrumen panduan teknis budidaya, bukan jaminan mutlak keberhasilan panen di lapangan. Untuk situasi darurat ledakan hama atau penyakit eksplosif yang meluas cepat, segera hubungi pula Penyuluh Pertanian Lapangan (PPL) atau Balai Proteksi Tanaman Pangan dan Hortikultura (BPTPH) / Dinas Pertanian setempat.
+      </p>
+    </footer>
+
+  </div>
+</BaseLayout>
+
+<script>
+  import { waLink } from '../lib/whatsapp';
+
+  function initConsultationPage() {
+    const form = document.getElementById('consult-form') as HTMLFormElement | null;
+    const inputCommodity = document.getElementById('consult-commodity') as HTMLInputElement | null;
+    const inputAge = document.getElementById('consult-age') as HTMLInputElement | null;
+    const inputLocation = document.getElementById('consult-location') as HTMLInputElement | null;
+    const inputProblem = document.getElementById('consult-problem') as HTMLTextAreaElement | null;
+    
+    const errCommodity = document.getElementById('err-commodity');
+    const errAge = document.getElementById('err-age');
+    const errLocation = document.getElementById('err-location');
+    const errProblem = document.getElementById('err-problem');
+
+    const successPanel = document.getElementById('consult-success-panel');
+    const directWaLink = document.getElementById('direct-wa-link') as HTMLAnchorElement | null;
+
+    if (!form || !inputCommodity || !inputAge || !inputLocation || !inputProblem) {
+      return;
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      let hasError = false;
+
+      // Validation
+      const commodity = inputCommodity.value.trim();
+      const age = inputAge.value.trim();
+      const location = inputLocation.value.trim();
+      const problem = inputProblem.value.trim();
+
+      if (!commodity) {
+        if (errCommodity) {
+          errCommodity.textContent = 'Harap isi jenis komoditas tanaman Anda.';
+          errCommodity.classList.remove('hidden');
+        }
+        hasError = true;
+      } else {
+        errCommodity?.classList.add('hidden');
+      }
+
+      if (!age) {
+        if (errAge) {
+          errAge.textContent = 'Harap isi umur tanaman saat ini.';
+          errAge.classList.remove('hidden');
+        }
+        hasError = true;
+      } else {
+        errAge?.classList.add('hidden');
+      }
+
+      if (!location) {
+        if (errLocation) {
+          errLocation.textContent = 'Harap isi lokasi kabupaten kebun Anda.';
+          errLocation.classList.remove('hidden');
+        }
+        hasError = true;
+      } else {
+        errLocation?.classList.add('hidden');
+      }
+
+      if (!problem) {
+        if (errProblem) {
+          errProblem.textContent = 'Harap jelaskan gejala atau pertanyaan Anda.';
+          errProblem.classList.remove('hidden');
+        }
+        hasError = true;
+      } else {
+        errProblem?.classList.add('hidden');
+      }
+
+      if (hasError) return;
+
+      // Build structured WhatsApp URL per DESIGN §2.7 & G-6
+      const url = waLink({
+        source: 'Web·Konsultasi',
+        fields: [
+          { label: 'Komoditas', value: commodity },
+          { label: 'Umur tanaman', value: age },
+          { label: 'Lokasi', value: location },
+          { label: 'Masalah', value: problem },
+        ],
+        note: '(Saya akan kirim foto setelah pesan ini)',
+      });
+
+      // Update direct backup link
+      if (directWaLink) {
+        directWaLink.href = url;
+      }
+
+      // Show post-submission guidance panel
+      successPanel?.classList.remove('hidden');
+
+      // Open WhatsApp in new tab
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
+  }
+
+  initConsultationPage();
+  document.addEventListener('astro:page-load', initConsultationPage);
+</script>

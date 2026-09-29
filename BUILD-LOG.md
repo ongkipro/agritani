@@ -393,3 +393,36 @@ Record only durable implementation changes, validation evidence, and gotchas tha
     - `proof/ui/t21/dose-calc-390.png`, `proof/ui/t21/dose-calc-1440.png`
 - Boundary check produced `REVIEW_REQUIRED` (declared risk R2, accepted scope expansion for proof screenshots). Stopped without self-review; finished as `BLOCKED` awaiting independent review.
 
+## 2026-09-29 — T-22: Konsultasi & Indeks Alat Tani (READY - PENDING INDEPENDENT REVIEW)
+
+- Implemented Alat Tani index page `src/pages/alat/index.astro`:
+  - Lapangan layout typography (H1 `Alat Tani`).
+  - Lists 4 core agricultural tools: Diagnosa Gejala (`/alat/diagnosa-gejala/`), Kalender Tanam (`/alat/kalender-tanam/`), Cuaca Tani (`/alat/cuaca-tani/`), and Kalkulator Dosis (`/alat/kalkulator-dosis/`).
+  - Shared principles banner: free, no registration/account required, mobile-optimized.
+  - Zero WhatsApp CTAs strictly observed per DESIGN §2.8 table.
+  - SEO metadata: Title `Alat Tani | Agritani`, breadcrumb `Beranda › Alat Tani`.
+- Implemented Konsultasi page `src/pages/konsultasi.astro`:
+  - Details on who answers (PT Agritani Internasional field agronomy team; Prof. Arif Prabowo's role as advisory moderator `TODO(OQ-4)`).
+  - Operating hours banner: Senin – Sabtu, 08.00 – 17.00 WIB (`TODO(OQ-1)`).
+  - Practical preparation checklist (clear photos close-up & full plant, commodity/variety, age/HST, location kab/prov, 2-week chemical/fertilizer spray history).
+  - Interactive WhatsApp message composer form:
+    - 4 accessible input fields: Komoditas, Umur Tanaman, Lokasi, Masalah.
+    - Exactly 1 primary WhatsApp submission button (`bg-[var(--color-brand)]` with monochrome `MessageCircle` icon) per DESIGN §2.8.
+    - Generates strict WhatsApp URL via `waLink()` adhering to DESIGN §2.7 and G-6 bracketed source format:
+      `[Web·Konsultasi]\nKomoditas: {k}\nUmur tanaman: {u}\nLokasi: {l}\nMasalah: {m}\n(Saya akan kirim foto setelah pesan ini)`
+    - Post-submission guidance panel with direct fallback link. Never displays false "terkirim" text.
+    - Full noscript fallback with pre-filled default consultation link.
+  - Fixed agronomic disclaimer panel (guidance only, emergency outbreaks should contact local extension officers/BPTPH).
+  - Zero executed inline scripts, zero inline `on*=` handlers, zero inline `style=` attributes.
+- Verifications:
+  - `npm test`: 50/50 unit tests PASS.
+  - `npx astro check`: 0 errors.
+  - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 179 HTML pages, Pagefind indexed 150 pages, `check-seo` PASS (0 errors, 0 warnings), `check-csp` PASS (0 inline scripts, 0 on*=, 0 style=).
+  - `npm run check:contrast`: PASS (all text ≥ 7:1, UI ≥ 3:1).
+  - Browser verification & UI visual evidence captured at port 4330 via Playwright / `agritani-shot.cjs`:
+    - `proof/ui/t22/alat-index-390.png`, `proof/ui/t22/alat-index-1440.png`
+    - `proof/ui/t22/konsultasi-390.png`, `proof/ui/t22/konsultasi-1440.png`
+    - `proof/ui/t22/konsultasi-submitted-390.png`, `proof/ui/t22/konsultasi-submitted-1440.png`
+- Boundary check produced `REVIEW_REQUIRED` (declared risk R1, effective risk escalated to R2 due to UI Astro components). Stopped without self-review; finished as `BLOCKED` awaiting independent review.
+
+

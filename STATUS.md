@@ -40,17 +40,15 @@ Kontrak pra-pengembangan diaudit ulang pada 2026-09-29 dengan skill dotfiles ter
 
 ### Active work
 
-T-21 revisi (Kalkulator Dosis) dan perbaikan table alignment CSP selesai diimplementasikan dan diverifikasi penuh:
-- Awal halaman form dosis kini bersih tanpa prefill dosis produk (PRD REQ-11 & DESIGN §2.6.3), dengan empty-state card `Isi dosis dari label untuk melihat hasil`.
-- Hasil menampilkan dua angka berlabel jelas: "Kebutuhan tepat sesuai volume semprot" (mencegah angka menyesatkan pada lahan kecil seperti 100 m²) dan "Jika menyiapkan tangki penuh".
-- Satuan `ml/tangki` dan `g/tangki` kini memuat input kapasitas tangki pada label (bawaan 16 L) dan menghitung skala konsentrasi ke tangki pengguna secara presisi.
-- Seluruh klaim agronomi tanpa sumber ("standar 200–400 L/ha", "umumnya 14–17 L") telah dibersihkan menjadi rujukan label dan konsultasi agronom (`TODO(OQ-11)`).
-- Plugin `csp-table-align-converter` di `astro.config.mjs` mengonversi style perataan tabel markdown menjadi kelas Tailwind (`text-left`, `text-center`, `text-right`) tanpa regex global.
-- Verifikasi: 50 unit tests PASS, `npx astro check` 0 errors, `check-seo` PASS, `check-csp` PASS (0/0/0), screenshot UI mobile dan desktop (empty & calculated) tersimpan di `proof/ui/t21/`.
-Boundary check menghasilkan REVIEW_REQUIRED (effectiveRisk=R2, accepted scope expansion proof). Sesuai aturan, task dihentikan untuk menunggu review independen Claude.
+T-22 (Konsultasi `/konsultasi/` & Indeks Alat Tani `/alat/`) selesai diimplementasikan dan diverifikasi penuh:
+- Halaman `/alat/`: daftar 4 alat tani (Diagnosa Gejala, Kalender Tanam, Cuaca Tani, Kalkulator Dosis) dengan banner prinsip bersama, tanpa tombol ajakan WhatsApp (DESIGN §2.8).
+- Halaman `/konsultasi/`: informasi tim agronomi & Prof. Arif (TODO(OQ-4)), jam layanan operasional (TODO(OQ-1)), checklist persiapan konsultasi, serta form penyusun pesan WhatsApp (`[Web·Konsultasi]`).
+- Form teruji di browser Playwright: menghasilkan URL WhatsApp yang presisi dengan format DESIGN §2.7 dan G-6, membuka chat, serta menampilkan bantuan cadangan jika peramban memblokir popup.
+- Verifikasi: 50 unit tests PASS, `npx astro check` 0 errors, `check-seo` PASS (179 halaman), `check-csp` PASS (0 inline scripts, 0 on*=, 0 style=), screenshot UI (mobile 390px dan desktop 1440px) tersimpan di `proof/ui/t22/`.
+Boundary check menghasilkan REVIEW_REQUIRED (effectiveRisk=R2 karena file UI Astro). Sesuai aturan, task dihentikan untuk menunggu review independen Claude.
 
 Selanjutnya:
-Mengeksekusi **T-22** (Konsultasi `/konsultasi/` + indeks `/alat/`).
+Mengeksekusi **T-09** (Diagnosa Gejala: data `symptoms.json` + UI `/alat/diagnosa-gejala/`).
 
 ## Blockers
 
@@ -60,6 +58,7 @@ Mengeksekusi **T-22** (Konsultasi `/konsultasi/` + indeks `/alat/`).
 - T-03 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 - FIX-CSP menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 - T-21 (termasuk revisi) menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
+- T-22 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
 
 ## Verification evidence
 

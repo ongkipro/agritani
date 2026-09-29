@@ -1,0 +1,122 @@
+---
+/**
+ * src/pages/alat/index.astro
+ * Hub / Index page for Alat Tani (REQ-06, DESIGN §2.6.4, §4.2.3)
+ * Lists 4 tools with zero WhatsApp CTAs (DESIGN §2.8).
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import type { SeoInput } from '../../lib/seo';
+
+const breadcrumbs = [
+  { name: 'Beranda', url: '/' },
+  { name: 'Alat Tani', url: '/alat/' },
+];
+
+const seo: SeoInput = {
+  title: 'Alat Tani',
+  description:
+    'Instrumen bantu praktis petani: diagnosa gejala hama penyakit, kalender tanam HST, cuaca semprot BMKG tingkat desa, dan kalkulator dosis tangki.',
+  canonicalPath: '/alat/',
+  breadcrumbs,
+  pageType: 'website',
+};
+
+const tools = [
+  {
+    title: 'Diagnosa Gejala',
+    href: '/alat/diagnosa-gejala/',
+    badge: 'Identifikasi Masalah',
+    description:
+      'Temukan kemungkinan hama, penyakit, atau defisiensi hara berdasarkan bagian tanaman dan tanda visual di kebun.',
+    cta: 'Buka Diagnosa Gejala',
+  },
+  {
+    title: 'Kalender Tanam',
+    href: '/alat/kalender-tanam/',
+    badge: 'Fase & Jadwal',
+    description:
+      'Pantau fase pertumbuhan tanaman (HST), jadwal pemupukan berkala, dan perkiraan waktu panen komoditas Anda.',
+    cta: 'Buka Kalender Tanam',
+  },
+  {
+    title: 'Cuaca Tani',
+    href: '/alat/cuaca-tani/',
+    badge: 'Prakiraan BMKG',
+    description:
+      'Prakiraan cuaca 3 hari per 3 jam langsung dari data BMKG tingkat desa untuk menentukan waktu aplikasi semprot yang aman.',
+    cta: 'Buka Cuaca Tani',
+  },
+  {
+    title: 'Kalkulator Dosis',
+    href: '/alat/kalkulator-dosis/',
+    badge: 'Kalkulasi Tangki',
+    description:
+      'Hitung takaran pestisida atau pupuk daun per tangki semprot dan total kebutuhan larutan sesuai luas lahan Anda.',
+    cta: 'Buka Kalkulator Dosis',
+  },
+];
+---
+
+<BaseLayout seo={seo} currentPath="/alat/">
+  <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+
+    <!-- Page Header (Lapangan Layout) -->
+    <header class="my-6 sm:my-8 max-w-[68ch]">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--color-text)] mb-3 leading-tight tracking-tight">
+        Alat Tani
+      </h1>
+      <p class="text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed">
+        Empat instrumen bantu praktis untuk diagnosa masalah lapangan, penjadwalan fase tanam, prakiraan cuaca semprot, dan kalkulasi dosis.
+      </p>
+    </header>
+
+    <!-- Shared Principles Banner -->
+    <div class="mb-8 p-4 bg-[var(--color-tint)] border border-[var(--color-border)] rounded-[2px] text-xs sm:text-sm text-[var(--color-text)] flex items-center gap-3">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[var(--color-brand)] shrink-0" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="16" x2="12" y2="12"/>
+        <line x1="12" y1="8" x2="12.01" y2="8"/>
+      </svg>
+      <span>
+        Semua alat dapat digunakan gratis, tanpa registrasi atau akun, dan dirancang khusus untuk kenyamanan layar ponsel di lahan.
+      </span>
+    </div>
+
+    <!-- 4 Tools Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">
+      {tools.map((tool) => (
+        <article class="p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] flex flex-col justify-between hover:border-[var(--color-brand)] transition-colors">
+          <div>
+            <div class="flex items-center justify-between gap-3 mb-2.5">
+              <h2 class="text-xl font-bold text-[var(--color-text)]">
+                <a href={tool.href} class="hover:text-[var(--color-brand-strong)] focus:outline-none focus:underline">
+                  {tool.title}
+                </a>
+              </h2>
+              <span class="inline-block px-2.5 py-0.5 text-xs font-semibold text-[var(--color-soil)] bg-[var(--color-tint)] rounded-[2px] whitespace-nowrap">
+                {tool.badge}
+              </span>
+            </div>
+            <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mb-6">
+              {tool.description}
+            </p>
+          </div>
+          <div>
+            <a
+              href={tool.href}
+              class="inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] text-sm font-semibold rounded-[2px] bg-[var(--color-brand)] text-white hover:bg-[var(--color-brand-strong)] transition-colors w-full sm:w-auto justify-center"
+            >
+              <span>{tool.cta}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14"/>
+                <path d="m12 5 7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
