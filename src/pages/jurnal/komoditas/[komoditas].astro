@@ -1,0 +1,108 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import ArticleRow from '../../../components/ArticleRow.astro';
+import type { SeoInput } from '../../../lib/seo';
+
+export async function getStaticPaths() {
+  const includeDrafts =
+    import.meta.env.PUBLIC_INCLUDE_DRAFTS === 'true' || import.meta.env.DEV;
+
+  const allArticles = await getCollection('articles');
+  const commodities = await getCollection('commodities');
+
+  const visibleArticles = includeDrafts
+    ? allArticles
+    : allArticles.filter((a) => !a.data.draft);
+
+  // Commodity hubs are ONLY created when commodity has >= 3 published (or visible) articles
+  const validCommodities = commodities.filter((c) => {
+    const count = visibleArticles.filter((a) =>
+      a.data.commodities.some((x: any) => (typeof x === 'string' ? x : x.id) === c.id)
+    ).length;
+    return count >= 3;
+  });
+
+  return validCommodities.map((c) => {
+    const commodityArticles = visibleArticles
+      .filter((a) =>
+        a.data.commodities.some((x: any) => (typeof x === 'string' ? x : x.id) === c.id)
+      )
+      .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+
+    return {
+      params: { komoditas: c.id },
+      props: {
+        commodity: c.data,
+        articles: commodityArticles,
+      },
+    };
+  });
+}
+
+const { commodity, articles } = Astro.props;
+
+// Fetch optional introductory text
+const pageEntry = await getEntry('pages', `komoditas-${commodity.id}`);
+
+const breadcrumbItems = [
+  { name: 'Beranda', url: '/' },
+  { name: 'Jurnal Tani', url: '/jurnal/' },
+  { name: commodity.name, url: `/jurnal/komoditas/${commodity.id}/` },
+];
+
+const seo: SeoInput = {
+  title: `${commodity.name}: Panduan Budidaya & Penanganan Hama`,
+  description:
+    pageEntry?.data.description ||
+    `Kumpulan panduan budidaya, pengendalian penyakit, dan rekomendasi perawatan tanaman ${commodity.name} teruji di lahan tropis Indonesia.`,
+  canonicalPath: `/jurnal/komoditas/${commodity.id}/`,
+};
+---
+
+<BaseLayout seo={seo}>
+  <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+    <Breadcrumb items={breadcrumbItems} />
+
+    <header class="my-6 sm:my-8 max-w-[68ch]">
+      <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[var(--color-text)] mb-3 leading-tight">
+        {commodity.name}: Panduan Budidaya & Penanganan
+      </h1>
+      <p class="text-base sm:text-lg text-[var(--color-text-muted)] font-serif leading-relaxed">
+        {pageEntry ? pageEntry.body : seo.description}
+      </p>
+    </header>
+
+    <!-- Relevant Tools for this Commodity -->
+    <div class="my-6 flex flex-wrap gap-4 text-xs font-semibold">
+      <a
+        href={`/alat/diagnosa-gejala/?k=${commodity.id}`}
+        class="px-4 py-2.5 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-text)] hover:bg-[var(--color-harvest)] transition-colors min-h-[44px] flex items-center"
+      >
+        Diagnosa Gejala {commodity.name} →
+      </a>
+      <a
+        href={`/alat/kalender-tanam/?k=${commodity.id}`}
+        class="px-4 py-2.5 rounded-[2px] border border-[var(--color-border-control)] text-[var(--color-text)] hover:bg-[var(--color-tint)] transition-colors min-h-[44px] flex items-center"
+      >
+        Kalender Tanam {commodity.name} →
+      </a>
+    </div>
+
+    <!-- Article Listing -->
+    <section class="mt-8 border-t border-[var(--color-border)] pt-4" aria-labelledby="daftar-artikel-komoditas-heading">
+      <div class="flex items-center justify-between mb-4">
+        <h2 id="daftar-artikel-komoditas-heading" class="text-sm font-bold uppercase tracking-wider text-[var(--color-soil)]">
+          Daftar Artikel ({articles.length} pembahasan)
+        </h2>
+      </div>
+
+      <div class="divide-y divide-[var(--color-border)]">
+        {articles.map((article: any) => (
+          <ArticleRow article={article} />
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

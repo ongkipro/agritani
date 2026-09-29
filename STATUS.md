@@ -40,7 +40,7 @@ Kontrak pra-pengembangan diaudit ulang pada 2026-09-29 dengan skill dotfiles ter
 
 ## Active work
 
-T-02, T-23, T-04, dan T-03 selesai dikerjakan dan terverifikasi secara lokal (check, build, test, yaml valid, gate UI screenshot). Namun seluruhnya menghasilkan REVIEW_REQUIRED karena kenaikan risiko deterministik (T-02 ke R2 skema, T-23 ke R3 CI workflow, T-04 ke R3 boundary, T-03 ke R3 difflist 150 file). Sesuai aturan, task-task tersebut dihentikan menunggu review independen resmi dari Claude/Paduka Ongki. Melanjutkan ke T-05 (ArticleLayout, TOC, indeks jurnal).
+T-02, T-23, T-04, T-03, dan T-05 selesai dikerjakan dan terverifikasi secara lokal (check, build, test, yaml valid, gate UI screenshot). Namun seluruhnya menghasilkan REVIEW_REQUIRED karena kenaikan risiko deterministik (T-02 ke R2 skema, T-23 ke R3 CI workflow, T-04 ke R3 boundary, T-03 ke R3 difflist, T-05 ke R3 boundary). Sesuai aturan, task-task tersebut dihentikan menunggu review independen resmi dari Claude/Paduka Ongki. Melanjutkan ke T-06 (FieldSummaryBox).
 
 ## Blockers
 
@@ -48,6 +48,7 @@ T-02, T-23, T-04, dan T-03 selesai dikerjakan dan terverifikasi secara lokal (ch
 - T-23 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 - T-04 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 - T-03 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
+- T-05 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 
 ## Verification evidence
 
@@ -56,10 +57,12 @@ T-02, T-23, T-04, dan T-03 selesai dikerjakan dan terverifikasi secara lokal (ch
 - T-23 lokal: `.github/workflows/ci.yml` sintaks YAML valid (Python safe_load), build, check, test, kontras lulus.
 - T-04 lokal: `src/lib/whatsapp.test.ts` & `src/lib/seo.test.ts` (22/22 unit tests PASS), `npx astro check` PASS, `npm run build` PASS, `npm run check:contrast` PASS, UI screenshot 404 pada 390px dan 1440px lulus (bebas garis pemisah, touch target >= 44px, navigasi accessible).
 - T-03 lokal: 150 artikel berhasil dinormalisasi in-place sesuai ARCHITECTURE §3.0. 0 duplikasi metaTitle dan description; 6 topik terisi penuh; 17 komoditas terhubung; `npx astro check` PASS (0 errors), `npm test` PASS (22/22), `npm run build` PASS, `npm run check:contrast` PASS.
+- T-05 lokal: ArticleLayout 17 blok selesai, TOC sticky di >=1024px dan details di mobile, rute jurnal/topik/komoditas/paginasi berfungsi; measure teks 68ch (~71ch terukur di 1440px), no horizontal overflow di 320px; UI proof screenshot ditangkap di port 4330 (390 & 1440); build produksi mengecualikan draft (8 hal), preview build memuat 178 hal; check & build & test pass.
 
 ## Next verified action
 
-T-05: ArticleLayout, TOC, indeks `/jurnal`, paginasi, dan hub topik/komoditas (`src/layouts/ArticleLayout.astro`, `src/components/{ArticleToc,ArticleRow,AuthorByline,AuthorBio,ShortAnswer,SymptomCompare}.astro`, `src/pages/jurnal/**`, `src/lib/reading-time.ts`).
+T-06: FieldSummaryBox UI (`src/components/FieldSummaryBox.astro`, `src/layouts/ArticleLayout.astro`).
+
 
 
 

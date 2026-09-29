@@ -1,0 +1,47 @@
+---
+interface Row {
+  feature: string;
+  conditionA: string;
+  conditionB: string;
+}
+
+interface Props {
+  title?: string;
+  nameA: string;
+  nameB: string;
+  rows: Row[];
+}
+
+const {
+  title = 'Pembeda Gejala di Lapangan',
+  nameA,
+  nameB,
+  rows = [],
+} = Astro.props;
+---
+
+<aside class="my-8 p-4 rounded-[2px] bg-[var(--color-tint)]" aria-labelledby="pembeda-gejala-heading">
+  <h3 id="pembeda-gejala-heading" class="text-base font-bold text-[var(--color-text)] mb-3">
+    {title}
+  </h3>
+  <div class="overflow-x-auto" tabindex="0" role="region" aria-label="Tabel perbandingan gejala">
+    <table class="w-full text-left text-sm border-collapse">
+      <thead>
+        <tr class="border-b border-[var(--color-border-control)]">
+          <th class="py-2 pr-3 font-semibold text-[var(--color-soil)]">Karakteristik</th>
+          <th class="py-2 px-3 font-semibold text-[var(--color-text)]">{nameA}</th>
+          <th class="py-2 pl-3 font-semibold text-[var(--color-text)]">{nameB}</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-[var(--color-border)]">
+        {rows.map((r) => (
+          <tr>
+            <td class="py-2.5 pr-3 font-medium text-[var(--color-text-muted)]">{r.feature}</td>
+            <td class="py-2.5 px-3 text-[var(--color-text)]">{r.conditionA}</td>
+            <td class="py-2.5 pl-3 text-[var(--color-text)]">{r.conditionB}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</aside>

@@ -1,0 +1,63 @@
+---
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { assertContentIntegrity } from '../../lib/content-integrity';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+  const symptoms = await getCollection('symptoms');
+  const cropCalendars = await getCollection('cropCalendars');
+  const commodities = await getCollection('commodities');
+
+  const includeDrafts =
+    import.meta.env.PUBLIC_INCLUDE_DRAFTS === 'true' || import.meta.env.DEV;
+
+  // Run content integrity assertion check
+  assertContentIntegrity({
+    articles: articles.map((a) => a.data),
+    symptoms: symptoms.map((s) => s.data),
+    cropCalendars: cropCalendars.map((c) => c.data),
+    commodities: commodities.map((c) => c.data),
+    isDraftPreview: includeDrafts,
+  });
+
+  // Filter publishable articles based on draft policy
+  const visibleArticles = includeDrafts
+    ? articles
+    : articles.filter((a) => !a.data.draft);
+
+  return visibleArticles.map((article) => {
+    const artCommIds = article.data.commodities.map((c: any) =>
+      typeof c === 'string' ? c : c.id
+    );
+
+    // Find related articles (same topic or shared commodity)
+    const related = visibleArticles
+      .filter((a) => a.data.slug !== article.data.slug)
+      .filter(
+        (a) =>
+          a.data.topic === article.data.topic ||
+          a.data.commodities.some((c: any) =>
+            artCommIds.includes(typeof c === 'string' ? c : c.id)
+          )
+      )
+      .slice(0, 3);
+
+    return {
+      params: { slug: article.data.slug },
+      props: { article, relatedArticles: related },
+    };
+  });
+}
+
+const { article, relatedArticles } = Astro.props;
+const { Content, headings } = await render(article);
+---
+
+<ArticleLayout
+  article={article}
+  headings={headings}
+  relatedArticles={relatedArticles}
+>
+  <Content />
+</ArticleLayout>

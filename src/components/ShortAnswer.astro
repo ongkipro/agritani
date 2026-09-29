@@ -1,0 +1,25 @@
+---
+interface Props {
+  answer?: string;
+}
+
+const { answer } = Astro.props;
+---
+
+{answer && (
+  <section
+    class="my-6 py-4 border-l-4 pl-4"
+    style="border-color: var(--color-brand);"
+    aria-labelledby="jawaban-singkat-heading"
+  >
+    <h2
+      id="jawaban-singkat-heading"
+      class="text-xs uppercase font-bold tracking-wider mb-1.5 text-[var(--color-brand-strong)]"
+    >
+      Jawaban Singkat
+    </h2>
+    <p class="text-base sm:text-lg leading-relaxed text-[var(--color-text)] font-serif">
+      {answer}
+    </p>
+  </section>
+)}

@@ -1,0 +1,138 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import ArticleRow from '../../../components/ArticleRow.astro';
+import type { SeoInput } from '../../../lib/seo';
+
+export async function getStaticPaths() {
+  const topics = [
+    { slug: 'proteksi-tanaman', name: 'Proteksi Tanaman: Hama & Penyakit' },
+    { slug: 'tanah-nutrisi', name: 'Tanah & Nutrisi Tanaman' },
+    { slug: 'budidaya', name: 'Teknik Budidaya & Pembibitan' },
+    { slug: 'air-irigasi', name: 'Manajemen Air & Sistem Irigasi' },
+    { slug: 'pascapanen-agribisnis', name: 'Pascapanen & Agribisnis' },
+    { slug: 'sains-tanaman', name: 'Sains Tanaman & Fisiologi' },
+  ];
+
+  const includeDrafts =
+    import.meta.env.PUBLIC_INCLUDE_DRAFTS === 'true' || import.meta.env.DEV;
+
+  const allArticles = await getCollection('articles');
+  const visibleArticles = includeDrafts
+    ? allArticles
+    : allArticles.filter((a) => !a.data.draft);
+
+  return topics.map((t) => {
+    const topicArticles = visibleArticles
+      .filter((a) => a.data.topic === t.slug)
+      .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+
+    return {
+      params: { topik: t.slug },
+      props: {
+        topic: t,
+        articles: topicArticles,
+      },
+    };
+  });
+}
+
+const { topic, articles } = Astro.props;
+
+// Fetch introductory text from pages collection if exists
+const pageEntry = await getEntry('pages', `topik-${topic.slug}`);
+
+const breadcrumbItems = [
+  { name: 'Beranda', url: '/' },
+  { name: 'Jurnal Tani', url: '/jurnal/' },
+  { name: topic.name, url: `/jurnal/topik/${topic.slug}/` },
+];
+
+const seo: SeoInput = {
+  title: topic.name,
+  description:
+    pageEntry?.data.description ||
+    `Kumpulan panduan teknis dan artikel ilmiah terapan tentang ${topic.name} oleh Prof. Arif Prabowo di Jurnal Tani Agritani.`,
+  canonicalPath: `/jurnal/topik/${topic.slug}/`,
+};
+
+// Associated tool recommendation based on topic
+const toolMap: Record<string, { label: string; href: string; desc: string }> = {
+  'proteksi-tanaman': {
+    label: 'Buka Diagnosa Gejala',
+    href: '/alat/diagnosa-gejala/',
+    desc: 'Identifikasi gejala hama dan penyakit di tanaman Anda secara terstruktur.',
+  },
+  'tanah-nutrisi': {
+    label: 'Kalkulator Dosis Semprot',
+    href: '/alat/kalkulator-dosis/',
+    desc: 'Hitung kebutuhan tangki dan konsentrasi larutan pupuk daun atau biostimulan.',
+  },
+  'budidaya': {
+    label: 'Kalender Tanam Mandiri',
+    href: '/alat/kalender-tanam/',
+    desc: 'Jadwalkan fase pertumbuhan komoditas pangan dan hortikultura dari tanggal tanam.',
+  },
+  'air-irigasi': {
+    label: 'Cek Cuaca Tani BMKG',
+    href: '/alat/cuaca-tani/',
+    desc: 'Pantau prakiraan hujan dan rekomendasi waktu penyemprotan tingkat desa.',
+  },
+};
+
+const tool = toolMap[topic.slug];
+---
+
+<BaseLayout seo={seo}>
+  <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+    <Breadcrumb items={breadcrumbItems} />
+
+    <header class="my-6 sm:my-8 max-w-[68ch]">
+      <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[var(--color-text)] mb-3 leading-tight">
+        {topic.name}
+      </h1>
+      <p class="text-base sm:text-lg text-[var(--color-text-muted)] font-serif leading-relaxed">
+        {pageEntry ? pageEntry.body : seo.description}
+      </p>
+    </header>
+
+    {tool && (
+      <div class="my-6 p-4 rounded-[2px] bg-[var(--color-tint)] border border-[var(--color-border)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <div class="text-xs uppercase font-bold tracking-wider text-[var(--color-soil)] mb-1">
+            Alat Tani Terkait
+          </div>
+          <p class="text-sm text-[var(--color-text)] font-medium">
+            {tool.desc}
+          </p>
+        </div>
+        <a
+          href={tool.href}
+          class="px-4 py-2 rounded-[2px] font-semibold text-xs text-white shrink-0 min-h-[44px] flex items-center"
+          style="background-color: var(--color-brand);"
+        >
+          {tool.label} →
+        </a>
+      </div>
+    )}
+
+    <section class="mt-8 border-t border-[var(--color-border)] pt-4" aria-labelledby="daftar-artikel-topik-heading">
+      <h2 id="daftar-artikel-topik-heading" class="sr-only">
+        Daftar Artikel {topic.name}
+      </h2>
+
+      {articles.length > 0 ? (
+        <div class="divide-y divide-[var(--color-border)]">
+          {articles.map((article: any) => (
+            <ArticleRow article={article} />
+          ))}
+        </div>
+      ) : (
+        <div class="py-12 text-center text-[var(--color-text-muted)]">
+          <p>Belum ada artikel yang diterbitkan untuk topik ini.</p>
+        </div>
+      )}
+    </section>
+  </div>
+</BaseLayout>

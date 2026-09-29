@@ -1,0 +1,72 @@
+---
+import { getReadingTime } from '../lib/reading-time';
+
+interface Props {
+  article: {
+    id: string;
+    body?: string;
+    data: {
+      title: string;
+      slug: string;
+      description: string;
+      pubDate: Date;
+      topic: string;
+      commodities: Array<string | { id: string }>;
+      draft?: boolean;
+    };
+  };
+}
+
+const { article } = Astro.props;
+const readingTime = getReadingTime(article.body || '');
+
+const topicLabels: Record<string, string> = {
+  'proteksi-tanaman': 'Proteksi Tanaman',
+  'tanah-nutrisi': 'Tanah & Nutrisi',
+  'budidaya': 'Budidaya',
+  'air-irigasi': 'Air & Irigasi',
+  'pascapanen-agribisnis': 'Pascapanen & Agribisnis',
+  'sains-tanaman': 'Sains Tanaman',
+};
+
+const formattedDate = new Intl.DateTimeFormat('id-ID', {
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+}).format(new Date(article.data.pubDate));
+---
+
+<article class="py-5 border-b border-[var(--color-border)] last:border-b-0">
+  <div class="flex flex-wrap items-center gap-2 text-xs text-[var(--color-soil)] font-medium mb-1.5">
+    <a
+      href={`/jurnal/topik/${article.data.topic}/`}
+      class="hover:underline focus-visible:outline-2 focus-visible:outline-[var(--color-harvest)]"
+    >
+      {topicLabels[article.data.topic] || article.data.topic}
+    </a>
+    <span aria-hidden="true">·</span>
+    <span>{readingTime.text}</span>
+    <span aria-hidden="true">·</span>
+    <time datetime={new Date(article.data.pubDate).toISOString()}>
+      {formattedDate}
+    </time>
+    {article.data.draft && (
+      <span class="ml-2 px-1.5 py-0.5 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-soil)] text-[11px] font-semibold">
+        Draf
+      </span>
+    )}
+  </div>
+
+  <h2 class="text-xl sm:text-2xl font-serif font-semibold text-[var(--color-text)] mb-2 leading-snug">
+    <a
+      href={`/jurnal/${article.data.slug}/`}
+      class="hover:text-[var(--color-brand-strong)] hover:underline inline-block min-h-[44px] flex items-center"
+    >
+      {article.data.title}
+    </a>
+  </h2>
+
+  <p class="text-sm sm:text-base text-[var(--color-text-muted)] line-clamp-2 leading-relaxed">
+    {article.data.description}
+  </p>
+</article>

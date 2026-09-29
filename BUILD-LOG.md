@@ -102,5 +102,30 @@ Record only durable implementation changes, validation evidence, and gotchas tha
   - 150/150 articles currently require `answer` (Short Answer, 40-60 words) and verified `references` before being transitioned from `draft: true` to `draft: false` (tracked for T-16 / T-25).
 - Checks passed: `npm test` (22/22 pass), `npx astro check` (0 errors), `npm run build` (150 articles synced in content layer), `npm run check:contrast`. Boundary check requires independent review (R3 scale). Stopped for review.
 
+## 2026-09-29 — T-05: ArticleLayout, TOC, Journal Index, and Topic/Commodity Hubs (READY - PENDING INDEPENDENT REVIEW)
+
+- Implemented `src/lib/reading-time.ts` calculating reading time (~200 wpm) from clean word count.
+- Built UI components: `AuthorByline.astro`, `AuthorBio.astro`, `ShortAnswer.astro`, `SymptomCompare.astro`, `ArticleToc.astro` (sticky on >=1024px with <1 KB scrollspy, collapsible `<details>` on mobile), `ArticleRow.astro`.
+- Created `src/layouts/ArticleLayout.astro` adhering strictly to DESIGN §4.3 (17-block anatomy canvas, 68ch prose measure, no horizontal overflow).
+- Created journal routes:
+  - `src/pages/jurnal/index.astro` (main index with 6 topic filters, commodity hubs, first 30 articles, pagination controls)
+  - `src/pages/jurnal/halaman/[n].astro` (static pagination pages 2..N, 30 items per page)
+  - `src/pages/jurnal/[slug].astro` (article detail calling `assertContentIntegrity()`)
+  - `src/pages/jurnal/topik/[topik].astro` (6 canonical topic hubs with tool pairings)
+  - `src/pages/jurnal/komoditas/[komoditas].astro` (commodity hubs built strictly for >= 3 published/visible articles)
+- Added markdown intro pages for 6 canonical topics in `src/content/pages/topik-*.md`.
+- UI validation evidence captured at 390px and 1440px on port 4330 via `agritani-shot.cjs`:
+  - `jurnal-index-390.png`, `jurnal-index-1440.png`
+  - `article-detail-390.png`, `article-detail-1440.png`
+  - `topic-hub-390.png`, `topic-hub-1440.png`
+  - `commodity-hub-390.png`, `commodity-hub-1440.png`
+- Verified:
+  - Prose measure at 1440px is 621px (~71ch, within 65–72ch target).
+  - No horizontal scrollbar at 320px viewport (`scrollWidth === 320px`).
+  - Production build (`npm run build`) builds 8 pages and excludes draft articles.
+  - Draft preview build (`PUBLIC_INCLUDE_DRAFTS=true npm run build`) builds 178 pages.
+- Checks passed: `npm test` (22/22), `npx astro check` (0 errors), `npm run build`, `npm run check:contrast`. Boundary check requires independent review (R3). Stopped for review.
+
+
 
 

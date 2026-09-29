@@ -1,0 +1,113 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import ArticleRow from '../../../components/ArticleRow.astro';
+import type { SeoInput } from '../../../lib/seo';
+
+export async function getStaticPaths() {
+  const includeDrafts =
+    import.meta.env.PUBLIC_INCLUDE_DRAFTS === 'true' || import.meta.env.DEV;
+
+  const allArticles = await getCollection('articles');
+  const visibleArticles = includeDrafts
+    ? allArticles
+    : allArticles.filter((a) => !a.data.draft);
+
+  const sorted = visibleArticles.sort(
+    (a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+  );
+
+  const pageSize = 30;
+  const totalPages = Math.ceil(sorted.length / pageSize);
+
+  if (totalPages <= 1) {
+    return [];
+  }
+
+  const paths = [];
+  for (let p = 2; p <= totalPages; p++) {
+    const start = (p - 1) * pageSize;
+    const end = start + pageSize;
+    const pageArticles = sorted.slice(start, end);
+    paths.push({
+      params: { n: String(p) },
+      props: {
+        pageNumber: p,
+        totalPages,
+        articles: pageArticles,
+      },
+    });
+  }
+
+  return paths;
+}
+
+const { pageNumber, totalPages, articles } = Astro.props;
+
+const seo: SeoInput = {
+  title: `Jurnal Tani — Halaman ${pageNumber}`,
+  description: `Arsip artikel dan panduan agronomi terapan Jurnal Tani Agritani oleh Prof. Arif Prabowo — Halaman ${pageNumber} dari ${totalPages}.`,
+  canonicalPath: `/jurnal/halaman/${pageNumber}/`,
+};
+
+const breadcrumbItems = [
+  { name: 'Beranda', url: '/' },
+  { name: 'Jurnal Tani', url: '/jurnal/' },
+  { name: `Halaman ${pageNumber}`, url: `/jurnal/halaman/${pageNumber}/` },
+];
+
+const prevHref = pageNumber === 2 ? '/jurnal/' : `/jurnal/halaman/${pageNumber - 1}/`;
+const nextHref = pageNumber < totalPages ? `/jurnal/halaman/${pageNumber + 1}/` : null;
+---
+
+<BaseLayout seo={seo}>
+  <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+    <Breadcrumb items={breadcrumbItems} />
+
+    <header class="my-6 sm:my-8">
+      <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[var(--color-text)] mb-2">
+        Jurnal Tani — Halaman {pageNumber}
+      </h1>
+      <p class="text-sm text-[var(--color-text-muted)]">
+        Menampilkan artikel {((pageNumber - 1) * 30) + 1} sampai {Math.min(pageNumber * 30, ((pageNumber - 1) * 30) + articles.length)} dari total artikel terbit.
+      </p>
+    </header>
+
+    <section class="border-t border-[var(--color-border)] pt-4" aria-labelledby="daftar-artikel-halaman-heading">
+      <h2 id="daftar-artikel-halaman-heading" class="sr-only">
+        Daftar Artikel Jurnal Tani Halaman {pageNumber}
+      </h2>
+
+      <div class="divide-y divide-[var(--color-border)]">
+        {articles.map((article: any) => (
+          <ArticleRow article={article} />
+        ))}
+      </div>
+
+      <!-- Pagination Navigation -->
+      <nav class="my-10 flex items-center justify-between border-t border-[var(--color-border)] pt-4" aria-label="Paginasi navigasi">
+        <a
+          href={prevHref}
+          class="px-4 py-2 rounded-[2px] font-semibold text-xs border border-[var(--color-border-control)] text-[var(--color-text)] hover:bg-[var(--color-tint)] min-h-[44px] flex items-center"
+        >
+          ← Halaman Sebelumnya
+        </a>
+        <span class="text-xs text-[var(--color-text-muted)]">
+          {pageNumber} / {totalPages}
+        </span>
+        {nextHref ? (
+          <a
+            href={nextHref}
+            class="px-4 py-2 rounded-[2px] font-semibold text-xs text-white min-h-[44px] flex items-center"
+            style="background-color: var(--color-brand);"
+          >
+            Halaman Berikutnya →
+          </a>
+        ) : (
+          <span class="text-xs text-[var(--color-text-muted)]">Halaman Terakhir</span>
+        )}
+      </nav>
+    </section>
+  </div>
+</BaseLayout>

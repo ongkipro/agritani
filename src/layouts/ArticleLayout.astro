@@ -1,0 +1,424 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import AuthorByline from '../components/AuthorByline.astro';
+import AuthorBio from '../components/AuthorBio.astro';
+import ShortAnswer from '../components/ShortAnswer.astro';
+import ArticleToc, { type TocHeading } from '../components/ArticleToc.astro';
+import ConsultPrompt from '../components/ConsultPrompt.astro';
+import { getReadingTime } from '../lib/reading-time';
+import type { SeoInput } from '../lib/seo';
+
+interface ArticleData {
+  title: string;
+  metaTitle: string;
+  description: string;
+  slug: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  author: string;
+  topic: string;
+  commodities: Array<string | { id: string }>;
+  tags: string[];
+  answer?: string;
+  fieldTakeaways?: any;
+  references?: Array<{
+    authors: string;
+    year: number;
+    title: string;
+    source: string;
+    doi?: string;
+    url?: string;
+  }>;
+  draft?: boolean;
+}
+
+interface Props {
+  article: {
+    body?: string;
+    data: ArticleData;
+  };
+  headings?: TocHeading[];
+  relatedArticles?: Array<{
+    data: {
+      title: string;
+      slug: string;
+      topic: string;
+      pubDate: Date;
+    };
+    body?: string;
+  }>;
+}
+
+const { article, headings = [], relatedArticles = [] } = Astro.props;
+const { data } = article;
+
+const readingTime = getReadingTime(article.body || '');
+
+const topicLabels: Record<string, string> = {
+  'proteksi-tanaman': 'Proteksi Tanaman',
+  'tanah-nutrisi': 'Tanah & Nutrisi',
+  'budidaya': 'Budidaya',
+  'air-irigasi': 'Air & Irigasi',
+  'pascapanen-agribisnis': 'Pascapanen & Agribisnis',
+  'sains-tanaman': 'Sains Tanaman',
+};
+
+const topicLabel = topicLabels[data.topic] || data.topic;
+
+const primaryCommodity = data.commodities?.[0]
+  ? typeof data.commodities[0] === 'string'
+    ? data.commodities[0]
+    : (data.commodities[0] as any).id
+  : '';
+
+const breadcrumbItems = [
+  { name: 'Beranda', url: '/' },
+  { name: 'Jurnal Tani', url: '/jurnal/' },
+  { name: topicLabel, url: `/jurnal/topik/${data.topic}/` },
+  { name: data.title, url: `/jurnal/${data.slug}/` },
+];
+
+const seo: SeoInput = {
+  title: data.title,
+  metaTitle: data.metaTitle,
+  description: data.description,
+  canonicalPath: `/jurnal/${data.slug}/`,
+  ogType: 'article',
+  article: {
+    pubDate: new Date(data.pubDate),
+    updatedDate: data.updatedDate ? new Date(data.updatedDate) : undefined,
+    author: data.author,
+    topic: topicLabel,
+    tags: data.tags,
+  },
+  noindex: data.draft ?? false,
+};
+
+const formattedPubDate = new Intl.DateTimeFormat('id-ID', {
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+}).format(new Date(data.pubDate));
+
+const formattedUpdatedDate = data.updatedDate
+  ? new Intl.DateTimeFormat('id-ID', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    }).format(new Date(data.updatedDate))
+  : null;
+---
+
+<BaseLayout seo={seo}>
+  <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+    <!-- 1. Breadcrumb -->
+    <Breadcrumb items={breadcrumbItems} />
+
+    {data.draft && (
+      <div
+        role="status"
+        class="my-4 p-3 rounded-[2px] bg-[var(--color-tint)] border border-[var(--color-border-control)] text-xs font-semibold text-[var(--color-soil)] flex items-center justify-between"
+      >
+        <span>DRAF — Naskah belum diterbitkan untuk publikasi resmi</span>
+        <span class="text-[11px] font-normal uppercase tracking-wider">Pratinjau Redaksi</span>
+      </div>
+    )}
+
+    <!-- Article Header -->
+    <header class="mt-4 mb-8 lg:grid lg:grid-cols-12 lg:gap-8">
+      <div class="lg:col-span-3 hidden lg:block" aria-hidden="true"></div>
+      <div class="lg:col-span-9 max-w-[68ch]">
+        <!-- 2. H1 Title -->
+        <h1 class="text-3xl sm:text-4xl lg:text-[2.75rem] font-serif font-bold text-[var(--color-text)] leading-tight mb-4 text-balance">
+          {data.title}
+        </h1>
+
+        <!-- 3. Dek -->
+        <p class="text-lg sm:text-xl text-[var(--color-text-muted)] font-serif leading-relaxed mb-6">
+          {data.description}
+        </p>
+
+        <!-- 4. Byline -->
+        <AuthorByline author={data.author} />
+
+        <!-- 5. Metadata Bar -->
+        <div class="flex flex-wrap items-center gap-2 text-xs text-[var(--color-text-muted)] pt-2 border-t border-[var(--color-border)]">
+          <span>Terbit <time datetime={new Date(data.pubDate).toISOString()}>{formattedPubDate}</time></span>
+          {formattedUpdatedDate && (
+            <>
+              <span aria-hidden="true">·</span>
+              <span>Diperbarui <time datetime={new Date(data.updatedDate!).toISOString()}>{formattedUpdatedDate}</time></span>
+            </>
+          )}
+          <span aria-hidden="true">·</span>
+          <span>{readingTime.text}</span>
+          {primaryCommodity && (
+            <>
+              <span aria-hidden="true">·</span>
+              <a
+                href={`/jurnal/komoditas/${primaryCommodity}/`}
+                class="hover:underline capitalize font-medium text-[var(--color-soil)]"
+              >
+                {primaryCommodity.replace(/-/g, ' ')}
+              </a>
+            </>
+          )}
+        </div>
+
+        <!-- 6. Article Actions -->
+        <div class="flex items-center gap-4 mt-4 pt-3 border-t border-[var(--color-border)] print:hidden text-xs font-semibold">
+          <button
+            type="button"
+            id="share-btn"
+            class="text-[var(--color-brand-strong)] hover:underline inline-flex items-center gap-1.5 py-1 min-h-[44px]"
+          >
+            Bagikan
+          </button>
+          <button
+            type="button"
+            id="print-btn"
+            onclick="window.print()"
+            class="text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:underline inline-flex items-center gap-1.5 py-1 min-h-[44px]"
+          >
+            Cetak Panduan
+          </button>
+        </div>
+
+        <!-- 7. Short Answer -->
+        {data.answer && <ShortAnswer answer={data.answer} />}
+      </div>
+    </header>
+
+    <!-- Main Content Area with Sticky TOC -->
+    <div class="lg:grid lg:grid-cols-12 lg:gap-8 items-start">
+      <!-- 10. TOC (Sidebar on Desktop, Details on Mobile) -->
+      <aside class="lg:col-span-3">
+        <ArticleToc headings={headings} />
+      </aside>
+
+      <!-- 11. Article Prose -->
+      <article class="lg:col-span-7 prose-container max-w-[68ch]">
+        <div class="prose text-[var(--color-text)] text-[1.0625rem] sm:text-[1.125rem] leading-[1.75]">
+          <slot />
+        </div>
+
+        <!-- 13. Kapan Harus Konsultasi -->
+        <section class="my-10 pt-8 border-t border-[var(--color-border)]" aria-labelledby="konsultasi-heading">
+          <h2 id="konsultasi-heading" class="text-xl font-bold font-serif text-[var(--color-text)] mb-3">
+            Kapan Harus Berkonsultasi?
+          </h2>
+          <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed mb-4">
+            Bila gejala kerusakan menyebar lebih dari 15% populasi dalam satu petak atau respon tanaman tidak membaik setelah tindakan pertama, segera tanyakan langsung ke tim agronomi untuk konfirmasi diagnosis lapangan.
+          </p>
+          <ConsultPrompt
+            source="artikel"
+            title={data.title}
+            label="Tanya Tim Agronomi via WhatsApp"
+            note="Konsultasi langsung ditangani tim agronomi Agritani · Bebas biaya"
+          />
+        </section>
+
+        <!-- 14. Daftar Pustaka -->
+        {data.references && data.references.length > 0 && (
+          <section class="my-10 pt-6 border-t border-[var(--color-border)]" aria-labelledby="pustaka-heading">
+            <details open class="group">
+              <summary class="cursor-pointer select-none font-serif text-lg font-bold text-[var(--color-text)] mb-4 list-none flex items-center justify-between">
+                <span id="pustaka-heading">Daftar Pustaka & Rujukan Ilmiah</span>
+                <span class="text-xs font-sans text-[var(--color-text-muted)] group-open:rotate-180 transition-transform">
+                  ▼
+                </span>
+              </summary>
+              <ol class="space-y-3 pl-5 list-decimal text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
+                {data.references.map((ref) => (
+                  <li>
+                    <span class="font-semibold text-[var(--color-text)]">{ref.authors}</span> ({ref.year}).{' '}
+                    <span>{ref.title}</span>. <em>{ref.source}</em>.{' '}
+                    {ref.doi && (
+                      <a
+                        href={`https://doi.org/${ref.doi}`}
+                        target="_blank"
+                        rel="noopener"
+                        class="text-[var(--color-brand-strong)] hover:underline break-all"
+                      >
+                        doi:{ref.doi}
+                      </a>
+                    )}
+                    {!ref.doi && ref.url && (
+                      <a
+                        href={ref.url}
+                        target="_blank"
+                        rel="noopener"
+                        class="text-[var(--color-brand-strong)] hover:underline break-all"
+                      >
+                        {ref.url}
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </details>
+          </section>
+        )}
+
+        <!-- 15. Tentang Penulis -->
+        <AuthorBio />
+
+        <!-- 16. Pengungkapan -->
+        <div class="my-8 py-3 px-4 rounded-[2px] bg-[var(--color-tint)] text-xs text-[var(--color-text-muted)] leading-relaxed">
+          <p>
+            <strong>Pengungkapan:</strong> Artikel ini ditulis oleh Prof. Arif Prabowo sebagai moderator Jurnal Tani, portal edukasi PT Agritani Internasional, distributor produk nutrisi dan aktivator tanaman.
+          </p>
+        </div>
+
+        <!-- 17. Lanjut Membaca -->
+        {relatedArticles.length > 0 && (
+          <nav class="my-10 pt-8 border-t border-[var(--color-border)]" aria-label="Artikel terkait">
+            <h2 class="text-xl font-bold font-serif text-[var(--color-text)] mb-4">
+              Bacaan Terkait
+            </h2>
+            <div class="divide-y divide-[var(--color-border)]">
+              {relatedArticles.map((rel) => (
+                <div class="py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <a
+                    href={`/jurnal/${rel.data.slug}/`}
+                    class="font-serif font-semibold text-base text-[var(--color-text)] hover:text-[var(--color-brand-strong)] hover:underline"
+                  >
+                    {rel.data.title}
+                  </a>
+                  <span class="text-xs text-[var(--color-soil)] shrink-0">
+                    {getReadingTime(rel.body || '').text}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div class="mt-4 flex flex-wrap gap-4 text-xs font-semibold text-[var(--color-brand-strong)]">
+              {primaryCommodity && (
+                <a href={`/alat/diagnosa-gejala/?k=${primaryCommodity}`} class="hover:underline">
+                  Diagnosa gejala {primaryCommodity.replace(/-/g, ' ')} →
+                </a>
+              )}
+              <a href={`/jurnal/topik/${data.topic}/`} class="hover:underline">
+                Lihat semua artikel topik {topicLabel} →
+              </a>
+            </div>
+          </nav>
+        )}
+      </article>
+
+      <!-- 2/12 spacer on desktop -->
+      <div class="lg:col-span-2 hidden lg:block" aria-hidden="true"></div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  // Native share with fallback to clipboard
+  const shareBtn = document.getElementById('share-btn');
+  if (shareBtn) {
+    shareBtn.addEventListener('click', async () => {
+      const shareData = {
+        title: document.title,
+        text: document.querySelector('meta[name="description"]')?.getAttribute('content') || document.title,
+        url: window.location.href,
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+        } catch {
+          // Share was dismissed or cancelled
+        }
+      } else {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          const orig = shareBtn.textContent;
+          shareBtn.textContent = 'Tautan Tersalin!';
+          setTimeout(() => {
+            shareBtn.textContent = orig;
+          }, 2000);
+        } catch {
+          // Fallback failed
+        }
+      }
+    });
+  }
+</script>
+
+<style>
+  /* Ensure article body measure is between 65ch and 72ch */
+  .prose-container {
+    max-width: 68ch;
+  }
+
+  /* Prose typography styling */
+  .prose :global(h2) {
+    font-family: var(--font-editorial, 'Newsreader', Georgia, serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-top: 2.25rem;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+  }
+
+  .prose :global(h3) {
+    font-family: var(--font-editorial, 'Newsreader', Georgia, serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.35;
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-text);
+  }
+
+  .prose :global(p) {
+    margin-bottom: 1.25rem;
+    text-wrap: pretty;
+  }
+
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+
+  .prose :global(ul) {
+    list-style-type: disc;
+  }
+
+  .prose :global(ol) {
+    list-style-type: decimal;
+  }
+
+  .prose :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .prose :global(blockquote) {
+    border-left: 3px solid var(--color-border-control);
+    padding-left: 1rem;
+    font-style: italic;
+    color: var(--color-text-muted);
+    margin: 1.5rem 0;
+  }
+
+  .prose :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9375rem;
+  }
+
+  .prose :global(th),
+  .prose :global(td) {
+    border: 1px solid var(--color-border);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+
+  .prose :global(th) {
+    background-color: var(--color-tint);
+    font-weight: 600;
+  }
+</style>

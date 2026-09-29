@@ -1,0 +1,32 @@
+---
+interface Props {
+  author?: string;
+  role?: string;
+}
+
+const { author = 'Prof. Arif Prabowo', role = 'Profesor Pertanian · Moderator Jurnal Tani' } = Astro.props;
+---
+
+<div class="flex items-center gap-3.5 my-4">
+  <div
+    class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-white text-sm shrink-0"
+    style="background-color: var(--color-brand);"
+    aria-hidden="true"
+  >
+    AP
+  </div>
+  <address class="not-italic text-sm leading-snug">
+    <div>
+      <span class="text-[var(--color-text-muted)]">Oleh</span>
+      <a
+        href="/penulis/arif-prabowo/"
+        class="font-semibold text-[var(--color-text)] hover:underline ml-1"
+      >
+        {author}
+      </a>
+    </div>
+    <div class="text-[var(--color-text-muted)] text-xs mt-0.5">
+      {role}
+    </div>
+  </address>
+</div>

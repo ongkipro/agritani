@@ -1,0 +1,150 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import ArticleRow from '../../components/ArticleRow.astro';
+import type { SeoInput } from '../../lib/seo';
+
+const includeDrafts =
+  import.meta.env.PUBLIC_INCLUDE_DRAFTS === 'true' || import.meta.env.DEV;
+
+const allArticles = await getCollection('articles');
+const commodities = await getCollection('commodities');
+
+// Filter according to draft mode
+const visibleArticles = includeDrafts
+  ? allArticles
+  : allArticles.filter((a) => !a.data.draft);
+
+// Sort by pubDate descending
+const sortedArticles = visibleArticles.sort(
+  (a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+);
+
+const pageSize = 30;
+const articlesPage1 = sortedArticles.slice(0, pageSize);
+const totalPages = Math.ceil(sortedArticles.length / pageSize);
+
+// Topic hub links
+const topics = [
+  { slug: 'proteksi-tanaman', name: 'Proteksi Tanaman' },
+  { slug: 'tanah-nutrisi', name: 'Tanah & Nutrisi' },
+  { slug: 'budidaya', name: 'Budidaya' },
+  { slug: 'air-irigasi', name: 'Air & Irigasi' },
+  { slug: 'pascapanen-agribisnis', name: 'Pascapanen & Agribisnis' },
+  { slug: 'sains-tanaman', name: 'Sains Tanaman' },
+];
+
+// Commodity hubs (only commodities with >= 3 visible articles)
+const activeCommodities = commodities
+  .map((c) => {
+    const count = visibleArticles.filter((a) =>
+      a.data.commodities.some((x: any) => (typeof x === 'string' ? x : x.id) === c.id)
+    ).length;
+    return { ...c.data, count };
+  })
+  .filter((c) => c.count >= 3)
+  .sort((a, b) => b.count - a.count);
+
+const seo: SeoInput = {
+  title: 'Jurnal Tani — Riset Lapangan & Solusi Agronomi',
+  description:
+    'Portal edukasi dan riset agronomi terapan oleh Prof. Arif Prabowo. Menghadirkan solusi ilmiah praktis untuk mengatasi masalah tanaman pangan, hortikultura, dan perkebunan.',
+  canonicalPath: '/jurnal/',
+};
+
+const breadcrumbItems = [
+  { name: 'Beranda', url: '/' },
+  { name: 'Jurnal Tani', url: '/jurnal/' },
+];
+---
+
+<BaseLayout seo={seo}>
+  <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+    <Breadcrumb items={breadcrumbItems} />
+
+    <!-- Page Header -->
+    <header class="my-6 sm:my-8 max-w-[68ch]">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[var(--color-text)] mb-3 leading-tight">
+        Jurnal Tani
+      </h1>
+      <p class="text-base sm:text-lg text-[var(--color-text-muted)] font-serif leading-relaxed">
+        Ruang belajar dan rujukan agronomi independen yang diasuh oleh <strong>Prof. Arif Prabowo</strong>. Mengulas sains proteksi tanaman tropis, kesuburan tanah alami, dan efisiensi budidaya langsung dari temuan di lahan.
+      </p>
+    </header>
+
+    <!-- Hub Topic Filters -->
+    <nav class="my-6 pt-4 border-t border-[var(--color-border)]" aria-label="Topik jurnal">
+      <div class="text-xs font-bold uppercase tracking-wider text-[var(--color-soil)] mb-2.5">
+        Topik Bahasan
+      </div>
+      <div class="flex flex-wrap gap-2">
+        {topics.map((t) => (
+          <a
+            href={`/jurnal/topik/${t.slug}/`}
+            class="px-3 py-1.5 rounded-[2px] bg-[var(--color-tint)] text-xs sm:text-sm font-semibold text-[var(--color-text)] hover:bg-[var(--color-harvest)] hover:text-[var(--color-text)] transition-colors min-h-[44px] flex items-center"
+          >
+            {t.name}
+          </a>
+        ))}
+      </div>
+    </nav>
+
+    <!-- Active Commodity Hubs -->
+    {activeCommodities.length > 0 && (
+      <nav class="mb-8" aria-label="Jurnal per komoditas">
+        <div class="text-xs font-bold uppercase tracking-wider text-[var(--color-soil)] mb-2.5">
+          Jurnal per Komoditas (≥ 3 Artikel)
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs sm:text-sm">
+          {activeCommodities.map((c) => (
+            <a
+              href={`/jurnal/komoditas/${c.id}/`}
+              class="px-2.5 py-1 rounded-[2px] border border-[var(--color-border-control)] text-[var(--color-text-muted)] hover:text-[var(--color-brand-strong)] hover:border-[var(--color-brand-strong)] transition-colors flex items-center gap-1.5 min-h-[44px]"
+            >
+              <span class="font-medium capitalize">{c.name}</span>
+              <span class="text-[11px] px-1 bg-[var(--color-tint)] rounded-[2px] font-bold text-[var(--color-soil)]">
+                {c.count}
+              </span>
+            </a>
+          ))}
+        </div>
+      </nav>
+    )}
+
+    <!-- Articles List -->
+    <section class="mt-8 border-t border-[var(--color-border)] pt-4" aria-labelledby="daftar-artikel-heading">
+      <h2 id="daftar-artikel-heading" class="sr-only">
+        Daftar Artikel Jurnal Tani
+      </h2>
+
+      {articlesPage1.length > 0 ? (
+        <div class="divide-y divide-[var(--color-border)]">
+          {articlesPage1.map((article) => (
+            <ArticleRow article={article} />
+          ))}
+        </div>
+      ) : (
+        <div class="py-12 text-center text-[var(--color-text-muted)]">
+          <p>Belum ada artikel yang diterbitkan untuk saat ini.</p>
+        </div>
+      )}
+
+      <!-- Pagination Controls -->
+      {totalPages > 1 && (
+        <nav class="my-10 flex items-center justify-between border-t border-[var(--color-border)] pt-4" aria-label="Paginasi artikel">
+          <span class="text-xs text-[var(--color-text-muted)]">
+            Halaman 1 dari {totalPages}
+          </span>
+          <a
+            href="/jurnal/halaman/2/"
+            class="px-4 py-2 rounded-[2px] font-semibold text-xs text-white min-h-[44px] flex items-center"
+            style="background-color: var(--color-brand);"
+          >
+            Halaman Berikutnya →
+          </a>
+        </nav>
+      )}
+    </section>
+  </div>
+</BaseLayout>
