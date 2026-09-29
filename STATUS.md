@@ -40,18 +40,22 @@ Kontrak pra-pengembangan diaudit ulang pada 2026-09-29 dengan skill dotfiles ter
 
 ## Active work
 
-Menunggu otorisasi pengembangan dari Paduka Ongki. Task berikutnya: T-01 (fondasi + spesimen palet di repo).
+T-01 selesai dan terverifikasi. Melanjutkan ke T-02 (Content config: 6 koleksi + cek integritas).
 
 ## Blockers
 
-Tidak ada blocker untuk task fondasi dan struktur. Data dari pemilik yang dibutuhkan dikumpulkan dalam satu checklist: **PRD §8** (8.1 wajib sebelum rilis v1, 8.2 penting, 8.3 setelah v1). Paduka Ongki akan menyiapkan data tersebut; development belum diotorisasi (fokus dokumen).
+Tidak ada blocker untuk task fondasi dan struktur. Data dari pemilik yang dibutuhkan dikumpulkan dalam satu checklist: **PRD §8** (8.1 wajib sebelum rilis v1, 8.2 penting, 8.3 setelah v1). Data yang belum tersedia diberi placeholder `TODO(OQ-n)`.
 
 ## Verification evidence
 
-- Rasio kontras token dihitung dari hex (dicatat di BUILD-LOG 2026-09-29); render belum diverifikasi.
-- Versi paket diverifikasi via `npm view` (2026-09-29).
-- Belum ada kode; belum ada bukti build atau UI.
+- T-01 fondasi Astro 7.3.5 + Tailwind 4.3.3 + sitemap 3.7.4 selesai.
+- Font 6 file woff2 di `public/fonts/` (95.9 KB ≤ 130 KB).
+- `scripts/check-contrast.mjs`: semua rasio kontras teks ≥ 7.0:1 dan kontrol non-teks ≥ 3.0:1 lulus.
+- `src/dev/spesimen.astro` terbukti tampil di dev mode (port 4330) dan tidak masuk `dist/`.
+- Bukti visual dirender di 390px dan 1440px via `agritani-shot.cjs`.
+- Pemeriksaan dasar: `npm run check:contrast`, `npm test`, `npx astro check`, `npm run build` semua PASS.
 
 ## Next verified action
 
-Setelah otorisasi: T-01 (`npm run build`, `npx astro check`, `npm run check:contrast` lulus) ; lalu T-02.
+T-02: Content config 6 koleksi (ARCHITECTURE §3) + cek integritas (`src/content.config.ts`, `src/lib/content-integrity.ts`, tes).
+

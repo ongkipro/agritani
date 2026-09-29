@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand */
+  --color-brand: #1A6335;          /* Hijau Daun — header, tombol primer (teks putih 7.3:1) */
+  --color-brand-hover: #14502B;    /* Hover tombol primer (teks putih 9.5:1) */
+  --color-brand-strong: #0F5C33;   /* Tautan, state aktif, ring fokus di latar terang — 7.6 / 8.1 / 7.2 */
+  --color-harvest: #F2B632;        /* Kuning Panen — tombol aksen, penanda aktif; teks gelap 9.1:1 */
+  --color-harvest-hover: #F7C955;  /* teks gelap 10.6:1 */
+  --color-soil: #5C3A1E;           /* Tanah — label field di Ringkasan Lapangan, tautan topik di metadata — 9.5 / 10.1 / 9.0 */
+
+  /* Surfaces */
+  --color-canvas: #F8F8F3;         /* Latar halaman */
+  --color-surface: #FFFFFF;        /* Form, tabel, panel data */
+  --color-tint: #EEF3E6;           /* Band section lapangan, Ringkasan Lapangan */
+  --color-harvest-tint: #FBF3DC;   /* Peringatan ringan, band kemitraan */
+
+  /* Text */
+  --color-text: #16211A;           /* 15.6 / 16.6 / 14.7 */
+  --color-text-muted: #3B4A40;     /* Metadata, caption — 8.8 / 9.4 / 8.3 */
+
+  /* Lines & state */
+  --color-border: #E3E6DD;         /* Dekoratif di DALAM komponen saja */
+  --color-border-control: #6B7A70; /* Border input/radio — 4.3 / 4.5 / 4.0 */
+  --color-danger: #9B1C1C;         /* Error & peringatan keselamatan — 7.7 / 8.2 / 7.2 */
+
+  /* Fonts */
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-editorial: 'Newsreader', Georgia, serif;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/plus-jakarta-sans-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/plus-jakarta-sans-400-italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/plus-jakarta-sans-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/fonts/plus-jakarta-sans-800.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/newsreader-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Newsreader';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/newsreader-600-italic.woff2') format('woff2');
+}
+
+::selection {
+  background-color: var(--color-harvest);
+  color: var(--color-text);
+}
+
+:root {
+  caret-color: var(--color-brand-strong);
+  accent-color: var(--color-brand);
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--color-brand-strong);
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 12pt;
+  }
+  nav, footer, .no-print, [data-cta="whatsapp"] {
+    display: none !important;
+  }
+}

@@ -1,9 +1,23 @@
 {
   "activeRun": null,
-  "observedHead": null,
-  "observedState": "PLANNED",
+  "lastCheckpoint": {
+    "eventId": "cb5f108c33004ab2ab80d581aa500983",
+    "head": "581ecc2f6d5ef9f3154790b1442be9e4ee342836",
+    "note": "T-01 completed",
+    "runId": null,
+    "state": "READY",
+    "time": "2026-09-29T12:13:17Z",
+    "type": "checkpoint"
+  },
+  "lastRun": {
+    "finishedAt": "2026-09-29T12:12:41Z",
+    "result": "PASS",
+    "runId": "RUN-20260929T114213Z-2826cc36"
+  },
+  "observedHead": "581ecc2f6d5ef9f3154790b1442be9e4ee342836",
+  "observedState": "READY",
   "project": "agritani",
   "schemaVersion": 1,
   "statusAuthority": "STATUS.md",
-  "updatedAt": "2026-09-29T09:05:01Z"
+  "updatedAt": "2026-09-29T12:13:17Z"
 }

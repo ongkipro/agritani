@@ -27,3 +27,14 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - BMKG public forecast API was tested on 2026-09-29. It returned `access-control-allow-origin: *` and `max-age=3600`, and per-slot fields include `tp` (rain). Browser-direct fetch is viable (DEC-014).
 - The `ongkipro/agrimarket` repo was mapped read-only. Its planting-calendar matrices are national-only, the spec table and the code disagree, and the 2026/2027 climate "telemetry" is hand-typed. Only non-personal agronomic fields are reused, and they need review (DEC-015, OQ-11).
 - The impeccable craft-floor pass on the spec removed kickers/eyebrows and sequence numbers on non-sequences, and added themed browser surfaces.
+
+## 2026-09-29 — T-01: Foundation Astro 7 + Tailwind 4 + Tokens + Fonts (PASS)
+
+- Initialized Astro 7.3.5 with `@tailwindcss/vite` 4.3.3 and `@astrojs/sitemap` 3.7.4.
+- Setup `src/styles/global.css` with `@theme` design tokens from DESIGN §3.1–3.3.
+- Downloaded 6 self-hosted woff2 font files (Plus Jakarta Sans 400, 400 italic, 600, 800; Newsreader 600, 600 italic) to `public/fonts/`. Total font size: 95.9 KB (budget ≤ 130 KB).
+- Implemented `scripts/check-contrast.mjs` verifying all text token pairs (≥ 7.0:1) and UI indicators (≥ 3.0:1).
+- Built dev-only specimen route `/spesimen/` in `src/dev/spesimen.astro` via `injectRoute` in `astro.config.mjs`; verified absent in `dist/` production build.
+- Visual evidence captured at 390px and 1440px via `agritani-shot.cjs` on port 4330.
+- Checks passed: `npm run check:contrast`, `npm test`, `npx astro check`, `npm run build`.
+
