@@ -705,12 +705,41 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - **Koleksi Halaman (`src/content/pages/kebijakan-privasi.md`)**:
   - Ditambahkan dengan deskripsi persis 160 karakter memenuhi batas skema (120–160 char).
 - **Bukti Render UI Browser**:
-  - `proof/ui/t17/kebijakan-privasi-390.png`
-  - `proof/ui/t17/kebijakan-privasi-1440.png`
+  - `proof/ui/t17/kebijakan-privasi-390.webp`
+  - `proof/ui/t17/kebijakan-privasi-1440.webp`
 - **Verifikasi**:
   - `npx astro check`: 0 errors.
   - `npm test`: 76/76 unit tests PASS.
   - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 186 halaman terkompilasi, check-seo PASS, check-csp PASS (0/0/0).
+
+## 2026-09-29 — T-08: Homepage Hibrida (REVISED - PASS)
+
+- **Daftar Produk Resmi dari Koleksi (`src/data/products.json` & `src/pages/index.astro`)**:
+  - Mengisi 4 data produk resmi dari `docs/research/web-scan.md` §3 tanpa klaim tertahan (DESIGN §2.5):
+    1. Aussie: sawit & tanaman keras (cengkeh, kopi, kakao, durian, mangga, alpukat, jeruk); peran aktivator imun tanaman perkebunan & busuk pangkal batang.
+    2. Kojien: khusus padi sawah & ladang; peran booster nutrisi & aktivator imun khusus padi.
+    3. BENSU: tanaman pangan & hortikultura (jagung, kedelai, cabai, tomat, bawang-merah, semangka, melon); peran aktivator imun & pemacu regenerasi sel.
+    4. Saratoga: pangan, hortikultura, perkebunan, dan buah-buahan umum; peran serum asam amino bebas bau amis untuk fase pembungaan & pembentukan buah.
+  - Halaman `index.astro` merender produk secara dinamis melalui `getCollection('products')`, menghapus seluruh teks hardcoded manual.
+- **Pembersihan Fakta & Bio Penulis**:
+  - Bio Prof. Arif Prabowo di beranda distandarkan secara ketat menjadi hanya: `"Profesor Pertanian · Moderator Jurnal Tani PT Agritani Internasional"`.
+  - Menghapus klaim biografi karangan.
+- **Resolusi Dinamis Hero Pemilih Komoditas**:
+  - Bila data diagnosa gejala belum ditinjau (`hasReviewedSymptoms: false` di mode produksi), tombol komoditas secara otomatis menaut ke Hub Komoditas yang benar-benar terbangun (`/jurnal/komoditas/{slug}/`), dan pertanyaan menyesuaikan: `"Pilih tanaman Anda untuk panduan penanganannya:"`.
+  - Menambahkan behavioral unit test di `src/components/CommodityPicker.test.ts` (79/79 PASS).
+- **Pembersihan Keterangan & Kicker**:
+  - Menghapus keterangan/caption hero yang berbentuk kicker ("LAHAN TROPIS INDONESIA..."); mempertahankan alt text deskriptif pada gambar WebP.
+  - Menghapus kicker "Artikel Utama" pada seksi Bacaan Pilihan.
+- **Perbaikan Visual & Indeks Alat Tani**:
+  - Mengubah seksi Band Jurnal per Komoditas dari grid kartu kotak menjadi baris indeks teks bersih (`name` + `count artikel`) tanpa kotak latar.
+  - Menambahkan label `"Segera hadir"` untuk Diagnosa Gejala dan Kalender Tanam di indeks Alat Tani (`src/pages/alat/index.astro`) pada mode produksi (rencana A.8).
+- **Kompresi Bukti UI**:
+  - Screenshot diperbarui dan dikompresi ke WebP kualitas 70: `proof/ui/t08/beranda-390.webp` (214 KB) dan `proof/ui/t08/beranda-1440.webp` (263 KB).
+- **Verifikasi**:
+  - `npx astro check`: 0 errors.
+  - `npm test`: 79/79 unit tests PASS.
+  - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 186 halaman terkompilasi, check-seo PASS, check-csp PASS (0/0/0).
+
 
 
 

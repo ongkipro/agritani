@@ -22,27 +22,32 @@ const seo: SeoInput = {
   pageType: 'website',
 };
 
+const isDraftPreview = import.meta.env.PUBLIC_INCLUDE_DRAFTS === 'true';
+
 const tools = [
   {
     title: 'Diagnosa Gejala',
     href: '/alat/diagnosa-gejala/',
-    badge: 'Identifikasi Masalah',
+    badge: isDraftPreview ? 'Identifikasi Masalah' : 'Segera hadir',
+    isUpcoming: !isDraftPreview,
     description:
       'Temukan kemungkinan hama, penyakit, atau defisiensi hara berdasarkan bagian tanaman dan tanda visual di kebun.',
-    cta: 'Buka Diagnosa Gejala',
+    cta: isDraftPreview ? 'Buka Diagnosa Gejala' : 'Buka Diagnosa (Segera hadir)',
   },
   {
     title: 'Kalender Tanam',
     href: '/alat/kalender-tanam/',
-    badge: 'Fase & Jadwal',
+    badge: isDraftPreview ? 'Fase & Jadwal' : 'Segera hadir',
+    isUpcoming: !isDraftPreview,
     description:
       'Pantau fase pertumbuhan tanaman (HST), jadwal pemupukan berkala, dan perkiraan waktu panen komoditas Anda.',
-    cta: 'Buka Kalender Tanam',
+    cta: isDraftPreview ? 'Buka Kalender Tanam' : 'Buka Kalender (Segera hadir)',
   },
   {
     title: 'Cuaca Tani',
     href: '/alat/cuaca-tani/',
     badge: 'Prakiraan BMKG',
+    isUpcoming: false,
     description:
       'Prakiraan cuaca 3 hari per 3 jam langsung dari data BMKG tingkat desa untuk menentukan waktu aplikasi semprot yang aman.',
     cta: 'Buka Cuaca Tani',
@@ -51,6 +56,7 @@ const tools = [
     title: 'Kalkulator Dosis',
     href: '/alat/kalkulator-dosis/',
     badge: 'Kalkulasi Tangki',
+    isUpcoming: false,
     description:
       'Hitung takaran pestisida atau pupuk daun per tangki semprot dan total kebutuhan larutan sesuai luas lahan Anda.',
     cta: 'Buka Kalkulator Dosis',

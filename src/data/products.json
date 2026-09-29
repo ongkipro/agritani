@@ -1,1 +1,93 @@
-[]
+[
+  {
+    "id": "aussie",
+    "name": "Aussie",
+    "tagline": "Aktivator Imun Tanaman Keras",
+    "role": "Aktivator imun tanaman perkebunan dan penanganan busuk pangkal batang",
+    "commodities": [
+      "kelapa-sawit",
+      "cengkeh",
+      "kopi",
+      "kakao",
+      "durian",
+      "mangga",
+      "alpukat",
+      "jeruk"
+    ],
+    "summary": "Formula biostimulan aktivator kekebalan sel tanaman untuk memperkuat ketahanan tanaman perkebunan dan tanaman keras terhadap infeksi patogen batang dan akar.",
+    "composition": "Bahan organik, Sulfur (S), Molibdenum (Mo)",
+    "form": "Cairan konsentrat fermentasi organik",
+    "applicationMethods": [
+      "Semprot tajuk",
+      "Kocor pangkal batang"
+    ],
+    "dosage": "Sesuai dosis anjuran pada label kemasan",
+    "authenticityCheck": "Fitur verifikasi keaslian ShieldedTag pada setiap kemasan resmi"
+  },
+  {
+    "id": "kojien",
+    "name": "Kojien",
+    "tagline": "Immune Cell Activator Teknologi Thailand (Spesialis Padi)",
+    "role": "Booster nutrisi komprehensif dan aktivator imun khusus tanaman padi",
+    "commodities": [
+      "padi"
+    ],
+    "summary": "Formula aktivator imunitas batang dan daun padi untuk memperkokoh ketahanan tanaman terhadap blas, hawar pelepah, dan bercak coklat.",
+    "composition": "Bahan aktif aktivator imun dan nutrisi makro-mikro berlisensi Thailand",
+    "form": "Cairan konsentrat hijau pekat",
+    "applicationMethods": [
+      "Semprot rata pada rumpun padi"
+    ],
+    "dosage": "Sesuai dosis anjuran pada label kemasan",
+    "authenticityCheck": "Fitur verifikasi keaslian ShieldedTag pada setiap kemasan resmi"
+  },
+  {
+    "id": "bensu",
+    "name": "BENSU",
+    "tagline": "Immune Cell Activator dan Cell Regeneration",
+    "role": "Aktivator imun dan pemacu regenerasi sel tanaman pangan dan hortikultura",
+    "commodities": [
+      "jagung",
+      "kedelai",
+      "cabai",
+      "tomat",
+      "bawang-merah",
+      "semangka",
+      "melon"
+    ],
+    "summary": "Formula ganda pemicu kekebalan sel dan pemulihan jaringan tanaman rusak akibat serangan patogen atau cekaman cuaca pada tanaman pangan dan hortikultura.",
+    "composition": "Nutrisi biostimulan dan pemacu tumbuh berlisensi Thailand",
+    "form": "Cairan konsentrat organik",
+    "applicationMethods": [
+      "Semprot rata pada daun dan batang",
+      "Kocor perakaran"
+    ],
+    "dosage": "Sesuai dosis anjuran pada label kemasan",
+    "authenticityCheck": "Fitur verifikasi keaslian ShieldedTag pada setiap kemasan resmi"
+  },
+  {
+    "id": "saratoga",
+    "name": "Saratoga",
+    "tagline": "Serum Asam Amino Bebas Bau Amis",
+    "role": "Serum asam amino sistemik untuk fase pembungaan dan pembentukan buah",
+    "commodities": [
+      "cabai",
+      "tomat",
+      "bawang-merah",
+      "padi",
+      "jagung",
+      "kelapa-sawit",
+      "semangka",
+      "melon",
+      "kedelai"
+    ],
+    "summary": "Serum asam amino berdaya serap tinggi berteknologi Japanese Pro-Plant Complex, steril tanpa bau amis menyengat guna mencegah kerontokan bunga dan bakal buah.",
+    "composition": "Formula Asam Amino Mikro, Omega 3, Chitosan, Vitamin B1",
+    "form": "Cairan serum hidrolisis steril",
+    "applicationMethods": [
+      "Semprot halus pada daun, tangkai bunga, dan bakal buah"
+    ],
+    "dosage": "Sesuai dosis anjuran pada label kemasan",
+    "authenticityCheck": "Fitur verifikasi keaslian ShieldedTag pada setiap kemasan resmi"
+  }
+]

@@ -71,14 +71,21 @@ T-17 (Kebijakan Privasi) selesai diimplementasikan dan diverifikasi (RUN-2026092
 - Koleksi `pages`: Menambahkan `kebijakan-privasi.md`.
 - Verifikasi: 76/76 unit tests PASS, `astro check` 0 error, build 186 halaman PASS (check-seo PASS, check-csp 0/0/0 PASS), bukti UI browser di `proof/ui/t17/`.
 
+T-08 REVISE (Homepage Hibrida) selesai diimplementasikan dan diverifikasi (RUN-20260929T153010Z-5ebb5dd4):
+- Produk dirender dinamis dari koleksi `products` (`src/data/products.json`), menghapus teks manual.
+- Bio Prof. Arif Prabowo di beranda distandarkan menjadi: "Profesor Pertanian · Moderator Jurnal Tani PT Agritani Internasional".
+- Pemilih komoditas hero secara dinamis menaut ke `/jurnal/komoditas/{slug}/` di mode produksi jika gejala belum ditinjau (`hasReviewedSymptoms: false`), dengan unit test di `src/components/CommodityPicker.test.ts`.
+- Keterangan teks hero dihapus (hanya alt image deskriptif) dan kicker "Artikel Utama" dihapus.
+- Band Jurnal per Komoditas diubah menjadi baris indeks teks bersih tanpa kotak/kartu latar.
+- Label "Segera hadir" ditambahkan pada Diagnosa Gejala dan Kalender Tanam di indeks Alat Tani (`/alat/`) untuk mode produksi murni.
+- Bukti UI WebP kualitas 70 tersimpan di `proof/ui/t08/beranda-390.webp` dan `proof/ui/t08/beranda-1440.webp`.
+- Verifikasi: 79/79 unit tests PASS, `npx astro check` 0 error, build 186 halaman PASS (check-seo PASS, check-csp 0/0/0 PASS).
+
 Selanjutnya:
-Mengerjakan perbaikan **T-08 REVISE** (Homepage Hibrida) sesuai ulasan Paduka Ongki:
-1. Mengisi `src/data/products.json` dengan data resmi (DEC-010, DESIGN §2.5) dan merender produk dari koleksi `products` (bukan data manual).
-2. Memperbaiki bio penulis di beranda menjadi strictly "Profesor Pertanian · Moderator Jurnal Tani".
-3. Menyesuaikan pemilih komoditas hero: di mode produksi menaut ke hub komoditas yang memiliki artikel terbit `/jurnal/komoditas/{slug}/` dengan teks "Pilih tanaman Anda untuk panduan penanganannya".
-4. Menghapus keterangan gambar hero (hanya gunakan alt text deskriptif) dan menghapus kicker "Artikel Utama".
-5. Mengubah band Jurnal per Komoditas menjadi baris indeks teks tanpa kotak/kartu seragam.
-6. Menambahkan label "Segera hadir" pada Diagnosa Gejala dan Kalender Tanam di indeks Alat Tani (`/alat/`).
+Melanjutkan ke **T-11 (Katalog & Detail Produk `/produk/` dan `/produk/[slug]`)** sesuai `TASKS.md` dan `agritani-launch-plan.md` Bagian A.5 & B:
+- Katalog produk `/produk/` (tabel perbandingan 4 produk resmi: Aussie, Kojien, BENSU, Saratoga).
+- Halaman detail produk `/produk/[slug]` dengan spesifikasi teknis dan tombol Konsultasi Dosis via `waLink()`, tanpa klaim tertahan.
+- Pengambilan bukti UI WebP kualitas 70 di 390px dan 1440px.
 
 
 
