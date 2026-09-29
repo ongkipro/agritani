@@ -8,7 +8,6 @@ author: "Arif Prabowo"
 topic: "proteksi-tanaman"
 commodities:
   - "cabai"
-  - "sayuran-daun"
 tags:
   - "cara membasmi kutu daun afid"
   - "aphis gossypii tanaman"

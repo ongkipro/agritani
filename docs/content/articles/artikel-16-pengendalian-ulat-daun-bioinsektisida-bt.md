@@ -6,8 +6,7 @@ slug: "pengendalian-ulat-daun-bioinsektisida-bt"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "proteksi-tanaman"
-commodities:
-  - "kubis"
+commodities: []
 tags:
   - "bioinsektisida bacillus thuringiensis"
   - "cara membasmi ulat daun alami"

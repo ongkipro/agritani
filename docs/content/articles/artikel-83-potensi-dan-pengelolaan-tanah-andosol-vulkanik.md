@@ -6,8 +6,7 @@ slug: "potensi-dan-pengelolaan-tanah-andosol-vulkanik"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "tanah-nutrisi"
-commodities:
-  - "sayuran-daun"
+commodities: []
 tags:
   - "tanah andosol vulkanik subur"
   - "karakteristik tanah andisol lereng"

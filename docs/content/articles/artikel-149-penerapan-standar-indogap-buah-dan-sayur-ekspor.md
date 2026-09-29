@@ -6,8 +6,7 @@ slug: "penerapan-standar-indogap-buah-dan-sayur-ekspor"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "pascapanen-agribisnis"
-commodities:
-  - "sayuran-daun"
+commodities: []
 tags:
   - "standar indogap hortikultura sayur buah"
   - "good agricultural practices indonesia kementan"

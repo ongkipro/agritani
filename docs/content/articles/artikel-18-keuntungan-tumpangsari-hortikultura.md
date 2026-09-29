@@ -6,8 +6,7 @@ slug: "keuntungan-tumpangsari-hortikultura"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "budidaya"
-commodities:
-  - "sayuran-daun"
+commodities: []
 tags:
   - "manfaat tumpangsari tanaman"
   - "sistem intercropping sayuran"

@@ -7,7 +7,6 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "proteksi-tanaman"
 commodities:
-  - "padi"
   - "ubi-jalar"
 tags:
   - "penyakit sapu setan ubi jalar"

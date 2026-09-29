@@ -6,8 +6,7 @@ slug: "teknologi-kemasan-atmosfer-termodifikasi-map"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "pascapanen-agribisnis"
-commodities:
-  - "sayuran-daun"
+commodities: []
 tags:
   - "kemasan atmosfer termodifikasi map"
   - "modified atmosphere packaging buah sayur"

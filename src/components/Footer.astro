@@ -8,11 +8,11 @@ const currentYear = new Date().getFullYear();
 
 <footer class="bg-[var(--color-brand)] text-white pt-12 pb-10 mt-16">
   <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-12">
-      <!-- Col 1: Brand & Profile -->
-      <div class="space-y-3 lg:col-span-1">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-12">
+      <!-- Col 1: Brand & Profile (4 cols wide for comfortable measure) -->
+      <div class="space-y-3 lg:col-span-4 pr-0 lg:pr-6">
         <div class="text-xl font-extrabold text-white">Agritani</div>
-        <p class="text-sm text-white leading-relaxed">
+        <p class="text-sm text-white leading-relaxed max-w-[44ch]">
           Distributor resmi sarana produksi dan biostimulan pertanian presisi. Menghubungkan sains agronomi dengan praktik terbaik di lahan petani Indonesia.
         </p>
         <div class="text-xs text-white pt-2 font-medium">
@@ -21,7 +21,7 @@ const currentYear = new Date().getFullYear();
       </div>
 
       <!-- Col 2: Alat Tani (4 alat per DESIGN §4.2.1 baris 4a) -->
-      <div>
+      <div class="lg:col-span-2">
         <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Alat Tani</h4>
         <ul class="space-y-2 text-sm">
           <li><a href="/alat/diagnosa-gejala/" class="text-white hover:underline">Diagnosa Gejala</a></li>
@@ -32,7 +32,7 @@ const currentYear = new Date().getFullYear();
       </div>
 
       <!-- Col 3: Jurnal Tani (6 topik per DESIGN §4.2.1 baris 4a) -->
-      <div>
+      <div class="lg:col-span-2">
         <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Jurnal Tani</h4>
         <ul class="space-y-2 text-sm">
           <li><a href="/jurnal/topik/proteksi-tanaman/" class="text-white hover:underline">Proteksi Tanaman</a></li>
@@ -45,7 +45,7 @@ const currentYear = new Date().getFullYear();
       </div>
 
       <!-- Col 4: Produk (4 produk per DESIGN §4.2.1 baris 4a) -->
-      <div>
+      <div class="lg:col-span-2">
         <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Produk</h4>
         <ul class="space-y-2 text-sm">
           <li><a href="/produk/pupuk-hayati-aussie/" class="text-white hover:underline">Aussie</a></li>
@@ -56,7 +56,7 @@ const currentYear = new Date().getFullYear();
       </div>
 
       <!-- Col 5: Perusahaan & Kontak -->
-      <div>
+      <div class="lg:col-span-2">
         <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Perusahaan</h4>
         <ul class="space-y-2 text-sm mb-4">
           <li><a href="/tentang-kami/" class="text-white hover:underline">Tentang Kami</a></li>
@@ -81,8 +81,8 @@ const currentYear = new Date().getFullYear();
       <div>
         © {currentYear} PT Agritani Internasional · Distributor resmi
       </div>
-      <div class="flex items-center gap-4">
-        <a href="/kebijakan-privasi/" class="text-white hover:underline">Kebijakan Privasi</a>
+      <div class="text-white/90 text-xs">
+        Sains agronomi & praktik lahan
       </div>
     </div>
   </div>

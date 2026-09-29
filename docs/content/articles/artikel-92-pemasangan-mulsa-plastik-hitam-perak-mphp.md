@@ -6,8 +6,7 @@ slug: "pemasangan-mulsa-plastik-hitam-perak-mphp"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "budidaya"
-commodities:
-  - "cabai"
+commodities: []
 tags:
   - "pemasangan mulsa plastik mphp"
   - "cara pasang mulsa hitam perak"

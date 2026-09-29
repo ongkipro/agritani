@@ -154,6 +154,28 @@ Record only durable implementation changes, validation evidence, and gotchas tha
   - `field-summary-none-390.png` & `field-summary-none-1440.png` (verified 0 blank space/box on articles without takeaways).
 - Checks passed: `npm run check:contrast`, `npm test` (38/38 pass), `npx astro check` (0 errors), `npm run build`. Boundary check passed: `BOUNDARY PASS effectiveRisk=R1`.
 
+## 2026-09-29 — T-03 v2 & T-04 Nit Fixes (READY, PENDING INDEPENDENT REVIEW)
+
+- Refined commodity assignments across 150 articles following Claude's review:
+  - `artikel-64`: removed `kelapa-sawit`, kept `ubi-jalar`.
+  - `artikel-78`: removed `padi`, kept `ubi-jalar`.
+  - `artikel-25`: removed `padi`, kept `cabai`.
+  - `artikel-79`: cleared to `[]` (general plant science: lignin biosynthesis).
+  - `artikel-16`: cleared to `[]` (general Bt bioinsecticide).
+  - `artikel-92`: cleared to `[]` (general MPHP plastic mulch).
+  - Cleared general methodology/science articles (125, 134, 136, 149, 18, 56, 83) from `sayuran-daun`.
+  - Tightened `scripts/check-commodities.mjs` aliases: eliminated loose terms (`wereng`, `moncong`, `rebah`, `benih`, `daun`, generic `kacang`).
+  - Strict audit result: 118 commodity assignments across 150 articles, 0 invalid/unsupported assignments.
+- Fixed `src/lib/whatsapp.ts`:
+  - `isDraftPreview` respects `PUBLIC_INCLUDE_DRAFTS === 'true'` (in both `process.env` and `import.meta.env`).
+  - Pure production build without `PUBLIC_INCLUDE_DRAFTS` enforces error-guard on empty `DEFAULT_WA_PHONE`.
+  - Verified: `PUBLIC_INCLUDE_DRAFTS=true npm run build` successfully compiles all 175 pages with `DEV_PLACEHOLDER_PHONE`.
+- Updated `src/components/Footer.astro`:
+  - Widened brand description column to `lg:col-span-4` (grid 12) for comfortable measure.
+  - Removed duplicate "Kebijakan Privasi" from bottom legal bar (already present in Perusahaan column).
+  - Updated screenshot evidence captured at port 4330.
+- All checks PASS: `check:commodities` (118/118), `check:contrast`, `npm test` (38/38), `npx astro check` (0 errors), `npm run build` (8 pages), `PUBLIC_INCLUDE_DRAFTS=true npm run build` (175 pages). Boundary escalated to R3 due to article scope; awaiting independent review.
+
 
 
 

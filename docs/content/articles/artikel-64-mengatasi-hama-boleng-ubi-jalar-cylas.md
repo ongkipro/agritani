@@ -7,7 +7,6 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
-  - "kelapa-sawit"
   - "ubi-jalar"
 tags:
   - "cara mengatasi hama boleng ubi jalar"

@@ -6,8 +6,7 @@ slug: "teknik-fertigasi-otomatis-presisi-hortikultura"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "air-irigasi"
-commodities:
-  - "sayuran-daun"
+commodities: []
 tags:
   - "teknik fertigasi otomatis presisi"
   - "sistem irigasi tetes drip fertigation"

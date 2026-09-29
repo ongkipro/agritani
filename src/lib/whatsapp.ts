@@ -25,11 +25,15 @@ export function waLink(options: WaLinkOptions): string {
   let targetPhone = phone || DEFAULT_WA_PHONE;
 
   if (!targetPhone) {
-    const isProd =
-      (typeof process !== 'undefined' && process.env?.NODE_ENV === 'production') ||
+    const isDraftPreview =
+      (typeof process !== 'undefined' && process.env?.PUBLIC_INCLUDE_DRAFTS === 'true') ||
       (typeof import.meta !== 'undefined' &&
-        Boolean((import.meta as any).env?.PROD) &&
-        (import.meta as any).env?.PUBLIC_INCLUDE_DRAFTS !== 'true');
+        (import.meta as any).env?.PUBLIC_INCLUDE_DRAFTS === 'true');
+
+    const isProd =
+      !isDraftPreview &&
+      ((typeof process !== 'undefined' && process.env?.NODE_ENV === 'production') ||
+        (typeof import.meta !== 'undefined' && Boolean((import.meta as any).env?.PROD)));
 
     if (isProd) {
       throw new Error(

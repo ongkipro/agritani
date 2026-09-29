@@ -6,8 +6,7 @@ slug: "sains-biosintesis-lignin-memperkokoh-batang"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "sains-tanaman"
-commodities:
-  - "padi"
+commodities: []
 tags:
   - "biosintesis lignin tanaman"
   - "proses lignifikasi dinding sel"

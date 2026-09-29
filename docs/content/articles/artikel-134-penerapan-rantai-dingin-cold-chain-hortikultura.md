@@ -6,8 +6,7 @@ slug: "penerapan-rantai-dingin-cold-chain-hortikultura"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "pascapanen-agribisnis"
-commodities:
-  - "sayuran-daun"
+commodities: []
 tags:
   - "rantai dingin cold chain hortikultura"
   - "manajemen pasca panen sayuran buah"
