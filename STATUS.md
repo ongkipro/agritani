@@ -40,15 +40,14 @@ Kontrak pra-pengembangan diaudit ulang pada 2026-09-29 dengan skill dotfiles ter
 
 ### Active work
 
-T-22 (Konsultasi `/konsultasi/` & Indeks Alat Tani `/alat/`) selesai diimplementasikan dan diverifikasi penuh:
-- Halaman `/alat/`: daftar 4 alat tani (Diagnosa Gejala, Kalender Tanam, Cuaca Tani, Kalkulator Dosis) dengan banner prinsip bersama, tanpa tombol ajakan WhatsApp (DESIGN §2.8).
-- Halaman `/konsultasi/`: informasi tim agronomi & Prof. Arif (TODO(OQ-4)), jam layanan operasional (TODO(OQ-1)), checklist persiapan konsultasi, serta form penyusun pesan WhatsApp (`[Web·Konsultasi]`).
-- Form teruji di browser Playwright: menghasilkan URL WhatsApp yang presisi dengan format DESIGN §2.7 dan G-6, membuka chat, serta menampilkan bantuan cadangan jika peramban memblokir popup.
-- Verifikasi: 50 unit tests PASS, `npx astro check` 0 errors, `check-seo` PASS (179 halaman), `check-csp` PASS (0 inline scripts, 0 on*=, 0 style=), screenshot UI (mobile 390px dan desktop 1440px) tersimpan di `proof/ui/t22/`.
-Boundary check menghasilkan REVIEW_REQUIRED (effectiveRisk=R2 karena file UI Astro). Sesuai aturan, task dihentikan untuk menunggu review independen Claude.
+T-09 (Triage Engine: Diagnosa Gejala `/alat/diagnosa-gejala/` & Dataset `symptoms.json`) selesai diimplementasikan dan diverifikasi penuh:
+- Dataset `src/data/symptoms.json`: 22 entri gejala autentik dari artikel nyata pada 5 komoditas (Cabai: 9, Padi: 8, Sawit: 2, Jagung: 2, Tomat: 1) dengan tanda pembeda kunci akurat dan slug artikel valid.
+- Komponen `src/components/TriageFilter.astro`: Alur tap-first 3 langkah (Komoditas -> Bagian -> Gejala), sinkronisasi URL query params (`?k=...&b=...&g=...`), navigasi browser popstate Back/Forward, kartu hasil diagnosa dengan badge penyebab dan status review, tombol 'Baca Penanganan Lengkap', tepat satu CTA WhatsApp (`[Web·Diagnosa]`) di bawah hasil, serta fallback `<noscript>` lengkap.
+- Halaman `src/pages/alat/diagnosa-gejala.astro`: Tipografi Lapangan, breadcrumb SEO, zero inline scripts/style/on*=.
+- Verifikasi: 50 unit tests PASS, `npx astro check` 0 errors, `check-seo` PASS (180 halaman), `check-csp` PASS (0/0/0), screenshot UI mobile 390px dan desktop 1440px di `proof/ui/t09/`. Boundary check PASS R2.
 
 Selanjutnya:
-Mengeksekusi **T-09** (Diagnosa Gejala: data `symptoms.json` + UI `/alat/diagnosa-gejala/`).
+Mengeksekusi **T-19** (Kalender Tanam: data `crop-calendars.json` + UI `/alat/kalender-tanam/`).
 
 ## Blockers
 
@@ -59,6 +58,7 @@ Mengeksekusi **T-09** (Diagnosa Gejala: data `symptoms.json` + UI `/alat/diagnos
 - FIX-CSP menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 - T-21 (termasuk revisi) menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
 - T-22 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
+- T-09 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
 
 ## Verification evidence
 
@@ -73,7 +73,9 @@ Mengeksekusi **T-09** (Diagnosa Gejala: data `symptoms.json` + UI `/alat/diagnos
 - T-13: Dynamic SEO engine, sitemap filter/serialize, robots.txt, 14 static OG images, dan post-build verifier `scripts/check-seo.mjs` selesai dan diperbaiki sesuai review Claude (RUN-20260929T132557Z-d177f66c). Gambar OG topik budidaya dan tanah-nutrisi sinkron dengan slug kanonikal, aset diperiksa secara fisik di disk, schema Article patuh DESIGN §4.4.5. Semua cek PASS (39/39 test, 8 hal produksi & 175 hal pratinjau, 0 error, 0 warning). Boundary check PASS R2.
 - T-14: Pagefind static search engine, SearchBox component, dan dedicated `/cari/` search page selesai dan PASS (RUN-20260929T133042Z-fc2aae13). Pengujian query 'patek cabai' (6 hasil) dan 'ganoderma' (3 hasil) lulus dengan rendering judul, kutipan highlight, dan link artikel; 0 aset pagefind di halaman non-pencarian; UI screenshot 390px dan 1440px terverifikasi. Boundary check PASS R2.
 - T-21: Kalkulator Dosis Semprot selesai (commit `6583920`). 48/48 unit tests PASS (9 tes kalkulasi dosis), check commodities PASS, contrast check PASS, `astro check` PASS, build 177 halaman PASS. UI screenshots `dose-calc-390.png` dan `dose-calc-1440.png` di `proof/ui/t21/`. Boundary check menghasilkan REVIEW_REQUIRED (eskalasi R1 -> R2), berhenti menunggu review independen.
+- T-22: Konsultasi & Indeks Alat Tani selesai (commit `b36db9f`). 50/50 unit tests PASS, check-seo PASS (179 halaman), check-csp PASS (0/0/0). UI screenshots `alat-index-*.png` dan `konsultasi-*.png` di `proof/ui/t22/`. Boundary check menghasilkan REVIEW_REQUIRED (eskalasi R1 -> R2), berhenti menunggu review independen.
+- T-09: Triage Engine: Diagnosa Gejala & Dataset Gejala selesai. 50/50 unit tests PASS, `astro check` 0 errors, check-seo PASS (180 halaman), check-csp PASS (0/0/0). UI screenshots `diagnosa-initial-*.png` dan `diagnosa-result-cabai-patek-*.png` di `proof/ui/t09/`. Boundary check PASS R2.
 
 ## Next verified action
 
-FIX-CSP: Perbaikan arsitektural CSP & sanitasi inline attributes (script, style, on*=) + check-csp verifier.
+T-19: Kalender Tanam: data `crop-calendars.json` + UI `/alat/kalender-tanam/`.

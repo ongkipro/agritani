@@ -1,0 +1,46 @@
+---
+/**
+ * src/pages/alat/diagnosa-gejala.astro
+ * Dedicated page for Diagnosa Gejala / Triage Engine (REQ-06, DESIGN §2.2, §4.2.3)
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import TriageFilter from '../../components/TriageFilter.astro';
+import type { SeoInput } from '../../lib/seo';
+
+const breadcrumbs = [
+  { name: 'Beranda', url: '/' },
+  { name: 'Alat Tani', url: '/alat/' },
+  { name: 'Diagnosa Gejala', url: '/alat/diagnosa-gejala/' },
+];
+
+const seo: SeoInput = {
+  title: 'Diagnosa Gejala Hama & Penyakit',
+  description:
+    'Identifikasi visual gejala hama, penyakit, dan kekurangan hara tanaman secara tap-first di kebun tanpa perlu mengetik. Dapatkan diagnosis dan tanda pembeda akurat.',
+  canonicalPath: '/alat/diagnosa-gejala/',
+  breadcrumbs,
+  pageType: 'website',
+};
+---
+
+<BaseLayout seo={seo} currentPath="/alat/diagnosa-gejala/">
+  <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+
+    <!-- Page Header (Lapangan Layout) -->
+    <header class="my-6 sm:my-8 max-w-[68ch]">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--color-text)] mb-3 leading-tight tracking-tight">
+        Diagnosa Gejala Tanaman
+      </h1>
+      <p class="text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed">
+        Identifikasi visual masalah di kebun secara cepat: pilih komoditas, bagian tanaman yang sakit, dan tanda fisik yang tampak untuk melihat kemungkinan penyebab serta langkah penanganannya.
+      </p>
+    </header>
+
+    <!-- Main Triage Component Container -->
+    <div class="max-w-[54rem]">
+      <TriageFilter />
+    </div>
+  </div>
+</BaseLayout>

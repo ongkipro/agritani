@@ -1,0 +1,618 @@
+---
+/**
+ * src/components/TriageFilter.astro
+ * Interactive Triage Engine component (REQ-06, DESIGN §2.2)
+ * Tap-first workflow: Komoditas -> Bagian -> Gejala -> Hasil Kandidat & Tanda Pembeda.
+ */
+import { getCollection } from 'astro:content';
+import ConsultPrompt from './ConsultPrompt.astro';
+
+// Fetch all symptoms and commodities from content collections
+const allSymptoms = await getCollection('symptoms');
+const allCommodities = await getCollection('commodities');
+
+// Map commodity names
+const commodityMap = new Map(allCommodities.map((c) => [c.id, c.data.name]));
+
+// Extract unique commodities that actually have symptom data
+const activeCommodityIds = Array.from(new Set(allSymptoms.map((s) => s.data.commodity.id)));
+const activeCommodities = activeCommodityIds.map((id) => ({
+  id,
+  name: commodityMap.get(id) || id,
+})).sort((a, b) => a.name.localeCompare(b.name));
+
+// Pre-serialize symptoms data for client hydration without inline executed script
+const serializedSymptoms = allSymptoms.map((s) => ({
+  id: s.data.id,
+  commodity: s.data.commodity.id,
+  part: s.data.part,
+  causeType: s.data.causeType,
+  symptom: s.data.symptom,
+  diagnosis: s.data.diagnosis,
+  scientificName: s.data.scientificName || '',
+  distinguishingSign: s.data.distinguishingSign,
+  article: s.data.article,
+  reviewedBy: s.data.reviewedBy || '',
+}));
+
+const partLabels: Record<string, string> = {
+  'daun': 'Daun',
+  'batang-pangkal': 'Batang / Pangkal',
+  'buah-bunga': 'Buah / Bunga',
+  'akar': 'Akar / Benih',
+};
+
+---
+
+<div id="triage-engine-root" class="space-y-8" data-symptoms={JSON.stringify(serializedSymptoms)}>
+  
+  <!-- Interactive Form Area -->
+  <div class="bg-[var(--color-surface)] p-6 sm:p-8 border border-[var(--color-border)] rounded-[2px] space-y-6">
+    
+    <!-- Step 1: Komoditas (Big Button Radio Group) -->
+    <div>
+      <span class="block text-xs font-bold text-[var(--color-soil)] uppercase tracking-wider mb-2">
+        Langkah 1: Pilih Komoditas Tanaman
+      </span>
+      <div class="flex flex-wrap gap-2.5" id="group-commodity" role="radiogroup" aria-label="Pilih Komoditas">
+        {activeCommodities.map((comm) => (
+          <button
+            type="button"
+            role="radio"
+            aria-checked="false"
+            data-commodity={comm.id}
+            class="triage-commodity-btn px-4 py-2.5 min-h-[44px] text-sm font-bold border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] transition-all cursor-pointer"
+          >
+            {comm.name}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Step 2: Bagian Tanaman -->
+    <div id="section-part" class="opacity-50 pointer-events-none transition-opacity">
+      <span class="block text-xs font-bold text-[var(--color-soil)] uppercase tracking-wider mb-2">
+        Langkah 2: Pilih Bagian yang Bergejala
+      </span>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="group-part" role="radiogroup" aria-label="Pilih Bagian Tanaman">
+        {Object.entries(partLabels).map(([partKey, partName]) => (
+          <button
+            type="button"
+            role="radio"
+            aria-checked="false"
+            disabled
+            data-part={partKey}
+            class="triage-part-btn px-3 py-2.5 min-h-[44px] text-xs sm:text-sm font-semibold border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] transition-all disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer text-center"
+          >
+            <span>{partName}</span>
+          </button>
+        ))}
+      </div>
+      <p id="part-helper" class="text-xs text-[var(--color-text-muted)] mt-1.5 hidden"></p>
+    </div>
+
+    <!-- Step 3: Gejala Visual Lapangan -->
+    <div id="section-symptom" class="opacity-50 pointer-events-none transition-opacity space-y-3">
+      <div class="flex items-center justify-between gap-2">
+        <span class="block text-xs font-bold text-[var(--color-soil)] uppercase tracking-wider">
+          Langkah 3: Pilih Tanda Visual yang Tampak
+        </span>
+        <span id="symptom-count" class="text-xs text-[var(--color-text-muted)] font-mono"></span>
+      </div>
+
+      <!-- Quick Text Filter for Mobile -->
+      <div class="relative">
+        <input
+          type="text"
+          id="symptom-search"
+          placeholder="Saring kata kunci (misal: kuning, busuk, rontok, layu)..."
+          class="w-full px-3.5 py-2 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] text-xs sm:text-sm"
+        />
+      </div>
+
+      <!-- Symptoms List -->
+      <div id="symptoms-list" class="space-y-2 max-h-[360px] overflow-y-auto pr-1">
+        <p class="text-xs text-[var(--color-text-muted)] italic">
+          Pilih komoditas dan bagian tanaman terlebih dahulu.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Step 4: Hasil Diagnosa Area (ARIA Live) -->
+  <section id="triage-result-area" aria-live="polite" class="space-y-6 hidden">
+    
+    <!-- Result Header Breadcrumb Trail -->
+    <div class="border-b border-[var(--color-border)] pb-3">
+      <h2 id="result-path-heading" class="text-lg sm:text-xl font-extrabold text-[var(--color-text)] leading-snug">
+        Hasil Diagnosa Lapangan
+      </h2>
+      <p class="text-xs text-[var(--color-text-muted)] mt-1" id="result-disclaimer">
+        Panduan awal ini adalah instrumen bantu identifikasi visual, bukan pengganti pemeriksaan laboratorium atau rekomendasi agronomis langsung di kebun.
+      </p>
+    </div>
+
+    <!-- Empty State -->
+    <div id="result-empty" class="hidden p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] text-center space-y-3">
+      <p class="text-base font-bold text-[var(--color-text)]">
+        Belum ada diagnosis spesifik untuk kombinasi gejala ini.
+      </p>
+      <p class="text-xs text-[var(--color-text-muted)] max-w-[50ch] mx-auto leading-relaxed">
+        Pola serangan hama atau penyakit di kebun Anda mungkin melibatkan faktor sekunder atau gejala campuran. Anda dapat menelusuri artikel budidaya kami atau berkonsultasi langsung.
+      </p>
+      <div class="pt-2">
+        <a
+          href="/jurnal/"
+          class="inline-flex items-center gap-1.5 px-4 py-2 min-h-[44px] text-xs font-bold text-[var(--color-brand-strong)] underline hover:text-[var(--color-brand)]"
+        >
+          <span>Telusuri Artikel Jurnal Tani</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14"/>
+            <path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Candidate Cards Container -->
+    <div id="candidates-container" class="space-y-4">
+    </div>
+
+    <!-- Single WhatsApp Consultation Prompt (DESIGN §2.2 & §2.8) -->
+    <div id="triage-consult-wrapper" class="pt-4 border-t border-[var(--color-border)]">
+      <ConsultPrompt
+        source="[Web·Diagnosa]"
+        title="Masih ragu memastikan gejala di tanaman Anda?"
+        description="Kirim foto tanaman Anda dan konsultasikan langsung tanda lapangan bersama tim agronomi PT Agritani Internasional melalui WhatsApp."
+        label="Konsultasi Diagnosa Ini"
+        variant="secondary"
+      />
+    </div>
+
+  </section>
+
+  <!-- No-JS Fallback: Static Comprehensive Symptoms Index (DESIGN §2.2) -->
+  <noscript>
+    <div class="p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-6">
+      <div class="border-b border-[var(--color-border)] pb-3">
+        <h2 class="text-lg font-bold text-[var(--color-brand)]">
+          Daftar Gejala & Diagnosa Lengkap (Mode Tanpa JavaScript)
+        </h2>
+        <p class="text-xs text-[var(--color-text-muted)] mt-1">
+          Peramban Anda menjalankan mode statis. Anda dapat langsung menelusuri katalog gejala tanaman di bawah ini:
+        </p>
+      </div>
+
+      <div class="space-y-6">
+        {activeCommodities.map((comm) => {
+          const commSymptoms = allSymptoms.filter((s) => s.data.commodity.id === comm.id);
+          return (
+            <div class="space-y-3">
+              <h3 class="text-base font-extrabold text-[var(--color-text)] flex items-center gap-2">
+                <span class="w-2.5 h-2.5 bg-[var(--color-brand)] rounded-[2px]"></span>
+                <span>{comm.name} ({commSymptoms.length} gejala)</span>
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pl-4">
+                {commSymptoms.map((s) => (
+                  <div class="p-4 bg-[var(--color-tint)] border border-[var(--color-border)] rounded-[2px] space-y-2">
+                    <div class="flex items-center justify-between gap-2">
+                      <span class="text-xs font-semibold px-2 py-0.5 rounded-[2px] bg-[var(--color-surface)] text-[var(--color-soil)]">
+                        {partLabels[s.data.part] || s.data.part} · {s.data.causeType}
+                      </span>
+                    </div>
+                    <p class="text-sm font-bold text-[var(--color-text)]">
+                      {s.data.diagnosis} {s.data.scientificName && <em class="text-xs font-normal text-[var(--color-text-muted)]">({s.data.scientificName})</em>}
+                    </p>
+                    <p class="text-xs text-[var(--color-text)]">
+                      <strong>Tanda Khas:</strong> {s.data.symptom}
+                    </p>
+                    <p class="text-xs text-[var(--color-text-muted)]">
+                      <strong>Tanda Pembeda:</strong> {s.data.distinguishingSign}
+                    </p>
+                    <div class="pt-1">
+                      <a
+                        href={`/jurnal/${s.data.article}/`}
+                        class="text-xs font-bold text-[var(--color-brand-strong)] underline hover:text-[var(--color-brand)] inline-flex items-center gap-1 min-h-[44px]"
+                      >
+                        <span>Baca Protokol Penanganan</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M5 12h14"/>
+                          <path d="m12 5 7 7-7 7"/>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </noscript>
+
+</div>
+
+<script>
+  interface SymptomItem {
+    id: string;
+    commodity: string;
+    part: string;
+    causeType: 'penyakit' | 'hama' | 'hara' | 'lingkungan';
+    symptom: string;
+    diagnosis: string;
+    scientificName: string;
+    distinguishingSign: string;
+    article: string;
+    reviewedBy: string;
+  }
+
+  const causeConfig: Record<string, { label: string; badgeClass: string }> = {
+    penyakit: { label: 'Penyakit', badgeClass: 'bg-[var(--color-tint)] text-[var(--color-brand-strong)]' },
+    hama: { label: 'Hama', badgeClass: 'bg-[var(--color-harvest-tint)] text-[var(--color-soil)]' },
+    hara: { label: 'Kekurangan Hara', badgeClass: 'bg-[var(--color-tint)] text-[var(--color-soil)]' },
+    lingkungan: { label: 'Fisiologis / Lingkungan', badgeClass: 'bg-[var(--color-tint)] text-[var(--color-text)]' },
+  };
+
+  const partNames: Record<string, string> = {
+    'daun': 'Daun',
+    'batang-pangkal': 'Batang / Pangkal',
+    'buah-bunga': 'Buah / Bunga',
+    'akar': 'Akar / Benih',
+  };
+
+  function initTriageEngine() {
+    const root = document.getElementById('triage-engine-root');
+    if (!root) return;
+
+    let symptoms: SymptomItem[] = [];
+    try {
+      symptoms = JSON.parse(root.dataset.symptoms || '[]');
+    } catch {
+      symptoms = [];
+    }
+
+    const commodityBtns = Array.from(root.querySelectorAll<HTMLButtonElement>('.triage-commodity-btn'));
+    const partBtns = Array.from(root.querySelectorAll<HTMLButtonElement>('.triage-part-btn'));
+    const sectionPart = document.getElementById('section-part');
+    const partHelper = document.getElementById('part-helper');
+    const sectionSymptom = document.getElementById('section-symptom');
+    const symptomCount = document.getElementById('symptom-count');
+    const symptomSearch = document.getElementById('symptom-search') as HTMLInputElement | null;
+    const symptomsList = document.getElementById('symptoms-list');
+
+    const resultArea = document.getElementById('triage-result-area');
+    const resultHeading = document.getElementById('result-path-heading');
+    const resultEmpty = document.getElementById('result-empty');
+    const candidatesContainer = document.getElementById('candidates-container');
+
+    let selectedCommodity: string | null = null;
+    let selectedPart: string | null = null;
+    let selectedSymptomId: string | null = null;
+
+    // Read initial state from URL search params (REQ-06, DESIGN §2.2)
+    function readUrlState() {
+      const params = new URLSearchParams(window.location.search);
+      const k = params.get('k');
+      const b = params.get('b');
+      const g = params.get('g');
+
+      if (k && symptoms.some((s) => s.commodity === k)) {
+        selectedCommodity = k;
+      } else {
+        selectedCommodity = null;
+      }
+
+      if (b && selectedCommodity && symptoms.some((s) => s.commodity === selectedCommodity && s.part === b)) {
+        selectedPart = b;
+      } else {
+        selectedPart = null;
+      }
+
+      if (g && symptoms.some((s) => s.id === g)) {
+        selectedSymptomId = g;
+      } else {
+        selectedSymptomId = null;
+      }
+
+      syncUI();
+    }
+
+    function updateUrlState() {
+      const url = new URL(window.location.href);
+      if (selectedCommodity) {
+        url.searchParams.set('k', selectedCommodity);
+      } else {
+        url.searchParams.delete('k');
+      }
+
+      if (selectedPart) {
+        url.searchParams.set('b', selectedPart);
+      } else {
+        url.searchParams.delete('b');
+      }
+
+      if (selectedSymptomId) {
+        url.searchParams.set('g', selectedSymptomId);
+      } else {
+        url.searchParams.delete('g');
+      }
+
+      window.history.replaceState({ k: selectedCommodity, b: selectedPart, g: selectedSymptomId }, '', url.toString());
+    }
+
+    function syncUI() {
+      // 1. Sync Commodity Buttons
+      commodityBtns.forEach((btn) => {
+        const id = btn.dataset.commodity;
+        const isSelected = id === selectedCommodity;
+        btn.setAttribute('aria-checked', String(isSelected));
+        if (isSelected) {
+          btn.classList.add('bg-[var(--color-brand)]', 'text-white', 'border-[var(--color-brand)]');
+          btn.classList.remove('bg-[var(--color-surface)]', 'text-[var(--color-text)]');
+        } else {
+          btn.classList.remove('bg-[var(--color-brand)]', 'text-white', 'border-[var(--color-brand)]');
+          btn.classList.add('bg-[var(--color-surface)]', 'text-[var(--color-text)]');
+        }
+      });
+
+      // 2. Sync Part Section
+      if (!selectedCommodity) {
+        sectionPart?.classList.add('opacity-50', 'pointer-events-none');
+        partBtns.forEach((btn) => {
+          btn.disabled = true;
+          btn.setAttribute('aria-checked', 'false');
+          btn.classList.remove('bg-[var(--color-brand)]', 'text-white', 'border-[var(--color-brand)]');
+          btn.classList.add('bg-[var(--color-surface)]', 'text-[var(--color-text)]');
+        });
+        if (partHelper) partHelper.classList.add('hidden');
+      } else {
+        sectionPart?.classList.remove('opacity-50', 'pointer-events-none');
+        const commSymptoms = symptoms.filter((s) => s.commodity === selectedCommodity);
+        const availableParts = new Set(commSymptoms.map((s) => s.part));
+
+        partBtns.forEach((btn) => {
+          const partKey = btn.dataset.part || '';
+          const hasData = availableParts.has(partKey);
+          btn.disabled = !hasData;
+
+          const isSelected = partKey === selectedPart;
+          btn.setAttribute('aria-checked', String(isSelected));
+
+          if (isSelected) {
+            btn.classList.add('bg-[var(--color-brand)]', 'text-white', 'border-[var(--color-brand)]');
+            btn.classList.remove('bg-[var(--color-surface)]', 'text-[var(--color-text)]');
+          } else {
+            btn.classList.remove('bg-[var(--color-brand)]', 'text-white', 'border-[var(--color-brand)]');
+            btn.classList.add('bg-[var(--color-surface)]', 'text-[var(--color-text)]');
+          }
+        });
+      }
+
+      // 3. Sync Symptoms Section
+      if (!selectedCommodity || !selectedPart) {
+        sectionSymptom?.classList.add('opacity-50', 'pointer-events-none');
+        if (symptomsList) {
+          symptomsList.innerHTML = '<p class="text-xs text-[var(--color-text-muted)] italic">Pilih komoditas dan bagian tanaman terlebih dahulu.</p>';
+        }
+        if (symptomCount) symptomCount.textContent = '';
+      } else {
+        sectionSymptom?.classList.remove('opacity-50', 'pointer-events-none');
+        renderSymptomsList();
+      }
+
+      // 4. Sync Results
+      renderResults();
+    }
+
+    function renderSymptomsList() {
+      if (!symptomsList || !selectedCommodity || !selectedPart) return;
+
+      const filterText = (symptomSearch?.value || '').toLowerCase().trim();
+      const filtered = symptoms.filter((s) => {
+        if (s.commodity !== selectedCommodity || s.part !== selectedPart) return false;
+        if (!filterText) return true;
+        return (
+          s.symptom.toLowerCase().includes(filterText) ||
+          s.diagnosis.toLowerCase().includes(filterText) ||
+          s.distinguishingSign.toLowerCase().includes(filterText)
+        );
+      });
+
+      if (symptomCount) {
+        symptomCount.textContent = `${filtered.length} opsi gejala`;
+      }
+
+      if (filtered.length === 0) {
+        symptomsList.innerHTML = '<p class="text-xs text-[var(--color-text-muted)] italic">Tidak ada gejala yang cocok dengan kata kunci saringan.</p>';
+        return;
+      }
+
+      symptomsList.innerHTML = '';
+      filtered.forEach((item) => {
+        const isSelected = item.id === selectedSymptomId;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.dataset.symptomId = item.id;
+        btn.className = `w-full text-left p-3.5 min-h-[44px] rounded-[2px] border transition-all text-xs sm:text-sm cursor-pointer flex flex-col gap-1 ${
+          isSelected
+            ? 'border-[var(--color-brand-strong)] bg-[var(--color-tint)] ring-2 ring-[var(--color-brand-strong)] font-semibold'
+            : 'border-[var(--color-border-control)] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)]'
+        }`;
+
+        const topRow = document.createElement('div');
+        topRow.className = 'flex items-center justify-between gap-2';
+
+        const symptomText = document.createElement('span');
+        symptomText.className = 'text-[var(--color-text)]';
+        symptomText.textContent = item.symptom;
+
+        const badge = document.createElement('span');
+        const cConf = causeConfig[item.causeType] || { label: item.causeType, badgeClass: 'bg-[var(--color-surface)] text-[var(--color-soil)]' };
+        badge.className = `text-[10px] font-bold px-2 py-0.5 rounded-[2px] whitespace-nowrap ${cConf.badgeClass}`;
+        badge.textContent = cConf.label;
+
+        topRow.appendChild(symptomText);
+        topRow.appendChild(badge);
+        btn.appendChild(topRow);
+
+        btn.addEventListener('click', () => {
+          selectedSymptomId = item.id;
+          updateUrlState();
+          syncUI();
+          // Scroll smoothly to results
+          resultArea?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        symptomsList.appendChild(btn);
+      });
+    }
+
+    function renderResults() {
+      if (!selectedCommodity || !selectedPart || !selectedSymptomId) {
+        resultArea?.classList.add('hidden');
+        return;
+      }
+
+      const activeSymptom = symptoms.find((s) => s.id === selectedSymptomId);
+      if (!activeSymptom) {
+        resultArea?.classList.remove('hidden');
+        resultEmpty?.classList.remove('hidden');
+        candidatesContainer?.classList.add('hidden');
+        return;
+      }
+
+      resultArea?.classList.remove('hidden');
+      resultEmpty?.classList.add('hidden');
+      candidatesContainer?.classList.remove('hidden');
+
+      // Update Path Title (UMN pattern: Komoditas › Bagian › Gejala)
+      const commName = commodityBtns.find((b) => b.dataset.commodity === selectedCommodity)?.textContent?.trim() || selectedCommodity;
+      const partName = partNames[selectedPart] || selectedPart;
+
+      if (resultHeading) {
+        resultHeading.textContent = `${commName} › ${partName} › ${activeSymptom.symptom}`;
+      }
+
+      // Find all matching symptoms for this commodity and part (ordered by relevance, current active symptom first)
+      const candidates = symptoms.filter((s) => s.commodity === selectedCommodity && s.part === selectedPart);
+      candidates.sort((a, b) => {
+        if (a.id === selectedSymptomId) return -1;
+        if (b.id === selectedSymptomId) return 1;
+        return 0;
+      });
+
+      if (candidatesContainer) {
+        candidatesContainer.innerHTML = '';
+        candidates.forEach((cand) => {
+          const isPrimary = cand.id === selectedSymptomId;
+          const cConf = causeConfig[cand.causeType] || { label: cand.causeType, badgeClass: 'bg-[var(--color-tint)] text-[var(--color-soil)]' };
+
+          const card = document.createElement('article');
+          card.className = `p-5 sm:p-6 bg-[var(--color-surface)] border rounded-[2px] transition-all space-y-4 ${
+            isPrimary ? 'border-[var(--color-brand)] ring-1 ring-[var(--color-brand)]/20' : 'border-[var(--color-border)] opacity-90'
+          }`;
+
+          // Header line with Cause Type and Verification Status
+          const headRow = document.createElement('div');
+          headRow.className = 'flex flex-wrap items-center justify-between gap-2';
+
+          const badge = document.createElement('span');
+          badge.className = `text-xs font-bold px-2.5 py-1 rounded-[2px] ${cConf.badgeClass}`;
+          badge.textContent = `Penyebab: ${cConf.label}`;
+
+          const statusSpan = document.createElement('span');
+          statusSpan.className = 'text-[11px] font-mono text-[var(--color-text-muted)]';
+          statusSpan.textContent = cand.reviewedBy ? `Ditinjau: ${cand.reviewedBy}` : '[Draf — validasi OQ-11c]';
+
+          headRow.appendChild(badge);
+          headRow.appendChild(statusSpan);
+          card.appendChild(headRow);
+
+          // Diagnosis Title and Scientific Name
+          const titleDiv = document.createElement('div');
+          const title = document.createElement('h3');
+          title.className = 'text-xl font-extrabold text-[var(--color-text)] leading-tight';
+          title.textContent = cand.diagnosis;
+
+          if (cand.scientificName) {
+            const sciName = document.createElement('span');
+            sciName.className = 'text-sm font-normal text-[var(--color-text-muted)] italic block sm:inline sm:ml-2';
+            sciName.textContent = `(${cand.scientificName})`;
+            title.appendChild(sciName);
+          }
+          titleDiv.appendChild(title);
+          card.appendChild(titleDiv);
+
+          // Tanda Pembeda (Distinguishing Sign - Critical field per DESIGN §2.2)
+          const signBox = document.createElement('div');
+          signBox.className = 'p-3.5 bg-[var(--color-harvest-tint)] border border-[var(--color-harvest)]/40 rounded-[2px] text-xs sm:text-sm text-[var(--color-text)]';
+          signBox.innerHTML = `<strong>Tanda Pembeda Kunci:</strong> ${cand.distinguishingSign}`;
+          card.appendChild(signBox);
+
+          // Action Link (Only "Baca penanganan", DESIGN §2.2)
+          const actionDiv = document.createElement('div');
+          actionDiv.className = 'pt-1 flex items-center justify-between';
+
+          const readLink = document.createElement('a');
+          readLink.href = `/jurnal/${cand.article}/`;
+          readLink.className = 'inline-flex items-center gap-2 px-4 py-2 min-h-[44px] text-xs sm:text-sm font-bold rounded-[2px] bg-[var(--color-brand)] text-white hover:bg-[var(--color-brand-strong)] transition-colors';
+          readLink.innerHTML = `
+            <span>Baca Penanganan Lengkap</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14"/>
+              <path d="m12 5 7 7-7 7"/>
+            </svg>
+          `;
+
+          actionDiv.appendChild(readLink);
+          card.appendChild(actionDiv);
+
+          candidatesContainer.appendChild(card);
+        });
+      }
+    }
+
+    // Event Listeners for Step 1: Commodity
+    commodityBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.commodity;
+        if (selectedCommodity === id) return;
+        selectedCommodity = id || null;
+        selectedPart = null;
+        selectedSymptomId = null;
+        updateUrlState();
+        syncUI();
+      });
+    });
+
+    // Event Listeners for Step 2: Part
+    partBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const part = btn.dataset.part;
+        if (selectedPart === part) return;
+        selectedPart = part || null;
+        selectedSymptomId = null;
+        updateUrlState();
+        syncUI();
+      });
+    });
+
+    // Event Listener for Local Symptom Search
+    symptomSearch?.addEventListener('input', () => {
+      renderSymptomsList();
+    });
+
+    // Handle Browser Back / Forward buttons (DESIGN §2.2)
+    window.addEventListener('popstate', () => {
+      readUrlState();
+    });
+
+    // Initial read
+    readUrlState();
+  }
+
+  initTriageEngine();
+  document.addEventListener('astro:page-load', initTriageEngine);
+</script>

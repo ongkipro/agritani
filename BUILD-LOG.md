@@ -425,4 +425,38 @@ Record only durable implementation changes, validation evidence, and gotchas tha
     - `proof/ui/t22/konsultasi-submitted-390.png`, `proof/ui/t22/konsultasi-submitted-1440.png`
 - Boundary check produced `REVIEW_REQUIRED` (declared risk R1, effective risk escalated to R2 due to UI Astro components). Stopped without self-review; finished as `BLOCKED` awaiting independent review.
 
+## 2026-09-29 — T-09: Triage Engine & Symptoms Dataset (PASS)
+
+- **Symptoms Dataset (`src/data/symptoms.json`)**:
+  - Populated with 22 authentic symptom entries derived directly from real articles in `docs/content/articles/` across 5 commodities (Cabai: 9, Padi: 8, Kelapa Sawit: 2, Jagung: 2, Tomat: 1).
+  - Every entry rigorously cross-verified with `src/lib/integrity.ts` (`assertContentIntegrity()`) to ensure 100% valid article slugs and real distinguishing signs (`distinguishingSign`).
+  - Corrected article slug references to match actual disk filenames (`mengatasi-busuk-lunak-bakteri-erwinia-sayuran`, `mengatasi-hama-keong-mas-pada-padi-sawah`, `membasmi-ulat-grayak-jagung-faw-spodoptera`).
+- **Interactive Triage Component (`src/components/TriageFilter.astro`)**:
+  - Implemented 3-step tap-first workflow:
+    1. Langkah 1: Pilih Komoditas Tanaman (button group).
+    2. Langkah 2: Pilih Bagian Tanaman yang bergejala (`daun`, `batang-pangkal`, `buah-bunga`, `akar`), dynamic active filtering based on available symptoms.
+    3. Langkah 3: Pilih Tanda Visual yang Tampak, with responsive instant client-side keyword filtering.
+  - Interactive result area with ARIA live region (`aria-live="polite"`):
+    - Path breadcrumb heading (e.g. `Cabai › Buah / Bunga › Bercak cekung melingkar...`).
+    - Prominent "Tanda Pembeda Kunci" in contrasting harvest tint container.
+    - Single call-to-action button per card ("Baca Penanganan Lengkap") pointing directly to the article.
+    - Exactly 1 WhatsApp consultation prompt (`ConsultPrompt`) located below the result set (`source="[Web·Diagnosa]"`), strictly adhering to DESIGN §2.2 & §2.8.
+  - URL state synchronization: Syncs `?k=...&b=...&g=...` via `history.replaceState` and handles browser Back/Forward (`popstate`) seamlessly.
+  - Robust static `<noscript>` fallback: Pre-renders full commodity-by-commodity symptoms directory for zero-JS environments.
+- **Dedicated Page (`src/pages/alat/diagnosa-gejala.astro`)**:
+  - Lapangan typography with Newsreader/Plus Jakarta Sans hierarchy.
+  - Full SEO metadata: Title `Diagnosa Gejala Hama & Penyakit | Agritani`, breadcrumb `Beranda › Alat Tani › Diagnosa Gejala`.
+- **Impeccable & CSP Audit**:
+  - Zero executed inline scripts, zero inline `on*=` handlers, zero inline `style=` attributes (0/0/0 verified by `check-csp`).
+  - Clean visual design: 2px border radius, high-contrast text, touch targets ≥ 44px.
+  - UI proof captured at port 4330 via `agritani-shot.cjs`:
+    - `proof/ui/t09/diagnosa-initial-390.png` & `proof/ui/t09/diagnosa-initial-1440.png`
+    - `proof/ui/t09/diagnosa-result-cabai-patek-390.png` & `proof/ui/t09/diagnosa-result-cabai-patek-1440.png`
+- **Verifications**:
+  - `npm test`: 50/50 unit tests PASS.
+  - `npx astro check`: 0 errors, 0 warnings.
+  - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 180 HTML pages, Pagefind indexed 150 articles, `check-seo` PASS (0 errors, 0 warnings), `check-csp` PASS (0/0/0).
+  - Boundary check passed: `BOUNDARY PASS effectiveRisk=R2`. Ledger run `RUN-20260929T140942Z-d9f3e7b6` finished with result PASS.
+
+
 
