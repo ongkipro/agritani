@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { assertContentIntegrity, type ArticleData } from './content-integrity.ts';
+import { assertContentIntegrity, mapCategoryToTopic, type ArticleData } from './content-integrity.ts';
 
 const validAnswer =
   'Penyakit busuk pangkal batang akibat Ganoderma boninense dapat dikendalikan melalui sanitasi mekanis dan aplikasi aktivator imun. Pengamatan rutin pada piringan pohon setiap bulan mendeteksi infeksi lebih awal sehingga penyebaran miselium terhenti sebelum kerusakan vaskular permanen meluas ke seluruh tegakan kelapa sawit.';
@@ -12,6 +12,7 @@ const validArticle: ArticleData = {
   description: 'Panduan lengkap pengendalian Ganoderma boninense pada tanaman kelapa sawit dengan metode sanitasi dan imunisasi.',
   answer: validAnswer,
   author: 'Arif Prabowo',
+  commodities: ['kelapa-sawit'],
   references: [
     {
       authors: 'Prabowo, A. et al.',
@@ -30,6 +31,37 @@ describe('Content Integrity Assertions', () => {
       assertContentIntegrity({
         articles: [validArticle],
         commodities: [{ id: 'kelapa-sawit', name: 'Kelapa Sawit' }],
+      });
+    });
+  });
+
+  it('fails when published article has no commodities (REQ-03)', () => {
+    const invalid = { ...validArticle, slug: 'artikel-tanpa-komoditas', commodities: [] };
+    assert.throws(
+      () => {
+        assertContentIntegrity({ articles: [invalid] });
+      },
+      (err: Error) => {
+        assert.match(err.message, /artikel-tanpa-komoditas/);
+        assert.match(err.message, /minimal 1 komoditas/);
+        return true;
+      }
+    );
+  });
+
+  it('ensures articles without commodities do not get secretly defaulted to kelapa-sawit', () => {
+    const draftGeneralArticle: ArticleData = {
+      slug: 'sains-lignin',
+      title: 'Sains Biosintesis Lignin Memperkokoh Batang',
+      draft: true,
+      commodities: [],
+    };
+    // Should stay empty array, never defaulted to kelapa-sawit
+    assert.deepEqual(draftGeneralArticle.commodities, []);
+    assert.doesNotThrow(() => {
+      assertContentIntegrity({
+        articles: [draftGeneralArticle],
+        isDraftPreview: true,
       });
     });
   });
@@ -168,3 +200,29 @@ describe('Content Integrity Assertions', () => {
     );
   });
 });
+
+describe('mapCategoryToTopic Table-Driven Tests', () => {
+  const cases = [
+    { input: 'Manajemen Air & Sistem Irigasi Pertanian', expected: 'air-irigasi' },
+    { input: 'Bioteknologi, Agribisnis & Pasca Panen', expected: 'pascapanen-agribisnis' },
+    { input: 'Fisiologi & Anatomi Tumbuhan', expected: 'sains-tanaman' },
+    { input: 'Fisiologi Tanaman & Perawatan', expected: 'sains-tanaman' },
+    { input: 'Hama & Proteksi Tanaman', expected: 'proteksi-tanaman' },
+    { input: 'Perkebunan & Patologi Tanaman', expected: 'proteksi-tanaman' },
+    { input: 'Patologi Tanaman & Hortikultura', expected: 'proteksi-tanaman' },
+    { input: 'Ilmu Tanah & Kesuburan Lahan', expected: 'tanah-nutrisi' },
+    { input: 'Nutrisi Tanaman, Pupuk & Biostimulan', expected: 'tanah-nutrisi' },
+    { input: 'Teknik Budidaya & Manajemen Lahan', expected: 'budidaya' },
+    { input: 'Tanaman Pangan & Budidaya Padi', expected: 'budidaya' },
+    { input: 'Urban Farming & Hidroponik', expected: 'budidaya' },
+    // Robustness test: "Cairan Nutrisi Organik" should map to tanah-nutrisi, NOT air-irigasi
+    { input: 'Cairan Nutrisi Organik', expected: 'tanah-nutrisi' },
+  ];
+
+  for (const { input, expected } of cases) {
+    it(`maps "${input}" correctly to "${expected}"`, () => {
+      assert.equal(mapCategoryToTopic(input), expected);
+    });
+  }
+});
+

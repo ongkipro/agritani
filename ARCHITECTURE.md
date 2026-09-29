@@ -149,7 +149,7 @@ const articles = defineCollection({
     author: z.string().default('Arif Prabowo'),
     reviewedBy: z.string().optional(),               // hanya bila peninjau berbeda dari penulis
     topic: z.enum(['proteksi-tanaman', 'tanah-nutrisi', 'budidaya', 'air-irigasi', 'pascapanen-agribisnis', 'sains-tanaman']),
-    commodities: z.array(reference('commodities')).min(1),
+    commodities: z.array(reference('commodities')).default([]), // artikel terbit wajib >= 1 komoditas (dicek integritas §3.1)
     tags: z.array(z.string()).min(1),                // kata kunci editorial dari naskah; tags[0] = kata kunci utama (bukan meta keywords)
     featured: z.boolean().default(false),
     heroImage: z.object({ src: image(), alt: z.string().min(5).max(125), credit: z.string() }).optional(),
@@ -261,7 +261,7 @@ Pemetaan kategori adalah titik awal; T-03 boleh memindahkan artikel ke topik yan
 `src/lib/content-integrity.ts` mengekspor `assertContentIntegrity()` yang dipanggil di `getStaticPaths` `src/pages/jurnal/[slug].astro` (selalu dieksekusi saat build/dev); galat menggagalkan build dengan nama file:
 
 - Slug artikel unik; `symptoms[].article` menunjuk artikel **terbit**; `cropCalendars[].id` ada di `commodities`.
-- Artikel terbit (`draft: false`) wajib: ≥ 1 `references` (REQ-05), `answer` 40–60 kata, `metaTitle` & `description` unik antarartikel, `author` terisi.
+- Artikel terbit (`draft: false`) wajib: ≥ 1 `references` (REQ-05), `answer` 40–60 kata, `metaTitle` & `description` unik antarartikel, `author` terisi, dan minimal 1 `commodities` (REQ-03).
 - Gejala dan kalender tanpa `reviewedBy` tidak dirender di produksi (bukan galat).
 - Di mode pratinjau (§3.2), rujukan ke artikel draft diizinkan dan data tanpa `reviewedBy` ikut dirender dengan label "BELUM DITINJAU".
 

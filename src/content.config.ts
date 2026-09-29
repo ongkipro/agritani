@@ -1,6 +1,7 @@
 import { defineCollection, reference } from 'astro:content';
 import { glob, file } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { mapCategoryToTopic } from './lib/content-integrity.ts';
 
 const commodities = defineCollection({
   loader: file('./src/data/commodities.json'),
@@ -38,51 +39,20 @@ const fieldTakeaways = z.discriminatedUnion('kind', [
   }),
 ]);
 
-// Map 47 legacy manuscript categories to 6 fixed topics (ARCHITECTURE §3.0)
-function mapCategoryToTopic(cat?: string): string {
-  if (!cat) return 'budidaya';
-  const c = cat.toLowerCase();
-  if (
-    c.includes('hama') ||
-    c.includes('patologi') ||
-    c.includes('bioproteksi') ||
-    c.includes('proteksi')
-  ) {
-    return 'proteksi-tanaman';
-  }
-  if (
-    c.includes('tanah') ||
-    c.includes('nutrisi') ||
-    c.includes('biostimulan') ||
-    c.includes('kesuburan')
-  ) {
-    return 'tanah-nutrisi';
-  }
-  if (c.includes('air') || c.includes('irigasi')) {
-    return 'air-irigasi';
-  }
-  if (c.includes('pasca panen') || c.includes('pascapanen') || c.includes('agribisnis')) {
-    return 'pascapanen-agribisnis';
-  }
-  if (c.includes('fisiologi') || c.includes('anatomi') || c.includes('sains')) {
-    return 'sains-tanaman';
-  }
-  return 'budidaya';
-}
-
 const articles = defineCollection({
   loader: glob({ pattern: '*.md', base: './docs/content/articles' }),
   schema: ({ image }) =>
     z.preprocess(
       (raw: any) => {
         if (!raw || typeof raw !== 'object') return raw;
-        const metaTitle = raw.metaTitle ?? raw.meta_title ?? raw.title;
-        const description = raw.description ?? raw.meta_description ?? '';
-        const pubDate = raw.pubDate ?? raw.published_date ?? new Date();
+        // Only deterministic legacy field renames:
+        const metaTitle = raw.metaTitle ?? raw.meta_title;
+        const description = raw.description ?? raw.meta_description;
+        const pubDate = raw.pubDate ?? raw.published_date;
         const author = raw.author ?? 'Arif Prabowo';
-        const topic = raw.topic ?? mapCategoryToTopic(raw.category);
-        const commoditiesList = raw.commodities ?? ['kelapa-sawit'];
-        const tags = Array.isArray(raw.tags) && raw.tags.length > 0 ? raw.tags : ['pertanian'];
+        const topic = raw.topic ?? (raw.category ? mapCategoryToTopic(raw.category) : undefined);
+        const commodities = raw.commodities ?? [];
+        const tags = raw.tags;
         const draft = raw.draft !== undefined ? raw.draft : true;
         return {
           ...raw,
@@ -91,7 +61,7 @@ const articles = defineCollection({
           pubDate,
           author,
           topic,
-          commodities: commoditiesList,
+          commodities,
           tags,
           draft,
         };
@@ -114,7 +84,7 @@ const articles = defineCollection({
           'pascapanen-agribisnis',
           'sains-tanaman',
         ]),
-        commodities: z.array(reference('commodities')).min(1),
+        commodities: z.array(reference('commodities')).default([]),
         tags: z.array(z.string()).min(1),
         featured: z.boolean().default(false),
         heroImage: z

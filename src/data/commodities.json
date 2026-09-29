@@ -15,5 +15,19 @@
   { "id": "durian", "name": "Durian", "group": "hortikultura" },
   { "id": "mangga", "name": "Mangga", "group": "hortikultura" },
   { "id": "alpukat", "name": "Alpukat", "group": "hortikultura" },
-  { "id": "jeruk", "name": "Jeruk", "group": "hortikultura" }
+  { "id": "jeruk", "name": "Jeruk", "group": "hortikultura" },
+  { "id": "terung", "name": "Terung", "group": "hortikultura" },
+  { "id": "mentimun", "name": "Mentimun", "group": "hortikultura" },
+  { "id": "kentang", "name": "Kentang", "group": "hortikultura" },
+  { "id": "tebu", "name": "Tebu", "group": "perkebunan" },
+  { "id": "tembakau", "name": "Tembakau", "group": "perkebunan" },
+  { "id": "buncis", "name": "Buncis", "group": "hortikultura" },
+  { "id": "pepaya", "name": "Pepaya", "group": "hortikultura" },
+  { "id": "pisang", "name": "Pisang", "group": "hortikultura" },
+  { "id": "nanas", "name": "Nanas", "group": "hortikultura" },
+  { "id": "wortel", "name": "Wortel", "group": "hortikultura" },
+  { "id": "kubis", "name": "Kubis", "group": "hortikultura" },
+  { "id": "vanili", "name": "Vanili", "group": "perkebunan" },
+  { "id": "ubi-jalar", "name": "Ubi Jalar", "group": "pangan" },
+  { "id": "kacang-tanah", "name": "Kacang Tanah", "group": "pangan" }
 ]

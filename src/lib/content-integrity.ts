@@ -10,6 +10,7 @@ export interface ArticleData {
   description?: string;
   answer?: string;
   author?: string;
+  commodities?: Array<string | { id: string }>;
   references?: Array<{
     authors: string;
     year: number;
@@ -48,6 +49,56 @@ export interface ContentIntegrityInput {
   cropCalendars?: CropCalendarData[];
   commodities?: CommodityData[];
   isDraftPreview?: boolean;
+}
+
+// Map 47 legacy manuscript categories to 6 fixed topics (ARCHITECTURE §3.0)
+export function mapCategoryToTopic(cat?: string): string {
+  if (!cat) return 'budidaya';
+  const c = cat.trim();
+
+  // 1. Air & Irigasi (match exact category or whole words 'air' / 'irigasi')
+  if (
+    c === 'Manajemen Air & Sistem Irigasi Pertanian' ||
+    /\b(irigasi)\b/i.test(c) ||
+    /\b(air)\b/i.test(c)
+  ) {
+    return 'air-irigasi';
+  }
+
+  // 2. Pascapanen & Agribisnis
+  if (
+    c === 'Bioteknologi, Agribisnis & Pasca Panen' ||
+    /\b(pasca\s*panen|pascapanen|agribisnis)\b/i.test(c)
+  ) {
+    return 'pascapanen-agribisnis';
+  }
+
+  // 3. Sains Tanaman (Fisiologi & Anatomi Tumbuhan, Fisiologi Tanaman & Perawatan)
+  if (
+    c === 'Fisiologi & Anatomi Tumbuhan' ||
+    c === 'Fisiologi Tanaman & Perawatan' ||
+    /\b(anatomi)\b/i.test(c) ||
+    /\bfisiologi tanaman\b/i.test(c)
+  ) {
+    return 'sains-tanaman';
+  }
+
+  // 4. Proteksi Tanaman (hama, patologi, bioproteksi, penyakit)
+  if (
+    /\b(hama|patologi|bioproteksi|proteksi)\b/i.test(c)
+  ) {
+    return 'proteksi-tanaman';
+  }
+
+  // 5. Tanah & Nutrisi (tanah, nutrisi, pupuk, biostimulan, kesuburan, kompos, mikrobioma)
+  if (
+    /\b(tanah|nutrisi|biostimulan|kesuburan|pupuk|kompos|mikrobioma)\b/i.test(c)
+  ) {
+    return 'tanah-nutrisi';
+  }
+
+  // 6. Budidaya (default for technical cultivation, planting, seeds, urban farming, commodities)
+  return 'budidaya';
 }
 
 function countWords(str: string): number {
@@ -97,6 +148,13 @@ export function assertContentIntegrity(input: ContentIntegrityInput): void {
       // Author required
       if (!art.author || art.author.trim() === '') {
         throw new Error(`Artikel terbit "${art.slug}" wajib memiliki author terisi`);
+      }
+
+      // Commodities required (>= 1, REQ-03)
+      if (!art.commodities || art.commodities.length === 0) {
+        throw new Error(
+          `Artikel terbit "${art.slug}" wajib memiliki minimal 1 komoditas (REQ-03)`
+        );
       }
 
       // References required (>= 1, REQ-05)
