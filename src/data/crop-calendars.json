@@ -70,7 +70,7 @@
         "id": "pemasakan-panen",
         "name": "Fase Pengisian Butir & Pemanenan",
         "startDay": 81,
-        "endDay": 115,
+        "endDay": 125,
         "activities": [
           "Pengeringan air sawah total 10-14 hari menjelang panen",
           "Pemeriksaan kematangan gabah (90-95% malai telah menguning)",
@@ -104,8 +104,7 @@
       }
     ],
     "sources": [
-      "Badan Standardisasi Instrumen Pertanian (BSIP Padi Sukamandi)",
-      "Pedoman Teknis Budidaya Padi Sawah Kementerian Pertanian RI"
+      "Bahan awal internal: agrimarket docs/spec/KALENDER-TANAM-NASIONAL.md (belum diverifikasi ke sumber primer)"
     ],
     "seededFrom": "agrimarket KALENDER-TANAM-NASIONAL (DEC-015)"
   },
@@ -175,7 +174,7 @@
         "id": "pemasakan-panen",
         "name": "Fase Masak Fisiologis & Pemanenan (R6)",
         "startDay": 81,
-        "endDay": 105,
+        "endDay": 110,
         "activities": [
           "Penghentian pengairan saat kelobot mulai mengering",
           "Pemeriksaan tanda lapisan hitam (black layer) pada biji",
@@ -208,8 +207,7 @@
       }
     ],
     "sources": [
-      "Balai Standardisasi Instrumen Tanaman Serealia (BSIP Serealia Maros)",
-      "Kementerian Pertanian RI"
+      "Bahan awal internal: agrimarket docs/spec/KALENDER-TANAM-NASIONAL.md (belum diverifikasi ke sumber primer)"
     ],
     "seededFrom": "agrimarket KALENDER-TANAM-NASIONAL (DEC-015)"
   },
@@ -281,7 +279,7 @@
         "id": "panen-berkala",
         "name": "Fase Panen Berkala",
         "startDay": 91,
-        "endDay": 140,
+        "endDay": 150,
         "activities": [
           "Pemanenan buah matang petik merah berkala tiap 3-5 hari",
           "Pemupukan susulan setelah panen untuk merangsang bunga baru",
@@ -315,8 +313,7 @@
       }
     ],
     "sources": [
-      "Balai Penelitian Tanaman Sayuran (Balitsa Lembang)",
-      "Direktorat Perlindungan Hortikultura Kementan RI"
+      "Bahan awal internal: agrimarket docs/spec/KALENDER-TANAM-NASIONAL.md (belum diverifikasi ke sumber primer)"
     ],
     "seededFrom": "agrimarket KALENDER-TANAM-NASIONAL (DEC-015)"
   },
@@ -372,7 +369,7 @@
         "id": "pemasakan-panen",
         "name": "Fase Pemasakan & Pemanenan Buah",
         "startDay": 61,
-        "endDay": 95,
+        "endDay": 110,
         "activities": [
           "Pemanenan bertahap saat buah semburat merah/oranye",
           "Pemetikan dengan menyertakan kelopak tangkai buah utuh",
@@ -405,8 +402,7 @@
       }
     ],
     "sources": [
-      "Balai Standardisasi Instrumen Tanaman Sayuran (BSIP Sayuran Lembang)",
-      "Kementerian Pertanian RI"
+      "Bahan awal internal: agrimarket docs/spec/KALENDER-TANAM-NASIONAL.md (belum diverifikasi ke sumber primer)"
     ],
     "seededFrom": "agrimarket KALENDER-TANAM-NASIONAL (DEC-015)"
   },
@@ -461,7 +457,7 @@
         "id": "pematangan-panen",
         "name": "Fase Pematangan Umbi & Pemanenan",
         "startDay": 51,
-        "endDay": 65,
+        "endDay": 75,
         "activities": [
           "Penghentian penyiraman total 7 hari sebelum jadwal panen",
           "Pencabutan tanaman saat 70-80% daun rebah layu menguning",
@@ -494,8 +490,7 @@
       }
     ],
     "sources": [
-      "Balai Standardisasi Instrumen Tanaman Sayuran (BSIP Sayuran Lembang)",
-      "Kementerian Pertanian RI"
+      "Bahan awal internal: agrimarket docs/spec/KALENDER-TANAM-NASIONAL.md (belum diverifikasi ke sumber primer)"
     ],
     "seededFrom": "agrimarket KALENDER-TANAM-NASIONAL (DEC-015)"
   },
@@ -544,8 +539,7 @@
       }
     ],
     "sources": [
-      "Pusat Penelitian Kelapa Sawit (PPKS Medan)",
-      "Direktorat Jenderal Perkebunan Kementerian Pertanian RI"
+      "Bahan awal internal: agrimarket docs/spec/KALENDER-TANAM-NASIONAL.md (belum diverifikasi ke sumber primer)"
     ],
     "seededFrom": "agrimarket KALENDER-TANAM-NASIONAL (DEC-015)"
   }

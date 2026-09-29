@@ -221,12 +221,12 @@ const monthNames = [
     </div>
 
     <!-- About this Data & Credibility -->
-    <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-2 text-xs text-[var(--color-text-muted)]">
-      <p class="font-bold text-[var(--color-soil)] uppercase tracking-wider">
+    <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-2 text-xs sm:text-sm text-[var(--color-text-muted)]">
+      <p class="font-bold text-[var(--color-soil)] uppercase tracking-wider text-xs">
         Tentang Sumber Data & Acuan Agronomi
       </p>
       <p id="sources-info" class="leading-relaxed"></p>
-      <p id="reviewed-info" class="leading-relaxed font-mono text-[11px]"></p>
+      <p id="reviewed-info" class="leading-relaxed font-mono text-xs sm:text-sm"></p>
     </div>
 
     <!-- Single WhatsApp Consultation Prompt (DESIGN §2.6.1 & §2.8) -->
@@ -689,13 +689,13 @@ const monthNames = [
 
       // Sources & Review info
       if (sourcesInfo) {
-        sourcesInfo.innerHTML = `<strong>Rujukan Standar:</strong> ${calendar.sources.join('; ')}.`;
+        sourcesInfo.innerHTML = `<strong>Sumber Data Awal:</strong> ${calendar.sources.join('; ')}.`;
       }
       if (reviewedInfo) {
         if (calendar.reviewedBy) {
           reviewedInfo.textContent = `Status telaah agronomi: Ditinjau oleh ${calendar.reviewedBy}`;
         } else {
-          reviewedInfo.textContent = 'Status telaah agronomi: [Draf — validasi OQ-11b]';
+          reviewedInfo.textContent = 'Status telaah agronomi: Belum ditinjau [Draf — validasi OQ-11b]';
         }
       }
     }

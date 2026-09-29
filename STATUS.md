@@ -40,14 +40,23 @@ Kontrak pra-pengembangan diaudit ulang pada 2026-09-29 dengan skill dotfiles ter
 
 ### Active work
 
-T-09 Revisi (Diagnosa Gejala: Kontras Tombol & Gerbang Peninjauan) selesai diimplementasikan dan diverifikasi:
-- Kontras tombol "Baca Penanganan Lengkap": Aturan elemen dasar `body`, `a`, `a:hover` dibungkus ke `@layer base` di `src/styles/global.css` agar utilitas Tailwind selalu menang. Menambahkan `!text-white hover:bg-[var(--color-brand-hover)]` pada link tombol di `src/components/TriageFilter.astro`. Hasil ukur computed style: foreground `rgb(255, 255, 255)`, background `rgb(26, 99, 53)`, rasio kontras **7.29:1** (PASS ≥ 7:1). Bukti zoom tersimpan di `proof/ui/t09/diagnosa-button-contrast-zoom.png`.
-- Gerbang Peninjauan (Review Gating) & Honest Empty State (ARCHITECTURE §3.1, DEC-015): Logika murni dibuat di `src/lib/triage.ts`. Mode produksi standar (`isDraftPreview: false`) menyembunyikan gejala yang belum ditinjau (`reviewedBy` kosong). Jika belum ada gejala ditinjau, menampilkan empty state jujur "Diagnosa Gejala Sedang Disiapkan" dengan rujukan ke Jurnal Tani; tombol komoditas hanya mengambil komoditas aktif. 4 unit test otomatis di `src/lib/triage.test.ts` (total 62/62 PASS). Screenshot mode produksi: `proof/ui/t09/diagnosa-unreviewed-production-*.png`.
-- Catatan data: Cabang hara dan lingkungan tetap kosong menunggu data terverifikasi Prof. Arif (OQ-11c).
-- Boundary check PASS R2. Ledger run `RUN-20260929T142508Z-97394bc1` selesai dengan PASS.
+T-19 Revisi (Kalender Tanam: Sanitasi Sumber Data & Keselarasan Siklus Panen) selesai diimplementasikan dan diverifikasi:
+- Sanitasi Sumber Data (`src/data/crop-calendars.json`): Menghapus seluruh nama institusi/lembaga yang tidak boleh dikarang (BSIP, Balitsa, PPKS, Kementan) per NG-3 dan DEC-005. Mengganti semua 6 entri dengan atribusi jujur: `["Bahan awal internal: agrimarket docs/spec/KALENDER-TANAM-NASIONAL.md (belum diverifikasi ke sumber primer)"]`.
+- Komponen `CropTimeline.astro`: Label diubah menjadi "Sumber Data Awal" dan status telaah agronomi jujur berstatus "Status telaah agronomi: Belum ditinjau [Draf — validasi OQ-11b]".
+- Keselarasan Siklus Panen: `endDay` fase terakhir seluruh 5 tanaman semusim disamakan dengan `cycleDays.max` (Padi: 125, Jagung: 110, Cabai: 150, Tomat: 110, Bawang Merah: 75).
+- Audit Tipografi (DESIGN §3.2): Ukuran font status draf di `CropTimeline.astro` dan `TriageFilter.astro` dinaikkan menjadi `text-xs sm:text-sm` (≥ 14px pada body surface).
+- CI Workflow: Komentar action pinning di `.github/workflows/ci.yml` diperjelas secara faktual.
+- Verifikasi: 72/72 unit test PASS, `astro check` 0 error, build 182 halaman PASS (check-seo PASS, check-csp 0/0/0).
+
+T-20 (Cuaca Tani: BMKG API Client + UI `/alat/cuaca-tani/` + Dataset Kemendagri) selesai diimplementasikan dan ter-commit (`5301465`):
+- Dataset Kemendagri bertingkat (`public/wilayah/**`): 38 provinsi, 514 kabupaten detail, semua < 40 KB gzip (maksimum 7.27 KB gzip).
+- Mesin Evaluasi Jendela Semprot (`src/lib/spray-window.ts`): 10 unit test lulus, review gating aktif (`spray-thresholds.json` bernilai null / OQ-11b).
+- BMKG API client browser-direct (`src/lib/bmkg.ts`): Cache `localStorage` (TTL 1 jam) dengan fallback ketahanan SecurityError, timeout 10 detik, penanganan offline/gagal.
+- Komponen & Halaman (`RegionPicker.astro`, `ForecastTable.astro`, `cuaca-tani.astro`): Dropdown 4 tingkat cascading, tabel responsif tabular-nums, skeleton loading, satu CTA WhatsApp (`[Web·Cuaca]`), CSP 0/0/0.
+- Browser test Playwright (`verify-t20-cuaca.cjs`): 3 desa di 3 provinsi (Jabar, Jatim, Aceh), simulasi offline, dan ketahanan storage 100% lulus.
 
 Selanjutnya:
-Mengeksekusi **T-20** (Cuaca Tani: BMKG API client + UI `/alat/cuaca-tani/` + region dataset).
+Mengeksekusi **T-10** (Tentang Kami & Profil Penulis Prof. Arif Prabowo: `src/pages/tentang-kami.astro`, `src/pages/penulis/arif-prabowo.astro`).
 
 ## Blockers
 
@@ -59,6 +68,7 @@ Mengeksekusi **T-20** (Cuaca Tani: BMKG API client + UI `/alat/cuaca-tani/` + re
 - T-21 (termasuk revisi) menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
 - T-22 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
 - T-19 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
+- T-20 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 
 ## Verification evidence
 
@@ -75,8 +85,10 @@ Mengeksekusi **T-20** (Cuaca Tani: BMKG API client + UI `/alat/cuaca-tani/` + re
 - T-21: Kalkulator Dosis Semprot selesai (commit `6583920`). 50/50 unit tests PASS (label tank scaling, small plot, batch calculation), check commodities PASS, contrast check PASS, `astro check` PASS, build 177 halaman PASS, CSP 0/0/0. UI screenshots `dose-calc-*.png` di `proof/ui/t21/`. Boundary check menghasilkan REVIEW_REQUIRED (eskalasi R1 -> R2), berhenti menunggu review independen.
 - T-22: Konsultasi & Indeks Alat Tani selesai (commit `b36db9f`). 50/50 unit tests PASS, check-seo PASS (179 halaman), check-csp PASS (0/0/0). UI screenshots `alat-index-*.png` dan `konsultasi-*.png` di `proof/ui/t22/`. Boundary check menghasilkan REVIEW_REQUIRED (eskalasi R1 -> R2), berhenti menunggu review independen.
 - T-09: Triage Engine: Diagnosa Gejala & Dataset Gejala selesai direvisi (RUN-20260929T142508Z-97394bc1). 62/62 unit tests PASS (4 tes triage review gating), `astro check` 0 errors, check-seo PASS (181 halaman), check-csp PASS (0/0/0). Kontras tombol 7.29:1 terverifikasi dengan Playwright computed style dan crop zoom. Honest empty state terverifikasi untuk mode produksi unreviewed. Boundary check PASS R2.
-- T-19: Kalender Tanam & Rencana Musim selesai (commit `8bb7e37`). 58/58 unit tests PASS (8 tes kalkulasi tanggal, kabisat, cross-year, ics, dan filter review), `astro check` 0 errors, check-seo PASS (181 halaman), check-csp PASS (0/0/0). UI screenshots `kalender-initial-*.png`, `kalender-padi-hst34-*.png`, dan `kalender-sawit-tahunan-*.png` di `proof/ui/t19/`. Boundary check menghasilkan REVIEW_REQUIRED (eskalasi R2 -> R3).
+- T-19: Kalender Tanam & Rencana Musim selesai direvisi (RUN-20260929T144021Z-72013fcb). 72/72 unit tests PASS (8 tes kalkulasi tanggal, kabisat, cross-year, ics, dan filter review), `astro check` 0 errors, check-seo PASS (182 halaman), check-csp PASS (0/0/0). Seluruh 6 sumber data disanitasi dari institusi karangan (NG-3, DEC-005, DEC-015), siklus panen fase akhir diselaraskan ke cycleDays.max, label status draf memenuhi font-size >= 14px.
+- T-20: Cuaca Tani & Integrasi BMKG selesai (commit `5301465`). 72/72 unit tests PASS (10 tes evaluasi jendela semprot), `astro check` 0 errors, check-seo PASS (182 halaman), check-csp PASS (0/0/0). 514 dataset wilayah Kemendagri bertingkat terverifikasi < 40 KB gzip (maksimum 7.27 KB gzip). Pengujian langsung di Playwright terhadap 3 desa di 3 provinsi (Jawa Barat, Jawa Timur, Aceh), simulasi kegagalan koneksi offline, dan ketahanan storage berhasil 100%. Boundary check menghasilkan REVIEW_REQUIRED (eskalasi R2 -> R3).
 
 ## Next verified action
 
-T-20: Cuaca Tani: BMKG API client + UI `/alat/cuaca-tani/` + region dataset.
+T-10: Tentang Kami & Profil Penulis Prof. Arif Prabowo (`/tentang-kami/` & `/penulis/arif-prabowo/`).
+

@@ -555,7 +555,7 @@ const partLabels: Record<string, string> = {
           badge.textContent = `Penyebab: ${cConf.label}`;
 
           const statusSpan = document.createElement('span');
-          statusSpan.className = 'text-[11px] font-mono text-[var(--color-text-muted)]';
+          statusSpan.className = 'text-xs sm:text-sm font-mono text-[var(--color-text-muted)]';
           statusSpan.textContent = cand.reviewedBy ? `Ditinjau: ${cand.reviewedBy}` : '[Draf — validasi OQ-11c]';
 
           headRow.appendChild(badge);

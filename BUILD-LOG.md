@@ -569,6 +569,26 @@ Record only durable implementation changes, validation evidence, and gotchas tha
     - `proof/ui/t20/cuaca-error-offline-390.png`
 - Boundary check produced `REVIEW_REQUIRED` (declared risk R2, effective risk escalated to R3 due to `public/wilayah/**` dataset). Stopped without self-review; finished as `BLOCKED` awaiting independent review.
 
+## 2026-09-29 — T-19 Revision: Data Integrity & Review Gating Fixes (READY - PENDING INDEPENDENT REVIEW)
+
+- Addressed review findings from Claude (sesi pemantau):
+  1. **Sanitization of `sources` in `src/data/crop-calendars.json` (NG-3, DEC-005, DEC-015)**:
+     - Blocker: Removed fictitious and non-primary institutional names ("BSIP Padi Sukamandi", "BSIP Serealia Maros", "Balitsa Lembang", "PPKS Medan", "Direktorat Jenderal Perkebunan", dll).
+     - Replaced all 6 entries with honest attribution: `["Bahan awal internal: agrimarket docs/spec/KALENDER-TANAM-NASIONAL.md (belum diverifikasi ke sumber primer)"]`.
+     - In `src/components/CropTimeline.astro`: Labeled explicitly as "Sumber Data Awal", with review status rendered as "Status telaah agronomi: Belum ditinjau [Draf — validasi OQ-11b]".
+  2. **Harmonization of Final Phase `endDay` with `cycleDays.max`**:
+     - Aligned the ending day of the final phase to match the upper boundary of the harvest cycle for all 5 annual crops:
+       - Padi: 115 -> 125
+       - Jagung: 105 -> 110
+       - Cabai: 140 -> 150
+       - Tomat: 95 -> 110
+       - Bawang Merah: 65 -> 75
+     - Updated unit tests in `src/lib/crop-calendar.test.ts` accordingly.
+  3. **Typography & Contrast Audit Pass (DESIGN §3.2)**:
+     - Increased draft status badge and review disclaimer font size to `text-xs sm:text-sm` (≥ 14px on body surfaces) in `CropTimeline.astro` and `TriageFilter.astro`.
+  4. **CI Workflow Commentary (T-23 review nit)**:
+     - Clarified `.github/workflows/ci.yml` action pinning commentary to state factual compatibility with GitHub Actions runner Node 20 runtime without unverified superlatives.
+
 
 
 

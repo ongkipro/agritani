@@ -55,7 +55,7 @@ const mockPadiCalendar: CropCalendarEntry = {
       id: 'pemasakan-panen',
       name: 'Pemasakan & Panen',
       startDay: 81,
-      endDay: 115,
+      endDay: 125,
       activities: ['Keringkan sawah', 'Panen gabah'],
       watch: [{ name: 'Walang Sangit', article: 'walang-sangit' }],
     },
@@ -64,7 +64,7 @@ const mockPadiCalendar: CropCalendarEntry = {
   seasons: [
     { code: 'MT1', label: 'Rendengan', plantMonths: [10, 11, 12], harvestMonths: [2, 3, 4] },
   ],
-  sources: ['BSIP Padi'],
+  sources: ['Bahan awal internal: agrimarket docs/spec/KALENDER-TANAM-NASIONAL.md'],
   seededFrom: 'agrimarket',
   reviewedBy: undefined, // unreviewed by default
 };
@@ -80,7 +80,7 @@ const mockSawitCalendar: CropCalendarEntry = {
   seasons: [
     { code: 'MT1', label: 'Semester I', plantMonths: [1, 2, 3, 4, 5, 6], harvestMonths: [1, 2, 3, 4, 5, 6] },
   ],
-  sources: ['PPKS Medan'],
+  sources: ['Bahan awal internal: agrimarket docs/spec/KALENDER-TANAM-NASIONAL.md'],
   reviewedBy: undefined,
 };
 

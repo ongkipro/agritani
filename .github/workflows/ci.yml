@@ -23,11 +23,11 @@ jobs:
 
     steps:
       - name: Checkout repository
-        # Official GitHub action pinned to verified major release v4 (actions/checkout)
+        # Pin to official major release v4 (compatible with GitHub Actions runner Node 20 runtime)
         uses: actions/checkout@v4
 
       - name: Setup Node.js 24
-        # Official GitHub action pinned to verified major release v4 (actions/setup-node)
+        # Pin to official major release v4 (compatible with GitHub Actions runner Node 20 runtime)
         uses: actions/setup-node@v4
         with:
           node-version: 24
