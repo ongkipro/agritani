@@ -74,6 +74,7 @@ Berlaku untuk agent maupun manusia. Detail aturan agent ada di [AGENTS.md](AGENT
 | T-23 | CI GitHub Actions: build, check, test, kontras, SEO | REQ-08 | REQ-07 | R1 | — | T-01 | — | Menunggu review independen |
 | T-25 | Konten terbit: Jawaban Singkat, judul tanpa klaim absolut, pengantar hub, tinjauan data | REQ-03 | REQ-05, REQ-09, DEC-015 | R1 | — | T-03 | Device lain (naskah), OQ-3, OQ-11, OQ-12 | Terblokir refs batch 1 / Branch konten paralel |
 | T-26 | Gambar dummy WebP (10 slot) | REQ-01 | REQ-08, OQ-5 | R1 | — | T-01 | — | Done 2026-09-29 |
+| T-27 | Beranda & polish UI mengikuti referensi teagasc.ie | REQ-01 | REQ-08, DESIGN §4.1 C9–C11 | R1 | — | T-08, T-26 | — | Done 2026-09-29 |
 | T-24 | Rilis produksi & observability | REQ-08 | RELEASE.md, OBSERVABILITY.md | R2 | — | T-15, T-18 | OQ-6 + **persetujuan deploy Paduka Ongki** | Menunggu persetujuan deploy |
 
 Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 → T-23 → T-04 → T-03 → T-05 → (T-06, T-07, T-13, T-14) → T-21 → T-22 → T-09 → T-19 → T-20 → T-26 → T-08 → T-10 → T-17 → T-11 → T-12 → T-16 & T-25 (jalur konten, paralel) → T-18 → T-15 → T-24.
@@ -258,6 +259,13 @@ Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 → T-23 → T-04
 - **Allowed paths:** `src/assets/images/dummy/**`, `scripts/to-webp.mjs`, `package.json`, `package-lock.json`
 - **Scope:** Dari `docs/notes/agritani-T26-gambar-dummy.md` dan DESIGN §3.5.1. Unduh 10 foto lanskap/tanaman tropis bebas royalti (Pexels/Unsplash/Pixabay). Kompres ke WebP dengan `sharp` via `scripts/to-webp.mjs`. Simpan ke `src/assets/images/dummy/` dengan `CREDITS.md` lengkap. File sumber ≤ 250 KB per file.
 - **Done when:** 10 file WebP ada di `src/assets/images/dummy/`; tidak ada format lain (.jpg/.png); `CREDITS.md` mencatat URL, fotografer, sumber, lisensi; semua berstatus "DUMMY — ganti (OQ-5)".
+
+### T-27 — Beranda & polish UI mengikuti referensi teagasc.ie
+- **Primary:** REQ-01 · **Constraints:** REQ-08, DESIGN §4.0, §3.1.1, §4.1 C9–C11, §4.2.3 · **Risk:** R1
+- **Owner skill:** `design-taste`, `impeccable` (critique + polish), `ui-validation`
+- **Allowed paths:** `src/**`, `DESIGN.md`, `TASKS.md`, `STATUS.md`
+- **Scope:** Rekomposisi Beranda (baris editorial 3 kolom + indeks topik, pilar bergambar berselang, produk, moderator, kemitraan bergambar); warna topik dan sidebar hub Jurnal; hapus kicker, kotak, dan chip dari detail produk; gambar dummy tambahan `alat-tani.webp` (Pixabay, tercatat di CREDITS).
+- **Done when:** build produksi lulus seluruh pemeriksaan (termasuk `check-links`); Beranda dan halaman yang diubah dirender dan dilihat di 390 dan 1440 px; bobot Beranda ≤ 350 KB, hero ≤ 90 KB di 390 px.
 
 ### T-24 — Rilis produksi & observability
 - **Primary:** REQ-08 · **Constraints:** RELEASE.md, OBSERVABILITY.md · **Risk:** R2

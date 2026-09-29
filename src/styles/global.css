@@ -146,3 +146,65 @@ footer :focus-visible {
 .topic-air-irigasi { --topic: var(--color-topic-air-irigasi); }
 .topic-pascapanen-agribisnis { --topic: var(--color-topic-pascapanen-agribisnis); }
 .topic-sains-tanaman { --topic: var(--color-topic-sains-tanaman); }
+
+/* Homepage editorial patterns adapted from teagasc.ie (DESIGN §4.1 C9–C11) */
+.section-title {
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.pillar {
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.5rem;
+}
+.pillar-harvest {
+  border-top-color: color-mix(in srgb, var(--color-soil) 25%, transparent);
+}
+.pillar-title {
+  font-family: var(--font-editorial);
+  font-weight: 600;
+  font-size: clamp(1.875rem, 1.4rem + 1.6vw, 2.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--color-brand-strong);
+  text-wrap: balance;
+}
+.pillar-lede {
+  margin-top: 0.75rem;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  max-width: 56ch;
+}
+.link-more {
+  position: relative;
+  display: inline-block;
+  padding: 0.625rem 0;
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.0625rem;
+  color: var(--color-brand-strong);
+  text-decoration: none;
+}
+.link-more::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0.25rem;
+  width: 2rem;
+  height: 2px;
+  background: var(--color-brand);
+  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.link-more:hover::after,
+.link-more:focus-visible::after {
+  width: 100%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .link-more::after { transition: none; }
+}

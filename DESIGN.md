@@ -506,7 +506,7 @@ knowablemagazine.org (tantangan Cloudflare), cybex.pertanian.go.id
 | UMN Extension "What's wrong with my plant?" | Satu keputusan per langkah; gejala dikelompokkan per bagian tanaman; H1 = jalur; kandidat "1 dari N" dengan beberapa foto + tanda pembeda; sangat ringan | Alur komoditas → bagian → gejala, H1 jalur, tanda pembeda, bobot ringan | Daftar gejala tanpa gambar |
 | ipm.ucanr.edu (tomat) | Masalah dikelompokkan per penyebab: hama, penyakit, gangguan lingkungan, gulma | Label jenis penyebab termasuk hara/lingkungan | Hero stok dekoratif |
 | plantix.net/id (bercak daun cabai) | Nama lokal + latin; chip jenis penyebab; urutan Ringkasan → Gejala → Rekomendasi → Hayati → Kimiawi → Penyebab → Pencegahan; modal cookie menutupi konten mobile | Urutan bagian artikel penyakit, hayati sebelum kimiawi | Modal cookie, dorongan instal aplikasi |
-| teagasc.ie (home, `/crops/crops/`, `/news--events/daily/`) — diminta pemilik 2026-09-29 sebagai referensi arah | Otoritas riset + penyuluhan pertanian; kanvas putih, judul hijau besar ringan; **garis warna per sektor** di atas navigasi (Animals, Crops, Environment, Food, Rural Economy, Education); judul section + garis rambut 1px di bawahnya; hub dengan **sidebar sub-topik kiri** + grid subtopik bergambar; daftar artikel: gambar kecil kiri, judul tebal, dek, tanggal, label topik; kolom berita teks tanpa kotak dipisah garis vertikal; footer terang dengan kolom tautan | Kode warna per topik Jurnal (§3.1.1); judul section dengan garis rambut di dalam section (C9); sidebar topik di hub dan indeks Jurnal ≥1024px (C10); baris artikel dengan label topik berwarna | Foto bersudut melengkung besar (melanggar radius ≤ 2px), carousel hero, font display tipis 300 (merek memakai Newsreader/Plus Jakarta Sans), modal cookie, bullet ikon di footer |
+| teagasc.ie (home, `/crops/crops/`, `/news--events/daily/`) — diminta pemilik 2026-09-29 sebagai referensi arah | Otoritas riset + penyuluhan pertanian; kanvas putih, judul hijau besar ringan; **garis warna per sektor** di atas navigasi (Animals, Crops, Environment, Food, Rural Economy, Education); judul section + garis rambut 1px di bawahnya; hub dengan **sidebar sub-topik kiri** + grid subtopik bergambar; daftar artikel: gambar kecil kiri, judul tebal, dek, tanggal, label topik; kolom berita teks tanpa kotak dipisah garis vertikal; footer terang dengan kolom tautan | Kode warna per topik Jurnal (§3.1.1); judul section dengan garis rambut di dalam section (C9); sidebar topik di hub dan indeks Jurnal ≥1024px (C10); baris artikel dengan label topik berwarna; baris editorial 3 kolom teks + daftar topik dan section pilar bergambar berselang di Beranda (§4.2.3); tautan italic + bilah pendek (C11) | Foto bersudut melengkung besar (melanggar radius ≤ 2px), carousel hero, font display tipis 300 (merek memakai Newsreader/Plus Jakarta Sans), modal cookie, bullet ikon di footer |
 
 Sintesis (terinferensi dari observasi di atas):
 
@@ -519,17 +519,18 @@ Sintesis (terinferensi dari observasi di atas):
 ### 4.1. Composition contract — PROPOSED
 
 - **C1 Skeleton homepage per breakpoint**
-  - ≥1024px: header → hero dua kolom (teks + pemilih komoditas 7/12, media/Ringkasan Lapangan 5/12) → band `tint` "Jurnal per komoditas" → bacaan pilihan (1 dominan 7/12 + daftar terbaru 5/12) → Alat Tani (daftar 4 alat) → Konsultasi → tentang penulis → produk (daftar 4 produk, referensi) → band `harvest-tint` kemitraan → footer (urutan & isi: §4.2.3 Beranda).
+  - ≥1024px (revisi 2026-09-29, teagasc.ie): header → hero dua kolom (teks + pemilih komoditas 7/12, foto 5/12) → baris editorial "Jurnal Tani terbaru" (3 kolom teks 8/12 + daftar topik/komoditas 4/12) → pilar bergambar Alat Tani (foto kiri) → pilar bergambar Konsultasi di band `tint` (foto kanan) → produk (judul 4/12 + 4 baris 8/12) → moderator → band `harvest-tint` pilar Kemitraan bergambar → footer (urutan & isi: §4.2.3 Beranda).
   - <1024px: satu kolom dengan urutan sama; media hero pindah **di bawah** pemilih komoditas atau dihilangkan; pemilih komoditas terlihat tanpa scroll di 390×740.
 - **C2 Frame**: rata kiri di seluruh halaman; judul hero maks `16ch`; paragraf pendamping maks `52ch`; prosa artikel `68ch`.
 - **C3 Hero**: fokus utama = pertanyaan "Tanaman apa yang bermasalah?" + tombol komoditas dari data (min 48px tinggi, grid 2 kolom mobile / 3 kolom desktop); kedua = tautan teks "atau cari gejala" (Pagefind); ketiga = tautan ke Jurnal Tani. Tanpa pola badge → headline tengah → dua tombol. Bila foto belum ada, kolom media diganti **Ringkasan Lapangan contoh dari artikel nyata** (bukan kosong, bukan ilustrasi generik).
-- **C4 Hierarki tipe**: region lapangan = Plus Jakarta Sans 800 untuk display, 600 untuk H2; region sains = Newsreader 600. Satu halaman tidak mencampur dua font display di satu region.
+- **C4 Hierarki tipe**: region lapangan = Plus Jakarta Sans 800 untuk display, 600 untuk H2; region sains = Newsreader 600. Di Beranda, H1 hero tetap Plus Jakarta Sans 800, sedangkan judul pilar (`.pillar-title`) memakai Newsreader 600 hijau sebagai suara editorial (teagasc.ie). Satu halaman tidak mencampur dua font display di satu region.
 - **C5 Ritme**: band lapangan padat (spasi 1–1.5rem di dalam), band editorial lapang (2–3rem). Pergantian band `canvas` ↔ `tint` menandai perubahan tugas, bukan dekorasi.
-- **C6 Elemen khas**: (a) tombol komoditas besar tap-first; (b) Ringkasan Lapangan berlatar `tint` dengan label field `soil`; (c) langkah bernomor `01–03` hanya untuk urutan nyata (langkah kemitraan, alur distribusi), tidak untuk daftar produk; (d) baris indeks artikel dengan jumlah artikel nyata per hub.
+- **C6 Elemen khas**: (a) tombol komoditas besar tap-first; (b) Ringkasan Lapangan berlatar `tint` dengan label field `soil`; (c) langkah bernomor `01–03` hanya untuk urutan nyata (langkah kemitraan, alur distribusi), tidak untuk daftar produk; (d) daftar topik berpenanda warna (§3.1.1) dan hub komoditas dengan jumlah artikel nyata; (e) judul pilar serif + tautan C11.
 - **C7 Batas kontainer**: panel hanya untuk Ringkasan Lapangan, form, tabel dosis, dan hasil diagnosa. Daftar artikel, lini produk, langkah kemitraan tetap terbuka (tanpa kotak).
 - **C8 Artikel**: ≥1024px Daftar Isi sticky kiri 3/12, prosa 7/12, 2/12 kosong; <1024px satu kolom. Tabel lebar hanya scroll di dalam wrapper-nya.
 - **C9 Judul section (teagasc.ie)**: H2 section boleh diberi garis rambut 1px `--color-border` tepat di bawahnya, di DALAM section. Ini bukan pemisah antar-section (§3.3 tetap berlaku).
 - **C10 Hub dengan sidebar (teagasc.ie)**: indeks Jurnal, hub topik, dan hub komoditas ≥1024px memakai sidebar kiri 3/12 berisi daftar 6 topik (garis warna topik, topik aktif ditandai tebal + `aria-current`) dan hub komoditas; konten 9/12. <1024px sidebar menjadi deretan tautan topik yang membungkus di atas daftar.
+- **C11 Tautan "selengkapnya" (teagasc.ie)**: tautan lanjutan section memakai Newsreader italic + bilah 2rem × 2px `brand` di bawahnya (kelas `.link-more`); satu per section, bukan tombol.
 - **Jangan disubstitusi**: grid kartu seragam untuk artikel atau lini produk di homepage; hero terpusat dengan dua CTA; kotak bulat di setiap section; bento; carousel testimoni; statistik tanpa data; tombol WhatsApp melayang yang menutupi konten di mobile (gunakan tautan di header/menu, footer, dan panel hasil).
 
 ### 4.2. Anatomi Global Situs
@@ -563,16 +564,18 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 
 #### 4.2.3. Anatomi per tipe halaman
 
-**Beranda `/`** (Lapangan) — komposisi rinci di C1–C8 (§4.1)
+**Beranda `/`** (Lapangan) — komposisi rinci di C1–C8 (§4.1); revisi 2026-09-29 mengikuti referensi arah teagasc.ie (§4.0, C9–C11)
 
-1. Hero: H1 "Tanaman Anda bermasalah? Kenali dari gejalanya." · paragraf pendamping · "Pilih tanaman Anda:" + tombol komoditas (dari data) → `/alat/diagnosa-gejala/?k=` · tautan "cari gejala dengan kata kunci" & "baca Jurnal Tani" · kolom kanan: Ringkasan Lapangan dari artikel unggulan (atau foto asli).
-2. Band `tint` — H2 "Jurnal per komoditas": baris hub komoditas yang ada (maks. 8, urut jumlah artikel) + jumlah artikel nyata + tautan "Semua topik" ke `/jurnal/`.
-3. H2 "Bacaan pilihan": 1 artikel dominan (judul serif, dek, byline ringkas) + 3 baris artikel terbaru.
-4. H2 "Alat Tani": 4 baris alat (nama · satu kalimat kegunaan) → `/alat/…`. Daftar, bukan grid kartu.
-5. H2 "Tanya langsung ke tim agronomi": 2 kalimat + tautan sekunder "Cara konsultasi" → `/konsultasi/` (halaman, bukan membuka WhatsApp; Beranda tidak punya tombol WhatsApp).
-6. H2 "Tentang penulis": foto + nama + peran Prof. Arif Prabowo → profil.
-7. H2 "Produk untuk lahan Anda": 4 baris produk (nama · komoditas sasaran · peran) → `/produk/{slug}/` (referensi).
-8. Band `harvest-tint` — H2 "Menjadi mitra distributor resmi": langkah `01–03` + tombol aksen "Ajukan Kemitraan".
+1. Hero: H1 "Tanaman Anda bermasalah? Kenali dari gejalanya." · paragraf pendamping · "Pilih tanaman Anda…" + tombol komoditas (dari data; tujuan dinamis per §2.2) · tautan "cari gejala dengan kata kunci" & "Jelajahi Jurnal Tani" · kolom kanan 5/12: foto lapangan (dummy sampai OQ-5).
+2. Baris editorial "Jurnal Tani terbaru" (pola *News & Publications* teagasc.ie): H2 + garis rambut (C9); ≥1024px 8/12 = 3 artikel terbaru sebagai kolom teks tanpa kotak, dipisah garis rambut vertikal (penanda warna topik · judul serif · dek · tanggal) + tautan "Semua artikel" (C11); 4/12 = daftar Topik (warna topik) dan hub komoditas yang dibangun (komponen `TopicSidebar`). <1024px: artikel bertumpuk, lalu daftar topik.
+3. Section pilar bergambar (pola *Farm Advisory* teagasc.ie), berselang kiri/kanan, masing-masing: foto 5/12 · garis rambut di atas konten · H2 serif besar hijau · 1–2 kalimat · isi pilar · tautan C11:
+   - **Alat Tani**: 4 baris alat (nama · kegunaan · status "Segera hadir" bila disembunyikan) → `/alat/…`.
+   - **Konsultasi**: 2 kalimat + daftar singkat yang perlu disiapkan + tautan "Cara konsultasi" → `/konsultasi/` (bukan WhatsApp; Beranda tanpa tombol WhatsApp).
+4. "Produk untuk lahan Anda": judul + pengantar 4/12 kiri, 4 baris produk 8/12 kanan (nama · tagline · ringkasan) → `/produk/{id}/`. Tanpa foto sampai packshot asli tersedia.
+5. Moderator: inisial persegi (foto menyusul) · H2 nama "Prof. Arif Prabowo" · peran · satu kalimat fakta (artikel terbit ditulis/dimoderasi beliau dan wajib berpustaka, REQ-05) · tautan profil. Tanpa bio karangan.
+6. Band `harvest-tint` — pilar Kemitraan bergambar: foto gudang 5/12 · H2 · pengantar · langkah 1–3 (urutan nyata) · tombol aksen "Ajukan Kemitraan Distributor".
+
+Tidak ada kotak/kartu di Beranda selain tombol komoditas; tidak ada band yang hanya berisi daftar pendek.
 
 **Diagnosa Gejala `/alat/diagnosa-gejala/`** (Lapangan) — perilaku di §2.2
 

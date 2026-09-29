@@ -7,6 +7,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
+import ArticleRow from '../../components/ArticleRow.astro';
 import ConsultPrompt from '../../components/ConsultPrompt.astro';
 import type { SeoInput } from '../../lib/seo';
 
@@ -75,50 +76,27 @@ const seo: SeoInput = {
 
     <!-- Product Header (Lapangan Canvas) -->
     <header class="my-8 sm:my-12 max-w-3xl">
-      <div class="flex flex-wrap items-center gap-2 mb-3">
-        <span class="inline-block px-2.5 py-1 text-xs font-semibold bg-[var(--color-tint)] text-[var(--color-brand-strong)] rounded-[2px]">
-          Distribusi Resmi
-        </span>
-        {p.tagline && (
-          <span class="text-sm font-medium text-[var(--color-text-muted)]">
-            {p.tagline}
-          </span>
-        )}
-      </div>
-
       <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--color-text)] tracking-tight leading-tight mb-4">
         {p.name}
       </h1>
 
-      <p class="text-lg sm:text-xl font-medium text-[var(--color-brand)] leading-snug mb-4">
+      <p class="text-lg sm:text-xl font-medium text-[var(--color-brand-strong)] leading-snug mb-1">
         {p.role}
       </p>
+      {p.tagline && <p class="text-sm font-semibold text-[var(--color-soil)] mb-4">{p.tagline}</p>}
 
       <p class="text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed">
         {p.summary}
       </p>
 
-      <!-- Target Commodities Badges -->
-      <div class="mt-6 pt-6 border-t border-[var(--color-border)]">
-        <span class="block text-xs font-bold text-[var(--color-text-muted)] mb-2">
-          Komoditas Sasaran Rekomendasi
-        </span>
-        <div class="flex flex-wrap gap-2">
-          {p.commodities.map((c) => {
-            const cId = typeof c === 'string' ? c : c.id;
-            const name = commoditiesMap.get(cId) || cId;
-            return (
-              <span class="inline-block px-3 py-1 text-xs font-semibold bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-text)] rounded-[2px]">
-                {name}
-              </span>
-            );
-          })}
-        </div>
-      </div>
+      <p class="mt-6 text-sm sm:text-base text-[var(--color-text)]">
+        <strong>Komoditas sasaran:</strong>{" "}
+        {p.commodities.map((c) => commoditiesMap.get(typeof c === 'string' ? c : c.id) || (typeof c === 'string' ? c : c.id)).join(', ')}
+      </p>
     </header>
 
     <!-- Sub-navigation Anchor Links -->
-    <nav class="mb-10 p-3 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] sticky top-4 z-10 backdrop-blur-md" aria-label="Navigasi bagian produk">
+    <nav class="mb-10 border-y border-[var(--color-border)]" aria-label="Navigasi bagian produk">
       <ul class="flex flex-wrap items-center gap-1 sm:gap-2 text-sm font-medium">
         <li>
           <a
@@ -160,10 +138,10 @@ const seo: SeoInput = {
       
       <!-- Section: Fungsi & Peran -->
       <section id="fungsi" class="scroll-mt-28 space-y-4">
-        <h2 class="text-2xl font-bold font-serif text-[var(--color-brand)] tracking-tight">
+        <h2 class="pillar-title !text-3xl">
           Fungsi & Peran Tanaman
         </h2>
-        <div class="p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-3 text-base text-[var(--color-text)] leading-relaxed">
+        <div class="space-y-3 text-base text-[var(--color-text)] leading-relaxed">
           <p>
             {p.name} bekerja melalui stimulasi kekebalan endogen (*Systemic Acquired Resistance*) dan aktivasi metabolisme jaringan tanaman guna meningkatkan daya tahan terhadap patogen tular tanah maupun cekaman cuaca ekstrem.
           </p>
@@ -175,10 +153,10 @@ const seo: SeoInput = {
 
       <!-- Section: Komposisi -->
       <section id="komposisi" class="scroll-mt-28 space-y-4">
-        <h2 class="text-2xl font-bold font-serif text-[var(--color-brand)] tracking-tight">
+        <h2 class="pillar-title !text-3xl">
           Kandungan Formulasi
         </h2>
-        <div class="p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-3 text-sm sm:text-base text-[var(--color-text)]">
+        <div class="space-y-3 text-sm sm:text-base text-[var(--color-text)]">
           <div>
             <span class="block text-xs font-bold text-[var(--color-text-muted)] mb-1">
               Bahan Aktif & Nutrisi
@@ -200,18 +178,17 @@ const seo: SeoInput = {
 
       <!-- Section: Cara Pakai & Dosis -->
       <section id="cara-pakai" class="scroll-mt-28 space-y-4">
-        <h2 class="text-2xl font-bold font-serif text-[var(--color-brand)] tracking-tight">
+        <h2 class="pillar-title !text-3xl">
           Metode Aplikasi & Dosis Anjuran
         </h2>
-        <div class="p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-4">
+        <div class="space-y-4">
           <div>
             <span class="block text-xs font-bold text-[var(--color-text-muted)] mb-2">
               Metode Aplikasi yang Dianjurkan
             </span>
-            <ul class="space-y-1.5 text-sm sm:text-base text-[var(--color-text)]">
+            <ul class="list-disc pl-5 space-y-1.5 text-sm sm:text-base text-[var(--color-text)]">
               {p.applicationMethods.map((method) => (
-                <li class="flex items-center gap-2">
-                  <span class="w-2 h-2 rounded-full bg-[var(--color-brand)]" aria-hidden="true"></span>
+                <li>
                   <span>{method}</span>
                 </li>
               ))}
@@ -234,10 +211,10 @@ const seo: SeoInput = {
 
       <!-- Section: Keaslian Produk -->
       <section id="keaslian" class="scroll-mt-28 space-y-4">
-        <h2 class="text-2xl font-bold font-serif text-[var(--color-brand)] tracking-tight">
+        <h2 class="pillar-title !text-3xl">
           Keaslian Kemasan Resmi
         </h2>
-        <div class="p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-3 text-sm sm:text-base text-[var(--color-text)]">
+        <div class="space-y-3 text-sm sm:text-base text-[var(--color-text)]">
           <p>
             {p.authenticityCheck || 'Setiap kemasan resmi dilengkapi segel pengaman ShieldedTag untuk verifikasi keaslian.'}
           </p>
@@ -250,28 +227,11 @@ const seo: SeoInput = {
       <!-- Section: Related Articles (if available) -->
       {relatedArticles.length > 0 && (
         <section class="space-y-4 pt-6">
-          <h2 class="text-xl font-bold font-serif text-[var(--color-brand)] tracking-tight">
+          <h2 class="pillar-title !text-3xl">
             Panduan Terkait di Jurnal Tani
           </h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {relatedArticles.map((art) => (
-              <a
-                href={`/jurnal/${art.id}/`}
-                class="p-4 bg-[var(--color-surface)] hover:bg-[var(--color-surface-raised)] border border-[var(--color-border)] hover:border-[var(--color-brand)] rounded-[2px] transition-colors flex flex-col justify-between"
-              >
-                <div>
-                  <span class="block text-xs font-semibold text-[var(--color-brand)] mb-1">
-                    {art.data.topic}
-                  </span>
-                  <h3 class="text-sm font-bold text-[var(--color-text)] line-clamp-2 leading-snug">
-                    {art.data.title}
-                  </h3>
-                </div>
-                <span class="text-xs text-[var(--color-text-muted)] mt-3">
-                  Baca Panduan →
-                </span>
-              </a>
-            ))}
+          <div class="divide-y divide-[var(--color-border)]">
+            {relatedArticles.map((art) => <ArticleRow article={art} />)}
           </div>
         </section>
       )}
@@ -283,7 +243,6 @@ const seo: SeoInput = {
           title="Tanya Dosis untuk Lahan Anda"
           description={`Dapatkan rekomendasi takaran dan panduan aplikasi produk ${p.name} yang disesuaikan dengan jenis tanaman serta luas lahan Anda langsung dari tim Agritani.`}
           label="Konsultasi Dosis via WhatsApp"
-          variant="primary"
           fields={[{ label: 'Produk', value: p.name }]}
         />
       </section>

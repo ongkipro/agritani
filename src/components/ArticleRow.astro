@@ -32,7 +32,7 @@ const formattedDate = new Intl.DateTimeFormat('id-ID', {
   <div class="flex flex-wrap items-center gap-2 text-xs text-[var(--color-soil)] font-medium mb-1.5">
     <a
       href={`/jurnal/topik/${article.data.topic}/`}
-      class={`topic-${article.data.topic} inline-flex items-center gap-1.5 hover:underline focus-visible:outline-2 focus-visible:outline-[var(--color-harvest)]`}
+      class={`topic-${article.data.topic} inline-flex items-center gap-1.5 min-h-[44px] hover:underline focus-visible:outline-2 focus-visible:outline-[var(--color-harvest)]`}
     >
       <span class="w-2 h-2 bg-[var(--topic)]" aria-hidden="true"></span>
       {topicName(article.data.topic)}
@@ -53,7 +53,7 @@ const formattedDate = new Intl.DateTimeFormat('id-ID', {
   <h2 class="text-xl sm:text-2xl font-serif font-semibold text-[var(--color-text)] mb-2 leading-snug">
     <a
       href={`/jurnal/${article.data.slug}/`}
-      class="hover:text-[var(--color-brand-strong)] hover:underline inline-block min-h-[44px] flex items-center"
+      class="hover:text-[var(--color-brand-strong)] hover:underline min-h-[44px] flex items-center"
     >
       {article.data.title}
     </a>
