@@ -38,9 +38,17 @@ Kontrak pra-pengembangan diaudit ulang pada 2026-09-29 dengan skill dotfiles ter
 
 - **2026-09-29 — pull naskah:** 150 artikel dari device lain (125 baru + 25 diperbarui) sudah ada di lokal. Dokumen disesuaikan: 6 topik jurnal + hub komoditas, `metaTitle`/`description` dari naskah, pemetaan 47 kategori (ARCHITECTURE §3.0), paginasi jurnal, dan skala konten T-16/T-25. Temuan konten: 6 judul berklaim absolut, 1/150 naskah punya referensi; tidak ada merek pihak ketiga atau penyebutan produk.
 
-## Active work
+### Active work
 
-T-14 (Pencarian statis Pagefind) selesai dan terverifikasi penuh: pagefind 1.5.2 terintegrasi, ArticleLayout terindeks via data-pagefind-body, halaman /cari/ dan SearchBox aktif dengan lazy-loading dan sinkronisasi URL parameter, kueri 'patek cabai' (6 hasil) dan 'ganoderma' (3 hasil) lulus pengujian nyata di headless browser, 0 aset pagefind di halaman non-pencarian. Boundary check PASS (effectiveRisk=R2). Ledger run RUN-20260929T133042Z-fc2aae13 FINISHED PASS. Selanjutnya melanjutkan ke T-21 (Kalkulator Dosis).
+T-21 (Kalkulator Dosis Semprot) selesai diimplementasikan dan terverifikasi penuh: formula kalkulasi di `src/lib/dose.ts`, 9 tes unit di `src/lib/dose.test.ts`, UI responsif dan reaktif di `src/components/DoseCalculator.astro`, serta halaman khusus `/alat/kalkulator-dosis/`. Bukti screenshot 390px dan 1440px tersimpan di `proof/ui/t21/`. Boundary check menghasilkan REVIEW_REQUIRED karena eskalasi risiko dari R1 ke R2 (file UI), sehingga task dihentikan untuk menunggu review independen sesuai protokol.
+
+Selanjutnya:
+1. Memperbaiki nit pencarian `/cari/`: menampilkan pesan eksplisit "Tidak ada hasil untuk ..." sebelum saran artikel bila kueri ngawur dimasukkan (mis. "xyzzy").
+2. Memperbaiki temuan lintas-task CSP sesuai instruksi Claude dan AGENTS.md / ARCHITECTURE §5:
+   - Menghilangkan semua atribut `style=` inline (mengganti ke utility Tailwind `bg-[var(--color-brand)]`, dll).
+   - Menghilangkan semua atribut `on*=` inline (mis. `onclick="window.print()"` diganti `data-print` dan event listener di skrip bundel).
+   - Mengonfigurasi Astro / Vite agar skrip komponen tidak di-inline ke HTML (eksternal bundle / assetsInlineLimit).
+   - Menambahkan `scripts/check-csp.mjs` ke `npm run build` yang memverifikasi 0 script inline yang dieksekusi (kecuali JSON-LD), 0 atribut `on*=`, dan 0 atribut `style=` di seluruh file HTML `dist/`.
 
 ## Blockers
 
@@ -48,6 +56,7 @@ T-14 (Pencarian statis Pagefind) selesai dan terverifikasi penuh: pagefind 1.5.2
 - T-23 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 - T-04 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 - T-03 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
+- T-21 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
 
 ## Verification evidence
 
@@ -61,12 +70,8 @@ T-14 (Pencarian statis Pagefind) selesai dan terverifikasi penuh: pagefind 1.5.2
 - T-07: References component selesai dan PASS (RUN-20260929T130452Z-a04d15c3). Native `<details open>`, daftar bernomor, tautan DOI dan URL, tidak merender kotak kosong jika referensi kosong; screenshot 390px dan 1440px terverifikasi; check, build, test, kontras PASS; boundary PASS R1.
 - T-13: Dynamic SEO engine, sitemap filter/serialize, robots.txt, 14 static OG images, dan post-build verifier `scripts/check-seo.mjs` selesai dan diperbaiki sesuai review Claude (RUN-20260929T132557Z-d177f66c). Gambar OG topik budidaya dan tanah-nutrisi sinkron dengan slug kanonikal, aset diperiksa secara fisik di disk, schema Article patuh DESIGN §4.4.5. Semua cek PASS (39/39 test, 8 hal produksi & 175 hal pratinjau, 0 error, 0 warning). Boundary check PASS R2.
 - T-14: Pagefind static search engine, SearchBox component, dan dedicated `/cari/` search page selesai dan PASS (RUN-20260929T133042Z-fc2aae13). Pengujian query 'patek cabai' (6 hasil) dan 'ganoderma' (3 hasil) lulus dengan rendering judul, kutipan highlight, dan link artikel; 0 aset pagefind di halaman non-pencarian; UI screenshot 390px dan 1440px terverifikasi. Boundary check PASS R2.
+- T-21: Kalkulator Dosis Semprot selesai (commit `6583920`). 48/48 unit tests PASS (9 tes kalkulasi dosis), check commodities PASS, contrast check PASS, `astro check` PASS, build 177 halaman PASS. UI screenshots `dose-calc-390.png` dan `dose-calc-1440.png` di `proof/ui/t21/`. Boundary check menghasilkan REVIEW_REQUIRED (eskalasi R1 -> R2), berhenti menunggu review independen.
 
 ## Next verified action
 
-T-21: Kalkulator Dosis Semprot `/alat/kalkulator-dosis/` (`src/pages/alat/kalkulator-dosis.astro`, `src/components/DoseCalculator.astro`, `src/lib/dose-calculator.ts`, `src/lib/dose-calculator.test.ts`).
-
-
-
-
-
+FIX-CSP: Perbaikan arsitektural CSP & sanitasi inline attributes (script, style, on*=) + check-csp verifier.

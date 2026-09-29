@@ -69,7 +69,7 @@ Berlaku untuk agent maupun manusia. Detail aturan agent ada di [AGENTS.md](AGENT
 | T-18 | Konfigurasi Cloudflare Workers static assets + header keamanan | REQ-08 | ARCHITECTURE §5 | R2 | — | T-01, T-13 | OQ-6 (akun & domain) | Pending |
 | T-19 | Kalender Tanam: data `crop-calendars.json` + `/alat/kalender-tanam/` | REQ-09 | REQ-08, NG-3, DEC-015 | R2 | ✓ | T-02, T-04, T-05 | OQ-11a (tinjauan data) | Pending |
 | T-20 | Cuaca Tani: dataset wilayah + klien BMKG + `/alat/cuaca-tani/` | REQ-10 | REQ-08, DEC-014 | R2 | ✓ | T-04 | OQ-11b (ambang indikator; halaman boleh rilis tanpa indikator) | Pending |
-| T-21 | Kalkulator Dosis `/alat/kalkulator-dosis/` | REQ-11 | REQ-08, OQ-2 | R1 | ✓ | T-04 | — | Pending |
+| T-21 | Kalkulator Dosis `/alat/kalkulator-dosis/` | REQ-11 | REQ-08, OQ-2 | R1 | ✓ | T-04 | — | Menunggu review independen |
 | T-22 | Konsultasi `/konsultasi/` + indeks `/alat/` | REQ-12 | G-6, REQ-08 | R1 | ✓ | T-04 | OQ-1 | Pending |
 | T-23 | CI GitHub Actions: build, check, test, kontras, SEO | REQ-08 | REQ-07 | R1 | — | T-01 | — | Menunggu review independen |
 | T-25 | Konten terbit: Jawaban Singkat, judul tanpa klaim absolut, pengantar hub, tinjauan data | REQ-03 | REQ-05, REQ-09, DEC-015 | R1 | — | T-03 | Device lain (naskah), OQ-3, OQ-11, OQ-12 | Pending |

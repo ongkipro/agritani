@@ -305,5 +305,39 @@ Record only durable implementation changes, validation evidence, and gotchas tha
   - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 176 draft preview pages, Pagefind indexed 150 articles, `check-seo` PASS (0 errors, 0 warnings).
 - Boundary check passed: `BOUNDARY PASS effectiveRisk=R2`. Ledger run `RUN-20260929T133042Z-fc2aae13` finished with result PASS.
 
+## 2026-09-29 — T-21: Kalkulator Dosis Semprot (READY - PENDING INDEPENDENT REVIEW)
 
-
+- Implemented spray dose and water volume calculation logic in `src/lib/dose.ts`:
+  - `validateDoseInput()`: Bounds checking for dose (> 0), tank capacity (1–1000 L), area (> 0), and spray volume per hectare (50–1000 L/ha).
+  - `calculateDose()`:
+    - Supports 4 concentration units: `ml/L`, `g/L`, `ml/tangki`, `g/tangki`.
+    - Handles area conversions between `ha` and `m²`.
+    - Calculates total spray solution (Liters) = `areaInHa * sprayVolumePerHa`.
+    - Rounds tank count upwards (`Math.ceil`) to guarantee complete tank mixtures in the field.
+    - Computes total product volume in small (`ml`/`g`) and large (`L`/`kg`) units.
+    - Generates dynamic, transparent step-by-step calculation narrative ("Cara hitung").
+- Built comprehensive unit test suite in `src/lib/dose.test.ts`:
+  - 9 table-driven tests verifying all input validation edge cases, unit conversions (`ml/L`, `g/L`, `ml/tangki`, `g/tangki`), area conversions (`m²` to `ha`), tank rounding (`Math.ceil`), and calculation step formatting.
+- Created `src/components/DoseCalculator.astro`:
+  - Lapangan UI: Form with 4 accessible input fields, inline helper text, and validation error containers.
+  - No-JS fallback: Displays initial SSR standard calculation (1 ha, 2 ml/L, 16 L tank) and friendly noscript guidance.
+  - Interactive client-side recomputation: Instant reactive calculation on `input`/`change` without page reloads.
+  - Accessible results section (`aria-live="polite"`):
+    - 3 Big Numbers: Kebutuhan per tangki (`ml`/`g`), Jumlah tangki semprot (`tangki`), Total kebutuhan produk (`L`/`kg` and `ml`/`g`). All formatted with `id-ID` (`Intl.NumberFormat`) and `tabular-nums`.
+    - Collapsible details for step-by-step formula breakdown.
+    - Fixed safety label warning in `--color-harvest-tint` panel: *"Selalu ikuti takaran dosis dan petunjuk keselamatan pada label kemasan resmi produk yang terdaftar di Kementerian Pertanian. Kalkulator ini hanya instrumen bantu hitungan matematis volume semprot di lahan."*
+    - Contextual link to Cuaca Tani (`/alat/cuaca-tani/`) to verify weather and wind before spraying.
+    - 1 WhatsApp consultation prompt (`ConsultPrompt`) at the end of the results (`[Web·Kalkulator]`).
+- Created dedicated tool page `src/pages/alat/kalkulator-dosis.astro`:
+  - Lapangan layout typography (Plus Jakarta Sans 800 H1).
+  - SEO: Title `Kalkulator Dosis Semprot | Agritani` (33 chars), description (146 chars), canonical `/alat/kalkulator-dosis/`, breadcrumbs `Beranda › Alat Tani › Kalkulator Dosis`.
+- Verifications:
+  - `npm test`: 48/48 unit tests PASS (9 dose tests).
+  - `npm run check:commodities`: 118/118 valid assignments.
+  - `npm run check:contrast`: PASS (all text ≥ 7:1, UI ≥ 3:1).
+  - `npx astro check`: 0 errors.
+  - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 177 pages built, Pagefind indexed 150 articles, `check-seo` PASS (0 errors, 0 warnings).
+  - UI visual evidence captured at port 4330 via `agritani-shot.cjs`:
+    - `proof/ui/t21/dose-calc-390.png`
+    - `proof/ui/t21/dose-calc-1440.png`
+- Boundary check produced `REVIEW_REQUIRED` (declared risk R1, effective risk escalated to R2 due to UI Astro components). Stopped without self-review per policy; pending independent review.
