@@ -1,0 +1,79 @@
+---
+/**
+ * src/components/References.astro
+ * Block 14: Daftar Pustaka (DESIGN §4.3.1, REQ-05)
+ * Renders verified academic citations in an openable/collapsible native <details open>.
+ */
+export interface ReferenceItem {
+  authors: string;
+  year: number;
+  title: string;
+  source: string;
+  doi?: string;
+  url?: string;
+}
+
+interface Props {
+  references?: ReferenceItem[];
+}
+
+const { references = [] } = Astro.props;
+---
+
+{references.length > 0 && (
+  <section class="my-8 pt-6 border-t border-[var(--color-border)]" aria-labelledby="daftar-pustaka-heading">
+    <details open class="group">
+      <summary class="cursor-pointer list-none flex items-center justify-between text-[var(--color-text)] hover:text-[var(--color-brand-strong)] py-2 select-none min-h-[44px]">
+        <h2 id="daftar-pustaka-heading" class="text-xl font-bold font-serif m-0">
+          Daftar Pustaka ({references.length})
+        </h2>
+        <span class="text-xs text-[var(--color-text-muted)] font-sans group-open:hidden">
+          [Tampilkan]
+        </span>
+        <span class="text-xs text-[var(--color-text-muted)] font-sans hidden group-open:inline">
+          [Sembunyikan]
+        </span>
+      </summary>
+
+      <ol class="mt-4 space-y-3.5 list-decimal list-inside text-sm text-[var(--color-text)] leading-relaxed pl-1">
+        {references.map((ref) => {
+          const cleanDoi = ref.doi ? ref.doi.replace(/^https?:\/\/doi\.org\//, '') : undefined;
+          const doiUrl = cleanDoi ? `https://doi.org/${cleanDoi}` : undefined;
+          return (
+            <li class="pl-2">
+              <span class="font-semibold">{ref.authors}</span>{' '}
+              <span class="tabular-nums">({ref.year})</span>.{' '}
+              <span>{ref.title}</span>.{' '}
+              <span class="italic">{ref.source}</span>.
+              {doiUrl && (
+                <div class="mt-0.5 text-xs">
+                  <span class="text-[var(--color-text-muted)]">DOI: </span>
+                  <a
+                    href={doiUrl}
+                    target="_blank"
+                    rel="noopener"
+                    class="text-[var(--color-brand-strong)] hover:underline break-all"
+                  >
+                    {doiUrl}
+                  </a>
+                </div>
+              )}
+              {!doiUrl && ref.url && (
+                <div class="mt-0.5 text-xs">
+                  <a
+                    href={ref.url}
+                    target="_blank"
+                    rel="noopener"
+                    class="text-[var(--color-brand-strong)] hover:underline break-all"
+                  >
+                    {ref.url}
+                  </a>
+                </div>
+              )}
+            </li>
+          );
+        })}
+      </ol>
+    </details>
+  </section>
+)}

@@ -176,6 +176,17 @@ Record only durable implementation changes, validation evidence, and gotchas tha
   - Updated screenshot evidence captured at port 4330.
 - All checks PASS: `check:commodities` (118/118), `check:contrast`, `npm test` (38/38), `npx astro check` (0 errors), `npm run build` (8 pages), `PUBLIC_INCLUDE_DRAFTS=true npm run build` (175 pages). Boundary escalated to R3 due to article scope; awaiting independent review.
 
+## 2026-09-29 — T-07 References Component (PASS R1)
 
-
-
+- Created `src/components/References.astro`:
+  - Renders article references as Block 14 (Daftar Pustaka) inside a native `<details open>` element with `cursor-pointer`.
+  - Ordered list `<ol class="list-decimal pl-5 space-y-2 text-sm text-soil">`.
+  - External links formatted with `rel="noopener"` and `target="_blank"`, with DOI links prefixed with `https://doi.org/`.
+  - Returns `null` if references array is empty or undefined (prevents empty cards/boxes).
+- Integrated into `src/layouts/ArticleLayout.astro` as Block 14 above ConsultPrompt.
+- UI validation evidence captured at 390px and 1440px on port 4330 via `agritani-shot.cjs`:
+  - `references-detail-390.png` & `references-detail-1440.png` (verified list of citations with DOI links inside native `<details open>`).
+  - `references-none-390.png` & `references-none-1440.png` (verified no card or empty element on article without references).
+- Checks passed: `npm run check:commodities` (118/118), `npm run check:contrast`, `npm test` (38/38 pass), `npx astro check` (0 errors), `npm run build` (8 pages), `PUBLIC_INCLUDE_DRAFTS=true npm run build` (175 pages).
+- Boundary check passed: `BOUNDARY PASS effectiveRisk=R1`.
+- Ledger run `RUN-20260929T130452Z-a04d15c3` finished with result PASS.

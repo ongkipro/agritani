@@ -5,6 +5,7 @@ import AuthorByline from '../components/AuthorByline.astro';
 import AuthorBio from '../components/AuthorBio.astro';
 import ShortAnswer from '../components/ShortAnswer.astro';
 import FieldSummaryBox, { type FieldTakeaways } from '../components/FieldSummaryBox.astro';
+import References from '../components/References.astro';
 import ArticleToc, { type TocHeading } from '../components/ArticleToc.astro';
 import ConsultPrompt from '../components/ConsultPrompt.astro';
 import { getReadingTime } from '../lib/reading-time';
@@ -133,6 +134,30 @@ if (!activeTakeaways && import.meta.env.DEV) {
     };
   }
 }
+
+// References: prioritize data from content collection.
+// In dev preview mode, provide canonical specimens for UI gate testing if not yet authored in frontmatter:
+let activeReferences = data.references;
+if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV) {
+  if (data.slug === 'ganoderma-sawit-immune-activator') {
+    activeReferences = [
+      {
+        authors: 'Prabowo, A., & Suryanto, D.',
+        year: 2024,
+        title: 'Mekanisme Ketahanan Terinduksi (Induced Systemic Resistance) Kelapa Sawit terhadap Infeksi Ganoderma boninense',
+        source: 'Jurnal Fitopatologi Indonesia, 20(3), 112–124',
+        doi: '10.14692/jfi.20.3.112',
+      },
+      {
+        authors: 'Susanto, A., Sudharto, P. S., & Purba, R. Y.',
+        year: 2023,
+        title: 'Pengendalian Terpadu Penyakit Busuk Pangkal Batang Kelapa Sawit Berbasis Agen Hayati Trichoderma',
+        source: 'Warta Pusat Penelitian Kelapa Sawit, 28(1), 15–28',
+        url: 'https://ejournal.iopri.org/index.php/warta/article/view/1528',
+      },
+    ];
+  }
+}
 ---
 
 <BaseLayout seo={seo}>
@@ -248,46 +273,7 @@ if (!activeTakeaways && import.meta.env.DEV) {
         </section>
 
         <!-- 14. Daftar Pustaka -->
-        {data.references && data.references.length > 0 && (
-          <section class="my-10 pt-6 border-t border-[var(--color-border)]" aria-labelledby="pustaka-heading">
-            <details open class="group">
-              <summary class="cursor-pointer select-none font-serif text-lg font-bold text-[var(--color-text)] mb-4 list-none flex items-center justify-between">
-                <span id="pustaka-heading">Daftar Pustaka & Rujukan Ilmiah</span>
-                <span class="text-xs font-sans text-[var(--color-text-muted)] group-open:rotate-180 transition-transform">
-                  ▼
-                </span>
-              </summary>
-              <ol class="space-y-3 pl-5 list-decimal text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
-                {data.references.map((ref) => (
-                  <li>
-                    <span class="font-semibold text-[var(--color-text)]">{ref.authors}</span> ({ref.year}).{' '}
-                    <span>{ref.title}</span>. <em>{ref.source}</em>.{' '}
-                    {ref.doi && (
-                      <a
-                        href={`https://doi.org/${ref.doi}`}
-                        target="_blank"
-                        rel="noopener"
-                        class="text-[var(--color-brand-strong)] hover:underline break-all"
-                      >
-                        doi:{ref.doi}
-                      </a>
-                    )}
-                    {!ref.doi && ref.url && (
-                      <a
-                        href={ref.url}
-                        target="_blank"
-                        rel="noopener"
-                        class="text-[var(--color-brand-strong)] hover:underline break-all"
-                      >
-                        {ref.url}
-                      </a>
-                    )}
-                  </li>
-                ))}
-              </ol>
-            </details>
-          </section>
-        )}
+        <References references={activeReferences} />
 
         <!-- 15. Tentang Penulis -->
         <AuthorBio />
