@@ -53,7 +53,7 @@ Berlaku untuk agent maupun manusia. Detail aturan agent ada di [AGENTS.md](AGENT
 | T-02 | Content config: 6 koleksi (ARCHITECTURE §3) + cek integritas | REQ-03 | REQ-05, REQ-06 | R1 | — | T-01 | — | Menunggu review independen |
 | T-03 | Normalisasi frontmatter 150 artikel (in place) | REQ-03 | REQ-04, REQ-05 | R1 | — | T-02 | — | Menunggu review independen |
 | T-04 | Kerangka global, 404, `waLink` WhatsApp | REQ-01 | REQ-07, REQ-08 | R1 | ✓ | T-01 | OQ-5, OQ-7 (placeholder teks diperbolehkan, ditandai) | Menunggu review independen |
-| T-05 | ArticleLayout, TOC, indeks `/jurnal` | REQ-03 | REQ-08 | R2 | ✓ | T-03, T-04 | — | Menunggu review independen |
+| T-05 | ArticleLayout, TOC, indeks `/jurnal` | REQ-03 | REQ-08 | R2 | ✓ | T-03, T-04 | — | Done 2026-09-29 |
 | T-06 | FieldSummaryBox | REQ-04 | REQ-08 | R1 | ✓ | T-05 | — | Done 2026-09-29 |
 | T-07 | References (daftar pustaka) | REQ-05 | REQ-03 | R1 | ✓ | T-05 | — | Done 2026-09-29 |
 | T-08 | Homepage hibrida | REQ-01 | REQ-03, REQ-06, REQ-08 | R2 | ✓ | T-00, T-05 | — | Pending |

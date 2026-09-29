@@ -262,7 +262,7 @@ if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV)
             Kapan Harus Berkonsultasi?
           </h2>
           <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed mb-4">
-            Bila gejala kerusakan menyebar lebih dari 15% populasi dalam satu petak atau respon tanaman tidak membaik setelah tindakan pertama, segera tanyakan langsung ke tim agronomi untuk konfirmasi diagnosis lapangan.
+            Bila gejala terus meluas atau respon tanaman tidak membaik setelah tindakan pertama, segera tanyakan langsung ke tim agronomi untuk konfirmasi diagnosis lapangan.
           </p>
           <ConsultPrompt
             source="artikel"
@@ -357,6 +357,13 @@ if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV)
       }
     });
   }
+
+  // Keyboard accessibility for pre and scrollable containers
+  document.querySelectorAll<HTMLElement>('.prose pre, .prose table').forEach((el) => {
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('role', 'region');
+    el.setAttribute('aria-label', el.tagName === 'PRE' ? 'Diagram / Kode' : 'Tabel data');
+  });
 </script>
 
 <style>
@@ -422,6 +429,8 @@ if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV)
     border-collapse: collapse;
     margin: 1.5rem 0;
     font-size: 0.9375rem;
+    overflow-x: auto;
+    display: block;
   }
 
   .prose :global(th),
@@ -434,5 +443,32 @@ if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV)
   .prose :global(th) {
     background-color: var(--color-tint);
     font-weight: 600;
+  }
+
+  /* Code & ASCII Diagram styling (light tint, readable, scrollable) */
+  .prose :global(pre) {
+    background-color: var(--color-tint) !important;
+    color: var(--color-text) !important;
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    padding: 1rem 1.25rem;
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin: 1.5rem 0;
+  }
+
+  .prose :global(code) {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-size: 0.875em;
+  }
+
+  .prose :global(pre code) {
+    background: transparent !important;
+    color: inherit !important;
+    padding: 0;
+    font-size: inherit;
+    white-space: pre;
   }
 </style>

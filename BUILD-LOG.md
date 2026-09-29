@@ -221,3 +221,29 @@ Record only durable implementation changes, validation evidence, and gotchas tha
   - `PUBLIC_INCLUDE_DRAFTS=true npm run build` (draft preview build): 175 pages, `check-seo` PASS (0 errors, 0 warnings).
   - Boundary: escalated to R3 due to `package.json` modification. Stopped for independent review without self-review. Ledger run `RUN-20260929T131043Z-8a04bf9a` finished with result BLOCKED.
 
+## 2026-09-29 — T-05: Jurnal Tani Article Page, Hubs, & Index (PASS)
+
+- Addressed review findings from Claude (sesi pemantau):
+  1. Consultation prompt threshold: Removed unverified numerical threshold "menyebar lebih dari 15% populasi dalam satu petak" from `src/layouts/ArticleLayout.astro`. Replaced with truthful phrasing: "Bila gejala terus meluas atau respon tanaman tidak membaik setelah tindakan pertama...".
+  2. Author Bio: Replaced unverified biography in `src/components/AuthorBio.astro` with verified role "Profesor Pertanian. Moderator Jurnal Tani." and visible placeholder `[Bio menyusul - OQ-4]`.
+  3. Neutrality & portal ownership: Removed the word "independen" from `AuthorBio.astro` and `src/pages/jurnal/index.astro` to avoid contradicting the distributor disclosure statement.
+  4. Related Articles algorithm in `src/pages/jurnal/[slug].astro`:
+     - Prioritizes shared commodities first (weight 100), shared tags second (weight 10), topic third (weight 1).
+     - Isolates distinct crops: articles with specific commodities never cross-link to articles with disjoint specific commodities (e.g. chili articles never recommend oil palm articles).
+     - Empty result sets render nothing (clean fallback).
+  5. ASCII / Code block styling: Added `.prose :global(pre)` styles in `ArticleLayout.astro` featuring light background (`var(--color-tint)`), dark text (`var(--color-text)`), border, 2px radius, and `overflow-x: auto`. Client-side script applies `tabindex="0"` for full keyboard accessibility.
+  6. Footer tagline: Removed unrequested tagline "Sains agronomi & praktik lahan" in `src/components/Footer.astro` to align strictly with DESIGN §4.2.1 baris 4b.
+- Impeccable critique pass:
+  - Visual hierarchy: editorial Newsreader serif headers with Plus Jakarta Sans body/UI; measure bounded to 68ch; no kickers, no decorative icons, no divider lines between sections.
+  - Responsive verification: tested at 390px (mobile) and 1440px (desktop) via `agritani-shot.cjs` on port 4330.
+  - UI proof captured: `article-revised-390.png` and `article-revised-1440.png` in `.gemini/antigravity-cli/brain/4994fe89-47c7-485e-88fb-da50632cba49/proof/ui/t05/`.
+- Verifications:
+  - `npm run check:commodities`: 118/118 valid assignments.
+  - `npm run check:contrast`: PASS (all text ≥ 7:1, UI ≥ 3:1).
+  - `npm test`: 38/38 unit tests PASS.
+  - `npx astro check`: 0 errors.
+  - `npm run build`: 8 production pages, `check-seo` PASS (0 errors, 0 warnings).
+  - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 175 draft preview pages, `check-seo` PASS (0 errors, 0 warnings).
+- Boundary check passed: `BOUNDARY PASS effectiveRisk=R2`. Ledger run `RUN-20260929T131837Z-bafff014` finished with result PASS.
+
+

@@ -31,17 +31,53 @@ export async function getStaticPaths() {
       typeof c === 'string' ? c : c.id
     );
 
-    // Find related articles (same topic or shared commodity)
+    // Rank related articles: prioritize shared commodities, then shared tags, then topic
+    // Articles with distinct commodities never cross-match
     const related = visibleArticles
       .filter((a) => a.data.slug !== article.data.slug)
-      .filter(
-        (a) =>
-          a.data.topic === article.data.topic ||
-          a.data.commodities.some((c: any) =>
-            artCommIds.includes(typeof c === 'string' ? c : c.id)
-          )
-      )
-      .slice(0, 3);
+      .map((a) => {
+        const candCommIds = a.data.commodities.map((c: any) =>
+          typeof c === 'string' ? c : c.id
+        );
+        const sharedCommodities = artCommIds.filter((c: string) =>
+          candCommIds.includes(c)
+        ).length;
+
+        // Disjoint crop filter: don't cross-link different specific crops
+        if (
+          artCommIds.length > 0 &&
+          candCommIds.length > 0 &&
+          sharedCommodities === 0
+        ) {
+          return { article: a, score: 0 };
+        }
+
+        const candTags = (a.data.tags || []).map((t: string) => t.toLowerCase());
+        const sharedTags = (article.data.tags || []).filter((t: string) =>
+          candTags.includes(t.toLowerCase())
+        ).length;
+
+        const sameTopic = a.data.topic === article.data.topic ? 1 : 0;
+
+        let score = 0;
+        if (sharedCommodities > 0) {
+          score = sharedCommodities * 100 + sharedTags * 10 + sameTopic;
+        } else if (artCommIds.length === 0 && candCommIds.length === 0) {
+          // Both are general crop articles
+          score = sharedTags * 10 + sameTopic;
+        } else if (artCommIds.length === 0 || candCommIds.length === 0) {
+          // One is general crop, only match if meaningful shared tags exist
+          if (sharedTags > 0) {
+            score = sharedTags * 10 + sameTopic;
+          }
+        }
+
+        return { article: a, score };
+      })
+      .filter((item) => item.score > 0)
+      .sort((x, y) => y.score - x.score)
+      .slice(0, 3)
+      .map((item) => item.article);
 
     return {
       params: { slug: article.data.slug },

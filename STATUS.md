@@ -40,7 +40,7 @@ Kontrak pra-pengembangan diaudit ulang pada 2026-09-29 dengan skill dotfiles ter
 
 ## Active work
 
-T-02, T-23, T-04, T-03, dan T-05 selesai dikerjakan dan terverifikasi secara lokal (check, build, test, yaml valid, gate UI screenshot). Namun seluruhnya menghasilkan REVIEW_REQUIRED karena kenaikan risiko deterministik (T-02 ke R2 skema, T-23 ke R3 CI workflow, T-04 ke R3 boundary, T-03 ke R3 difflist, T-05 ke R3 boundary). Sesuai aturan, task-task tersebut dihentikan menunggu review independen resmi dari Claude/Paduka Ongki. Melanjutkan ke T-06 (FieldSummaryBox).
+T-05 telah diperbaiki sesuai review Claude (penghapusan ambang 15%, author bio & placeholder OQ-4, penghapusan kata 'independen', skoring bacaan terkait berbasis komoditas dan isolasi komoditas silang, styling pre/code dan a11y keyboard, penghapusan tagline footer) dan boundary check berhasil PASS (effectiveRisk=R2). Ledger run RUN-20260929T131837Z-bafff014 FINISHED PASS. Selanjutnya melanjutkan ke T-14 (Pencarian statis Pagefind).
 
 ## Blockers
 
@@ -48,7 +48,6 @@ T-02, T-23, T-04, T-03, dan T-05 selesai dikerjakan dan terverifikasi secara lok
 - T-23 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 - T-04 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 - T-03 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
-- T-05 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 - T-13 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 
 ## Verification evidence
@@ -58,7 +57,7 @@ T-02, T-23, T-04, T-03, dan T-05 selesai dikerjakan dan terverifikasi secara lok
 - T-23 lokal: `.github/workflows/ci.yml` sintaks YAML valid (Python safe_load), build, check, test, kontras lulus.
 - T-04 lokal: `src/lib/whatsapp.test.ts` & `src/lib/seo.test.ts` (22/22 unit tests PASS), `npx astro check` PASS, `npm run build` PASS, `npm run check:contrast` PASS, UI screenshot 404 pada 390px dan 1440px lulus (bebas garis pemisah, touch target >= 44px, navigasi accessible).
 - T-03 lokal: 150 artikel berhasil dinormalisasi in-place sesuai ARCHITECTURE §3.0. 0 duplikasi metaTitle dan description; 6 topik terisi penuh; 17 komoditas terhubung; `npx astro check` PASS (0 errors), `npm test` PASS (22/22), `npm run build` PASS, `npm run check:contrast` PASS.
-- T-05 lokal: ArticleLayout 17 blok selesai, TOC sticky di >=1024px dan details di mobile, rute jurnal/topik/komoditas/paginasi berfungsi; measure teks 68ch (~71ch terukur di 1440px), no horizontal overflow di 320px; UI proof screenshot ditangkap di port 4330 (390 & 1440); build produksi mengecualikan draft (8 hal), preview build memuat 178 hal; check & build & test pass.
+- T-05: Jurnal Tani Article Page, Hubs, & Index selesai dan PASS (RUN-20260929T131837Z-bafff014). Menjawab seluruh masukan review Claude: ambang karangan 15% dihapus, bio penulis sesuai peran dan placeholder OQ-4, kata 'independen' dibersihkan, algoritma bacaan terkait mengisolasi komoditas dan memprioritaskan kecocokan komoditas -> tag -> topik, blok diagram pre/code diberi warna terang tint dan keyboard tabindex, tagline footer dihapus sesuai DESIGN §4.2.1 baris 4b. Screenshot 390px dan 1440px terverifikasi di port 4330. Boundary check PASS R2.
 - T-06: FieldSummaryBox selesai dan PASS (RUN-20260929T125122Z-81b067e9). Varian masalah & panduan terverifikasi; ketiadaan takeaways tidak merender kotak kosong; kontras label soil di atas tint 8.95:1 (>= 7:1); unit test 38/38 PASS, check, build, kontras PASS; boundary PASS R1.
 - T-07: References component selesai dan PASS (RUN-20260929T130452Z-a04d15c3). Native `<details open>`, daftar bernomor, tautan DOI dan URL, tidak merender kotak kosong jika referensi kosong; screenshot 390px dan 1440px terverifikasi; check, build, test, kontras PASS; boundary PASS R1.
 - T-13: Dynamic SEO engine, sitemap filter/serialize, robots.txt, 14 static OG images, dan post-build verifier `scripts/check-seo.mjs` selesai dan diverifikasi (RUN-20260929T131043Z-8a04bf9a). Semua cek PASS (8 hal produksi & 175 hal pratinjau, 0 error, 0 warning). Risiko naik ke R3 karena `package.json`; dihentikan menunggu review independen tanpa self-review.
