@@ -1,0 +1,153 @@
+---
+/**
+ * src/components/FieldSummaryBox.astro
+ * Block 8: Ringkasan Lapangan (DESIGN §4.3.1, §4.3.3, REQ-04)
+ * Renders structured takeaways for either 'masalah' (pest/disease) or 'panduan' (agronomic guide).
+ * Only renders fields that are non-empty. Never guesses dosage.
+ */
+export interface MasalahTakeaways {
+  kind: 'masalah';
+  problem: string;
+  typicalSymptom: string;
+  firstStep: string;
+  dosagePer16LTank?: string;
+  applicationTiming?: string;
+}
+
+export interface PanduanTakeaways {
+  kind: 'panduan';
+  goal: string;
+  materials?: string;
+  keySteps: string;
+  timing?: string;
+}
+
+export type FieldTakeaways = MasalahTakeaways | PanduanTakeaways;
+
+interface Props {
+  takeaways?: FieldTakeaways;
+}
+
+const { takeaways } = Astro.props;
+---
+
+{takeaways && (
+  <section
+    aria-labelledby="field-summary-heading"
+    class="my-6 p-4 sm:p-5 bg-[var(--color-tint)] rounded-[2px]"
+  >
+    <h2
+      id="field-summary-heading"
+      class="text-base sm:text-lg font-bold text-[var(--color-text)] mb-3"
+    >
+      Ringkasan Lapangan
+    </h2>
+
+    <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3.5 text-sm">
+      {takeaways.kind === 'masalah' ? (
+        <>
+          {takeaways.problem && (
+            <div class="sm:col-span-2">
+              <dt class="text-xs font-bold uppercase tracking-wider text-[var(--color-soil)] mb-0.5">
+                Masalah
+              </dt>
+              <dd class="text-sm font-medium text-[var(--color-text)] leading-relaxed">
+                {takeaways.problem}
+              </dd>
+            </div>
+          )}
+
+          {takeaways.typicalSymptom && (
+            <div>
+              <dt class="text-xs font-bold uppercase tracking-wider text-[var(--color-soil)] mb-0.5">
+                Gejala Khas
+              </dt>
+              <dd class="text-sm font-medium text-[var(--color-text)] leading-relaxed">
+                {takeaways.typicalSymptom}
+              </dd>
+            </div>
+          )}
+
+          {takeaways.firstStep && (
+            <div>
+              <dt class="text-xs font-bold uppercase tracking-wider text-[var(--color-soil)] mb-0.5">
+                Langkah Pertama
+              </dt>
+              <dd class="text-sm font-medium text-[var(--color-text)] leading-relaxed">
+                {takeaways.firstStep}
+              </dd>
+            </div>
+          )}
+
+          {takeaways.dosagePer16LTank && (
+            <div>
+              <dt class="text-xs font-bold uppercase tracking-wider text-[var(--color-soil)] mb-0.5">
+                Dosis per Tangki 16 L
+              </dt>
+              <dd class="text-sm font-medium text-[var(--color-text)] leading-relaxed tabular-nums">
+                {takeaways.dosagePer16LTank}
+              </dd>
+            </div>
+          )}
+
+          {takeaways.applicationTiming && (
+            <div>
+              <dt class="text-xs font-bold uppercase tracking-wider text-[var(--color-soil)] mb-0.5">
+                Waktu Aplikasi
+              </dt>
+              <dd class="text-sm font-medium text-[var(--color-text)] leading-relaxed">
+                {takeaways.applicationTiming}
+              </dd>
+            </div>
+          )}
+        </>
+      ) : (
+        <>
+          {takeaways.goal && (
+            <div class="sm:col-span-2">
+              <dt class="text-xs font-bold uppercase tracking-wider text-[var(--color-soil)] mb-0.5">
+                Tujuan Budidaya
+              </dt>
+              <dd class="text-sm font-medium text-[var(--color-text)] leading-relaxed">
+                {takeaways.goal}
+              </dd>
+            </div>
+          )}
+
+          {takeaways.materials && (
+            <div>
+              <dt class="text-xs font-bold uppercase tracking-wider text-[var(--color-soil)] mb-0.5">
+                Bahan yang Disiapkan
+              </dt>
+              <dd class="text-sm font-medium text-[var(--color-text)] leading-relaxed">
+                {takeaways.materials}
+              </dd>
+            </div>
+          )}
+
+          {takeaways.timing && (
+            <div>
+              <dt class="text-xs font-bold uppercase tracking-wider text-[var(--color-soil)] mb-0.5">
+                Waktu Pelaksanaan
+              </dt>
+              <dd class="text-sm font-medium text-[var(--color-text)] leading-relaxed">
+                {takeaways.timing}
+              </dd>
+            </div>
+          )}
+
+          {takeaways.keySteps && (
+            <div class="sm:col-span-2">
+              <dt class="text-xs font-bold uppercase tracking-wider text-[var(--color-soil)] mb-0.5">
+                Langkah Kunci
+              </dt>
+              <dd class="text-sm font-medium text-[var(--color-text)] leading-relaxed">
+                {takeaways.keySteps}
+              </dd>
+            </div>
+          )}
+        </>
+      )}
+    </dl>
+  </section>
+)}

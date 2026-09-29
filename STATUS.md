@@ -58,10 +58,11 @@ T-02, T-23, T-04, T-03, dan T-05 selesai dikerjakan dan terverifikasi secara lok
 - T-04 lokal: `src/lib/whatsapp.test.ts` & `src/lib/seo.test.ts` (22/22 unit tests PASS), `npx astro check` PASS, `npm run build` PASS, `npm run check:contrast` PASS, UI screenshot 404 pada 390px dan 1440px lulus (bebas garis pemisah, touch target >= 44px, navigasi accessible).
 - T-03 lokal: 150 artikel berhasil dinormalisasi in-place sesuai ARCHITECTURE §3.0. 0 duplikasi metaTitle dan description; 6 topik terisi penuh; 17 komoditas terhubung; `npx astro check` PASS (0 errors), `npm test` PASS (22/22), `npm run build` PASS, `npm run check:contrast` PASS.
 - T-05 lokal: ArticleLayout 17 blok selesai, TOC sticky di >=1024px dan details di mobile, rute jurnal/topik/komoditas/paginasi berfungsi; measure teks 68ch (~71ch terukur di 1440px), no horizontal overflow di 320px; UI proof screenshot ditangkap di port 4330 (390 & 1440); build produksi mengecualikan draft (8 hal), preview build memuat 178 hal; check & build & test pass.
+- T-06: FieldSummaryBox selesai dan PASS (RUN-20260929T125122Z-81b067e9). Varian masalah & panduan terverifikasi; ketiadaan takeaways tidak merender kotak kosong; kontras label soil di atas tint 8.95:1 (>= 7:1); unit test 38/38 PASS, check, build, kontras PASS; boundary PASS R1.
 
 ## Next verified action
 
-T-06: FieldSummaryBox UI (`src/components/FieldSummaryBox.astro`, `src/layouts/ArticleLayout.astro`).
+T-07: References UI (`src/components/References.astro`, `src/layouts/ArticleLayout.astro`).
 
 
 

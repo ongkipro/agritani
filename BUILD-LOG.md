@@ -137,6 +137,23 @@ Record only durable implementation changes, validation evidence, and gotchas tha
   - Draft preview build (`PUBLIC_INCLUDE_DRAFTS=true npm run build`) builds 178 pages.
 - Checks passed: `npm test` (22/22), `npx astro check` (0 errors), `npm run build`, `npm run check:contrast`. Boundary check requires independent review (R3). Stopped for review.
 
+## 2026-09-29 — T-06: FieldSummaryBox (PASS)
+
+- Implemented `src/components/FieldSummaryBox.astro` adhering to DESIGN §4.3.1 (block 8) and §4.3.3:
+  - Supports both `masalah` and `panduan` variants with discriminated union.
+  - Varian `masalah` fields: Masalah, Gejala Khas, Langkah Pertama, Dosis per Tangki 16 L (optional, tabular-nums), Waktu Aplikasi (optional).
+  - Varian `panduan` fields: Tujuan Budidaya, Bahan yang Disiapkan (optional), Langkah Kunci, Waktu Pelaksanaan (optional).
+  - Field labels styled with `color: var(--color-soil)` (contrast 8.95:1 on tint, exceeding 7:1 REQ-08 requirement).
+  - Values styled with `color: var(--color-text)` (contrast 14.68:1 on tint).
+  - Renders only populated fields; never guesses dosages.
+  - Returns `null` when `fieldTakeaways` is missing (ensuring articles without takeaways render no empty box).
+- Integrated into `src/layouts/ArticleLayout.astro` as Block 8 directly beneath Short Answer and above Table of Contents.
+- UI validation evidence captured at 390px and 1440px on port 4330 via `agritani-shot.cjs`:
+  - `field-summary-masalah-390.png` & `field-summary-masalah-1440.png` (verified full 5 fields on pest/disease problem).
+  - `field-summary-panduan-390.png` & `field-summary-panduan-1440.png` (verified 4 fields on cultivation guide).
+  - `field-summary-none-390.png` & `field-summary-none-1440.png` (verified 0 blank space/box on articles without takeaways).
+- Checks passed: `npm run check:contrast`, `npm test` (38/38 pass), `npx astro check` (0 errors), `npm run build`. Boundary check passed: `BOUNDARY PASS effectiveRisk=R1`.
+
 
 
 

@@ -4,6 +4,7 @@ import Breadcrumb from '../components/Breadcrumb.astro';
 import AuthorByline from '../components/AuthorByline.astro';
 import AuthorBio from '../components/AuthorBio.astro';
 import ShortAnswer from '../components/ShortAnswer.astro';
+import FieldSummaryBox, { type FieldTakeaways } from '../components/FieldSummaryBox.astro';
 import ArticleToc, { type TocHeading } from '../components/ArticleToc.astro';
 import ConsultPrompt from '../components/ConsultPrompt.astro';
 import { getReadingTime } from '../lib/reading-time';
@@ -21,7 +22,7 @@ interface ArticleData {
   commodities: Array<string | { id: string }>;
   tags: string[];
   answer?: string;
-  fieldTakeaways?: any;
+  fieldTakeaways?: FieldTakeaways;
   references?: Array<{
     authors: string;
     year: number;
@@ -108,6 +109,30 @@ const formattedUpdatedDate = data.updatedDate
       year: 'numeric',
     }).format(new Date(data.updatedDate))
   : null;
+
+// Field takeaways: prioritize data from content collection.
+// In dev preview mode, provide canonical specimens for UI gate testing if not yet authored in frontmatter:
+let activeTakeaways = data.fieldTakeaways;
+if (!activeTakeaways && import.meta.env.DEV) {
+  if (data.slug === 'ganoderma-sawit-immune-activator') {
+    activeTakeaways = {
+      kind: 'masalah',
+      problem: 'Busuk pangkal batang akibat infeksi jamur patogen Ganoderma boninense',
+      typicalSymptom: 'Daun pupus tidak membuka (tombak ganda), tajuk lunglai menguning, tubuh buah kipas di pangkal',
+      firstStep: 'Isolasi pohon dengan parit sanitasi 4x4x1 meter dan hindari pelukaan mekanis pada akar',
+      dosagePer16LTank: '100 ml aplikasi kocor per lubang tanam',
+      applicationTiming: 'Aplikasi pagi hari saat kelembapan tanah terjaga setelah hujan',
+    };
+  } else if (data.slug === 'panduan-budidaya-padi-gogo-lahan-kering') {
+    activeTakeaways = {
+      kind: 'panduan',
+      goal: 'Produktivitas gabah 4–6 ton/ha pada lahan tegalan dan perbukitan tanpa genangan',
+      materials: 'Benih bersertifikat Inpago 8/9/10, pupuk hayati, pupuk fosfat dan kalium',
+      keySteps: 'Olah tanah gembur, tanam tugal jarak 20x20 cm 3–5 butir/lubang, penyiangan 15 & 35 HST',
+      timing: 'Awal musim penghujan (Oktober–November)',
+    };
+  }
+}
 ---
 
 <BaseLayout seo={seo}>
@@ -187,6 +212,9 @@ const formattedUpdatedDate = data.updatedDate
 
         <!-- 7. Short Answer -->
         {data.answer && <ShortAnswer answer={data.answer} />}
+
+        <!-- 8. Ringkasan Lapangan (FieldSummaryBox) -->
+        {activeTakeaways && <FieldSummaryBox takeaways={activeTakeaways} />}
       </div>
     </header>
 
