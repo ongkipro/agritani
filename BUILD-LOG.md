@@ -246,4 +246,26 @@ Record only durable implementation changes, validation evidence, and gotchas tha
   - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 175 draft preview pages, `check-seo` PASS (0 errors, 0 warnings).
 - Boundary check passed: `BOUNDARY PASS effectiveRisk=R2`. Ledger run `RUN-20260929T131837Z-bafff014` finished with result PASS.
 
+## 2026-09-29 — T-13: Dynamic SEO Engine & Schema Revisions (PASS)
+
+- Addressed review findings from Claude (sesi pemantau):
+  1. Renamed OG image files to align with canonical topic slugs:
+     - `public/og/topik-budidaya-hortikultura.png` -> `public/og/topik-budidaya.png`
+     - `public/og/topik-nutrisi-pemupukan.png` -> `public/og/topik-tanah-nutrisi.png`
+     Resolves 404 image link previews on 83/150 articles (54 budidaya + 29 tanah-nutrisi).
+  2. Enhanced `scripts/check-seo.mjs`:
+     - Added physical disk existence verification for every `og:image` `<meta>` tag and every JSON-LD image across all generated HTML files. Build fails if an image references a missing asset.
+     - Refined sitemap noindex checks to fail on production builds if any noindex page is present in sitemap.
+  3. Schema Article image compliance (DESIGN §4.4.5):
+     - Updated `src/lib/seo.ts`: omitted the `image` property from `Article` schema when `heroImage` is absent. Topic OG images remain attached to Open Graph meta tags, while structured schema omits placeholder images.
+     - Added unit tests in `src/lib/seo.test.ts` verifying that `articleNode.image` is omitted when `heroImage` is absent and present when `heroImage` is set.
+- Verifications:
+  - `npm test`: 39/39 unit tests PASS.
+  - `npm run check:commodities`: 118/118 valid assignments.
+  - `npm run check:contrast`: PASS (all text ≥ 7:1, UI ≥ 3:1).
+  - `npx astro check`: 0 errors.
+  - `npm run build`: 8 production pages, `check-seo` PASS (0 errors, 0 warnings).
+  - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 175 draft preview pages, `check-seo` PASS (0 errors, 0 warnings).
+- Boundary check passed: `BOUNDARY PASS effectiveRisk=R2`. Ledger run `RUN-20260929T132557Z-d177f66c` finished with result PASS.
+
 

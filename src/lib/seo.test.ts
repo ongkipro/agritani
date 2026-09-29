@@ -92,5 +92,27 @@ describe('SEO & Metadata Builder (DESIGN §4.4)', () => {
     assert.equal(articleNode.author['@type'], 'Person');
     assert.equal(articleNode.author.name, 'Prof. Arif Prabowo');
     assert.equal(articleNode.datePublished, pubDate.toISOString());
+    assert.equal(articleNode.image, undefined, 'Image property must be omitted when heroImage is absent (DESIGN §4.4.5)');
+  });
+
+  it('includes image property on Article schema only when heroImage is present (DESIGN §4.4.5)', () => {
+    const pubDate = new Date('2026-09-29T00:00:00Z');
+    const seo = buildSeo({
+      title: 'Inovasi Proteksi Sawit',
+      description: 'Ulasan ilmiah imunitas sawit',
+      canonicalPath: '/jurnal/inovasi-sawit/',
+      ogType: 'article',
+      article: {
+        pubDate,
+        author: 'Prof. Arif Prabowo',
+        tags: ['sawit', 'ganoderma'],
+        heroImage: '/images/hero-sawit.webp',
+      },
+    });
+
+    const graph = (seo.jsonLd as any)['@graph'];
+    const articleNode = graph.find((n: any) => n['@type'] === 'Article');
+    assert.ok(articleNode);
+    assert.deepEqual(articleNode.image, ['https://agritani.com/images/hero-sawit.webp']);
   });
 });

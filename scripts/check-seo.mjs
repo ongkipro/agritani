@@ -56,8 +56,8 @@ const requiredOgImages = [
   'default.png',
   'jurnal.png',
   'topik-proteksi-tanaman.png',
-  'topik-nutrisi-pemupukan.png',
-  'topik-budidaya-hortikultura.png',
+  'topik-tanah-nutrisi.png',
+  'topik-budidaya.png',
   'topik-air-irigasi.png',
   'topik-pascapanen-agribisnis.png',
   'topik-sains-tanaman.png',
@@ -223,14 +223,38 @@ for (const filePath of htmlFiles) {
       }
     }
 
+    // Check og:image meta tag and verify asset existence on disk
+    const ogImgMatches = content.match(/<meta\b[^>]*\bproperty=["']og:image["'][^>]*>/gi);
+    if (ogImgMatches) {
+      for (const m of ogImgMatches) {
+        const cMatch = m.match(/content=["'](.*?)["']/is);
+        if (cMatch && cMatch[1]) {
+          const imgUrl = cMatch[1];
+          if (imgUrl.startsWith('https://agritani.com/') || imgUrl.startsWith('/')) {
+            const localPath = imgUrl.replace(/^https?:\/\/[^\/]+/, '');
+            const distFilePath = path.join(DIST_DIR, localPath);
+            const pubFilePath = path.join(path.resolve('public'), localPath);
+            if (!fs.existsSync(distFilePath) && !fs.existsSync(pubFilePath)) {
+              errors.push(`[${relPath}] og:image references non-existent file: ${imgUrl}`);
+            }
+          }
+        }
+      }
+    }
+
     // Canonical link URL for sitemap matching
     const hrefMatch = canonicalMatches?.[0]?.match(/href=["'](.*?)["']/i);
     const pageCanonical = hrefMatch ? hrefMatch[1] : '';
 
+    const isDraftPreview = process.env.PUBLIC_INCLUDE_DRAFTS === 'true';
     if (isNoindex) {
-      // Must NOT be in sitemap
+      // Must NOT be in sitemap on production build
       if (pageCanonical && sitemapUrls.has(pageCanonical)) {
-        errors.push(`[${relPath}] Page is marked noindex but is present in sitemap: ${pageCanonical}`);
+        if (!isDraftPreview) {
+          errors.push(`[${relPath}] Production error: Page is marked noindex but is present in sitemap: ${pageCanonical}`);
+        } else {
+          warnings.push(`[${relPath}] Draft preview note: Page is marked noindex but is present in sitemap: ${pageCanonical}`);
+        }
       }
     } else {
       // Must be unique across indexable pages
@@ -279,6 +303,21 @@ for (const filePath of htmlFiles) {
               }
               if (!node['@id']) {
                 errors.push(`[${relPath}] JSON-LD @graph node (${node['@type']}) missing stable @id.`);
+              }
+
+              // Verify any referenced images exist on disk
+              if (node.image) {
+                const images = Array.isArray(node.image) ? node.image : [node.image];
+                for (const img of images) {
+                  if (typeof img === 'string' && (img.startsWith('https://agritani.com/') || img.startsWith('/'))) {
+                    const localPath = img.replace(/^https?:\/\/[^\/]+/, '');
+                    const distFilePath = path.join(DIST_DIR, localPath);
+                    const pubFilePath = path.join(path.resolve('public'), localPath);
+                    if (!fs.existsSync(distFilePath) && !fs.existsSync(pubFilePath)) {
+                      errors.push(`[${relPath}] JSON-LD ${node['@type']} image references non-existent file: ${img}`);
+                    }
+                  }
+                }
               }
             }
 

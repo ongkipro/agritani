@@ -18,6 +18,7 @@ export interface SeoArticleMeta {
   author?: string;
   topic?: string;
   tags?: string[];
+  heroImage?: string;
   references?: Array<{
     title: string;
     doi?: string;
@@ -273,7 +274,6 @@ export function buildSeo(input: SeoInput): SeoOutput {
       datePublished: publishedTime,
       dateModified: modifiedTime,
       mainEntity: canonical,
-      image: resolvedOgImage,
       inLanguage: 'id-ID',
       author: {
         '@type': 'Person',
@@ -286,6 +286,13 @@ export function buildSeo(input: SeoInput): SeoOutput {
       },
       keywords: article.tags?.join(', '),
     };
+
+    // DESIGN §4.4.5: without heroImage, image property is omitted from Article schema
+    if (article.heroImage) {
+      articleNode.image = [
+        article.heroImage.startsWith('http') ? article.heroImage : `${SITE_URL}${article.heroImage}`,
+      ];
+    }
 
     if (article.topic) {
       articleNode.articleSection = article.topic;

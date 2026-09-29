@@ -61,7 +61,7 @@ Berlaku untuk agent maupun manusia. Detail aturan agent ada di [AGENTS.md](AGENT
 | T-10 | Tentang Kami & profil penulis | REQ-01 | REQ-08 | R1 | ✓ | T-00, T-04, T-05 | OQ-4 (file foto, gelar lengkap, institusi) | Pending |
 | T-11 | Katalog & detail produk | REQ-01 | REQ-04, NG-1 | R1 | ✓ | T-00, T-02, T-04 | OQ-1, OQ-2, OQ-5 | Pending |
 | T-12 | Formulir kemitraan → WhatsApp | REQ-02 | REQ-08, NG-4 | R1 | ✓ | T-00, T-04 | OQ-1 | Pending |
-| T-13 | SEO dinamis: JSON-LD, breadcrumb, sitemap, robots, OG, pemeriksa pasca-build | REQ-07 | REQ-03 | R1 | — | T-05 | — | Menunggu review independen |
+| T-13 | SEO dinamis: JSON-LD, breadcrumb, sitemap, robots, OG, pemeriksa pasca-build | REQ-07 | REQ-03 | R1 | — | T-05 | — | Done 2026-09-29 |
 | T-14 | Pencarian statis Pagefind | REQ-06b | REQ-08 | R2 | ✓ | T-05 | — | Pending |
 | T-15 | Audit akhir: kontras render, a11y, budget, Lighthouse, brand | REQ-08 | REQ-01, REQ-07 | R1 | ✓ | T-04…T-14, T-17…T-23, T-25 | T-16/OQ-3 (butuh artikel terbit) | Pending |
 | T-16 | Sumber pustaka tingkat paper per artikel | REQ-05 | NG-3 | R1 | — | T-03 | OQ-3 (verifikasi pemilik) | Pending |

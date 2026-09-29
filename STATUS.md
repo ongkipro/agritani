@@ -40,7 +40,7 @@ Kontrak pra-pengembangan diaudit ulang pada 2026-09-29 dengan skill dotfiles ter
 
 ## Active work
 
-T-05 telah diperbaiki sesuai review Claude (penghapusan ambang 15%, author bio & placeholder OQ-4, penghapusan kata 'independen', skoring bacaan terkait berbasis komoditas dan isolasi komoditas silang, styling pre/code dan a11y keyboard, penghapusan tagline footer) dan boundary check berhasil PASS (effectiveRisk=R2). Ledger run RUN-20260929T131837Z-bafff014 FINISHED PASS. Selanjutnya melanjutkan ke T-14 (Pencarian statis Pagefind).
+T-13 telah diperbaiki sesuai review Claude: nama file OG `topik-budidaya.png` dan `topik-tanah-nutrisi.png` disesuaikan dengan slug kanonikal, pemeriksa `check-seo.mjs` memvalidasi keberadaan fisik seluruh aset `og:image` dan gambar JSON-LD, skema Article meniadakan properti `image` jika `heroImage` tidak ada (DESIGN §4.4.5), dan sitemap noindex rule diverifikasi. Seluruh cek PASS dan boundary check PASS (effectiveRisk=R2). Ledger run RUN-20260929T132557Z-d177f66c FINISHED PASS. Selanjutnya melanjutkan ke T-14 (Pencarian statis Pagefind).
 
 ## Blockers
 
@@ -48,7 +48,6 @@ T-05 telah diperbaiki sesuai review Claude (penghapusan ambang 15%, author bio &
 - T-23 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 - T-04 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 - T-03 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
-- T-13 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 
 ## Verification evidence
 
@@ -60,7 +59,7 @@ T-05 telah diperbaiki sesuai review Claude (penghapusan ambang 15%, author bio &
 - T-05: Jurnal Tani Article Page, Hubs, & Index selesai dan PASS (RUN-20260929T131837Z-bafff014). Menjawab seluruh masukan review Claude: ambang karangan 15% dihapus, bio penulis sesuai peran dan placeholder OQ-4, kata 'independen' dibersihkan, algoritma bacaan terkait mengisolasi komoditas dan memprioritaskan kecocokan komoditas -> tag -> topik, blok diagram pre/code diberi warna terang tint dan keyboard tabindex, tagline footer dihapus sesuai DESIGN §4.2.1 baris 4b. Screenshot 390px dan 1440px terverifikasi di port 4330. Boundary check PASS R2.
 - T-06: FieldSummaryBox selesai dan PASS (RUN-20260929T125122Z-81b067e9). Varian masalah & panduan terverifikasi; ketiadaan takeaways tidak merender kotak kosong; kontras label soil di atas tint 8.95:1 (>= 7:1); unit test 38/38 PASS, check, build, kontras PASS; boundary PASS R1.
 - T-07: References component selesai dan PASS (RUN-20260929T130452Z-a04d15c3). Native `<details open>`, daftar bernomor, tautan DOI dan URL, tidak merender kotak kosong jika referensi kosong; screenshot 390px dan 1440px terverifikasi; check, build, test, kontras PASS; boundary PASS R1.
-- T-13: Dynamic SEO engine, sitemap filter/serialize, robots.txt, 14 static OG images, dan post-build verifier `scripts/check-seo.mjs` selesai dan diverifikasi (RUN-20260929T131043Z-8a04bf9a). Semua cek PASS (8 hal produksi & 175 hal pratinjau, 0 error, 0 warning). Risiko naik ke R3 karena `package.json`; dihentikan menunggu review independen tanpa self-review.
+- T-13: Dynamic SEO engine, sitemap filter/serialize, robots.txt, 14 static OG images, dan post-build verifier `scripts/check-seo.mjs` selesai dan diperbaiki sesuai review Claude (RUN-20260929T132557Z-d177f66c). Gambar OG topik budidaya dan tanah-nutrisi sinkron dengan slug kanonikal, aset diperiksa secara fisik di disk, schema Article patuh DESIGN §4.4.5. Semua cek PASS (39/39 test, 8 hal produksi & 175 hal pratinjau, 0 error, 0 warning). Boundary check PASS R2.
 
 ## Next verified action
 
