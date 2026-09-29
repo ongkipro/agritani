@@ -2,6 +2,7 @@
 title: "Menangkal Penyakit Bulai Jagung: Kenali Gejala Dini dan Strategi Pengendalian Terpadunya"
 metaTitle: "Cara Mengatasi Penyakit Bulai Jagung Peronosclerospora"
 description: "Kenali gejala garis putih bulai jagung serta protokol seed treatment dan drainase terpadu untuk mencegah tanaman mandul gagal panen."
+answer: "Penyakit bulai pada jagung disebabkan oleh cendawan patogen Peronosclerospora maydis yang menginfeksi stomata dan titik tumbuh tanaman muda. Gejala khas berupa garis klorotik putih kekuningan memanjang sejajar tulang daun disertai lapisan serbuk spora halus di pagi hari. Pengendalian terpadu bertumpu pada perlakuan benih sebelum tanam, penanaman serempak, dan sanitasi tanaman terinfeksi."
 slug: "mengatasi-penyakit-bulai-jagung-peronosclerospora"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
@@ -11,10 +12,21 @@ commodities:
 tags:
   - "gejala bulai pada jagung"
   - "cara mengatasi bulai jagung"
-  - "obat bulai jagung paling ampuh"
+  - "pengendalian bulai jagung"
   - "perlakuan benih jagung"
   - "jamur peronosclerospora maydis"
-draft: true
+references:
+  - authors: "Nirwanto H, Sutikno S"
+    year: 2024
+    title: "Distribution of Downy Mildew (Peronosclerospora maydis) on Maize Plots Based on Geospatial Approach"
+    source: "Jurnal Penelitian Pertanian Terapan"
+    doi: "10.25181/jppt.v24i4.3431"
+  - authors: "Takahashi K"
+    year: 1981
+    title: "Distribution and Ultrastructure of Peronosclerospora maydis in Maize Shoot Tips"
+    source: "Phytopathology"
+    doi: "10.1094/phyto-71-1133"
+draft: false
 ---
 
 > **Key Takeaways**:

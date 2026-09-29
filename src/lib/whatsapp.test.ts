@@ -3,15 +3,21 @@ import assert from 'node:assert/strict';
 import { waLink, DEFAULT_WA_PHONE, DEV_PLACEHOLDER_PHONE } from './whatsapp.ts';
 
 describe('WhatsApp Link Generator (DESIGN §2.7, G-6)', () => {
-  it('falls back to DEV_PLACEHOLDER_PHONE in dev/test when DEFAULT_WA_PHONE is empty', () => {
-    assert.equal(DEFAULT_WA_PHONE, '');
+  it('uses DEFAULT_WA_PHONE (6287770457256) by default', () => {
+    assert.equal(DEFAULT_WA_PHONE, '6287770457256');
     const url = waLink({ source: 'Web·Konsultasi' });
-    const expectedPrefix = `https://wa.me/${DEV_PLACEHOLDER_PHONE}?text=`;
+    const expectedPrefix = `https://wa.me/${DEFAULT_WA_PHONE}?text=`;
     assert.ok(url.startsWith(expectedPrefix));
 
     const text = decodeURIComponent(url.replace(expectedPrefix, ''));
     const lines = text.split('\n');
     assert.equal(lines[0], '[Web·Konsultasi]');
+  });
+
+  it('falls back to DEV_PLACEHOLDER_PHONE in dev/test when phone is empty', () => {
+    const url = waLink({ source: 'Web·Konsultasi', phone: '' });
+    const expectedPrefix = `https://wa.me/${DEV_PLACEHOLDER_PHONE}?text=`;
+    assert.ok(url.startsWith(expectedPrefix));
   });
 
   it('throws an error in production environment when phone is empty', () => {
@@ -20,7 +26,7 @@ describe('WhatsApp Link Generator (DESIGN §2.7, G-6)', () => {
       process.env.NODE_ENV = 'production';
       assert.throws(
         () => {
-          waLink({ source: 'Web·Konsultasi' });
+          waLink({ source: 'Web·Konsultasi', phone: '' });
         },
         {
           name: 'Error',

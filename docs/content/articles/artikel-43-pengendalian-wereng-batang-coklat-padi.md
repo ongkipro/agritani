@@ -1,20 +1,42 @@
 ---
-title: "Jurus Mengendalikan Wereng Batang Coklat Padi: Cegah Puso Akibat Hopperburn"
+title: "Pengendalian Wereng Batang Coklat Padi: Cegah Puso Akibat Hopperburn"
 metaTitle: "Pengendalian Wereng Batang Coklat Padi: Cegah Puso"
 description: "Strategi memutus siklus hama wereng batang coklat Nilaparvata lugens pada padi dengan pengeringan sawah dan agens hayati Beauveria."
+answer: "Wereng batang coklat merusak padi dengan mengisap cairan pelepah hingga memicu kondisi puso atau hopperburn. Pengendalian terpadu dilakukan dengan mengeringkan air sawah berkala untuk menekan kelembapan mikro, memanfaatkan musuh alami, mengaplikasikan jamur entomopatogen Beauveria bassiana, serta mengarahkan nosel semprot langsung ke pangkal rumpun tanaman padi."
 slug: "pengendalian-wereng-batang-coklat-padi"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
-topic: "budidaya"
+topic: "proteksi-tanaman"
 commodities:
   - "padi"
 tags:
-  - "cara membasmi wereng coklat padi"
+  - "pengendalian wereng coklat padi"
   - "nilaparvata lugens wereng"
   - "gejala hopperburn padi puso"
   - "agens hayati beauveria bassiana"
   - "insektisida wereng ramah musuh alami"
-draft: true
+references:
+  - authors: "Heong KL, Wong L, Delos Reyes JH"
+    year: 2014
+    title: "Addressing Planthopper Threats to Asian Rice Farming and Food Security: Fixing Insecticide Misuse"
+    source: "Rice Planthoppers (Springer chapter)"
+    doi: "10.1007/978-94-017-9535-7_3"
+  - authors: "Wu J, Ge L, Liu F, Song Q"
+    year: 2020
+    title: "Pesticide-Induced Planthopper Population Resurgence in Rice Cropping Systems"
+    source: "Annual Review of Entomology"
+    doi: "10.1146/annurev-ento-011019-025215"
+  - authors: "Hendra Y, Trizelia T, Syahrawati M"
+    year: 2023
+    title: "Colonization of the entomopathogenic fungus Beauveria bassiana on rice and its impact on nymph mortality and fecundity of brown planthopper"
+    source: "Jurnal Entomologi Indonesia"
+    doi: "10.5994/jei.20.3.203"
+  - authors: "Triwidodo H, Istiaji B, Efriani N, Retnowati L"
+    year: 2023
+    title: "Rapid assessments of the rice brown planthopper outbreak in Semarang District, Central Java"
+    source: "Jurnal Entomologi Indonesia"
+    doi: "10.5994/jei.20.2.137"
+draft: false
 ---
 
 Di antara sekian banyak hama tanaman pangan di Indonesia, tidak ada yang mampu melenyapkan hamparan padi ratusan hektar dalam tempo beberapa hari selain **Wereng Batang Coklat (*Nilaparvata lugens*)**.

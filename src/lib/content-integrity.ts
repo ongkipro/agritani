@@ -199,22 +199,34 @@ export function assertContentIntegrity(input: ContentIntegrityInput): void {
     }
   }
 
-  // 4. Symptoms must point to valid articles
+  // 4. Symptoms must point to valid articles (ARCHITECTURE §3.1, DEC-015, A.8)
   for (const sym of symptoms) {
     const label = sym.id || sym.diagnosis || 'tanpa-id';
+    const isVisible = Boolean(sym.reviewedBy && sym.reviewedBy.trim() !== '');
+
     if (isDraftPreview) {
-      // In draft preview, can point to draft or published, but article must exist
+      // In draft preview, can point to draft or published, but article must exist in manuscripts
       if (!slugSet.has(sym.article)) {
         throw new Error(
           `Gejala "${label}" menunjuk slug artikel fiktif: "${sym.article}"`
         );
       }
     } else {
-      // In production build, must point to a published article
-      if (!publishedSlugs.has(sym.article)) {
-        throw new Error(
-          `Gejala "${label}" menunjuk artikel yang belum terbit atau fiktif: "${sym.article}"`
-        );
+      // In production build, only VISIBLE symptoms (reviewedBy set) must point to published articles.
+      // Unreviewed symptoms are hidden in production and do not fail the build if pointing to draft.
+      if (isVisible) {
+        if (!publishedSlugs.has(sym.article)) {
+          throw new Error(
+            `Gejala "${label}" menunjuk artikel yang belum terbit atau fiktif: "${sym.article}"`
+          );
+        }
+      } else {
+        // Hidden symptoms must still point to a recognized manuscript slug to catch typos
+        if (!slugSet.has(sym.article)) {
+          throw new Error(
+            `Gejala "${label}" menunjuk slug artikel fiktif: "${sym.article}"`
+          );
+        }
       }
     }
   }

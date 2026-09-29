@@ -161,7 +161,7 @@ describe('Content Integrity Assertions', () => {
     );
   });
 
-  it('fails in production build when symptom points to a draft article', () => {
+  it('fails in production build when reviewed symptom points to a draft article', () => {
     const draftArticle: ArticleData = { ...validArticle, slug: 'artikel-draf', draft: true };
     assert.throws(
       () => {
@@ -171,6 +171,7 @@ describe('Content Integrity Assertions', () => {
             {
               id: 'gejala-busuk',
               article: 'artikel-draf',
+              reviewedBy: 'Prof. Arif Prabowo',
             },
           ],
           isDraftPreview: false,
@@ -182,6 +183,23 @@ describe('Content Integrity Assertions', () => {
         return true;
       }
     );
+  });
+
+  it('allows unreviewed symptom to point to a draft article in production build (A.8)', () => {
+    const draftArticle: ArticleData = { ...validArticle, slug: 'artikel-draf', draft: true };
+    assert.doesNotThrow(() => {
+      assertContentIntegrity({
+        articles: [draftArticle],
+        symptoms: [
+          {
+            id: 'gejala-tersembunyi',
+            article: 'artikel-draf',
+            // reviewedBy omitted
+          },
+        ],
+        isDraftPreview: false,
+      });
+    });
   });
 
   it('fails when crop calendar points to unknown commodity', () => {

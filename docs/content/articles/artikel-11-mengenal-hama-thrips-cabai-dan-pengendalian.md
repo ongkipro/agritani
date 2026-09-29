@@ -2,6 +2,7 @@
 title: "Mengenal Hama Thrips Cabai: Gejala Daun Mengeriting ke Atas dan Trik Pengendaliannya"
 metaTitle: "Pengendalian Hama Thrips Cabai: Daun Mengeriting"
 description: "Kenali gejala daun cabai mengeriting ke atas akibat hama thrips serta trik pengendalian alami dengan mulsa perak dan bioproteksi nabati."
+answer: "Hama thrips merusak tanaman cabai dengan memarut serta mengisap cairan sel daun muda dan bunga. Gejala khas ditandai oleh daun yang mengeriting ke atas serta munculnya guratan keperakan pada permukaan bawah. Pengendalian terpadu dilakukan dengan pemasangan mulsa pantul perak, penangkapan serangga berperekat, pembersihan gulma inang, dan penyemprotan terarah ke bawah daun."
 slug: "mengenal-hama-thrips-cabai-dan-pengendalian"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
@@ -14,7 +15,28 @@ tags:
   - "cara mengatasi thrips cabai"
   - "mulsa perak penolak hama"
   - "insektisida nabati thrips"
-draft: true
+references:
+  - authors: "Hulagappa T, Baradevanal G, Surpur S, Raghavendra D, et al."
+    year: 2022
+    title: "Diagnosis and potential invasion risk of Thrips parvispinus under Indian conditions"
+    source: "PeerJ"
+    doi: "10.7717/peerj.13868"
+  - authors: "Tyagi K, Kumar V, Singha D, Chakraborty R, et al."
+    year: 2015
+    title: "Morphological and DNA Barcoding Evidence for Invasive Pest Thrips, Thrips parvispinus (Thysanoptera: Thripidae), Newly Recorded from India"
+    source: "Journal of Insect Science"
+    doi: "10.1093/jisesa/iev087"
+  - authors: "Seal D, Khan R, Osborne L, Gibbs I, et al."
+    year: 2023
+    title: "Thrips parvispinus (Karny, 1922) (Insecta: Thysanoptera: Thripidae): A New Invasive Pest"
+    source: "EDIS (UF/IFAS Extension)"
+    doi: "10.32473/edis-in1407-2023"
+  - authors: "Thandra R, Chitra N, Murugan M, Soundararajan R"
+    year: 2024
+    title: "Chili pestiferous thrips Thrips parvispinus and Thrips tabaci (Thripidae: Thysanoptera) ... antennal sensilla"
+    source: "Plant Science Today"
+    doi: "10.14719/pst.5779"
+draft: false
 ---
 
 > **Key Takeaways**:

@@ -48,14 +48,13 @@ jobs:
       - name: Check WCAG design token contrast
         run: npm run check:contrast
 
-      - name: Build static output
-        # Selama OQ-1 (nomor WhatsApp resmi) belum terisi, build membutuhkan PUBLIC_INCLUDE_DRAFTS: "true"
-        # agar guard waLink() menggunakan DEV_PLACEHOLDER_PHONE dan tidak menggagalkan proses build.
-        # Setelah OQ-1 terisi dan naskah terbit dipublikasikan di T-25, langkah ini akan diperbarui
-        # untuk menjalankan build produksi murni tanpa flag draft.
-        env:
-          PUBLIC_INCLUDE_DRAFTS: "true"
+      - name: Build static output (production)
         run: npm run build
 
       - name: Audit post-build CSP invariants (0/0/0)
         run: npm run check:csp
+
+      - name: Build draft preview
+        env:
+          PUBLIC_INCLUDE_DRAFTS: "true"
+        run: npm run build

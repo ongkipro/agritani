@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "agritani",
+  "compatibility_date": "2026-09-29",
+  "assets": {
+    "directory": "./dist"
+  },
+  "routes": [
+    {
+      "pattern": "agritani.com",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.agritani.com",
+      "custom_domain": true
+    }
+  ]
+}

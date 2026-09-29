@@ -1,7 +1,8 @@
 ---
-title: "Jurus Mengatasi Antraknosa (Patek Cabai): Protokol Terpadu Mencegah Busuk Buah Melingkar"
+title: "Pengendalian Antraknosa (Patek Cabai): Protokol Terpadu Mencegah Busuk Buah Melingkar"
 metaTitle: "Cara Mengatasi Patek Cabai dan Antraknosa Musim Hujan"
 description: "Protokol lengkap mengatasi penyakit patek dan antraknosa pada cabai dengan sanitasi spora, jarak tanam ideal, serta asupan kalsium boron."
+answer: "Penyakit patek pada cabai dipicu infeksi cendawan Colletotrichum saat musim hujan dan kelembapan tinggi. Gejala khas berupa bercak cekung melingkar konsentris pada dinding buah yang berkembang menjadi busuk kering. Penanganan efektif mengandalkan sanitasi pemetikan buah terinfeksi, perbaikan sirkulasi udara melalui jarak tanam, serta penguatan ketahanan fisik tanaman cabai."
 slug: "jurus-pengendalian-antraknosa-patek-cabai"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
@@ -10,11 +11,27 @@ commodities:
   - "cabai"
 tags:
   - "cara mengatasi patek cabai"
-  - "obat antraknosa cabai alami"
+  - "pengendalian antraknosa cabai"
   - "busuk buah cabai melingkar"
   - "kalsium boron untuk cabai"
   - "pencegahan patek musim hujan"
-draft: true
+references:
+  - authors: "Diao Y, Zhang C, Liu F, Wang W, Liu L, Cai L, Liu X"
+    year: 2017
+    title: "Colletotrichum species causing anthracnose disease of chili in China"
+    source: "Persoonia"
+    doi: "10.3767/003158517x692788"
+  - authors: "Sutomo R, Subandiyah S, Wibowo A, Widiastuti A"
+    year: 2022
+    title: "Description and Pathogenicity of Colletotrichum Species Causing Chili Anthracnose in Yogyakarta, Indonesia"
+    source: "AGRIVITA Journal of Agricultural Science"
+    doi: "10.17503/agrivita.v44i2.3705"
+  - authors: "Dean R, Van Kan JAL, Pretorius ZA, Hammond-Kosack KE, et al."
+    year: 2012
+    title: "The Top 10 fungal pathogens in molecular plant pathology"
+    source: "Molecular Plant Pathology"
+    doi: "10.1111/j.1364-3703.2011.00783.x"
+draft: false
 ---
 
 > **Key Takeaways**:
