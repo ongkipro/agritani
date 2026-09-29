@@ -1,0 +1,19 @@
+[
+  { "id": "padi", "name": "Padi", "group": "pangan" },
+  { "id": "jagung", "name": "Jagung", "group": "pangan" },
+  { "id": "cabai", "name": "Cabai", "group": "hortikultura" },
+  { "id": "tomat", "name": "Tomat", "group": "hortikultura" },
+  { "id": "bawang-merah", "name": "Bawang Merah", "group": "hortikultura" },
+  { "id": "kelapa-sawit", "name": "Kelapa Sawit", "group": "perkebunan" },
+  { "id": "sayuran-daun", "name": "Sayuran Daun", "group": "hortikultura" },
+  { "id": "kedelai", "name": "Kedelai", "group": "pangan" },
+  { "id": "semangka", "name": "Semangka", "group": "hortikultura" },
+  { "id": "melon", "name": "Melon", "group": "hortikultura" },
+  { "id": "kopi", "name": "Kopi", "group": "perkebunan" },
+  { "id": "kakao", "name": "Kakao", "group": "perkebunan" },
+  { "id": "cengkeh", "name": "Cengkeh", "group": "perkebunan" },
+  { "id": "durian", "name": "Durian", "group": "hortikultura" },
+  { "id": "mangga", "name": "Mangga", "group": "hortikultura" },
+  { "id": "alpukat", "name": "Alpukat", "group": "hortikultura" },
+  { "id": "jeruk", "name": "Jeruk", "group": "hortikultura" }
+]

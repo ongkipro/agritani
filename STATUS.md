@@ -40,22 +40,19 @@ Kontrak pra-pengembangan diaudit ulang pada 2026-09-29 dengan skill dotfiles ter
 
 ## Active work
 
-T-01 selesai dan terverifikasi. Melanjutkan ke T-02 (Content config: 6 koleksi + cek integritas).
+T-02 selesai dikerjakan dan terverifikasi secara lokal (tes 9/9 lulus, build dan check lulus), namun check-boundary menghasilkan REVIEW_REQUIRED (effectiveRisk R2). Sesuai aturan, task T-02 dihentikan menunggu review independen resmi dari Claude/Paduka Ongki. Melanjutkan ke T-23 dan T-04 yang tidak bergantung pada T-02.
 
 ## Blockers
 
-Tidak ada blocker untuk task fondasi dan struktur. Data dari pemilik yang dibutuhkan dikumpulkan dalam satu checklist: **PRD §8** (8.1 wajib sebelum rilis v1, 8.2 penting, 8.3 setelah v1). Data yang belum tersedia diberi placeholder `TODO(OQ-n)`.
+T-02 menunggu review independen (boundary review) dari Claude/Paduka Ongki karena kenaikan risiko deterministik skema koleksi ke R2.
 
 ## Verification evidence
 
-- T-01 fondasi Astro 7.3.5 + Tailwind 4.3.3 + sitemap 3.7.4 selesai.
-- Font 6 file woff2 di `public/fonts/` (95.9 KB ≤ 130 KB).
-- `scripts/check-contrast.mjs`: semua rasio kontras teks ≥ 7.0:1 dan kontrol non-teks ≥ 3.0:1 lulus.
-- `src/dev/spesimen.astro` terbukti tampil di dev mode (port 4330) dan tidak masuk `dist/`.
-- Bukti visual dirender di 390px dan 1440px via `agritani-shot.cjs`.
-- Pemeriksaan dasar: `npm run check:contrast`, `npm test`, `npx astro check`, `npm run build` semua PASS.
+- T-01 fondasi Astro 7.3.5 + Tailwind 4.3.3 + sitemap 3.7.4 selesai dan ter-commit.
+- T-02 lokal: `src/lib/content-integrity.test.ts` (9 kasus uji gagal/lulus PASS dalam 5.5ms), `npx astro check` PASS (0 errors), `npm run build` PASS, `npm run check:contrast` PASS.
+- Bukti visual T-01: `spesimen-390.png` dan `spesimen-1440.png` tersimpan.
 
 ## Next verified action
 
-T-02: Content config 6 koleksi (ARCHITECTURE §3) + cek integritas (`src/content.config.ts`, `src/lib/content-integrity.ts`, tes).
+T-23: CI GitHub Actions (`.github/workflows/ci.yml`) dan T-04: Kerangka global, 404, `waLink`.
 
