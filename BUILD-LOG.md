@@ -190,3 +190,34 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - Checks passed: `npm run check:commodities` (118/118), `npm run check:contrast`, `npm test` (38/38 pass), `npx astro check` (0 errors), `npm run build` (8 pages), `PUBLIC_INCLUDE_DRAFTS=true npm run build` (175 pages).
 - Boundary check passed: `BOUNDARY PASS effectiveRisk=R1`.
 - Ledger run `RUN-20260929T130452Z-a04d15c3` finished with result PASS.
+
+## 2026-09-29 — T-13 Dynamic SEO Engine & Post-Build Verifier (READY, PENDING INDEPENDENT REVIEW)
+
+- Dynamic SEO engine and metadata (`src/lib/seo.ts`):
+  - Completed `buildSeo(input: SeoInput)` with JSON-LD `@graph` and stable `@id`s (`#organization`, `#website`, `#breadcrumb`, `#webpage`, `#article`, `#person`).
+  - Breadcrumb hierarchy automatically aligned: `BreadcrumbList` in schema mirrors visible DOM breadcrumbs.
+  - Open Graph tags: 1200×630 dimensions, `og:locale=id_ID`, `og:site_name=Agritani`, article published/modified time, author URL, and section.
+  - Twitter card tags: `summary_large_image`, title, description, and image alt text.
+  - Canonical URLs formatted strictly with apex host `https://agritani.com`, trailing slash, and stripped query strings/fragments.
+- Head component (`src/components/SeoHead.astro`):
+  - Full tag set rendered: primary meta, Open Graph, article OG, Twitter, favicon SVG, apple-touch-icon, sitemap link, theme-color `#1A6335`, and JSON-LD `@graph`.
+- Static assets created:
+  - `public/robots.txt`: Disallow `/cari/`, Sitemap index link.
+  - `public/apple-touch-icon.png`: 180×180 PNG generated from brand mark (4.5 KB).
+  - `public/og/`: 14 static OG PNGs (1200×630) created from brand palette and reverse logo (`default.png`, `jurnal.png`, 6 topic hubs, `komoditas.png`, 4 tool images, `produk.png`), all 34–41 KB (< 150 KB limit).
+- Sitemap configuration (`astro.config.mjs`):
+  - Filter excludes `/cari/`, `/404`, `/spesimen/`, and draft articles (`draft: true`).
+  - Serialize attaches accurate ISO `lastmod` from article/page frontmatter, removes ignored `priority`/`changefreq`.
+- Post-build verifier script (`scripts/check-seo.mjs`):
+  - Scans all generated HTML in `dist/`.
+  - Verifies: exactly one `<title>`, `<h1>`, canonical link; canonical URL structure; meta description bounds; valid JSON-LD `@graph`; no `noindex` pages in sitemap; robots.txt and asset existence.
+  - Integrated into `package.json` `npm run build` and registered as `npm run check:seo`.
+- Verifications:
+  - `npm run check:commodities`: 118/118 valid assignments.
+  - `npm run check:contrast`: PASS.
+  - `npm test`: 38/38 unit tests PASS.
+  - `npx astro check`: 0 errors.
+  - `npm run build` (production build): 8 pages, `check-seo` PASS (0 errors, 0 warnings).
+  - `PUBLIC_INCLUDE_DRAFTS=true npm run build` (draft preview build): 175 pages, `check-seo` PASS (0 errors, 0 warnings).
+  - Boundary: escalated to R3 due to `package.json` modification. Stopped for independent review without self-review. Ledger run `RUN-20260929T131043Z-8a04bf9a` finished with result BLOCKED.
+

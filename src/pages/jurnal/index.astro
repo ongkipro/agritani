@@ -46,17 +46,19 @@ const activeCommodities = commodities
   .filter((c) => c.count >= 3)
   .sort((a, b) => b.count - a.count);
 
-const seo: SeoInput = {
-  title: 'Jurnal Tani — Riset Lapangan & Solusi Agronomi',
-  description:
-    'Portal edukasi dan riset agronomi terapan oleh Prof. Arif Prabowo. Menghadirkan solusi ilmiah praktis untuk mengatasi masalah tanaman pangan, hortikultura, dan perkebunan.',
-  canonicalPath: '/jurnal/',
-};
-
 const breadcrumbItems = [
   { name: 'Beranda', url: '/' },
   { name: 'Jurnal Tani', url: '/jurnal/' },
 ];
+
+const seo: SeoInput = {
+  title: 'Jurnal Tani: Panduan Agronomi',
+  description:
+    'Panduan agronomi dan riset pertanian terapan oleh Prof. Arif Prabowo. Solusi ilmiah praktis untuk masalah tanaman pangan, hortikultura, dan perkebunan.',
+  canonicalPath: '/jurnal/',
+  breadcrumbs: breadcrumbItems,
+  pageType: 'collection',
+};
 ---
 
 <BaseLayout seo={seo}>

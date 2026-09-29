@@ -55,6 +55,8 @@ const seo: SeoInput = {
     pageEntry?.data.description ||
     `Kumpulan panduan teknis dan artikel ilmiah terapan tentang ${topic.name} oleh Prof. Arif Prabowo di Jurnal Tani Agritani.`,
   canonicalPath: `/jurnal/topik/${topic.slug}/`,
+  breadcrumbs: breadcrumbItems,
+  pageType: 'collection',
 };
 
 // Associated tool recommendation based on topic

@@ -45,17 +45,19 @@ export async function getStaticPaths() {
 
 const { pageNumber, totalPages, articles } = Astro.props;
 
-const seo: SeoInput = {
-  title: `Jurnal Tani — Halaman ${pageNumber}`,
-  description: `Arsip artikel dan panduan agronomi terapan Jurnal Tani Agritani oleh Prof. Arif Prabowo — Halaman ${pageNumber} dari ${totalPages}.`,
-  canonicalPath: `/jurnal/halaman/${pageNumber}/`,
-};
-
 const breadcrumbItems = [
   { name: 'Beranda', url: '/' },
   { name: 'Jurnal Tani', url: '/jurnal/' },
   { name: `Halaman ${pageNumber}`, url: `/jurnal/halaman/${pageNumber}/` },
 ];
+
+const seo: SeoInput = {
+  title: `Jurnal Tani — Halaman ${pageNumber}`,
+  description: `Arsip artikel dan panduan riset agronomi terapan dari Jurnal Tani oleh Prof. Arif Prabowo. Menampilkan daftar artikel halaman ${pageNumber} dari ${totalPages}.`,
+  canonicalPath: `/jurnal/halaman/${pageNumber}/`,
+  breadcrumbs: breadcrumbItems,
+  pageType: 'collection',
+};
 
 const prevHref = pageNumber === 2 ? '/jurnal/' : `/jurnal/halaman/${pageNumber - 1}/`;
 const nextHref = pageNumber < totalPages ? `/jurnal/halaman/${pageNumber + 1}/` : null;
