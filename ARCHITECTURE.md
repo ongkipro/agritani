@@ -77,7 +77,7 @@ agritani/
 │   │   ├── alat/index.astro  alat/diagnosa-gejala.astro  alat/kalender-tanam.astro
 │   │   ├── alat/cuaca-tani.astro  alat/kalkulator-dosis.astro
 │   │   ├── produk/index.astro  produk/[slug].astro
-│   │   ├── jurnal/index.astro  jurnal/[slug].astro  jurnal/topik/[klaster].astro
+│   │   ├── jurnal/index.astro  jurnal/[slug].astro  jurnal/topik/[topik].astro  jurnal/komoditas/[komoditas].astro
 │   │   └── penulis/arif-prabowo.astro
 │   └── styles/global.css         # @import "tailwindcss"; @theme token DESIGN §3; print CSS
 ├── astro.config.mjs
@@ -140,17 +140,17 @@ const articles = defineCollection({
   loader: glob({ pattern: '*.md', base: './docs/content/articles' }),
   schema: ({ image }) => z.object({
     title: z.string().min(20).max(110),              // H1; naskah saat ini 73–103 karakter
-    seoTitle: z.string().max(48).optional(),         // wajib bila title > 48 (dicek integritas); <title> = `${seoTitle ?? title} | Agritani`
-    description: z.string().min(120).max(160),       // meta description = dek
+    metaTitle: z.string().min(30).max(60),           // dari `meta_title` naskah; dipakai apa adanya sebagai <title> artikel (tanpa sufiks)
+    description: z.string().min(120).max(160),       // dari `meta_description` naskah; juga dek
     answer: z.string().optional(),                   // Jawaban Singkat 40–60 kata; wajib untuk non-draft (dicek integritas)
     slug: z.string(),
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     author: z.string().default('Arif Prabowo'),
     reviewedBy: z.string().optional(),               // hanya bila peninjau berbeda dari penulis
-    cluster: z.enum(['sawit', 'pangan', 'hortikultura', 'tanah-nutrisi', 'urban-farming']),
+    topic: z.enum(['proteksi-tanaman', 'tanah-nutrisi', 'budidaya', 'air-irigasi', 'pascapanen-agribisnis', 'sains-tanaman']),
     commodities: z.array(reference('commodities')).min(1),
-    focusKeyword: z.string(),
+    tags: z.array(z.string()).min(1),                // kata kunci editorial dari naskah; tags[0] = kata kunci utama (bukan meta keywords)
     featured: z.boolean().default(false),
     heroImage: z.object({ src: image(), alt: z.string().min(5).max(125), credit: z.string() }).optional(),
     fieldTakeaways: fieldTakeaways.optional(),
@@ -231,12 +231,37 @@ export const collections = { commodities, articles, products, symptoms, cropCale
 
 Catatan: `file()` loader mewajibkan `id` string per entri; karena itu relasi `cropCalendars.id` → `commodities` dicek oleh integritas (§3.1), bukan `reference()`.
 
+### 3.0. Pemetaan naskah → skema (diterapkan T-03)
+
+Naskah di `docs/content/articles/` (150 file per 2026-09-29) memakai frontmatter `title, slug, category, author, reading_time, published_date, source, tags, meta_title, meta_description`.
+
+| Naskah | Skema | Aturan |
+| :--- | :--- | :--- |
+| `meta_title` (45–59 karakter) | `metaTitle` | Dipakai apa adanya sebagai `<title>` |
+| `meta_description` (124–155) | `description` | Juga dek artikel |
+| `tags` | `tags` | Urutan dipertahankan; `tags[0]` = kata kunci utama |
+| `published_date` | `pubDate` | — |
+| `author: "Tim Riset Agronomi Agritani"` | `author: "Arif Prabowo"` | Keputusan penulis (OQ-4) |
+| `category` (47 variasi) | `topic` (6) + `commodities` | Tabel di bawah; komoditas diisi dari isi artikel |
+| `reading_time`, `source` | — | Dihapus; waktu baca dihitung |
+
+| `topic` | Kategori naskah yang dipetakan | Artikel |
+| :--- | :--- | ---: |
+| `budidaya` | Teknik Budidaya & Manajemen Lahan/Pembibitan; Komoditas Pangan, Perkebunan & Hortikultura; Tanaman Pangan & (Budidaya Padi/Palawija/Umbi-Umbian); Perkebunan Kelapa Sawit; Perkebunan & Manajemen Lahan; Hortikultura & (Tanaman Buah/Teknik Budidaya); Teknik Pembenihan & (Agronomi/Pembibitan); Agro-Ekologi & (Budidaya/Teknik Budidaya); Urban Farming & (Hidroponik/Lahan Sempit) | 54 |
+| `proteksi-tanaman` | semua kategori Hama…, Patologi Tanaman…, Pengendalian Hama Terpadu & Bioproteksi, Bioproteksi & Mikrobiologi Tanah, Perkebunan & (Hama/Patologi) Tanaman, Perkebunan Kopi & Patologi, Tanaman Pangan & Hama Lapangan | 35 |
+| `tanah-nutrisi` | Ilmu/Sains/Biologi/Kesuburan Tanah…, Nutrisi Tanaman…, Fisiologi Nutrisi Tanaman, Biostimulan & Fisiologi Tanaman | 29 |
+| `pascapanen-agribisnis` | Bioteknologi, Agribisnis & Pasca Panen | 14 |
+| `air-irigasi` | Manajemen Air & Sistem Irigasi Pertanian | 9 |
+| `sains-tanaman` | Fisiologi & Anatomi Tumbuhan; Fisiologi Tanaman & Perawatan | 9 |
+
+Pemetaan kategori adalah titik awal; T-03 boleh memindahkan artikel ke topik yang lebih tepat berdasarkan isinya dan mencatat pengecualiannya di BUILD-LOG.
+
 ### 3.1. Integritas konten (dijalankan setiap build dan dev)
 
 `src/lib/content-integrity.ts` mengekspor `assertContentIntegrity()` yang dipanggil di `getStaticPaths` `src/pages/jurnal/[slug].astro` (selalu dieksekusi saat build/dev); galat menggagalkan build dengan nama file:
 
 - Slug artikel unik; `symptoms[].article` menunjuk artikel **terbit**; `cropCalendars[].id` ada di `commodities`.
-- Artikel terbit (`draft: false`) wajib: ≥ 1 `references` (REQ-05), `answer` 40–60 kata, `seoTitle` bila `title` > 48 karakter, `author` terisi.
+- Artikel terbit (`draft: false`) wajib: ≥ 1 `references` (REQ-05), `answer` 40–60 kata, `metaTitle` & `description` unik antarartikel, `author` terisi.
 - Gejala dan kalender tanpa `reviewedBy` tidak dirender di produksi (bukan galat).
 - Di mode pratinjau (§3.2), rujukan ke artikel draft diizinkan dan data tanpa `reviewedBy` ikut dirender dengan label "BELUM DITINJAU".
 
@@ -321,7 +346,7 @@ Karena artikel baru terbit setelah pustaka terverifikasi (OQ-3/T-16), UI dikemba
 v1 tidak punya admin. Aturan berikut berlaku sejak T-01 supaya CMS nanti
 hanya menjadi "editor" di atas file yang sudah ada:
 
-1. **Konten di file, bukan di `.astro`.** Semua teks yang kelak diedit non-developer tinggal di koleksi konten: artikel (`docs/content/articles/*.md`), produk (`src/data/products.json`), gejala (`src/data/symptoms.json`), serta teks halaman statis (Tentang Kami, pengantar hub klaster, profil penulis, Kebijakan Privasi) di koleksi `pages` (`src/content/pages/*.md`). Komponen `.astro` hanya berisi struktur dan label UI.
+1. **Konten di file, bukan di `.astro`.** Semua teks yang kelak diedit non-developer tinggal di koleksi konten: artikel (`docs/content/articles/*.md`), produk (`src/data/products.json`), gejala (`src/data/symptoms.json`), serta teks halaman statis (Tentang Kami, pengantar hub topik & komoditas, profil penulis, Kebijakan Privasi) di koleksi `pages` (`src/content/pages/*.md`). Komponen `.astro` hanya berisi struktur dan label UI.
 2. **Skema Zod = kontrak CMS.** Field, batas panjang, dan enum di `src/content.config.ts` menjadi sumber definisi form CMS; CMS tidak boleh mengizinkan konten yang gagal build.
 3. **Aset di satu folder** (`src/assets/`), direferensikan relatif dari frontmatter, agar media library CMS bisa mengelolanya.
 4. **Publikasi lewat build.** Edit CMS → commit/PR ke repo → build statis → deploy. Tidak ada penulisan langsung ke produksi.

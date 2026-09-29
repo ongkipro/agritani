@@ -51,7 +51,7 @@ Berlaku untuk agent maupun manusia. Detail aturan agent ada di [AGENTS.md](AGENT
 | T-00 | Reference discovery & composition contract | REQ-01 | REQ-03, REQ-08 | R1 | — | — | — | Done 2026-09-29 (DESIGN §4.0) |
 | T-01 | Fondasi Astro 7 + Tailwind 4 + token + font | REQ-08 | REQ-03 | R1 | — | — | — | Pending |
 | T-02 | Content config: 6 koleksi (ARCHITECTURE §3) + cek integritas | REQ-03 | REQ-05, REQ-06 | R1 | — | T-01 | — | Pending |
-| T-03 | Normalisasi frontmatter 25 artikel (in place) | REQ-03 | REQ-04, REQ-05 | R1 | — | T-02 | — | Pending |
+| T-03 | Normalisasi frontmatter 150 artikel (in place) | REQ-03 | REQ-04, REQ-05 | R1 | — | T-02 | — | Pending |
 | T-04 | Kerangka global, 404, `waLink` WhatsApp | REQ-01 | REQ-07, REQ-08 | R1 | ✓ | T-01 | OQ-5, OQ-7 (placeholder teks diperbolehkan, ditandai) | Pending |
 | T-05 | ArticleLayout, TOC, indeks `/jurnal` | REQ-03 | REQ-08 | R2 | ✓ | T-03, T-04 | — | Pending |
 | T-06 | FieldSummaryBox | REQ-04 | REQ-08 | R1 | ✓ | T-05 | — | Pending |
@@ -72,7 +72,7 @@ Berlaku untuk agent maupun manusia. Detail aturan agent ada di [AGENTS.md](AGENT
 | T-21 | Kalkulator Dosis `/alat/kalkulator-dosis/` | REQ-11 | REQ-08, OQ-2 | R1 | ✓ | T-04 | — | Pending |
 | T-22 | Konsultasi `/konsultasi/` + indeks `/alat/` | REQ-12 | G-6, REQ-08 | R1 | ✓ | T-04 | OQ-1 | Pending |
 | T-23 | CI GitHub Actions: build, check, test, kontras, SEO | REQ-08 | REQ-07 | R1 | — | T-01 | — | Pending |
-| T-25 | Konten terbit: Jawaban Singkat, `seoTitle`, pengantar hub, tinjauan data | REQ-03 | REQ-05, REQ-09, DEC-015 | R1 | — | T-03 | Device lain (naskah), OQ-3, OQ-11, OQ-12 | Pending |
+| T-25 | Konten terbit: Jawaban Singkat, judul tanpa klaim absolut, pengantar hub, tinjauan data | REQ-03 | REQ-05, REQ-09, DEC-015 | R1 | — | T-03 | Device lain (naskah), OQ-3, OQ-11, OQ-12 | Pending |
 | T-24 | Rilis produksi & observability | REQ-08 | RELEASE.md, OBSERVABILITY.md | R2 | — | T-15, T-18 | OQ-6 + **persetujuan deploy Paduka Ongki** | Pending |
 
 Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 ‖ T-23 → T-04 → T-03 → T-05 → (T-06, T-07, T-13, T-14) → T-21 → T-22 → T-09 → T-19 → T-20 → T-08 → T-10 → T-17 → T-11/T-12 (saat OQ terjawab) → T-16 & T-25 (jalur konten, paralel) → T-18 → T-15 → T-24.
@@ -101,14 +101,14 @@ Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 ‖ T-23 → T-04
 - **Owner skill:** `astro-development`, `testing-engineering`
 - **Allowed paths:** `src/content.config.ts`, `src/data/{commodities,products,symptoms,crop-calendars}.json`, `src/data/spray-thresholds.json`, `src/lib/content-integrity.ts`, `src/lib/content-integrity.test.ts`
 - **Scope:** Skema ARCHITECTURE §3 (6 koleksi). `commodities.json` diisi daftar komoditas awal (padi, jagung, cabai, tomat, bawang-merah, kelapa-sawit, sayuran-daun, dan komoditas produk: kedelai, semangka, melon, kopi, kakao, cengkeh, durian, mangga, alpukat, jeruk); `products.json`, `symptoms.json`, `crop-calendars.json` = `[]`; `spray-thresholds.json` = `null`. `content-integrity.ts` mengimplementasikan ARCHITECTURE §3.1 sebagai fungsi murni atas data koleksi; T-05 memanggilnya dari `getStaticPaths`.
-- **Done when:** `npx astro check` dan `npm run build` lulus dengan koleksi kosong; tes `content-integrity` (fixture: artikel terbit tanpa referensi, tanpa `answer`, judul > 48 tanpa `seoTitle`, gejala menunjuk slug fiktif) masing-masing menghasilkan galat yang menyebut entri-nya.
+- **Done when:** `npx astro check` dan `npm run build` lulus dengan koleksi kosong; tes `content-integrity` (fixture: artikel terbit tanpa referensi, tanpa `answer`, `metaTitle` atau `description` ganda, gejala menunjuk slug fiktif) masing-masing menghasilkan galat yang menyebut entri-nya.
 
-### T-03 — Normalisasi frontmatter 25 artikel (in place)
+### T-03 — Normalisasi frontmatter 150 artikel (in place)
 - **Primary:** REQ-03 · **Constraints:** REQ-04, REQ-05 · **Risk:** R1
 - **Owner skill:** `astro-development`, `content`
 - **Allowed paths:** `docs/content/articles/*.md`
-- **Scope:** **Koordinasi:** naskah sedang dikerjakan di device lain; T-03 dimulai setelah naskah terbaru di-pull, dan hasilnya di-commit terpisah. Normalisasi: `published_date`→`pubDate`, `category`→`cluster`, hapus `reading_time`/`source`, `author: "Arif Prabowo"`, tambah `description` (120–160), `commodities` (slug dari `commodities.json`), `focusKeyword` (dari `docs/research/keywords-masterlist.md`), `seoTitle` (≤ 48) untuk judul > 48 karakter, `fieldTakeaways` dengan `kind` (`masalah`/`panduan`) hanya dari isi yang ada (dosis tidak ditebak), hapus H1 duplikat di badan. `answer` tidak ditulis di T-03 (ditulis penulis); semua artikel `draft: true` sampai `answer` + referensi terverifikasi (T-16) ada.
-- **Done when:** `npx astro check` dan `npm run build` lulus dengan 25 entri terbaca (semua draft); build pratinjau (`PUBLIC_INCLUDE_DRAFTS=true`) merender 25 artikel; daftar artikel yang masih butuh `answer`/referensi dicatat di BUILD-LOG.
+- **Scope:** **Koordinasi:** naskah juga dikerjakan di device lain; T-03 dimulai setelah `git pull` terbaru, di-commit terpisah, dan hanya mengubah frontmatter + H1 duplikat. Terapkan pemetaan ARCHITECTURE §3.0: `meta_title`→`metaTitle`, `meta_description`→`description`, `tags` tetap, `published_date`→`pubDate`, `category`→`topic` (tabel 6 topik; pengecualian dicatat), `author: "Arif Prabowo"`, hapus `reading_time`/`source`; tambah `commodities` (slug dari `commodities.json`, dari isi artikel; tambahkan komoditas baru ke `commodities.json` bila perlu); `fieldTakeaways` dengan `kind` (`masalah`/`panduan`) dari blok "Key Takeaways" hanya bila isinya memadai (dosis tidak ditebak). `answer` tidak ditulis di T-03. Semua artikel `draft: true`. Dapat dikerjakan dengan skrip sekali pakai yang tidak di-commit; hasilnya diperiksa manual pada sampel.
+- **Done when:** `npx astro check` dan `npm run build` lulus dengan 150 entri terbaca (semua draft); tidak ada `metaTitle`/`description` ganda; setiap topik terisi; build pratinjau merender semua artikel; sebaran per topik & komoditas serta daftar artikel yang butuh `answer`/referensi dicatat di BUILD-LOG.
 
 ### T-04 — BaseLayout, Navbar, Footer, 404 (UI)
 - **Primary:** REQ-01 · **Constraints:** REQ-07, REQ-08 · **Risk:** R1
@@ -120,8 +120,8 @@ Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 ‖ T-23 → T-04
 ### T-05 — ArticleLayout, TOC, indeks jurnal (UI)
 - **Primary:** REQ-03 · **Constraints:** REQ-08 · **Risk:** R2
 - **Owner skill:** `astro-development`, `design-taste`, `impeccable`, `ui-validation`
-- **Allowed paths:** `src/layouts/ArticleLayout.astro`, `src/components/{ArticleToc,ArticleRow,AuthorByline,AuthorBio,ShortAnswer,SymptomCompare}.astro`, `src/pages/jurnal/index.astro`, `src/pages/jurnal/[slug].astro`, `src/pages/jurnal/topik/[klaster].astro`, `src/content/pages/topik-*.md`, `src/lib/reading-time.ts`
-- **Scope:** Anatomi DESIGN §4.3 (17 blok, state §4.3.3) + hub klaster §4.2.3. Waktu baca dihitung dari jumlah kata. Indeks jurnal berupa daftar baris dengan filter klaster tanpa JS wajib.
+- **Allowed paths:** `src/layouts/ArticleLayout.astro`, `src/components/{ArticleToc,ArticleRow,AuthorByline,AuthorBio,ShortAnswer,SymptomCompare}.astro`, `src/pages/jurnal/index.astro`, `src/pages/jurnal/halaman/[n].astro`, `src/pages/jurnal/[slug].astro`, `src/pages/jurnal/topik/[topik].astro`, `src/pages/jurnal/komoditas/[komoditas].astro`, `src/content/pages/{topik,komoditas}-*.md`, `src/lib/reading-time.ts`
+- **Scope:** Anatomi DESIGN §4.3 (17 blok, state §4.3.3), indeks jurnal berpaginasi statis (30/halaman), hub topik (6) dan hub komoditas (≥ 3 artikel terbit) §4.2.3. Waktu baca dihitung dari jumlah kata.
 - **Done when:** Gate UI lulus di mode pratinjau draft (ARCHITECTURE §3.2); `assertContentIntegrity()` dipanggil dari `getStaticPaths` `jurnal/[slug]`; measure isi terukur 65–72ch di 1440px; TOC sticky di ≥1024px dan `<details>` di 360px; tanpa scroll horizontal halaman di 320px; build produksi tidak memuat draft; tautan ke hub hanya dibuat untuk hub yang punya artikel terbit.
 
 ### T-06 — FieldSummaryBox (UI)
@@ -140,7 +140,7 @@ Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 ‖ T-23 → T-04
 - **Primary:** REQ-01 · **Constraints:** REQ-03, REQ-06, REQ-08 · **Risk:** R2
 - **Owner skill:** `design-taste`, `astro-development`, `impeccable`, `ui-validation`
 - **Allowed paths:** `src/pages/index.astro`, `src/components/CommodityPicker.astro`, komponen khusus homepage di `src/components/home/`
-- **Scope:** Anatomi DESIGN §4.2.3 Beranda + C1–C8. Tombol komoditas diturunkan dari `commodities` yang punya data gejala tertinjau (bukan daftar tetap); jumlah artikel per klaster dihitung dari koleksi.
+- **Scope:** Anatomi DESIGN §4.2.3 Beranda + C1–C8. Tombol komoditas diturunkan dari `commodities` yang punya data gejala tertinjau (bukan daftar tetap); jumlah artikel per hub komoditas dihitung dari koleksi.
 - **Done when:** Gate UI lulus; checklist DESIGN §8 diperiksa pada render 360px dan 1440px dan hasilnya dicatat; tidak ada statistik/afiliasi/testimoni tanpa data resmi.
 
 ### T-09 — Triage engine (UI)
@@ -188,13 +188,13 @@ Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 ‖ T-23 → T-04
 - **Primary:** REQ-08 · **Constraints:** REQ-01, REQ-07 · **Risk:** R1
 - **Owner skills:** `ui-validation`, `web-perf`, `impeccable`
 - **Allowed paths:** perbaikan kecil di `src/**`; catatan di `BUILD-LOG.md`
-- **Done when:** Pada **build produksi** dengan minimal satu artikel terbit per klaster yang dirilis, untuk Beranda, 1 artikel, 1 hub, `/alat/` beserta 4 alat, `/konsultasi/`, `/produk/`, 1 detail produk, `/kemitraan-distributor/`: axe tanpa pelanggaran serius; kontras render ≥ 7:1 teks dan ≥ 3:1 indikator; Lighthouse mobile ≥ 95 (Perf/A11y/SEO); transfer awal ≤ 350 KB; CLS ≤ 0.05; tidak ada galat CSP di konsol; `grep 'wa.me'` hanya di `src/lib/whatsapp.ts`; setiap halaman memuat ≤ 1 ajakan WhatsApp sesuai tabel DESIGN §2.8 (dihitung dari HTML build: elemen `data-cta="whatsapp"` per halaman); `grep` merek/marketplace pihak ketiga di `src/` dan artikel terbit = 0 di luar `references` (DEC-005). Semua hasil + perintah dicatat.
+- **Done when:** Pada **build produksi** dengan minimal satu artikel terbit per topik yang dirilis, untuk Beranda, 1 artikel, 1 hub, `/alat/` beserta 4 alat, `/konsultasi/`, `/produk/`, 1 detail produk, `/kemitraan-distributor/`: axe tanpa pelanggaran serius; kontras render ≥ 7:1 teks dan ≥ 3:1 indikator; Lighthouse mobile ≥ 95 (Perf/A11y/SEO); transfer awal ≤ 350 KB; CLS ≤ 0.05; tidak ada galat CSP di konsol; `grep 'wa.me'` hanya di `src/lib/whatsapp.ts`; setiap halaman memuat ≤ 1 ajakan WhatsApp sesuai tabel DESIGN §2.8 (dihitung dari HTML build: elemen `data-cta="whatsapp"` per halaman); `grep` merek/marketplace pihak ketiga di `src/` dan artikel terbit = 0 di luar `references` (DEC-005). Semua hasil + perintah dicatat.
 
 ### T-16 — Sumber pustaka tingkat paper
 - **Primary:** REQ-05 · **Constraints:** NG-3 · **Risk:** R1
 - **Owner skill:** `content` (riset) — setiap entri diverifikasi dari sumber primer (halaman penerbit / resolusi DOI), bukan dari ingatan model
 - **Allowed paths:** `docs/content/articles/*.md` (field `references`, `draft`), `docs/research/scientific-validation.md`
-- **Done when:** Setiap artikel yang akan terbit punya ≥ 1 referensi yang DOI/URL-nya terbukti mengarah ke karya yang dikutip (dicek dan dicatat); artikel yang klaimnya tidak dapat didukung tetap `draft` atau direvisi; `scientific-validation.md` tidak lagi mengklaim "Verified" tanpa rujukan tingkat paper.
+- **Done when:** Setiap artikel yang akan terbit (150 naskah; per 2026-09-29 hanya 1 yang punya bagian referensi) punya ≥ 1 referensi yang DOI/URL-nya terbukti mengarah ke karya yang dikutip (dicek dan dicatat); artikel yang klaimnya tidak dapat didukung tetap `draft` atau direvisi; `scientific-validation.md` tidak lagi mengklaim "Verified" tanpa rujukan tingkat paper. Dikerjakan bertahap per topik, selaras dengan T-25.
 
 ### T-17 — Kebijakan Privasi (UI)
 - **Primary:** REQ-02 · **Constraints:** NG-4 · **Risk:** R1
@@ -246,9 +246,9 @@ Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 ‖ T-23 → T-04
 ### T-25 — Konten siap terbit (jalur konten)
 - **Primary:** REQ-03 · **Constraints:** REQ-05, REQ-09, DEC-015 · **Risk:** R1
 - **Owner skill:** `content`, `volumx-writer`, `copywriting` (panjang judul/deskripsi)
-- **Allowed paths:** `docs/content/articles/*.md` (field `answer`, `seoTitle`, `description`, `draft`), `src/content/pages/topik-*.md`, `src/data/crop-calendars.json` & `src/data/symptoms.json` & `src/data/spray-thresholds.json` (hanya field `reviewedBy`/`reviewedAt` setelah persetujuan tertulis Prof. Arif)
+- **Allowed paths:** `docs/content/articles/*.md` (field `answer`, `title`, `metaTitle`, `description`, `draft` saja), `src/content/pages/{topik,komoditas}-*.md`, `src/data/crop-calendars.json` & `src/data/symptoms.json` & `src/data/spray-thresholds.json` (hanya field `reviewedBy`/`reviewedAt` setelah persetujuan tertulis Prof. Arif)
 - **Koordinasi:** naskah artikel dikerjakan di device lain; task ini hanya berjalan setelah naskah terbaru di-pull, dan tidak menyentuh isi artikel di luar field di atas.
-- **Scope:** Jawaban Singkat 40–60 kata per artikel (ditulis/disetujui penulis), `seoTitle` ≤ 48 bila perlu, pengantar hub (OQ-12), pencatatan persetujuan data kalender/gejala/ambang (OQ-11). Artikel diubah ke `draft: false` hanya bila integritas (ARCHITECTURE §3.1) lulus.
+- **Scope:** Jawaban Singkat 40–60 kata per artikel (ditulis/disetujui penulis); revisi 6 judul berklaim absolut ("100%", "Ampuh", "Tuntas" — artikel-10x penyerbukan vanili/durian, pengendalian rumput teki, usir siput, parit isolasi Ganoderma, sambung pucuk, dormansi benih padi) sesuai DESIGN §1.3; pengantar hub (OQ-12); pencatatan persetujuan data kalender/gejala/ambang (OQ-11). Artikel diubah ke `draft: false` hanya bila integritas (ARCHITECTURE §3.1) lulus. Skala: 150 naskah — terbitkan bertahap per topik, dimulai dari `proteksi-tanaman` (paling dekat dengan Diagnosa Gejala).
 - **Done when:** `npm run build` produksi lulus dengan artikel terbit; daftar artikel terbit vs draft dan catatan persetujuan Prof. Arif (tanggal, cakupan) tercatat di BUILD-LOG.
 
 ### T-24 — Rilis produksi & observability

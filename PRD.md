@@ -29,7 +29,7 @@ Sektor pertanian Indonesia menghadapi jurang informasi kritis:
 
 ## 2. Goals & Success Metrics
 
-* **G-1 (Reputasi Otoritas Sains)**: Menyajikan portal pengetahuan agrikultur berbasis riset ilmiah dengan 25 artikel agronomi mendalam yang setiap klaim teknisnya dapat ditelusuri ke pustaka terverifikasi. Masterlist 370 kata kunci adalah bahan riset SEO internal, bukan halaman publik.
+* **G-1 (Reputasi Otoritas Sains)**: Menyajikan portal pengetahuan agrikultur berbasis riset ilmiah dengan 150 artikel agronomi (naskah per 2026-09-29) yang setiap klaim teknisnya dapat ditelusuri ke pustaka terverifikasi. Masterlist 370 kata kunci adalah bahan riset SEO internal, bukan halaman publik.
 * **G-2 (Diagnostic Triage Speed)**: Memungkinkan petani mencapai daftar kandidat diagnosis dalam ≤ 4 interaksi (komoditas → bagian → gejala → hasil) tanpa memuat ulang halaman.
 * **G-3 (B2B Distributor Pipeline — sasaran kedua)**: Menyediakan kanal intake mitra distributor/perkebunan resmi yang langsung terhubung ke tim kemitraan Agritani.
 * **G-6 (Konsultasi terukur tanpa pelacak)**: Setiap pesan WhatsApp dari situs membawa kode sumber di baris pertama (misal `[Web·Diagnosa]`, `[Web·Kalender]`, `[Web·Produk:aussie]`), sehingga tim dapat menghitung konsultasi per sumber secara manual tanpa cookie atau analitik pihak ketiga.
@@ -107,8 +107,9 @@ Anatomi setiap tipe halaman: [DESIGN.md](DESIGN.md) §4.2. Semua URL memakai tra
 /alat/cuaca-tani/            -> Cuaca untuk Aplikasi Lapangan (REQ-10)
 /alat/kalkulator-dosis/      -> Kalkulator Dosis Tangki & Luas Lahan (REQ-11)
 /konsultasi/                 -> Konsultasi Pertanian via WhatsApp (REQ-12)
-/jurnal/                     -> Indeks Jurnal Tani: artikel terbaru + 5 hub klaster
-/jurnal/topik/[klaster]/     -> Hub klaster (sawit, pangan, hortikultura, tanah-nutrisi, urban-farming)
+/jurnal/                     -> Indeks Jurnal Tani: artikel terbaru + 6 hub topik + hub komoditas
+/jurnal/topik/[topik]/       -> Hub topik (proteksi-tanaman, tanah-nutrisi, budidaya, air-irigasi, pascapanen-agribisnis, sains-tanaman)
+/jurnal/komoditas/[komoditas]/ -> Hub komoditas (dibangun bila ≥ 3 artikel terbit untuk komoditas itu)
 /jurnal/[slug]/              -> Artikel: anatomi DESIGN §4.3
 /penulis/arif-prabowo/       -> Profil penulis & moderator (ProfilePage)
 /produk/                     -> 4 produk sebagai referensi: Aussie, BENSU, Kojien, Saratoga (per komoditas)
@@ -144,13 +145,13 @@ dibutuhkan implementasi; kolom "Status" diperbarui saat data diterima.
 | :--- | :--- | :--- | :--- | :--- |
 | OQ-1 | Nomor WhatsApp resmi (kemitraan & konsultasi; boleh satu nomor) + jam layanan | `62…` tanpa spasi; jam & hari layanan dalam teks | Header menu, footer, hasil diagnosa, produk, form kemitraan (T-11, T-12) | Kandidat `+6287770457256` di `docs/research/web-scan.md`, **belum dikonfirmasi** |
 | OQ-2 | Data label 4 produk: nomor izin edar, kategori izin, komposisi, bentuk & ukuran kemasan, dosis & cara aplikasi, komoditas | Foto label depan & belakang tiap kemasan (JPG terbaca) atau dokumen izin | `/produk/`, detail produk (T-11) | Belum |
-| OQ-3 | Pustaka ilmiah tingkat paper per artikel | Penulis, tahun, judul, jurnal/lembaga, DOI/URL — minimal 1 per artikel | Daftar Pustaka (T-16, REQ-05) | Belum; artikel tanpa ini tetap `draft` |
+| OQ-3 | Pustaka ilmiah tingkat paper per artikel (150 naskah; per 2026-09-29 hanya 1 yang punya bagian referensi) | Penulis, tahun, judul, jurnal/lembaga, DOI/URL — minimal 1 per artikel | Daftar Pustaka (T-16, REQ-05) | Belum; artikel tanpa ini tetap `draft` |
 | OQ-4 | Profil Prof. Arif Prabowo | Foto potret (JPG/PNG, ≥ 800×800 px, latar polos); penulisan gelar lengkap; institusi/universitas (atau "tidak ditampilkan"); 2–4 kalimat bio & bidang keahlian | Byline, Tentang Penulis, `/penulis/arif-prabowo/` (T-05, T-10) | Nama, gelar profesor, peran penulis & moderator, izin foto: **diterima**; file foto, gelar lengkap, institusi: belum |
 | OQ-6 | Akun Cloudflare & domain | Akses akun Cloudflare yang dipakai; status registrasi `agritani.com` dan siapa registrarnya | T-18, rilis | Hosting diputuskan (DEC-009); akun & domain belum (domain tidak resolve per 2026-09-29) |
 | OQ-7 | Identitas legal | Nama badan hukum, alamat kantor, NIB, email resmi | Footer, Tentang Kami, Kebijakan Privasi (T-04, T-10, T-17) | Belum |
 | OQ-9 | Klaim produk yang diizinkan | Konfirmasi per klaim di DESIGN §2.5 + bukti uji bila klaim hasil dipertahankan | Tagline & fungsi produk (T-11) | Belum; klaim berisiko ditahan |
 | OQ-11 | Tinjauan agronomis Prof. Arif Prabowo: (a) data kalender tanam per komoditas (HST, fase, kegiatan, jendela OPT, MT1–MT3) yang disemai dari agrimarket; (b) ambang indikator aplikasi lapangan Cuaca Tani; (c) dataset gejala awal dari playbook agrimarket | Catatan setuju/revisi per komoditas dan per ambang (boleh berupa komentar di dokumen) | Kalender Tanam, Cuaca Tani, Diagnosa (T-09, T-19, T-20) | Belum |
-| OQ-12 | Pengantar 80–150 kata untuk tiap hub klaster (sawit, pangan, hortikultura, tanah-nutrisi, urban-farming), ditulis/disetujui Prof. Arif | Teks Markdown per klaster | Hub `/jurnal/topik/…` (T-05) | Belum; hub tanpa pengantar tetap tampil dengan daftar artikel saja |
+| OQ-12 | Pengantar 80–150 kata untuk tiap hub topik (6) dan hub komoditas utama, ditulis/disetujui Prof. Arif | Teks Markdown per hub | Hub `/jurnal/topik/…` (T-05) | Belum; hub tanpa pengantar tetap tampil dengan daftar artikel saja |
 
 ### 8.2. Penting, tidak memblokir rilis
 

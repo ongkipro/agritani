@@ -115,8 +115,10 @@ flowchart TD
   A --> A4["/alat/kalkulator-dosis/"]
 
   H --> J["/jurnal/ Jurnal Tani"]
-  J --> JT["/jurnal/topik/{klaster}/ ×5"]
-  JT --> JA["/jurnal/{slug}/ Artikel"]
+  J --> JT["/jurnal/topik/{topik}/ ×6"]
+  J --> JK["/jurnal/komoditas/{komoditas}/"]
+  JT --> JA["/jurnal/{slug}/ Artikel ×150"]
+  JK --> JA
   J --> JA
   JA --> P["/penulis/arif-prabowo/"]
 
@@ -148,8 +150,9 @@ flowchart TD
 | `/alat/kalkulator-dosis/` | Alat · Lapangan | ✓ | §2.6.3 | T-21 |
 | `/konsultasi/` | Konsultasi · Lapangan | ✓ | §2.7 | T-22 |
 | `/jurnal/` | Indeks jurnal · Sains | ✓ | §4.2.3 | T-05 |
-| `/jurnal/topik/{klaster}/` (5) | Hub · Sains | ✓ bila ada artikel terbit | §4.2.3 | T-05 |
-| `/jurnal/{slug}/` (25 naskah) | Artikel · Sains | ✓ bila terbit | §4.3 | T-05…T-07 |
+| `/jurnal/topik/{topik}/` (6) | Hub topik · Sains | ✓ bila ada artikel terbit | §4.2.3 | T-05 |
+| `/jurnal/komoditas/{komoditas}/` | Hub komoditas · Sains | ✓ bila ≥ 3 artikel terbit | §4.2.3 | T-05 |
+| `/jurnal/{slug}/` (150 naskah) | Artikel · Sains | ✓ bila terbit | §4.3 | T-05…T-07 |
 | `/penulis/arif-prabowo/` | Profil · Sains | ✓ | §4.2.3 | T-10 |
 | `/produk/` | Indeks produk · Lapangan | ✓ | §2.5 | T-11 |
 | `/produk/{aussie,bensu,kojien,saratoga}/` | Detail produk · Lapangan | ✓ | §2.5 | T-11 |
@@ -159,9 +162,9 @@ flowchart TD
 | `/cari/` | Pencarian · Lapangan | ✗ | §4.2.3 | T-14 |
 | 404 | Galat · Lapangan | ✗ | §4.2.3 | T-04 |
 
-Total v1: 17 tipe halaman; maksimal 47 URL indexable saat semua artikel terbit
-(13 halaman tetap + 5 hub + 25 artikel + 4 produk). Hub dan artikel yang belum
-terbit tidak dibangun dan tidak masuk sitemap.
+Total v1: 18 tipe halaman; saat semua naskah terbit ±175 URL indexable
+(13 halaman tetap + 6 hub topik + hub komoditas yang memenuhi syarat + 150 artikel
++ 4 produk). Hub dan artikel yang belum terbit tidak dibangun dan tidak masuk sitemap.
 
 ### 2.1. Navigasi
 
@@ -367,7 +370,7 @@ Target REQ-08: teks ≥ 7:1, indikator non-teks ≥ 3:1. Angka: canvas / surface
   --color-brand-strong: #0F5C33;   /* Tautan, state aktif, ring fokus di latar terang — 7.6 / 8.1 / 7.2 */
   --color-harvest: #F2B632;        /* Kuning Panen — tombol aksen, penanda aktif; teks gelap 9.1:1 */
   --color-harvest-hover: #F7C955;  /* teks gelap 10.6:1 */
-  --color-soil: #5C3A1E;           /* Tanah — label field di Ringkasan Lapangan, tautan klaster di metadata — 9.5 / 10.1 / 9.0 */
+  --color-soil: #5C3A1E;           /* Tanah — label field di Ringkasan Lapangan, tautan topik di metadata — 9.5 / 10.1 / 9.0 */
 
   /* Surfaces */
   --color-canvas: #F8F8F3;         /* Latar halaman */
@@ -421,7 +424,7 @@ Aturan pemakaian:
 
 - Lucide, hanya ikon fungsional yang memperjelas aksi atau kategori: `MessageCircle` (WhatsApp), `Search`, `Printer`, `Droplets` (dosis), `Sprout` (komoditas), `ShieldCheck` (cek keaslian), `MapPin` (wilayah), `ChevronRight`.
 - Tanpa `Sparkles`, bintang, tongkat sihir, atau ikon mini di heading. Tanpa ilustrasi 3D atau maskot.
-- **Tanpa kicker/eyebrow** (label kecil huruf kapital di atas judul) di seluruh situs (impeccable craft-floor). Klaster/komoditas tampil di breadcrumb atau baris metadata di bawah judul.
+- **Tanpa kicker/eyebrow** (label kecil huruf kapital di atas judul) di seluruh situs (impeccable craft-floor). Topik/komoditas tampil di breadcrumb atau baris metadata di bawah judul.
 - Diagram (siklus penyakit, cara aplikasi) boleh sebagai SVG sederhana dua warna bila benar-benar menjelaskan isi.
 
 ### 3.5. Fotografi (belum ada aset)
@@ -481,7 +484,7 @@ Sintesis (terinferensi dari observasi di atas):
 - **C3 Hero**: fokus utama = pertanyaan "Tanaman apa yang bermasalah?" + tombol komoditas dari data (min 48px tinggi, grid 2 kolom mobile / 3 kolom desktop); kedua = tautan teks "atau cari gejala" (Pagefind); ketiga = tautan ke Jurnal Tani. Tanpa pola badge → headline tengah → dua tombol. Bila foto belum ada, kolom media diganti **Ringkasan Lapangan contoh dari artikel nyata** (bukan kosong, bukan ilustrasi generik).
 - **C4 Hierarki tipe**: region lapangan = Plus Jakarta Sans 800 untuk display, 600 untuk H2; region sains = Newsreader 600. Satu halaman tidak mencampur dua font display di satu region.
 - **C5 Ritme**: band lapangan padat (spasi 1–1.5rem di dalam), band editorial lapang (2–3rem). Pergantian band `canvas` ↔ `tint` menandai perubahan tugas, bukan dekorasi.
-- **C6 Elemen khas**: (a) tombol komoditas besar tap-first; (b) Ringkasan Lapangan berlatar `tint` dengan label field `soil`; (c) langkah bernomor `01–03` hanya untuk urutan nyata (langkah kemitraan, alur distribusi), tidak untuk daftar produk; (d) baris indeks artikel dengan jumlah artikel nyata per klaster.
+- **C6 Elemen khas**: (a) tombol komoditas besar tap-first; (b) Ringkasan Lapangan berlatar `tint` dengan label field `soil`; (c) langkah bernomor `01–03` hanya untuk urutan nyata (langkah kemitraan, alur distribusi), tidak untuk daftar produk; (d) baris indeks artikel dengan jumlah artikel nyata per hub.
 - **C7 Batas kontainer**: panel hanya untuk Ringkasan Lapangan, form, tabel dosis, dan hasil diagnosa. Daftar artikel, lini produk, langkah kemitraan tetap terbuka (tanpa kotak).
 - **C8 Artikel**: ≥1024px Daftar Isi sticky kiri 3/12, prosa 7/12, 2/12 kosong; <1024px satu kolom. Tabel lebar hanya scroll di dalam wrapper-nya.
 - **Jangan disubstitusi**: grid kartu seragam untuk artikel atau lini produk di homepage; hero terpusat dengan dua CTA; kotak bulat di setiap section; bento; carousel testimoni; statistik tanpa data; tombol WhatsApp melayang yang menutupi konten di mobile (gunakan tautan di header/menu, footer, dan panel hasil).
@@ -503,7 +506,7 @@ menyusun ulang kerangka sendiri.
 | 2 | Breadcrumb | `<nav aria-label="Breadcrumb">` | Semua halaman kecuali Beranda dan 404; + `BreadcrumbList` JSON-LD |
 | 3 | Isi | `<main id="isi">` | Satu `<h1>` per halaman; heading tidak melompat level |
 | 4 | Footer | `<footer>` berlatar `brand`, teks putih | Tanpa garis di atas footer; transisi dari band sebelumnya lewat warna latar |
-| 4a | Kolom footer | Alat Tani (4 alat) · Jurnal Tani (5 hub) · Produk (4 produk) · Perusahaan (Tentang Kami, Penulis, Kemitraan, Kebijakan Privasi) · Kontak (nomor WhatsApp resmi, alamat — OQ-1/OQ-7) | <1024px: kolom menjadi daftar bertumpuk, bukan akordeon. Nomor WhatsApp ditulis sebagai teks + tautan biasa, tanpa ikon/tombol berwarna (§2.8) |
+| 4a | Kolom footer | Alat Tani (4 alat) · Jurnal Tani (6 topik) · Produk (4 produk) · Perusahaan (Tentang Kami, Penulis, Kemitraan, Kebijakan Privasi) · Kontak (nomor WhatsApp resmi, alamat — OQ-1/OQ-7) | <1024px: kolom menjadi daftar bertumpuk, bukan akordeon. Nomor WhatsApp ditulis sebagai teks + tautan biasa, tanpa ikon/tombol berwarna (§2.8) |
 | 4b | Baris legal | "© {tahun} PT Agritani Internasional · Distributor resmi" | Tahun dari waktu build |
 
 Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol WhatsApp melayang, widget chat, pengumuman berjalan.
@@ -513,14 +516,14 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 | Layout | Halaman | Judul | Latar pembuka | Kepadatan |
 | :--- | :--- | :--- | :--- | :--- |
 | **Lapangan** | Beranda, Alat Tani (indeks + 4 alat), Konsultasi, Produk (indeks & detail), Kemitraan, Cari, 404 | Plus Jakarta Sans 800 | `canvas`, band `tint`/`harvest-tint` | Padat, tap-first |
-| **Sains** | Indeks jurnal, Hub klaster, Artikel, Penulis, Tentang Kami, Kebijakan Privasi | Newsreader 600 | `canvas` | Lapang, prosa 68ch |
+| **Sains** | Indeks jurnal, Hub topik & komoditas, Artikel, Penulis, Tentang Kami, Kebijakan Privasi | Newsreader 600 | `canvas` | Lapang, prosa 68ch |
 
 #### 4.2.3. Anatomi per tipe halaman
 
 **Beranda `/`** (Lapangan) — komposisi rinci di C1–C8 (§4.1)
 
 1. Hero: H1 "Tanaman Anda bermasalah? Kenali dari gejalanya." · paragraf pendamping · "Pilih tanaman Anda:" + tombol komoditas (dari data) → `/alat/diagnosa-gejala/?k=` · tautan "cari gejala dengan kata kunci" & "baca Jurnal Tani" · kolom kanan: Ringkasan Lapangan dari artikel unggulan (atau foto asli).
-2. Band `tint` — H2 "Jurnal per komoditas": 5 baris hub + jumlah artikel nyata.
+2. Band `tint` — H2 "Jurnal per komoditas": baris hub komoditas yang ada (maks. 8, urut jumlah artikel) + jumlah artikel nyata + tautan "Semua topik" ke `/jurnal/`.
 3. H2 "Bacaan pilihan": 1 artikel dominan (judul serif, dek, byline ringkas) + 3 baris artikel terbaru.
 4. H2 "Alat Tani": 4 baris alat (nama · satu kalimat kegunaan) → `/alat/…`. Daftar, bukan grid kartu.
 5. H2 "Tanya langsung ke tim agronomi": 2 kalimat + tautan sekunder "Cara konsultasi" → `/konsultasi/` (halaman, bukan membuka WhatsApp; Beranda tidak punya tombol WhatsApp).
@@ -567,16 +570,24 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 **Indeks Jurnal `/jurnal/`** (Sains)
 
 1. H1 "Jurnal Tani" + paragraf pengantar (siapa penulisnya, untuk siapa).
-2. Tautan 5 hub klaster (baris horizontal yang membungkus di mobile).
-3. Daftar artikel terbaru: baris (judul serif → dek → metadata klaster · waktu baca · tanggal). Tanpa paginasi selama ≤ 50 artikel (lazy: tambahkan paginasi statis `/jurnal/halaman/2/` bila melewati 50).
+2. Tautan 6 hub topik + hub komoditas yang ada (dua baris tautan yang membungkus di mobile).
+3. Daftar artikel terbaru: baris (judul serif → dek → metadata topik · waktu baca · tanggal). Paginasi statis `/jurnal/halaman/{n}/` per 30 artikel (150 naskah melewati batas satu halaman); halaman 2+ `index, follow` dengan canonical ke dirinya sendiri.
 
-**Hub Klaster `/jurnal/topik/{klaster}/`** (Sains)
+**Hub Topik `/jurnal/topik/{topik}/`** (Sains)
 
-1. Breadcrumb · H1 nama klaster ("Kelapa Sawit & Perkebunan").
-2. Pengantar 80–150 kata dari `src/content/pages/topik-{klaster}.md` (opsional sampai OQ-12): masalah utama klaster, komoditas yang dicakup.
-3. Tautan "Diagnosa gejala {komoditas}" untuk komoditas di klaster ini.
-4. Daftar artikel klaster (baris, sama seperti indeks jurnal).
-5. Produk relevan (hanya yang komoditasnya cocok, maksimal 2 baris).
+1. Breadcrumb · H1 nama topik ("Proteksi Tanaman: Hama & Penyakit").
+2. Pengantar 80–150 kata dari `src/content/pages/topik-{topik}.md` (opsional sampai OQ-12).
+3. Tautan hub komoditas yang punya artikel di topik ini.
+4. Daftar artikel topik (baris; paginasi statis per 30 bila perlu).
+5. Tautan alat relevan (mis. Proteksi Tanaman → Diagnosa Gejala; Air & Irigasi → Cuaca Tani).
+
+**Hub Komoditas `/jurnal/komoditas/{komoditas}/`** (Sains) — dibangun hanya bila ≥ 3 artikel terbit
+
+1. Breadcrumb · H1 "{Komoditas}: Panduan Budidaya & Penanganan".
+2. Pengantar (opsional, `src/content/pages/komoditas-{komoditas}.md`).
+3. Tautan "Diagnosa gejala {komoditas}" (bila ada data gejala tertinjau) dan "Kalender tanam {komoditas}" (bila ada kalender tertinjau).
+4. Artikel komoditas dikelompokkan per topik.
+5. Produk relevan (hanya yang komoditasnya cocok, maksimal 2 baris, referensi).
 
 **Artikel `/jurnal/{slug}/`** (Sains) — anatomi lengkap §4.3.
 
@@ -646,8 +657,8 @@ lebar di mobile.
 
 | # | Blok | Elemen HTML | Isi & aturan | Sumber data |
 | :---: | :--- | :--- | :--- | :--- |
-| 1 | Breadcrumb | `<nav aria-label="Breadcrumb"><ol>` | Beranda › Jurnal Tani › {Klaster}. Klaster tertaut ke hub. Menggantikan kicker. | `cluster` |
-| 2 | Judul | `<h1>` (satu-satunya) | 20–110 karakter (naskah saat ini 73–103; `<title>` memakai `seoTitle` ≤ 48 bila perlu), Newsreader 600, `text-wrap: balance`, maks `24ch` desktop | `title` |
+| 1 | Breadcrumb | `<nav aria-label="Breadcrumb"><ol>` | Beranda › Jurnal Tani › {Topik}. Topik tertaut ke hub. Menggantikan kicker. | `cluster` |
+| 2 | Judul | `<h1>` (satu-satunya) | 20–110 karakter (naskah saat ini 55–103; `<title>` memakai `metaTitle`), Newsreader 600, `text-wrap: balance`, maks `24ch` desktop | `title` |
 | 3 | Dek | `<p class="dek">` | Satu kalimat 120–160 karakter = teks yang sama dengan meta description, jadi deskripsi selalu terlihat di halaman | `description` |
 | 4 | Byline | `<div>` + `<address>` untuk penulis | Foto 40×40 (setelah diterima) · "Oleh **Prof. Arif Prabowo**" (tautan `/penulis/arif-prabowo/`) · "Profesor Pertanian · Moderator Jurnal Tani" | `author` |
 | 5 | Baris metadata | `<p>` + `<time datetime>` | "Terbit 12 Okt 2026 · Diperbarui 3 Jan 2027 · 7 menit baca · {Komoditas}" — "Diperbarui" hanya bila `updatedDate` ada; format `id-ID`, tanpa jam | `pubDate`, `updatedDate`, dihitung |
@@ -662,7 +673,7 @@ lebar di mobile.
 | 14 | Daftar Pustaka | `<section>` + `<h2>` + `<ol>` di dalam `<details open>` | Terbuka secara bawaan (tetap bisa diciutkan). Penulis, tahun, judul, sumber; DOI → `https://doi.org/…`, `rel="noopener"`. Artikel tanpa referensi terverifikasi tidak terbit. | `references` |
 | 15 | Tentang Penulis | `<section>` + `<h2>` | Foto, nama, gelar lengkap & institusi (setelah OQ-4), 2 kalimat keahlian, tautan profil. Tanpa kotak kartu; dipisah dengan spasi. | data penulis |
 | 16 | Pengungkapan | `<p>` kecil | "Artikel ini ditulis oleh Prof. Arif Prabowo sebagai moderator Jurnal Tani, portal edukasi PT Agritani Internasional, distributor produk nutrisi dan aktivator tanaman." | tetap |
-| 17 | Lanjut membaca | `<nav aria-label="Artikel terkait">` | 3 artikel klaster yang sama (baris: judul + waktu baca) + tautan "Diagnosa gejala {komoditas}" ke `/alat/diagnosa-gejala/?k=` + tautan hub klaster. Produk hanya bila komoditas cocok dan klaimnya diizinkan (§2.5). | koleksi |
+| 17 | Lanjut membaca | `<nav aria-label="Artikel terkait">` | 3 artikel dengan topik atau komoditas yang sama (baris: judul + waktu baca) + tautan "Diagnosa gejala {komoditas}" ke `/alat/diagnosa-gejala/?k=` + tautan hub topik. Produk hanya bila komoditas cocok dan klaimnya diizinkan (§2.5). | koleksi |
 
 Frontmatter tambahan untuk T-02/T-03: `answer` (string 40–60 kata, wajib untuk artikel terbit) dan `heroImage` (opsional, dengan `alt` dan `credit`).
 
@@ -699,7 +710,7 @@ Ringkasan Lapangan dan Isi; tidak ada elemen melayang.
 | Kondisi | Perilaku |
 | :--- | :--- |
 | Tanpa `fieldTakeaways` | Blok 8 tidak dirender; Jawaban Singkat tetap wajib |
-| Tanpa `heroImage` | Blok 9 dilewati; OG image memakai gambar default klaster |
+| Tanpa `heroImage` | Blok 9 dilewati; OG image memakai gambar default topik |
 | Tanpa `updatedDate` | Hanya "Terbit …" |
 | Artikel non-penyakit (panduan budidaya, urban farming) | Blok 12 tidak dipakai; Ringkasan Lapangan berisi Tujuan · Bahan · Langkah kunci · Waktu |
 | Tanpa JS | Daftar Isi = tautan anchor; tombol Cetak disembunyikan; semua konten terbaca |
@@ -739,11 +750,11 @@ Satu sumber untuk semua metadata, canonical, Open Graph, breadcrumb, JSON-LD, si
 | Tag | Aturan |
 | :--- | :--- |
 | `<html lang>` | `id` |
-| `<title>` | ≤ 60 karakter. Beranda tanpa sufiks; halaman lain `{judul} \| Agritani`. Artikel memakai `seoTitle ?? title` (≤ 48 + sufiks). Unik per halaman. |
+| `<title>` | ≤ 60 karakter. Beranda tanpa sufiks; halaman lain `{judul} \| Agritani`. Artikel memakai `metaTitle` apa adanya (≤ 60, tanpa sufiks). Unik per halaman. |
 | `meta description` | 120–160 karakter, unik, sama dengan teks yang terlihat (dek/pengantar). Tanpa CTA "beli", tanpa daftar kata kunci. |
 | `link rel="canonical"` | URL absolut `https://agritani.com{path}` dengan trailing slash; self-referencing; **tanpa query string** (status alat `?k=`, `?t=` tidak punya canonical sendiri). |
 | `meta robots` | Default `index, follow, max-image-preview:large, max-snippet:-1`; `noindex, follow` untuk `/cari/`, 404, mode pratinjau draft. |
-| Open Graph | `og:site_name=Agritani`, `og:locale=id_ID`, `og:type` (`website` / `article` / `profile`), `og:title` (= judul tanpa sufiks), `og:description`, `og:url` (= canonical), `og:image` + `og:image:width/height/alt` (1200×630, absolut). Artikel: `article:published_time`, `article:modified_time`, `article:author` (URL profil), `article:section` (klaster). |
+| Open Graph | `og:site_name=Agritani`, `og:locale=id_ID`, `og:type` (`website` / `article` / `profile`), `og:title` (= judul tanpa sufiks), `og:description`, `og:url` (= canonical), `og:image` + `og:image:width/height/alt` (1200×630, absolut). Artikel: `article:published_time`, `article:modified_time`, `article:author` (URL profil), `article:section` (topik). |
 | Twitter/X | `twitter:card=summary_large_image`, `twitter:title`, `twitter:description`, `twitter:image`, `twitter:image:alt` |
 | Lainnya | `meta name="author"` (artikel), `meta name="theme-color" content="#1A6335"`, `link rel="icon" href="/favicon.svg" type="image/svg+xml"` + `apple-touch-icon` PNG 180×180, `link rel="sitemap"`. Tanpa `meta keywords`. Satu bahasa → tanpa `hreflang`. |
 
@@ -759,8 +770,10 @@ Satu sumber untuk semua metadata, canonical, Open Graph, breadcrumb, JSON-LD, si
 | Kalkulator Dosis | `Kalkulator Dosis Semprot \| Agritani` | pengantar | website / gambar alat | index | `WebPage`, `BreadcrumbList` |
 | Konsultasi | `Konsultasi Pertanian via WhatsApp \| Agritani` | pengantar | website / default | index | `WebPage`, `BreadcrumbList` |
 | Indeks Jurnal | `Jurnal Tani: Panduan Agronomi \| Agritani` | pengantar | website / default jurnal | index | `CollectionPage`, `BreadcrumbList` |
-| Hub klaster | `{Nama klaster} \| Agritani` | `pages/topik-{klaster}.md` → fallback: "Kumpulan panduan {klaster} dari Jurnal Tani…" (dibentuk dari data, 120–160) | website / gambar klaster | index (hanya bila ≥ 1 artikel terbit) | `CollectionPage` (+`ItemList` artikel), `BreadcrumbList` |
-| Artikel | `{seoTitle ?? title} \| Agritani` | `description` | article / `heroImage` → gambar klaster | index | `Article`, `BreadcrumbList` |
+| Hub topik | `{Nama topik} \| Agritani` | `pages/topik-{topik}.md` → fallback: "Kumpulan panduan {topik} dari Jurnal Tani…" (dibentuk dari data, 120–160) | website / gambar topik | index (hanya bila ≥ 1 artikel terbit) | `CollectionPage` (+`ItemList` artikel), `BreadcrumbList` |
+| Hub komoditas | `{Komoditas}: Panduan Budidaya \| Agritani` | `pages/komoditas-{komoditas}.md` → fallback dari data (120–160) | website / `komoditas.png` | index (bila ≥ 3 artikel terbit) | `CollectionPage` (+`ItemList`), `BreadcrumbList` |
+| Indeks jurnal hal. 2+ | `Jurnal Tani — Halaman {n} \| Agritani` | pengantar + nomor halaman | website / default jurnal | index | `CollectionPage`, `BreadcrumbList` |
+| Artikel | `{metaTitle}` | `description` | article / `heroImage` → gambar topik | index | `Article`, `BreadcrumbList` |
 | Profil penulis | `Prof. Arif Prabowo, Penulis \| Agritani` | `pages/penulis-arif-prabowo.md` | profile / foto beliau → default | index | `ProfilePage` (`mainEntity` → `Person`), `BreadcrumbList` |
 | Indeks produk | `Produk Agritani untuk Sawit, Padi & Sayur` | pengantar | website / default produk | index | `CollectionPage`, `BreadcrumbList` |
 | Detail produk | `{Nama}: {peran singkat} \| Agritani` | `summary` (dipangkas ke 160 di batas kata) | website / `packshot` → default produk | index | `WebPage`, `BreadcrumbList` (tanpa `Product`: tidak ada harga/penawaran) |
@@ -774,8 +787,9 @@ Satu sumber untuk semua metadata, canonical, Open Graph, breadcrumb, JSON-LD, si
 | Rute | Jejak |
 | :--- | :--- |
 | `/alat/{alat}/` | Beranda › Alat Tani › {Nama alat} |
-| `/jurnal/topik/{klaster}/` | Beranda › Jurnal Tani › {Klaster} |
-| `/jurnal/{slug}/` | Beranda › Jurnal Tani › {Klaster} › {Judul artikel} |
+| `/jurnal/topik/{topik}/` | Beranda › Jurnal Tani › {Topik} |
+| `/jurnal/komoditas/{komoditas}/` | Beranda › Jurnal Tani › {Komoditas} |
+| `/jurnal/{slug}/` | Beranda › Jurnal Tani › {Topik} › {Judul artikel} |
 | `/penulis/arif-prabowo/` | Beranda › Jurnal Tani › Prof. Arif Prabowo |
 | `/produk/{slug}/` | Beranda › Produk › {Nama produk} |
 | halaman tingkat satu (`/alat/`, `/jurnal/`, `/produk/`, `/konsultasi/`, `/tentang-kami/`, `/kemitraan-distributor/`, `/kebijakan-privasi/`) | Beranda › {Nama halaman} |
@@ -833,8 +847,8 @@ Aturan:
 
 #### 4.4.6. Gambar Open Graph
 
-- PNG 1200×630, < 150 KB, dibuat **statis sekali** dari aset brand (logo reverse di atas `brand`, judul bagian dalam Plus Jakarta Sans 800) di `public/og/`: `default.png`, `jurnal.png`, 5 × `klaster-{klaster}.png`, 4 × `alat-{alat}.png`, `produk.png`.
-- Artikel dengan `heroImage` memakai potongan 1200×630 dari foto itu; tanpa foto → gambar klaster.
+- PNG 1200×630, < 150 KB, dibuat **statis sekali** dari aset brand (logo reverse di atas `brand`, judul bagian dalam Plus Jakarta Sans 800) di `public/og/`: `default.png`, `jurnal.png`, 6 × `topik-{topik}.png`, `komoditas.png`, 4 × `alat-{alat}.png`, `produk.png`.
+- Artikel dengan `heroImage` memakai potongan 1200×630 dari foto itu; tanpa foto → gambar topik.
 - Batas yang disengaja: gambar OG per artikel yang digenerate otomatis (judul di atas gambar) ditunda; jalur peningkatan: generator saat build, dengan keputusan baru di DECISIONS bila ditambahkan.
 
 #### 4.4.7. URL, canonical, dan pengalihan
@@ -866,7 +880,7 @@ Aturan:
 #### 4.4.10. Konten & internal link
 
 - Satu `<h1>` = judul halaman; heading tidak melompat level; H2 artikel berbentuk pertanyaan bila cocok.
-- Artikel menerima tautan dari: hub klasternya, indeks jurnal, profil penulis, ≥ 2 artikel terkait, dan hasil Diagnosa Gejala yang relevan. Artikel menaut ke: hub (breadcrumb), 3 artikel terkait, alat yang relevan (`/alat/diagnosa-gejala/?k=`, Kalender Tanam), profil penulis.
+- Artikel menerima tautan dari: hub topiknya, hub komoditasnya, indeks jurnal, profil penulis, ≥ 2 artikel terkait, dan hasil Diagnosa Gejala yang relevan. Artikel menaut ke: hub (breadcrumb), 3 artikel terkait, alat yang relevan (`/alat/diagnosa-gejala/?k=`, Kalender Tanam), profil penulis.
 - Anchor deskriptif ("cara membuat parit isolasi Ganoderma"), bukan "klik di sini".
 - Gambar: nama file kebab-case berbahasa Indonesia yang deskriptif, `alt` 5–125 karakter menjelaskan isi agronomis, `width`/`height` eksplisit, `loading="lazy"` kecuali gambar LCP.
 
@@ -943,7 +957,7 @@ Ditahan sampai ada bukti uji: klaim kenaikan hasil ("hingga 50%"), "100% keaslia
 - [ ] Tidak ada grid kartu seragam untuk informasi berbeda jenis.
 - [ ] Tidak ada kotak bulat di hampir setiap section; tanpa garis aksen tebal di sisi panel.
 - [ ] Tidak ada garis pemisah antar-section.
-- [ ] Tidak ada ikon/badge dekoratif; badge hanya untuk klaster atau status nyata.
+- [ ] Tidak ada ikon/badge dekoratif; badge hanya untuk topik/komoditas atau status nyata.
 - [ ] Tidak ada kicker/eyebrow di atas judul; nomor `01–03` hanya untuk urutan nyata.
 - [ ] Permukaan bawaan browser sudah bertema (§3.6).
 - [ ] Tidak ada foto yang menyiratkan bukti palsu; tidak ada statistik/testimoni/afiliasi tanpa data resmi.
