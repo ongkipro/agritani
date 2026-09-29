@@ -1,0 +1,40 @@
+---
+import SeoHead from '../components/SeoHead.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import type { SeoInput } from '../lib/seo';
+import '../styles/global.css';
+
+interface Props {
+  seo: SeoInput;
+  currentPath?: string;
+}
+
+const { seo, currentPath } = Astro.props;
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <SeoHead seo={seo} />
+  </head>
+  <body class="min-h-screen flex flex-col bg-[var(--color-canvas)] text-[var(--color-text)] font-sans antialiased">
+    <!-- Skip to main content link for accessibility -->
+    <a
+      href="#konten-utama"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-harvest)] focus:text-[var(--color-text)] focus:font-bold focus:rounded-[2px]"
+    >
+      Lewati ke konten utama
+    </a>
+
+    <Navbar currentPath={currentPath} />
+
+    <main id="konten-utama" class="flex-1 focus:outline-none" tabindex="-1">
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

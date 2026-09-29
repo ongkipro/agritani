@@ -1,0 +1,48 @@
+---
+import { waLink, type WaField } from '../lib/whatsapp';
+
+interface Props {
+  source: string;
+  label?: string;
+  variant?: 'primary' | 'secondary';
+  fields?: Array<WaField | undefined | null | false>;
+  note?: string;
+  title?: string;
+  description?: string;
+}
+
+const {
+  source,
+  label = 'Konsultasi via WhatsApp',
+  variant = 'secondary',
+  fields = [],
+  note,
+  title,
+  description,
+} = Astro.props;
+
+const href = waLink({ source, fields, note });
+
+const isPrimary = variant === 'primary';
+---
+
+<div class="p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px]" data-cta="whatsapp">
+  {title && <h3 class="text-lg font-bold text-[var(--color-brand)] mb-1">{title}</h3>}
+  {description && <p class="text-sm text-[var(--color-text-muted)] mb-4">{description}</p>}
+  
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    class={`inline-flex items-center justify-center gap-2.5 px-5 py-3 min-h-[44px] text-sm font-semibold rounded-[2px] transition-colors ${
+      isPrimary
+        ? 'bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)] text-white'
+        : 'border border-[var(--color-brand-strong)] text-[var(--color-brand-strong)] hover:bg-[var(--color-tint)] bg-transparent'
+    }`}
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+    </svg>
+    <span>{label}</span>
+  </a>
+</div>

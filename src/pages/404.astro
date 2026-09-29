@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import type { SeoInput } from '../lib/seo';
+
+const seo: SeoInput = {
+  title: 'Halaman Tidak Ditemukan',
+  description: 'Halaman yang Anda tuju tidak tersedia, telah dipindahkan, atau alamat salah.',
+  noindex: true,
+  canonicalPath: '/404/',
+};
+---
+
+<BaseLayout seo={seo}>
+  <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 text-center">
+    <div class="max-w-xl mx-auto space-y-6">
+      <div class="inline-block px-3 py-1 bg-[var(--color-tint)] text-[var(--color-brand-strong)] font-bold text-sm rounded-[2px]">
+        Galat 404
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-[var(--color-brand)] leading-tight">
+        Halaman Tidak Ditemukan
+      </h1>
+
+      <p class="text-base text-[var(--color-text-muted)] leading-relaxed">
+        Halaman yang Anda cari tidak tersedia di server kami. Tautan mungkin telah kedaluwarsa atau alamat yang dimasukkan kurang tepat.
+      </p>
+
+      <div class="pt-4 flex flex-wrap items-center justify-center gap-3">
+        <a
+          href="/"
+          class="btn-primary px-5 py-2.5 min-h-[44px] flex items-center justify-center bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)] text-white text-sm font-semibold rounded-[2px] transition-colors"
+        >
+          Kembali ke Beranda
+        </a>
+        <a
+          href="/jurnal/"
+          class="px-5 py-2.5 min-h-[44px] flex items-center justify-center border border-[var(--color-brand-strong)] text-[var(--color-brand-strong)] hover:bg-[var(--color-tint)] text-sm font-semibold rounded-[2px] transition-colors"
+        >
+          Jelajahi Jurnal Tani
+        </a>
+        <a
+          href="/alat/"
+          class="px-5 py-2.5 min-h-[44px] flex items-center justify-center border border-[var(--color-brand-strong)] text-[var(--color-brand-strong)] hover:bg-[var(--color-tint)] text-sm font-semibold rounded-[2px] transition-colors"
+        >
+          Buka Alat Tani
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .btn-primary {
+      color: #ffffff !important;
+    }
+  </style>
+</BaseLayout>

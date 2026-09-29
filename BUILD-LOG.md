@@ -38,3 +38,26 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - Visual evidence captured at 390px and 1440px via `agritani-shot.cjs` on port 4330.
 - Checks passed: `npm run check:contrast`, `npm test`, `npx astro check`, `npm run build`.
 
+## 2026-09-29 — T-02: Content Config 6 Collections + Content Integrity (READY - PENDING INDEPENDENT REVIEW)
+
+- Implemented `src/content.config.ts` covering 6 collections: commodities, articles, products, symptoms, cropCalendars, pages using Astro 7 `defineCollection` and `glob`/`file` loaders.
+- Created data fixtures: `src/data/commodities.json`, `src/data/products.json`, `src/data/symptoms.json`, `src/data/crop-calendars.json`, `src/data/spray-thresholds.json`.
+- Implemented `src/lib/content-integrity.ts` (`assertContentIntegrity()`, `isReviewed()`) with 9 table-driven tests in `src/lib/content-integrity.test.ts`.
+- Verification passed: `npm test` (9/9 pass in 5.5ms), `npx astro check`, `npm run build`, `npm run check:contrast`. Boundary check requires independent review (R2 schema). Stopped for review.
+
+## 2026-09-29 — T-23: GitHub Actions CI Workflow (READY - PENDING INDEPENDENT REVIEW)
+
+- Created `.github/workflows/ci.yml` with Node 24, checkout@v4, setup-node@v4, read-only permissions, and steps for check, test, contrast, and build.
+- Verification passed: YAML syntax valid, CI commands mirror local checks. Boundary check requires independent review (R3 CI workflow). Stopped for review.
+
+## 2026-09-29 — T-04: Global Framework, Navbar, Footer, Breadcrumb, 404, waLink (READY - PENDING INDEPENDENT REVIEW)
+
+- Implemented `src/lib/whatsapp.ts` with strict anti-spam query param encoding, source tracking, and newline serialization. Tests in `src/lib/whatsapp.test.ts` (7 tests).
+- Implemented `src/lib/seo.ts` with `buildSeo()`, title suffixing, canonical url sanitization, OpenGraph metadata fallback, and robots directives. Tests in `src/lib/seo.test.ts` (6 tests).
+- Created `src/components/SeoHead.astro`, `src/components/Breadcrumb.astro`, `src/components/ConsultPrompt.astro`.
+- Created accessible `src/components/Navbar.astro` (desktop nav, modal dialog for mobile, skip link target) and `src/components/Footer.astro` (legal identity placeholder TODO(OQ-7), WA text TODO(OQ-1)).
+- Created `src/layouts/BaseLayout.astro` and `src/pages/404.astro`.
+- Captured UI proof at 390px and 1440px via `agritani-shot.cjs` on port 4330.
+- Verification passed: `npm test` (22/22 tests), `npx astro check`, `npm run build`, `npm run check:contrast`. Boundary check requires independent review (R3). Stopped for review.
+
+

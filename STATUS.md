@@ -40,21 +40,24 @@ Kontrak pra-pengembangan diaudit ulang pada 2026-09-29 dengan skill dotfiles ter
 
 ## Active work
 
-T-02 dan T-23 selesai dikerjakan dan terverifikasi secara lokal (check, build, test, yaml valid). Namun keduanya menghasilkan REVIEW_REQUIRED karena kenaikan risiko deterministik (T-02 ke R2, T-23 ke R3 karena CI workflow). Sesuai aturan, kedua task dihentikan menunggu review independen resmi dari Claude/Paduka Ongki. Melanjutkan ke T-04 (Kerangka global, 404, waLink).
+T-02, T-23, dan T-04 selesai dikerjakan dan terverifikasi secara lokal (check, build, test, yaml valid, gate UI screenshot). Namun ketiganya menghasilkan REVIEW_REQUIRED karena kenaikan risiko deterministik (T-02 ke R2 skema, T-23 ke R3 CI workflow, T-04 ke R3 boundary). Sesuai aturan, task-task tersebut dihentikan menunggu review independen resmi dari Claude/Paduka Ongki. Melanjutkan ke T-03 (Normalisasi frontmatter 150 artikel in place).
 
 ## Blockers
 
 - T-02 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
 - T-23 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
+- T-04 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 
 ## Verification evidence
 
 - T-01 fondasi Astro 7.3.5 + Tailwind 4.3.3 + sitemap 3.7.4 selesai dan ter-commit.
 - T-02 lokal: `src/lib/content-integrity.test.ts` (9 kasus uji PASS dalam 5.5ms), `npx astro check` PASS, `npm run build` PASS, `npm run check:contrast` PASS.
 - T-23 lokal: `.github/workflows/ci.yml` sintaks YAML valid (Python safe_load), build, check, test, kontras lulus.
+- T-04 lokal: `src/lib/whatsapp.test.ts` & `src/lib/seo.test.ts` (22/22 unit tests PASS), `npx astro check` PASS, `npm run build` PASS, `npm run check:contrast` PASS, UI screenshot 404 pada 390px dan 1440px lulus (bebas garis pemisah, touch target >= 44px, navigasi accessible).
 
 ## Next verified action
 
-T-04: Kerangka global, Navbar, Footer, Breadcrumb, 404, waLink WhatsApp (`src/layouts/BaseLayout.astro`, `src/components/*`, `src/lib/whatsapp.*`, `src/lib/seo.*`).
+T-03: Normalisasi frontmatter 150 artikel naskah secara in place (`docs/content/articles/*.md`) sesuai spesifikasi ARCHITECTURE §3.0.
+
 
 
