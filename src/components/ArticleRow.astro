@@ -1,4 +1,5 @@
 ---
+import { topicName } from '../lib/topics';
 import { getReadingTime } from '../lib/reading-time';
 
 interface Props {
@@ -20,15 +21,6 @@ interface Props {
 const { article } = Astro.props;
 const readingTime = getReadingTime(article.body || '');
 
-const topicLabels: Record<string, string> = {
-  'proteksi-tanaman': 'Proteksi Tanaman',
-  'tanah-nutrisi': 'Tanah & Nutrisi',
-  'budidaya': 'Budidaya',
-  'air-irigasi': 'Air & Irigasi',
-  'pascapanen-agribisnis': 'Pascapanen & Agribisnis',
-  'sains-tanaman': 'Sains Tanaman',
-};
-
 const formattedDate = new Intl.DateTimeFormat('id-ID', {
   day: 'numeric',
   month: 'short',
@@ -40,9 +32,10 @@ const formattedDate = new Intl.DateTimeFormat('id-ID', {
   <div class="flex flex-wrap items-center gap-2 text-xs text-[var(--color-soil)] font-medium mb-1.5">
     <a
       href={`/jurnal/topik/${article.data.topic}/`}
-      class="hover:underline focus-visible:outline-2 focus-visible:outline-[var(--color-harvest)]"
+      class={`topic-${article.data.topic} inline-flex items-center gap-1.5 hover:underline focus-visible:outline-2 focus-visible:outline-[var(--color-harvest)]`}
     >
-      {topicLabels[article.data.topic] || article.data.topic}
+      <span class="w-2 h-2 bg-[var(--topic)]" aria-hidden="true"></span>
+      {topicName(article.data.topic)}
     </a>
     <span aria-hidden="true">·</span>
     <span>{readingTime.text}</span>

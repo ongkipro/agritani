@@ -2,7 +2,7 @@
 
 Updated: 2026-09-29
 Status: Active
-State: SMOKE_TESTING
+State: VERIFIED
 Review-Risk: R3
 Independent-Review: PASS
 Primary-Worker: Antigravity
@@ -30,6 +30,8 @@ Use `BLOCKED` only as an interruption state. Record the blocker and exact state 
 - **Disembunyikan sampai ditinjau Prof. Arif (OQ-11)**: Diagnosa Gejala dan Kalender Tanam (label "Segera hadir"); indikator waktu semprot.
 - **Verifikasi live** (via IP Cloudflare karena cache DNS lokal): semua halaman utama 200, 404 benar, `www` 200, header CSP/nosniff/Referrer/Permissions aktif; di browser headless: prakiraan BMKG tampil (Jawa Barat › Bandung › Cileunyi › Cileunyi Kulon), pencarian "wereng" menemukan artikel yang benar, menu mobile terbuka, ikon cuaca tampil setelah perbaikan CSP `img-src`.
 - **Review independen**: setiap task T-01…T-26 direview Claude dari kode, data, dan render nyata (bukan dari laporan agent); temuan dan koreksi tercatat di riwayat commit dan BUILD-LOG.
+- **Smoke test**: `release-check .` → `RELEASE_CHECK=VERIFIED` (app, health, article, weather-tool, sitemap) setelah DNS lokal pulih; probe contoh database/background-jobs yang tidak berlaku untuk situs statis dihapus dari OBSERVABILITY.md.
+- **Polish UI pasca-rilis (2026-09-29)**: pass `impeccable` + referensi arah teagasc.ie (DESIGN §4.0, §3.1.1, C9–C10): gambar dummy responsif di hub/Konsultasi/Kemitraan (hero 88 KB di 390px), kicker/border kiri/pemisah section dihapus, grid kartu jadi baris indeks, warna topik + sidebar hub Jurnal. Pemeriksaan `check-links` baru menemukan dan memperbaiki tautan produk footer yang salah (`/produk/pupuk-hayati-aussie/` → `/produk/aussie/`, di semua halaman) dan tautan ke hub komoditas yang tidak dibangun (jagung).
 - **Sisa**: beacon Cloudflare Web Analytics disisipkan zona dan diblokir CSP (tidak ada data terkirim) — matikan Web Analytics di dashboard zona; data pemilik OQ-2..OQ-12 (PRD §8); auto-deploy CI butuh secret `CLOUDFLARE_API_TOKEN`.
 
 Kontrak pra-pengembangan diaudit ulang pada 2026-09-29 dengan skill dotfiles terbaru (`development-kit` → `design-taste`):

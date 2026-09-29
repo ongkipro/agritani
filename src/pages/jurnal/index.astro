@@ -3,13 +3,13 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import ArticleRow from '../../components/ArticleRow.astro';
+import TopicSidebar from '../../components/TopicSidebar.astro';
 import type { SeoInput } from '../../lib/seo';
 
 const includeDrafts =
   import.meta.env.PUBLIC_INCLUDE_DRAFTS === 'true' || import.meta.env.DEV;
 
 const allArticles = await getCollection('articles');
-const commodities = await getCollection('commodities');
 
 // Filter according to draft mode
 const visibleArticles = includeDrafts
@@ -24,27 +24,6 @@ const sortedArticles = visibleArticles.sort(
 const pageSize = 30;
 const articlesPage1 = sortedArticles.slice(0, pageSize);
 const totalPages = Math.ceil(sortedArticles.length / pageSize);
-
-// Topic hub links
-const topics = [
-  { slug: 'proteksi-tanaman', name: 'Proteksi Tanaman' },
-  { slug: 'tanah-nutrisi', name: 'Tanah & Nutrisi' },
-  { slug: 'budidaya', name: 'Budidaya' },
-  { slug: 'air-irigasi', name: 'Air & Irigasi' },
-  { slug: 'pascapanen-agribisnis', name: 'Pascapanen & Agribisnis' },
-  { slug: 'sains-tanaman', name: 'Sains Tanaman' },
-];
-
-// Commodity hubs (only commodities with >= 3 visible articles)
-const activeCommodities = commodities
-  .map((c) => {
-    const count = visibleArticles.filter((a) =>
-      a.data.commodities.some((x: any) => (typeof x === 'string' ? x : x.id) === c.id)
-    ).length;
-    return { ...c.data, count };
-  })
-  .filter((c) => c.count >= 3)
-  .sort((a, b) => b.count - a.count);
 
 const breadcrumbItems = [
   { name: 'Beranda', url: '/' },
@@ -65,8 +44,10 @@ const seo: SeoInput = {
   <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
     <Breadcrumb items={breadcrumbItems} />
 
+    <div class="lg:grid lg:grid-cols-12 lg:gap-x-12">
+
     <!-- Page Header -->
-    <header class="my-6 sm:my-8 max-w-[68ch]">
+    <header class="my-6 sm:my-8 max-w-[68ch] lg:col-start-4 lg:col-span-9 lg:row-start-1">
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[var(--color-text)] mb-3 leading-tight">
         Jurnal Tani
       </h1>
@@ -75,47 +56,12 @@ const seo: SeoInput = {
       </p>
     </header>
 
-    <!-- Hub Topic Filters -->
-    <nav class="my-6 pt-4 border-t border-[var(--color-border)]" aria-label="Topik jurnal">
-      <div class="text-xs font-bold text-[var(--color-soil)] mb-2.5">
-        Topik Bahasan
-      </div>
-      <div class="flex flex-wrap gap-2">
-        {topics.map((t) => (
-          <a
-            href={`/jurnal/topik/${t.slug}/`}
-            class="px-3 py-1.5 rounded-[2px] bg-[var(--color-tint)] text-xs sm:text-sm font-semibold text-[var(--color-text)] hover:bg-[var(--color-harvest)] hover:text-[var(--color-text)] transition-colors min-h-[44px] flex items-center"
-          >
-            {t.name}
-          </a>
-        ))}
-      </div>
-    </nav>
-
-    <!-- Active Commodity Hubs -->
-    {activeCommodities.length > 0 && (
-      <nav class="mb-8" aria-label="Jurnal per komoditas">
-        <div class="text-xs font-bold text-[var(--color-soil)] mb-2.5">
-          Jurnal per Komoditas (≥ 3 Artikel)
-        </div>
-        <div class="flex flex-wrap gap-2 text-xs sm:text-sm">
-          {activeCommodities.map((c) => (
-            <a
-              href={`/jurnal/komoditas/${c.id}/`}
-              class="px-2.5 py-1 rounded-[2px] border border-[var(--color-border-control)] text-[var(--color-text-muted)] hover:text-[var(--color-brand-strong)] hover:border-[var(--color-brand-strong)] transition-colors flex items-center gap-1.5 min-h-[44px]"
-            >
-              <span class="font-medium capitalize">{c.name}</span>
-              <span class="text-[11px] px-1 bg-[var(--color-tint)] rounded-[2px] font-bold text-[var(--color-soil)]">
-                {c.count}
-              </span>
-            </a>
-          ))}
-        </div>
-      </nav>
-    )}
+    <aside class="my-6 lg:my-0 lg:pt-10 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:row-span-2 lg:sticky lg:top-24 self-start">
+      <TopicSidebar />
+    </aside>
 
     <!-- Articles List -->
-    <section class="mt-8 " aria-labelledby="daftar-artikel-heading">
+    <section class="lg:col-start-4 lg:col-span-9 lg:row-start-2" aria-labelledby="daftar-artikel-heading">
       <h2 id="daftar-artikel-heading" class="sr-only">
         Daftar Artikel Jurnal Tani
       </h2>
@@ -147,5 +93,6 @@ const seo: SeoInput = {
         </nav>
       )}
     </section>
+    </div>
   </div>
 </BaseLayout>

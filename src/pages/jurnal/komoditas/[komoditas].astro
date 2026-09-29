@@ -3,6 +3,7 @@ import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../../components/Breadcrumb.astro';
 import ArticleRow from '../../../components/ArticleRow.astro';
+import TopicSidebar from '../../../components/TopicSidebar.astro';
 import type { SeoInput } from '../../../lib/seo';
 
 export async function getStaticPaths() {
@@ -67,6 +68,12 @@ const seo: SeoInput = {
   <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
     <Breadcrumb items={breadcrumbItems} />
 
+    <div class="flex flex-col lg:grid lg:grid-cols-12 lg:gap-x-12">
+    <aside class="order-last my-8 lg:my-0 lg:pt-10 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:sticky lg:top-24 self-start">
+      <TopicSidebar currentCommodity={commodity.id} />
+    </aside>
+    <div class="lg:col-start-4 lg:col-span-9 lg:row-start-1">
+
     <header class="my-6 sm:my-8 max-w-[68ch]">
       <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[var(--color-text)] mb-3 leading-tight">
         {commodity.name}: Panduan Budidaya & Penanganan
@@ -106,5 +113,7 @@ const seo: SeoInput = {
         ))}
       </div>
     </section>
+    </div>
+    </div>
   </div>
 </BaseLayout>

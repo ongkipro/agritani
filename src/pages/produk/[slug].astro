@@ -41,8 +41,10 @@ const allArticles = await getCollection('articles', (entry) => {
   });
 });
 
-// Take top 3 articles
-const relatedArticles = allArticles.slice(0, 3);
+// Newest 3 matching articles
+const relatedArticles = allArticles
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
 
 const breadcrumbs = [
   { name: 'Beranda', url: '/' },

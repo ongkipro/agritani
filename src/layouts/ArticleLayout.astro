@@ -1,4 +1,6 @@
 ---
+import { topicName } from '../lib/topics';
+import { getCollection } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 import AuthorByline from '../components/AuthorByline.astro';
@@ -57,22 +59,21 @@ const { data } = article;
 
 const readingTime = getReadingTime(article.body || '');
 
-const topicLabels: Record<string, string> = {
-  'proteksi-tanaman': 'Proteksi Tanaman',
-  'tanah-nutrisi': 'Tanah & Nutrisi',
-  'budidaya': 'Budidaya',
-  'air-irigasi': 'Air & Irigasi',
-  'pascapanen-agribisnis': 'Pascapanen & Agribisnis',
-  'sains-tanaman': 'Sains Tanaman',
-};
-
-const topicLabel = topicLabels[data.topic] || data.topic;
+const topicLabel = topicName(data.topic);
 
 const primaryCommodity = data.commodities?.[0]
   ? typeof data.commodities[0] === 'string'
     ? data.commodities[0]
     : (data.commodities[0] as any).id
   : '';
+
+// Commodity hubs exist only with >= 3 visible articles (DESIGN §4.4.3); otherwise show plain text
+const includeDrafts = import.meta.env.PUBLIC_INCLUDE_DRAFTS === 'true' || import.meta.env.DEV;
+const commodityHubExists = primaryCommodity
+  ? (await getCollection('articles')).filter(
+      (a) => (includeDrafts || !a.data.draft) && a.data.commodities.some((c: any) => (typeof c === 'string' ? c : c.id) === primaryCommodity)
+    ).length >= 3
+  : false;
 
 const breadcrumbItems = [
   { name: 'Beranda', url: '/' },
@@ -206,12 +207,16 @@ if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV)
           {primaryCommodity && (
             <>
               <span aria-hidden="true">·</span>
-              <a
-                href={`/jurnal/komoditas/${primaryCommodity}/`}
-                class="hover:underline capitalize font-medium text-[var(--color-soil)]"
-              >
-                {primaryCommodity.replace(/-/g, ' ')}
-              </a>
+              {commodityHubExists ? (
+                <a
+                  href={`/jurnal/komoditas/${primaryCommodity}/`}
+                  class="hover:underline capitalize font-medium text-[var(--color-soil)]"
+                >
+                  {primaryCommodity.replace(/-/g, ' ')}
+                </a>
+              ) : (
+                <span class="capitalize">{primaryCommodity.replace(/-/g, ' ')}</span>
+              )}
             </>
           )}
         </div>

@@ -397,6 +397,24 @@ Aturan pemakaian:
 - **Anti-klise kategori** (§4.0): hijau jenuh + kuning adalah bahasa visual umum situs pupuk Indonesia. Agritani membedakan diri lewat takaran: latar selalu `canvas`/`tint` yang terang; fill `brand` hanya untuk header, tombol primer, dan footer; `harvest` maksimal satu elemen per viewport; tanpa kolase CGI daun/pabrik.
 - Tanpa gradien, tanpa hijau neon, tanpa latar foto di balik teks panjang.
 
+### 3.1.1. Warna topik Jurnal (diadaptasi dari kode sektor teagasc.ie)
+
+Enam topik Jurnal punya satu warna penanda. Warna ini **hanya** dipakai sebagai
+garis 3px di atas tab/judul hub dan kotak kecil 8px di depan label topik; teks
+tetap `--color-text`/`--color-soil`, jadi makna tidak pernah dibawa warna saja.
+Kontras non-teks terhadap `canvas` ≥ 3:1.
+
+```css
+--color-topic-proteksi-tanaman: #B3261E;      /* merah hama — 6.1:1 */
+--color-topic-tanah-nutrisi: #7A4A22;         /* tanah — 7.0:1 */
+--color-topic-budidaya: #2F7D32;              /* daun — 4.8:1 */
+--color-topic-air-irigasi: #1F6FA8;           /* air — 5.1:1 */
+--color-topic-pascapanen-agribisnis: #B26A00; /* panen — 4.0:1 */
+--color-topic-sains-tanaman: #0F766E;         /* klorofil-teal — 5.1:1 */
+```
+
+Sumber tunggal slug → nama → warna: `src/lib/topics.ts`.
+
 ### 3.2. Tipografi
 
 | Peran | Font | Dipakai di |
@@ -488,6 +506,7 @@ knowablemagazine.org (tantangan Cloudflare), cybex.pertanian.go.id
 | UMN Extension "What's wrong with my plant?" | Satu keputusan per langkah; gejala dikelompokkan per bagian tanaman; H1 = jalur; kandidat "1 dari N" dengan beberapa foto + tanda pembeda; sangat ringan | Alur komoditas → bagian → gejala, H1 jalur, tanda pembeda, bobot ringan | Daftar gejala tanpa gambar |
 | ipm.ucanr.edu (tomat) | Masalah dikelompokkan per penyebab: hama, penyakit, gangguan lingkungan, gulma | Label jenis penyebab termasuk hara/lingkungan | Hero stok dekoratif |
 | plantix.net/id (bercak daun cabai) | Nama lokal + latin; chip jenis penyebab; urutan Ringkasan → Gejala → Rekomendasi → Hayati → Kimiawi → Penyebab → Pencegahan; modal cookie menutupi konten mobile | Urutan bagian artikel penyakit, hayati sebelum kimiawi | Modal cookie, dorongan instal aplikasi |
+| teagasc.ie (home, `/crops/crops/`, `/news--events/daily/`) — diminta pemilik 2026-09-29 sebagai referensi arah | Otoritas riset + penyuluhan pertanian; kanvas putih, judul hijau besar ringan; **garis warna per sektor** di atas navigasi (Animals, Crops, Environment, Food, Rural Economy, Education); judul section + garis rambut 1px di bawahnya; hub dengan **sidebar sub-topik kiri** + grid subtopik bergambar; daftar artikel: gambar kecil kiri, judul tebal, dek, tanggal, label topik; kolom berita teks tanpa kotak dipisah garis vertikal; footer terang dengan kolom tautan | Kode warna per topik Jurnal (§3.1.1); judul section dengan garis rambut di dalam section (C9); sidebar topik di hub dan indeks Jurnal ≥1024px (C10); baris artikel dengan label topik berwarna | Foto bersudut melengkung besar (melanggar radius ≤ 2px), carousel hero, font display tipis 300 (merek memakai Newsreader/Plus Jakarta Sans), modal cookie, bullet ikon di footer |
 
 Sintesis (terinferensi dari observasi di atas):
 
@@ -509,6 +528,8 @@ Sintesis (terinferensi dari observasi di atas):
 - **C6 Elemen khas**: (a) tombol komoditas besar tap-first; (b) Ringkasan Lapangan berlatar `tint` dengan label field `soil`; (c) langkah bernomor `01–03` hanya untuk urutan nyata (langkah kemitraan, alur distribusi), tidak untuk daftar produk; (d) baris indeks artikel dengan jumlah artikel nyata per hub.
 - **C7 Batas kontainer**: panel hanya untuk Ringkasan Lapangan, form, tabel dosis, dan hasil diagnosa. Daftar artikel, lini produk, langkah kemitraan tetap terbuka (tanpa kotak).
 - **C8 Artikel**: ≥1024px Daftar Isi sticky kiri 3/12, prosa 7/12, 2/12 kosong; <1024px satu kolom. Tabel lebar hanya scroll di dalam wrapper-nya.
+- **C9 Judul section (teagasc.ie)**: H2 section boleh diberi garis rambut 1px `--color-border` tepat di bawahnya, di DALAM section. Ini bukan pemisah antar-section (§3.3 tetap berlaku).
+- **C10 Hub dengan sidebar (teagasc.ie)**: indeks Jurnal, hub topik, dan hub komoditas ≥1024px memakai sidebar kiri 3/12 berisi daftar 6 topik (garis warna topik, topik aktif ditandai tebal + `aria-current`) dan hub komoditas; konten 9/12. <1024px sidebar menjadi deretan tautan topik yang membungkus di atas daftar.
 - **Jangan disubstitusi**: grid kartu seragam untuk artikel atau lini produk di homepage; hero terpusat dengan dua CTA; kotak bulat di setiap section; bento; carousel testimoni; statistik tanpa data; tombol WhatsApp melayang yang menutupi konten di mobile (gunakan tautan di header/menu, footer, dan panel hasil).
 
 ### 4.2. Anatomi Global Situs
@@ -598,7 +619,8 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 **Hub Topik `/jurnal/topik/{topik}/`** (Sains)
 
 1. Breadcrumb · H1 nama topik ("Proteksi Tanaman: Hama & Penyakit").
-2. Pengantar 80–150 kata dari `src/content/pages/topik-{topik}.md` (opsional sampai OQ-12).
+2. Pengantar 80–150 kata dari `src/content/pages/topik-{topik}.md` (opsional sampai OQ-12) + gambar header 16:9 (dummy sampai OQ-5), garis warna topik 3px di atas H1 (§3.1.1).
+2a. Sidebar topik kiri (C10).
 3. Tautan hub komoditas yang punya artikel di topik ini.
 4. Daftar artikel topik (baris; paginasi statis per 30 bila perlu).
 5. Tautan alat relevan (mis. Proteksi Tanaman → Diagnosa Gejala; Air & Irigasi → Cuaca Tani).

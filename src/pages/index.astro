@@ -98,7 +98,7 @@ const commodityNames: Record<string, string> = {
   kopi: 'Kopi',
 };
 
-const topCommodities = Object.keys(commodityCounts)
+const topCommodities = [...activeHubSlugs]
   .sort((a, b) => (commodityCounts[b] || 0) - (commodityCounts[a] || 0))
   .slice(0, 8)
   .map((slug) => ({
@@ -189,7 +189,7 @@ const seoProps = {
   <!-- 2. Band Tint: Jurnal per Komoditas (DESIGN §4.1 C1, §4.2.3: open index rows without boxes) -->
   <section class="py-12 sm:py-16 bg-[var(--color-tint)]">
     <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-      <div class="flex flex-wrap items-baseline justify-between gap-4">
+      <div class="flex flex-wrap items-baseline justify-between gap-4 pb-4 border-b border-[var(--color-border)]">
         <div>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-[var(--color-text)] tracking-tight">
             Jurnal per Komoditas
@@ -231,7 +231,7 @@ const seoProps = {
   <!-- 3. Section Bacaan Pilihan (DESIGN §4.1 C1, §4.2.3: no kickers) -->
   <section class="py-12 sm:py-16 bg-[var(--color-canvas)]">
     <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-      <div>
+      <div class="pb-4 border-b border-[var(--color-border)]">
         <h2 class="text-2xl sm:text-3xl font-extrabold text-[var(--color-text)] tracking-tight">
           Bacaan Pilihan Jurnal Tani
         </h2>
@@ -293,7 +293,7 @@ const seoProps = {
   <!-- 4. Section Alat Tani (DESIGN §4.2.3, C7) -->
   <section class="py-12 sm:py-16 bg-[var(--color-surface)]">
     <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-      <div class="flex flex-wrap items-baseline justify-between gap-4">
+      <div class="flex flex-wrap items-baseline justify-between gap-4 pb-4 border-b border-[var(--color-border)]">
         <div>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-[var(--color-text)] tracking-tight">
             Alat Tani Lapangan
@@ -312,7 +312,7 @@ const seoProps = {
       </div>
 
       <!-- 4 Tools List (DESIGN §4.2.3: open list without boxes) -->
-      <div class="divide-y divide-[var(--color-border)] border-y border-[var(--color-border)]">
+      <div class="divide-y divide-[var(--color-border)] border-b border-[var(--color-border)]">
         
         <a
           href="/alat/diagnosa-gejala/"
@@ -449,7 +449,7 @@ const seoProps = {
   <!-- 7. Section Produk untuk Lahan Anda (DESIGN §4.2.3, §2.5: dynamic from collection, reference only) -->
   <section class="py-12 sm:py-16 bg-[var(--color-canvas)]">
     <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-      <div>
+      <div class="pb-4 border-b border-[var(--color-border)]">
         <h2 class="text-2xl sm:text-3xl font-extrabold text-[var(--color-text)] tracking-tight">
           Produk untuk Lahan Anda
         </h2>
@@ -459,7 +459,7 @@ const seoProps = {
       </div>
 
       <!-- 4 Products List Rendered from collection (Open rows, DESIGN §4.2.3) -->
-      <div class="divide-y divide-[var(--color-border)] border-y border-[var(--color-border)]">
+      <div class="divide-y divide-[var(--color-border)] border-b border-[var(--color-border)]">
         {allProducts.map((product) => (
           <div class="py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div class="space-y-0.5">
@@ -489,7 +489,7 @@ const seoProps = {
   <!-- 8. Band Harvest-Tint: Kemitraan Distributor (DESIGN §4.1 C1, C6, §4.2.3) -->
   <section class="py-12 sm:py-16 bg-[var(--color-harvest-tint)]">
     <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-      <div class="space-y-2">
+      <div class="space-y-2 pb-4 border-b border-[color-mix(in_srgb,var(--color-soil)_20%,transparent)]">
         <h2 class="text-2xl sm:text-3xl font-extrabold text-[var(--color-text)] tracking-tight">
           Menjadi Mitra Distributor Resmi
         </h2>

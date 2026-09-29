@@ -20,16 +20,8 @@ Probe: article|https://agritani.com/jurnal/jurus-pengendalian-antraknosa-patek-c
 Probe: weather-tool|https://agritani.com/alat/cuaca-tani/|200-299|Cuaca Tani|2000
 Probe: sitemap|https://agritani.com/sitemap-index.xml|200-299|sitemap|1000
 
-## Recommended production probes
+## Not applicable
 
-Add probes for database connectivity, background jobs, queue/worker health, or a
-critical-error sentinel when the application exposes stable HTTP endpoints for
-them. Keep vendor-specific credentials and query tokens out of this file.
-
-Examples:
-
-```text
-Probe: database|https://example.com/health/db|200-299|ok|750
-Probe: background-jobs|https://example.com/health/workers|200-299|ok|1000
-Probe: critical-errors|https://example.com/health/errors|200-299|critical_errors=0|1000
-```
+agritani.com is a static site on Cloudflare Workers static assets: no database,
+background jobs, queues, or server-side error sentinel exist, so no probes for
+them. Add them only if a runtime (for example the future CMS, DEC-012) is added.

@@ -27,6 +27,14 @@
   /* Fonts */
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-editorial: 'Newsreader', Georgia, serif;
+
+  /* Topic markers (DESIGN §3.1.1) — non-text only, >= 3:1 on canvas */
+  --color-topic-proteksi-tanaman: #B3261E;
+  --color-topic-tanah-nutrisi: #7A4A22;
+  --color-topic-budidaya: #2F7D32;
+  --color-topic-air-irigasi: #1F6FA8;
+  --color-topic-pascapanen-agribisnis: #B26A00;
+  --color-topic-sains-tanaman: #0F766E;
 }
 
 @font-face {
@@ -130,3 +138,11 @@ footer :focus-visible {
     display: none !important;
   }
 }
+
+/* Per-topic marker colour: set `--topic` via class, CSP forbids inline style */
+.topic-proteksi-tanaman { --topic: var(--color-topic-proteksi-tanaman); }
+.topic-tanah-nutrisi { --topic: var(--color-topic-tanah-nutrisi); }
+.topic-budidaya { --topic: var(--color-topic-budidaya); }
+.topic-air-irigasi { --topic: var(--color-topic-air-irigasi); }
+.topic-pascapanen-agribisnis { --topic: var(--color-topic-pascapanen-agribisnis); }
+.topic-sains-tanaman { --topic: var(--color-topic-sains-tanaman); }
