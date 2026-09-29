@@ -530,15 +530,45 @@ Record only durable implementation changes, validation evidence, and gotchas tha
      - UI evidence for production empty state captured: `diagnosa-unreviewed-production-390.png` & `1440.png`.
   3. **Agronomic Data Invariant Note**:
      - Cause types "hara" and "lingkungan" are currently absent in `symptoms.json` because current entries are strictly seeded from existing peer-reviewed manuscripts. In compliance with AGENTS.md, no invented deficiency or abiotic data is introduced; these branches will remain unpopulated until supplied and validated by Prof. Arif Prabowo (`OQ-11c`).
-- Verifications:
-  - `npm test`: 62/62 unit tests PASS (4 triage review gating tests).
-  - `npx astro check`: 0 errors, 0 warnings.
-  - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 181 HTML pages, Pagefind indexed 150 articles, `check-seo` PASS (0/0), `check-csp` PASS (0/0/0).
-  - UI visual evidence captured at port 4330 via `agritani-shot.cjs`:
-    - `proof/ui/t09/diagnosa-button-contrast-zoom.png` (button crop zoom)
-    - `proof/ui/t09/diagnosa-result-cabai-patek-390.png` & `1440.png` (interactive result with 7.29:1 contrast button)
-    - `proof/ui/t09/diagnosa-unreviewed-production-390.png` & `1440.png` (honest unreviewed empty state)
-- Boundary check produced `REVIEW_REQUIRED` (declared risk R2, effective risk escalated to R3 due to `src/styles/global.css`). Stopped without self-review; finished as `BLOCKED` awaiting independent review.
+## 2026-09-29 — T-20: Cuaca Tani & Integrasi BMKG (READY - PENDING INDEPENDENT REVIEW)
+
+- **Tiered Administrative Region Dataset (`public/wilayah/**` & `scripts/build-wilayah.mjs`)**:
+  - Source: Kemendagri administrative codes from open MIT-licensed repository `cahyadsn/wilayah` (Kepmendagri No 300.2.2-2138 / Kepmendagri 2022).
+  - Documented license, structure, and metrics in `public/wilayah/SOURCE.md`.
+  - Built tiered files: `provinsi.json` (38 provinces), 38 province regency files (`{kode}.json`), and 514 regency detail files with districts & villages.
+  - Performance budget verified: maximum gzip size across all 514 files is **7.27 KB gzip** (`11.08.json` / Aceh Utara), well within the < 40 KB gzip budget.
+- **Spray Window Evaluation Engine (`src/lib/spray-window.ts` & `src/lib/spray-window.test.ts`)**:
+  - Pure calculation function `sprayWindow()` evaluating rain risk (`rainTundaMm`), wind drift (`windTundaKmh`, `windHatiKmh`), evaporation heat (`tempHatiC`), and humidity (`humidityHatiPct`).
+  - Enforced review gating: `src/data/spray-thresholds.json` is `null` (OQ-11b); when null or unreviewed, status returns null and indicator is strictly hidden.
+  - 10 table-driven unit tests added to `src/lib/spray-window.test.ts` (total 72/72 tests passing).
+- **BMKG API Client (`src/lib/bmkg.ts`)**:
+  - Hyperlocal 3-day / 3-hour forecast fetched browser-direct from `https://api.bmkg.go.id/publik/prakiraan-cuaca?adm4={kode}` (DEC-014).
+  - Client-side cache in `localStorage` per `adm4` (max 1 hour TTL) wrapped in `try/catch` to ensure full functionality when storage is disabled or quota blocked.
+  - 10-second timeout handling via `AbortController`.
+  - Formatters for Indonesian time, wind directions, and stale detection (`analysis_date` > 24 hours).
+- **Components & Page (`src/components/RegionPicker.astro`, `src/components/ForecastTable.astro`, `src/pages/alat/cuaca-tani.astro`)**:
+  - 4-level cascading dropdowns (Provinsi -> Kabupaten -> Kecamatan -> Desa) with instant SSR province list and memory-cached district/village lookups.
+  - Responsive forecast table with `tabular-nums` and horizontal scroll wrapper.
+  - Non-intrusive skeleton loading state (without full-screen spinner per DESIGN §2.6.2).
+  - Friendly field offline/error state with "Coba Lagi" retry button and direct link to official BMKG portal.
+  - Mandatory BMKG attribution banner and single WhatsApp consultation prompt (`[Web·Cuaca]`).
+  - Accessible `<noscript>` fallback linking to BMKG portal.
+  - Zero executed inline scripts, zero inline `on*=`, zero inline `style=`.
+- **Browser Verifications via Playwright (`verify-t20-cuaca.cjs`)**:
+  - Tested 3 villages in 3 distinct provinces with real live BMKG responses:
+    - Jawa Barat: Desa Margaasih, Kec. Margaasih, Kab. Bandung (`32.04.10.2001`) — loaded & verified!
+    - Jawa Timur: Desa Widoro, Kec. Donorojo, Kab. Pacitan (`35.01.01.2001`) — loaded & verified!
+    - Aceh: Desa Keude Bakongan, Kec. Bakongan, Kab. Aceh Selatan (`11.01.01.2001`) — loaded & verified!
+  - Offline/blocked BMKG network test: Verified graceful error banner, retry action, and external link.
+  - LocalStorage resilience test: Verified flawless UI operation when `localStorage` throws `SecurityError`.
+  - Captured UI evidence at port 4330:
+    - `proof/ui/t20/cuaca-initial-390.png` & `1440.png`
+    - `proof/ui/t20/cuaca-jabar-margaasih-390.png` & `1440.png`
+    - `proof/ui/t20/cuaca-jatim-widoro-390.png`
+    - `proof/ui/t20/cuaca-aceh-bakongan-390.png`
+    - `proof/ui/t20/cuaca-error-offline-390.png`
+- Boundary check produced `REVIEW_REQUIRED` (declared risk R2, effective risk escalated to R3 due to `public/wilayah/**` dataset). Stopped without self-review; finished as `BLOCKED` awaiting independent review.
+
 
 
 

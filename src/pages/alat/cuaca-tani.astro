@@ -1,0 +1,81 @@
+---
+/**
+ * src/pages/alat/cuaca-tani.astro
+ * Dedicated tool page for Cuaca Tani (REQ-10, DESIGN §2.6.2, ARCHITECTURE §5b).
+ * Connects directly to BMKG open API for 3-day hyperlocal weather forecasts.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import RegionPicker from '../../components/RegionPicker.astro';
+import ForecastTable from '../../components/ForecastTable.astro';
+import type { SeoInput } from '../../lib/seo';
+
+const breadcrumbs = [
+  { name: 'Beranda', url: '/' },
+  { name: 'Alat Tani', url: '/alat/' },
+  { name: 'Cuaca Tani', url: '/alat/cuaca-tani/' },
+];
+
+const seo: SeoInput = {
+  title: 'Cuaca Tani & Prakiraan Semprot Lapangan',
+  description:
+    'Pantau prakiraan cuaca 3 hari per 3 jam langsung dari BMKG untuk tingkat desa/kelurahan Anda. Amati suhu, kelembapan, arah angin, dan potensi hujan sebelum menyemprot.',
+  canonicalPath: '/alat/cuaca-tani/',
+  breadcrumbs,
+  pageType: 'website',
+};
+---
+
+<BaseLayout seo={seo} currentPath="/alat/cuaca-tani/">
+  <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+
+    <!-- Page Header (Lapangan Layout) -->
+    <header class="my-6 sm:my-8 max-w-[68ch]">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--color-text)] mb-3 leading-tight tracking-tight">
+        Cuaca Tani
+      </h1>
+      <p class="text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed">
+        Prakiraan cuaca 3 harian per interval 3 jam langsung dari Badan Meteorologi, Klimatologi, dan Geofisika (BMKG) untuk desa Anda. Pantau risiko hujan, laju penguapan, serta kecepatan angin sebelum melakukan penyemprotan atau pemupukan.
+      </p>
+    </header>
+
+    <!-- Main Tool Workspace -->
+    <div class="space-y-8 max-w-[64rem]">
+      
+      <!-- No-JS Fallback Banner (DESIGN §2.6.2) -->
+      <noscript>
+        <div class="p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-3 text-center sm:text-left">
+          <h2 class="text-base font-bold text-[var(--color-brand)]">
+            Mode Statis (Tanpa JavaScript)
+          </h2>
+          <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
+            Pengambilan data cuaca real-time langsung dari API BMKG membutuhkan peramban dengan JavaScript aktif. Anda tetap dapat memantau prakiraan cuaca daerah Anda secara langsung melalui tautan portal resmi BMKG di bawah ini:
+          </p>
+          <div class="pt-2">
+            <a
+              href="https://www.bmkg.go.id/cuaca/prakiraan-cuaca.bmkg"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-4 py-2 min-h-[44px] text-xs font-bold rounded-[2px] bg-[var(--color-brand)] !text-white hover:bg-[var(--color-brand-hover)] transition-colors"
+            >
+              <span>Buka Portal Cuaca Resmi BMKG</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" x2="21" y1="14" y2="3"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </noscript>
+
+      <!-- Step 1: 4-Level Cascading Region Picker -->
+      <RegionPicker />
+
+      <!-- Step 2: 3-Day Forecast Table with BMKG live attribution -->
+      <ForecastTable />
+
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,440 @@
+---
+/**
+ * src/components/ForecastTable.astro
+ * 3-day / 3-hour BMKG weather forecast table with spray suitability indicator (REQ-10, DESIGN §2.6.2).
+ * Direct browser client execution, skeleton loading, offline retry, and field consultation prompt.
+ */
+import fs from 'node:fs';
+import path from 'node:path';
+import ConsultPrompt from './ConsultPrompt.astro';
+import type { SprayThresholds } from '../lib/spray-window';
+
+// Load spray thresholds at build time (ARCHITECTURE §5b)
+let thresholds: SprayThresholds = null;
+try {
+  const threshPath = path.resolve('src/data/spray-thresholds.json');
+  if (fs.existsSync(threshPath)) {
+    const raw = fs.readFileSync(threshPath, 'utf-8').trim();
+    thresholds = raw ? JSON.parse(raw) : null;
+  }
+} catch {
+  thresholds = null;
+}
+---
+
+<section id="forecast-table-root" class="space-y-6" data-thresholds={JSON.stringify(thresholds)}>
+  
+  <!-- Initial Placeholder State -->
+  <div id="forecast-initial" class="p-8 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] text-center space-y-3">
+    <div class="inline-flex items-center justify-center w-12 h-12 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-brand)] mb-1">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+      </svg>
+    </div>
+    <h2 class="text-lg sm:text-xl font-extrabold text-[var(--color-text)]">
+      Pilih Lokasi untuk Menampilkan Cuaca BMKG
+    </h2>
+    <p class="text-xs sm:text-sm text-[var(--color-text-muted)] max-w-[50ch] mx-auto leading-relaxed">
+      Gunakan pilihan wilayah di atas untuk melihat suhu udara, kelembapan, curah hujan, arah serta kecepatan angin hingga 3 hari ke depan.
+    </p>
+  </div>
+
+  <!-- Loading State (Skeleton Rows, without full-screen spinner per DESIGN §2.6.2) -->
+  <div id="forecast-loading" class="hidden p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-4 animate-pulse">
+    <div class="h-6 bg-[var(--color-border)] rounded-[2px] w-1/3"></div>
+    <div class="h-4 bg-[var(--color-border)] rounded-[2px] w-1/2"></div>
+    <div class="space-y-2 pt-2">
+      <div class="h-10 bg-[var(--color-tint)] rounded-[2px] w-full"></div>
+      <div class="h-10 bg-[var(--color-tint)] rounded-[2px] w-full"></div>
+      <div class="h-10 bg-[var(--color-tint)] rounded-[2px] w-full"></div>
+      <div class="h-10 bg-[var(--color-tint)] rounded-[2px] w-full"></div>
+    </div>
+  </div>
+
+  <!-- Error / Offline State -->
+  <div id="forecast-error" class="hidden p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] text-center space-y-4">
+    <div class="inline-flex items-center justify-center w-12 h-12 rounded-[2px] bg-[var(--color-harvest-tint)] text-[var(--color-soil)] mb-1">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" x2="12" y1="8" y2="12"/>
+        <line x1="12" x2="12.01" y1="16" y2="16"/>
+      </svg>
+    </div>
+    <div class="space-y-1">
+      <h3 class="text-base font-bold text-[var(--color-text)]">
+        Prakiraan BMKG Belum Dapat Dimuat
+      </h3>
+      <p id="error-message-text" class="text-xs text-[var(--color-text-muted)] max-w-[48ch] mx-auto leading-relaxed">
+        Gagal menghubungi layanan BMKG. Pastikan sinyal internet aktif atau coba beberapa saat lagi.
+      </p>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-3 pt-1">
+      <button
+        type="button"
+        id="btn-retry-bmkg"
+        class="inline-flex items-center gap-2 px-4 py-2 min-h-[44px] text-xs font-bold rounded-[2px] bg-[var(--color-brand)] !text-white hover:bg-[var(--color-brand-hover)] transition-colors cursor-pointer"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+          <path d="M3 3v5h5"/>
+          <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/>
+          <path d="M16 21h5v-5"/>
+        </svg>
+        <span>Coba Lagi</span>
+      </button>
+      <a
+        href="https://www.bmkg.go.id/cuaca/prakiraan-cuaca.bmkg"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 px-4 py-2 min-h-[44px] text-xs font-semibold rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)] transition-colors"
+      >
+        <span>Buka Web Resmi BMKG</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15 3 21 3 21 9"/>
+          <line x1="10" x2="21" y1="14" y2="3"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Results Content Area (ARIA Live) -->
+  <div id="forecast-results" aria-live="polite" class="hidden space-y-6">
+    
+    <!-- Location & Metadata Header -->
+    <div class="bg-[var(--color-surface)] p-5 sm:p-6 border border-[var(--color-border)] rounded-[2px] space-y-3">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <span class="block text-xs font-bold text-[var(--color-soil)] uppercase tracking-wider mb-0.5">
+            Prakiraan Cuaca Lapangan
+          </span>
+          <h2 id="result-location-title" class="text-xl sm:text-2xl font-extrabold text-[var(--color-text)] leading-tight">
+            Desa / Kelurahan
+          </h2>
+          <p id="result-location-sub" class="text-xs sm:text-sm text-[var(--color-text-muted)] mt-0.5"></p>
+        </div>
+        <div class="text-left sm:text-right font-mono text-xs text-[var(--color-text-muted)]">
+          <div id="result-analysis-time">Diperbarui BMKG: -</div>
+          <div id="result-coords" class="text-[11px] opacity-80 mt-0.5"></div>
+        </div>
+      </div>
+
+      <!-- Stale Data Warning Banner (> 24 hours per DESIGN §2.6.2) -->
+      <div id="stale-warning-banner" class="hidden p-3 bg-[var(--color-harvest-tint)] border border-[var(--color-harvest)]/40 rounded-[2px] text-xs text-[var(--color-soil)] flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0">
+          <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+          <line x1="12" x2="12" y1="9" y2="13"/>
+          <line x1="12" x2="12.01" y1="17" y2="17"/>
+        </svg>
+        <span>
+          <strong>Perhatian:</strong> Data analisis BMKG ini berumur lebih dari 24 jam. Kondisi cuaca lokal di lapangan mungkin telah mengalami perubahan.
+        </span>
+      </div>
+
+      <!-- Spray Summary Banner (Displayed only when thresholds are reviewed) -->
+      <div id="spray-summary-banner" class="hidden p-3.5 bg-[var(--color-tint)] border border-[var(--color-brand)]/30 rounded-[2px] text-xs sm:text-sm text-[var(--color-text)]">
+        <span class="font-bold text-[var(--color-brand-strong)]" id="spray-summary-text"></span>
+      </div>
+    </div>
+
+    <!-- Daily Forecast Tables Container -->
+    <div id="daily-tables-container" class="space-y-6">
+    </div>
+
+    <!-- Mandatory BMKG Attribution (DEC-014, DESIGN §2.6.2) -->
+    <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] flex flex-wrap items-center justify-between gap-3 text-xs text-[var(--color-text-muted)]">
+      <div class="flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="text-[var(--color-brand)]">
+          <path d="M12 2v20"/>
+          <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+        </svg>
+        <span>
+          <strong>Sumber Data:</strong> BMKG (Badan Meteorologi, Klimatologi, dan Geofisika) Republik Indonesia melalui API Terbuka.
+        </span>
+      </div>
+      <a
+        href="https://www.bmkg.go.id/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1 font-semibold text-[var(--color-brand-strong)] underline hover:text-[var(--color-brand)]"
+      >
+        <span>Kunjungi Situs Resmi BMKG</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15 3 21 3 21 9"/>
+          <line x1="10" x2="21" y1="14" y2="3"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Exactly One WhatsApp Consultation Prompt per page (DESIGN §2.6.2 & §2.8) -->
+    <div class="pt-4 border-t border-[var(--color-border)]">
+      <ConsultPrompt
+        source="[Web·Cuaca]"
+        title="Ragu menentukan jadwal semprot atau aplikasi pupuk?"
+        description="Kirim nama desa Anda dan diskusikan rencana tindakan lapangan bersama tim agronomi PT Agritani Internasional melalui WhatsApp."
+        label="Konsultasi Jadwal Lahan"
+        variant="secondary"
+      />
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+  import { fetchBmkgForecast, formatSlotTime, formatWindDirection, type ProcessedForecast } from '../lib/bmkg.ts';
+  import { sprayWindow, type SprayThresholds } from '../lib/spray-window.ts';
+
+  function initForecastTable() {
+    const root = document.getElementById('forecast-table-root');
+    if (!root) return;
+
+    let thresholds: SprayThresholds = null;
+    try {
+      thresholds = JSON.parse(root.dataset.thresholds || 'null');
+    } catch {
+      thresholds = null;
+    }
+
+    const initialCard = document.getElementById('forecast-initial');
+    const loadingCard = document.getElementById('forecast-loading');
+    const errorCard = document.getElementById('forecast-error');
+    const errorMessageText = document.getElementById('error-message-text');
+    const resultsContainer = document.getElementById('forecast-results');
+    const btnRetry = document.getElementById('btn-retry-bmkg');
+
+    const locationTitle = document.getElementById('result-location-title');
+    const locationSub = document.getElementById('result-location-sub');
+    const analysisTimeEl = document.getElementById('result-analysis-time');
+    const coordsEl = document.getElementById('result-coords');
+    const staleBanner = document.getElementById('stale-warning-banner');
+    const sprayBanner = document.getElementById('spray-summary-banner');
+    const spraySummaryText = document.getElementById('spray-summary-text');
+    const dailyTablesContainer = document.getElementById('daily-tables-container');
+
+    let currentAdm4 = '';
+    let currentLabel = '';
+
+    async function loadForecast(adm4: string, label: string) {
+      currentAdm4 = adm4;
+      currentLabel = label;
+
+      // Update UI states
+      initialCard?.classList.add('hidden');
+      errorCard?.classList.add('hidden');
+      resultsContainer?.classList.add('hidden');
+      loadingCard?.classList.remove('hidden');
+
+      try {
+        const data = await fetchBmkgForecast(adm4);
+        renderForecast(data, label);
+      } catch (err: any) {
+        loadingCard?.classList.add('hidden');
+        errorCard?.classList.remove('hidden');
+        if (errorMessageText) {
+          errorMessageText.textContent = err.message || 'Gagal memuat prakiraan cuaca dari BMKG.';
+        }
+      }
+    }
+
+    function renderForecast(forecast: ProcessedForecast, customLabel: string) {
+      loadingCard?.classList.add('hidden');
+      resultsContainer?.classList.remove('hidden');
+
+      const loc = forecast.location;
+      if (locationTitle) {
+        locationTitle.textContent = loc.desa ? `Desa ${loc.desa}` : customLabel;
+      }
+      if (locationSub) {
+        locationSub.textContent = `Kecamatan ${loc.kecamatan}, ${loc.kotkab}, Provinsi ${loc.provinsi}`;
+      }
+      if (analysisTimeEl) {
+        analysisTimeEl.textContent = forecast.analysisDate
+          ? `Diperbarui BMKG: ${forecast.analysisDate}`
+          : 'Data langsung BMKG';
+      }
+      if (coordsEl && loc.lat && loc.lon) {
+        coordsEl.textContent = `Titik koordinat: ${loc.lat.toFixed(4)}°, ${loc.lon.toFixed(4)}° (${loc.timezone || 'WIB'})`;
+      }
+
+      // Stale banner
+      if (staleBanner) {
+        if (forecast.isStale) {
+          staleBanner.classList.remove('hidden');
+        } else {
+          staleBanner.classList.add('hidden');
+        }
+      }
+
+      // Check spray recommendation summary for today if thresholds are reviewed
+      const hasThresholds = Boolean(thresholds && thresholds.reviewedBy && thresholds.reviewedBy.trim().length > 0);
+      if (hasThresholds && forecast.days.length > 0) {
+        const todaySlots = forecast.days[0].slots;
+        let firstLayakSlot: string | null = null;
+
+        for (let i = 0; i < todaySlots.length; i++) {
+          const slot = todaySlots[i];
+          const next = todaySlots[i + 1] || null;
+          const res = sprayWindow(slot, next, thresholds);
+          if (res.status === 'layak') {
+            firstLayakSlot = formatSlotTime(slot.local_datetime);
+            break;
+          }
+        }
+
+        if (sprayBanner && spraySummaryText) {
+          if (firstLayakSlot) {
+            spraySummaryText.textContent = `🌱 Rekomendasi semprot hari ini: Waktu kondusif dimulai sekitar pukul ${firstLayakSlot} WIB.`;
+            sprayBanner.classList.remove('hidden');
+          } else {
+            spraySummaryText.textContent = `⚠️ Kondisi cuaca hari ini kurang kondusif untuk aplikasi semprot (potensi angin/hujan).`;
+            sprayBanner.classList.remove('hidden');
+          }
+        }
+      } else if (sprayBanner) {
+        sprayBanner.classList.add('hidden');
+      }
+
+      // Render Tables per Day
+      if (!dailyTablesContainer) return;
+      dailyTablesContainer.innerHTML = '';
+
+      forecast.days.forEach((day, dayIndex) => {
+        const dayCard = document.createElement('div');
+        dayCard.className = 'bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] overflow-hidden';
+
+        // Day Header
+        const header = document.createElement('div');
+        header.className = 'px-4 sm:px-6 py-3.5 bg-[var(--color-tint)] border-b border-[var(--color-border)] flex items-center justify-between';
+        
+        const h3 = document.createElement('h3');
+        h3.className = 'text-sm sm:text-base font-extrabold text-[var(--color-text)] flex items-center gap-2';
+        h3.innerHTML = `
+          <span class="w-2.5 h-2.5 bg-[var(--color-brand)] rounded-[2px]"></span>
+          <span>${day.dateStr}</span>
+        `;
+        header.appendChild(h3);
+
+        const badge = document.createElement('span');
+        badge.className = 'text-xs font-mono text-[var(--color-soil)] font-semibold';
+        badge.textContent = dayIndex === 0 ? 'Hari Ini' : dayIndex === 1 ? 'Besok' : 'Lusa';
+        header.appendChild(badge);
+
+        dayCard.appendChild(header);
+
+        // Responsive Scrollable Table Wrapper (DESIGN §2.6.2)
+        const tableWrapper = document.createElement('div');
+        tableWrapper.className = 'overflow-x-auto';
+
+        const table = document.createElement('table');
+        table.className = 'w-full text-left text-xs sm:text-sm border-collapse';
+
+        // Table Head
+        const thead = document.createElement('thead');
+        thead.className = 'bg-[var(--color-surface)] border-b border-[var(--color-border)] text-xs text-[var(--color-text-muted)] uppercase tracking-wider font-semibold';
+        thead.innerHTML = `
+          <tr>
+            <th scope="col" class="py-3 px-3 sm:px-4 font-bold text-[var(--color-text)]">Jam</th>
+            <th scope="col" class="py-3 px-3 sm:px-4">Cuaca</th>
+            <th scope="col" class="py-3 px-3 sm:px-4 text-right">Suhu</th>
+            <th scope="col" class="py-3 px-3 sm:px-4 text-right">Lembap</th>
+            <th scope="col" class="py-3 px-3 sm:px-4 text-right">Hujan</th>
+            <th scope="col" class="py-3 px-3 sm:px-4">Angin</th>
+            ${hasThresholds ? '<th scope="col" class="py-3 px-3 sm:px-4">Status Semprot</th>' : ''}
+          </tr>
+        `;
+        table.appendChild(thead);
+
+        // Table Body
+        const tbody = document.createElement('tbody');
+        tbody.className = 'divide-y divide-[var(--color-border)] tabular-nums';
+
+        day.slots.forEach((slot, slotIdx) => {
+          const nextSlot = day.slots[slotIdx + 1] || null;
+          const tr = document.createElement('tr');
+          tr.className = 'hover:bg-[var(--color-tint)]/50 transition-colors';
+
+          const timeFormatted = formatSlotTime(slot.local_datetime);
+          const windDir = formatWindDirection(slot.wd);
+
+          // Evaluation for spray window (only when thresholds exist)
+          let sprayCellHtml = '';
+          if (hasThresholds) {
+            const sprayRes = sprayWindow(slot, nextSlot, thresholds);
+            let badgeStyle = 'bg-[var(--color-tint)] text-[var(--color-brand-strong)]';
+            let label = 'Layak';
+            if (sprayRes.status === 'tunda') {
+              badgeStyle = 'bg-[var(--color-harvest-tint)] text-[var(--color-soil)] font-bold';
+              label = 'Tunda';
+            } else if (sprayRes.status === 'hati-hati') {
+              badgeStyle = 'bg-[var(--color-tint)] text-[var(--color-soil)]';
+              label = 'Hati-hati';
+            }
+
+            const reasonStr = sprayRes.reasons[0] || '';
+            sprayCellHtml = `
+              <td class="py-3 px-3 sm:px-4">
+                <span class="inline-block text-[11px] font-semibold px-2 py-0.5 rounded-[2px] ${badgeStyle}">
+                  ${label}
+                </span>
+                ${reasonStr ? `<span class="block text-[10px] text-[var(--color-text-muted)] mt-0.5">${reasonStr}</span>` : ''}
+              </td>
+            `;
+          }
+
+          tr.innerHTML = `
+            <td class="py-3 px-3 sm:px-4 font-bold text-[var(--color-text)] whitespace-nowrap">
+              ${timeFormatted}
+            </td>
+            <td class="py-3 px-3 sm:px-4 whitespace-nowrap">
+              <span class="inline-flex items-center gap-1.5 font-medium text-[var(--color-text)]">
+                ${slot.image ? `<img src="${slot.image}" alt="" class="w-5 h-5 inline-block shrink-0" aria-hidden="true" />` : ''}
+                <span>${slot.weather_desc}</span>
+              </span>
+            </td>
+            <td class="py-3 px-3 sm:px-4 text-right font-semibold text-[var(--color-text)] whitespace-nowrap">
+              ${slot.t}°C
+            </td>
+            <td class="py-3 px-3 sm:px-4 text-right text-[var(--color-text-muted)] whitespace-nowrap">
+              ${slot.hu}%
+            </td>
+            <td class="py-3 px-3 sm:px-4 text-right font-medium text-[var(--color-text)] whitespace-nowrap">
+              ${slot.tp > 0 ? `<span class="text-[var(--color-soil)] font-bold">${slot.tp} mm</span>` : '0 mm'}
+            </td>
+            <td class="py-3 px-3 sm:px-4 text-[var(--color-text-muted)] whitespace-nowrap">
+              <span>${slot.ws} km/j</span>
+              <span class="text-[11px] block sm:inline sm:ml-1 font-mono">${slot.wd} (${windDir})</span>
+            </td>
+            ${sprayCellHtml}
+          `;
+
+          tbody.appendChild(tr);
+        });
+
+        table.appendChild(tbody);
+        tableWrapper.appendChild(table);
+        dayCard.appendChild(tableWrapper);
+        dailyTablesContainer.appendChild(dayCard);
+      });
+    }
+
+    // Listen to Region Picker custom event
+    window.addEventListener('agritani:region-selected', ((e: CustomEvent) => {
+      const { adm4, label } = e.detail || {};
+      if (adm4) {
+        loadForecast(adm4, label || adm4);
+      }
+    }) as EventListener);
+
+    // Retry Button Handler
+    btnRetry?.addEventListener('click', () => {
+      if (currentAdm4) {
+        loadForecast(currentAdm4, currentLabel);
+      }
+    });
+  }
+
+  initForecastTable();
+  document.addEventListener('astro:page-load', initForecastTable);
+</script>

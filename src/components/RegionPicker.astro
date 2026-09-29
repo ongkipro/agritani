@@ -1,0 +1,391 @@
+---
+/**
+ * src/components/RegionPicker.astro
+ * 4-level cascading region picker for Cuaca Tani (REQ-10, ARCHITECTURE §5b).
+ * Loads tiered Kemendagri JSON files: Provinsi -> Kabupaten -> Kecamatan -> Desa.
+ */
+import fs from 'node:fs';
+import path from 'node:path';
+
+// Load provinces at build time for instant SSR rendering
+let provinces: Array<{ kode: string; nama: string }> = [];
+try {
+  const provPath = path.resolve('public/wilayah/provinsi.json');
+  if (fs.existsSync(provPath)) {
+    provinces = JSON.parse(fs.readFileSync(provPath, 'utf-8'));
+  }
+} catch {
+  provinces = [];
+}
+---
+
+<div id="region-picker-root" class="bg-[var(--color-surface)] p-6 sm:p-8 border border-[var(--color-border)] rounded-[2px] space-y-6">
+  <div class="border-b border-[var(--color-border)] pb-3">
+    <span class="block text-xs font-bold text-[var(--color-soil)] uppercase tracking-wider mb-1">
+      Langkah 1: Tentukan Lokasi Lahan
+    </span>
+    <p class="text-xs text-[var(--color-text-muted)]">
+      Pilih wilayah administrasi desa atau kelurahan untuk mengambil prakiraan cuaca resmi BMKG tingkat tapak.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <!-- Level 1: Provinsi -->
+    <div class="space-y-1.5">
+      <label for="select-provinsi" class="block text-xs font-bold text-[var(--color-text)]">
+        1. Provinsi
+      </label>
+      <select
+        id="select-provinsi"
+        class="w-full px-3 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] text-xs sm:text-sm cursor-pointer"
+      >
+        <option value="">-- Pilih Provinsi --</option>
+        {provinces.map((p) => (
+          <option value={p.kode}>{p.nama}</option>
+        ))}
+      </select>
+    </div>
+
+    <!-- Level 2: Kabupaten / Kota -->
+    <div class="space-y-1.5">
+      <label for="select-kabupaten" class="block text-xs font-bold text-[var(--color-text)]">
+        2. Kabupaten / Kota
+      </label>
+      <select
+        id="select-kabupaten"
+        disabled
+        class="w-full px-3 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] text-xs sm:text-sm disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+      >
+        <option value="">-- Pilih Kabupaten --</option>
+      </select>
+    </div>
+
+    <!-- Level 3: Kecamatan -->
+    <div class="space-y-1.5">
+      <label for="select-kecamatan" class="block text-xs font-bold text-[var(--color-text)]">
+        3. Kecamatan
+      </label>
+      <select
+        id="select-kecamatan"
+        disabled
+        class="w-full px-3 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] text-xs sm:text-sm disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+      >
+        <option value="">-- Pilih Kecamatan --</option>
+      </select>
+    </div>
+
+    <!-- Level 4: Desa / Kelurahan -->
+    <div class="space-y-1.5">
+      <label for="select-desa" class="block text-xs font-bold text-[var(--color-text)]">
+        4. Desa / Kelurahan
+      </label>
+      <select
+        id="select-desa"
+        disabled
+        class="w-full px-3 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] text-xs sm:text-sm disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+      >
+        <option value="">-- Pilih Desa --</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Status / Loading Indicator for Region Picker -->
+  <div class="flex items-center justify-between text-xs text-[var(--color-text-muted)] pt-1">
+    <span id="region-status-text">Pilih provinsi untuk memulai.</span>
+    <span id="region-remember-badge" class="hidden font-mono text-[11px] text-[var(--color-soil)]">
+      ✓ Lokasi tersimpan di perangkat
+    </span>
+  </div>
+</div>
+
+<script>
+  interface RegencyItem {
+    kode: string;
+    nama: string;
+  }
+
+  interface VillageItem {
+    kode: string;
+    nama: string;
+  }
+
+  interface DistrictItem {
+    kode: string;
+    nama: string;
+    desa: VillageItem[];
+  }
+
+  interface RegencyDetail {
+    kode: string;
+    nama: string;
+    kecamatan: DistrictItem[];
+  }
+
+  const STORAGE_KEY = 'agritani_last_region';
+
+  function initRegionPicker() {
+    const root = document.getElementById('region-picker-root');
+    if (!root) return;
+
+    const selectProv = document.getElementById('select-provinsi') as HTMLSelectElement | null;
+    const selectKab = document.getElementById('select-kabupaten') as HTMLSelectElement | null;
+    const selectKec = document.getElementById('select-kecamatan') as HTMLSelectElement | null;
+    const selectDesa = document.getElementById('select-desa') as HTMLSelectElement | null;
+    const statusText = document.getElementById('region-status-text');
+    const rememberBadge = document.getElementById('region-remember-badge');
+
+    if (!selectProv || !selectKab || !selectKec || !selectDesa) return;
+
+    let activeRegencyData: RegencyDetail | null = null;
+
+    // Check URL search params first (e.g. ?adm4=32.04.10.2001)
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialAdm4 = urlParams.get('adm4');
+
+    async function loadRegenciesForProvince(provKode: string): Promise<RegencyItem[]> {
+      if (!provKode) return [];
+      const res = await fetch(`/wilayah/${provKode}.json`);
+      if (!res.ok) throw new Error(`Gagal memuat kabupaten untuk provinsi ${provKode}`);
+      return res.json();
+    }
+
+    async function loadRegencyDetail(kabKode: string): Promise<RegencyDetail> {
+      if (!kabKode) throw new Error('Kode kabupaten kosong');
+      const res = await fetch(`/wilayah/${kabKode}.json`);
+      if (!res.ok) throw new Error(`Gagal memuat data kecamatan untuk kabupaten ${kabKode}`);
+      return res.json();
+    }
+
+    function saveLastLocation(loc: { prov: string; kab: string; kec: string; desa: string }) {
+      try {
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(loc));
+        if (rememberBadge) rememberBadge.classList.remove('hidden');
+      } catch {
+        // localStorage might be disabled; ignore gracefully
+      }
+    }
+
+    function dispatchSelectedAdm4(adm4: string, label: string) {
+      // Dispatch custom event for ForecastTable component
+      window.dispatchEvent(
+        new CustomEvent('agritani:region-selected', {
+          detail: { adm4, label },
+        })
+      );
+
+      // Update URL query string without reloading
+      const url = new URL(window.location.href);
+      url.searchParams.set('adm4', adm4);
+      window.history.replaceState({ adm4 }, '', url.toString());
+    }
+
+    // 1. Province Change Handler
+    selectProv.addEventListener('change', async () => {
+      const provKode = selectProv.value;
+      selectKab.innerHTML = '<option value="">-- Pilih Kabupaten --</option>';
+      selectKec.innerHTML = '<option value="">-- Pilih Kecamatan --</option>';
+      selectDesa.innerHTML = '<option value="">-- Pilih Desa --</option>';
+
+      selectKab.disabled = true;
+      selectKec.disabled = true;
+      selectDesa.disabled = true;
+      activeRegencyData = null;
+
+      if (!provKode) {
+        if (statusText) statusText.textContent = 'Pilih provinsi untuk memulai.';
+        return;
+      }
+
+      if (statusText) statusText.textContent = 'Memuat daftar kabupaten/kota...';
+      try {
+        const regencies = await loadRegenciesForProvince(provKode);
+        regencies.forEach((r) => {
+          const opt = document.createElement('option');
+          opt.value = r.kode;
+          opt.textContent = r.nama;
+          selectKab.appendChild(opt);
+        });
+        selectKab.disabled = false;
+        if (statusText) statusText.textContent = 'Pilih kabupaten/kota.';
+      } catch (err: any) {
+        if (statusText) statusText.textContent = err.message || 'Gagal memuat kabupaten.';
+      }
+    });
+
+    // 2. Regency Change Handler
+    selectKab.addEventListener('change', async () => {
+      const kabKode = selectKab.value;
+      selectKec.innerHTML = '<option value="">-- Pilih Kecamatan --</option>';
+      selectDesa.innerHTML = '<option value="">-- Pilih Desa --</option>';
+
+      selectKec.disabled = true;
+      selectDesa.disabled = true;
+      activeRegencyData = null;
+
+      if (!kabKode) {
+        if (statusText) statusText.textContent = 'Pilih kabupaten/kota.';
+        return;
+      }
+
+      if (statusText) statusText.textContent = 'Memuat daftar kecamatan & desa...';
+      try {
+        activeRegencyData = await loadRegencyDetail(kabKode);
+        activeRegencyData.kecamatan.forEach((k) => {
+          const opt = document.createElement('option');
+          opt.value = k.kode;
+          opt.textContent = k.nama;
+          selectKec.appendChild(opt);
+        });
+        selectKec.disabled = false;
+        if (statusText) statusText.textContent = 'Pilih kecamatan.';
+      } catch (err: any) {
+        if (statusText) statusText.textContent = err.message || 'Gagal memuat kecamatan.';
+      }
+    });
+
+    // 3. District Change Handler
+    selectKec.addEventListener('change', () => {
+      const kecKode = selectKec.value;
+      selectDesa.innerHTML = '<option value="">-- Pilih Desa --</option>';
+      selectDesa.disabled = true;
+
+      if (!kecKode || !activeRegencyData) {
+        if (statusText) statusText.textContent = 'Pilih kecamatan.';
+        return;
+      }
+
+      const dist = activeRegencyData.kecamatan.find((k) => k.kode === kecKode);
+      if (!dist || dist.desa.length === 0) {
+        if (statusText) statusText.textContent = 'Tidak ada desa terdaftar pada kecamatan ini.';
+        return;
+      }
+
+      dist.desa.forEach((d) => {
+        const opt = document.createElement('option');
+        opt.value = d.kode;
+        opt.textContent = d.nama;
+        selectDesa.appendChild(opt);
+      });
+      selectDesa.disabled = false;
+      if (statusText) statusText.textContent = 'Pilih desa/kelurahan untuk melihat cuaca BMKG.';
+    });
+
+    // 4. Village Change Handler
+    selectDesa.addEventListener('change', () => {
+      const adm4 = selectDesa.value;
+      if (!adm4) return;
+
+      const provText = selectProv.options[selectProv.selectedIndex]?.text || '';
+      const kabText = selectKab.options[selectKab.selectedIndex]?.text || '';
+      const kecText = selectKec.options[selectKec.selectedIndex]?.text || '';
+      const desaText = selectDesa.options[selectDesa.selectedIndex]?.text || '';
+
+      const fullLabel = `${desaText}, Kec. ${kecText}, ${kabText}, ${provText}`;
+      if (statusText) statusText.textContent = `Lokasi aktif: ${desaText}, ${kecText}`;
+
+      saveLastLocation({
+        prov: selectProv.value,
+        kab: selectKab.value,
+        kec: selectKec.value,
+        desa: adm4,
+      });
+
+      dispatchSelectedAdm4(adm4, fullLabel);
+    });
+
+    // Restore either from URL or last location in localStorage
+    async function restoreLocation() {
+      if (!selectProv || !selectKab || !selectKec || !selectDesa) return;
+
+      let targetAdm4 = initialAdm4;
+      let targetProv = '';
+      let targetKab = '';
+      let targetKec = '';
+      let targetDesa = '';
+
+      if (targetAdm4) {
+        const parts = targetAdm4.split('.');
+        if (parts.length === 4) {
+          targetProv = parts[0];
+          targetKab = `${parts[0]}.${parts[1]}`;
+          targetKec = `${parts[0]}.${parts[1]}.${parts[2]}`;
+          targetDesa = targetAdm4;
+        }
+      } else {
+        try {
+          const savedStr = window.localStorage.getItem(STORAGE_KEY);
+          if (savedStr) {
+            const saved = JSON.parse(savedStr);
+            if (saved && saved.prov && saved.kab && saved.kec && saved.desa) {
+              targetProv = saved.prov;
+              targetKab = saved.kab;
+              targetKec = saved.kec;
+              targetDesa = saved.desa;
+              targetAdm4 = saved.desa;
+            }
+          }
+        } catch {
+          // ignore
+        }
+      }
+
+      if (targetProv && targetKab && targetKec && targetDesa) {
+        try {
+          selectProv.value = targetProv;
+          const regencies = await loadRegenciesForProvince(targetProv);
+          selectKab.innerHTML = '<option value="">-- Pilih Kabupaten --</option>';
+          regencies.forEach((r) => {
+            const opt = document.createElement('option');
+            opt.value = r.kode;
+            opt.textContent = r.nama;
+            selectKab.appendChild(opt);
+          });
+          selectKab.value = targetKab;
+          selectKab.disabled = false;
+
+          activeRegencyData = await loadRegencyDetail(targetKab);
+          selectKec.innerHTML = '<option value="">-- Pilih Kecamatan --</option>';
+          activeRegencyData.kecamatan.forEach((k) => {
+            const opt = document.createElement('option');
+            opt.value = k.kode;
+            opt.textContent = k.nama;
+            selectKec.appendChild(opt);
+          });
+          selectKec.value = targetKec;
+          selectKec.disabled = false;
+
+          const dist = activeRegencyData.kecamatan.find((k) => k.kode === targetKec);
+          if (dist) {
+            selectDesa.innerHTML = '<option value="">-- Pilih Desa --</option>';
+            dist.desa.forEach((d) => {
+              const opt = document.createElement('option');
+              opt.value = d.kode;
+              opt.textContent = d.nama;
+              selectDesa.appendChild(opt);
+            });
+            selectDesa.value = targetDesa;
+            selectDesa.disabled = false;
+
+            const provText = selectProv.options[selectProv.selectedIndex]?.text || '';
+            const kabText = selectKab.options[selectKab.selectedIndex]?.text || '';
+            const kecText = selectKec.options[selectKec.selectedIndex]?.text || '';
+            const desaText = selectDesa.options[selectDesa.selectedIndex]?.text || '';
+            const fullLabel = `${desaText}, Kec. ${kecText}, ${kabText}, ${provText}`;
+
+            if (statusText) statusText.textContent = `Lokasi aktif: ${desaText}, ${kecText}`;
+            if (rememberBadge) rememberBadge.classList.remove('hidden');
+
+            dispatchSelectedAdm4(targetDesa, fullLabel);
+          }
+        } catch {
+          // Fall back gracefully to clean picker
+        }
+      }
+    }
+
+    restoreLocation();
+  }
+
+  initRegionPicker();
+  document.addEventListener('astro:page-load', initRegionPicker);
+</script>
