@@ -58,3 +58,42 @@ jobs:
         env:
           PUBLIC_INCLUDE_DRAFTS: "true"
         run: npm run build
+
+  deploy:
+    name: Deploy to Cloudflare Workers
+    needs: ci
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ca58f2ac62b7c66e46e6ce654f585034
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Production build only (no PUBLIC_INCLUDE_DRAFTS); includes commodity, SEO,
+      # CSP and placeholder checks, so a failing check blocks the deploy.
+      - name: Build production output
+        run: npm run build
+
+      - name: Deploy with Wrangler
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "::error::Secret CLOUDFLARE_API_TOKEN is not set; skipping deploy."
+            exit 1
+          fi
+          npx wrangler deploy
