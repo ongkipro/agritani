@@ -692,6 +692,27 @@ Record only durable implementation changes, validation evidence, and gotchas tha
   - `npm test`: 76/76 unit tests PASS.
   - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 185 halaman terkompilasi, check-seo PASS, check-csp PASS (0/0/0).
 
+## 2026-09-29 — T-17: Kebijakan Privasi (PASS)
+
+- **Halaman Kebijakan Privasi (`src/pages/kebijakan-privasi.astro`)**:
+  - Format sains canvas max-w-[68ch], tanggal berlaku 29 September 2026.
+  - Komitmen privasi penuh: 100% bebas dari cookies pihak ketiga, tanpa Google Analytics, tanpa piksel iklan Meta/Google (REQ-02, NG-4).
+  - Alur data formulir WhatsApp: Tanpa penyimpanan database server web agritani.com; seluruh interaksi konsultasi dan kemitraan hanya menghasilkan draf teks di peramban pengguna untuk dikirimkan secara sadar melalui aplikasi WhatsApp berenkripsi end-to-end.
+  - Integrasi Browser-Direct BMKG (DEC-014): Pemanggilan prakiraan cuaca dilakukan langsung dari browser pengguna ke `api.bmkg.go.id` tanpa perantara server Agritani; alamat IP hanya terlihat oleh BMKG saat memproses data cuaca publik.
+  - Penyimpanan preferensi alat: Disimpan secara eksklusif di `localStorage` peramban perangkat pengguna dan dapat dihapus kapan saja melalui pengaturan peramban.
+  - Hak pengguna & saluran korespondensi: Email `info@agritani.com` dan nomor resmi Agritani.
+  - Tepat 1 ajakan WhatsApp bertanda `data-cta="whatsapp"` melalui komponen `ConsultPrompt`.
+- **Koleksi Halaman (`src/content/pages/kebijakan-privasi.md`)**:
+  - Ditambahkan dengan deskripsi persis 160 karakter memenuhi batas skema (120–160 char).
+- **Bukti Render UI Browser**:
+  - `proof/ui/t17/kebijakan-privasi-390.png`
+  - `proof/ui/t17/kebijakan-privasi-1440.png`
+- **Verifikasi**:
+  - `npx astro check`: 0 errors.
+  - `npm test`: 76/76 unit tests PASS.
+  - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 186 halaman terkompilasi, check-seo PASS, check-csp PASS (0/0/0).
+
+
 
 
 

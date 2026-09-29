@@ -66,8 +66,20 @@ T-10 (Tentang Kami & Profil Penulis) selesai diimplementasikan dan diverifikasi 
 - Koleksi `pages`: Menambahkan `tentang-kami.md` dan `penulis-arif-prabowo.md`.
 - Verifikasi: 76/76 unit tests PASS, `astro check` 0 error, build 185 halaman PASS (check-seo PASS, check-csp 0/0/0 PASS), bukti UI browser di `proof/ui/t10/`.
 
+T-17 (Kebijakan Privasi) selesai diimplementasikan dan diverifikasi (RUN-20260929T152357Z-0090aa33):
+- Halaman `kebijakan-privasi.astro`: Transparansi data tanpa cookies/pelacak pihak ketiga (NG-4), form hanya via WhatsApp, akses langsung peramban ke API BMKG (DEC-014), penyimpanan preferensi lokal `localStorage`.
+- Koleksi `pages`: Menambahkan `kebijakan-privasi.md`.
+- Verifikasi: 76/76 unit tests PASS, `astro check` 0 error, build 186 halaman PASS (check-seo PASS, check-csp 0/0/0 PASS), bukti UI browser di `proof/ui/t17/`.
+
 Selanjutnya:
-Mengeksekusi **T-17** (Kebijakan Privasi: `src/pages/kebijakan-privasi.astro`).
+Mengerjakan perbaikan **T-08 REVISE** (Homepage Hibrida) sesuai ulasan Paduka Ongki:
+1. Mengisi `src/data/products.json` dengan data resmi (DEC-010, DESIGN §2.5) dan merender produk dari koleksi `products` (bukan data manual).
+2. Memperbaiki bio penulis di beranda menjadi strictly "Profesor Pertanian · Moderator Jurnal Tani".
+3. Menyesuaikan pemilih komoditas hero: di mode produksi menaut ke hub komoditas yang memiliki artikel terbit `/jurnal/komoditas/{slug}/` dengan teks "Pilih tanaman Anda untuk panduan penanganannya".
+4. Menghapus keterangan gambar hero (hanya gunakan alt text deskriptif) dan menghapus kicker "Artikel Utama".
+5. Mengubah band Jurnal per Komoditas menjadi baris indeks teks tanpa kotak/kartu seragam.
+6. Menambahkan label "Segera hadir" pada Diagnosa Gejala dan Kalender Tanam di indeks Alat Tani (`/alat/`).
+
 
 
 ## Blockers

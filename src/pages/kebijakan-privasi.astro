@@ -1,0 +1,153 @@
+---
+/**
+ * src/pages/kebijakan-privasi.astro
+ * Privacy Policy page for PT Agritani Internasional (T-17, DESIGN §4.2.3, DEC-014)
+ * Clarifies zero third-party trackers, browser-direct BMKG fetch, localStorage, and WhatsApp form flow.
+ * Invariants: Single WhatsApp CTA, 0/0/0 CSP, 2px radius, text contrast >= 7:1.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import ConsultPrompt from '../components/ConsultPrompt.astro';
+import type { SeoInput } from '../lib/seo';
+
+const breadcrumbs = [
+  { name: 'Beranda', url: '/' },
+  { name: 'Kebijakan Privasi', url: '/kebijakan-privasi/' },
+];
+
+const seo: SeoInput = {
+  title: 'Kebijakan Privasi | Agritani',
+  description:
+    'Kebijakan privasi PT Agritani Internasional: komitmen perlindungan data tanpa pelacak pihak ketiga, penyimpanan lokal peramban, dan transparansi integrasi BMKG.',
+  canonicalPath: '/kebijakan-privasi/',
+  breadcrumbs,
+  pageType: 'website',
+};
+---
+
+<BaseLayout seo={seo} currentPath="/kebijakan-privasi/">
+  <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+
+    <!-- Article Container (Sains Canvas) -->
+    <article class="max-w-[68ch] mx-auto my-8 sm:my-12">
+      <!-- Header -->
+      <header class="mb-8 sm:mb-10 pb-6 border-b border-[var(--color-border)]">
+        <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--color-text)] leading-tight tracking-tight mb-3">
+          Kebijakan Privasi
+        </h1>
+        <p class="text-sm sm:text-base text-[var(--color-text-muted)] font-mono">
+          Berlaku sejak: 29 September 2026 · PT Agritani Internasional
+        </p>
+      </header>
+
+      <!-- Main Content -->
+      <div class="space-y-8 text-base sm:text-lg text-[var(--color-text)] leading-relaxed font-sans">
+        
+        <p class="text-lg sm:text-xl text-[var(--color-text-muted)] leading-relaxed">
+          Privasi petani, praktisi pertanian, dan seluruh pengunjung situs <strong>agritani.com</strong> merupakan komitmen mendasar PT Agritani Internasional. Dokumen ini menjelaskan transparansi pengelolaan data saat Anda mengakses dan menggunakan layanan kami.
+        </p>
+
+        <!-- Section 1: Tanpa Pelacak Pihak Ketiga -->
+        <section class="space-y-3">
+          <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
+            1. Tanpa Cookies Pihak Ketiga dan Tanpa Pelacak Iklan
+          </h2>
+          <p>
+            Situs <strong>agritani.com</strong> dibangun sebagai situs statis yang mengutamakan kecepatan akses, keamanan, dan privasi penuh bagi pengguna di lapangan:
+          </p>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>Kami <strong>tidak menanam cookies pihak ketiga</strong> (third-party cookies) pada peramban Anda.</li>
+            <li>Kami <strong>tidak menggunakan piksel pelacak iklan</strong> (seperti Meta Pixel atau Google Ads Remarketing) yang merekam aktivitas penjelajahan Anda lintas situs.</li>
+            <li>Kami <strong>tidak memasang layanan pelacakan perilaku pihak ketiga</strong> yang memprofilkan identitas pribadi pengguna.</li>
+            <li>Kami tidak memperjualbelikan, menyewakan, atau membagikan riwayat akses situs Anda kepada jaringan periklanan manapun.</li>
+          </ul>
+        </section>
+
+        <!-- Section 2: Komunikasi WhatsApp & Formulir -->
+        <section class="space-y-3 pt-4">
+          <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
+            2. Pengiriman Data Formulir Melalui WhatsApp Resmi
+          </h2>
+          <p>
+            Situs ini tidak menyimpan basis data (database) pengguna di server web. Seluruh formulir yang Anda temui—termasuk formulir konsultasi agronomi, diagnosa gejala, dan pengajuan kemitraan distributor:
+          </p>
+          <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-3 text-sm sm:text-base">
+            <p>
+              <strong>Hanya Menyusun Draf Teks di Perangkat Anda:</strong> Saat Anda menekan tombol kirim formulir, situs ini hanya merangkai teks ringkasan isian Anda menjadi tautan percakapan WhatsApp resmi (aplikasi perpesanan pihak ketiga).
+            </p>
+            <p>
+              <strong>Keputusan Pengiriman Berada di Tangan Anda:</strong> Tidak ada data yang terkirim sampai Anda secara sadar menekan tombol kirim di dalam aplikasi WhatsApp Anda.
+            </p>
+            <p>
+              <strong>Perlindungan Enkripsi End-to-End:</strong> Pesan yang Anda kirimkan ke nomor resmi PT Agritani Internasional dilindungi oleh enkripsi ujung-ke-ujung (end-to-end encryption) dari WhatsApp sesuai standar privasi penyedia aplikasi tersebut.
+            </p>
+          </div>
+        </section>
+
+        <!-- Section 3: Integrasi Browser-Direct BMKG (DEC-014) -->
+        <section class="space-y-3 pt-4">
+          <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
+            3. Akses Prakiraan Cuaca Langsung ke Server BMKG
+          </h2>
+          <p>
+            Pada layanan <strong>Cuaca Tani</strong>, prakiraan cuaca diperoleh langsung dari antarmuka pemrograman publik Badan Meteorologi, Klimatologi, dan Geofisika (BMKG):
+          </p>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>
+              Panggilan data cuaca dilakukan <strong>langsung dari peramban web perangkat Anda</strong> ke domain resmi BMKG (<code>api.bmkg.go.id</code>), tanpa melalui server perantara PT Agritani Internasional.
+            </li>
+            <li>
+              Alamat protokol internet (IP address) perangkat Anda akan terlihat oleh peladen BMKG sebagai penyedia layanan publik resmi pemerintah Indonesia untuk memproses permintaan data wilayah tersebut.
+            </li>
+            <li>
+              PT Agritani Internasional tidak merekam maupun mengaitkan riwayat pencarian wilayah cuaca Anda dengan data identitas pribadi apapun.
+            </li>
+          </ul>
+        </section>
+
+        <!-- Section 4: Penyimpanan Lokal (localStorage) -->
+        <section class="space-y-3 pt-4">
+          <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
+            4. Penyimpanan Preferensi Lokal di Perangkat Pengguna
+          </h2>
+          <p>
+            Untuk mempermudah penggunaan di lahan saat koneksi internet terbatas, beberapa preferensi pilihan alat (seperti nama desa/wilayah yang terakhir Anda periksa pada Cuaca Tani) disimpan secara lokal pada peramban web perangkat Anda menggunakan fitur standar <code>localStorage</code>:
+          </p>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>Data preferensi ini tersimpan secara fisik di memori perangkat Anda, bukan di server kami.</li>
+            <li>Data ini tidak dapat diakses oleh situs web lain selain <code>agritani.com</code>.</li>
+            <li>Anda dapat menghapus data preferensi ini kapan saja dengan membersihkan riwayat dan penyimpanan situs (Clear Site Data / Storage) melalui pengaturan peramban Anda.</li>
+          </ul>
+        </section>
+
+        <!-- Section 5: Hak Pengguna dan Kontak -->
+        <section class="space-y-4 pt-6 border-t border-[var(--color-border)]">
+          <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
+            5. Hak Pengguna & Pusat Pertanyaan Privasi
+          </h2>
+          <p>
+            Anda berhak mengetahui dan mengontrol bagaimana interaksi Anda berlangsung. Jika Anda memiliki pertanyaan, klarifikasi, atau masukan terkait kebijakan privasi dan perlindungan data di PT Agritani Internasional, Anda dapat menghubungi tim kami melalui saluran resmi:
+          </p>
+          <ul class="list-none space-y-2 p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] text-sm sm:text-base">
+            <li><strong>Pengelola Situs:</strong> PT Agritani Internasional</li>
+            <li><strong>Situs Resmi:</strong> <a href="https://agritani.com" class="text-[var(--color-brand)] underline">agritani.com</a></li>
+            <li><strong>Email Korespondensi:</strong> info@agritani.com</li>
+          </ul>
+
+          <!-- Single WhatsApp CTA per Page (DESIGN §2.8) -->
+          <div class="pt-4">
+            <ConsultPrompt
+              source="kebijakan-privasi"
+              title="Pertanyaan Terkait Kebijakan Privasi?"
+              description="Untuk konsultasi resmi mengenai kepatuhan data, legalitas kemitraan, atau operasional situs, hubungi sekretariat PT Agritani Internasional via WhatsApp."
+              label="Hubungi WhatsApp Agritani"
+              variant="secondary"
+            />
+          </div>
+        </section>
+
+      </div>
+    </article>
+  </div>
+</BaseLayout>
