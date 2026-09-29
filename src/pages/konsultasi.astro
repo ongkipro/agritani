@@ -2,11 +2,10 @@
 /**
  * src/pages/konsultasi.astro
  * Consultation landing page & WhatsApp message composer (REQ-12, DESIGN §2.7, §2.8, §4.2.3)
- * Strictly adheres to 1 WhatsApp CTA per page, G-6 source formatting, and CSP invariants.
+ * Strictly adheres to 1 WhatsApp CTA per page (data-cta="whatsapp"), G-6 source formatting, and CSP invariants.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
-import { waLink } from '../lib/whatsapp';
 import type { SeoInput } from '../lib/seo';
 
 const breadcrumbs = [
@@ -22,18 +21,6 @@ const seo: SeoInput = {
   breadcrumbs,
   pageType: 'website',
 };
-
-// Fallback link for No-JS users
-const fallbackWaUrl = waLink({
-  source: 'Web·Konsultasi',
-  fields: [
-    { label: 'Komoditas', value: '-' },
-    { label: 'Umur tanaman', value: '-' },
-    { label: 'Lokasi', value: '-' },
-    { label: 'Masalah', value: 'Konsultasi agronomi' },
-  ],
-  note: '(Saya akan kirim foto setelah pesan ini)',
-});
 ---
 
 <BaseLayout seo={seo} currentPath="/konsultasi/">
@@ -62,10 +49,11 @@ const fallbackWaUrl = waLink({
           </h2>
           <div class="space-y-3 text-sm text-[var(--color-text)] leading-relaxed">
             <p>
-              Konsultasi dijawab langsung oleh <strong>Tim Agronomi Lapangan PT Agritani Internasional</strong> yang berpengalaman dalam budidaya tanaman pangan, hortikultura, dan perkebunan.
+              Konsultasi dijawab langsung oleh <strong>tim agronomi PT Agritani Internasional</strong>.
             </p>
+            <!-- TODO(OQ-4): Profil dan institusi resmi Prof. Arif Prabowo dari pemilik -->
             <p class="text-xs text-[var(--color-text-muted)]">
-              Prof. Arif Prabowo bertindak sebagai penasihat ilmiah dan moderator konten Jurnal Tani yang menyusun acuan penanganan standar (TODO(OQ-4)).
+              Prof. Arif Prabowo adalah penulis dan moderator Jurnal Tani.
             </p>
           </div>
 
@@ -73,11 +61,9 @@ const fallbackWaUrl = waLink({
             <h3 class="text-xs font-semibold text-[var(--color-soil)] uppercase tracking-wider mb-1">
               Jam Layanan Operasional
             </h3>
+            <!-- TODO(OQ-1): Konfirmasi jam layanan operasional WhatsApp dari pemilik -->
             <p class="text-sm font-semibold text-[var(--color-text)]">
-              Senin – Sabtu, 08.00 – 17.00 WIB
-            </p>
-            <p class="text-xs text-[var(--color-text-muted)] mt-0.5">
-              Pesan di luar jam kerja akan direspons pada hari kerja berikutnya.
+              [Jam layanan menyusul - OQ-1]
             </p>
           </div>
         </section>
@@ -201,6 +187,7 @@ const fallbackWaUrl = waLink({
               <button
                 type="submit"
                 id="btn-submit-consult"
+                data-cta="whatsapp"
                 class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3 min-h-[44px] text-base font-bold rounded-[2px] bg-[var(--color-brand)] text-white hover:bg-[var(--color-brand-strong)] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-brand-strong)] cursor-pointer"
               >
                 <!-- Monochrome MessageCircle Icon -->
@@ -211,41 +198,24 @@ const fallbackWaUrl = waLink({
               </button>
             </div>
 
-            <!-- Post-submission helper note -->
-            <div id="consult-success-panel" class="hidden p-4 bg-[var(--color-tint)] border border-[var(--color-brand)]/40 rounded-[2px] text-xs sm:text-sm text-[var(--color-text)] space-y-2">
-              <p class="font-bold text-[var(--color-brand)]">Silakan Lanjutkan Percakapan di WhatsApp</p>
+            <!-- Post-submission helper note (Plain text, no secondary CTA button per DESIGN §2.3/§2.8) -->
+            <div id="consult-success-panel" class="hidden p-4 bg-[var(--color-tint)] border border-[var(--color-brand)]/40 rounded-[2px] text-xs sm:text-sm text-[var(--color-text)] space-y-1.5">
+              <p class="font-bold text-[var(--color-brand)]">Lanjutkan Percakapan di WhatsApp</p>
               <p>
-                Jendela WhatsApp sedang dibuka. Jika aplikasi atau web WhatsApp tidak otomatis terbuka, klik tombol cadangan di bawah:
+                Aplikasi atau web WhatsApp sedang dibuka di peramban Anda.
               </p>
-              <div>
-                <a
-                  id="direct-wa-link"
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-1.5 font-bold text-[var(--color-brand-strong)] underline hover:text-[var(--color-brand)] min-h-[44px]"
-                >
-                  <span>Buka Chat WhatsApp Resmi</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                    <polyline points="15 3 21 3 21 9"/>
-                    <line x1="10" y1="14" x2="21" y2="3"/>
-                  </svg>
-                </a>
-              </div>
+              <!-- TODO(OQ-1): Nomor WhatsApp resmi PT Agritani Internasional -->
+              <p class="text-xs text-[var(--color-text-muted)]">
+                Jika WhatsApp tidak otomatis terbuka, hubungi nomor resmi kami: <span class="font-semibold text-[var(--color-text)]">[Nomor WhatsApp resmi menyusul - OQ-1]</span>
+              </p>
             </div>
 
             <noscript>
-              <div class="p-4 bg-[var(--color-tint)] border border-[var(--color-border)] rounded-[2px] text-xs text-[var(--color-text)] space-y-2">
-                <p>Peramban Anda tidak menjalankan JavaScript. Anda dapat langsung membuka WhatsApp kami melalui tautan berikut:</p>
-                <a
-                  href={fallbackWaUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-block px-4 py-2 bg-[var(--color-brand)] text-white font-bold rounded-[2px] min-h-[44px]"
-                >
-                  Buka WhatsApp Konsultasi
-                </a>
+              <div class="p-4 bg-[var(--color-tint)] border border-[var(--color-border)] rounded-[2px] text-xs text-[var(--color-text)] space-y-1.5">
+                <p class="font-bold text-[var(--color-brand)]">Konsultasi Tanpa JavaScript:</p>
+                <p>Untuk memulai konsultasi teknis, hubungi kontak resmi PT Agritani Internasional:</p>
+                <!-- TODO(OQ-1): Nomor WhatsApp resmi PT Agritani Internasional -->
+                <p class="font-semibold text-[var(--color-text)]">[Nomor WhatsApp resmi menyusul - OQ-1]</p>
               </div>
             </noscript>
 
@@ -282,7 +252,6 @@ const fallbackWaUrl = waLink({
     const errProblem = document.getElementById('err-problem');
 
     const successPanel = document.getElementById('consult-success-panel');
-    const directWaLink = document.getElementById('direct-wa-link') as HTMLAnchorElement | null;
 
     if (!form || !inputCommodity || !inputAge || !inputLocation || !inputProblem) {
       return;
@@ -353,12 +322,7 @@ const fallbackWaUrl = waLink({
         note: '(Saya akan kirim foto setelah pesan ini)',
       });
 
-      // Update direct backup link
-      if (directWaLink) {
-        directWaLink.href = url;
-      }
-
-      // Show post-submission guidance panel
+      // Show post-submission guidance panel (plain text reminder, no duplicate CTA)
       successPanel?.classList.remove('hidden');
 
       // Open WhatsApp in new tab
