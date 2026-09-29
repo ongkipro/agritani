@@ -589,6 +589,26 @@ Record only durable implementation changes, validation evidence, and gotchas tha
   4. **CI Workflow Commentary (T-23 review nit)**:
      - Clarified `.github/workflows/ci.yml` action pinning commentary to state factual compatibility with GitHub Actions runner Node 20 runtime without unverified superlatives.
 
+## 2026-09-29 — T-20 Revision: Region Metadata & Mobile Forecast Alignment (READY - PENDING INDEPENDENT REVIEW)
+
+- Addressed review findings from Claude (sesi pemantau):
+  1. **Regulation & Commit SHA in `public/wilayah/SOURCE.md`**:
+     - Corrected regulation reference to **Keputusan Menteri Dalam Negeri (Kepmendagri) No. 300.2.2-2430 Tahun 2025** (arsip 2022: No. 100.1.1-6117).
+     - Recorded verified upstream commit SHA from `cahyadsn/wilayah`: `0d1237a5eef926629c69d287cf2282006144f4fa` (downloaded 2026-09-29).
+     - Recorded empirical validation: 40/40 random adm4 sample codes from the 83,202 village dataset successfully returned HTTP 200 with complete forecast data from the BMKG endpoint on 2026-09-29.
+  2. **Indonesian WIB Datetime Formatting (`src/lib/bmkg.ts` & `src/lib/bmkg.test.ts`)**:
+     - Implemented `formatAnalysisDate()` converting UTC analysis timestamps into Indonesian WIB representation via `Intl.DateTimeFormat` with `timeZone: 'Asia/Jakarta'` (e.g. `12:00 UTC` -> `29 Sep 2026, 19.00 WIB`).
+     - Added 4 behavioral unit tests in `src/lib/bmkg.test.ts` (total test suite: 76/76 PASS).
+  3. **Mobile (390px / 360px) Table Layout Optimization (`src/components/ForecastTable.astro`)**:
+     - Reordered table columns: `Jam`, `Cuaca`, `Suhu`, `Hujan` prioritized; `Lembap` and `Angin` given `hidden md:table-cell`.
+     - In mobile viewports (`< md`), wind velocity/direction and relative humidity are rendered as compact subtext beneath the weather description (`💨 9 km/j (NE) · 💧 75%`).
+     - Rain volume (`0 mm` or highlighted `X mm`) is 100% visible on 390px and 360px viewports without requiring horizontal scrolling.
+  4. **CSP Invariant Audit (0/0/0)**:
+     - Verified zero executed inline scripts, zero inline `on*=`, zero inline `style=`.
+  5. **Browser Verification & Proof**:
+     - Tested on mobile (390px) and desktop (1440px) with live BMKG API response.
+     - Updated screenshot evidence in `proof/ui/t20/cuaca-jabar-margaasih-390.png` and `1440.png`.
+
 
 
 

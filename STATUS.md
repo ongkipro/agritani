@@ -48,15 +48,15 @@ T-19 Revisi (Kalender Tanam: Sanitasi Sumber Data & Keselarasan Siklus Panen) se
 - CI Workflow: Komentar action pinning di `.github/workflows/ci.yml` diperjelas secara faktual.
 - Verifikasi: 72/72 unit test PASS, `astro check` 0 error, build 182 halaman PASS (check-seo PASS, check-csp 0/0/0).
 
-T-20 (Cuaca Tani: BMKG API Client + UI `/alat/cuaca-tani/` + Dataset Kemendagri) selesai diimplementasikan dan ter-commit (`5301465`):
-- Dataset Kemendagri bertingkat (`public/wilayah/**`): 38 provinsi, 514 kabupaten detail, semua < 40 KB gzip (maksimum 7.27 KB gzip).
-- Mesin Evaluasi Jendela Semprot (`src/lib/spray-window.ts`): 10 unit test lulus, review gating aktif (`spray-thresholds.json` bernilai null / OQ-11b).
-- BMKG API client browser-direct (`src/lib/bmkg.ts`): Cache `localStorage` (TTL 1 jam) dengan fallback ketahanan SecurityError, timeout 10 detik, penanganan offline/gagal.
-- Komponen & Halaman (`RegionPicker.astro`, `ForecastTable.astro`, `cuaca-tani.astro`): Dropdown 4 tingkat cascading, tabel responsif tabular-nums, skeleton loading, satu CTA WhatsApp (`[Web·Cuaca]`), CSP 0/0/0.
-- Browser test Playwright (`verify-t20-cuaca.cjs`): 3 desa di 3 provinsi (Jabar, Jatim, Aceh), simulasi offline, dan ketahanan storage 100% lulus.
+T-20 Revisi (Metadata Wilayah, Format WIB, & Optimasi Mobile Tabel Cuaca) selesai diimplementasikan dan diverifikasi (RUN-20260929T144716Z-29b68cd1):
+- `public/wilayah/SOURCE.md`: Nomor regulasi diperbaiki ke Kepmendagri No. 300.2.2-2430 Tahun 2025 (arsip 2022: No. 100.1.1-6117), dicatat upstream commit SHA `0d1237a5eef926629c69d287cf2282006144f4fa` (unduh 2026-09-29), dan bukti empiris 40/40 sampel kode adm4 divalidasi berhasil ke API BMKG.
+- Waktu Pembaruan BMKG: `src/lib/bmkg.ts` mengonversi waktu UTC ke representasi id-ID zona WIB via `Intl.DateTimeFormat` Asia/Jakarta (contoh: "29 Sep 2026, 19.00 WIB"). 4 behavioral unit test ditambahkan di `src/lib/bmkg.test.ts` (total 76/76 PASS).
+- Tata Letak Mobile 390px/360px (`ForecastTable.astro`): Kolom Hujan diposisikan setelah Suhu; kolom Lembap dan Angin disembunyikan di `< md` (`hidden md:table-cell`) dan dirangkum sebagai subteks di bawah deskripsi Cuaca. Seluruh 4 kolom inti (Jam, Cuaca, Suhu, Hujan) terlihat utuh di layar mobile tanpa scroll horizontal.
+- Audit CSP: 0 inline script, 0 inline on*=, 0 inline style=.
+- Verifikasi Browser: Screenshot Playwright diperbarui di `proof/ui/t20/cuaca-jabar-margaasih-390.png` & `1440.png`.
 
 Selanjutnya:
-Mengeksekusi **T-10** (Tentang Kami & Profil Penulis Prof. Arif Prabowo: `src/pages/tentang-kami.astro`, `src/pages/penulis/arif-prabowo.astro`).
+Mengeksekusi **T-26** (Gambar Dummy WebP 10 Slot) lalu **T-08** (Beranda Hibrida) / **T-10** (Tentang Kami & Profil Penulis).
 
 ## Blockers
 
@@ -68,7 +68,7 @@ Mengeksekusi **T-10** (Tentang Kami & Profil Penulis Prof. Arif Prabowo: `src/pa
 - T-21 (termasuk revisi) menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
 - T-22 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
 - T-19 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
-- T-20 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
+- T-20 (termasuk revisi) menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 
 ## Verification evidence
 
@@ -85,10 +85,11 @@ Mengeksekusi **T-10** (Tentang Kami & Profil Penulis Prof. Arif Prabowo: `src/pa
 - T-21: Kalkulator Dosis Semprot selesai (commit `6583920`). 50/50 unit tests PASS (label tank scaling, small plot, batch calculation), check commodities PASS, contrast check PASS, `astro check` PASS, build 177 halaman PASS, CSP 0/0/0. UI screenshots `dose-calc-*.png` di `proof/ui/t21/`. Boundary check menghasilkan REVIEW_REQUIRED (eskalasi R1 -> R2), berhenti menunggu review independen.
 - T-22: Konsultasi & Indeks Alat Tani selesai (commit `b36db9f`). 50/50 unit tests PASS, check-seo PASS (179 halaman), check-csp PASS (0/0/0). UI screenshots `alat-index-*.png` dan `konsultasi-*.png` di `proof/ui/t22/`. Boundary check menghasilkan REVIEW_REQUIRED (eskalasi R1 -> R2), berhenti menunggu review independen.
 - T-09: Triage Engine: Diagnosa Gejala & Dataset Gejala selesai direvisi (RUN-20260929T142508Z-97394bc1). 62/62 unit tests PASS (4 tes triage review gating), `astro check` 0 errors, check-seo PASS (181 halaman), check-csp PASS (0/0/0). Kontras tombol 7.29:1 terverifikasi dengan Playwright computed style dan crop zoom. Honest empty state terverifikasi untuk mode produksi unreviewed. Boundary check PASS R2.
-- T-19: Kalender Tanam & Rencana Musim selesai direvisi (RUN-20260929T144021Z-72013fcb). 72/72 unit tests PASS (8 tes kalkulasi tanggal, kabisat, cross-year, ics, dan filter review), `astro check` 0 errors, check-seo PASS (182 halaman), check-csp PASS (0/0/0). Seluruh 6 sumber data disanitasi dari institusi karangan (NG-3, DEC-005, DEC-015), siklus panen fase akhir diselaraskan ke cycleDays.max, label status draf memenuhi font-size >= 14px.
-- T-20: Cuaca Tani & Integrasi BMKG selesai (commit `5301465`). 72/72 unit tests PASS (10 tes evaluasi jendela semprot), `astro check` 0 errors, check-seo PASS (182 halaman), check-csp PASS (0/0/0). 514 dataset wilayah Kemendagri bertingkat terverifikasi < 40 KB gzip (maksimum 7.27 KB gzip). Pengujian langsung di Playwright terhadap 3 desa di 3 provinsi (Jawa Barat, Jawa Timur, Aceh), simulasi kegagalan koneksi offline, dan ketahanan storage berhasil 100%. Boundary check menghasilkan REVIEW_REQUIRED (eskalasi R2 -> R3).
+- T-19: Kalender Tanam & Rencana Musim selesai direvisi (commit `07b6545`). 72/72 unit tests PASS (8 tes kalkulasi tanggal, kabisat, cross-year, ics, dan filter review), `astro check` 0 errors, check-seo PASS (182 halaman), check-csp PASS (0/0/0). Seluruh 6 sumber data disanitasi dari institusi karangan (NG-3, DEC-005, DEC-015), siklus panen fase akhir diselaraskan ke cycleDays.max, label status draf memenuhi font-size >= 14px.
+- T-20: Cuaca Tani & Integrasi BMKG selesai direvisi (RUN-20260929T144716Z-29b68cd1). 76/76 unit tests PASS (4 tes formatter BMKG termasuk WIB timezone, 10 tes jendela semprot), `astro check` 0 errors, check-seo PASS (182 halaman), check-csp PASS (0/0/0). Regulasi Kepmendagri 300.2.2-2430 Tahun 2025 dan commit SHA sumber tercatat jujur; kolom Hujan tampil utuh tanpa scroll di 390px/360px mobile; 0 atribut style= inline. Boundary check menghasilkan REVIEW_REQUIRED (eskalasi R2 -> R3).
 
 ## Next verified action
 
-T-10: Tentang Kami & Profil Penulis Prof. Arif Prabowo (`/tentang-kami/` & `/penulis/arif-prabowo/`).
+T-26: Gambar Dummy WebP 10 Slot (`src/assets/images/dummy/**`).
+
 

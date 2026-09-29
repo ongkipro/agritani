@@ -5,9 +5,11 @@ Dokumen ini mencatat sumber, lisensi, struktur data, dan kepatuhan anggaran ukur
 ## 1. Sumber Primer
 
 - **Basis Data Resmi:** Kementerian Dalam Negeri Republik Indonesia (Kemendagri)
-- **Regulasi:** Keputusan Menteri Dalam Negeri (Kepmendagri) No. 100.1.1-6117 Tahun 2022 / No. 300.2.2-2138 tentang Pemberian dan Pemutakhiran Kode, Data Wilayah Administrasi Pemerintahan, dan Pulau.
+- **Regulasi:** Keputusan Menteri Dalam Negeri (Kepmendagri) No. 300.2.2-2430 Tahun 2025 (arsip 2022: No. 100.1.1-6117) tentang Pemberian dan Pemutakhiran Kode, Data Wilayah Administrasi Pemerintahan, dan Pulau.
 - **Repositori Turunan Terbuka:** [cahyadsn/wilayah](https://github.com/cahyadsn/wilayah) (file: `db/wilayah.sql`)
+- **Commit SHA Sumber:** `0d1237a5eef926629c69d287cf2282006144f4fa` (diunduh pada 2026-09-29)
 - **Lisensi:** MIT License (Copyright © 2025 cahya dsn)
+- **Validasi Integrasi BMKG:** 40 dari 40 sampel kode `adm4` acak dari dataset ini (mencakup 83.202 desa/kelurahan) telah diuji dan divalidasi berhasil mengembalikan respons 200 dengan payload data cuaca lengkap dari API BMKG pada 2026-09-29.
 
 ## 2. Relevansi dengan API BMKG
 

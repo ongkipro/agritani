@@ -183,7 +183,7 @@ try {
 </section>
 
 <script>
-  import { fetchBmkgForecast, formatSlotTime, formatWindDirection, type ProcessedForecast } from '../lib/bmkg.ts';
+  import { fetchBmkgForecast, formatSlotTime, formatWindDirection, formatAnalysisDate, type ProcessedForecast } from '../lib/bmkg.ts';
   import { sprayWindow, type SprayThresholds } from '../lib/spray-window.ts';
 
   function initForecastTable() {
@@ -251,7 +251,7 @@ try {
       }
       if (analysisTimeEl) {
         analysisTimeEl.textContent = forecast.analysisDate
-          ? `Diperbarui BMKG: ${forecast.analysisDate}`
+          ? `Diperbarui BMKG: ${formatAnalysisDate(forecast.analysisDate)}`
           : 'Data langsung BMKG';
       }
       if (coordsEl && loc.lat && loc.lon) {
@@ -330,18 +330,18 @@ try {
         const table = document.createElement('table');
         table.className = 'w-full text-left text-xs sm:text-sm border-collapse';
 
-        // Table Head
+        // Table Head (Jam, Cuaca, Suhu, Hujan always visible; Lembap, Angin visible on md+)
         const thead = document.createElement('thead');
         thead.className = 'bg-[var(--color-surface)] border-b border-[var(--color-border)] text-xs text-[var(--color-text-muted)] uppercase tracking-wider font-semibold';
         thead.innerHTML = `
           <tr>
-            <th scope="col" class="py-3 px-3 sm:px-4 font-bold text-[var(--color-text)]">Jam</th>
-            <th scope="col" class="py-3 px-3 sm:px-4">Cuaca</th>
-            <th scope="col" class="py-3 px-3 sm:px-4 text-right">Suhu</th>
-            <th scope="col" class="py-3 px-3 sm:px-4 text-right">Lembap</th>
-            <th scope="col" class="py-3 px-3 sm:px-4 text-right">Hujan</th>
-            <th scope="col" class="py-3 px-3 sm:px-4">Angin</th>
-            ${hasThresholds ? '<th scope="col" class="py-3 px-3 sm:px-4">Status Semprot</th>' : ''}
+            <th scope="col" class="py-3 px-2 sm:px-4 font-bold text-[var(--color-text)]">Jam</th>
+            <th scope="col" class="py-3 px-2 sm:px-4">Cuaca</th>
+            <th scope="col" class="py-3 px-2 sm:px-4 text-right">Suhu</th>
+            <th scope="col" class="py-3 px-2 sm:px-4 text-right">Hujan</th>
+            <th scope="col" class="py-3 px-2 sm:px-4 text-right hidden md:table-cell">Lembap</th>
+            <th scope="col" class="py-3 px-2 sm:px-4 hidden md:table-cell">Angin</th>
+            ${hasThresholds ? '<th scope="col" class="py-3 px-2 sm:px-4">Status Semprot</th>' : ''}
           </tr>
         `;
         table.appendChild(thead);
@@ -362,20 +362,20 @@ try {
           let sprayCellHtml = '';
           if (hasThresholds) {
             const sprayRes = sprayWindow(slot, nextSlot, thresholds);
-            let badgeStyle = 'bg-[var(--color-tint)] text-[var(--color-brand-strong)]';
+            let badgeClass = 'bg-[var(--color-tint)] text-[var(--color-brand-strong)]';
             let label = 'Layak';
             if (sprayRes.status === 'tunda') {
-              badgeStyle = 'bg-[var(--color-harvest-tint)] text-[var(--color-soil)] font-bold';
+              badgeClass = 'bg-[var(--color-harvest-tint)] text-[var(--color-soil)] font-bold';
               label = 'Tunda';
             } else if (sprayRes.status === 'hati-hati') {
-              badgeStyle = 'bg-[var(--color-tint)] text-[var(--color-soil)]';
+              badgeClass = 'bg-[var(--color-tint)] text-[var(--color-soil)]';
               label = 'Hati-hati';
             }
 
             const reasonStr = sprayRes.reasons[0] || '';
             sprayCellHtml = `
-              <td class="py-3 px-3 sm:px-4">
-                <span class="inline-block text-[11px] font-semibold px-2 py-0.5 rounded-[2px] ${badgeStyle}">
+              <td class="py-3 px-2 sm:px-4">
+                <span class="inline-block text-[11px] font-semibold px-2 py-0.5 rounded-[2px] ${badgeClass}">
                   ${label}
                 </span>
                 ${reasonStr ? `<span class="block text-[10px] text-[var(--color-text-muted)] mt-0.5">${reasonStr}</span>` : ''}
@@ -384,25 +384,28 @@ try {
           }
 
           tr.innerHTML = `
-            <td class="py-3 px-3 sm:px-4 font-bold text-[var(--color-text)] whitespace-nowrap">
+            <td class="py-3 px-2 sm:px-4 font-bold text-[var(--color-text)] whitespace-nowrap">
               ${timeFormatted}
             </td>
-            <td class="py-3 px-3 sm:px-4 whitespace-nowrap">
-              <span class="inline-flex items-center gap-1.5 font-medium text-[var(--color-text)]">
+            <td class="py-3 px-2 sm:px-4">
+              <div class="inline-flex items-center gap-1.5 font-medium text-[var(--color-text)]">
                 ${slot.image ? `<img src="${slot.image}" alt="" class="w-5 h-5 inline-block shrink-0" aria-hidden="true" />` : ''}
-                <span>${slot.weather_desc}</span>
-              </span>
+                <span class="whitespace-nowrap">${slot.weather_desc}</span>
+              </div>
+              <div class="block md:hidden text-[11px] text-[var(--color-text-muted)] font-mono mt-0.5 whitespace-nowrap">
+                <span>💨 ${slot.ws} km/j (${slot.wd})</span> · <span>💧 ${slot.hu}%</span>
+              </div>
             </td>
-            <td class="py-3 px-3 sm:px-4 text-right font-semibold text-[var(--color-text)] whitespace-nowrap">
+            <td class="py-3 px-2 sm:px-4 text-right font-semibold text-[var(--color-text)] whitespace-nowrap">
               ${slot.t}°C
             </td>
-            <td class="py-3 px-3 sm:px-4 text-right text-[var(--color-text-muted)] whitespace-nowrap">
-              ${slot.hu}%
-            </td>
-            <td class="py-3 px-3 sm:px-4 text-right font-medium text-[var(--color-text)] whitespace-nowrap">
+            <td class="py-3 px-2 sm:px-4 text-right font-medium text-[var(--color-text)] whitespace-nowrap">
               ${slot.tp > 0 ? `<span class="text-[var(--color-soil)] font-bold">${slot.tp} mm</span>` : '0 mm'}
             </td>
-            <td class="py-3 px-3 sm:px-4 text-[var(--color-text-muted)] whitespace-nowrap">
+            <td class="py-3 px-2 sm:px-4 text-right text-[var(--color-text-muted)] whitespace-nowrap hidden md:table-cell">
+              ${slot.hu}%
+            </td>
+            <td class="py-3 px-2 sm:px-4 text-[var(--color-text-muted)] whitespace-nowrap hidden md:table-cell">
               <span>${slot.ws} km/j</span>
               <span class="text-[11px] block sm:inline sm:ml-1 font-mono">${slot.wd} (${windDir})</span>
             </td>

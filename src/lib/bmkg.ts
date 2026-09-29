@@ -115,6 +115,42 @@ export function formatDateHeading(dateObj: Date): string {
   return `${dayName}, ${day} ${month} ${year}`;
 }
 
+export function formatAnalysisDate(analysisDateStr: string): string {
+  if (!analysisDateStr) return '-';
+  try {
+    const raw = analysisDateStr.trim();
+    // BMKG analysis_date is formatted as "YYYY-MM-DD HH:mm:ss" or ISO in UTC.
+    // If it doesn't end with Z or have offset, append Z so JavaScript parses it as UTC.
+    const isoUtc = raw.includes('Z') || raw.includes('+')
+      ? raw
+      : raw.replace(' ', 'T') + 'Z';
+
+    const dateObj = new Date(isoUtc);
+    if (isNaN(dateObj.getTime())) return analysisDateStr;
+
+    const formatter = new Intl.DateTimeFormat('id-ID', {
+      timeZone: 'Asia/Jakarta',
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+    });
+
+    const parts = formatter.formatToParts(dateObj);
+    const day = parts.find((p) => p.type === 'day')?.value || '';
+    const month = parts.find((p) => p.type === 'month')?.value || '';
+    const year = parts.find((p) => p.type === 'year')?.value || '';
+    const hour = parts.find((p) => p.type === 'hour')?.value || '';
+    const minute = parts.find((p) => p.type === 'minute')?.value || '';
+
+    return `${day} ${month} ${year}, ${hour}.${minute} WIB`;
+  } catch {
+    return analysisDateStr;
+  }
+}
+
 const CACHE_TTL_MS = 60 * 60 * 1000; // 1 hour
 
 /**
