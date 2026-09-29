@@ -13,7 +13,7 @@
 
 ---
 
-## 2. Portofolio & Spesifikasi Lengkap 5 Formulasi Unggulan
+## 2. Portofolio Produk untuk Perkebunan
 
 ### 2.1. Aussie (Formula Anti-Ganoderma & Busuk Batang Sawit)
 * **Kategori**: Stimulator, Aktivator, Obat Tanaman (Nutrisi Kompleks).
@@ -37,36 +37,7 @@
 
 ---
 
-### 2.3. Aussie Hijau (Booster Buah Kelapa Sawit)
-* **Kategori**: Booster Buah Kelapa Sawit & Pemacu Fotosintesis.
-* **Fungsi Utama**: Diformulasikan khusus untuk memacu pembentukan buah, meningkatkan warna mengkilap, aroma, rasa, serta bobot Tandan Buah Segar (TBS).
-* **Manfaat Utama**:
-  * Menstimulasi pembentukan buah dan mempercepat diferensiasi bunga produktif.
-  * Memperbaiki klorofil daun agar daun tetap segar dan kapasitas fotosintesis tanaman optimal meski di musim kering.
-  * Secara signifikan mendongkrak tonase dan rendemen hasil panen kelapa sawit.
-
----
-
-### 2.4. Living Water (Aktivator Tanah & Revitalisasi Lahan)
-* **Kategori**: Biologi Tanah & Konsorsium Mikroba Aktif Cair.
-* **Komposisi Isolat**: Mengandung konsorsium mikroorganisme tanah menguntungkan, antara lain:
-  * *Bacillus sp.* (pengurai bahan organik & pelarut fosfat)
-  * *Azotobacter* (bakteri pengikat nitrogen bebas)
-  * *Trichoderma* (jamur antagonis pembasmi spora jamur patogen tanah)
-* **Manfaat Utama**:
-  * Menghidupkan kembali kesuburan tanah yang rusak atau jenuh akibat penggunaan pupuk dan pestisida kimia sintetis berkepanjangan.
-  * Menstabilkan dan menetralkan pH tanah masam agar ideal untuk penyerapan hara akar.
-  * Membangun benteng bioproteksi alami di zona rizosfer perakaran.
-
----
-
-### 2.5. Vermi Compost (Kompos Cacing Premium Dua Kali Fermentasi)
-* **Kategori**: Pupuk Organik Padat – Kompos Cacing (*Worm Castings*).
-* **Bahan Dasar & Proses**: Dibuat dari kotoran hewan (kohe sapi) terpilih yang telah melalui proses **2 kali fermentasi biologi**, kemudian dicerna secara alami oleh cacing tanah.
-* **Keunggulan**:
-  * Bebas bahan kimia, tidak berbau busuk, tidak menimbulkan panas di media tanam, dan tidak membakar akar semai.
-  * Kaya akan enzim pencernaan cacing, hormon pertumbuhan alami, dan asam humat.
-  * Sangat aman dan stabil diaplikasikan pada semua fase pertumbuhan tanaman (fase vegetatif maupun generatif), baik untuk perkebunan, hortikultura, maupun pertanian organik/hidroponik.
+> Katalog resmi hanya empat produk: Aussie, BENSU, Kojien, dan Saratoga (lihat `DESIGN.md` §2.5). Klaim produk di vault ini mengikuti status klaim di sana sebelum dipakai di situs.
 
 ---
 
@@ -79,5 +50,5 @@
 
 ### Protokol 2: Manajemen Pemupukan Berimbang
 * Hindari pemupukan Urea berlebih tanpa diimbangi Kalium, Boron, dan Sulfur organik.
-* Gunakan aktivator mikroba tanah cair (*Living Water*) untuk membebaskan fosfat yang terikat di tanah masam tropis.
+* Manfaatkan pupuk hayati berisi mikroba pelarut fosfat untuk membantu membebaskan fosfat yang terikat di tanah masam tropis.
 * Terapkan kascing vermikompos di piringan sawit untuk menjaga kelembapan tanah di musim kemarau panjang.

@@ -23,26 +23,30 @@ Use `BLOCKED` only as an interruption state. Record the blocker and exact state 
 
 ## Current state
 
-Perencanaan, riset UI/UX, dan spesifikasi pra-pengembangan telah diterima (*accepted*):
-- Berkas konten (`docs/content/articles/`, `docs/content/vaults/`) dan riset (`docs/research/`) telah dipindahkan dan ditata rapi di repositori project `/Users/ongki/Projects/agritani`.
-- `PRD.md` telah memuat 8 kebutuhan terstruktur berformat EARS (REQ-01 s.d. REQ-08), persona, dan batasan non-goals.
-- `DESIGN.md` telah menetapkan spesifikasi desain UI/UX lengkap: filosofi *Botanical Precision & Editorial Authority*, palet warna botani ramah sinar matahari, tipografi Newsreader/Plus Jakarta Sans, dan komponen anti-template.
-- `ARCHITECTURE.md` telah menetapkan arsitektur Astro 5 + Tailwind + Content Collections + Pagefind WASM + JSON-LD Schema.
-- `TASKS.md` telah memetakan 15 tugas eksekusi terukur (T-01 s.d. T-15).
+Kontrak pra-pengembangan diaudit ulang pada 2026-09-29 dengan skill dotfiles terbaru (`development-kit` → `design-taste`):
+- Lane: `prd-taskbreaker` (PRD.md + TASKS.md root); satu kontrak desain di `DESIGN.md`. Tidak memakai spec suite.
+- `PRD.md`: REQ-02/04/05/06/07/08 dibuat terukur, REQ-06b (search) dipisah, persona ditandai *Assumption*, NG-4/NG-5 ditambah, Open Questions OQ-1…OQ-7 dicatat.
+- `DESIGN.md` ditulis ulang: identitas brand baru (DEC-011: Hybrid sains + lapangan, Hijau Daun + Kuning Panen, petani dulu), posisi distributor resmi (DEC-010), kontrak perilaku, token kontras hasil ukur, fotografi, integritas konten, gate bukti UI §10. Komposisi PROPOSED berbasis 9 referensi yang diinspeksi (T-00 selesai, DESIGN §4.0); UI render belum ada.
+- `DESIGN.md` §4.2–4.3: anatomi global situs (kerangka header/breadcrumb/footer, 13 tipe halaman, SEO per tipe) dan anatomi artikel "Kanvas Jurnal Tani" (17 blok, state, metadata, JSON-LD, hub & internal link); dicek terhadap `impeccable` craft-floor (kicker dihapus, nomor hanya untuk urutan nyata, permukaan browser bertema). Belum dirender.
+- Empat pilar situs (Jurnal Tani, Alat Tani, Konsultasi, Profil) + REQ-09…REQ-12: Kalender Tanam (data disemai dari agrimarket tanpa data pribadi/merek/harga, ditinjau Prof. Arif), Cuaca Tani (API BMKG langsung, diverifikasi), Kalkulator Dosis, Konsultasi; logo "Tunas A" diterima (DEC-013, `docs/brand/logo/`).
+- `ARCHITECTURE.md`: Astro 7 + Tailwind 4 + content layer (articles, products, symptoms) dengan cek integritas saat build.
+- `TASKS.md`: 23 task (T-00…T-22) dengan dependensi, blocker, dan gate UI.
+- `DECISIONS.md`: DEC-004…DEC-011 diterima (DEC-009: Cloudflare Workers), DEC-012 (CMS setelah v1) PROPOSED.
 
 ## Active work
 
-Menunggu otorisasi pengembangan (*development authorization*) dari Paduka Ongki untuk memulai eksekusi T-01 (Inisialisasi Fondasi Astro 5 + Tailwind).
+Menunggu otorisasi pengembangan dari Paduka Ongki. Task berikutnya: T-01 (fondasi + spesimen palet di repo).
 
 ## Blockers
 
-None recorded.
+Tidak ada blocker untuk task fondasi dan struktur. Data dari pemilik yang dibutuhkan dikumpulkan dalam satu checklist: **PRD §8** (8.1 wajib sebelum rilis v1, 8.2 penting, 8.3 setelah v1). Paduka Ongki akan menyiapkan data tersebut; development belum diotorisasi (fokus dokumen).
 
 ## Verification evidence
 
-- Struktur repositori bersih di `/Users/ongki/Projects/agritani`.
-- Berkas artikel dan vaults 100% bebas dari nama entitas atau merek luar mana pun.
+- Rasio kontras token dihitung dari hex (dicatat di BUILD-LOG 2026-09-29); render belum diverifikasi.
+- Versi paket diverifikasi via `npm view` (2026-09-29).
+- Belum ada kode; belum ada bukti build atau UI.
 
 ## Next verified action
 
-Mulai eksekusi `T-01` (Inisialisasi repositori Astro 5 dengan Tailwind dan token desain Agritani).
+Setelah otorisasi: T-01 (`npm run build`, `npx astro check`, `npm run check:contrast` lulus) ; lalu T-02.

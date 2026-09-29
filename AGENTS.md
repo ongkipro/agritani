@@ -8,7 +8,10 @@ This file contains repository-specific rules only. Global safety, Git, secret-ha
 
 - Purpose: Agritani - Hybrid Company Profile and Agriculture Portal
 - Category: agriculture
-- Expected stack: Web App / Dashboard
+- Stack: static content site — Astro 7 + Tailwind CSS 4 + Pagefind (see `DECISIONS.md` DEC-004). No database, auth, or server runtime.
+- UI owner skills: `design-taste` (public/editorial), then `impeccable` and `ui-validation`; `DESIGN.md` §10 is the UI done-gate. Not an admin dashboard; do not use `shadcn-ui`.
+- Positioning: PT Agritani Internasional is an official distributor, not a manufacturer or research institute (DEC-010).
+- Content rules: never invent citations, DOIs, dosages, registration numbers, reviewers, statistics, or testimonials; unknown owner data is tracked in `PRD.md` §8.
 
 ## Sources of truth
 

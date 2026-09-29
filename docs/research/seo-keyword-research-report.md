@@ -159,6 +159,6 @@ Pertanyaan-pertanyaan di bawah ini adalah kueri berbasis *Natural Language* yang
 
 Untuk memaksimalkan konversi bisnis dan pendaftaran distributor resmi di situs [agritani.com](https://agritani.com), artikel-artikel di atas disisipi *Contextual Anchor Text* menuju kanal konsultasi agronomis:
 
-* **Kueri Sawit / Ganoderma** $\rightarrow$ Dihubungkan ke solusi formula **Aussie** & **Aussie Hijau** (Konsultasi via WhatsApp tim agronomis Agritani).
+* **Kueri Sawit / Ganoderma** $\rightarrow$ Dihubungkan ke **Aussie** (Konsultasi via WhatsApp tim agronomis Agritani).
 * **Kueri Hortikultura / Bulai / Gemini** $\rightarrow$ Dihubungkan ke formula nutrisi bio-enzim **Bensu** & serum asam amino **Saratoga**.
-* **Kueri Tanah Masam / Jenuh Kimia** $\rightarrow$ Dihubungkan ke konsorsium mikroba **Living Water** & **Vermi Compost**.
+* **Kueri Tanah Masam / Jenuh Kimia** $\rightarrow$ Dihubungkan ke artikel edukasi kesehatan tanah dan konsultasi agronomis via WhatsApp (tidak ada produk tanah di katalog 4 produk).

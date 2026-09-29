@@ -2,16 +2,18 @@
 
 > **Status:** Active | **Repo:** [ongkipro/agritani](https://github.com/ongkipro/agritani)  
 > **Entitas Resmi:** PT Agritani Internasional ([agritani.com](https://agritani.com))  
-> **Stack:** Astro 5 / Tailwind CSS / Content Collections / Pagefind WASM / Schema.org  
+> **Stack:** Astro 7 / Tailwind CSS 4 / Content Layer / Pagefind / Schema.org JSON-LD  
 > **Updated:** 2026-09-29  
 
 ---
 
 ## 🌾 Ikhtisar Proyek
 
-**Agritani** adalah portal agrikultur hibrida modern yang menggabungkan:
-1. **Profil Korporasi Bioteknologi**: Otoritas sains produsen aktivator imunitas tanaman vaskular (*Systemic Acquired Resistance*), nutrisi bio-enzim presisi, dan regenerasi mikrobioma tanah (Portofolio: Aussie, Bensu, Saratoga, Kojien, Living Water, Vermi Compost) serta kanal kemitraan distributor B2B.
-2. **Jurnal Sains Agronomi Terbuka (Bergaya Medium/Substack)**: Portal edukasi dan panduan budidaya presisi berbasis riset ilmiah bebas disinformasi, dilengkapi mesin triase diagnostik gejala hama/penyakit tanaman.
+**Agritani** adalah situs PT Agritani Internasional (distributor resmi nutrisi & aktivator imun tanaman) dengan empat pilar:
+1. **Jurnal Tani** — artikel agronomi berbasis riset oleh Prof. Arif Prabowo.
+2. **Alat Tani** — Diagnosa Gejala, Kalender Tanam, Cuaca Tani (data BMKG), Kalkulator Dosis; gratis, tanpa akun.
+3. **Konsultasi** — tanya langsung ke tim agronomi via WhatsApp dengan pesan terstruktur.
+4. **Profil perusahaan** — identitas distributor resmi; 4 produk (Aussie, BENSU, Kojien, Saratoga) sebagai referensi, kemitraan B2B sebagai sasaran kedua.
 
 ---
 
@@ -19,10 +21,10 @@
 
 Setiap dokumen di bawah ini memiliki fungsi spesifik dan merupakan sumber kebenaran (*single source of truth*) untuk domainnya:
 
-- 📋 [**PRD.md**](./PRD.md) — Kontrak kebutuhan produk terstruktur (REQ-01 s.d. REQ-08, EARS format, persona, non-goals).
-- 🎨 [**DESIGN.md**](./DESIGN.md) — Spesifikasi UI/UX, token desain botani, tipografi editorial Newsreader/Plus Jakarta Sans, dan audit anti-template.
-- 🏗️ [**ARCHITECTURE.md**](./ARCHITECTURE.md) — Arsitektur sistem Astro 5, skema Zod content collections, WASM search, dan batas keamanan.
-- ✅ [**TASKS.md**](./TASKS.md) — Antrean 15 tugas eksekusi bertahap (T-01 s.d. T-15) dengan penelusuran 1 task = 1 primary requirement.
+- 📋 [**PRD.md**](./PRD.md) — Kontrak kebutuhan produk terstruktur (REQ-01 s.d. REQ-08 + REQ-06b, EARS format, proto-persona, non-goals, open questions).
+- 🎨 [**DESIGN.md**](./DESIGN.md) — Spesifikasi UI/UX, token desain botani, tipografi editorial Newsreader/Plus Jakarta Sans, kontrak perilaku, dan gate bukti UI.
+- 🏗️ [**ARCHITECTURE.md**](./ARCHITECTURE.md) — Arsitektur Astro 7 statis, skema content layer (articles, products, symptoms), pencarian Pagefind, dan batas keamanan.
+- ✅ [**TASKS.md**](./TASKS.md) — Antrean 23 tugas eksekusi bertahap (T-00 s.d. T-22) dengan penelusuran 1 task = 1 primary requirement.
 - 📊 [**STATUS.md**](./STATUS.md) — State machine workflow, status fase saat ini (`READY`), dan bukti verifikasi.
 - 📝 [**DECISIONS.md**](./DECISIONS.md) — Daftar keputusan arsitektural yang disepakati.
 - 🚀 [**RELEASE.md**](./RELEASE.md) — Batasan rilis dan mitigasi risiko.
