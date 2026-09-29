@@ -6,6 +6,14 @@ author: "Tim Riset Agronomi Agritani"
 reading_time: "4 min read"
 published_date: "2026-09-29"
 source: "agritani.com"
+tags:
+  - "cara mengusir hama siput"
+  - "membasmi bekicot di kebun"
+  - "perangkap siput alami"
+  - "barier abu sekam tanaman"
+  - "moluskisida alami tanaman"
+meta_title: "Cara Mengusir Siput dan Bekicot Tanpa Racun Kimia"
+meta_description: "Trik mengendalikan hama siput dan bekicot pemakan semai malam hari dengan barier fisik abu sekam serta perangkap ragi organik aman."
 ---
 
 # Jurus Ampuh Membasmi Hama Siput dan Bekicot Tanpa Racun Moluskisida Kimia
@@ -43,3 +51,21 @@ Siput memiliki indra penciuman yang sangat peka terhadap gas fermentasi ragi dan
 1. Ambil gelas plastik bekas air mineral, kubur di tanah dengan bibir gelas sejajar permukaan tanah.
 2. Isi setengah gelas dengan campuran air hangat, 1 sendok teh ragi instan, dan 1 sendok makan gula pasir.
 3. Aroma fermentasi ragi akan memikat siput dari jarak belasan meter di malam hari. Siput akan merayap masuk ke dalam gelas, tercebur, dan terperangkap di dalamnya tanpa racun kimia sedikit pun.
+
+
+### 4. Trik Berburu Malam Hari untuk Menekan Populasi Ekstrem
+
+Jika populasi siput telanjang di kebun Anda sudah terlalu padat dan menyerang ribuan bibit cabai atau selada sekaligus, kombinasikan barier alami dengan perburuan malam:
+* **Waktu Berburu Paling Efektif**: Lakukan pemeriksaan lahan antara pukul 20.00 hingga 22.00 malam menggunakan lampu senter kepala. Pada jam-jam inilah seluruh kawanan siput dan bekicot keluar dari persembunyian bawah mulsa dan mulai merambat naik ke batang tanaman.
+* **Pungut dan Kumpulkan Manual**: Kumpulkan siput ke dalam ember yang sudah diisi air garam pekat. Larutan garam akan menarik cairan tubuh moluska secara cepat dan mematikan hama dalam hitungan detik secara ramah lingkungan.
+* **Pangkas Daun Bawah yang Menyentuh Tanah**: Potong pelepah atau daun-daun tua terbawah yang terkulai menyentuh bedengan. Daun yang menyentuh tanah bertindak seperti jembatan penyeberangan bagi siput untuk merayap naik ke pucuk tanaman tanpa melewati taburan abu sekam.
+
+---
+
+## Pertanyaan yang Sering Diajukan (FAQ)
+
+**1. Mengapa kapur dolomit dan abu sekam sangat ditakuti oleh siput dan bekicot?**  
+Tubuh moluska dilapisi lendir basah lunak berkadar air tinggi. Butiran kristal kapur tohor, dolomit, dan silika tajam pada abu sekam bersifat higroskopis (menyerap cairan tubuh) dan menyebabkan sensasi luka perih terbakar saat bersentuhan langsung dengan kulit lunak siput.
+
+**2. Berapa lama perangkap ragi organik harus diganti dengan larutan baru?**  
+Ganti larutan ragi dan buang bangkai siput yang terperangkap setiap 3 sampai 4 hari sekali agar aroma fermentasi tetap segar dan terus memikat siput dari sudut-sudut kebun.

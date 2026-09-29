@@ -6,6 +6,14 @@ author: "Tim Riset Agronomi Agritani"
 reading_time: "5 min read"
 published_date: "2026-09-29"
 source: "agritani.com"
+tags:
+  - "cara mengatasi virus gemini"
+  - "penyebab daun cabai kuning"
+  - "kutu kebul cabai"
+  - "perangkap kuning kutu kebul"
+  - "pencegahan penyakit bule"
+meta_title: "Cara Mengatasi Virus Gemini Cabai: Putus Kutu Kebul"
+meta_description: "Solusi menghentikan penyebaran penyakit bule dan virus gemini pada cabai lewat perangkap kuning kutu kebul serta bioproteksi bawah daun."
 ---
 
 # Mencegah dan Menangani Virus Gemini (Bule Cabai): Putus Rantai Vektor Kutu Kebul

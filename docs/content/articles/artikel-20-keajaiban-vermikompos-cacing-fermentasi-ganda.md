@@ -6,6 +6,14 @@ author: "Tim Riset Agronomi Agritani"
 reading_time: "5 min read"
 published_date: "2026-09-29"
 source: "agritani.com"
+tags:
+  - "manfaat kascing untuk tanaman"
+  - "cara membuat vermikompos"
+  - "pupuk kotoran cacing tanah"
+  - "keunggulan kompos kascing"
+  - "asam humat kascing cacing"
+meta_title: "Manfaat Kascing Vermikompos: Pupuk Cacing Organik"
+meta_description: "Keunggulan pupuk kascing cacing tanah yang mengandung jutaan mikroba rizosfer aktif serta hormon alami pemacu tumbuh perakaran tanaman."
 ---
 
 # Keajaiban Vermikompos: Mengapa Kompos Kascing Cacing Jauh Lebih Unggul dari Kompos Biasa?
@@ -37,3 +45,21 @@ Ketika cacing tanah memakan bahan organik kotoran sapi yang telah difermentasi m
 3. **Kapasitas Tukar Kation (KTK) Sangat Tinggi**: Asam humat dan fulvat di dalam kascing mengikat kation hara ($Ca^{2+}, Mg^{2+}, K^+$) agar tidak tercuci oleh air hujan lebat, lalu melepaskannya perlahan ke bulu akar sesuai kebutuhan tanaman (*slow-release mechanism*).
 4. **Bio-Fungisida Penekan Jamur Patogen**: Populasi mikroba aktinomiset dan *Trichoderma* di dalam kascing secara aktif memangsa spora jamur patogen tular tanah seperti *Pythium*, *Rhizoctonia*, dan *Fusarium*.
 5. **Steril Tanpa Biji Gulma**: Suhu fermentasi ganda dan pencernaan cacing mematikan daya hidup biji rumput liar yang biasanya terbawa di kotoran ternak mentah.
+
+
+### 4. Panduan Memberi Pakan Cacing agar Kascing Berkualitas Super
+
+Kualitas nutrisi pupuk kascing sangat dipengaruhi oleh menu pakan yang Anda berikan ke dalam kotak budidaya cacing tanah (*vermicomposting bin*):
+* **Pakan Terbaik**: Campuran kotoran sapi atau kotoran kambing yang telah difermentasi matang (dingin) dicampur dengan limbah kulit buah, ampas tahu, atau cacahan batang pohon pisang busuk.
+* **Hindari Pakan Bersifat Asam dan Pedas**: Jangan pernah memasukkan potongan jeruk, cabai, bawang, sisa makanan berminyak, atau kotoran hewan mentah yang masih panas ke dalam kotak cacing. Bahan-bahan ini akan membakar kulit lunak cacing dan menyebabkan cacing kabur keluar wadah.
+* **Jaga Kelembapan Media**: Media hidup cacing harus selalu terasa lembap menyerupai remasan tembakau (kelembapan 60–70%). Semprotkan sedikit air sumur secara berkala jika permukaan media terasa mengering.
+
+---
+
+## Pertanyaan yang Sering Diajukan (FAQ)
+
+**1. Mengapa kascing tidak berbau busuk seperti kotoran hewan asalnya?**  
+Di dalam saluran pencernaan cacing tanah, bahan organik diolah secara biologis oleh enzim pencernaan dan bakteri simbiotik usus cacing yang menetralkan gas amonia dan senyawa belerang busuk, menghasilkan butiran granul hitam beraroma tanah subur yang segar.
+
+**2. Berapa dosis pemakaian kascing untuk tanaman pot dan bedengan sayuran?**  
+Untuk tanaman sayuran di pot atau polybag, campurkan kascing sebanyak 15–20% dari total volume media tanam. Untuk bedengan kebun, taburkan 1 sampai 2 genggam kascing per lubang tanam saat bibit dipindahkan ke lahan.

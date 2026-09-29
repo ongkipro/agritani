@@ -6,6 +6,14 @@ author: "Tim Riset Agronomi Agritani"
 reading_time: "5 min read"
 published_date: "2026-09-29"
 source: "agritani.com"
+tags:
+  - "penyebab blast padi"
+  - "cara mengatasi blast padi"
+  - "daun padi tegak"
+  - "hawar pelepah padi"
+  - "pupuk silika padi"
+meta_title: "Cara Mengatasi Blast Padi Musim Hujan: Daun Tegak"
+meta_description: "Kendalikan jamur blast dan hawar pelepah padi musim hujan lewat arsitektur daun tegak 45 derajat dan silika alami agar panen gabah bernas."
 ---
 
 # Revolusi Daun Tegak: Mengatasi Ledakan Blast dan Hawar Pelepah pada Padi Musim Hujan

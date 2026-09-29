@@ -6,6 +6,14 @@ author: "Tim Riset Agronomi Agritani"
 reading_time: "5 min read"
 published_date: "2026-09-29"
 source: "agritani.com"
+tags:
+  - "cara potong pucuk cabai"
+  - "topping tanaman cabai"
+  - "merawat cabai berbuah lebat"
+  - "cabang produktif cabai"
+  - "budidaya cabai rawit"
+meta_title: "Cara Potong Pucuk Cabai Biar Berbuah Lebat dan Rimbun"
+meta_description: "Panduan teknis potong pucuk (topping) tanaman cabai pada 20-30 HST untuk melipatgandakan cabang produktif dan mendongkrak tonase panen."
 ---
 
 # Rahasia Potong Pucuk Cabai: Trik Agronomi Melipatgandakan Cabang Produktif dan Hasil Panen

@@ -6,6 +6,14 @@ author: "Tim Riset Agronomi Agritani"
 reading_time: "5 min read"
 published_date: "2026-09-29"
 source: "agritani.com"
+tags:
+  - "fungsi pupuk npk tanaman"
+  - "kapan waktu pupuk tinggi k"
+  - "perbedaan vegetatif generatif"
+  - "cara mencegah bunga rontok"
+  - "dosis npk yang benar"
+meta_title: "Panduan Pupuk NPK: Waktu Tepat Rasio N dan PK"
+meta_description: "Pahami fungsi Nitrogen, Fosfor, dan Kalium serta waktu peralihan pupuk N tinggi ke PK tinggi agar bunga tanaman tidak rontok."
 ---
 
 # Mengenal Peranan Pupuk NPK: Kapan Waktu Tepat Menggunakan Rasio N Tinggi vs PK Tinggi?
@@ -47,3 +55,21 @@ Kesalahan paling umum yang membuat pohon cabai atau mangga gagal berbuah adalah 
 Kelebihan nitrogen di fase ini mengirimkan sinyal biokimia keliru ke tanaman: tanaman mengira ia harus kembali membesarkan tajuk daun. Akibatnya, tanaman 'mengugurkan' tangkai bunga yang sudah ada, lalu mengeluarkan tunas-tunas daun liar yang rakus hara (*vegetative flush*).
 
 Ingat rumus emas agronomis: **N untuk pembentukan tajuk daun, P untuk memancing bunga, dan K untuk memanen bobot buah!**
+
+
+### 4. Aturan Penting Mencampur Pupuk agar Nutrisi Tidak Mengendap
+
+Banyak petani membuang-buang uang karena mencampurkan pupuk secara keliru di dalam satu ember atau tangki semprot:
+* **Hindari Mencampur Kalsium dengan Fosfat Pekat**: Unsur Kalsium ($Ca$) jika dicampurkan langsung dengan pupuk tinggi Fosfor ($P$, seperti SP-36 atau MKP) dalam konsentrasi tinggi akan bereaksi membentuk endapan kalsium fosfat putih seperti kapur yang tidak dapat larut air dan tidak bisa diserap tanaman.
+* **Larutkan Satu per Satu**: Jangan menuangkan semua pupuk butiran bersamaan ke dalam air. Larutkan pupuk pertama hingga benar-benar larut bening, baru masukkan pupuk berikutnya secara bertahap.
+* **Waktu Aplikasi Pemupukan**: Pupuk kocor cair sebaiknya diaplikasikan pada pagi hari saat tanah dalam kondisi lembap (bukan saat tanah kering kerontang di tengah hari bolong) agar tidak mengejutkan tekanan osmotik bulu akar.
+
+---
+
+## Pertanyaan yang Sering Diajukan (FAQ)
+
+**1. Apa tanda fisik bahwa tanaman cabai atau tomat kelebihan pupuk Nitrogen?**  
+Batang tanaman tampak sangat tebal dan berair, helai daun berwarna hijau gelap kehitaman dengan ukuran luar biasa lebar, namun ruas cabang sangat panjang dan bunga yang mekar gampang rontok menguning sebelum menjadi buah.
+
+**2. Mengapa pupuk Kalium sangat menentukan rasa manis dan daya simpan buah?**  
+Kalium bertugas mengaktifkan lebih dari 60 sistem enzim pengangkut gula hasil fotosintesis dari daun ke dalam daging buah. Tanaman yang tercukupi kalium menghasilkan buah dengan daging tebal, kadar gula (*Brix*) tinggi, dan kulit buah liat yang tahan simpan selama pengiriman jarak jauh.

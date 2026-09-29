@@ -6,6 +6,14 @@ author: "Tim Riset Agronomi Agritani"
 reading_time: "5 min read"
 published_date: "2026-09-29"
 source: "agritani.com"
+tags:
+  - "cara mengatasi patek cabai"
+  - "obat antraknosa cabai alami"
+  - "busuk buah cabai melingkar"
+  - "kalsium boron untuk cabai"
+  - "pencegahan patek musim hujan"
+meta_title: "Cara Mengatasi Patek Cabai dan Antraknosa Musim Hujan"
+meta_description: "Protokol lengkap mengatasi penyakit patek dan antraknosa pada cabai dengan sanitasi spora, jarak tanam ideal, serta asupan kalsium boron."
 ---
 
 # Jurus Mengatasi Antraknosa (Patek Cabai): Protokol Terpadu Mencegah Busuk Buah Melingkar

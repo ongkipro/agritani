@@ -6,6 +6,14 @@ author: "Tim Riset Agronomi Agritani"
 reading_time: "5 min read"
 published_date: "2026-09-29"
 source: "agritani.com"
+tags:
+  - "kesalahan pemupukan sawit"
+  - "cara meningkatkan tandan sawit"
+  - "pemupukan sawit berbuah lebat"
+  - "perawatan kebun sawit"
+  - "penyebab sawit trek"
+meta_title: "5 Kesalahan Pemupukan Sawit yang Bikin TBS Merosot"
+meta_description: "Ketahui 5 kesalahan umum pengelolaan kebun kelapa sawit rakyat yang memicu penurunan tonase TBS dan cara agronomi memperbaikinya."
 ---
 
 # 5 Kesalahan Umum Pengelolaan Kebun Sawit yang Menurunkan Produktivitas Tandan Buah

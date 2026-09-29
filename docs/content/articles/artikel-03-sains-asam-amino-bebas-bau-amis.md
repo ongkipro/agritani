@@ -6,6 +6,14 @@ author: "Tim Riset Agronomi Agritani"
 reading_time: "5 min read"
 published_date: "2026-09-29"
 source: "agritani.com"
+tags:
+  - "pupuk asam amino untuk tanaman"
+  - "pupuk organik tidak bau amis"
+  - "manfaat asam amino tanaman"
+  - "biostimulan tanaman"
+  - "cara aplikasi asam amino"
+meta_title: "Pupuk Asam Amino Tanaman Bebas Bau Amis dan Murni"
+meta_description: "Mengenal manfaat pupuk asam amino bebas bau hasil bio-enzim Jepang untuk menjaga pembungaan dan memulihkan tanaman dari cekaman cuaca."
 ---
 
 # Mitos Pupuk Amis: Menjelajahi Asam Amino Bebas Bau dan Bagaimana Molekul Peptida Diserap Daun

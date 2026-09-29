@@ -6,6 +6,14 @@ author: "Tim Riset Agronomi Agritani"
 reading_time: "5 min read"
 published_date: "2026-09-29"
 source: "agritani.com"
+tags:
+  - "hama thrips pada cabai"
+  - "daun cabai keriting ke atas"
+  - "cara mengatasi thrips cabai"
+  - "mulsa perak penolak hama"
+  - "insektisida nabati thrips"
+meta_title: "Pengendalian Hama Thrips Cabai: Daun Mengeriting"
+meta_description: "Kenali gejala daun cabai mengeriting ke atas akibat hama thrips serta trik pengendalian alami dengan mulsa perak dan bioproteksi nabati."
 ---
 
 # Mengenal Hama Thrips Cabai: Gejala Daun Mengeriting ke Atas dan Trik Pengendaliannya
@@ -41,3 +49,21 @@ Banyak petani mengeluh menyemprot insektisida kimia setiap dua hari sekali namun
 * **Gunakan Perangkap Lem Biru atau Kuning**: Pasang lem perangkap serangga setinggi kanopi. Thrips sangat tertarik secara visual pada spektrum warna biru dan kuning cerah.
 * **Semprotkan Ekstrak Bioproteksi di Bawah Daun**: Lakukan penyemprotan pada sore hari menjelang matahari terbenam (saat thrips mulai keluar bergerak aktif). Arahkan stik sprayer dari bawah ke atas dengan butiran kabut halus (*fine mist*).
 * **Sanitasi Gulma Berdaun Lebar**: Bersihkan rumput babadotan dan bayam liar di sekitar pematang karena gulma tersebut merupakan tanaman inang persembunyian thrips saat bedengan cabai disemprot.
+
+
+### 4. Jadwal Penyemprotan Efektif Pengendali Thrips
+
+Untuk memutus siklus hidup thrips yang bersembunyi di celah ketiak daun dan bunga, terapkan jadwal aplikasi berikut:
+* **Waktu Penyemprotan Tepat**: Semprotkan larutan bioproteksi atau pestisida nabati pada pagi hari sebelum pukul 08.00 atau sore hari setelah pukul 16.30. Thrips adalah serangga yang aktif bergerak di permukaan daun saat suhu udara sejuk dan menghindari sinar matahari terik.
+* **Arah Semprotan dari Bawah ke Atas**: Jangan hanya menyemprot kanopi dari atas! Arahkan ujung stik nosel menghadap ke atas agar butiran kabut semprotan membasahi bagian bawah helai daun dan ketiak bunga tempat koloni nimfa thrips bersembunyi.
+* **Sanitasi Gulma Pinggir Bedengan**: Bersihkan gulma berdaun lebar (seperti babadotan dan bayam liar) di pematang kebun, karena gulma tersebut sering menjadi rumah penampungan thrips saat tanaman cabai disemprot.
+
+---
+
+## Pertanyaan yang Sering Diajukan (FAQ)
+
+**1. Mengapa tanaman cabai yang terkena thrips daunnya tidak mau kembali lurus meski hamanya sudah mati?**  
+Daun yang sudah terlanjur melengkung kaku seperti perahu mengalami kerusakan permanen pada struktur sel epidermisnya akibat cairan sel yang telah diisap habis. Namun, penyemprotan asam amino dan kalsium akan memicu keluarnya tunas-tunas daun baru di pucuk yang tumbuh lurus, mulus, dan sehat kembali.
+
+**2. Apakah memasang perangkap warna kuning efektif untuk menjerat hama thrips?**  
+Thrips lebih tertarik pada perangkap lem warna biru cerah dibanding warna kuning. Jika memungkinkan, pasang perangkap berperekat warna biru (*blue sticky trap*) di antara barisan tanaman setinggi 20–30 cm di atas kanopi daun cabai.

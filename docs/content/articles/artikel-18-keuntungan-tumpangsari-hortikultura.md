@@ -6,6 +6,14 @@ author: "Tim Riset Agronomi Agritani"
 reading_time: "5 min read"
 published_date: "2026-09-29"
 source: "agritani.com"
+tags:
+  - "manfaat tumpangsari tanaman"
+  - "sistem intercropping sayuran"
+  - "tanaman penangkal hama"
+  - "rekayasa agroekologi kebun"
+  - "meningkatkan hasil panen"
+meta_title: "Manfaat Tumpangsari Hortikultura: Cegah Hama Kebun"
+meta_description: "Pelajari sains tumpangsari sistem push-pull menggunakan tanaman aromatik untuk menolak hama dan melipatgandakan panen per meter persegi."
 ---
 
 # Sains di Balik Tumpangsari Hortikultura: Memutus Siklus Hama dan Melipatgandakan Panen
@@ -43,3 +51,21 @@ Fungsi: Bintil akar kedelai mengikat nitrogen bebas dari udara untuk menyuburkan
 ```
 
 Dengan menerapkan tumpangsari, nilai *Land Equivalent Ratio* (LER) kebun Anda akan selalu melampaui angka 1.3 hingga 1.6. Artinya, untuk mendapatkan jumlah hasil panen yang sama dari sistem monokultur, Anda membutuhkan lahan 30% sampai 60% lebih luas!
+
+
+### 4. Kombinasi Tanaman yang Wajib Dihindari Petani
+
+Meskipun tumpangsari membawa banyak keuntungan ekologis, ada beberapa pasangan tanaman yang pantang ditanam berdampingan karena saling merugikan:
+* **Hindari Menanam Tomat Berdampingan dengan Jagung**: Keduanya merupakan tanaman inang favorit bagi ulat penggerek buah (*Helicoverpa armigera*). Menanam keduanya berdekatan akan menciptakan ledakan populasi hama yang menghancurkan kedua komoditas sekaligus.
+* **Hindari Menanam Tanaman Satu Keluarga (*Solanaceae*) Berdampingan**: Menanam cabai, terong, tomat, dan kentang dalam satu bedengan yang sama akan mempercepat penularan jamur busuk buah antraknosa dan virus keriting daun.
+* **Perhatikan Kebutuhan Sinar Matahari**: Jangan menanam tanaman yang membutuhkan sinar matahari penuh di bawah naungan tanaman berkanopi rimbun tanpa mengatur jarak tanam dan orientasi barisan barat-timur.
+
+---
+
+## Pertanyaan yang Sering Diajukan (FAQ)
+
+**1. Bagaimana cara mengatur pemupukan jika dua jenis tanaman ditanam dalam satu bedengan?**  
+Pilih tanaman dengan kebutuhan hara yang saling melengkapi. Misalnya, kombinasi tanaman kacang-kacangan (yang mampu mengikat nitrogen udara sendiri lewat bintil akar) dengan sayuran daun yang rakus nitrogen. Tempatkan pupuk kocor lebih dekat ke pangkal tanaman yang sedang memasuki fase generatif pembungaan.
+
+**2. Apakah sistem tumpangsari mempersulit proses pemeliharaan dan panen?**  
+Dengan penataan pola baris yang teratur (seperti pola baris ganda berselang-seling), pemeliharaan dan panen tetap mudah dilakukan karena setiap tanaman memiliki lorong akses panen yang jelas.

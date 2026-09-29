@@ -6,6 +6,14 @@ author: "Tim Riset Agronomi Agritani"
 reading_time: "5 min read"
 published_date: "2026-09-29"
 source: "agritani.com"
+tags:
+  - "cara budikdamber lele kangkung"
+  - "akuaponik ember praktis"
+  - "urban farming lahan sempit"
+  - "budidaya lele rumahan"
+  - "panen kangkung di ember"
+meta_title: "Panduan Budikdamber Lele Kangkung di Ember 80 Liter"
+meta_description: "Cara praktis budikdamber memadukan budidaya ikan lele dan sayuran kangkung dalam ember 80 liter untuk ketahanan pangan keluarga."
 ---
 
 # Panduan Lengkap Budikdamber: Solusi Panen Ikan dan Sayur Mandiri di Lahan Terbatas

@@ -6,6 +6,14 @@ author: "Tim Riset Agronomi Agritani"
 reading_time: "6 min read"
 published_date: "2026-09-29"
 source: "agritani.com"
+tags:
+  - "obat ganoderma sawit"
+  - "busuk pangkal batang sawit"
+  - "cara mengatasi ganoderma"
+  - "imunitas kelapa sawit"
+  - "trichoderma sawit"
+meta_title: "Cara Mengatasi Ganoderma Sawit dan Imunitas Alami"
+meta_description: "Panduan memulihkan kebun kelapa sawit dari busuk pangkal batang jamur Ganoderma dengan aktivasi imunitas tanaman dan agen hayati tanah."
 ---
 
 # Mengapa Jamur Ganoderma Kebal Terhadap Fungisida Kimia dan Bagaimana Membangunkan Imunitas Alami Sawit?

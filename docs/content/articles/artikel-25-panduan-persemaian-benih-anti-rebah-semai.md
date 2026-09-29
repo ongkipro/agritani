@@ -6,6 +6,14 @@ author: "Tim Riset Agronomi Agritani"
 reading_time: "5 min read"
 published_date: "2026-09-29"
 source: "agritani.com"
+tags:
+  - "media semai cabai anti rebah"
+  - "penyakit rebah semai damping off"
+  - "cara menyemai benih hortikultura"
+  - "mencegah bibit etiolasi"
+  - "sterilisasi media semai"
+meta_title: "Panduan Persemaian Benih Bebas Rebah Semai Damping-Off"
+meta_description: "Cegah kematian bibit muda akibat rebah semai (damping-off) dengan komposisi media semai steril dan penjemuran matahari pagi sejak hari ke-3."
 ---
 
 # Panduan Sukses Menyemai Benih Hortikultura: Bebas Penyakit Rebah Semai (Damping-Off)
@@ -45,3 +53,21 @@ Kukus atau siram media tanam dengan air mendidih jika Anda ingin memastikan medi
 2. **Penggunaan Tray Semai Berlubang**: Gunakan *seedling tray* berlubang bawah agar kelebihan air siraman langsung mengalir terbuang, mencegah genangan becek di dasar akar.
 3. **Jemur Matahari Pagi Sejak Dini**: Begitu benih pecah dan muncul titik kecambah hijau (biasanya hari ke-3 atau ke-4), **segera bawa wadah semai ke tempat yang terkena sinar matahari pagi (pukul 07.00 – 10.30 WIB)**. Sinar matahari pagi memicu batang tumbuh kekar, kokoh, berdaun tebal, dan kebal dari jamur rebah semai.
 4. **Penyiraman Menggunakan Sprayer Halus**: Siram persemaian hanya jika permukaan media terasa mulai mengering. Gunakan botol semprot kabut (*mist sprayer*) agar pancaran air tidak merobohkan bibit muda yang batangnya masih rapuh.
+
+
+### 4. Tahapan Aklimatisasi (*Hardening Off*) Sebelum Pindah Tanam
+
+Banyak bibit semai yang sehat di meja semai mendadak layu mati setelah dipindahkan ke lahan terbuka. Hal ini terjadi karena bibit mengalami syok lingkungan:
+* **Kenalkan ke Terik Matahari Bertahap**: Mulai umur 15 HST, geser baki semai ke area yang terpapar sinar matahari lebih terik selama 2–3 jam di pagi hari. Naikkan durasi penjemuran setiap hari hingga bibit terbiasa menerima sinar matahari penuh.
+* **Kurangi Frekuensi Penyiraman**: Dua hari sebelum pemindahan bibit ke bedengan, kurangi volume penyiraman agar jaringan batang bibit menjadi lebih padat, liat, dan kokoh (tidak terlalu kenyal berair).
+* **Siram Jenuh Sesaat Sebelum Dicabut**: Satu jam sebelum proses tanam dimulai, siram media semai hingga basah kuyup agar gumpalan tanah media semai menempel utuh pada akar saat bibit dicabut dari tray semai, sehingga akar halus tidak putus.
+
+---
+
+## Pertanyaan yang Sering Diajukan (FAQ)
+
+**1. Mengapa media semai tidak boleh menggunakan pupuk kandang yang masih mentah?**  
+Kotoran hewan yang belum difermentasi sempurna masih mengandung bakteri pembusuk, spora jamur patogen tular tanah, dan menghasilkan suhu panas yang membakar akar halus kecambah benih muda yang baru keluar dari kulit biji.
+
+**2. Kapan tanda fisik bahwa bibit cabai atau tomat sudah siap dipindahkan ke lahan?**  
+Bibit yang ideal siap pindah tanam memiliki ciri: telah memiliki 4 sampai 6 helai daun sejati yang hijau segar, batang tegak kokoh tidak meliuk, tinggi tanaman sekitar 10–12 cm, dan sistem perakaran telah mengikat kuat gumpalan media semai.

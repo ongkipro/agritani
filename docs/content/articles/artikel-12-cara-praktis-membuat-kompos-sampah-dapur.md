@@ -6,6 +6,14 @@ author: "Tim Riset Agronomi Agritani"
 reading_time: "5 min read"
 published_date: "2026-09-29"
 source: "agritani.com"
+tags:
+  - "cara membuat kompos sampah dapur"
+  - "kompos organik tanpa bau"
+  - "rasio karbon nitrogen kompos"
+  - "pupuk kompos rumah tangga"
+  - "pengolahan sampah organik"
+meta_title: "Cara Membuat Kompos Sampah Dapur Cepat Tanpa Bau"
+meta_description: "Panduan membuat pupuk kompos organik dari sisa sampah dapur rumah tangga dengan perbandingan karbon nitrogen tepat tanpa bau busuk."
 ---
 
 # Panduan Praktis Membuat Kompos Organik dari Sampah Rumah Tangga Tanpa Bau Busuk
@@ -44,3 +52,21 @@ Kunci agar kompos tidak berbau busuk dan cepat matang terletak pada perimbangan 
 6. **Pengadukan Berkala**: Aduk tumpukan kompos seminggu sekali untuk memasukkan pasokan oksigen segar bagi mikroba aerob.
 
 Dalam 3 hingga 4 minggu, tumpukan kompos akan menyusut, suhu panasnya turun, warnanya berubah coklat gelap kehitaman, gembur, dan tercium aroma segar khas humus tanah hutan. Kompos siap ditaburkan sebagai nutrisi organik tanaman kesayangan Anda!
+
+
+### 4. Cara Mengatasi Masalah Umum pada Kompos Rumahan
+
+Jika proses pengomposan Anda mengalami kendala di tengah jalan, berikut solusi cepatnya:
+* **Tumpukan Berbau Busuk Menyengat**: Ini tanda kompos terlalu basah dan kekurangan oksigen. Segera aduk tumpukan dan tambahkan dua genggam bahan coklat kering (serbuk gergaji, sekam padi, atau remasan kardus coklat) untuk menyerap kelebihan air.
+* **Tumpukan Terlalu Kering dan Tidak Mau Hangat**: Dekomposer membutuhkan kelembapan sekitar 50% untuk bekerja. Percikkan sedikit air cucian beras atau larutan gula merah, lalu aduk rata hingga terasa lembap seperti remasan spons cuci piring.
+* **Muncul Belatung Lalat**: Tutup tumpukan bahan organik selalu dengan lapisan tipis tanah subur atau abu sekam setebal 2–3 cm setiap kali Anda memasukkan sisa makanan baru agar lalat hijau tidak bisa bertelur di dalamnya.
+
+---
+
+## Pertanyaan yang Sering Diajukan (FAQ)
+
+**1. Sisa makanan apa saja yang tidak boleh dimasukkan ke dalam wadah kompos rumahan?**  
+Hindari memasukkan daging mentah berlemak, tulang belulang besar, susu, kotoran hewan peliharaan (anjing/kucing), dan sisa masakan yang mengandung banyak minyak goreng. Bahan-bahan ini lambat terurai dan berisiko mengundang tikus serta bau busuk liar.
+
+**2. Kapan kompos dinyatakan matang sempurna dan siap digunakan ke tanaman?**  
+Kompos matang memiliki ciri khas: suhunya sudah dingin stabil, warnanya coklat kehitaman merata seperti tanah humus, teksturnya gembur remah, dan aromanya segar menyerupai aroma tanah hutan basah setelah hujan.
