@@ -23,9 +23,11 @@ jobs:
 
     steps:
       - name: Checkout repository
+        # Official GitHub action pinned to verified major release v4 (actions/checkout)
         uses: actions/checkout@v4
 
       - name: Setup Node.js 24
+        # Official GitHub action pinned to verified major release v4 (actions/setup-node)
         uses: actions/setup-node@v4
         with:
           node-version: 24
@@ -33,6 +35,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Audit commodity taxonomy assignments
+        run: npm run check:commodities
 
       - name: Check Astro types & diagnostics
         run: npx astro check
@@ -44,4 +49,13 @@ jobs:
         run: npm run check:contrast
 
       - name: Build static output
+        # Selama OQ-1 (nomor WhatsApp resmi) belum terisi, build membutuhkan PUBLIC_INCLUDE_DRAFTS: "true"
+        # agar guard waLink() menggunakan DEV_PLACEHOLDER_PHONE dan tidak menggagalkan proses build.
+        # Setelah OQ-1 terisi dan naskah terbit dipublikasikan di T-25, langkah ini akan diperbarui
+        # untuk menjalankan build produksi murni tanpa flag draft.
+        env:
+          PUBLIC_INCLUDE_DRAFTS: "true"
         run: npm run build
+
+      - name: Audit post-build CSP invariants (0/0/0)
+        run: npm run check:csp
