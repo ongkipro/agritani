@@ -1,0 +1,330 @@
+---
+/**
+ * src/components/PartnerForm.astro
+ * Distributor Partnership Application Form (T-12, DESIGN §2.3)
+ * Invariants: Single WhatsApp CTA, 0/0/0 CSP, 2px radius, text contrast >= 7:1, accessible validation.
+ */
+---
+
+<div class="p-6 sm:p-8 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px]">
+  <form id="partner-form" class="space-y-6" novalidate>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      
+      <!-- Field 1: Nama Lengkap -->
+      <div>
+        <label for="partner-name" class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text)] mb-2">
+          Nama Lengkap <span class="text-red-700" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="text"
+          id="partner-name"
+          name="name"
+          required
+          autocomplete="name"
+          placeholder="Contoh: Budi Santoso"
+          class="w-full px-3.5 py-2.5 min-h-[44px] text-sm bg-[var(--color-surface-raised)] border border-[var(--color-border)] focus:border-[var(--color-brand)] focus:ring-1 focus:ring-[var(--color-brand)] rounded-[2px] text-[var(--color-text)] outline-none transition-colors"
+        />
+        <p id="err-name" class="hidden text-xs font-semibold text-red-700 mt-1.5" role="alert"></p>
+      </div>
+
+      <!-- Field 2: Nama Usaha / Kebun -->
+      <div>
+        <label for="partner-business" class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text)] mb-2">
+          Nama Usaha / Kios / Kebun <span class="text-red-700" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="text"
+          id="partner-business"
+          name="businessName"
+          required
+          autocomplete="organization"
+          placeholder="Contoh: Kios Tani Makmur"
+          class="w-full px-3.5 py-2.5 min-h-[44px] text-sm bg-[var(--color-surface-raised)] border border-[var(--color-border)] focus:border-[var(--color-brand)] focus:ring-1 focus:ring-[var(--color-brand)] rounded-[2px] text-[var(--color-text)] outline-none transition-colors"
+        />
+        <p id="err-business" class="hidden text-xs font-semibold text-red-700 mt-1.5" role="alert"></p>
+      </div>
+
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+
+      <!-- Field 3: Jenis Usaha -->
+      <div>
+        <label for="partner-type" class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text)] mb-2">
+          Jenis Usaha <span class="text-red-700" aria-hidden="true">*</span>
+        </label>
+        <select
+          id="partner-type"
+          name="businessType"
+          required
+          class="w-full px-3.5 py-2.5 min-h-[44px] text-sm bg-[var(--color-surface-raised)] border border-[var(--color-border)] focus:border-[var(--color-brand)] focus:ring-1 focus:ring-[var(--color-brand)] rounded-[2px] text-[var(--color-text)] outline-none transition-colors"
+        >
+          <option value="">-- Pilih Jenis Usaha --</option>
+          <option value="Kebun / Perkebunan">Kebun / Perkebunan</option>
+          <option value="Kios Saprotan">Kios Saprotan</option>
+          <option value="Distributor Wilayah">Distributor Wilayah</option>
+          <option value="Kelompok Tani">Kelompok Tani</option>
+        </select>
+        <p id="err-type" class="hidden text-xs font-semibold text-red-700 mt-1.5" role="alert"></p>
+      </div>
+
+      <!-- Field 4: Provinsi -->
+      <div>
+        <label for="partner-province" class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text)] mb-2">
+          Provinsi <span class="text-red-700" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="text"
+          id="partner-province"
+          name="province"
+          required
+          placeholder="Contoh: Jawa Timur"
+          class="w-full px-3.5 py-2.5 min-h-[44px] text-sm bg-[var(--color-surface-raised)] border border-[var(--color-border)] focus:border-[var(--color-brand)] focus:ring-1 focus:ring-[var(--color-brand)] rounded-[2px] text-[var(--color-text)] outline-none transition-colors"
+        />
+        <p id="err-province" class="hidden text-xs font-semibold text-red-700 mt-1.5" role="alert"></p>
+      </div>
+
+      <!-- Field 5: Kabupaten / Kota -->
+      <div>
+        <label for="partner-city" class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text)] mb-2">
+          Kabupaten / Kota <span class="text-red-700" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="text"
+          id="partner-city"
+          name="city"
+          required
+          placeholder="Contoh: Jember"
+          class="w-full px-3.5 py-2.5 min-h-[44px] text-sm bg-[var(--color-surface-raised)] border border-[var(--color-border)] focus:border-[var(--color-brand)] focus:ring-1 focus:ring-[var(--color-brand)] rounded-[2px] text-[var(--color-text)] outline-none transition-colors"
+        />
+        <p id="err-city" class="hidden text-xs font-semibold text-red-700 mt-1.5" role="alert"></p>
+      </div>
+
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+      <!-- Field 6: Luas Lahan atau Kapasitas -->
+      <div>
+        <label for="partner-scale" class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text)] mb-2">
+          Luas Lahan (ha) / Kapasitas <span class="text-red-700" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="text"
+          id="partner-scale"
+          name="scale"
+          required
+          placeholder="Contoh: 15 ha atau 500 botol/bulan"
+          class="w-full px-3.5 py-2.5 min-h-[44px] text-sm bg-[var(--color-surface-raised)] border border-[var(--color-border)] focus:border-[var(--color-brand)] focus:ring-1 focus:ring-[var(--color-brand)] rounded-[2px] text-[var(--color-text)] outline-none transition-colors"
+        />
+        <p id="err-scale" class="hidden text-xs font-semibold text-red-700 mt-1.5" role="alert"></p>
+      </div>
+
+      <!-- Field 7: Nomor WhatsApp -->
+      <div>
+        <label for="partner-phone" class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text)] mb-2">
+          Nomor WhatsApp Anda <span class="text-red-700" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="tel"
+          id="partner-phone"
+          name="phone"
+          required
+          inputmode="tel"
+          autocomplete="tel"
+          placeholder="Contoh: 081234567890"
+          class="w-full px-3.5 py-2.5 min-h-[44px] text-sm bg-[var(--color-surface-raised)] border border-[var(--color-border)] focus:border-[var(--color-brand)] focus:ring-1 focus:ring-[var(--color-brand)] rounded-[2px] text-[var(--color-text)] outline-none transition-colors"
+        />
+        <p id="err-phone" class="hidden text-xs font-semibold text-red-700 mt-1.5" role="alert"></p>
+      </div>
+
+    </div>
+
+    <!-- Field 8: Catatan Tambahan (Opsional) -->
+    <div>
+      <label for="partner-notes" class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text)] mb-2">
+        Catatan Tambahan / Komoditas Utama (Opsional)
+      </label>
+      <textarea
+        id="partner-notes"
+        name="notes"
+        rows="3"
+        placeholder="Sebutkan jenis tanaman prioritas, tantangan patogen lapangan, atau wilayah jangkauan kios Anda..."
+        class="w-full px-3.5 py-2.5 text-sm bg-[var(--color-surface-raised)] border border-[var(--color-border)] focus:border-[var(--color-brand)] focus:ring-1 focus:ring-[var(--color-brand)] rounded-[2px] text-[var(--color-text)] outline-none transition-colors"
+      ></textarea>
+    </div>
+
+    <!-- Submit Action -->
+    <div class="pt-2">
+      <button
+        type="submit"
+        id="partner-submit-btn"
+        class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 min-h-[44px] text-sm font-bold bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)] text-white rounded-[2px] transition-colors cursor-pointer"
+      >
+        <span>Ajukan Kemitraan via WhatsApp</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+        </svg>
+      </button>
+    </div>
+  </form>
+
+  <!-- Post-Submit Confirmation Panel (Initially Hidden) -->
+  <div
+    id="partner-confirmation"
+    class="hidden mt-8 p-6 bg-[var(--color-surface-raised)] border-2 border-[var(--color-brand)] rounded-[2px] space-y-4"
+    role="region"
+    aria-label="Konfirmasi Pengajuan Kemitraan"
+  >
+    <div class="flex items-start gap-3">
+      <div class="w-8 h-8 rounded-full bg-[var(--color-tint)] text-[var(--color-brand-strong)] flex items-center justify-center shrink-0 font-bold" aria-hidden="true">
+        ✓
+      </div>
+      <div>
+        <h3 class="text-lg font-bold font-serif text-[var(--color-brand)]">
+          Lanjutkan Percakapan di WhatsApp
+        </h3>
+        <p class="text-sm text-[var(--color-text-muted)] mt-1 leading-relaxed">
+          Draf teks permohonan kemitraan Anda telah disusun lengkap di peramban ini. Klik tombol di bawah untuk membuka aplikasi WhatsApp dan melanjutkan koordinasi bersama sekretariat PT Agritani Internasional:
+        </p>
+      </div>
+    </div>
+
+    <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+      <a
+        id="partner-wa-link"
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-cta="whatsapp"
+        class="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] text-sm font-bold bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)] text-white rounded-[2px] transition-colors"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+        </svg>
+        <span>Buka WhatsApp Sekarang</span>
+      </a>
+
+      <div class="text-xs text-[var(--color-text-muted)] font-mono">
+        Saluran Alternatif: <strong>+62 877-7045-7256</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function setupPartnerForm() {
+    const form = document.getElementById('partner-form') as HTMLFormElement | null;
+    const confirmBox = document.getElementById('partner-confirmation');
+    const waLinkEl = document.getElementById('partner-wa-link') as HTMLAnchorElement | null;
+
+    if (!form || !confirmBox || !waLinkEl) return;
+
+    const fields = [
+      { id: 'partner-name', errId: 'err-name', minLen: 3, msg: 'Nama lengkap wajib diisi minimal 3 huruf' },
+      { id: 'partner-business', errId: 'err-business', minLen: 2, msg: 'Nama usaha atau kebun wajib diisi' },
+      { id: 'partner-type', errId: 'err-type', minLen: 1, msg: 'Silakan pilih salah satu jenis usaha' },
+      { id: 'partner-province', errId: 'err-province', minLen: 2, msg: 'Provinsi lokasi usaha wajib diisi' },
+      { id: 'partner-city', errId: 'err-city', minLen: 2, msg: 'Kabupaten atau kota wajib diisi' },
+      { id: 'partner-scale', errId: 'err-scale', minLen: 2, msg: 'Sebutkan luas lahan atau estimasi kapasitas distribusi' },
+      {
+        id: 'partner-phone',
+        errId: 'err-phone',
+        customValid: (val: string) => {
+          const digits = val.replace(/\D/g, '');
+          return digits.length >= 10;
+        },
+        msg: 'Nomor WhatsApp minimal 10 digit angka, contoh: 081234567890',
+      },
+    ];
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      let hasError = false;
+      let firstInvalidEl: HTMLElement | null = null;
+
+      for (const f of fields) {
+        const input = document.getElementById(f.id) as HTMLInputElement | HTMLSelectElement | null;
+        const errEl = document.getElementById(f.errId);
+        if (!input || !errEl) continue;
+
+        const val = input.value.trim();
+        let isValid = true;
+
+        if (f.customValid) {
+          isValid = f.customValid(val);
+        } else if (f.minLen) {
+          isValid = val.length >= f.minLen;
+        }
+
+        if (!isValid) {
+          hasError = true;
+          input.setAttribute('aria-invalid', 'true');
+          input.setAttribute('aria-describedby', f.errId);
+          input.classList.add('border-red-700');
+          errEl.textContent = f.msg;
+          errEl.classList.remove('hidden');
+
+          if (!firstInvalidEl) {
+            firstInvalidEl = input;
+          }
+        } else {
+          input.removeAttribute('aria-invalid');
+          input.removeAttribute('aria-describedby');
+          input.classList.remove('border-red-700');
+          errEl.textContent = '';
+          errEl.classList.add('hidden');
+        }
+      }
+
+      if (hasError) {
+        firstInvalidEl?.focus();
+        return;
+      }
+
+      // Collect form values safely
+      const nameVal = (document.getElementById('partner-name') as HTMLInputElement).value.trim();
+      const busVal = (document.getElementById('partner-business') as HTMLInputElement).value.trim();
+      const typeVal = (document.getElementById('partner-type') as HTMLSelectElement).value.trim();
+      const provVal = (document.getElementById('partner-province') as HTMLInputElement).value.trim();
+      const cityVal = (document.getElementById('partner-city') as HTMLInputElement).value.trim();
+      const scaleVal = (document.getElementById('partner-scale') as HTMLInputElement).value.trim();
+      const phoneVal = (document.getElementById('partner-phone') as HTMLInputElement).value.trim();
+      const notesVal = (document.getElementById('partner-notes') as HTMLTextAreaElement).value.trim();
+
+      const lines = [
+        '[Web·Kemitraan]',
+        `Nama: ${nameVal}`,
+        `Nama Usaha: ${busVal}`,
+        `Jenis Usaha: ${typeVal}`,
+        `Lokasi: ${cityVal}, ${provVal}`,
+        `Kapasitas/Luas: ${scaleVal}`,
+        `Nomor Kontak: ${phoneVal}`,
+      ];
+
+      if (notesVal) {
+        lines.push(`Catatan: ${notesVal}`);
+      }
+
+      const encoded = encodeURIComponent(lines.join('\n'));
+      const targetPhone = '6287770457256';
+      const waUrl = `https://wa.me/${targetPhone}?text=${encoded}`;
+
+      // Update WhatsApp link and reveal confirmation box
+      waLinkEl.setAttribute('href', waUrl);
+      confirmBox.classList.remove('hidden');
+      confirmBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      // Open in new window/tab safely
+      window.open(waUrl, '_blank', 'noopener,noreferrer');
+    });
+  }
+
+  // Setup on DOM load or immediate if already loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupPartnerForm);
+  } else {
+    setupPartnerForm();
+  }
+</script>

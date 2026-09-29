@@ -93,12 +93,17 @@ T-11 (Katalog & Detail Produk) selesai diimplementasikan dan diverifikasi (RUN-2
 - Bukti UI WebP kualitas 70: `proof/ui/t11/produk-katalog-*.webp` dan `proof/ui/t11/produk-detail-aussie-*.webp`.
 - Verifikasi: 79/79 unit tests PASS, `npx astro check` 0 error, build 191 halaman PASS (check-seo PASS, check-csp 0/0/0 PASS).
 
+T-12 (Formulir Kemitraan Distributor) selesai diimplementasikan dan diverifikasi (RUN-20260929T154439Z-dae3ff13):
+- Halaman `/kemitraan-distributor.astro`: Alur kemitraan 01-03, posisi distributor resmi (DEC-010), dan formulir pendaftaran kemitraan.
+- Komponen `PartnerForm.astro`: Semua field wajib DESIGN §2.3 (Nama, Usaha, Jenis, Provinsi, Kota, Kapasitas/Luas, WA, Catatan). Validasi interaktif + aria role alert tanpa menghilangkan nilai isian saat error.
+- Pengujian browser Playwright terverifikasi: submit kosong menandai field tidak valid, navigasi keyboard mengisi seluruh input, submit valid membuka URL wa.me ber-prefix [Web·Kemitraan] ke nomor resmi +62 877-7045-7256, dan memunculkan panel konfirmasi dengan nomor cadangan.
+- Bukti UI WebP kualitas 70: `proof/ui/t12/kemitraan-distributor-390.webp` (101 KB) dan `proof/ui/t12/kemitraan-distributor-1440.webp` (106 KB).
+- Verifikasi: 79/79 unit tests PASS, `npx astro check` 0 error, build 192 halaman PASS (check-seo PASS, check-csp 0/0/0 PASS).
+
 Selanjutnya:
-Melanjutkan ke **T-12 (Formulir Kemitraan Distributor `/kemitraan-distributor/`)** sesuai `TASKS.md` dan scope kerja:
-- Halaman `/kemitraan-distributor.astro` dan komponen `src/components/PartnerForm.astro`.
-- Alur 01-03, validasi native + per-field error message, penyusunan draf pesan WhatsApp via `waLink()`, fallback nomor teks resmi, keyboard-accessible.
-- Pengambilan bukti UI WebP kualitas 70 di 390px dan 1440px.
-- Setelah T-12 selesai, menulis "IMPLEMENT-TASKS SELESAI" di `STATUS.md` dan commit lokal.
+**IMPLEMENT-TASKS SELESAI**
+Seluruh task implementasi dalam scope branch `feat/implement-tasks` (T-08, T-17, T-11, T-12, perbaikan data & CSP) telah selesai dikerjakan, diverifikasi, dan dibuktikan dengan tangkapan layar browser WebP di port 4330.
+Berhenti dan menunggu koordinasi branch `feat/launch-content` dari agent kedua, penggabungan branch, audit akhir T-15, dan prosedur deploy ke Cloudflare Workers.
 
 ## Blockers
 
@@ -115,6 +120,7 @@ Melanjutkan ke **T-12 (Formulir Kemitraan Distributor `/kemitraan-distributor/`)
 - T-08 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
 - T-17 (termasuk revisi) menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 - T-11 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
+- T-12 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
 
 ## Verification evidence
 

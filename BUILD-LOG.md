@@ -785,3 +785,28 @@ Record only durable implementation changes, validation evidence, and gotchas tha
   - `npx astro check`: 0 errors.
   - `npm test`: 79/79 unit tests PASS.
   - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 191 halaman terkompilasi, check-seo PASS (0 error, 0 warning), check-csp PASS (0/0/0).
+
+## 2026-09-29 — T-12: Formulir Kemitraan Distributor (READY - PENDING INDEPENDENT REVIEW)
+
+- **Halaman Kemitraan (`src/pages/kemitraan-distributor.astro`)**:
+  - Judul H1 "Kemitraan Distributor & Kios" dengan posisi distributor resmi (DEC-010).
+  - Alur kemitraan 01–03 terstruktur rapi: Tahap 01 (Pengajuan Profil Usaha), Tahap 02 (Verifikasi & Alokasi Wilayah), Tahap 03 (Pasokan Resmi & Pendampingan).
+  - Tepat 1 ajakan WhatsApp bertanda `data-cta="whatsapp"` di dalam formulir dan panel konfirmasi.
+- **Komponen Formulir (`src/components/PartnerForm.astro`)**:
+  - Seluruh field wajib memenuhi DESIGN §2.3: Nama Lengkap, Nama Usaha/Kebun, Jenis Usaha (`<select>`), Provinsi, Kabupaten/Kota, Luas Lahan (ha) / Kapasitas, Nomor WhatsApp (`inputmode="tel"`), dan Catatan Opsional.
+  - Validasi native dan interaktif dengan pesan per-field yang jelas dan aria alert: "Nama lengkap wajib diisi minimal 3 huruf", "Nomor WhatsApp minimal 10 digit angka, contoh: 081234567890".
+  - Nilai isian formulir tidak hilang saat terjadi kesalahan validasi.
+  - Submit valid merangkai pesan terstruktur dengan kode awal `[Web·Kemitraan]` dan memicu pembukaan URL `wa.me/6287770457256` ke nomor resmi Agritani.
+  - Panel konfirmasi dinamis "Lanjutkan Percakapan di WhatsApp" ditampilkan setelah submit dengan nomor resmi tertulis sebagai cadangan (`+62 877-7045-7256`). Tanpa klaim palsu "Terkirim".
+  - Aksesibilitas keyboard penuh: terbukti dapat diisi dan disubmit hanya dengan keyboard (Playwright test pass).
+- **Kepatuhan Invarian**:
+  - CSP 0/0/0: zero inline script, zero onclick, zero inline style (skrip terbundel external via Vite).
+  - Kontras teks $\ge 7:1$, radius 2px konsisten, touch target $\ge 44px$.
+- **Bukti Render UI Browser**:
+  - `proof/ui/t12/kemitraan-distributor-390.webp` (101 KB)
+  - `proof/ui/t12/kemitraan-distributor-1440.webp` (106 KB)
+- **Verifikasi**:
+  - Behavioral browser testing (Playwright): submit kosong memicu alert validasi, keyboard navigation mengisi seluruh field, submit valid menghasilkan link `wa.me` lengkap ber-prefix `[Web·Kemitraan]`.
+  - `npx astro check`: 0 errors.
+  - `npm test`: 79/79 unit tests PASS.
+  - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 192 halaman terkompilasi, check-seo PASS (0 error, 0 warning), check-csp PASS (0/0/0).
