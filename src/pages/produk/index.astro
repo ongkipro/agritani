@@ -52,10 +52,10 @@ const seo: SeoInput = {
     </header>
 
     <!-- Commodity Anchor Shortcuts -->
-    <section class="mb-10 p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px]" aria-label="Navigasi cepat per komoditas">
-      <span class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-3">
-        Pilih Komoditas Anda
-      </span>
+    <nav class="mb-12" aria-label="Navigasi cepat per komoditas">
+      <p class="text-sm font-semibold text-[var(--color-text)] mb-3">
+        Lompat ke produk sesuai tanaman Anda:
+      </p>
       <div class="flex flex-wrap gap-2.5">
         <a
           href="#aussie"
@@ -82,7 +82,7 @@ const seo: SeoInput = {
           Semua Tanaman & Bunga (Saratoga)
         </a>
       </div>
-    </section>
+    </nav>
 
     <!-- Desktop Comparison Table (Visible on lg screens >= 1024px) -->
     <section class="hidden lg:block mb-12" aria-label="Tabel Perbandingan Produk">
@@ -92,7 +92,7 @@ const seo: SeoInput = {
       <div class="overflow-x-auto border border-[var(--color-border)] rounded-[2px]">
         <table class="w-full text-left border-collapse text-sm">
           <thead>
-            <tr class="bg-[var(--color-surface-raised)] border-b border-[var(--color-border)] text-xs uppercase tracking-wider text-[var(--color-text-muted)]">
+            <tr class="bg-[var(--color-surface-raised)] border-b border-[var(--color-border)] text-sm text-[var(--color-text-muted)]">
               <th scope="col" class="py-3 px-4 font-bold">Produk</th>
               <th scope="col" class="py-3 px-4 font-bold">Peran Utama</th>
               <th scope="col" class="py-3 px-4 font-bold">Sasaran Komoditas</th>
@@ -112,21 +112,10 @@ const seo: SeoInput = {
                     {d.role}
                   </td>
                   <td class="py-4 px-4 text-[var(--color-text-muted)] text-xs">
-                    <div class="flex flex-wrap gap-1 max-w-xs">
-                      {d.commodities.slice(0, 4).map((c) => {
-                        const cId = typeof c === 'string' ? c : c.id;
-                        return (
-                          <span class="px-1.5 py-0.5 bg-[var(--color-surface-raised)] rounded-[2px]">
-                            {commoditiesMap.get(cId) || cId}
-                          </span>
-                        );
-                      })}
-                      {d.commodities.length > 4 && (
-                        <span class="px-1.5 py-0.5 text-[var(--color-text-muted)]">
-                          +{d.commodities.length - 4} lainnya
-                        </span>
-                      )}
-                    </div>
+                    <span class="block max-w-xs">
+                      {d.commodities.slice(0, 4).map((c) => commoditiesMap.get(typeof c === 'string' ? c : c.id) || c).join(', ')}
+                      {d.commodities.length > 4 && ` +${d.commodities.length - 4} lainnya`}
+                    </span>
                   </td>
                   <td class="py-4 px-4 text-[var(--color-text-muted)] text-xs whitespace-nowrap">
                     {d.applicationMethods.join(', ')}
@@ -148,14 +137,14 @@ const seo: SeoInput = {
     </section>
 
     <!-- Product Rows List -->
-    <section class="space-y-6 mb-16" aria-label="Daftar Rincian Produk">
+    <section class="mb-16 divide-y divide-[var(--color-border)]" aria-label="Daftar Rincian Produk">
       {sortedProducts.map((product) => (
         <ProductRow product={product} commoditiesMap={commoditiesMap} />
       ))}
     </section>
 
     <!-- Section: Cara Memastikan Produk Asli (OQ-8) -->
-    <section class="p-6 sm:p-8 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] max-w-3xl">
+    <section class="max-w-3xl mb-8">
       <h2 class="text-2xl font-bold font-serif text-[var(--color-brand)] tracking-tight mb-3">
         Memastikan Keaslian Produk Resmi
       </h2>
@@ -164,10 +153,10 @@ const seo: SeoInput = {
       </p>
       <ul class="list-disc pl-6 space-y-2 text-sm sm:text-base text-[var(--color-text)] mb-6">
         <li>
-          <strong>Segel Keamanan ShieldedTag:</strong> Setiap botol dan jeriken resmi memiliki segel segel fisik anti-rusak yang merekatkan tutup kemasan.
+          <strong>Segel Keamanan ShieldedTag:</strong> Setiap botol dan jeriken resmi memiliki segel fisik anti-rusak yang merekatkan tutup kemasan.
         </li>
         <li>
-          <strong>Verifikasi Kode Unik:</strong> Terdapat kode seri unik tersembunyi di balik lapisan segel yang dapat divalidasi langsung saat kemasan pertama kali dibuka.
+          <strong>Ciri Cairan Asli:</strong> sedikit keruh dengan aroma khas hasil fermentasi organik alami.
         </li>
         <li>
           <strong>Saluran Distributor Resmi:</strong> Produk asli hanya didistribusikan melalui jaringan kemitraan kios saprotan dan kelompok tani terdaftar resmi.

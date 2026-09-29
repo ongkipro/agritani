@@ -7,6 +7,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 import PartnerForm from '../components/PartnerForm.astro';
+import { Picture } from 'astro:assets';
+import kemitraanImage from '../assets/images/dummy/kemitraan.webp';
 import type { SeoInput } from '../lib/seo';
 
 const breadcrumbs = [
@@ -28,72 +30,64 @@ const seo: SeoInput = {
   <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
     <Breadcrumb items={breadcrumbs} />
 
-    <!-- Page Header (Lapangan Canvas) -->
-    <header class="my-8 sm:my-12 max-w-3xl">
-      <div class="inline-block px-2.5 py-1 text-xs font-semibold bg-[var(--color-tint)] text-[var(--color-brand-strong)] rounded-[2px] mb-3">
-        Program Kemitraan Resmi
+    <!-- Page Header with media (DESIGN §4.2.3; dummy image, OQ-5) -->
+    <header class="my-8 sm:my-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      <div class="lg:col-span-7">
+        <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--color-text)] tracking-tight leading-tight mb-4 text-balance">
+          Kemitraan Distributor & Kios
+        </h1>
+        <p class="text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed max-w-[60ch]">
+          PT Agritani Internasional membuka peluang kemitraan pasokan sarana produksi pertanian presisi bagi pemilik perkebunan, kios saprotan, dan distributor daerah di seluruh nusantara. Kami menjamin pasokan resmi langsung, perlindungan keaslian formula, serta panduan teknis lapangan.
+        </p>
       </div>
-      <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--color-text)] tracking-tight leading-tight mb-4">
-        Kemitraan Distributor & Kios
-      </h1>
-      <p class="text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed">
-        PT Agritani Internasional membuka peluang kemitraan pasokan sarana produksi pertanian presisi bagi pemilik perkebunan, kios saprotan, dan distributor daerah di seluruh nusantara. Kami menjamin pasokan resmi langsung, perlindungan keaslian formula, serta panduan teknis lapangan.
-      </p>
+      <div class="lg:col-span-5">
+        <Picture
+          src={kemitraanImage}
+          formats={['webp']}
+          quality={60}
+          widths={[480, 800, 1200]}
+          sizes="(min-width: 1024px) 26rem, calc(100vw - 2rem)"
+          alt="Tumpukan karung pasokan di gudang distribusi"
+          class="w-full aspect-[3/2] object-cover rounded-[2px]"
+          loading="eager"
+        />
+      </div>
     </header>
 
-    <!-- Partnership Flow 01 - 03 -->
-    <section class="mb-12" aria-label="Alur Kemitraan">
-      <h2 class="text-xl font-bold font-serif text-[var(--color-brand)] mb-6">
+    <!-- Partnership flow: order carries meaning, so numbered list -->
+    <section class="mb-16 grid grid-cols-1 lg:grid-cols-12 gap-x-12" aria-labelledby="alur-kemitraan">
+      <h2 id="alur-kemitraan" class="lg:col-span-4 text-2xl font-bold font-serif text-[var(--color-text)] mb-2 lg:pt-5">
         Alur Kemitraan Distributor
       </h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
-        <!-- Step 01 -->
-        <div class="p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-3">
-          <div class="text-xs font-mono font-bold text-[var(--color-brand-strong)] tracking-widest uppercase">
-            Tahap 01
+      <ol class="lg:col-span-8 divide-y divide-[var(--color-border)]">
+        <li class="grid grid-cols-[2.5rem_1fr] gap-x-4 py-5">
+          <span class="text-2xl font-serif font-bold text-[var(--color-soil)] tabular-nums leading-none pt-0.5" aria-hidden="true">1</span>
+          <div class="space-y-1.5">
+            <h3 class="text-lg font-bold text-[var(--color-text)]">Pengajuan Profil Usaha</h3>
+            <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed max-w-[60ch]">Isi formulir pendaftaran di bawah dengan rincian wilayah kerja, jenis komoditas utama, dan estimasi luas lahan atau kapasitas kios Anda.</p>
           </div>
-          <h3 class="text-lg font-bold text-[var(--color-text)]">
-            Pengajuan Profil Usaha
-          </h3>
-          <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
-            Isi formulir pendaftaran di bawah dengan rincian wilayah kerja, jenis komoditas utama, dan estimasi luas lahan atau kapasitas kios Anda.
-          </p>
-        </div>
-
-        <!-- Step 02 -->
-        <div class="p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-3">
-          <div class="text-xs font-mono font-bold text-[var(--color-brand-strong)] tracking-widest uppercase">
-            Tahap 02
+        </li>
+        <li class="grid grid-cols-[2.5rem_1fr] gap-x-4 py-5">
+          <span class="text-2xl font-serif font-bold text-[var(--color-soil)] tabular-nums leading-none pt-0.5" aria-hidden="true">2</span>
+          <div class="space-y-1.5">
+            <h3 class="text-lg font-bold text-[var(--color-text)]">Verifikasi & Alokasi Wilayah</h3>
+            <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed max-w-[60ch]">Sekretariat kemitraan PT Agritani Internasional akan memverifikasi kesiapan operasional dan ketersediaan kuota distribusi per kabupaten/kota.</p>
           </div>
-          <h3 class="text-lg font-bold text-[var(--color-text)]">
-            Verifikasi & Alokasi Wilayah
-          </h3>
-          <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
-            Sekretariat kemitraan PT Agritani Internasional akan memverifikasi kesiapan operasional dan ketersediaan kuota distribusi per kabupaten/kota.
-          </p>
-        </div>
-
-        <!-- Step 03 -->
-        <div class="p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-3">
-          <div class="text-xs font-mono font-bold text-[var(--color-brand-strong)] tracking-widest uppercase">
-            Tahap 03
+        </li>
+        <li class="grid grid-cols-[2.5rem_1fr] gap-x-4 py-5">
+          <span class="text-2xl font-serif font-bold text-[var(--color-soil)] tabular-nums leading-none pt-0.5" aria-hidden="true">3</span>
+          <div class="space-y-1.5">
+            <h3 class="text-lg font-bold text-[var(--color-text)]">Pasokan Resmi & Pendampingan</h3>
+            <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed max-w-[60ch]">Akses langsung pasokan produk dengan proteksi segel ShieldedTag, materi teknis budidaya, dan jalur konsultasi prioritas bagi mitra.</p>
           </div>
-          <h3 class="text-lg font-bold text-[var(--color-text)]">
-            Pasokan Resmi & Pendampingan
-          </h3>
-          <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
-            Akses langsung pasokan produk dengan proteksi segel ShieldedTag, materi teknis budidaya, dan jalur konsultasi prioritas bagi mitra.
-          </p>
-        </div>
-
-      </div>
+        </li>
+      </ol>
     </section>
 
     <!-- Application Form Section -->
     <section class="max-w-4xl mb-16" aria-label="Formulir Kemitraan">
       <div class="mb-6">
-        <h2 class="text-2xl font-bold font-serif text-[var(--color-brand)] tracking-tight">
+        <h2 class="text-2xl font-bold font-serif text-[var(--color-text)] tracking-tight">
           Formulir Pengajuan Kemitraan
         </h2>
         <p class="text-sm text-[var(--color-text-muted)] mt-1">

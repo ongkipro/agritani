@@ -171,7 +171,7 @@ if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV)
         class="my-4 p-3 rounded-[2px] bg-[var(--color-tint)] border border-[var(--color-border-control)] text-xs font-semibold text-[var(--color-soil)] flex items-center justify-between"
       >
         <span>DRAF — Naskah belum diterbitkan untuk publikasi resmi</span>
-        <span class="text-[11px] font-normal uppercase tracking-wider">Pratinjau Redaksi</span>
+        <span class="text-[11px] font-normal">Pratinjau Redaksi</span>
       </div>
     )}
 
@@ -257,7 +257,7 @@ if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV)
         </div>
 
         <!-- 13. Kapan Harus Konsultasi -->
-        <section class="my-10 pt-8 border-t border-[var(--color-border)]" aria-labelledby="konsultasi-heading" data-pagefind-ignore>
+        <section class="my-10 pt-8" aria-labelledby="konsultasi-heading" data-pagefind-ignore>
           <h2 id="konsultasi-heading" class="text-xl font-bold font-serif text-[var(--color-text)] mb-3">
             Kapan Harus Berkonsultasi?
           </h2>
@@ -421,11 +421,11 @@ if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV)
   }
 
   .prose :global(blockquote) {
-    border-left: 3px solid var(--color-border-control);
-    padding-left: 1rem;
-    font-style: italic;
-    color: var(--color-text-muted);
-    margin: 1.5rem 0;
+    background-color: var(--color-surface-raised);
+    padding: 1rem 1.25rem;
+    border-radius: 2px;
+    color: var(--color-text);
+    margin: 2rem 0;
   }
 
   .prose :global(table) {

@@ -7,7 +7,7 @@
  */
 
 import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CommodityPicker from '../components/CommodityPicker.astro';
 import { resolveCommodityHeroTarget } from '../components/CommodityPicker.test';
@@ -107,6 +107,7 @@ const topCommodities = Object.keys(commodityCounts)
     count: commodityCounts[slug] || 0,
   }));
 
+const toolsUpcoming = import.meta.env.PUBLIC_INCLUDE_DRAFTS !== 'true';
 const featuredReadingTime = featuredArticle ? getReadingTime(featuredArticle.body || '') : null;
 
 const seoProps = {
@@ -168,17 +169,17 @@ const seoProps = {
 
         <!-- Right Column (5/12 desktop): Hero Media (DESIGN §4.1 C3, no deceptive caption/kicker) -->
         <div class="lg:col-span-5">
-          <div class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] overflow-hidden shadow-sm">
-            <Image
-              src={heroImage}
-              alt="Hamparan sawah terasering tropis di Bali dengan pohon kelapa dan saluran air alami"
-              class="w-full aspect-[5/4] object-cover"
-              loading="eager"
-              fetchpriority="high"
-              width={1600}
-              height={1280}
-            />
-          </div>
+          <Picture
+            src={heroImage}
+            formats={['webp']}
+            widths={[400, 640, 800, 1200]}
+            sizes="(min-width: 1024px) 28rem, calc(100vw - 2rem)"
+            quality={52}
+            alt="Hamparan sawah terasering tropis di Bali dengan pohon kelapa dan saluran air alami"
+            class="w-full aspect-[5/4] object-cover rounded-[2px]"
+            loading="eager"
+            fetchpriority="high"
+          />
         </div>
 
       </div>
@@ -186,7 +187,7 @@ const seoProps = {
   </section>
 
   <!-- 2. Band Tint: Jurnal per Komoditas (DESIGN §4.1 C1, §4.2.3: open index rows without boxes) -->
-  <section class="py-12 sm:py-16 bg-[var(--color-tint)] border-y border-[var(--color-border)]">
+  <section class="py-12 sm:py-16 bg-[var(--color-tint)]">
     <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
       <div class="flex flex-wrap items-baseline justify-between gap-4">
         <div>
@@ -218,7 +219,7 @@ const seoProps = {
             <span class="font-bold text-sm sm:text-base text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] transition-colors">
               {item.name}
             </span>
-            <span class="text-xs text-[var(--color-text-muted)] font-mono">
+            <span class="text-xs text-[var(--color-text-muted)] tabular-nums">
               {item.count} artikel
             </span>
           </a>
@@ -262,7 +263,7 @@ const seoProps = {
             </p>
 
             <div class="pt-2 flex items-center justify-between">
-              <span class="text-xs text-[var(--color-text-muted)] font-mono">
+              <span class="text-xs text-[var(--color-text-muted)] tabular-nums">
                 Penulis: Prof. Arif Prabowo
               </span>
               <a
@@ -290,7 +291,7 @@ const seoProps = {
   </section>
 
   <!-- 4. Section Alat Tani (DESIGN §4.2.3, C7) -->
-  <section class="py-12 sm:py-16 bg-[var(--color-surface)] border-t border-[var(--color-border)]">
+  <section class="py-12 sm:py-16 bg-[var(--color-surface)]">
     <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
       <div class="flex flex-wrap items-baseline justify-between gap-4">
         <div>
@@ -326,7 +327,7 @@ const seoProps = {
             </p>
           </div>
           <span class="text-xs font-bold text-[var(--color-brand-strong)] inline-flex items-center gap-1 shrink-0">
-            <span>Buka Diagnosa</span>
+            <span>{toolsUpcoming ? 'Segera hadir' : 'Buka Diagnosa'}</span>
             <span aria-hidden="true">&rarr;</span>
           </span>
         </a>
@@ -344,7 +345,7 @@ const seoProps = {
             </p>
           </div>
           <span class="text-xs font-bold text-[var(--color-brand-strong)] inline-flex items-center gap-1 shrink-0">
-            <span>Buka Kalender</span>
+            <span>{toolsUpcoming ? 'Segera hadir' : 'Buka Kalender'}</span>
             <span aria-hidden="true">&rarr;</span>
           </span>
         </a>
@@ -415,7 +416,7 @@ const seoProps = {
   </section>
 
   <!-- 6. Section Tentang Penulis (DESIGN §4.2.3, strict facts only) -->
-  <section class="py-12 sm:py-16 bg-[var(--color-surface)] border-t border-[var(--color-border)]">
+  <section class="py-12 sm:py-16 bg-[var(--color-surface)]">
     <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5">
         <!-- Avatar Initial "AP" per DESIGN §3.5.1 -->
@@ -446,7 +447,7 @@ const seoProps = {
   </section>
 
   <!-- 7. Section Produk untuk Lahan Anda (DESIGN §4.2.3, §2.5: dynamic from collection, reference only) -->
-  <section class="py-12 sm:py-16 bg-[var(--color-canvas)] border-t border-[var(--color-border)]">
+  <section class="py-12 sm:py-16 bg-[var(--color-canvas)]">
     <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
       <div>
         <h2 class="text-2xl sm:text-3xl font-extrabold text-[var(--color-text)] tracking-tight">
@@ -462,9 +463,9 @@ const seoProps = {
         {allProducts.map((product) => (
           <div class="py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div class="space-y-0.5">
-              <div class="flex items-center gap-2">
+              <div class="flex flex-wrap items-baseline gap-x-3">
                 <span class="font-bold text-base sm:text-lg text-[var(--color-text)]">{product.data.name}</span>
-                <span class="px-2 py-0.5 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-soil)] text-xs font-mono font-semibold">
+                <span class="text-sm font-semibold text-[var(--color-soil)]">
                   {product.data.tagline || product.data.role}
                 </span>
               </div>
@@ -486,7 +487,7 @@ const seoProps = {
   </section>
 
   <!-- 8. Band Harvest-Tint: Kemitraan Distributor (DESIGN §4.1 C1, C6, §4.2.3) -->
-  <section class="py-12 sm:py-16 bg-[var(--color-harvest-tint)] border-t border-[var(--color-border)]">
+  <section class="py-12 sm:py-16 bg-[var(--color-harvest-tint)]">
     <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
       <div class="space-y-2">
         <h2 class="text-2xl sm:text-3xl font-extrabold text-[var(--color-text)] tracking-tight">
@@ -497,38 +498,30 @@ const seoProps = {
         </p>
       </div>
 
-      <!-- Real Sequential Steps 01-03 (DESIGN §4.1 C6) -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-2">
-          <span class="text-2xl font-mono font-extrabold text-[var(--color-soil)]">01</span>
-          <h3 class="text-base font-bold text-[var(--color-text)]">
-            Pelajari Wilayah Distribusi
-          </h3>
-          <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
-            Identifikasi kebutuhan petani dan sentra komoditas utama di wilayah operasional Anda.
-          </p>
-        </div>
-
-        <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-2">
-          <span class="text-2xl font-mono font-extrabold text-[var(--color-soil)]">02</span>
-          <h3 class="text-base font-bold text-[var(--color-text)]">
-            Ajukan Profil Kios atau Usaha
-          </h3>
-          <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
-            Lengkapi formulir kemitraan online untuk verifikasi kesiapan rantai pasok daerah.
-          </p>
-        </div>
-
-        <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-2">
-          <span class="text-2xl font-mono font-extrabold text-[var(--color-soil)]">03</span>
-          <h3 class="text-base font-bold text-[var(--color-text)]">
-            Mulai Penyaluran Resmi
-          </h3>
-          <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
-            Dapatkan proteksi wilayah, kepastian produk asli, dan pendampingan materi agronomi lapangan.
-          </p>
-        </div>
-      </div>
+      <!-- Sequential steps: order carries meaning (DESIGN §4.1 C6) -->
+      <ol class="max-w-[48rem] divide-y divide-[color-mix(in_srgb,var(--color-soil)_20%,transparent)]">
+        <li class="grid grid-cols-[2rem_1fr] gap-x-3 py-4">
+          <span class="text-xl font-serif font-bold text-[var(--color-soil)] tabular-nums leading-none pt-0.5" aria-hidden="true">1</span>
+          <div>
+            <h3 class="text-base font-bold text-[var(--color-text)]">Pelajari Wilayah Distribusi</h3>
+            <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">Identifikasi kebutuhan petani dan sentra komoditas utama di wilayah operasional Anda.</p>
+          </div>
+        </li>
+        <li class="grid grid-cols-[2rem_1fr] gap-x-3 py-4">
+          <span class="text-xl font-serif font-bold text-[var(--color-soil)] tabular-nums leading-none pt-0.5" aria-hidden="true">2</span>
+          <div>
+            <h3 class="text-base font-bold text-[var(--color-text)]">Ajukan Profil Kios atau Usaha</h3>
+            <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">Lengkapi formulir kemitraan online untuk verifikasi kesiapan rantai pasok daerah.</p>
+          </div>
+        </li>
+        <li class="grid grid-cols-[2rem_1fr] gap-x-3 py-4">
+          <span class="text-xl font-serif font-bold text-[var(--color-soil)] tabular-nums leading-none pt-0.5" aria-hidden="true">3</span>
+          <div>
+            <h3 class="text-base font-bold text-[var(--color-text)]">Mulai Penyaluran Resmi</h3>
+            <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">Dapatkan proteksi wilayah, kepastian produk asli, dan pendampingan materi agronomi lapangan.</p>
+          </div>
+        </li>
+      </ol>
 
       <div class="pt-2">
         <a

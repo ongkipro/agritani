@@ -48,9 +48,10 @@ const seo: SeoInput = {
         <Image
           src={tentangKamiImg}
           alt="Lanskap panorama perbukitan sawah terasering tropis Asia Tenggara di masa panen"
-          width={1200}
-          height={800}
-          class="w-full h-auto object-cover rounded-[2px] border border-[var(--color-border)]"
+          widths={[480, 800, 1200]}
+          sizes="(min-width: 768px) 42rem, calc(100vw - 2rem)"
+          quality={60}
+          class="w-full h-auto object-cover rounded-[2px]"
           loading="eager"
         />
         <figcaption class="mt-2.5 text-xs sm:text-sm text-[var(--color-text-muted)] font-sans">
@@ -117,21 +118,21 @@ const seo: SeoInput = {
           <p>
             Distribusi dijalankan melalui tiga tahapan berurutan:
           </p>
-          <ol class="space-y-4">
-            <li class="p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px]">
-              <span class="font-mono text-sm font-bold text-[var(--color-brand)] block mb-1">01. Kurasi & Validasi Lapangan</span>
+          <ol class="list-decimal pl-6 space-y-4 marker:font-bold marker:text-[var(--color-soil)]">
+            <li>
+              <strong class="block text-base text-[var(--color-text)] mb-1">Kurasi & Validasi Lapangan</strong>
               <p class="text-sm sm:text-base text-[var(--color-text)]">
                 Menyeleksi formulasi hayati ramah lingkungan yang memenuhi baku mutu keamanan, bebas logam berat berbahaya, dan teruji nyata pada komoditas strategis nasional.
               </p>
             </li>
-            <li class="p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px]">
-              <span class="font-mono text-sm font-bold text-[var(--color-brand)] block mb-1">02. Rantai Pasok Terlindungi</span>
+            <li>
+              <strong class="block text-base text-[var(--color-text)] mb-1">Rantai Pasok Terlindungi</strong>
               <p class="text-sm sm:text-base text-[var(--color-text)]">
                 Menyalurkan produk langsung melalui distributor kabupaten, kios saprotan resmi, dan kemitraan kelompok tani guna menjamin kepastian keaslian formula serta stabilitas ketersediaan saat musim tanam.
               </p>
             </li>
-            <li class="p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px]">
-              <span class="font-mono text-sm font-bold text-[var(--color-brand)] block mb-1">03. Edukasi & Pendampingan Agronomi</span>
+            <li>
+              <strong class="block text-base text-[var(--color-text)] mb-1">Edukasi & Pendampingan Agronomi</strong>
               <p class="text-sm sm:text-base text-[var(--color-text)]">
                 Mendampingi petani dan agronom perkebunan dengan panduan aplikasi takaran yang tepat, demonstrasi plot (demplot), serta konsultasi penanganan kendala spesifik di lahan.
               </p>
@@ -140,7 +141,7 @@ const seo: SeoInput = {
         </section>
 
         <!-- Section 4: Penulis & Moderator Jurnal Tani -->
-        <section class="pt-6 border-t border-[var(--color-border)] space-y-4">
+        <section class="pt-6 space-y-4">
           <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
             Edukasi Mandiri Bersama Jurnal Tani
           </h2>
@@ -177,7 +178,7 @@ const seo: SeoInput = {
         </section>
 
         <!-- Section 5: Pusat Informasi & Kemitraan -->
-        <section class="pt-6 border-t border-[var(--color-border)] space-y-6">
+        <section class="pt-6 space-y-6">
           <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
             Pusat Informasi & Kerja Sama
           </h2>

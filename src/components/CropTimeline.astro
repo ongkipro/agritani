@@ -47,7 +47,7 @@ const monthNames = [
     
     <!-- Step 1: Pilih Komoditas -->
     <div>
-      <span class="block text-xs font-bold text-[var(--color-soil)] uppercase tracking-wider mb-2.5">
+      <span class="block text-xs font-bold text-[var(--color-soil)] mb-2.5">
         Langkah 1: Pilih Komoditas Tanaman
       </span>
       <div class="flex flex-wrap gap-2.5" id="group-crop-commodity" role="radiogroup" aria-label="Pilih Komoditas">
@@ -68,7 +68,7 @@ const monthNames = [
 
     <!-- Step 2: Tanggal Tanam / Pindah Tanam -->
     <div id="section-plant-date" class="space-y-2">
-      <label for="input-plant-date" class="block text-xs font-bold text-[var(--color-soil)] uppercase tracking-wider">
+      <label for="input-plant-date" class="block text-xs font-bold text-[var(--color-soil)]">
         Langkah 2: Tanggal Tanam / Pindah Tanam
       </label>
       <div class="max-w-xs">
@@ -105,12 +105,12 @@ const monthNames = [
       <!-- Semusim Status Indicators -->
       <div id="semusim-summary-box" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div class="p-3.5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-1">
-          <span class="block text-xs font-bold text-[var(--color-soil)] uppercase tracking-wider">Status Pertumbuhan</span>
+          <span class="block text-xs font-bold text-[var(--color-soil)]">Status Pertumbuhan</span>
           <p id="summary-hst" class="text-base sm:text-lg font-extrabold text-[var(--color-brand)] tabular-nums"></p>
           <p id="summary-phase-name" class="text-xs text-[var(--color-text-muted)]"></p>
         </div>
         <div class="p-3.5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-1">
-          <span class="block text-xs font-bold text-[var(--color-soil)] uppercase tracking-wider">Perkiraan Panen</span>
+          <span class="block text-xs font-bold text-[var(--color-soil)]">Perkiraan Panen</span>
           <p id="summary-harvest-range" class="text-base sm:text-lg font-extrabold text-[var(--color-text)] tabular-nums"></p>
           <p class="text-xs text-[var(--color-text-muted)]">Bergantung pada varietas dan cuaca lokal</p>
         </div>
@@ -222,11 +222,11 @@ const monthNames = [
 
     <!-- About this Data & Credibility -->
     <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-2 text-xs sm:text-sm text-[var(--color-text-muted)]">
-      <p class="font-bold text-[var(--color-soil)] uppercase tracking-wider text-xs">
+      <p class="font-bold text-[var(--color-soil)] text-xs">
         Tentang Sumber Data & Acuan Agronomi
       </p>
       <p id="sources-info" class="leading-relaxed"></p>
-      <p id="reviewed-info" class="leading-relaxed font-mono text-xs sm:text-sm"></p>
+      <p id="reviewed-info" class="leading-relaxed tabular-nums text-xs sm:text-sm"></p>
     </div>
 
     <!-- Single WhatsApp Consultation Prompt (DESIGN §2.6.1 & §2.8) -->
@@ -289,7 +289,7 @@ const monthNames = [
               <!-- Phases List (Semusim) -->
               {cal.data.type === 'semusim' && (
                 <div class="space-y-2">
-                  <h4 class="text-xs font-bold text-[var(--color-soil)] uppercase tracking-wider">Tahapan Fase Budidaya</h4>
+                  <h4 class="text-xs font-bold text-[var(--color-soil)]">Tahapan Fase Budidaya</h4>
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
                     {cal.data.phases.map((p) => (
                       <div class="p-3 bg-[var(--color-tint)] border border-[var(--color-border)] rounded-[2px] space-y-1">
@@ -548,7 +548,7 @@ const monthNames = [
             leftHead.className = 'flex items-center gap-2';
 
             const stepBadge = document.createElement('span');
-            stepBadge.className = `text-xs font-mono font-bold px-2 py-0.5 rounded-[2px] ${
+            stepBadge.className = `text-xs tabular-nums font-bold px-2 py-0.5 rounded-[2px] ${
               ph.isCurrent
                 ? 'bg-[var(--color-brand)] text-white'
                 : 'bg-[var(--color-tint)] text-[var(--color-soil)]'
@@ -585,7 +585,7 @@ const monthNames = [
             const actBox = document.createElement('div');
             actBox.className = 'space-y-1';
             const actTitle = document.createElement('span');
-            actTitle.className = 'block text-[11px] font-bold text-[var(--color-soil)] uppercase tracking-wider';
+            actTitle.className = 'block text-[11px] font-bold text-[var(--color-soil)]';
             actTitle.textContent = 'Kegiatan Kunci Lapangan:';
             actBox.appendChild(actTitle);
 

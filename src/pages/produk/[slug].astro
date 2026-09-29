@@ -98,7 +98,7 @@ const seo: SeoInput = {
 
       <!-- Target Commodities Badges -->
       <div class="mt-6 pt-6 border-t border-[var(--color-border)]">
-        <span class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-2">
+        <span class="block text-xs font-bold text-[var(--color-text-muted)] mb-2">
           Komoditas Sasaran Rekomendasi
         </span>
         <div class="flex flex-wrap gap-2">
@@ -178,7 +178,7 @@ const seo: SeoInput = {
         </h2>
         <div class="p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-3 text-sm sm:text-base text-[var(--color-text)]">
           <div>
-            <span class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-1">
+            <span class="block text-xs font-bold text-[var(--color-text-muted)] mb-1">
               Bahan Aktif & Nutrisi
             </span>
             <p class="font-medium text-base text-[var(--color-text)]">
@@ -186,7 +186,7 @@ const seo: SeoInput = {
             </p>
           </div>
           <div>
-            <span class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-1">
+            <span class="block text-xs font-bold text-[var(--color-text-muted)] mb-1">
               Bentuk Fisik Formula
             </span>
             <p class="text-[var(--color-text)]">
@@ -203,7 +203,7 @@ const seo: SeoInput = {
         </h2>
         <div class="p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-4">
           <div>
-            <span class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-2">
+            <span class="block text-xs font-bold text-[var(--color-text-muted)] mb-2">
               Metode Aplikasi yang Dianjurkan
             </span>
             <ul class="space-y-1.5 text-sm sm:text-base text-[var(--color-text)]">
@@ -217,7 +217,7 @@ const seo: SeoInput = {
           </div>
 
           <div class="pt-3 border-t border-[var(--color-border)]">
-            <span class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-1">
+            <span class="block text-xs font-bold text-[var(--color-text-muted)] mb-1">
               Takaran & Dosis Lapangan
             </span>
             <p class="text-sm sm:text-base font-semibold text-[var(--color-brand)] tabular-nums">
@@ -247,7 +247,7 @@ const seo: SeoInput = {
 
       <!-- Section: Related Articles (if available) -->
       {relatedArticles.length > 0 && (
-        <section class="space-y-4 pt-6 border-t border-[var(--color-border)]">
+        <section class="space-y-4 pt-6">
           <h2 class="text-xl font-bold font-serif text-[var(--color-brand)] tracking-tight">
             Panduan Terkait di Jurnal Tani
           </h2>
@@ -275,7 +275,7 @@ const seo: SeoInput = {
       )}
 
       <!-- Section: Single WhatsApp CTA (DESIGN §2.8) -->
-      <section class="pt-6 border-t border-[var(--color-border)]">
+      <section class="pt-6">
         <ConsultPrompt
           source={`produk-${product.id}`}
           title="Tanya Dosis untuk Lahan Anda"

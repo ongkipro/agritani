@@ -6,6 +6,8 @@
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
+import { Picture } from 'astro:assets';
+import konsultasiImage from '../assets/images/dummy/konsultasi.webp';
 import type { SeoInput } from '../lib/seo';
 
 const breadcrumbs = [
@@ -40,11 +42,19 @@ const seo: SeoInput = {
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
       
       <!-- Left Column: Service Details & Preparation Checklist -->
-      <div class="lg:col-span-5 space-y-6">
-        
-        <!-- Tim & Layanan Card -->
-        <section class="p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-4">
-          <h2 class="text-lg font-bold text-[var(--color-brand)]">
+      <div class="lg:col-span-5 space-y-8">
+        <Picture
+          src={konsultasiImage}
+          formats={['webp']}
+          quality={60}
+          widths={[480, 800]}
+          sizes="(min-width: 1024px) 26rem, calc(100vw - 2rem)"
+          alt="Tangan merawat bibit tanaman muda di tanah"
+          class="w-full aspect-[3/2] object-cover rounded-[2px]"
+        />
+
+        <section class="space-y-2">
+          <h2 class="text-lg font-bold text-[var(--color-text)]">
             Siapa yang Menjawab?
           </h2>
           <div class="space-y-3 text-sm text-[var(--color-text)] leading-relaxed">
@@ -58,35 +68,20 @@ const seo: SeoInput = {
         </section>
 
         <!-- Preparation Checklist -->
-        <section class="p-6 bg-[var(--color-tint)] border border-[var(--color-border)] rounded-[2px] space-y-3">
-          <h2 class="text-base font-bold text-[var(--color-text)]">
-            Hal yang Perlu Disiapkan Petani:
+        <section class="space-y-3">
+          <h2 class="text-lg font-bold text-[var(--color-text)]">
+            Yang perlu disiapkan
           </h2>
-          <p class="text-xs text-[var(--color-text-muted)]">
+          <p class="text-sm text-[var(--color-text-muted)]">
             Untuk mempercepat analisa dan akurasi rekomendasi agronom kami, siapkan informasi berikut:
           </p>
-          <ul class="space-y-2 text-xs sm:text-sm text-[var(--color-text)]">
-            <li class="flex items-start gap-2">
-              <span class="text-[var(--color-brand)] font-bold">1.</span>
-              <span><strong>Foto jelas tanaman:</strong> ambil 1 foto jarak dekat bagian yang sakit (daun/buah/batang) dan 1 foto keseluruhan pohon.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-[var(--color-brand)] font-bold">2.</span>
-              <span><strong>Komoditas & Varietas:</strong> jenis tanaman yang dibudidayakan.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-[var(--color-brand)] font-bold">3.</span>
-              <span><strong>Umur Tanaman:</strong> Hari Setelah Tanam (HST) atau umur pohon.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-[var(--color-brand)] font-bold">4.</span>
-              <span><strong>Lokasi Kebun:</strong> nama Kabupaten dan Provinsi lahan Anda.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-[var(--color-brand)] font-bold">5.</span>
-              <span><strong>Riwayat Perlakuan:</strong> aplikasi pupuk atau semprotan terakhir dalam 2 minggu.</span>
-            </li>
-          </ul>
+          <ol class="list-decimal pl-5 space-y-2 text-sm text-[var(--color-text)] marker:font-bold marker:text-[var(--color-soil)]">
+            <li><strong>Foto jelas tanaman:</strong> ambil 1 foto jarak dekat bagian yang sakit (daun/buah/batang) dan 1 foto keseluruhan pohon.</li>
+            <li><strong>Komoditas & Varietas:</strong> jenis tanaman yang dibudidayakan.</li>
+            <li><strong>Umur Tanaman:</strong> Hari Setelah Tanam (HST) atau umur pohon.</li>
+            <li><strong>Lokasi Kebun:</strong> nama Kabupaten dan Provinsi lahan Anda.</li>
+            <li><strong>Riwayat Perlakuan:</strong> aplikasi pupuk atau semprotan terakhir dalam 2 minggu.</li>
+          </ol>
         </section>
 
       </div>
@@ -95,7 +90,7 @@ const seo: SeoInput = {
       <div class="lg:col-span-7">
         <section class="p-6 sm:p-8 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-6">
           <div class="border-b border-[var(--color-border)] pb-4">
-            <h2 class="text-xl font-bold text-[var(--color-brand)]">
+            <h2 class="text-xl font-bold text-[var(--color-text)]">
               Formulir Konsultasi WhatsApp
             </h2>
             <p class="text-xs sm:text-sm text-[var(--color-text-muted)] mt-1">
@@ -213,8 +208,8 @@ const seo: SeoInput = {
     </div>
 
     <!-- Fixed Agronomic Disclaimer (DESIGN §2.7) -->
-    <footer class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] text-xs md:text-sm text-[var(--color-text-muted)] space-y-1">
-      <p class="font-bold text-[var(--color-soil)]">Pernyataan Batasan Layanan:</p>
+    <footer class="mb-12 max-w-[72ch] text-xs md:text-sm text-[var(--color-text-muted)] space-y-1">
+      <p class="font-bold text-[var(--color-text)]">Batasan layanan</p>
       <p class="leading-relaxed">
         Saran dan rekomendasi konsultasi adalah instrumen panduan teknis budidaya, bukan jaminan mutlak keberhasilan panen di lapangan. Untuk situasi darurat ledakan hama atau penyakit eksplosif yang meluas cepat, segera hubungi pula Penyuluh Pertanian Lapangan (PPL) atau Balai Proteksi Tanaman Pangan dan Hortikultura (BPTPH) / Dinas Pertanian setempat.
       </p>

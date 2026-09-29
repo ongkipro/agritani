@@ -32,7 +32,6 @@ const tools = [
     isUpcoming: !isDraftPreview,
     description:
       'Temukan kemungkinan hama, penyakit, atau defisiensi hara berdasarkan bagian tanaman dan tanda visual di kebun.',
-    cta: isDraftPreview ? 'Buka Diagnosa Gejala' : 'Buka Diagnosa (Segera hadir)',
   },
   {
     title: 'Kalender Tanam',
@@ -41,7 +40,6 @@ const tools = [
     isUpcoming: !isDraftPreview,
     description:
       'Pantau fase pertumbuhan tanaman (HST), jadwal pemupukan berkala, dan perkiraan waktu panen komoditas Anda.',
-    cta: isDraftPreview ? 'Buka Kalender Tanam' : 'Buka Kalender (Segera hadir)',
   },
   {
     title: 'Cuaca Tani',
@@ -50,7 +48,6 @@ const tools = [
     isUpcoming: false,
     description:
       'Prakiraan cuaca 3 hari per 3 jam langsung dari data BMKG tingkat desa untuk menentukan waktu aplikasi semprot yang aman.',
-    cta: 'Buka Cuaca Tani',
   },
   {
     title: 'Kalkulator Dosis',
@@ -59,7 +56,6 @@ const tools = [
     isUpcoming: false,
     description:
       'Hitung takaran pestisida atau pupuk daun per tangki semprot dan total kebutuhan larutan sesuai luas lahan Anda.',
-    cta: 'Buka Kalkulator Dosis',
   },
 ];
 ---
@@ -78,51 +74,32 @@ const tools = [
       </p>
     </header>
 
-    <!-- Shared Principles Banner -->
-    <div class="mb-8 p-4 bg-[var(--color-tint)] border border-[var(--color-border)] rounded-[2px] text-xs sm:text-sm text-[var(--color-text)] flex items-center gap-3">
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[var(--color-brand)] shrink-0" aria-hidden="true">
-        <circle cx="12" cy="12" r="10"/>
-        <line x1="12" y1="16" x2="12" y2="12"/>
-        <line x1="12" y1="8" x2="12.01" y2="8"/>
-      </svg>
-      <span>
-        Semua alat dapat digunakan gratis, tanpa registrasi atau akun, dan dirancang khusus untuk kenyamanan layar ponsel di lahan.
-      </span>
-    </div>
+    <p class="mb-8 max-w-[68ch] text-sm text-[var(--color-text-muted)]">
+      Semua alat gratis, tanpa registrasi atau akun, dan dirancang untuk layar ponsel di lahan.
+    </p>
 
-    <!-- 4 Tools Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">
-      {tools.map((tool) => (
-        <article class="p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] flex flex-col justify-between hover:border-[var(--color-brand)] transition-colors">
-          <div>
-            <div class="flex items-center justify-between gap-3 mb-2.5">
-              <h2 class="text-xl font-bold text-[var(--color-text)]">
-                <a href={tool.href} class="hover:text-[var(--color-brand-strong)] focus:outline-none focus:underline">
-                  {tool.title}
-                </a>
-              </h2>
-              <span class="inline-block px-2.5 py-0.5 text-xs font-semibold text-[var(--color-soil)] bg-[var(--color-tint)] rounded-[2px] whitespace-nowrap">
-                {tool.badge}
-              </span>
-            </div>
-            <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mb-6">
+    <!-- Tools index: open rows, live tools first (DESIGN §4.2.3) -->
+    <ul class="mb-16 divide-y divide-[var(--color-border)] border-y border-[var(--color-border)]">
+      {[...tools].sort((a, b) => Number(a.isUpcoming) - Number(b.isUpcoming)).map((tool) => (
+        <li>
+          <a
+            href={tool.href}
+            class="group grid grid-cols-1 sm:grid-cols-[14rem_1fr_auto] gap-x-8 gap-y-1.5 py-6 sm:py-7 sm:items-baseline"
+          >
+            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] transition-colors">
+              {tool.title}
+            </h2>
+            <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed max-w-[60ch]">
               {tool.description}
+              <span class="block mt-1 text-xs font-semibold text-[var(--color-soil)]">{tool.badge}</span>
             </p>
-          </div>
-          <div>
-            <a
-              href={tool.href}
-              class="inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] text-sm font-semibold rounded-[2px] bg-[var(--color-brand)] text-white hover:bg-[var(--color-brand-strong)] transition-colors w-full sm:w-auto justify-center"
-            >
-              <span>{tool.cta}</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M5 12h14"/>
-                <path d="m12 5 7 7-7 7"/>
-              </svg>
-            </a>
-          </div>
-        </article>
+            <span class="mt-2 sm:mt-0 inline-flex items-center gap-1.5 text-sm font-bold text-[var(--color-brand-strong)] group-hover:underline underline-offset-4 whitespace-nowrap">
+              {tool.isUpcoming ? 'Lihat status' : 'Buka alat'}
+              <span aria-hidden="true">&rarr;</span>
+            </span>
+          </a>
+        </li>
       ))}
-    </div>
+    </ul>
   </div>
 </BaseLayout>

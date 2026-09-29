@@ -82,7 +82,7 @@ const partLabels: Record<string, string> = {
     
     <!-- Step 1: Komoditas (Big Button Radio Group) -->
     <div>
-      <span class="block text-xs font-bold text-[var(--color-soil)] uppercase tracking-wider mb-2">
+      <span class="block text-xs font-bold text-[var(--color-soil)] mb-2">
         Langkah 1: Pilih Komoditas Tanaman
       </span>
       <div class="flex flex-wrap gap-2.5" id="group-commodity" role="radiogroup" aria-label="Pilih Komoditas">
@@ -102,7 +102,7 @@ const partLabels: Record<string, string> = {
 
     <!-- Step 2: Bagian Tanaman -->
     <div id="section-part" class="opacity-50 pointer-events-none transition-opacity">
-      <span class="block text-xs font-bold text-[var(--color-soil)] uppercase tracking-wider mb-2">
+      <span class="block text-xs font-bold text-[var(--color-soil)] mb-2">
         Langkah 2: Pilih Bagian yang Bergejala
       </span>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="group-part" role="radiogroup" aria-label="Pilih Bagian Tanaman">
@@ -125,10 +125,10 @@ const partLabels: Record<string, string> = {
     <!-- Step 3: Gejala Visual Lapangan -->
     <div id="section-symptom" class="opacity-50 pointer-events-none transition-opacity space-y-3">
       <div class="flex items-center justify-between gap-2">
-        <span class="block text-xs font-bold text-[var(--color-soil)] uppercase tracking-wider">
+        <span class="block text-xs font-bold text-[var(--color-soil)]">
           Langkah 3: Pilih Tanda Visual yang Tampak
         </span>
-        <span id="symptom-count" class="text-xs text-[var(--color-text-muted)] font-mono"></span>
+        <span id="symptom-count" class="text-xs text-[var(--color-text-muted)] tabular-nums"></span>
       </div>
 
       <!-- Quick Text Filter for Mobile -->
@@ -555,7 +555,7 @@ const partLabels: Record<string, string> = {
           badge.textContent = `Penyebab: ${cConf.label}`;
 
           const statusSpan = document.createElement('span');
-          statusSpan.className = 'text-xs sm:text-sm font-mono text-[var(--color-text-muted)]';
+          statusSpan.className = 'text-xs sm:text-sm tabular-nums text-[var(--color-text-muted)]';
           statusSpan.textContent = cand.reviewedBy ? `Ditinjau: ${cand.reviewedBy}` : '[Draf — validasi OQ-11c]';
 
           headRow.appendChild(badge);

@@ -105,7 +105,7 @@ try {
     <div class="bg-[var(--color-surface)] p-5 sm:p-6 border border-[var(--color-border)] rounded-[2px] space-y-3">
       <div class="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <span class="block text-xs font-bold text-[var(--color-soil)] uppercase tracking-wider mb-0.5">
+          <span class="block text-xs font-bold text-[var(--color-soil)] mb-0.5">
             Prakiraan Cuaca Lapangan
           </span>
           <h2 id="result-location-title" class="text-xl sm:text-2xl font-extrabold text-[var(--color-text)] leading-tight">
@@ -332,7 +332,7 @@ try {
 
         // Table Head (Jam, Cuaca, Suhu, Hujan always visible; Lembap, Angin visible on md+)
         const thead = document.createElement('thead');
-        thead.className = 'bg-[var(--color-surface)] border-b border-[var(--color-border)] text-xs text-[var(--color-text-muted)] uppercase tracking-wider font-semibold';
+        thead.className = 'bg-[var(--color-surface)] border-b border-[var(--color-border)] text-xs text-[var(--color-text-muted)] font-semibold';
         thead.innerHTML = `
           <tr>
             <th scope="col" class="py-3 px-2 sm:px-4 font-bold text-[var(--color-text)]">Jam</th>

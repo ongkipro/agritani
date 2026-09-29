@@ -17,18 +17,18 @@ const p = product.data;
 
 <div
   id={product.id}
-  class="scroll-mt-24 p-6 sm:p-8 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] transition-colors"
+  class="scroll-mt-24 py-10 sm:py-12"
 >
   <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
     <!-- Main Info -->
     <div class="space-y-4 max-w-2xl">
       <div>
-        <div class="flex flex-wrap items-center gap-2 mb-2">
+        <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
           <h2 class="text-2xl sm:text-3xl font-bold font-serif text-[var(--color-brand)] tracking-tight">
             {p.name}
           </h2>
           {p.tagline && (
-            <span class="inline-block px-2.5 py-1 text-xs font-semibold bg-[var(--color-tint)] text-[var(--color-brand-strong)] rounded-[2px]">
+            <span class="text-sm font-semibold text-[var(--color-soil)]">
               {p.tagline}
             </span>
           )}
@@ -45,35 +45,24 @@ const p = product.data;
       <!-- Specifications Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-sm">
         <div>
-          <span class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-1">
+          <span class="block text-sm font-semibold text-[var(--color-text-muted)] mb-1">
             Komoditas Sasaran
           </span>
-          <div class="flex flex-wrap gap-1.5">
-            {p.commodities.map((c) => {
-              const cId = typeof c === 'string' ? c : c.id;
-              const name = commoditiesMap.get(cId) || cId;
-              return (
-                <span class="inline-block px-2 py-0.5 text-xs bg-[var(--color-surface-raised)] border border-[var(--color-border)] text-[var(--color-text)] rounded-[2px]">
-                  {name}
-                </span>
-              );
-            })}
-          </div>
+          <p class="text-[var(--color-text)] font-medium">
+            {p.commodities.map((c) => commoditiesMap.get(typeof c === 'string' ? c : c.id) || (typeof c === 'string' ? c : c.id)).join(', ')}
+          </p>
         </div>
 
         <div>
-          <span class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-1">
+          <span class="block text-sm font-semibold text-[var(--color-text-muted)] mb-1">
             Bentuk & Cara Aplikasi
           </span>
           <p class="text-[var(--color-text)] font-medium mb-1">
             {p.form || 'Cairan konsentrat'}
           </p>
-          <ul class="text-xs text-[var(--color-text-muted)] space-y-0.5">
+          <ul class="text-sm text-[var(--color-text-muted)] list-disc pl-4 space-y-0.5">
             {p.applicationMethods.map((m) => (
-              <li class="flex items-center gap-1.5">
-                <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand)]" aria-hidden="true"></span>
-                <span>{m}</span>
-              </li>
+              <li>{m}</li>
             ))}
           </ul>
         </div>
