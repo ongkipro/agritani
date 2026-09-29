@@ -1,7 +1,8 @@
 ---
-title: "Membasmi Ulat Grayak Jagung (FAW): Cara Melindungi Titik Tumbuh Tanaman"
-metaTitle: "Cara Membasmi Ulat Grayak Jagung FAW di Kebun"
-description: "Panduan jitu membasmi ulat grayak jagung Spodoptera frugiperda yang merusak titik tumbuh tanaman muda dengan bioinsektisida dan abu sekam."
+title: "Pengendalian Ulat Grayak Jagung (FAW): Cara Melindungi Titik Tumbuh Tanaman"
+metaTitle: "Pengendalian Ulat Grayak Jagung FAW di Kebun"
+description: "Panduan pengendalian ulat grayak jagung Spodoptera frugiperda yang merusak titik tumbuh tanaman muda dengan bioinsektisida dan abu sekam."
+answer: "Ulat grayak tentara Spodoptera frugiperda menyerang titik tumbuh tanaman jagung muda dan bersembunyi di dalam corong daun. Pengendalian efektif memadukan teknik penyemprotan terarah langsung ke kuncup pupus, aplikasi bioinsektisida bakteri Bacillus thuringiensis pada sore hari, serta penaburan abu sekam halus untuk mengganggu fisik larva di lahan."
 slug: "membasmi-ulat-grayak-jagung-faw-spodoptera"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
@@ -9,12 +10,28 @@ topic: "proteksi-tanaman"
 commodities:
   - "jagung"
 tags:
-  - "cara membasmi ulat grayak jagung"
+  - "pengendalian ulat grayak jagung"
   - "ulat tentara jagung faw"
   - "spodoptera frugiperda"
   - "insektisida ulat grayak jagung"
   - "mengatasi pupus jagung bolong"
-draft: true
+references:
+  - authors: "Russianzi W, Anwar R, Triwidodo H"
+    year: 2021
+    title: "Biostatistics of fall armyworm Spodoptera frugiperda in maize plants in Bogor, West Java, Indonesia"
+    source: "Biodiversitas"
+    doi: "10.13057/biodiv/d220655"
+  - authors: "Sari S, Suliansyah I, Nelly N, Hamid H, et al."
+    year: 2021
+    title: "The occurrence of Spodoptera frugiperda attack on maize in West Pasaman District, West Sumatra, Indonesia"
+    source: "IOP Conf. Series: Earth and Environmental Science"
+    doi: "10.1088/1755-1315/741/1/012020"
+  - authors: "Goergen G, Kumar PL, Sankung SB, Togola A, Tamo M"
+    year: 2016
+    title: "First Report of Outbreaks of the Fall Armyworm Spodoptera frugiperda (J E Smith) (Lepidoptera, Noctuidae), a New Alien Invasive Pest in West and Central Africa"
+    source: "PLOS ONE"
+    doi: "10.1371/journal.pone.0165632"
+draft: false
 ---
 
 Sejak kemunculannya pertama kali di Indonesia beberapa tahun lalu, hama Ulat Grayak Jagung atau *Fall Armyworm* (**FAW / *Spodoptera frugiperda*)** telah menjadi momok mengerikan bagi petani jagung di seluruh nusantara.

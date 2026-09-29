@@ -2,19 +2,31 @@
 title: "Mencegah Penyakit Tungro Padi: Kenali Gejala Daun Oranye dan Wereng Hijau"
 metaTitle: "Cara Mengatasi Penyakit Tungro Padi dan Wereng Hijau"
 description: "Ketahui gejala tanaman padi kerdil daun kuning oranye akibat virus tungro serta strategi pemutusan rantai vektor wereng hijau di sawah."
+answer: "Penyakit tungro pada padi disebabkan oleh infeksi virus yang ditularkan oleh vektor serangga wereng hijau Nephotettix virescens. Gejala khas berupa daun menguning kejinggaan dari ujung helai serta pertumbuhan tanaman yang kerdil. Pengendalian utama berfokus pada pemutusan siklus penularan melalui tanam serempak, sanitasi sisa jerami atau singgang, serta perlindungan bibit di persemaian."
 slug: "mencegah-penyakit-tungro-dan-wereng-hijau-padi"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
-topic: "budidaya"
+topic: "proteksi-tanaman"
 commodities:
   - "padi"
 tags:
   - "penyakit tungro pada padi"
   - "gejala virus tungro daun oranye"
   - "wereng hijau nephotettix"
-  - "cara membasmi wereng hijau"
+  - "pengendalian wereng hijau"
   - "pencegahan padi kerdil kuning"
-draft: true
+references:
+  - authors: "Azzam O, Chancellor TCB"
+    year: 2002
+    title: "The Biology, Epidemiology, and Management of Rice Tungro Disease in Asia"
+    source: "Plant Disease"
+    doi: "10.1094/pdis.2002.86.2.88"
+  - authors: "Widiarta IN, Bastian A, Pakki S"
+    year: 2013
+    title: "Variation in rice tungro virus transmission ability by green leafhopper, Nephotettix virescens Distant"
+    source: "Indonesian Journal of Agricultural Science"
+    doi: "10.21082/ijas.v15n2.2014.65-70"
+draft: false
 ---
 
 Di berbagai wilayah lumbung padi nasional—seperti Jawa Tengah, Sulawesi Selatan, dan Nusa Tenggara Barat—penyakit virus yang paling sering memicu gagal panen misterius adalah **Penyakit Tungro**.

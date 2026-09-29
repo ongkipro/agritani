@@ -2,6 +2,7 @@
 title: "Membongkar Misteri Layu Fusarium: Mengapa Tanaman Cabai Layu di Siang Hari dan Segar di Pagi Hari?"
 metaTitle: "Penyebab Tanaman Cabai Layu Siang Hari: Fusarium"
 description: "Pahami penyebab tanaman cabai layu siang hari tapi segar pagi hari akibat Fusarium oxysporum dan solusi penaikan pH tanah dengan dolomit."
+answer: "Layu fusarium disebabkan oleh infeksi cendawan Fusarium oxysporum yang menyumbat saluran pembuluh xilem tanaman cabai dan tomat. Gejala awal ditandai oleh tanaman yang layu saat siang hari namun segar kembali pada pagi hari. Pengendalian terpadu mencakup pencegahan luka akar, pengapuran dolomit untuk menaikkan pH tanah, perbaikan drainase, serta pemanfaatan agens hayati."
 slug: "mengatasi-layu-fusarium-pada-cabai-tomat"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
@@ -14,7 +15,18 @@ tags:
   - "cara mengatasi jamur fusarium"
   - "pengapuran tanah dolomit"
   - "penyumbatan pembuluh xilem"
-draft: true
+references:
+  - authors: "Michielse CB, Rep M"
+    year: 2009
+    title: "Pathogen profile update: Fusarium oxysporum"
+    source: "Molecular Plant Pathology"
+    doi: "10.1111/j.1364-3703.2009.00538.x"
+  - authors: "Gabrekiristos E, Demiyo T"
+    year: 2020
+    title: "Hot Pepper Fusarium Wilt (Fusarium oxysporum f. sp. capsici): Epidemics, Characteristic Features and Management Options in Ethiopia"
+    source: "Journal of Agricultural Science (Canada)"
+    doi: "10.5539/jas.v12n10p347"
+draft: false
 ---
 
 > **Key Takeaways**:

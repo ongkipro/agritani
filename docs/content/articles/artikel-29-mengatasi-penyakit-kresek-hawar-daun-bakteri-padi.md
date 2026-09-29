@@ -1,20 +1,37 @@
 ---
-title: "Mengatasi Penyakit Kresek Padi (Hawar Daun Bakteri): Gejala dan Obat Alaminya"
+title: "Mengatasi Penyakit Kresek Padi (Hawar Daun Bakteri): Gejala dan Pengendaliannya"
 metaTitle: "Cara Mengatasi Penyakit Kresek Padi Hawar Bakteri"
 description: "Panduan mengendalikan penyakit kresek hawar daun bakteri Xanthomonas oryzae pada tanaman padi musim hujan lewat pengaturan air dan pupuk silika."
+answer: "Penyakit kresek pada padi disebabkan oleh bakteri Xanthomonas oryzae yang masuk lewat hidatoda daun atau luka mekanis. Gejala khas berupa garis bergelombang pada tepi daun yang mengering kuning seperti jerami. Penanganan dilakukan melalui pengeringan sawah berkala, pembatasan pupuk nitrogen, penambahan hara kalium atau silika, dan aplikasi agens hayati."
 slug: "mengatasi-penyakit-kresek-hawar-daun-bakteri-padi"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
-topic: "budidaya"
+topic: "proteksi-tanaman"
 commodities:
   - "padi"
 tags:
   - "penyebab penyakit kresek pada padi"
   - "cara mengatasi hawar daun bakteri"
   - "xanthomonas oryzae padi"
-  - "obat kresek padi musim hujan"
+  - "pengendalian kresek padi musim hujan"
   - "pupuk pencegah kresek padi"
-draft: true
+references:
+  - authors: "Nino-Liu DO, Ronald PC, Bogdanove AJ"
+    year: 2006
+    title: "Xanthomonas oryzae pathovars: model pathogens of a model crop"
+    source: "Molecular Plant Pathology"
+    doi: "10.1111/j.1364-3703.2006.00344.x"
+  - authors: "Reddy APK"
+    year: 1981
+    title: "Epidemiology of the Kresek Phase of Bacterial Blight of Rice"
+    source: "Plant Disease"
+    doi: "10.1094/pd-65-578"
+  - authors: "Reddy APK"
+    year: 1979
+    title: "Relationship Between Nitrogen Fertilization, Bacterial Leaf Blight Severity, and Yield of Rice"
+    source: "Phytopathology"
+    doi: "10.1094/phyto-69-970"
+draft: false
 ---
 
 Di hamparan sawah irigasi maupun tadah hujan, penyakit Hawar Daun Bakteri (HDB) yang akrab disebut petani sebagai **Penyakit Kresek** adalah salah satu perusak hasil panen paling ditakuti.
