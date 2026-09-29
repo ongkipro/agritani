@@ -6,6 +6,7 @@
  */
 import { getCollection } from 'astro:content';
 import ConsultPrompt from './ConsultPrompt.astro';
+import { filterVisibleSymptoms, getActiveCommodities } from '../lib/triage.ts';
 
 // Fetch all symptoms and commodities from content collections
 const allSymptoms = await getCollection('symptoms');
@@ -14,15 +15,19 @@ const allCommodities = await getCollection('commodities');
 // Map commodity names
 const commodityMap = new Map(allCommodities.map((c) => [c.id, c.data.name]));
 
-// Extract unique commodities that actually have symptom data
-const activeCommodityIds = Array.from(new Set(allSymptoms.map((s) => s.data.commodity.id)));
-const activeCommodities = activeCommodityIds.map((id) => ({
-  id,
-  name: commodityMap.get(id) || id,
-})).sort((a, b) => a.name.localeCompare(b.name));
+const isDraftPreview = import.meta.env.PUBLIC_INCLUDE_DRAFTS === 'true' || process.env.PUBLIC_INCLUDE_DRAFTS === 'true';
+
+// Filter symptoms based on reviewedBy in production mode (ARCHITECTURE §3.1, DEC-015)
+const visibleSymptoms = filterVisibleSymptoms(allSymptoms, isDraftPreview);
+
+// Extract active commodities that actually have visible symptoms
+const activeCommodities = getActiveCommodities(
+  visibleSymptoms.map((s) => ({ commodity: s.data.commodity.id })),
+  commodityMap
+);
 
 // Pre-serialize symptoms data for client hydration without inline executed script
-const serializedSymptoms = allSymptoms.map((s) => ({
+const serializedSymptoms = visibleSymptoms.map((s) => ({
   id: s.data.id,
   commodity: s.data.commodity.id,
   part: s.data.part,
@@ -41,9 +46,35 @@ const partLabels: Record<string, string> = {
   'buah-bunga': 'Buah / Bunga',
   'akar': 'Akar / Benih',
 };
-
 ---
 
+{visibleSymptoms.length === 0 ? (
+  <div class="p-8 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] text-center space-y-4">
+    <div class="inline-flex items-center justify-center w-12 h-12 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-brand)] mb-1">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+      </svg>
+    </div>
+    <h2 class="text-xl sm:text-2xl font-extrabold text-[var(--color-text)]">
+      Diagnosa Gejala Sedang Disiapkan
+    </h2>
+    <p class="text-sm text-[var(--color-text-muted)] max-w-[55ch] mx-auto leading-relaxed">
+      Basis data diagnosa visual hama dan penyakit tanaman saat ini sedang dalam proses peninjauan dan validasi agronomis oleh Prof. Arif Prabowo.
+    </p>
+    <div class="pt-2">
+      <a
+        href="/jurnal/"
+        class="inline-flex items-center gap-2 px-5 py-2.5 min-h-[44px] text-sm font-bold rounded-[2px] bg-[var(--color-brand)] !text-white hover:bg-[var(--color-brand-hover)] transition-colors"
+      >
+        <span>Telusuri Artikel Jurnal Tani</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14"/>
+          <path d="m12 5 7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+) : (
 <div id="triage-engine-root" class="space-y-8" data-symptoms={JSON.stringify(serializedSymptoms)}>
   
   <!-- Interactive Form Area -->
@@ -186,7 +217,7 @@ const partLabels: Record<string, string> = {
 
       <div class="space-y-6">
         {activeCommodities.map((comm) => {
-          const commSymptoms = allSymptoms.filter((s) => s.data.commodity.id === comm.id);
+          const commSymptoms = visibleSymptoms.filter((s) => s.data.commodity.id === comm.id);
           return (
             <div class="space-y-3">
               <h3 class="text-base font-extrabold text-[var(--color-text)] flex items-center gap-2">
@@ -233,6 +264,7 @@ const partLabels: Record<string, string> = {
   </noscript>
 
 </div>
+)}
 
 <script>
   interface SymptomItem {
@@ -557,7 +589,7 @@ const partLabels: Record<string, string> = {
 
           const readLink = document.createElement('a');
           readLink.href = `/jurnal/${cand.article}/`;
-          readLink.className = 'inline-flex items-center gap-2 px-4 py-2 min-h-[44px] text-xs sm:text-sm font-bold rounded-[2px] bg-[var(--color-brand)] text-white hover:bg-[var(--color-brand-strong)] transition-colors';
+          readLink.className = 'inline-flex items-center gap-2 px-4 py-2 min-h-[44px] text-xs sm:text-sm font-bold rounded-[2px] bg-[var(--color-brand)] !text-white hover:bg-[var(--color-brand-hover)] transition-colors';
           readLink.innerHTML = `
             <span>Baca Penanganan Lengkap</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

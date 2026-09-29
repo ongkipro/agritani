@@ -498,13 +498,48 @@ Record only durable implementation changes, validation evidence, and gotchas tha
   - Zero executed inline scripts, zero inline `on*=`, zero inline `style=`.
   - UI proof captured at port 4330 via `agritani-shot.cjs`:
     - `proof/ui/t19/kalender-initial-390.png` & `proof/ui/t19/kalender-initial-1440.png`
-    - `proof/ui/t19/kalender-padi-hst34-390.png` & `proof/ui/t19/kalender-padi-hst34-1440.png`
-    - `proof/ui/t19/kalender-sawit-tahunan-390.png` & `proof/ui/t19/kalender-sawit-tahunan-1440.png`
-- **Verifications**:
-  - `npm test`: 58/58 unit tests PASS.
+## 2026-09-29 — T-23: CI Workflow Alignment (READY - PENDING INDEPENDENT REVIEW)
+
+- Updated `.github/workflows/ci.yml`:
+  - Configured `PUBLIC_INCLUDE_DRAFTS: "true"` on the build step with inline commentary explaining that production builds prior to OQ-1 resolution (official WhatsApp number) throw a runtime guard.
+  - Pinned official actions to verified major releases (`actions/checkout@v4`, `actions/setup-node@v4`).
+  - Added explicit test and verification audit steps: `npm test`, `npx astro check`, `node scripts/check-commodities.mjs`, and `node scripts/check-csp.mjs`.
+  - All CI steps simulated locally with 100% PASS.
+- Boundary check produced `REVIEW_REQUIRED` (R3 escalation due to workflow file). Stopped without self-review; finished as `BLOCKED` awaiting independent review.
+
+## 2026-09-29 — T-09 Revision: Button Contrast Fix & Review Gating (READY - PENDING INDEPENDENT REVIEW)
+
+- Addressed review findings from Claude (sesi pemantau):
+  1. **Button Text Contrast Fix (WCAG AAA ≥ 7:1)**:
+     - Root cause: Raw CSS element selector `a { color: var(--color-brand-strong); }` at the root of `src/styles/global.css` competed with Tailwind CSS 4 utility classes.
+     - Fix: Encapsulated base styling rules (`body`, `a`, `a:hover`) inside `@layer base` in `src/styles/global.css` ensuring Tailwind utility classes (`@layer utilities`) consistently win the cascade.
+     - Added `!text-white` and `hover:bg-[var(--color-brand-hover)]` to `readLink` in `src/components/TriageFilter.astro`.
+     - Verified computed styles via Playwright script (`verify-t09-button.cjs`):
+       - Foreground color: `rgb(255, 255, 255)`
+       - Background color: `rgb(26, 99, 53)`
+       - Computed font: 14px / 700 (bold)
+       - WCAG contrast ratio: **7.29:1** (PASS ≥ 7:1).
+       - Saved zoom visual proof: `proof/ui/t09/diagnosa-button-contrast-zoom.png`.
+  2. **Review Gating & Honest Production Empty State (ARCHITECTURE §3.1, DEC-015)**:
+     - Created `src/lib/triage.ts` with pure filtering helpers `filterVisibleSymptoms()` and `getActiveCommodities()`.
+     - Production mode (`isDraftPreview: false`): Only symptoms with valid `reviewedBy` are displayed. If zero symptoms are reviewed, renders an honest empty state:
+       *"Diagnosa Gejala Sedang Disiapkan: Basis data diagnosa visual hama dan penyakit tanaman saat ini sedang dalam proses peninjauan dan validasi agronomis oleh Prof. Arif Prabowo"* with a direct CTA to Jurnal Tani.
+     - Commodity selection buttons dynamically derive only from active visible symptoms.
+     - Static `<noscript>` fallback updated to render only visible symptoms.
+     - Added 4 unit tests in `src/lib/triage.test.ts` covering filtering, empty states, and active commodity extraction.
+     - UI evidence for production empty state captured: `diagnosa-unreviewed-production-390.png` & `1440.png`.
+  3. **Agronomic Data Invariant Note**:
+     - Cause types "hara" and "lingkungan" are currently absent in `symptoms.json` because current entries are strictly seeded from existing peer-reviewed manuscripts. In compliance with AGENTS.md, no invented deficiency or abiotic data is introduced; these branches will remain unpopulated until supplied and validated by Prof. Arif Prabowo (`OQ-11c`).
+- Verifications:
+  - `npm test`: 62/62 unit tests PASS (4 triage review gating tests).
   - `npx astro check`: 0 errors, 0 warnings.
-  - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 181 HTML pages, Pagefind indexed 150 articles, `check-seo` PASS (0 errors, 0 warnings), `check-csp` PASS (0/0/0).
-  - Boundary check produced `REVIEW_REQUIRED` (declared risk R2, effective risk escalated to R3 due to UI Astro components & domain calculations). Stopped without self-review; finished as `BLOCKED` awaiting independent review.
+  - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 181 HTML pages, Pagefind indexed 150 articles, `check-seo` PASS (0/0), `check-csp` PASS (0/0/0).
+  - UI visual evidence captured at port 4330 via `agritani-shot.cjs`:
+    - `proof/ui/t09/diagnosa-button-contrast-zoom.png` (button crop zoom)
+    - `proof/ui/t09/diagnosa-result-cabai-patek-390.png` & `1440.png` (interactive result with 7.29:1 contrast button)
+    - `proof/ui/t09/diagnosa-unreviewed-production-390.png` & `1440.png` (honest unreviewed empty state)
+- Boundary check produced `REVIEW_REQUIRED` (declared risk R2, effective risk escalated to R3 due to `src/styles/global.css`). Stopped without self-review; finished as `BLOCKED` awaiting independent review.
+
 
 
 

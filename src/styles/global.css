@@ -98,24 +98,26 @@ footer :focus-visible {
   outline-offset: 2px;
 }
 
-body {
-  background-color: var(--color-canvas);
-  color: var(--color-text);
-  font-family: var(--font-sans);
-  margin: 0;
-  padding: 0;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-}
+@layer base {
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    margin: 0;
+    padding: 0;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
 
-a {
-  color: var(--color-brand-strong);
-  text-underline-offset: 0.2em;
-  text-decoration-thickness: 1px;
-}
+  a {
+    color: var(--color-brand-strong);
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+  }
 
-a:hover {
-  text-decoration-thickness: 2px;
+  a:hover {
+    text-decoration-thickness: 2px;
+  }
 }
 
 @media print {
