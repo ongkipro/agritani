@@ -40,15 +40,17 @@ Kontrak pra-pengembangan diaudit ulang pada 2026-09-29 dengan skill dotfiles ter
 
 ### Active work
 
-T-21 (Kalkulator Dosis Semprot) selesai diimplementasikan dan terverifikasi penuh: formula kalkulasi di `src/lib/dose.ts`, 9 tes unit di `src/lib/dose.test.ts`, UI responsif dan reaktif di `src/components/DoseCalculator.astro`, serta halaman khusus `/alat/kalkulator-dosis/`. Bukti screenshot 390px dan 1440px tersimpan di `proof/ui/t21/`. Boundary check menghasilkan REVIEW_REQUIRED karena eskalasi risiko dari R1 ke R2 (file UI), sehingga task dihentikan untuk menunggu review independen sesuai protokol.
+FIX-CSP dan perbaikan nit pencarian `/cari/` selesai diimplementasikan dan terverifikasi penuh:
+- 0 inline scripts yang dieksekusi (vite `assetsInlineLimit: 0` memindahkan semua skrip komponen ke file eksternal `/_astro/*.js`).
+- 0 atribut event `on*=` (tombol cetak dan submit form ditangani via DOM listener).
+- 0 atribut inline `style=` (diganti utilitas Tailwind `bg-[var(--color-brand)]`, penonaktifan Shiki inline styles, dan sanitasi HTML build-time).
+- Auditor integritas CSP resmi `scripts/check-csp.mjs` terpasang di build pipeline.
+- Kueri ngawur "xyzzy" pada `/cari/` kini menampilkan empty state yang jelas `Tidak ada hasil untuk "..."` tanpa false positive.
+- Verifikasi build `PUBLIC_INCLUDE_DRAFTS=true npm run build` (177 halaman HTML) lulus dengan 0/0 SEO dan 0/0/0 CSP.
+Boundary check menghasilkan REVIEW_REQUIRED karena eskalasi ke R3 (`package.json` dan scope expansion). Sesuai aturan, task dihentikan untuk menunggu review independen.
 
 Selanjutnya:
-1. Memperbaiki nit pencarian `/cari/`: menampilkan pesan eksplisit "Tidak ada hasil untuk ..." sebelum saran artikel bila kueri ngawur dimasukkan (mis. "xyzzy").
-2. Memperbaiki temuan lintas-task CSP sesuai instruksi Claude dan AGENTS.md / ARCHITECTURE §5:
-   - Menghilangkan semua atribut `style=` inline (mengganti ke utility Tailwind `bg-[var(--color-brand)]`, dll).
-   - Menghilangkan semua atribut `on*=` inline (mis. `onclick="window.print()"` diganti `data-print` dan event listener di skrip bundel).
-   - Mengonfigurasi Astro / Vite agar skrip komponen tidak di-inline ke HTML (eksternal bundle / assetsInlineLimit).
-   - Menambahkan `scripts/check-csp.mjs` ke `npm run build` yang memverifikasi 0 script inline yang dieksekusi (kecuali JSON-LD), 0 atribut `on*=`, dan 0 atribut `style=` di seluruh file HTML `dist/`.
+Mengeksekusi **T-22** (Konsultasi `/konsultasi/` + indeks `/alat/`) sesuai urutan yang ditentukan.
 
 ## Blockers
 
@@ -57,6 +59,7 @@ Selanjutnya:
 - T-04 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 - T-03 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 - T-21 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
+- FIX-CSP menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 
 ## Verification evidence
 

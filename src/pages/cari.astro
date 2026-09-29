@@ -109,13 +109,13 @@ const popularQueries = [
       <!-- Empty State -->
       <div id="empty-state" class="hidden py-8">
         <div class="p-6 rounded-[2px] bg-[var(--color-tint)] border border-[var(--color-border)] text-sm leading-relaxed text-[var(--color-text-muted)]">
-          <h2 class="text-base font-bold text-[var(--color-text)] mb-2">
-            Tidak Ditemukan Hasil
+          <h2 class="text-lg font-bold text-[var(--color-text)] mb-2">
+            Tidak ada hasil untuk <span id="empty-query-term" class="text-[var(--color-brand-strong)]"></span>
           </h2>
           <p class="mb-3">
-            Tidak ditemukan artikel yang sesuai untuk kata kunci <strong id="empty-query-term" class="text-[var(--color-text)]"></strong>.
+            Kata kunci tersebut tidak ditemukan di dalam naskah Jurnal Tani.
           </p>
-          <p class="mb-4">
+          <p class="mb-2 font-semibold text-[var(--color-soil)]">
             Saran pencarian:
           </p>
           <ul class="list-disc pl-5 space-y-1 mb-4">
@@ -219,13 +219,32 @@ const popularQueries = [
 
     try {
       const searchResponse = await pf.search(trimmed);
-      const results = await Promise.all(
+      const rawResults = await Promise.all(
         searchResponse.results.slice(0, 30).map((r: any) => r.data())
       );
+
+      // Filter out spurious single-letter subword matches (e.g. matching single "x" in dimensions for "xyzzy")
+      const queryTokens = trimmed
+        .toLowerCase()
+        .split(/\s+/)
+        .map((t: string) => t.trim())
+        .filter((t: string) => t.length >= 2);
+
+      const results = rawResults.filter((item: any) => {
+        const textToSearch = `${item.meta?.title || ''} ${item.excerpt || ''} ${item.raw_title || ''}`.toLowerCase();
+        if (queryTokens.length === 0) return true;
+        return queryTokens.some((tok: string) => textToSearch.includes(tok));
+      });
 
       if (loadingState) loadingState.classList.add('hidden');
 
       if (results.length === 0) {
+        if (resultsState) {
+          resultsState.classList.add('hidden');
+        }
+        if (resultsList) {
+          resultsList.innerHTML = '';
+        }
         if (emptyState) {
           emptyState.classList.remove('hidden');
           if (emptyQueryTerm) emptyQueryTerm.textContent = `"${trimmed}"`;

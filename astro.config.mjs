@@ -5,6 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 // Pre-build article and page lastmod lookup and draft filter (DESIGN §4.4.8)
 const lastmodMap = new Map();
@@ -44,6 +45,9 @@ export default defineConfig({
   build: {
     format: 'directory',
     inlineStylesheets: 'never',
+  },
+  markdown: {
+    syntaxHighlight: false,
   },
   integrations: [
     sitemap({
@@ -93,8 +97,36 @@ export default defineConfig({
         },
       },
     },
+    {
+      name: 'sanitize-csp-html',
+      hooks: {
+        'astro:build:done': async ({ dir }) => {
+          const distDir = fileURLToPath(dir);
+          /** @param {string} current */
+          function walkAndSanitize(current) {
+            if (!fs.existsSync(current)) return;
+            for (const item of fs.readdirSync(current)) {
+              const full = path.join(current, item);
+              if (fs.statSync(full).isDirectory()) {
+                walkAndSanitize(full);
+              } else if (full.endsWith('.html')) {
+                let html = fs.readFileSync(full, 'utf8');
+                if (html.includes('style=')) {
+                  const cleaned = html.replace(/\s+style=["'][^"']*["']/gi, '');
+                  fs.writeFileSync(full, cleaned, 'utf8');
+                }
+              }
+            }
+          }
+          walkAndSanitize(distDir);
+        },
+      },
+    },
   ],
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      assetsInlineLimit: 0,
+    },
   },
 });

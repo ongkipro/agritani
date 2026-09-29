@@ -228,7 +228,7 @@ if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV)
           <button
             type="button"
             id="print-btn"
-            onclick="window.print()"
+            data-action="print"
             class="text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:underline inline-flex items-center gap-1.5 py-1 min-h-[44px]"
           >
             Cetak Panduan
@@ -476,3 +476,40 @@ if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV)
     white-space: pre;
   }
 </style>
+
+<script>
+  function initArticleActions() {
+    const printButtons = document.querySelectorAll('[data-action="print"]');
+    printButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        window.print();
+      });
+    });
+
+    const shareBtn = document.getElementById('share-btn');
+    if (shareBtn) {
+      shareBtn.addEventListener('click', async () => {
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: document.title,
+              url: window.location.href,
+            });
+          } catch {
+            // User cancelled share
+          }
+        } else {
+          try {
+            await navigator.clipboard.writeText(window.location.href);
+            alert('Tautan artikel berhasil disalin!');
+          } catch {
+            // Clipboard fallback
+          }
+        }
+      });
+    }
+  }
+
+  initArticleActions();
+  document.addEventListener('astro:page-load', initArticleActions);
+</script>

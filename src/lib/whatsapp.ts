@@ -22,7 +22,9 @@ export interface WaLinkOptions {
 
 export function waLink(options: WaLinkOptions): string {
   const { source, fields = [], note, phone } = options;
-  let targetPhone = phone || DEFAULT_WA_PHONE;
+  const envPhone =
+    typeof process !== 'undefined' ? process.env?.DEFAULT_WA_PHONE : undefined;
+  let targetPhone = phone || envPhone || DEFAULT_WA_PHONE;
 
   if (!targetPhone) {
     const isDraftPreview =
