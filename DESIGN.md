@@ -308,7 +308,7 @@ Hasil (dihitung saat input berubah, `aria-live`): **per tangki** (ml/g), **jumla
 
 #### 2.6.4. Indeks Alat Tani `/alat/`
 
-H1 "Alat Tani" · satu kalimat · 4 baris alat (nama, kegunaan, "Buka") · catatan "Semua alat gratis, tanpa akun, bekerja di HP".
+H1 "Alat Tani" · satu kalimat · catatan "Semua alat gratis, tanpa registrasi atau akun…" · 4 baris indeks terbuka (grid nama 14rem · kegunaan + status · aksi), alat yang aktif di atas; alat yang disembunyikan (data belum ditinjau, OQ-11) berstatus "Segera hadir" dengan aksi "Lihat status". Tanpa kartu, tanpa pill.
 
 ### 2.7. Konsultasi (REQ-12)
 
@@ -460,20 +460,22 @@ Diminta Paduka Ongki 2026-09-29 agar situs tidak kosong sebelum foto asli (OQ-5)
 - **Sumber & Lisensi**: Pexels, Unsplash, atau Pixabay. Gratis komersial, atribusi dicatat di `src/assets/images/dummy/CREDITS.md`.
 - **Aturan Pemilihan**: Lanskap/tanaman tropis Indonesia (sawit, padi, cabai, sayuran, irigasi, kios). Tanpa wajah yang dapat dikenali, tanpa traktor asing, tanpa merek pihak ketiga. Dilarang untuk kemasan produk, foto profil penulis, atau foto gejala penyakit.
 - **Format**: WebP wajib (`quality: 72`, sharp), file sumber ≤ 250 KB.
-- **10 Slot Gambar**:
-  1. `hero-beranda.webp` (5:4, 1600×1280) — Kolom media hero Beranda
-  2. `topik-proteksi-tanaman.webp` (16:9, 1600×900) — Header hub Proteksi Tanaman
-  3. `topik-tanah-nutrisi.webp` (16:9, 1600×900) — Header hub Tanah & Nutrisi
-  4. `topik-budidaya.webp` (16:9, 1600×900) — Header hub Budidaya
-  5. `topik-air-irigasi.webp` (16:9, 1600×900) — Header hub Air & Irigasi
-  6. `topik-pascapanen-agribisnis.webp` (16:9, 1600×900) — Header hub Pascapanen & Agribisnis
-  7. `topik-sains-tanaman.webp` (16:9, 1600×900) — Header hub Sains Tanaman
-  8. `kemitraan.webp` (3:2, 1600×1067) — Hero `/kemitraan-distributor/`
-  9. `tentang-kami.webp` (3:2, 1600×1067) — Hero `/tentang-kami/`
-  10. `konsultasi.webp` (3:2, 1600×1067) — Hero `/konsultasi/`
+- **11 Slot Gambar** (dipakai sesuai tabel; kredit terverifikasi dari JSON-LD halaman sumber, lihat `CREDITS.md`):
+
+| Berkas | Rasio | Dipakai di |
+| :--- | :--- | :--- |
+| `hero-beranda.webp` | 5:4 | Hero Beranda (LCP, `fetchpriority=high`, ≤ 90 KB di 390px) |
+| `alat-tani.webp` | 5:4 | Pilar Alat Tani, Beranda |
+| `konsultasi.webp` | 3:2 → 5:4 | Pilar Konsultasi, Beranda · kolom kiri `/konsultasi/` |
+| `kemitraan.webp` | 3:2 → 5:4 | Pilar Kemitraan, Beranda · header `/kemitraan-distributor/` |
+| `tentang-kami.webp` | 3:2 | Gambar utama `/tentang-kami/` |
+| `topik-{topik}.webp` ×6 | 16:9 | Header hub topik |
+
+- **Pengiriman**: selalu lewat `<Picture>`/`<Image>` `astro:assets` dengan `widths` + `sizes` dan `quality` 52–60; kelas grid diletakkan di `pictureAttributes`, bukan di `<img>`. Gambar pilar dekoratif memakai `alt=""`; gambar yang membawa isi memakai `alt` deskriptif.
 - **Placeholder Non-Foto**:
   - Kemasan produk: kotak `tint` bertuliskan "Foto kemasan menyusul" (OQ-5).
-  - Foto Prof. Arif: avatar lingkaran `brand` dengan inisial "AP" (OQ-4).
+  - Foto Prof. Arif: kotak persegi radius 2px berlatar `brand` dengan inisial "AP" (OQ-4); sudah di Beranda; byline dan profil masih lingkaran sampai T-31.
+  - Pembuatan gambar AI (Higgsfield) dicoba 2026-09-29 dan ditolak paket akun; bila dipakai kelak, hanya untuk ilustrasi konteks tanpa orang, teks, logo, atau produk, dan diberi label di `CREDITS.md`.
 
 ### 3.6. Permukaan bawaan browser
 
@@ -609,14 +611,15 @@ Tidak ada kotak/kartu di Beranda selain tombol komoditas; tidak ada band yang ha
 
 **Konsultasi `/konsultasi/`** (Lapangan) — perilaku §2.7
 
-1. H1 "Konsultasi Pertanian" · siapa yang menjawab · jam layanan.
-2. H2 "Siapkan sebelum bertanya" (daftar) · H2 "Tulis pertanyaan" (form penyusun pesan) → WhatsApp.
-3. H2 "Sebelum menunggu jawaban" → Diagnosa Gejala & artikel terkait · pernyataan panduan, bukan jaminan.
+1. Breadcrumb · H1 "Konsultasi Agronomi Langsung" · satu kalimat. Jam layanan hanya bila OQ-1 terisi (tidak ditampilkan sebagai placeholder).
+2. ≥1024px dua kolom: kiri 5/12 = foto (dummy) · H2 "Siapa yang menjawab?" · H2 "Yang perlu disiapkan" (daftar bernomor); kanan 7/12 = panel form penyusun pesan → satu tombol "Lanjutkan ke WhatsApp" (satu-satunya CTA WhatsApp) · panel sukses teks biasa + nomor tertulis · `<noscript>` nomor resmi.
+3. "Batasan layanan" (teks kecil, tanpa kotak): panduan, bukan jaminan; hubungi PPL/BPTPH untuk wabah.
+4. **Belum dibangun (T-31):** H2 "Sambil menunggu jawaban" → tautan artikel Jurnal per komoditas yang diketik dan Cuaca Tani; Diagnosa Gejala setelah OQ-11.
 
 **Indeks Jurnal `/jurnal/`** (Sains)
 
 1. H1 "Jurnal Tani" + paragraf pengantar (siapa penulisnya, untuk siapa).
-2. Tautan 6 hub topik + hub komoditas yang ada (dua baris tautan yang membungkus di mobile).
+2. `TopicSidebar` (C10): ≥1024px sidebar kiri 3/12 sticky berisi Topik (penanda warna §3.1.1) + Komoditas (hub yang dibangun, jumlah artikel); <1024px deretan tautan yang membungkus di bawah pengantar.
 3. Daftar artikel terbaru: baris (judul serif → dek → metadata topik · waktu baca · tanggal). Paginasi statis `/jurnal/halaman/{n}/` per 30 artikel (150 naskah melewati batas satu halaman); halaman 2+ `index, follow` dengan canonical ke dirinya sendiri.
 
 **Hub Topik `/jurnal/topik/{topik}/`** (Sains)
@@ -624,7 +627,7 @@ Tidak ada kotak/kartu di Beranda selain tombol komoditas; tidak ada band yang ha
 1. Breadcrumb · H1 nama topik ("Proteksi Tanaman: Hama & Penyakit").
 2. Pengantar 80–150 kata dari `src/content/pages/topik-{topik}.md` (opsional sampai OQ-12) + gambar header 16:9 (dummy sampai OQ-5), garis warna topik 3px di atas H1 (§3.1.1).
 2a. Sidebar topik kiri (C10).
-3. Tautan hub komoditas yang punya artikel di topik ini.
+3. Hub komoditas tampil di `TopicSidebar` (sidebar ≥1024px, di bawah daftar pada mobile).
 4. Daftar artikel topik (baris; paginasi statis per 30 bila perlu).
 5. Tautan alat relevan (mis. Proteksi Tanaman → Diagnosa Gejala; Air & Irigasi → Cuaca Tani).
 
@@ -633,8 +636,9 @@ Tidak ada kotak/kartu di Beranda selain tombol komoditas; tidak ada band yang ha
 1. Breadcrumb · H1 "{Komoditas}: Panduan Budidaya & Penanganan".
 2. Pengantar (opsional, `src/content/pages/komoditas-{komoditas}.md`).
 3. Tautan "Diagnosa gejala {komoditas}" (bila ada data gejala tertinjau) dan "Kalender tanam {komoditas}" (bila ada kalender tertinjau).
-4. Artikel komoditas dikelompokkan per topik.
-5. Produk relevan (hanya yang komoditasnya cocok, maksimal 2 baris, referensi).
+4. Artikel komoditas: sekarang satu daftar urut tanggal; **pengelompokan per topik belum dibangun (T-31)**, cukup setelah hub punya ≥ 2 topik.
+5. Produk relevan (hanya yang komoditasnya cocok, maksimal 2 baris, referensi) — **belum dibangun (T-31)**.
+6. `TopicSidebar` dengan komoditas aktif ditandai.
 
 **Artikel `/jurnal/{slug}/`** (Sains) — anatomi lengkap §4.3.
 
@@ -654,11 +658,11 @@ Tidak ada kotak/kartu di Beranda selain tombol komoditas; tidak ada band yang ha
 
 **Detail Produk `/produk/{slug}/`** (Lapangan)
 
-1. Breadcrumb · H1 nama produk · tagline yang lolos aturan klaim · komoditas sasaran.
+1. Breadcrumb · H1 nama produk · peran (hijau) · tagline (`soil`, teks biasa, bukan pill) · ringkasan · "Komoditas sasaran:" sebagai teks berkoma (bukan chip).
 2. Foto kemasan asli (OQ-5) atau tanpa gambar.
-3. Sub-navigasi anchor: Fungsi · Kandungan · Cara Pakai · Legalitas.
+3. Sub-navigasi anchor dalam garis rambut atas-bawah (tanpa kotak, tanpa sticky): Fungsi & Peran · Kandungan · Aplikasi & Dosis · Keaslian Kemasan. Bagian Legalitas (nomor izin edar) ditambahkan setelah OQ-2.
 4. Fungsi (klaim yang diizinkan) · Kandungan sesuai label · Cara pakai & dosis dari label (tabel `tabular-nums`) · Legalitas: nomor izin edar + cara cek keaslian.
-5. "Tanya dosis untuk lahan Anda" → WhatsApp terisi nama produk · artikel terkait komoditasnya.
+5. Judul section `.pillar-title`; isi tanpa panel berbingkai. "Panduan Terkait di Jurnal Tani" = 3 `ArticleRow` terbaru dengan komoditas yang sama. Terakhir: `ConsultPrompt` gaya sekunder "Tanya dosis untuk lahan Anda" → WhatsApp terisi nama produk.
 6. Tanpa harga, keranjang, marketplace, testimoni.
 
 **Tentang Kami `/tentang-kami/`** (Sains)
@@ -671,14 +675,14 @@ Tidak ada kotak/kartu di Beranda selain tombol komoditas; tidak ada band yang ha
 
 **Kemitraan `/kemitraan-distributor/`** (Lapangan) — perilaku form di §2.3
 
-1. H1 "Ajukan Kemitraan Distributor" · siapa yang cocok (kios saprotan, distributor daerah, kebun/perkebunan, kelompok tani).
-2. Alur `01–03` · yang disiapkan calon mitra.
-3. Form (desktop: kolom kanan 5/12; mobile: di bawah alur).
-4. Setelah kirim: "Lanjutkan percakapan di WhatsApp" + nomor tertulis.
+1. Breadcrumb · header dua kolom: H1 "Kemitraan Distributor & Kios" + paragraf siapa yang cocok (7/12) · foto gudang (5/12, dummy).
+2. "Alur Kemitraan Distributor": judul 4/12 kiri, daftar bernomor 1–3 (urutan nyata) 8/12 kanan, dipisah garis rambut.
+3. H2 "Formulir Pengajuan Kemitraan" + `PartnerForm` (maks 56rem, di bawah alur di semua lebar).
+4. Setelah kirim: "Lanjutkan percakapan di WhatsApp" + nomor tertulis. Penyimpanan server hanya bila ADR-0001 §2b diterima (OQ-13).
 
 **Kebijakan Privasi `/kebijakan-privasi/`** (Sains) — prosa 68ch, tanggal berlaku, identitas pengelola (OQ-7), tanpa cookie/pelacak, data form hanya lewat WhatsApp; Cuaca Tani mengirim kode desa yang dipilih langsung ke BMKG (alamat IP pengguna terlihat oleh BMKG); pilihan alat disimpan hanya di perangkat pengguna (`localStorage`) dan bisa dihapus lewat pengaturan browser.
 
-**Cari `/cari/`** (Lapangan, `noindex`) — H1 "Cari di Jurnal Tani" · kotak cari (label terlihat) · hasil Pagefind berupa baris artikel · kosong: saran "coba nama tanaman + gejala" + tautan Diagnosa Gejala.
+**Cari `/cari/`** (Lapangan, `noindex`) — H1 "Pencarian Jurnal Tani" · kotak cari (label terlihat) · hasil Pagefind berupa baris artikel · kosong: saran "coba nama tanaman + gejala" + tautan Diagnosa Gejala.
 
 **404** (Lapangan, `noindex`) — H1 "Halaman tidak ditemukan" · tautan Diagnosa Gejala, Jurnal Tani, Beranda · kotak cari.
 
@@ -947,13 +951,15 @@ Search Console & Bing Webmaster (§4.3.7) per halaman: impresi, klik, CTR, posis
 | `ShortAnswer` | Jawaban Singkat (§4.3.1 blok 7) | Tidak ada |
 | `SymptomCompare` | Tabel Pembeda Gejala (§4.3.1 blok 12) | Tidak ada |
 | `ConsultPrompt` | Satu-satunya ajakan WhatsApp di halaman yang mengizinkannya (§2.8) + pesan terisi | Tidak ada |
-| `CommodityPicker` | Tombol komoditas → `/alat/diagnosa-gejala/?k=` (homepage), label + `ChevronRight` | Tidak ada (tautan) |
+| `CommodityPicker` | Tombol komoditas di hero Beranda; tujuan dinamis: Diagnosa Gejala bila ada gejala tertinjau, jika tidak hub komoditas yang dibangun (§2.2) | Tidak ada (tautan) |
 | `TriageFilter` | Langkah 1–4 dari data `symptoms`, sinkron URL, state §2.2 | Script kecil |
 | `FieldSummaryBox` | Ringkasan Lapangan dari `fieldTakeaways` yang terisi | Tidak ada |
 | `ArticleToc` | Daftar Isi + penanda bagian aktif | Enhancement kecil |
 | `References` | Daftar Pustaka dalam `<details>` | Tidak ada |
 | `ArticleRow` | Satu baris indeks artikel (jurnal, hub, penulis, cari, beranda) | Tidak ada |
-| `ProductRow` | Satu baris katalog produk | Tidak ada |
+| `ProductRow` | Satu baris katalog produk terbuka (tanpa kartu/pill; komoditas sebagai teks) | Tidak ada |
+| `TopicSidebar` | Navigasi Topik (penanda warna) + hub Komoditas untuk Jurnal, hub, dan Beranda (C10) | Tidak ada |
+| Kelas pola `.section-title`, `.pillar`, `.pillar-title`, `.pillar-lede`, `.link-more` | Pola editorial Beranda & detail produk (C9–C11), di `src/styles/global.css` | Tidak ada |
 | `PartnerForm` | Validasi native + tautan `wa.me` | Script kecil |
 | `SearchBox` | Pagefind dimuat saat fokus | Lazy |
 | `CropTimeline` | Timeline fase Kalender Tanam + unduh `.ics` | Script kecil |

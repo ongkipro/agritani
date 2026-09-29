@@ -360,3 +360,15 @@ Kandidat saat keputusan diambil (belum dievaluasi, versi & API wajib dicek dari 
 | CMS database (headless) | Payload, Directus, Strapi | Banyak editor, alur persetujuan, penjadwalan; membutuhkan server + database dan memindahkan konten keluar dari repo |
 
 Pertanyaan yang menentukan pilihan (dicatat di PRD OQ-10): siapa editornya, berapa orang, perlu alur tinjau/setujui, perlu jadwal terbit, dan apakah editor mau memakai akun GitHub.
+
+## 7. Penyimpanan Cloudflare D1 / R2 (diusulkan, belum dibangun)
+
+Keputusan dan panduan lengkap: [ADR-0001](docs/adr/ADR-0001-cloudflare-d1-r2.md) (PROPOSED).
+Yang berlaku sekarang: tidak ada Worker script, D1, atau R2; `wrangler.jsonc` hanya
+`assets` + custom domain (tanpa `main`, D1, atau R2). Bila diterima:
+
+| Increment | Pemicu | Perubahan arsitektur | Task |
+| :--- | :--- | :--- | :--- |
+| R2 media | Pustaka foto asli / media CMS | Bucket baca-publik di subdomain media; `astro:assets` tetap mengoptimasi saat build; CSP `img-src` + host media | T-29 |
+| D1 lead kemitraan | Pemilik memutuskan pengajuan disimpan | Worker hanya untuk `/api/*` (`run_worker_first`); binding `DB`; migrasi versi; Turnstile (CSP `script-src`/`frame-src`); kebijakan privasi diperbarui; alur WhatsApp tetap | T-30 |
+

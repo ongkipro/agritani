@@ -75,6 +75,10 @@ Berlaku untuk agent maupun manusia. Detail aturan agent ada di [AGENTS.md](AGENT
 | T-25 | Konten terbit: Jawaban Singkat, judul tanpa klaim absolut, pengantar hub, tinjauan data | REQ-03 | REQ-05, REQ-09, DEC-015 | R1 | — | T-03 | Device lain (naskah), OQ-3, OQ-11, OQ-12 | Terblokir refs batch 1 / Branch konten paralel |
 | T-26 | Gambar dummy WebP (10 slot) | REQ-01 | REQ-08, OQ-5 | R1 | — | T-01 | — | Done 2026-09-29 |
 | T-27 | Beranda & polish UI mengikuti referensi teagasc.ie | REQ-01 | REQ-08, DESIGN §4.1 C9–C11 | R1 | — | T-08, T-26 | — | Done 2026-09-29 |
+| T-28 | ADR-0001: dokumen & panduan D1/R2 (tanpa implementasi) | REQ-08 | DEC-004, DEC-006 | R1 | — | — | — | Done 2026-09-30 |
+| T-29 | R2 untuk media foto asli | REQ-08 | ADR-0001 §2a, OQ-5 | R2 | — | T-28 | Foto asli dari pemilik + ADR-0001 diterima + persetujuan pembuatan resource | Diblokir (pemicu belum terjadi) |
+| T-30 | D1 penyimpanan pengajuan kemitraan | REQ-02 | ADR-0001 §2b, OQ-13, DEC-006 | R3 | — | T-28 | Keputusan OQ-13 + ADR-0001 diterima + kebijakan privasi disetujui | Diblokir (menunggu OQ-13) |
+| T-31 | Celah anatomi & kebutuhan UI/UX lanjutan | REQ-01 | DESIGN §4.2.3, §3.5.1, §6 | R1 | — | T-27 | — | Siap dikerjakan |
 | T-24 | Rilis produksi & observability | REQ-08 | RELEASE.md, OBSERVABILITY.md | R2 | — | T-15, T-18 | OQ-6 + **persetujuan deploy Paduka Ongki** | Menunggu persetujuan deploy |
 
 Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 → T-23 → T-04 → T-03 → T-05 → (T-06, T-07, T-13, T-14) → T-21 → T-22 → T-09 → T-19 → T-20 → T-26 → T-08 → T-10 → T-17 → T-11 → T-12 → T-16 & T-25 (jalur konten, paralel) → T-18 → T-15 → T-24.
@@ -266,6 +270,32 @@ Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 → T-23 → T-04
 - **Allowed paths:** `src/**`, `DESIGN.md`, `TASKS.md`, `STATUS.md`
 - **Scope:** Rekomposisi Beranda (baris editorial 3 kolom + indeks topik, pilar bergambar berselang, produk, moderator, kemitraan bergambar); warna topik dan sidebar hub Jurnal; hapus kicker, kotak, dan chip dari detail produk; gambar dummy tambahan `alat-tani.webp` (Pixabay, tercatat di CREDITS).
 - **Done when:** build produksi lulus seluruh pemeriksaan (termasuk `check-links`); Beranda dan halaman yang diubah dirender dan dilihat di 390 dan 1440 px; bobot Beranda ≤ 350 KB, hero ≤ 90 KB di 390 px.
+
+### T-29 — R2 untuk media foto asli
+- **Primary:** REQ-08 · **Constraints:** ADR-0001 §2a, OQ-5 · **Risk:** R2
+- **Owner skill:** `cloudflare`, `wrangler`, `astro-development`, `web-perf`, `application-security` (CSP)
+- **Allowed paths:** `wrangler.jsonc`, `astro.config.*`, `public/_headers`, `scripts/check-csp.mjs`, `src/content/**`, `src/data/**`, `src/assets/**`, `ARCHITECTURE.md`, `DECISIONS.md`
+- **Scope:** Ikuti runbook ADR-0001 §4 (R2). Verifikasi ulang prosedur bucket publik + domain kustom di dokumentasi R2 saat pengerjaan.
+- **Done when:** gambar dari R2 tetap keluar sebagai WebP responsif hasil build; CSP hanya menambah host media di `img-src`; `npm run build` lulus; bobot halaman tetap dalam budget DESIGN §6.1.
+
+### T-30 — D1 penyimpanan pengajuan kemitraan
+- **Primary:** REQ-02 · **Constraints:** ADR-0001 §2b, OQ-13, DEC-006 · **Risk:** R3 (data pribadi, runtime baru)
+- **Owner skill:** `cloudflare`, `wrangler`, `application-security`, `testing-engineering`, `astro-development`
+- **Allowed paths:** `wrangler.jsonc`, `worker/**` (atau entri Worker yang dipilih), `migrations/**`, `src/components/PartnerForm.astro`, `src/pages/kemitraan-distributor.astro`, `src/pages/kebijakan-privasi.astro`, `public/_headers`, `scripts/check-csp.mjs`, `DESIGN.md` §2.3, `ARCHITECTURE.md`, `DECISIONS.md`
+- **Scope:** Ikuti runbook ADR-0001 §4 (D1): Worker hanya `/api/*`, migrasi tabel pengajuan, validasi server, Turnstile, insert terparameter, hand-off WhatsApp tetap, kebijakan privasi (tujuan, retensi, penghapusan).
+- **Done when:** tes `node --test` untuk validasi dan handler; `wrangler dev` + bukti browser formulir (sukses, gagal validasi, gagal Turnstile); tidak ada secret di repo; review independen (R3) PASS; deploy hanya dengan persetujuan.
+
+### T-31 — Celah anatomi & kebutuhan UI/UX lanjutan
+- **Primary:** REQ-01 · **Constraints:** DESIGN §4.2.3, §3.5.1, §6 · **Risk:** R1
+- **Owner skill:** `design-taste`, `impeccable`, `ui-validation`, `astro-development`
+- **Allowed paths:** `src/**`, `DESIGN.md`, `TASKS.md`
+- **Scope (hasil audit DESIGN vs build 2026-09-30):**
+  1. Konsultasi: section "Sambil menunggu jawaban" (DESIGN §4.2.3 Konsultasi butir 4); tambahkan "luas lahan" ke daftar yang perlu disiapkan (DESIGN §2.7).
+  2. Hub komoditas: artikel dikelompokkan per topik bila ≥ 2 topik; maksimal 2 baris produk yang komoditasnya cocok.
+  3. Avatar inisial "AP" persegi radius 2px di `AuthorByline` dan `AuthorBio` (saat ini lingkaran; DESIGN §3.5.1).
+  4. Setelah OQ-2: bagian Legalitas (nomor izin edar) di detail produk dan kolom izin di tabel `/produk/`.
+  5. Setelah OQ-5: ganti 11 gambar dummy dengan foto asli; foto kemasan di detail produk; foto Prof. Arif (OQ-4).
+- **Done when:** butir 1–3 terbangun dan dirender di 390 & 1440 px; build produksi lulus seluruh pemeriksaan; butir 4–5 tetap terbuka sampai data pemilik ada.
 
 ### T-24 — Rilis produksi & observability
 - **Primary:** REQ-08 · **Constraints:** RELEASE.md, OBSERVABILITY.md · **Risk:** R2

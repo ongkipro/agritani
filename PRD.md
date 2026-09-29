@@ -152,6 +152,7 @@ dibutuhkan implementasi; kolom "Status" diperbarui saat data diterima.
 | OQ-9 | Klaim produk yang diizinkan | Konfirmasi per klaim di DESIGN §2.5 + bukti uji bila klaim hasil dipertahankan | Tagline & fungsi produk (T-11) | Belum; klaim berisiko ditahan |
 | OQ-11 | Tinjauan agronomis Prof. Arif Prabowo: (a) data kalender tanam per komoditas (HST, fase, kegiatan, jendela OPT, MT1–MT3) yang disemai dari agrimarket; (b) ambang indikator aplikasi lapangan Cuaca Tani; (c) dataset gejala awal dari playbook agrimarket | Catatan setuju/revisi per komoditas dan per ambang (boleh berupa komentar di dokumen) | Kalender Tanam, Cuaca Tani, Diagnosa (T-09, T-19, T-20) | Belum |
 | OQ-12 | Pengantar 80–150 kata untuk tiap hub topik (6) dan hub komoditas utama, ditulis/disetujui Prof. Arif | Teks Markdown per hub | Hub `/jurnal/topik/…` (T-05) | Belum; hub tanpa pengantar tetap tampil dengan daftar artikel saja |
+| OQ-13 | Apakah pengajuan kemitraan perlu disimpan di server (D1) selain dikirim via WhatsApp? Bila ya: siapa yang membaca, berapa lama disimpan, dan teks persetujuan | Keputusan pemilik + retensi (bulan) + teks persetujuan | T-30, ADR-0001, Kebijakan Privasi | Belum; default: tidak disimpan (DEC-006) |
 
 ### 8.2. Penting, tidak memblokir rilis
 
