@@ -73,9 +73,10 @@ Berlaku untuk agent maupun manusia. Detail aturan agent ada di [AGENTS.md](AGENT
 | T-22 | Konsultasi `/konsultasi/` + indeks `/alat/` | REQ-12 | G-6, REQ-08 | R1 | ✓ | T-04 | OQ-1 | Pending |
 | T-23 | CI GitHub Actions: build, check, test, kontras, SEO | REQ-08 | REQ-07 | R1 | — | T-01 | — | Pending |
 | T-25 | Konten terbit: Jawaban Singkat, judul tanpa klaim absolut, pengantar hub, tinjauan data | REQ-03 | REQ-05, REQ-09, DEC-015 | R1 | — | T-03 | Device lain (naskah), OQ-3, OQ-11, OQ-12 | Pending |
+| T-26 | Gambar dummy WebP (10 slot) | REQ-01 | REQ-08, OQ-5 | R1 | — | T-01 | — | Pending |
 | T-24 | Rilis produksi & observability | REQ-08 | RELEASE.md, OBSERVABILITY.md | R2 | — | T-15, T-18 | OQ-6 + **persetujuan deploy Paduka Ongki** | Pending |
 
-Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 ‖ T-23 → T-04 → T-03 → T-05 → (T-06, T-07, T-13, T-14) → T-21 → T-22 → T-09 → T-19 → T-20 → T-08 → T-10 → T-17 → T-11/T-12 (saat OQ terjawab) → T-16 & T-25 (jalur konten, paralel) → T-18 → T-15 → T-24.
+Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 → T-23 → T-04 → T-03 → T-05 → (T-06, T-07, T-13, T-14) → T-21 → T-22 → T-09 → T-19 → T-20 → T-26 → T-08 → T-10 → T-17 → T-11 → T-12 → T-16 & T-25 (jalur konten, paralel) → T-18 → T-15 → T-24.
 
 ---
 
@@ -250,6 +251,13 @@ Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 ‖ T-23 → T-04
 - **Koordinasi:** naskah artikel dikerjakan di device lain; task ini hanya berjalan setelah naskah terbaru di-pull, dan tidak menyentuh isi artikel di luar field di atas.
 - **Scope:** Jawaban Singkat 40–60 kata per artikel (ditulis/disetujui penulis); revisi 6 judul berklaim absolut ("100%", "Ampuh", "Tuntas" — artikel-10x penyerbukan vanili/durian, pengendalian rumput teki, usir siput, parit isolasi Ganoderma, sambung pucuk, dormansi benih padi) sesuai DESIGN §1.3; pengantar hub (OQ-12); pencatatan persetujuan data kalender/gejala/ambang (OQ-11). Artikel diubah ke `draft: false` hanya bila integritas (ARCHITECTURE §3.1) lulus. Skala: 150 naskah — terbitkan bertahap per topik, dimulai dari `proteksi-tanaman` (paling dekat dengan Diagnosa Gejala).
 - **Done when:** `npm run build` produksi lulus dengan artikel terbit; daftar artikel terbit vs draft dan catatan persetujuan Prof. Arif (tanggal, cakupan) tercatat di BUILD-LOG.
+
+### T-26 — Gambar dummy WebP (10 slot)
+- **Primary:** REQ-01 · **Constraints:** REQ-08, OQ-5 · **Risk:** R1
+- **Owner skill:** `content`, `web-perf`, `ui-validation`
+- **Allowed paths:** `src/assets/images/dummy/**`, `scripts/to-webp.mjs`, `package.json`, `package-lock.json`
+- **Scope:** Dari `docs/notes/agritani-T26-gambar-dummy.md` dan DESIGN §3.5.1. Unduh 10 foto lanskap/tanaman tropis bebas royalti (Pexels/Unsplash/Pixabay). Kompres ke WebP dengan `sharp` via `scripts/to-webp.mjs`. Simpan ke `src/assets/images/dummy/` dengan `CREDITS.md` lengkap. File sumber ≤ 250 KB per file.
+- **Done when:** 10 file WebP ada di `src/assets/images/dummy/`; tidak ada format lain (.jpg/.png); `CREDITS.md` mencatat URL, fotografer, sumber, lisensi; semua berstatus "DUMMY — ganti (OQ-5)".
 
 ### T-24 — Rilis produksi & observability
 - **Primary:** REQ-08 · **Constraints:** RELEASE.md, OBSERVABILITY.md · **Risk:** R2

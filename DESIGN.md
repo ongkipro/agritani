@@ -435,6 +435,28 @@ Aturan pemakaian:
 - Teknis: `astro:assets`, `width`/`height` eksplisit, AVIF/WebP, hero ≤ 90 KB di 390px; `alt` mendeskripsikan isi agronomis.
 - Bila tidak ada foto layak, region lapangan tetap lengkap tanpa foto (lihat C3). Situs harus tetap berfungsi tanpa gambar.
 
+#### 3.5.1. Gambar Dummy Sementara (T-26)
+
+Diminta Paduka Ongki 2026-09-29 agar situs tidak kosong sebelum foto asli (OQ-5) tersedia. Semua gambar di sini berstatus sementara dan wajib diganti foto asli.
+
+- **Sumber & Lisensi**: Pexels, Unsplash, atau Pixabay. Gratis komersial, atribusi dicatat di `src/assets/images/dummy/CREDITS.md`.
+- **Aturan Pemilihan**: Lanskap/tanaman tropis Indonesia (sawit, padi, cabai, sayuran, irigasi, kios). Tanpa wajah yang dapat dikenali, tanpa traktor asing, tanpa merek pihak ketiga. Dilarang untuk kemasan produk, foto profil penulis, atau foto gejala penyakit.
+- **Format**: WebP wajib (`quality: 72`, sharp), file sumber ≤ 250 KB.
+- **10 Slot Gambar**:
+  1. `hero-beranda.webp` (5:4, 1600×1280) — Kolom media hero Beranda
+  2. `topik-proteksi-tanaman.webp` (16:9, 1600×900) — Header hub Proteksi Tanaman
+  3. `topik-tanah-nutrisi.webp` (16:9, 1600×900) — Header hub Tanah & Nutrisi
+  4. `topik-budidaya.webp` (16:9, 1600×900) — Header hub Budidaya
+  5. `topik-air-irigasi.webp` (16:9, 1600×900) — Header hub Air & Irigasi
+  6. `topik-pascapanen-agribisnis.webp` (16:9, 1600×900) — Header hub Pascapanen & Agribisnis
+  7. `topik-sains-tanaman.webp` (16:9, 1600×900) — Header hub Sains Tanaman
+  8. `kemitraan.webp` (3:2, 1600×1067) — Hero `/kemitraan-distributor/`
+  9. `tentang-kami.webp` (3:2, 1600×1067) — Hero `/tentang-kami/`
+  10. `konsultasi.webp` (3:2, 1600×1067) — Hero `/konsultasi/`
+- **Placeholder Non-Foto**:
+  - Kemasan produk: kotak `tint` bertuliskan "Foto kemasan menyusul" (OQ-5).
+  - Foto Prof. Arif: avatar lingkaran `brand` dengan inisial "AP" (OQ-4).
+
 ### 3.6. Permukaan bawaan browser
 
 Diberi tema dari palet, bukan dibiarkan default: `::selection` (latar `--color-harvest`, teks `--color-text`), `caret-color: var(--color-brand-strong)`, `accent-color: var(--color-brand)` untuk radio/checkbox native, tautan `text-underline-offset: 0.2em` + `text-decoration-thickness: 1px` (2px saat hover), `font-variant-numeric: tabular-nums` di tabel, `scroll-margin-top` setinggi header untuk target anchor, `scrollbar-color` netral hanya pada wrapper tabel.
