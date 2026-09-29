@@ -1,22 +1,23 @@
 ---
 title: "Potensi dan Pengelolaan Tanah Andosol: Surga Sayuran Dataran Tinggi"
+metaTitle: "Kesuburan Tanah Andosol Vulkanik: Lahan Sayur Subur"
+description: "Pelajari potensi luar biasa tanah andosol abu vulkanik di lereng gunung, masalah pengikatan fosfat oleh alofan, dan teknik pemupukan efisien."
 slug: "potensi-dan-pengelolaan-tanah-andosol-vulkanik"
-category: "Ilmu Tanah & Kesuburan Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "padi"
+  - "bawang-merah"
+  - "sayuran-daun"
 tags:
   - "tanah andosol vulkanik subur"
   - "karakteristik tanah andisol lereng"
   - "masalah fiksasi fosfat alofan"
   - "kesuburan tanah dataran tinggi"
   - "budidaya hortikultura tanah andosol"
-meta_title: "Kesuburan Tanah Andosol Vulkanik: Lahan Sayur Subur"
-meta_description: "Pelajari potensi luar biasa tanah andosol abu vulkanik di lereng gunung, masalah pengikatan fosfat oleh alofan, dan teknik pemupukan efisien."
+draft: true
 ---
-
-# Potensi dan Pengelolaan Tanah Andosol: Surga Sayuran Dataran Tinggi
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Tanah Andosol terbentuk dari abu vulkanik muda di dataran tinggi dengan kandungan bahan organik tinggi, warna hitam pekat, dan tekstur sangat remah.

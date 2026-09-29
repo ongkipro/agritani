@@ -1,22 +1,22 @@
 ---
 title: "Sains Biostimulan Chitosan: Vaksin Alami Pelindung Dinding Sel Tanaman"
+metaTitle: "Manfaat Chitosan untuk Tanaman: Vaksin Imunitas Alami"
+description: "Mengenal peran biostimulan kitosan dari kulit udang dalam memicu ketahanan sistemik tanaman dari serangan jamur dan nematoda tanah."
 slug: "sains-chitosan-biostimulan-imunitas-tanaman"
-category: "Nutrisi Tanaman & Biostimulan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "padi"
+  - "tomat"
 tags:
   - "manfaat chitosan untuk tanaman"
   - "biostimulan kitosan cair"
   - "vaksin alami kekebalan tanaman"
   - "pengendalian jamur dengan kitosan"
   - "pupuk organik kulit udang"
-meta_title: "Manfaat Chitosan untuk Tanaman: Vaksin Imunitas Alami"
-meta_description: "Mengenal peran biostimulan kitosan dari kulit udang dalam memicu ketahanan sistemik tanaman dari serangan jamur dan nematoda tanah."
+draft: true
 ---
-
-# Sains Biostimulan Chitosan: Vaksin Alami Pelindung Dinding Sel Tanaman
 
 Tuntutan menghasilkan panen sehat tanpa residu racun kimia mendorong riset agronomi melirik salah satu senyawa pelindung alami terbaik: **Chitosan (Kitosan)**.
 

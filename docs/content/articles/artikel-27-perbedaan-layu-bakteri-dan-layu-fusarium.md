@@ -1,22 +1,23 @@
 ---
 title: "Perbedaan Layu Bakteri dan Fusarium: Cara Deteksi dan Obat"
+metaTitle: "Perbedaan Layu Bakteri dan Fusarium: Cara Deteksi dan Obat"
+description: "Panduan membedakan layu bakteri dan layu fusarium lewat uji gelas air serta langkah pengendalian terpadu agar kebun cabai selamat dari kematian mendadak."
 slug: "perbedaan-layu-bakteri-dan-layu-fusarium"
-category: "Patologi Tanaman & Hortikultura"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "padi"
+  - "cabai"
+  - "tomat"
 tags:
   - "perbedaan layu fusarium dan layu bakteri"
   - "cara mengatasi layu bakteri cabai"
   - "gejala ralstonia solanacearum"
   - "uji gelas air layu tanaman"
   - "obat layu tanaman cabai"
-meta_title: "Perbedaan Layu Bakteri dan Fusarium: Cara Deteksi dan Obat"
-meta_description: "Panduan membedakan layu bakteri dan layu fusarium lewat uji gelas air serta langkah pengendalian terpadu agar kebun cabai selamat dari kematian mendadak."
+draft: true
 ---
-
-# Membedakan Layu Bakteri vs Layu Fusarium: Uji Gelas Air Sederhana dan Cara Penanganannya
 
 Bagi petani cabai, tomat, dan terong di Indonesia, tidak ada pemandangan yang lebih memilukan dibanding melihat bedengan tanaman yang kemarin berdiri tegak berbuah lebat, mendadak lunglai layu terkulai ke tanah.
 

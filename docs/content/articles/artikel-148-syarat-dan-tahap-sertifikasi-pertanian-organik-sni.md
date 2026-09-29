@@ -1,22 +1,25 @@
 ---
 title: "Syarat dan Tahap Sertifikasi Pertanian Organik SNI Kementan"
+metaTitle: "Syarat & Tahap Sertifikasi Pertanian Organik SNI Kementan"
+description: "Panduan lengkap sertifikasi pangan organik SNI 6729: masa konversi lahan, jarak zona penyangga buffer zone, dan audit Lembaga Sertifikasi Organik LSO."
 slug: "syarat-dan-tahap-sertifikasi-pertanian-organik-sni"
-category: "Bioteknologi, Agribisnis & Pasca Panen"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "pascapanen-agribisnis"
+commodities:
+  - "padi"
+  - "jagung"
+  - "kopi"
+  - "kakao"
+  - "sayuran-daun"
 tags:
   - "sertifikasi pertanian organik kementan"
   - "standar sni 6729 sistem pertanian organik"
   - "masa konversi lahan pertanian organik"
   - "zona penyangga buffer zone kebun organik"
   - "audit lembaga sertifikasi organik lso kan"
-meta_title: "Syarat & Tahap Sertifikasi Pertanian Organik SNI Kementan"
-meta_description: "Panduan lengkap sertifikasi pangan organik SNI 6729: masa konversi lahan, jarak zona penyangga buffer zone, dan audit Lembaga Sertifikasi Organik LSO."
+draft: true
 ---
-
-# Syarat dan Tahap Sertifikasi Pertanian Organik SNI Kementan
 
 Beras organik, sayuran organik, dan kopi organik memiliki selisih harga jual 30 hingga 100 persen lebih mahal di pasar modern jika dibandingkan dengan komoditas pertanian konvensional. Namun, petani tidak boleh sembarangan menempelkan label kata "Organik" pada kemasan produk tanpa mengantongi sertifikat resmi berlogo Organik Indonesia dari Kementerian Pertanian Republik Indonesia.
 

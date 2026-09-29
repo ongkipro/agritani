@@ -1,22 +1,23 @@
 ---
 title: "Mengenal Peranan Pupuk NPK: Kapan Waktu Tepat Menggunakan Rasio N Tinggi vs PK Tinggi?"
+metaTitle: "Panduan Pupuk NPK: Waktu Tepat Rasio N dan PK"
+description: "Pahami fungsi Nitrogen, Fosfor, dan Kalium serta waktu peralihan pupuk N tinggi ke PK tinggi agar bunga tanaman tidak rontok."
 slug: "peranan-npk-fase-vegetatif-generatif"
-category: "Nutrisi Tanaman & Kesuburan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "padi"
+  - "jagung"
+  - "cabai"
 tags:
   - "fungsi pupuk npk tanaman"
   - "kapan waktu pupuk tinggi k"
   - "perbedaan vegetatif generatif"
   - "cara mencegah bunga rontok"
   - "dosis npk yang benar"
-meta_title: "Panduan Pupuk NPK: Waktu Tepat Rasio N dan PK"
-meta_description: "Pahami fungsi Nitrogen, Fosfor, dan Kalium serta waktu peralihan pupuk N tinggi ke PK tinggi agar bunga tanaman tidak rontok."
+draft: true
 ---
-
-# Mengenal Peranan Pupuk NPK: Kapan Waktu Tepat Menggunakan Rasio N Tinggi vs PK Tinggi?
 
 > **Key Takeaways**:
 > 1. Nitrogen (N) menggerakkan pertumbuhan vegetatif (daun dan cabang), Fosfor (P) membangun energi perakaran dan inisiasi bunga, sedangkan Kalium (K) membesarkan dan memaniskan buah.

@@ -1,22 +1,21 @@
 ---
 title: "Peranan Kalsium dan Boron: Kunci Mencegah Kerontokan Bunga dan Buah Cabai"
+metaTitle: "Fungsi Kalsium dan Boron untuk Cabai: Anti Rontok"
+description: "Pahami peranan kalsium dan boron dalam memperkuat tangkai bunga cabai, mencegah busuk ujung buah, dan melipatgandakan hasil panen hortikultura."
 slug: "peranan-kalsium-dan-boron-mencegah-rontok-cabai"
-category: "Fisiologi Nutrisi Tanaman"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "cabai"
 tags:
   - "fungsi kalsium dan boron untuk cabai"
   - "cara mencegah bunga cabai rontok"
   - "pupuk kalsium boron terbaik"
   - "mengatasi buah cabai busuk pantat"
   - "nutrisi fase pembungaan cabai"
-meta_title: "Fungsi Kalsium dan Boron untuk Cabai: Anti Rontok"
-meta_description: "Pahami peranan kalsium dan boron dalam memperkuat tangkai bunga cabai, mencegah busuk ujung buah, dan melipatgandakan hasil panen hortikultura."
+draft: true
 ---
-
-# Peranan Kalsium dan Boron: Kunci Mencegah Kerontokan Bunga dan Buah Cabai
 
 Melihat tanaman cabai berbunga lebat tentu membahagiakan hati setiap petani. Namun, kebahagiaan itu sering kali sirna seketika saat memasuki musim penghujan: ribuan kuntum bunga yang baru mekar mendadak menguning dan rontok berserakan di atas mulsa plastik.
 

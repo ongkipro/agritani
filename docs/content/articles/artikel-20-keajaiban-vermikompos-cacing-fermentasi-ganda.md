@@ -1,22 +1,22 @@
 ---
 title: "Keajaiban Vermikompos: Mengapa Kompos Kascing Cacing Jauh Lebih Unggul dari Kompos Biasa?"
+metaTitle: "Manfaat Kascing Vermikompos: Pupuk Cacing Organik"
+description: "Keunggulan pupuk kascing cacing tanah yang mengandung jutaan mikroba rizosfer aktif serta hormon alami pemacu tumbuh perakaran tanaman."
 slug: "keajaiban-vermikompos-cacing-fermentasi-ganda"
-category: "Kesuburan Tanah & Pupuk Organik"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "sayuran-daun"
+  - "cabai"
 tags:
   - "manfaat kascing untuk tanaman"
   - "cara membuat vermikompos"
   - "pupuk kotoran cacing tanah"
   - "keunggulan kompos kascing"
   - "asam humat kascing cacing"
-meta_title: "Manfaat Kascing Vermikompos: Pupuk Cacing Organik"
-meta_description: "Keunggulan pupuk kascing cacing tanah yang mengandung jutaan mikroba rizosfer aktif serta hormon alami pemacu tumbuh perakaran tanaman."
+draft: true
 ---
-
-# Keajaiban Vermikompos: Mengapa Kompos Kascing Cacing Jauh Lebih Unggul dari Kompos Biasa?
 
 > **Key Takeaways**:
 > 1. Vermikompos (kascing) dihasilkan melalui pengolahan bahan organik oleh cacing tanah (Eisenia fetida atau Lumbricus rubellus) yang telah melalui fermentasi ganda.

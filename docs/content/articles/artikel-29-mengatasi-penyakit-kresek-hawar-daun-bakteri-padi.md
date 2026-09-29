@@ -1,22 +1,21 @@
 ---
 title: "Mengatasi Penyakit Kresek Padi (Hawar Daun Bakteri): Gejala dan Obat Alaminya"
+metaTitle: "Cara Mengatasi Penyakit Kresek Padi Hawar Bakteri"
+description: "Panduan mengendalikan penyakit kresek hawar daun bakteri Xanthomonas oryzae pada tanaman padi musim hujan lewat pengaturan air dan pupuk silika."
 slug: "mengatasi-penyakit-kresek-hawar-daun-bakteri-padi"
-category: "Tanaman Pangan & Budidaya Padi"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "padi"
 tags:
   - "penyebab penyakit kresek pada padi"
   - "cara mengatasi hawar daun bakteri"
   - "xanthomonas oryzae padi"
   - "obat kresek padi musim hujan"
   - "pupuk pencegah kresek padi"
-meta_title: "Cara Mengatasi Penyakit Kresek Padi Hawar Bakteri"
-meta_description: "Panduan mengendalikan penyakit kresek hawar daun bakteri Xanthomonas oryzae pada tanaman padi musim hujan lewat pengaturan air dan pupuk silika."
+draft: true
 ---
-
-# Mengatasi Penyakit Kresek Padi (Hawar Daun Bakteri): Gejala dan Obat Alaminya
 
 Di hamparan sawah irigasi maupun tadah hujan, penyakit Hawar Daun Bakteri (HDB) yang akrab disebut petani sebagai **Penyakit Kresek** adalah salah satu perusak hasil panen paling ditakuti.
 

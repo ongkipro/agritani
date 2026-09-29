@@ -1,22 +1,23 @@
 ---
 title: "Pemanfaatan Tanaman Penyangga (Barrier Cropping): Tameng Alami Kebun"
+metaTitle: "Barrier Cropping Tanaman Penyangga: Tameng Hama Kebun"
+description: "Teknik menanam tanaman penyangga barrier cropping jagung dan sorgum di sekeliling kebun cabai: menahan angin, menghentikan kutu kebul, dan perangkap hama."
 slug: "pemanfaatan-tanaman-penyangga-barrier-cropping"
-category: "Pengendalian Hama Terpadu & Bioproteksi"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "cabai"
+  - "jagung"
+  - "tomat"
 tags:
   - "barrier cropping tanaman penyangga"
   - "tanaman pagar jagung pelindung cabai"
   - "menghadang hama kutu kebul afid"
   - "penahan angin alami windbreak kebun"
   - "strategi pht ramah lingkungan"
-meta_title: "Barrier Cropping Tanaman Penyangga: Tameng Hama Kebun"
-meta_description: "Teknik menanam tanaman penyangga barrier cropping jagung dan sorgum di sekeliling kebun cabai: menahan angin, menghentikan kutu kebul, dan perangkap hama."
+draft: true
 ---
-
-# Pemanfaatan Tanaman Penyangga (Barrier Cropping): Tameng Alami Kebun
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Barrier cropping adalah penanaman 2–4 baris tanaman rapat berpostur tinggi di sekeliling batas kebun sebagai tameng pelindung fisik tanaman utama.

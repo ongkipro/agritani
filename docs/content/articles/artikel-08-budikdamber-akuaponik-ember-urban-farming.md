@@ -1,22 +1,21 @@
 ---
 title: "Panduan Lengkap Budikdamber: Solusi Panen Ikan dan Sayur Mandiri di Lahan Terbatas"
+metaTitle: "Panduan Budikdamber Lele Kangkung di Ember 80 Liter"
+description: "Cara praktis budikdamber memadukan budidaya ikan lele dan sayuran kangkung dalam ember 80 liter untuk ketahanan pangan keluarga."
 slug: "budikdamber-akuaponik-ember-urban-farming"
-category: "Urban Farming & Lahan Sempit"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "sayuran-daun"
 tags:
   - "cara budikdamber lele kangkung"
   - "akuaponik ember praktis"
   - "urban farming lahan sempit"
   - "budidaya lele rumahan"
   - "panen kangkung di ember"
-meta_title: "Panduan Budikdamber Lele Kangkung di Ember 80 Liter"
-meta_description: "Cara praktis budikdamber memadukan budidaya ikan lele dan sayuran kangkung dalam ember 80 liter untuk ketahanan pangan keluarga."
+draft: true
 ---
-
-# Panduan Lengkap Budikdamber: Solusi Panen Ikan dan Sayur Mandiri di Lahan Terbatas
 
 > **Key Takeaways**:
 > 1. Budikdamber (Budidaya Ikan dalam Ember) memadukan budidaya ikan lele dan sayuran kangkung dalam satu wadah ember 80 liter tanpa memerlukan lahan tanah.

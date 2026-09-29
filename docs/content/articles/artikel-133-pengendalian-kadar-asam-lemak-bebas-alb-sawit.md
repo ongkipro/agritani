@@ -1,22 +1,22 @@
 ---
 title: "Pengendalian Asam Lemak Bebas (ALB) Sawit: Hindari Potongan Harga PKS"
+metaTitle: "Kendalikan Asam Lemak Bebas ALB Sawit: Harga PKS Tinggi"
+description: "Strategi menekan Asam Lemak Bebas ALB / FFA kelapa sawit di bawah 5%: penanganan luka memar TBS, disiplin restan 24 jam, dan panen buah matang tepat."
 slug: "pengendalian-kadar-asam-lemak-bebas-alb-sawit"
-category: "Bioteknologi, Agribisnis & Pasca Panen"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "pascapanen-agribisnis"
+commodities:
+  - "kelapa-sawit"
+  - "sayuran-daun"
 tags:
   - "asam lemak bebas alb kelapa sawit"
   - "free fatty acid ffa cpo sawit"
   - "penyebab kenaikan kadar alb tbs"
   - "menghindari potongan harga pabrik pks"
   - "manajemen buah restan kebun sawit"
-meta_title: "Kendalikan Asam Lemak Bebas ALB Sawit: Harga PKS Tinggi"
-meta_description: "Strategi menekan Asam Lemak Bebas ALB / FFA kelapa sawit di bawah 5%: penanganan luka memar TBS, disiplin restan 24 jam, dan panen buah matang tepat."
+draft: true
 ---
-
-# Pengendalian Asam Lemak Bebas (ALB) Sawit: Hindari Potongan Harga PKS
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Kadar Asam Lemak Bebas (ALB / FFA) adalah indikator mutu utama minyak kelapa sawit mentah (CPO) dengan ambang batas pabrik maksimal 5%.

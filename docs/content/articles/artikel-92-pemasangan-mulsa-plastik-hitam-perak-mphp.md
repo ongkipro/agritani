@@ -1,22 +1,24 @@
 ---
 title: "Pemasangan Mulsa Plastik Hitam Perak (MPHP): Kebun Bersih Panen Melimpah"
+metaTitle: "Pasang Mulsa Plastik Hitam Perak MPHP: Trik Kencang"
+description: "Panduan memasang mulsa plastik hitam perak MPHP di bedengan: trik menarik plastik saat terik matahari, mengusir hama thrips, dan menekan gulma."
 slug: "pemasangan-mulsa-plastik-hitam-perak-mphp"
-category: "Teknik Budidaya & Manajemen Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "cabai"
+  - "tomat"
+  - "semangka"
+  - "melon"
 tags:
   - "pemasangan mulsa plastik mphp"
   - "cara pasang mulsa hitam perak"
   - "trik mulsa kencang rapi bedengan"
   - "pantulan perak pengusir hama thrips"
   - "keuntungan mulsa pertanian hortikultura"
-meta_title: "Pasang Mulsa Plastik Hitam Perak MPHP: Trik Kencang"
-meta_description: "Panduan memasang mulsa plastik hitam perak MPHP di bedengan: trik menarik plastik saat terik matahari, mengusir hama thrips, dan menekan gulma."
+draft: true
 ---
-
-# Pemasangan Mulsa Plastik Hitam Perak (MPHP): Kebun Bersih Panen Melimpah
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Mulsa Plastik Hitam Perak (MPHP) bekerja ganda: sisi perak di atas memantulkan sinar matahari, sisi hitam di bawah memblokir gulma.

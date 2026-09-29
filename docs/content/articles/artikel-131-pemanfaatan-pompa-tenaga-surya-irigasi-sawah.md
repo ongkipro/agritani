@@ -1,22 +1,23 @@
 ---
 title: "Pemanfaatan Pompa Tenaga Surya: Solusi Air Sawah Tanpa BBM"
+metaTitle: "Pompa Air Tenaga Surya Sawah: Irigasi Hemat Bebas BBM"
+description: "Panduan instalasi pompa celup submersible tenaga surya untuk sumur bor sawah tadah hujan: kapasitas panel surya, debit air, dan bebas biaya solar."
 slug: "pemanfaatan-pompa-tenaga-surya-irigasi-sawah"
-category: "Manajemen Air & Sistem Irigasi Pertanian"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "air-irigasi"
+commodities:
+  - "padi"
+  - "bawang-merah"
+  - "tomat"
 tags:
   - "pompa air tenaga surya sawah"
   - "solar water pump irigasi pertanian"
   - "pompa celup submersible sumur bor"
   - "solusi irigasi sawah tadah hujan"
   - "efisiensi biaya operasional bbm solar"
-meta_title: "Pompa Air Tenaga Surya Sawah: Irigasi Hemat Bebas BBM"
-meta_description: "Panduan instalasi pompa celup submersible tenaga surya untuk sumur bor sawah tadah hujan: kapasitas panel surya, debit air, dan bebas biaya solar."
+draft: true
 ---
-
-# Pemanfaatan Pompa Tenaga Surya: Solusi Air Sawah Tanpa BBM
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Pompa Air Tenaga Surya (PATS) mengubah energi fotovoltaik matahari menjadi daya listrik penggerak pompa celup sumur bor tanpa BBM.

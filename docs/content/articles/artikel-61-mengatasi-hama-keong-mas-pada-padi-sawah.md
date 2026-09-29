@@ -1,22 +1,21 @@
 ---
 title: "Mengatasi Hama Keong Mas pada Padi Sawah: Trik Parit Cacing dan Umpan Daun"
+metaTitle: "Cara Mengatasi Hama Keong Mas Padi Sawah Alami"
+description: "Panduan mengendalikan hama siput keong mas pemotong bibit padi muda dengan parit cacing, daun pepaya penarik, dan moluskisida nabati."
 slug: "mengatasi-hama-keong-mas-pada-padi-sawah"
-category: "Tanaman Pangan & Budidaya Padi"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "padi"
 tags:
   - "cara mengatasi keong mas padi"
   - "pomacea canaliculata sawah"
   - "perangkap keong mas alami"
   - "moluskisida nabati keong sawah"
   - "mencegah bibit padi dimakan keong"
-meta_title: "Cara Mengatasi Hama Keong Mas Padi Sawah Alami"
-meta_description: "Panduan mengendalikan hama siput keong mas pemotong bibit padi muda dengan parit cacing, daun pepaya penarik, dan moluskisida nabati."
+draft: true
 ---
-
-# Mengatasi Hama Keong Mas pada Padi Sawah: Trik Parit Cacing dan Umpan Daun
 
 Bagi petani padi di seluruh Indonesia, fase awal tanam sejak hari pertama hingga umur 15 Hari Setelah Tanam (HST) adalah masa paling rawan dari serbuan **Hama Keong Mas (*Pomacea canaliculata*)**.
 

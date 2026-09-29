@@ -1,22 +1,23 @@
 ---
 title: "Tata Kelola Air Lahan Gambut: Cegah Kebakaran Jaga Produktivitas"
+metaTitle: "Tata Kelola Air Lahan Gambut: Cegah Kebakaran & Ambles"
+description: "Panduan manajemen tinggi muka air tanah lahan gambut water table 40-50 cm: konstruksi sekat kanal canal blocking dan pencegahan kering tak balik."
 slug: "manajemen-tata-kelola-air-lahan-gambut"
-category: "Manajemen Air & Sistem Irigasi Pertanian"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "air-irigasi"
+commodities:
+  - "kelapa-sawit"
+  - "tomat"
+  - "sayuran-daun"
 tags:
   - "tata kelola air lahan gambut"
   - "water table management sawit gambut"
   - "sekat kanal canal blocking gambut"
   - "mencegah subsidensi tanah ambles"
   - "bahaya kering tak balik hidrofobik"
-meta_title: "Tata Kelola Air Lahan Gambut: Cegah Kebakaran & Ambles"
-meta_description: "Panduan manajemen tinggi muka air tanah lahan gambut water table 40-50 cm: konstruksi sekat kanal canal blocking dan pencegahan kering tak balik."
+draft: true
 ---
-
-# Tata Kelola Air Lahan Gambut: Cegah Kebakaran Jaga Produktivitas
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Pengelolaan lahan gambut wajib mempertahankan Tinggi Muka Air Tanah (TMAT) pada kisaran ideal 40 hingga 50 cm di bawah permukaan tanah.

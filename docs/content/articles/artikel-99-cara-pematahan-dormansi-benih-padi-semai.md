@@ -1,22 +1,21 @@
 ---
 title: "Cara Pematahan Dormansi Benih Padi: Trik Berkecambah Serempak 100%"
+metaTitle: "Pematahan Dormansi Benih Padi: Kecambah Serempak"
+description: "Cara efektif mematahkan dormansi benih padi baru panen: perlakuan perendaman air hangat 50C, larutan kalium nitrat KNO3, dan seleksi air garam."
 slug: "cara-pematahan-dormansi-benih-padi-semai"
-category: "Teknik Budidaya & Manajemen Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "padi"
 tags:
   - "pematahan dormansi benih padi"
   - "cara menyemai benih padi cepat"
   - "perendaman air hangat kuku benih"
   - "larutan kno3 pemecah dormansi biji"
   - "seleksi benih padi bernas air garam"
-meta_title: "Pematahan Dormansi Benih Padi: Kecambah Serempak"
-meta_description: "Cara efektif mematahkan dormansi benih padi baru panen: perlakuan perendaman air hangat 50C, larutan kalium nitrat KNO3, dan seleksi air garam."
+draft: true
 ---
-
-# Cara Pematahan Dormansi Benih Padi: Trik Berkecambah Serempak 100%
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Benih padi yang baru dipanen sering mengalami dormansi fisiologis alami (tidur sel) sehingga gagal berkecambah jika langsung disemai.

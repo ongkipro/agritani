@@ -1,22 +1,22 @@
 ---
 title: "Mengatasi Penyakit Sigatoka Hitam pada Pisang: Daun Kering dan Panen Anjlok"
+metaTitle: "Cara Mengatasi Penyakit Sigatoka Hitam pada Pisang"
+description: "Solusi menghentikan penyebaran jamur Sigatoka hitam Mycosphaerella fijiensis pada kebun pisang lewat sanitasi daun tua dan drainase."
 slug: "mengatasi-penyakit-sigatoka-hitam-pisang"
-category: "Hortikultura & Tanaman Buah"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "durian"
+  - "mangga"
 tags:
   - "penyakit sigatoka pisang"
   - "daun pisang mengering garis hitam"
   - "mycosphaerella fijiensis"
   - "cara merawat kebun pisang"
   - "obat jamur pohon pisang"
-meta_title: "Cara Mengatasi Penyakit Sigatoka Hitam pada Pisang"
-meta_description: "Solusi menghentikan penyebaran jamur Sigatoka hitam Mycosphaerella fijiensis pada kebun pisang lewat sanitasi daun tua dan drainase."
+draft: true
 ---
-
-# Mengatasi Penyakit Sigatoka Hitam pada Pisang: Daun Kering dan Panen Anjlok
 
 Bagi petani pisang komersial—baik jenis Cavendish, Barangan, Raja Bulu, maupun Pisang Kepok—penyakit bercak daun yang paling merugikan di seluruh dunia adalah **Sigatoka Hitam (*Black Sigatoka*)**.
 

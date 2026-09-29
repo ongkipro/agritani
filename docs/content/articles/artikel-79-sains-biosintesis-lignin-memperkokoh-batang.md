@@ -1,22 +1,23 @@
 ---
 title: "Sains Biosintesis Lignin: Rahasia Dinding Sel Tanaman Kokoh Antihama"
+metaTitle: "Sains Biosintesis Lignin: Batang Kokoh Tahan Penyakit"
+description: "Pahami proses lignifikasi dinding sel tanaman melalui jalur fenilpropanoid, enzim PAL, dan cara memperkuat batang dengan pupuk silika serta boron."
 slug: "sains-biosintesis-lignin-memperkokoh-batang"
-category: "Fisiologi & Anatomi Tumbuhan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "sains-tanaman"
+commodities:
+  - "padi"
+  - "cabai"
+  - "jagung"
 tags:
   - "biosintesis lignin tanaman"
   - "proses lignifikasi dinding sel"
   - "enzim phenylalanine ammonia lyase pal"
   - "batang tanaman kokoh tahan rebah"
   - "peran silika dan boron selulosa"
-meta_title: "Sains Biosintesis Lignin: Batang Kokoh Tahan Penyakit"
-meta_description: "Pahami proses lignifikasi dinding sel tanaman melalui jalur fenilpropanoid, enzim PAL, dan cara memperkuat batang dengan pupuk silika serta boron."
+draft: true
 ---
-
-# Sains Biosintesis Lignin: Rahasia Dinding Sel Tanaman Kokoh Antihama
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Lignin adalah polimer aromatik kompleks yang bertindak sebagai 'semen cor' alami di antara serat selulosa pada dinding sel sekunder tanaman.

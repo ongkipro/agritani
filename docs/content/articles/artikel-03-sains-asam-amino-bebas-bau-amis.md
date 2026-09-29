@@ -1,22 +1,24 @@
 ---
 title: "Mitos Pupuk Amis: Menjelajahi Asam Amino Bebas Bau dan Bagaimana Molekul Peptida Diserap Daun"
+metaTitle: "Pupuk Asam Amino Tanaman Bebas Bau Amis dan Murni"
+description: "Mengenal manfaat pupuk asam amino bebas bau hasil bio-enzim Jepang untuk menjaga pembungaan dan memulihkan tanaman dari cekaman cuaca."
 slug: "sains-asam-amino-bebas-bau-amis"
-category: "Sains Tanah & Fisiologi Nutrisi"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "padi"
+  - "cabai"
+  - "tomat"
+  - "melon"
 tags:
   - "pupuk asam amino untuk tanaman"
   - "pupuk organik tidak bau amis"
   - "manfaat asam amino tanaman"
   - "biostimulan tanaman"
   - "cara aplikasi asam amino"
-meta_title: "Pupuk Asam Amino Tanaman Bebas Bau Amis dan Murni"
-meta_description: "Mengenal manfaat pupuk asam amino bebas bau hasil bio-enzim Jepang untuk menjaga pembungaan dan memulihkan tanaman dari cekaman cuaca."
+draft: true
 ---
-
-# Mitos Pupuk Amis: Menjelajahi Asam Amino Bebas Bau dan Bagaimana Molekul Peptida Diserap Daun
 
 > **Key Takeaways**:
 > 1. Bau amis menyengat pada pupuk asam amino hewani tradisional berasal dari gas amonia dan hidrogen sulfida hasil pembusukan tidak terkontrol, yang merupakan magnet bagi lalat buah dan serangga parasit.

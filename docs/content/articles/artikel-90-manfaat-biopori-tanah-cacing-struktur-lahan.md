@@ -1,22 +1,22 @@
 ---
 title: "Manfaat Biopori Tanah dan Cacing: Pabrik Aerasi dan Kompos Alami"
+metaTitle: "Manfaat Biopori Tanah & Cacing: Lahan Gembur Subur"
+description: "Pahami pentingnya liang biopori cacing tanah Lumbricus dalam melipatgandakan infiltrasi air hujan, aerasi perakaran, dan pasokan nutrisi kascing alami."
 slug: "manfaat-biopori-tanah-cacing-struktur-lahan"
-category: "Ilmu Tanah & Kesuburan Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "padi"
+  - "sayuran-daun"
 tags:
   - "manfaat cacing tanah pertanian"
   - "biopori alami liang cacing tanah"
   - "struktur tanah gembur aerasi"
   - "kesuburan kascing worm casting"
   - "cara meningkatkan populasi cacing lahan"
-meta_title: "Manfaat Biopori Tanah & Cacing: Lahan Gembur Subur"
-meta_description: "Pahami pentingnya liang biopori cacing tanah Lumbricus dalam melipatgandakan infiltrasi air hujan, aerasi perakaran, dan pasokan nutrisi kascing alami."
+draft: true
 ---
-
-# Manfaat Biopori Tanah dan Cacing: Pabrik Aerasi dan Kompos Alami
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Aktivitas liang cacing tanah menghasilkan jaringan terowongan makropori (biopori) alami yang melipatgandakan laju resapan air dan aerasi tanah.

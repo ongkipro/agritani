@@ -1,22 +1,21 @@
 ---
 title: "Mengusir Hama Walang Sangit pada Padi: Cegah Bulir Gabah Hitam dan Hampa"
+metaTitle: "Cara Mengusir Hama Walang Sangit Padi: Gabah Bernas"
+description: "Trik ampuh mengusir hama walang sangit Leptocorisa oratorius saat fase padi matang susu menggunakan bangkai keong dan perangkap alami."
 slug: "mengatasi-hama-walang-sangit-pada-padi"
-category: "Tanaman Pangan & Budidaya Padi"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "padi"
 tags:
   - "cara mengusir walang sangit padi"
   - "hama walang sangit bulir hampa"
   - "perangkap bangkai keong mas"
   - "leptocorisa oratorius"
   - "perawatan padi bunting"
-meta_title: "Cara Mengusir Hama Walang Sangit Padi: Gabah Bernas"
-meta_description: "Trik ampuh mengusir hama walang sangit Leptocorisa oratorius saat fase padi matang susu menggunakan bangkai keong dan perangkap alami."
+draft: true
 ---
-
-# Mengusir Hama Walang Sangit pada Padi: Cegah Bulir Gabah Hitam dan Hampa
 
 Ketika hamparan sawah mulai merunduk dan mengeluarkan aroma wangi bulir padi muda yang sedang mengisi cairan tepung (*fase matang susu*), ancaman terbesar yang paling mencemaskan petani adalah serbuan **Hama Walang Sangit (*Leptocorisa oratorius*)**.
 

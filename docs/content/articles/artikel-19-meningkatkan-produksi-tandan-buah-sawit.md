@@ -1,22 +1,23 @@
 ---
 title: "Kunci Melipatgandakan Produksi Tandan Sawit (TBS): Sinergi Akar, Kanopi, dan Nutrisi Generatif"
+metaTitle: "Cara Melipatgandakan Tandan Buah Segar Sawit (TBS)"
+description: "Sinergi kesehatan bulu akar, fotosintesis tajuk pelepah, dan stimulasi bunga betina untuk mendongkrak tonase panen kelapa sawit rakyat."
 slug: "meningkatkan-produksi-tandan-buah-sawit"
-category: "Perkebunan Kelapa Sawit"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "kelapa-sawit"
+  - "kopi"
+  - "sayuran-daun"
 tags:
   - "cara meningkatkan tandan sawit"
   - "booster buah kelapa sawit"
   - "bobot rata-rata tandan sawit"
   - "rendemen minyak kelapa sawit"
   - "pupuk generatif sawit"
-meta_title: "Cara Melipatgandakan Tandan Buah Segar Sawit (TBS)"
-meta_description: "Sinergi kesehatan bulu akar, fotosintesis tajuk pelepah, dan stimulasi bunga betina untuk mendongkrak tonase panen kelapa sawit rakyat."
+draft: true
 ---
-
-# Kunci Melipatgandakan Produksi Tandan Sawit (TBS): Sinergi Akar, Kanopi, dan Nutrisi Generatif
 
 > **Key Takeaways**:
 > 1. Produksi Tandan Buah Segar (TBS) ditentukan oleh tiga pilar biologis: efisiensi serapan bulu akar, kapasitas fotosintesis tajuk pelepah, dan stimulasi diferensiasi bunga betina.

@@ -1,22 +1,22 @@
 ---
 title: "Mengapa Jamur Ganoderma Kebal Terhadap Fungisida Kimia dan Bagaimana Membangunkan Imunitas Alami Sawit?"
+metaTitle: "Cara Mengatasi Ganoderma Sawit dan Imunitas Alami"
+description: "Panduan memulihkan kebun kelapa sawit dari busuk pangkal batang jamur Ganoderma dengan aktivasi imunitas tanaman dan agen hayati tanah."
 slug: "ganoderma-sawit-immune-activator"
-category: "Perkebunan & Patologi Tanaman"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "kelapa-sawit"
+  - "sayuran-daun"
 tags:
   - "obat ganoderma sawit"
   - "busuk pangkal batang sawit"
   - "cara mengatasi ganoderma"
   - "imunitas kelapa sawit"
   - "trichoderma sawit"
-meta_title: "Cara Mengatasi Ganoderma Sawit dan Imunitas Alami"
-meta_description: "Panduan memulihkan kebun kelapa sawit dari busuk pangkal batang jamur Ganoderma dengan aktivasi imunitas tanaman dan agen hayati tanah."
+draft: true
 ---
-
-# Mengapa Jamur Ganoderma Kebal Terhadap Fungisida Kimia dan Bagaimana Membangunkan Imunitas Alami Sawit?
 
 > **Key Takeaways**:
 > 1. *Ganoderma boninense* merusak pembuluh kayu (xilem) dari dalam batang bawah dan perakaran, sehingga fungisida semprot permukaan tidak mampu mematikan miselium jamur.

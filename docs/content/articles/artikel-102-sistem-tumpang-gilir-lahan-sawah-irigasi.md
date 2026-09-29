@@ -1,22 +1,24 @@
 ---
 title: "Sistem Tumpang Gilir Lahan Sawah: Putus Hama Lipatgandakan Cuan"
+metaTitle: "Sistem Tumpang Gilir Sawah: Putus Hama Cuan Berlipat"
+description: "Pahami pola rotasi tumpang gilir padi-palawija-sayuran di sawah irigasi untuk memutus siklus wereng, memperbaiki aerasi tanah, dan menaikkan pendapatan."
 slug: "sistem-tumpang-gilir-lahan-sawah-irigasi"
-category: "Teknik Budidaya & Manajemen Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "padi"
+  - "jagung"
+  - "kedelai"
+  - "sayuran-daun"
 tags:
   - "sistem tumpang gilir sawah"
   - "rotasi tanaman padi palawija"
   - "pola tanam sawah irigasi teknis"
   - "cara memutus siklus hama wereng"
   - "manajemen kesuburan tanah sawah"
-meta_title: "Sistem Tumpang Gilir Sawah: Putus Hama Cuan Berlipat"
-meta_description: "Pahami pola rotasi tumpang gilir padi-palawija-sayuran di sawah irigasi untuk memutus siklus wereng, memperbaiki aerasi tanah, dan menaikkan pendapatan."
+draft: true
 ---
-
-# Sistem Tumpang Gilir Lahan Sawah: Putus Hama Lipatgandakan Cuan
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Tumpang gilir (crop rotation) adalah pergiliran jenis tanaman yang berbeda famili secara berurutan dalam satu tahun pada petakan sawah yang sama.

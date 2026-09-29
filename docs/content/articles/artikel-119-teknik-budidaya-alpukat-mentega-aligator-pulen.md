@@ -1,22 +1,22 @@
 ---
 title: "Teknik Budidaya Alpukat Mentega dan Aligator: Buah Jumbo Daging Pulen"
+metaTitle: "Budidaya Alpukat Mentega Aligator: Daging Tebal Pulen"
+description: "Panduan sukses budidaya pohon alpukat mentega dan aligator: pembuatan lubang tanam gembur, pencegahan busuk akar phytophthora, dan tanda panen buah tua."
 slug: "teknik-budidaya-alpukat-mentega-aligator-pulen"
-category: "Komoditas Pangan, Perkebunan & Hortikultura"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "padi"
+  - "alpukat"
 tags:
   - "budidaya alpukat mentega aligator"
   - "cara menanam pohon alpukat cepat berbuah"
   - "pencegahan busuk akar phytophthora alpukat"
   - "pemupukan pembesar buah alpukat"
   - "ciri buah alpukat tua siap panen"
-meta_title: "Budidaya Alpukat Mentega Aligator: Daging Tebal Pulen"
-meta_description: "Panduan sukses budidaya pohon alpukat mentega dan aligator: pembuatan lubang tanam gembur, pencegahan busuk akar phytophthora, dan tanda panen buah tua."
+draft: true
 ---
-
-# Teknik Budidaya Alpukat Mentega dan Aligator: Buah Jumbo Daging Pulen
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Alpukat varietas Mentega Miki dan Aligator memiliki daging buah tebal pulen bebas serat liat dengan nilai jual tinggi di pasar modern.

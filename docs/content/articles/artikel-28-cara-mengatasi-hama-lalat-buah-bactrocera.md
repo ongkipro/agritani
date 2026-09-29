@@ -1,22 +1,23 @@
 ---
 title: "Jurus Mengatasi Hama Lalat Buah: Jebakan Alami dan Sanitasi Lahan Terpadu"
+metaTitle: "Cara Mengatasi Hama Lalat Buah Alami dan Perangkap"
+description: "Panduan mengendalikan hama lalat buah Bactrocera pada cabai dan buah-buahan lewat perangkap atraktan petrogenol serta sanitasi kebun terpadu."
 slug: "cara-mengatasi-hama-lalat-buah-bactrocera"
-category: "Hama & Proteksi Tanaman"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "cabai"
+  - "mangga"
+  - "melon"
 tags:
   - "cara mengatasi hama lalat buah"
   - "perangkap lalat buah alami"
   - "bactrocera dorsalis cabai"
   - "obat lalat buah paling ampuh"
   - "pencegahan buah busuk belatung"
-meta_title: "Cara Mengatasi Hama Lalat Buah Alami dan Perangkap"
-meta_description: "Panduan mengendalikan hama lalat buah Bactrocera pada cabai dan buah-buahan lewat perangkap atraktan petrogenol serta sanitasi kebun terpadu."
+draft: true
 ---
-
-# Jurus Mengatasi Hama Lalat Buah: Jebakan Alami dan Sanitasi Lahan Terpadu
 
 Bagi petani cabai, mangga, melon, dan jambu, tidak ada yang lebih menjengkelkan dibanding melihat buah yang tampak mulus ranum di luar, namun ketika dipetik dan dibelah di dalamnya sudah busuk berair dipenuhi belatung putih.
 

@@ -1,22 +1,22 @@
 ---
 title: "Tumpangsari Cabai dan Bunga Marigold: Benteng Alami Pengusir Kutu dan Nematoda"
+metaTitle: "Tumpangsari Cabai dan Bunga Marigold: Usir Hama Alami"
+description: "Sains agroekologi menanam bunga marigold di pematang bedengan cabai untuk membunuh cacing nematoda akar dan mengalihkan hama kutu kebul."
 slug: "kombinasi-tumpangsari-marigold-dan-cabai"
-category: "Agro-Ekologi & Budidaya"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "cabai"
+  - "kopi"
 tags:
   - "tanaman pendamping cabai"
   - "manfaat bunga marigold untuk cabai"
   - "mengatasi nematoda puru akar"
   - "tanaman penolak hama kebun"
   - "tumpangsari ramah lingkungan"
-meta_title: "Tumpangsari Cabai dan Bunga Marigold: Usir Hama Alami"
-meta_description: "Sains agroekologi menanam bunga marigold di pematang bedengan cabai untuk membunuh cacing nematoda akar dan mengalihkan hama kutu kebul."
+draft: true
 ---
-
-# Tumpangsari Cabai dan Bunga Marigold: Benteng Alami Pengusir Kutu dan Nematoda
 
 Di berbagai perkebunan hortikultura modern di dunia, pemandangan kebun cabai yang diselingi oleh deretan bunga kuning-oranye cerah bukanlah sekadar hiasan estetika taman semata.
 

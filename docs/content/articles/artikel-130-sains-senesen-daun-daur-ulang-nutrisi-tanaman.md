@@ -1,22 +1,23 @@
 ---
 title: "Sains Senesen Daun: Mekanisme Daur Ulang Nutrisi Pengisi Buah"
+metaTitle: "Sains Senesen Daun Tanaman: Daur Ulang Nutrisi Gabah Padat"
+description: "Pahami proses penuaan daun senesen tanaman: perombakan klorofil, translokasi nitrogen dan fosfor ke biji buah, serta panduan waktu panen tepat."
 slug: "sains-senesen-daun-daur-ulang-nutrisi-tanaman"
-category: "Fisiologi & Anatomi Tumbuhan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "sains-tanaman"
+commodities:
+  - "padi"
+  - "jagung"
+  - "kedelai"
 tags:
   - "sains senesen daun tanaman"
   - "proses penuaan daun fisiologis"
   - "translokasi hara daun ke biji gabah"
   - "perombakan klorofil dan protein"
   - "tanda kematangan panen fisiologis"
-meta_title: "Sains Senesen Daun Tanaman: Daur Ulang Nutrisi Gabah Padat"
-meta_description: "Pahami proses penuaan daun senesen tanaman: perombakan klorofil, translokasi nitrogen dan fosfor ke biji buah, serta panduan waktu panen tepat."
+draft: true
 ---
-
-# Sains Senesen Daun: Mekanisme Daur Ulang Nutrisi Pengisi Buah
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Senesen daun bukanlah kematian sel acak, melainkan proses penuaan terprogram (PCD) yang sangat teratur untuk mendaur ulang nutrisi.

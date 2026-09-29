@@ -1,22 +1,21 @@
 ---
 title: "Mengatasi Penyakit Kanker Sitrus: Daun dan Buah Jeruk Berkeropeng"
+metaTitle: "Atasi Kanker Sitrus Jeruk Xanthomonas: Buah Mulus"
+description: "Panduan mengatasi penyakit kanker sitrus Xanthomonas axonopodis pada jeruk: kenali gejala bercak gabus berkeropeng dan teknik semprot tembaga terpadu."
 slug: "mengatasi-penyakit-kanker-sitrus-jeruk"
-category: "Patologi Tanaman & Penyakit Fisiologis"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "jeruk"
 tags:
   - "kanker sitrus xanthomonas axonopodis"
   - "penyakit bercak gabus jeruk"
   - "cara mengatasi kanker batang jeruk"
   - "fungisida bakterisida tembaga jeruk"
   - "pengendalian pengorok daun phyllocnistis"
-meta_title: "Atasi Kanker Sitrus Jeruk Xanthomonas: Buah Mulus"
-meta_description: "Panduan mengatasi penyakit kanker sitrus Xanthomonas axonopodis pada jeruk: kenali gejala bercak gabus berkeropeng dan teknik semprot tembaga terpadu."
+draft: true
 ---
-
-# Mengatasi Penyakit Kanker Sitrus: Daun dan Buah Jeruk Berkeropeng
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Kanker sitrus disebabkan oleh bakteri Xanthomonas axonopodis pv. citri yang menimbulkan luka gabus menonjol pada daun, ranting, dan kulit buah.

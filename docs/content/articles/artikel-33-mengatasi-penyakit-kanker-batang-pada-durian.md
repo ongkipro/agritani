@@ -1,22 +1,21 @@
 ---
 title: "Mengatasi Kanker Batang Durian: Trik Mengobati Kulit Pohon Mengeluarkan Getah Merah"
+metaTitle: "Cara Mengatasi Kanker Batang Durian Phytophthora"
+description: "Panduan menyembuhkan kanker batang pohon durian akibat jamur Phytophthora lewat teknik pengerokan luka, pasta bubur bordeaux, dan aerasi akar."
 slug: "mengatasi-penyakit-kanker-batang-pada-durian"
-category: "Hortikultura & Tanaman Buah"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "durian"
 tags:
   - "cara mengatasi kanker batang durian"
   - "phytophthora palmivora durian"
   - "batang durian keluar getah merah"
   - "obat kanker batang pohon durian"
   - "perawatan pohon durian sakit"
-meta_title: "Cara Mengatasi Kanker Batang Durian Phytophthora"
-meta_description: "Panduan menyembuhkan kanker batang pohon durian akibat jamur Phytophthora lewat teknik pengerokan luka, pasta bubur bordeaux, dan aerasi akar."
+draft: true
 ---
-
-# Mengatasi Kanker Batang Durian: Trik Mengobati Kulit Pohon Mengeluarkan Getah Merah
 
 Bagi para pekebun durian, baik komoditas Musang King, Bawor, maupun Duri Hitam, penyakit paling mematikan yang kerap merenggut pohon dewasa produktif adalah **Penyakit Kanker Batang**.
 

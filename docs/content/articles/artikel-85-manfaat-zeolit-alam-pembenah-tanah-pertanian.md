@@ -1,22 +1,22 @@
 ---
 title: "Manfaat Zeolit Alam: Spons Mineral Penghemat Pupuk dan Pembenah Tanah"
+metaTitle: "Manfaat Zeolit Alam Pertanian: Hemat Pupuk Urea"
+description: "Pelajari fungsi mineral zeolit klinoptilolit dalam mendongkrak KTK tanah, mencegah penguapan amonia urea, dan menyerap residu logam berat di kebun."
 slug: "manfaat-zeolit-alam-pembenah-tanah-pertanian"
-category: "Nutrisi Tanaman, Pupuk & Biostimulan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "padi"
+  - "kopi"
 tags:
   - "manfaat zeolit alam pertanian"
   - "zeolit penghemat pupuk urea"
   - "meningkatkan ktk tanah pasir"
   - "mineral klinoptilolit pembenah tanah"
   - "cara aplikasi zeolit dosis hektar"
-meta_title: "Manfaat Zeolit Alam Pertanian: Hemat Pupuk Urea"
-meta_description: "Pelajari fungsi mineral zeolit klinoptilolit dalam mendongkrak KTK tanah, mencegah penguapan amonia urea, dan menyerap residu logam berat di kebun."
+draft: true
 ---
-
-# Manfaat Zeolit Alam: Spons Mineral Penghemat Pupuk dan Pembenah Tanah
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Zeolit adalah batuan mineral aluminosilikat alami berpori mikro sangkar dengan muatan negatif permanen tinggi.

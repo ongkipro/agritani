@@ -1,22 +1,22 @@
 ---
 title: "Strategi Menaikkan Rendemen Minyak Sawit OER di Pabrik PKS"
+metaTitle: "Strategi Naikkan Rendemen Minyak Sawit OER Kebun ke PKS"
+description: "Cara menaikkan rendemen CPO / OER kelapa sawit: standar kematangan buah fraksi 2-3, pemotongan gagang mepet, dan pengiriman cepat ke pabrik kelapa sawit."
 slug: "strategi-menaikkan-rendemen-minyak-sawit-oer-pks"
-category: "Bioteknologi, Agribisnis & Pasca Panen"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "pascapanen-agribisnis"
+commodities:
+  - "kelapa-sawit"
+  - "sayuran-daun"
 tags:
   - "rendemen minyak kelapa sawit oer"
   - "oil extraction rate pabrik pks"
   - "kriteria kematangan tbs fraksi buah"
   - "panen sawit gagang mepet v cut"
   - "menekan losses cpo tandan sawit"
-meta_title: "Strategi Naikkan Rendemen Minyak Sawit OER Kebun ke PKS"
-meta_description: "Cara menaikkan rendemen CPO / OER kelapa sawit: standar kematangan buah fraksi 2-3, pemotongan gagang mepet, dan pengiriman cepat ke pabrik kelapa sawit."
+draft: true
 ---
-
-# Strategi Menaikkan Rendemen Minyak Sawit OER di Pabrik PKS
 
 Rendemen minyak kelapa sawit mentah atau **Oil Extraction Rate (OER)** adalah persentase bobot CPO murni yang berhasil diekstraksi oleh Pabrik Kelapa Sawit (PKS) dari setiap ton Tandan Buah Segar (TBS) yang masuk ke timbangan. Rata-rata nasional OER sawit di Indonesia berkisar antara 20 hingga 23 persen. Kenaikan rendemen sekecil 0,5 persen saja pada kebun skala 1.000 hektare setara dengan tambahan pendapatan miliaran rupiah per tahun tanpa perlu menambah luas lahan.
 

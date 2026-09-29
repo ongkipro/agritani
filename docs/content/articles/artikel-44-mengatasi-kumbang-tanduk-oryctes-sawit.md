@@ -1,22 +1,22 @@
 ---
 title: "Mengatasi Kumbang Tanduk (Oryctes) Kelapa Sawit: Lindungi Titik Tumbuh TBM"
+metaTitle: "Cara Mengatasi Kumbang Tanduk Oryctes Kelapa Sawit"
+description: "Panduan mengendalikan kumbang tanduk Oryctes rhinoceros pada sawit muda lewat perangkap feromon alami dan jamur Metarhizium."
 slug: "mengatasi-kumbang-tanduk-oryctes-sawit"
-category: "Perkebunan Kelapa Sawit"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "kelapa-sawit"
+  - "sayuran-daun"
 tags:
   - "kumbang tanduk kelapa sawit"
   - "oryctes rhinoceros tbm"
   - "perangkap feromon sawit"
   - "jamur metarhizium anisopliae"
   - "pengendalian hama sawit muda"
-meta_title: "Cara Mengatasi Kumbang Tanduk Oryctes Kelapa Sawit"
-meta_description: "Panduan mengendalikan kumbang tanduk Oryctes rhinoceros pada sawit muda lewat perangkap feromon alami dan jamur Metarhizium."
+draft: true
 ---
-
-# Mengatasi Kumbang Tanduk (Oryctes) Kelapa Sawit: Lindungi Titik Tumbuh TBM
 
 Pada fase Tanaman Belum Menghasilkan (TBM) di perkebunan kelapa sawit, musuh utama yang paling sering merusak pelepah muda dan menunda masa panen perdana adalah **Kumbang Tanduk (*Oryctes rhinoceros*)**.
 

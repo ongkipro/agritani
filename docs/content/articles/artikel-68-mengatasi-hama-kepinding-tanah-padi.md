@@ -1,22 +1,21 @@
 ---
 title: "Mengatasi Hama Kepinding Tanah pada Padi: Bau Sangit dan Rumpun Kerdil Kering"
+metaTitle: "Cara Mengatasi Kepinding Tanah Padi Scotinophara"
+description: "Panduan mengendalikan hama kepinding tanah hitam Scotinophara coarctata pada padi rawa pasang surut dengan pengeringan sawah dan Metarhizium."
 slug: "mengatasi-hama-kepinding-tanah-padi"
-category: "Tanaman Pangan & Budidaya Padi"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "padi"
 tags:
   - "cara membasmi kepinding tanah padi"
   - "scotinophara coarctata"
   - "hama kepinding sawah berbau sangit"
   - "hama padi pasang surut"
   - "jamur metarhizium untuk kepinding"
-meta_title: "Cara Mengatasi Kepinding Tanah Padi Scotinophara"
-meta_description: "Panduan mengendalikan hama kepinding tanah hitam Scotinophara coarctata pada padi rawa pasang surut dengan pengeringan sawah dan Metarhizium."
+draft: true
 ---
-
-# Mengatasi Hama Kepinding Tanah pada Padi: Bau Sangit dan Rumpun Kerdil Kering
 
 Bagi petani padi di lahan rawa pasang surut, lahan lebak, dan sawah dataran rendah—terutama di Sumatra, Kalimantan, dan pesisir Jawa—hama pengisap pangkal batang yang sering luput dari perhatian namun berdampak fatal adalah **Kepinding Tanah (*Black Bug / Scotinophara coarctata*)**.
 

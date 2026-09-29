@@ -1,22 +1,23 @@
 ---
 title: "Irigasi Tetes Bawah Permukaan (SDI): Efisiensi Air 95% Tanpa Penguapan"
+metaTitle: "Irigasi Tetes Bawah Permukaan SDI: Efisiensi Air 95%"
+description: "Teknik instalasi sistem irigasi tetes bawah permukaan Subsurface Drip Irrigation SDI: pemasangan pipa terpendam, pencegahan intrusi akar, dan bebas gulma."
 slug: "sistem-irigasi-tetes-bawah-permukaan-sdi"
-category: "Manajemen Air & Sistem Irigasi Pertanian"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "air-irigasi"
+commodities:
+  - "cabai"
+  - "tomat"
+  - "jagung"
 tags:
   - "irigasi tetes bawah permukaan sdi"
   - "subsurface drip irrigation hortikultura"
   - "cara pasang selang drip bawah tanah"
   - "mencegah intrusi akar lubang emiter"
   - "efisiensi irigasi lahan sangat kering"
-meta_title: "Irigasi Tetes Bawah Permukaan SDI: Efisiensi Air 95%"
-meta_description: "Teknik instalasi sistem irigasi tetes bawah permukaan Subsurface Drip Irrigation SDI: pemasangan pipa terpendam, pencegahan intrusi akar, dan bebas gulma."
+draft: true
 ---
-
-# Irigasi Tetes Bawah Permukaan (SDI): Efisiensi Air 95% Tanpa Penguapan
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Subsurface Drip Irrigation (SDI) menanam jaringan pipa selang tetes secara permanen di kedalaman 15–30 cm di bawah permukaan tanah.

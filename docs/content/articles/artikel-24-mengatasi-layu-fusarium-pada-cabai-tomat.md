@@ -1,22 +1,23 @@
 ---
 title: "Membongkar Misteri Layu Fusarium: Mengapa Tanaman Cabai Layu di Siang Hari dan Segar di Pagi Hari?"
+metaTitle: "Penyebab Tanaman Cabai Layu Siang Hari: Fusarium"
+description: "Pahami penyebab tanaman cabai layu siang hari tapi segar pagi hari akibat Fusarium oxysporum dan solusi penaikan pH tanah dengan dolomit."
 slug: "mengatasi-layu-fusarium-pada-cabai-tomat"
-category: "Patologi Tanaman & Hortikultura"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "cabai"
+  - "bawang-merah"
+  - "tomat"
 tags:
   - "mengapa tanaman cabai layu siang"
   - "gejala layu fusarium cabai"
   - "cara mengatasi jamur fusarium"
   - "pengapuran tanah dolomit"
   - "penyumbatan pembuluh xilem"
-meta_title: "Penyebab Tanaman Cabai Layu Siang Hari: Fusarium"
-meta_description: "Pahami penyebab tanaman cabai layu siang hari tapi segar pagi hari akibat Fusarium oxysporum dan solusi penaikan pH tanah dengan dolomit."
+draft: true
 ---
-
-# Membongkar Misteri Layu Fusarium: Mengapa Tanaman Cabai Layu di Siang Hari dan Segar di Pagi Hari?
 
 > **Key Takeaways**:
 > 1. Layu Fusarium disebabkan oleh jamur tanah Fusarium oxysporum yang menyumbat dan membusukkan pembuluh kayu (xilem) tanaman cabai dan tomat.

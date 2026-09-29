@@ -1,22 +1,21 @@
 ---
 title: "Fungsi Adjuvant dan Surfaktan Pertanian: Rahasia Semprot Hemat Sasaran"
+metaTitle: "Fungsi Adjuvant & Surfaktan: Semprot Pestisida Hemat"
+description: "Pelajari fungsi penting zat adjuvant surfaktan perata, perekat, dan penembus untuk memaksimalkan efisiensi semprot fungisida serta pestisida di kebun."
 slug: "fungsi-adjuvant-surfaktan-pertanian-efisiensi-semprot"
-category: "Nutrisi Tanaman, Pupuk & Biostimulan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "bawang-merah"
 tags:
   - "fungsi adjuvant surfaktan pertanian"
   - "perekat perata penembus pestisida"
   - "mengatasi daun berlilin talas bawang"
   - "tegangan permukaan droplet semprot"
   - "efisiensi semprot fungisida musim hujan"
-meta_title: "Fungsi Adjuvant & Surfaktan: Semprot Pestisida Hemat"
-meta_description: "Pelajari fungsi penting zat adjuvant surfaktan perata, perekat, dan penembus untuk memaksimalkan efisiensi semprot fungisida serta pestisida di kebun."
+draft: true
 ---
-
-# Fungsi Adjuvant dan Surfaktan Pertanian: Rahasia Semprot Hemat Sasaran
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Adjuvant dan surfaktan adalah zat tambahan campuran tangki yang menurunkan tegangan permukaan air semprotan pestisida.

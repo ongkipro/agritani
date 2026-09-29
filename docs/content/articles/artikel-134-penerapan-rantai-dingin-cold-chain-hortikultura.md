@@ -1,22 +1,21 @@
 ---
 title: "Penerapan Rantai Dingin (Cold Chain): Sayuran Segar Tahan Berminggu-minggu"
+metaTitle: "Rantai Dingin Cold Chain Hortikultura: Segar 3 Minggu"
+description: "Teknik penerapan rantai dingin cold chain sayuran dan buah: metode pre-cooling buang panas lapang, pengaturan suhu ruang simpan, dan truk berpendingin."
 slug: "penerapan-rantai-dingin-cold-chain-hortikultura"
-category: "Bioteknologi, Agribisnis & Pasca Panen"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "pascapanen-agribisnis"
+commodities:
+  - "sayuran-daun"
 tags:
   - "rantai dingin cold chain hortikultura"
   - "manajemen pasca panen sayuran buah"
   - "metode pre cooling buang panas lapang"
   - "suhu kelembapan cold storage sayur"
   - "mengurangi susut bobot pasca panen"
-meta_title: "Rantai Dingin Cold Chain Hortikultura: Segar 3 Minggu"
-meta_description: "Teknik penerapan rantai dingin cold chain sayuran dan buah: metode pre-cooling buang panas lapang, pengaturan suhu ruang simpan, dan truk berpendingin."
+draft: true
 ---
-
-# Penerapan Rantai Dingin (Cold Chain): Sayuran Segar Tahan Berminggu-minggu
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Rantai dingin (cold chain) adalah sistem logistik penjagaan temperatur rendah tanpa putus sejak panen petik hingga tangan konsumen.

@@ -1,22 +1,22 @@
 ---
 title: "Teknik Budidaya Tembakau: Manajemen Daun Krosok Aroma Tinggi"
+metaTitle: "Budidaya Tembakau Rajangan: Daun Emas Aroma Tinggi"
+description: "Panduan budidaya tembakau Nicotiana tabacum: teknik pemangkasan bunga topping, wiwit tunas ketiak, pemupukan bebas klorin, dan pemetikan daun bertingkat."
 slug: "teknik-budidaya-tembakau-rajangan-dan-krosok"
-category: "Komoditas Pangan, Perkebunan & Hortikultura"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "cabai"
+  - "tomat"
 tags:
   - "budidaya tembakau rajangan krosok"
   - "teknik topping pangkas bunga tembakau"
   - "cara wiwit tunas air tembakau suckering"
   - "pupuk bebas klorin tembakau zk"
   - "kualitas daun tembakau kelas ekspor"
-meta_title: "Budidaya Tembakau Rajangan: Daun Emas Aroma Tinggi"
-meta_description: "Panduan budidaya tembakau Nicotiana tabacum: teknik pemangkasan bunga topping, wiwit tunas ketiak, pemupukan bebas klorin, dan pemetikan daun bertingkat."
+draft: true
 ---
-
-# Teknik Budidaya Tembakau: Manajemen Daun Krosok Aroma Tinggi
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Tembakau (Nicotiana tabacum) adalah komoditas perkebunan bernilai tinggi yang kualitas daunnya diukur dari ketebalan, aroma gurih, dan daya bakar.

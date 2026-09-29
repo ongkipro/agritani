@@ -1,22 +1,22 @@
 ---
 title: "Memilih Ukuran Droplet Nozzle Semprot: Trik Mengunci Sasaran Hama"
+metaTitle: "Pilih Droplet Nozzle Semprot: Sasaran Hama Tepat"
+description: "Panduan memilih tipe nozzle semprot kipas dan kerucut: pahami spektrum ukuran droplet mikron, cegah bahaya drift melayang, dan basmi hama tersembunyi."
 slug: "memilih-ukuran-droplet-nozzle-semprot-pertanian"
-category: "Teknik Budidaya & Manajemen Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "padi"
+  - "cabai"
 tags:
   - "ukuran droplet nozzle semprot"
   - "nozzle kipas flat fan herbisida"
   - "nozzle kerucut hollow cone insektisida"
   - "mencegah spray drift terbawa angin"
   - "spektrum droplet vmd mikron"
-meta_title: "Pilih Droplet Nozzle Semprot: Sasaran Hama Tepat"
-meta_description: "Panduan memilih tipe nozzle semprot kipas dan kerucut: pahami spektrum ukuran droplet mikron, cegah bahaya drift melayang, dan basmi hama tersembunyi."
+draft: true
 ---
-
-# Memilih Ukuran Droplet Nozzle Semprot: Trik Mengunci Sasaran Hama
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Ukuran butiran semprot (droplet) diukur dalam satuan mikron (VMD) dan menentukan efektivitas penempelan pada sasaran biologis.

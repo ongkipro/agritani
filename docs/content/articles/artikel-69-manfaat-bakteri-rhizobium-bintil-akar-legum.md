@@ -1,22 +1,21 @@
 ---
 title: "Manfaat Bakteri Rhizobium Bintil Akar: Pabrik Pupuk Nitrogen Alami di Lahan"
+metaTitle: "Manfaat Bakteri Rhizobium Bintil Akar Tanaman Legum"
+description: "Pelajari sains simbiosis mutualisme bakteri Rhizobium bintil akar pada tanaman kacang-kacangan untuk menyuplai nitrogen gratis dan menyuburkan tanah."
 slug: "manfaat-bakteri-rhizobium-bintil-akar-legum"
-category: "Ilmu Tanah & Mikrobioma Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "kedelai"
 tags:
   - "bakteri rhizobium bintil akar"
   - "simbiosis mutualisme rhizobium"
   - "pupuk hayati tanaman legum"
   - "fiksasi nitrogen biologis"
   - "rotasi tanaman kacang tanah"
-meta_title: "Manfaat Bakteri Rhizobium Bintil Akar Tanaman Legum"
-meta_description: "Pelajari sains simbiosis mutualisme bakteri Rhizobium bintil akar pada tanaman kacang-kacangan untuk menyuplai nitrogen gratis dan menyuburkan tanah."
+draft: true
 ---
-
-# Manfaat Bakteri Rhizobium Bintil Akar: Pabrik Pupuk Nitrogen Alami di Lahan
 
 Saat mencabut tanaman kacang tanah, kedelai, atau kacang hijau yang sedang bertumbuh subur, kita kerap menjumpai butiran bintil bulat kecil menyerupai kutil menempel rapat di sekeliling anyaman akarnya. Bagi sebagian orang, bentuk ini sering disalahartikan sebagai serangan penyakit puru akar akibat cacing nematoda.
 

@@ -1,22 +1,22 @@
 ---
 title: "Menangkal Penyakit Bulai Jagung: Kenali Gejala Dini dan Strategi Pengendalian Terpadunya"
+metaTitle: "Cara Mengatasi Penyakit Bulai Jagung Peronosclerospora"
+description: "Kenali gejala garis putih bulai jagung serta protokol seed treatment dan drainase terpadu untuk mencegah tanaman mandul gagal panen."
 slug: "mengatasi-penyakit-bulai-jagung-peronosclerospora"
-category: "Patologi Tanaman & Tanaman Pangan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "jagung"
+  - "tomat"
 tags:
   - "gejala bulai pada jagung"
   - "cara mengatasi bulai jagung"
   - "obat bulai jagung paling ampuh"
   - "perlakuan benih jagung"
   - "jamur peronosclerospora maydis"
-meta_title: "Cara Mengatasi Penyakit Bulai Jagung Peronosclerospora"
-meta_description: "Kenali gejala garis putih bulai jagung serta protokol seed treatment dan drainase terpadu untuk mencegah tanaman mandul gagal panen."
+draft: true
 ---
-
-# Menangkal Penyakit Bulai Jagung: Kenali Gejala Dini dan Strategi Pengendalian Terpadunya
 
 > **Key Takeaways**:
 > 1. Penyakit Bulai (Downy Mildew) pada jagung disebabkan oleh jamur obligat Peronosclerospora maydis yang menyerang titik tumbuh tanaman muda.

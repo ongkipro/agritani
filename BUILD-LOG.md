@@ -60,4 +60,47 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - Captured UI proof at 390px and 1440px via `agritani-shot.cjs` on port 4330.
 - Verification passed: `npm test` (22/22 tests), `npx astro check`, `npm run build`, `npm run check:contrast`. Boundary check requires independent review (R3). Stopped for review.
 
+## 2026-09-29 — T-03: Frontmatter Normalization for 150 Articles (READY - PENDING INDEPENDENT REVIEW)
+
+- Normalized frontmatter in place for all 150 articles in `docs/content/articles/*.md` following ARCHITECTURE §3.0 specification:
+  - `meta_title` -> `metaTitle` (30–60 chars, 0 duplicates)
+  - `meta_description` -> `description` (120–160 chars, 0 duplicates)
+  - `published_date` -> `pubDate`
+  - `author: "Arif Prabowo"`
+  - `category` (47 variants) mapped into 6 canonical topics
+  - `commodities` mapped into validated commodity slugs from `commodities.json`
+  - Removed deprecated `reading_time` and `source` fields
+  - Removed duplicate `# <Title>` from top of body in all 150 articles
+  - Retained `draft: true` on all 150 articles
+- Topic distribution (all 6 topics filled):
+  - `budidaya`: 54
+  - `proteksi-tanaman`: 35
+  - `tanah-nutrisi`: 29
+  - `pascapanen-agribisnis`: 14
+  - `air-irigasi`: 9
+  - `sains-tanaman`: 9
+  - Total: 150
+- Commodity occurrences:
+  - `padi`: 60
+  - `sayuran-daun`: 45
+  - `cabai`: 44
+  - `tomat`: 29
+  - `kelapa-sawit`: 19
+  - `jagung`: 18
+  - `kopi`: 18
+  - `melon`: 17
+  - `mangga`: 13
+  - `bawang-merah`: 10
+  - `jeruk`: 9
+  - `durian`: 8
+  - `kedelai`: 7
+  - `semangka`: 7
+  - `kakao`: 6
+  - `alpukat`: 4
+  - `cengkeh`: 2
+- Publication readiness audit:
+  - 150/150 articles currently require `answer` (Short Answer, 40-60 words) and verified `references` before being transitioned from `draft: true` to `draft: false` (tracked for T-16 / T-25).
+- Checks passed: `npm test` (22/22 pass), `npx astro check` (0 errors), `npm run build` (150 articles synced in content layer), `npm run check:contrast`. Boundary check requires independent review (R3 scale). Stopped for review.
+
+
 

@@ -1,22 +1,23 @@
 ---
 title: "Trichoderma harzianum: Agen Hayati Pengawal Perakaran dan Pemangsa Jamur Patogen Tanah"
+metaTitle: "Manfaat Trichoderma Harzianum: Pelindung Akar Tanah"
+description: "Cara kerja jamur antagonis Trichoderma harzianum dalam memangsa patogen tular tanah dan memicu kekebalan sistemik perakaran tanaman."
 slug: "trichoderma-harzianum-benteng-alami-perakaran"
-category: "Bioproteksi & Mikrobiologi Tanah"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "cabai"
+  - "bawang-merah"
+  - "kelapa-sawit"
 tags:
   - "cara kerja trichoderma pada tanah"
   - "jamur antagonis perakaran"
   - "mengatasi jamur tular tanah"
   - "agens hayati trichoderma"
   - "bioproteksi akar tanaman"
-meta_title: "Manfaat Trichoderma Harzianum: Pelindung Akar Tanah"
-meta_description: "Cara kerja jamur antagonis Trichoderma harzianum dalam memangsa patogen tular tanah dan memicu kekebalan sistemik perakaran tanaman."
+draft: true
 ---
-
-# Trichoderma harzianum: Agen Hayati Pengawal Perakaran dan Pemangsa Jamur Patogen Tanah
 
 > **Key Takeaways**:
 > 1. Trichoderma harzianum adalah jamur antagonis menguntungkan yang secara alami mengkolonisasi zona perakaran (rizosfer) tanaman.

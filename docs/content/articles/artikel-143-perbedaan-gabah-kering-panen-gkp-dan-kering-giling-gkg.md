@@ -1,22 +1,22 @@
 ---
 title: "Perbedaan Gabah GKP dan GKG: Standar Kadar Air & Harga Gabah"
+metaTitle: "Perbedaan Gabah GKP dan GKG: Standar Kadar Air & Harga"
+description: "Pahami perbedaan Gabah Kering Panen GKP dan Gabah Kering Giling GKG: standar kadar air 14% SNI, rumus susut bobot jemur, dan cara cegah jamur gabah."
 slug: "perbedaan-gabah-kering-panen-gkp-dan-kering-giling-gkg"
-category: "Bioteknologi, Agribisnis & Pasca Panen"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "pascapanen-agribisnis"
+commodities:
+  - "padi"
+  - "melon"
 tags:
   - "perbedaan gabah gkp dan gkg"
   - "kadar air gabah kering giling 14 persen"
   - "harga gabah kering panen gkp per kg"
   - "rumus penyusutan gabah saat dijemur"
   - "standar mutu gabah sni badan pangan"
-meta_title: "Perbedaan Gabah GKP dan GKG: Standar Kadar Air & Harga"
-meta_description: "Pahami perbedaan Gabah Kering Panen GKP dan Gabah Kering Giling GKG: standar kadar air 14% SNI, rumus susut bobot jemur, dan cara cegah jamur gabah."
+draft: true
 ---
-
-# Perbedaan Gabah GKP dan GKG: Standar Kadar Air & Harga Gabah
 
 Di dunia niaga padi dan perberasan nasional, istilah **Gabah Kering Panen (GKP)** dan **Gabah Kering Giling (GKG)** selalu menjadi acuan utama dalam penentuan harga jual di tingkat petani maupun penggilingan padi. Perbedaan mendasar di antara keduanya terletak pada persentase kadar air (*moisture content*) dan tingkat kebersihan butir dari kotoran jerami maupun butir hampa.
 

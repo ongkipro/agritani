@@ -1,22 +1,21 @@
 ---
 title: "Budidaya Cengkeh Zanzibar: Tangkal Penyakit BPKC Panen Bunga Lebat"
+metaTitle: "Budidaya Cengkeh Zanzibar Unggul: Tangkal BPKC Panen Lebat"
+description: "Panduan budidaya pohon cengkeh varietas Zanzibar: ciri bibit pucuk merah, pencegahan penyakit bakteri pembuluh kayu BPKC, dan pemupukan pasca panen."
 slug: "budidaya-cengkeh-varietas-zanzibar-panen-bunga"
-category: "Komoditas Pangan, Perkebunan & Hortikultura"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "cengkeh"
 tags:
   - "budidaya cengkeh varietas zanzibar"
   - "ciri bibit cengkeh zanzibar unggul"
   - "pencegahan penyakit bpkc cengkeh"
   - "pemupukan pohon cengkeh setelah panen"
   - "rendemen minyak eugenol cengkeh"
-meta_title: "Budidaya Cengkeh Zanzibar Unggul: Tangkal BPKC Panen Lebat"
-meta_description: "Panduan budidaya pohon cengkeh varietas Zanzibar: ciri bibit pucuk merah, pencegahan penyakit bakteri pembuluh kayu BPKC, dan pemupukan pasca panen."
+draft: true
 ---
-
-# Budidaya Cengkeh Zanzibar: Tangkal Penyakit BPKC Panen Bunga Lebat
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Cengkeh varietas Zanzibar adalah jenis cengkeh terbaik dengan produktivitas bunga tertinggi dan kadar minyak eugenol mencapai di atas 20%.

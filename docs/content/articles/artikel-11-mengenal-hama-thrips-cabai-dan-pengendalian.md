@@ -1,22 +1,22 @@
 ---
 title: "Mengenal Hama Thrips Cabai: Gejala Daun Mengeriting ke Atas dan Trik Pengendaliannya"
+metaTitle: "Pengendalian Hama Thrips Cabai: Daun Mengeriting"
+description: "Kenali gejala daun cabai mengeriting ke atas akibat hama thrips serta trik pengendalian alami dengan mulsa perak dan bioproteksi nabati."
 slug: "mengenal-hama-thrips-cabai-dan-pengendalian"
-category: "Hama & Proteksi Tanaman"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "cabai"
+  - "kopi"
 tags:
   - "hama thrips pada cabai"
   - "daun cabai keriting ke atas"
   - "cara mengatasi thrips cabai"
   - "mulsa perak penolak hama"
   - "insektisida nabati thrips"
-meta_title: "Pengendalian Hama Thrips Cabai: Daun Mengeriting"
-meta_description: "Kenali gejala daun cabai mengeriting ke atas akibat hama thrips serta trik pengendalian alami dengan mulsa perak dan bioproteksi nabati."
+draft: true
 ---
-
-# Mengenal Hama Thrips Cabai: Gejala Daun Mengeriting ke Atas dan Trik Pengendaliannya
 
 > **Key Takeaways**:
 > 1. Hama Thrips (Thrips parvispinus) merusak dengan cara memarut dan mengisap cairan sel daun muda serta putik bunga cabai.

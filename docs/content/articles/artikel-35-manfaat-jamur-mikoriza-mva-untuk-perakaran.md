@@ -1,22 +1,21 @@
 ---
 title: "Rahasia Jamur Mikoriza (MVA): Perluas Jangkauan Serap Akar dan Tahan Kering"
+metaTitle: "Manfaat Jamur Mikoriza MVA untuk Akar Tanaman"
+description: "Pahami peranan pupuk hayati jamur mikoriza MVA dalam melipatgandakan jangkauan serap akar, melarutkan fosfat, dan membuat tanaman tahan kemarau."
 slug: "manfaat-jamur-mikoriza-mva-untuk-perakaran"
-category: "Biologi Tanah & Mikrobioma"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "kopi"
 tags:
   - "manfaat mikoriza untuk tanaman"
   - "jamur mikoriza perakaran"
   - "pupuk hayati mikoriza mva"
   - "cara aplikasi mikoriza"
   - "tanaman tahan kekeringan"
-meta_title: "Manfaat Jamur Mikoriza MVA untuk Akar Tanaman"
-meta_description: "Pahami peranan pupuk hayati jamur mikoriza MVA dalam melipatgandakan jangkauan serap akar, melarutkan fosfat, dan membuat tanaman tahan kemarau."
+draft: true
 ---
-
-# Rahasia Jamur Mikoriza (MVA): Perluas Jangkauan Serap Akar dan Tahan Kering
 
 Sistem perakaran tanaman sering kali memiliki keterbatasan fisik: bulu akar hanya mampu menjangkau beberapa sentimeter di sekitar bola akar dan mudah terhenti saat membentur lapisan padas atau mengalami kekeringan. Namun di alam liar, tanaman hutan sanggup bertahan kokoh dan hijau berkat kemitraan biologis dengan **Jamur Mikoriza (*Mikoriza Vesikular Arbuskular / MVA*)**.
 

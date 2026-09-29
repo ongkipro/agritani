@@ -1,22 +1,23 @@
 ---
 title: "Panduan Budidaya Padi Gogo: Solusi Panen Beras di Lahan Kering"
+metaTitle: "Panduan Budidaya Padi Gogo Lahan Kering: Panen Melimpah"
+description: "Teknik budidaya padi gogo di lahan tegalan kering tanpa genangan air: varietas tahan naungan Inpago, sistem tugal larik, dan pemupukan fosfat berimbang."
 slug: "panduan-budidaya-padi-gogo-lahan-kering"
-category: "Komoditas Pangan, Perkebunan & Hortikultura"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "kelapa-sawit"
+  - "padi"
+  - "sayuran-daun"
 tags:
   - "budidaya padi gogo lahan kering"
   - "varietas inpago tahan kekeringan"
   - "cara tanam padi tegalan tugal"
   - "pemupukan efisien padi gogo"
   - "manajemen gulma padi darat"
-meta_title: "Panduan Budidaya Padi Gogo Lahan Kering: Panen Melimpah"
-meta_description: "Teknik budidaya padi gogo di lahan tegalan kering tanpa genangan air: varietas tahan naungan Inpago, sistem tugal larik, dan pemupukan fosfat berimbang."
+draft: true
 ---
-
-# Panduan Budidaya Padi Gogo: Solusi Panen Beras di Lahan Kering
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Padi gogo adalah varietas padi adaptif yang dibudidayakan di lahan kering (tegalan atau lereng) sepenuhnya mengandalkan curah hujan alami.

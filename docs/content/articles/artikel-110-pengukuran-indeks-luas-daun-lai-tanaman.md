@@ -1,22 +1,23 @@
 ---
 title: "Pengukuran Indeks Luas Daun (LAI): Maksimalkan Pabrik Fotosintesis Kebun"
+metaTitle: "Indeks Luas Daun LAI Tanaman: Maksimalkan Fotosintesis"
+description: "Pahami konsep Indeks Luas Daun Leaf Area Index LAI: rumus hitung luas daun per kanopi, nilai optimum kanopi sawit dan padi, serta pencegahan ternaungi."
 slug: "pengukuran-indeks-luas-daun-lai-tanaman"
-category: "Fisiologi & Anatomi Tumbuhan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "sains-tanaman"
+commodities:
+  - "kelapa-sawit"
+  - "padi"
+  - "sayuran-daun"
 tags:
   - "indeks luas daun lai tanaman"
   - "leaf area index kanopi tanaman"
   - "efisiensi intersepsi cahaya fotosintesis"
   - "kerapatan jarak tanam optimal"
   - "pencegahan kanopi saling menaungi"
-meta_title: "Indeks Luas Daun LAI Tanaman: Maksimalkan Fotosintesis"
-meta_description: "Pahami konsep Indeks Luas Daun Leaf Area Index LAI: rumus hitung luas daun per kanopi, nilai optimum kanopi sawit dan padi, serta pencegahan ternaungi."
+draft: true
 ---
-
-# Pengukuran Indeks Luas Daun (LAI): Maksimalkan Pabrik Fotosintesis Kebun
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Indeks Luas Daun (LAI) adalah perbandingan tanpa dimensi antara total luas permukaan daun hijau dengan luas bidang tanah di bawahnya.

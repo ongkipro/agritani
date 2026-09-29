@@ -1,22 +1,24 @@
 ---
 title: "Sains Asam Amino L-Prolin: Tameng Alami Tanaman Hadapi Kemarau Ekstrem"
+metaTitle: "Manfaat Asam Amino L-Prolin untuk Tanaman Stres Kering"
+description: "Pahami peranan asam amino L-prolin sebagai osmoregulator seluler yang melindungi tanaman dari kekeringan ekstrem, salinitas, dan sengatan panas."
 slug: "sains-asam-amino-l-prolin-anti-kekeringan"
-category: "Nutrisi Tanaman & Biostimulan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "padi"
+  - "cabai"
+  - "tomat"
+  - "mangga"
 tags:
   - "manfaat asam amino l-prolin"
   - "pupuk tanaman tahan kemarau"
   - "osmoregulator sel tanaman"
   - "cara mengatasi tanaman kekeringan"
   - "biostimulan antistres tanaman"
-meta_title: "Manfaat Asam Amino L-Prolin untuk Tanaman Stres Kering"
-meta_description: "Pahami peranan asam amino L-prolin sebagai osmoregulator seluler yang melindungi tanaman dari kekeringan ekstrem, salinitas, dan sengatan panas."
+draft: true
 ---
-
-# Sains Asam Amino L-Prolin: Tameng Alami Tanaman Hadapi Kemarau Ekstrem
 
 Di tengah anomali cuaca El Nino yang memicu musim kemarau panjang tanpa hujan berbulan-bulan, tantangan terbesar bagi petani hortikultura dan perkebunan adalah menjaga tanaman tetap hidup segar dan tidak mati layu kekeringan.
 

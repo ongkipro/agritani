@@ -1,22 +1,24 @@
 ---
 title: "Teknik Fertigasi Otomatis Presisi: Pangkas Biaya Pupuk Naikkan Hasil"
+metaTitle: "Fertigasi Otomatis Presisi Hortikultura: Hemat Pupuk 40%"
+description: "Panduan instalasi sistem fertigasi tetes otomatis: pemanfaatan venturi injector, monitoring sensor EC dan pH, serta efisiensi pemupukan presisi perakaran."
 slug: "teknik-fertigasi-otomatis-presisi-hortikultura"
-category: "Manajemen Air & Sistem Irigasi Pertanian"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "air-irigasi"
+commodities:
+  - "cabai"
+  - "tomat"
+  - "melon"
+  - "sayuran-daun"
 tags:
   - "teknik fertigasi otomatis presisi"
   - "sistem irigasi tetes drip fertigation"
   - "cara pasang venturi injector pupuk"
   - "monitoring nilai ec dan ph fertigasi"
   - "efisiensi pupuk hidroponik greenhouse"
-meta_title: "Fertigasi Otomatis Presisi Hortikultura: Hemat Pupuk 40%"
-meta_description: "Panduan instalasi sistem fertigasi tetes otomatis: pemanfaatan venturi injector, monitoring sensor EC dan pH, serta efisiensi pemupukan presisi perakaran."
+draft: true
 ---
-
-# Teknik Fertigasi Otomatis Presisi: Pangkas Biaya Pupuk Naikkan Hasil
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Fertigasi adalah integrasi pemberian air irigasi bersama pupuk terlarut secara simultan langsung ke zona rizosfer perakaran tanaman.

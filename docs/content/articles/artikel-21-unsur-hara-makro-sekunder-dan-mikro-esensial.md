@@ -1,22 +1,22 @@
 ---
 title: "Mengenal Unsur Hara Makro Sekunder dan Mikro: Kunci Tersembunyi Kualitas Panen Premium"
+metaTitle: "Unsur Hara Makro Sekunder dan Mikro untuk Tanaman"
+description: "Pahami Hukum Minimum Liebig serta peran kalsium, magnesium, sulfur, boron, dan seng dalam mencegah gagal panen dan kerontokan buah."
 slug: "unsur-hara-makro-sekunder-dan-mikro-esensial"
-category: "Fisiologi Nutrisi Tanaman"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "cabai"
+  - "mangga"
 tags:
   - "unsur hara makro dan mikro"
   - "fungsi kalsium untuk tanaman"
   - "peran boron pada bunga"
   - "hukum minimum liebig"
   - "gejala defisiensi unsur mikro"
-meta_title: "Unsur Hara Makro Sekunder dan Mikro untuk Tanaman"
-meta_description: "Pahami Hukum Minimum Liebig serta peran kalsium, magnesium, sulfur, boron, dan seng dalam mencegah gagal panen dan kerontokan buah."
+draft: true
 ---
-
-# Mengenal Unsur Hara Makro Sekunder dan Mikro: Kunci Tersembunyi Kualitas Panen Premium
 
 > **Key Takeaways**:
 > 1. Hukum Minimum Liebig membuktikan bahwa hasil panen dibatasi oleh unsur hara yang paling langka di tanah, bukan oleh unsur yang paling melimpah (seperti Urea/NPK semata).

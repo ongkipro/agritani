@@ -1,22 +1,21 @@
 ---
 title: "Tahap Aklimatisasi Bibit Kultur Jaringan: Panduan Anti Gagal"
+metaTitle: "Aklimatisasi Bibit Kultur Jaringan: Panduan Anti Gagal"
+description: "Panduan aklimatisasi bibit kultur jaringan dari botol ke sungkup: sterilisasi akar, penyesuaian kelembapan bertahap, dan adaptasi stomata anti layu."
 slug: "tahap-aklimatisasi-bibit-kultur-jaringan-petani"
-category: "Bioteknologi, Agribisnis & Pasca Panen"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "pascapanen-agribisnis"
+commodities:
+  - "tomat"
 tags:
   - "aklimatisasi bibit kultur jaringan"
   - "tahap pengeluaran bibit botol planlet"
   - "media tanam aklimatisasi cocopeat sekam"
   - "sungkup plastik kelembapan bibit"
   - "adaptasi stomata kutikula daun bibit"
-meta_title: "Aklimatisasi Bibit Kultur Jaringan: Panduan Anti Gagal"
-meta_description: "Panduan aklimatisasi bibit kultur jaringan dari botol ke sungkup: sterilisasi akar, penyesuaian kelembapan bertahap, dan adaptasi stomata anti layu."
+draft: true
 ---
-
-# Tahap Aklimatisasi Bibit Kultur Jaringan: Panduan Anti Gagal
 
 Proses pemindahan bibit tanaman mini (*planlet*) dari botol laboratorium steril ke lingkungan kebun terbuka merupakan fase paling kritis dalam perbanyakan kultur jaringan. Kegagalan pada fase aklimatisasi sering kali membuat petani atau penangkar kehilangan 50 hingga 80 persen bibit hanya dalam tempo tiga hari. Tanaman mini yang terbiasa hidup mewah di dalam botol kaca dengan nutrisi agar-agar instan, kelembapan udara 100 persen, dan suasana bebas kuman tiba-tiba dipaksa bertarung di udara luar yang panas, kering, dan penuh spora jamur patogen.
 

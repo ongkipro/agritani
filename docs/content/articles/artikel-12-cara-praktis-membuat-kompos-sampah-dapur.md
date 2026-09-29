@@ -1,22 +1,22 @@
 ---
 title: "Panduan Praktis Membuat Kompos Organik dari Sampah Rumah Tangga Tanpa Bau Busuk"
+metaTitle: "Cara Membuat Kompos Sampah Dapur Cepat Tanpa Bau"
+description: "Panduan membuat pupuk kompos organik dari sisa sampah dapur rumah tangga dengan perbandingan karbon nitrogen tepat tanpa bau busuk."
 slug: "cara-praktis-membuat-kompos-sampah-dapur"
-category: "Kesuburan Tanah & Kompos Organik"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "kopi"
+  - "sayuran-daun"
 tags:
   - "cara membuat kompos sampah dapur"
   - "kompos organik tanpa bau"
   - "rasio karbon nitrogen kompos"
   - "pupuk kompos rumah tangga"
   - "pengolahan sampah organik"
-meta_title: "Cara Membuat Kompos Sampah Dapur Cepat Tanpa Bau"
-meta_description: "Panduan membuat pupuk kompos organik dari sisa sampah dapur rumah tangga dengan perbandingan karbon nitrogen tepat tanpa bau busuk."
+draft: true
 ---
-
-# Panduan Praktis Membuat Kompos Organik dari Sampah Rumah Tangga Tanpa Bau Busuk
 
 > **Key Takeaways**:
 > 1. Pengomposan aerobik yang sukses bertumpu pada perimbangan rasio bahan coklat (kaya Karbon) dan bahan hijau (kaya Nitrogen) 2:1.

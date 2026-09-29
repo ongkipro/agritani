@@ -1,22 +1,22 @@
 ---
 title: "Tingkatkan Rendemen Beras Kepala: Kurangi Butir Patah Giling"
+metaTitle: "Tingkatkan Rendemen Beras Kepala: Kurangi Butir Patah"
+description: "Panduan meningkatkan rendemen beras kepala saat penggilingan gabah: setelan rubber roll, kontrol kadar air 14%, dan poles bertahap cegah beras patah."
 slug: "cara-meningkatkan-rendemen-beras-kepala-penggilingan"
-category: "Bioteknologi, Agribisnis & Pasca Panen"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "pascapanen-agribisnis"
+commodities:
+  - "padi"
+  - "kopi"
 tags:
   - "rendemen beras giling kepala"
   - "mengurangi beras butir patah menir"
   - "setelan mesin huller rubber roll"
   - "kadar air gabah ideal penggilingan"
   - "peningkatan kualitas mutu beras sni"
-meta_title: "Tingkatkan Rendemen Beras Kepala: Kurangi Butir Patah"
-meta_description: "Panduan meningkatkan rendemen beras kepala saat penggilingan gabah: setelan rubber roll, kontrol kadar air 14%, dan poles bertahap cegah beras patah."
+draft: true
 ---
-
-# Tingkatkan Rendemen Beras Kepala: Kurangi Butir Patah Giling
 
 Beras kepala (*head rice*) adalah butir beras giling yang memiliki ukuran utuh atau minimal tujuh per delapan bagian dari ukuran butir aslinya. Semakin tinggi persentase beras kepala yang dihasilkan dari satu ton gabah, semakin tinggi pula kelas mutu beras (premium vs medium) serta nilai rupiah yang masuk ke kantong pengusaha penggilingan padi maupun kelompok tani.
 

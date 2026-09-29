@@ -1,22 +1,21 @@
 ---
 title: "Mengendalikan Penggerek Batang Padi: Mengatasi Sundep Vegetatif dan Beluk Malai"
+metaTitle: "Cara Mengendalikan Penggerek Batang Padi Sundep Beluk"
+description: "Panduan membasmi larva penggerek batang padi Scirpophaga incertulas pencegah gejala sundep dan malai beluk hampa dengan trichogramma."
 slug: "mengendalikan-penggerek-batang-padi-sundep-beluk"
-category: "Tanaman Pangan & Budidaya Padi"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "padi"
 tags:
   - "penggerek batang padi kuning"
   - "gejala sundep dan beluk padi"
   - "scirpophaga incertulas"
   - "parasitoid telur trichogramma"
   - "insektisida penggerek batang"
-meta_title: "Cara Mengendalikan Penggerek Batang Padi Sundep Beluk"
-meta_description: "Panduan membasmi larva penggerek batang padi Scirpophaga incertulas pencegah gejala sundep dan malai beluk hampa dengan trichogramma."
+draft: true
 ---
-
-# Mengendalikan Penggerek Batang Padi: Mengatasi Sundep Vegetatif dan Beluk Malai
 
 Di sawah-sawah seluruh Indonesia, hama yang paling konsisten mencuri bulir padi sejak fase persemaian hingga menjelang panen raya adalah **Hama Penggerek Batang Padi**, khususnya spesies **Penggerek Batang Padi Kuning (*Scirpophaga incertulas*)**.
 

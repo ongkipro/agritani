@@ -1,22 +1,21 @@
 ---
 title: "Fakta Ilmiah Air Cucian Beras (Leri): Pupuk Alami Gratis Pemacu Akar dan Mikroba Tanah"
+metaTitle: "Manfaat Air Cucian Beras untuk Tanaman dan Akar"
+description: "Fakta kandungan Vitamin B1 dan pati air cucian beras untuk meredakan transplanting shock tanaman dan membiakkan bakteri rizosfer tanah."
 slug: "rahasia-air-cucian-beras-kesuburan-akar"
-category: "Biostimulan & Fisiologi Tanaman"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "4 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "padi"
 tags:
   - "manfaat air cucian beras"
   - "pupuk air leri untuk akar"
   - "vitamin b1 untuk tanaman"
   - "bakteri rizosfer tanah"
   - "pupuk organik cair gratis"
-meta_title: "Manfaat Air Cucian Beras untuk Tanaman dan Akar"
-meta_description: "Fakta kandungan Vitamin B1 dan pati air cucian beras untuk meredakan transplanting shock tanaman dan membiakkan bakteri rizosfer tanah."
+draft: true
 ---
-
-# Fakta Ilmiah Air Cucian Beras (Leri): Pupuk Alami Gratis Pemacu Akar dan Mikroba Tanah
 
 > **Key Takeaways**:
 > 1. Air cucian beras (leri) mengandung Vitamin B1 (tiamin), unsur hara mikro fosfor terlarut, magnesium, dan pati karbohidrat bebas.

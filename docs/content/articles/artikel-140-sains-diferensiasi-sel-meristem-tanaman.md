@@ -1,22 +1,22 @@
 ---
 title: "Sains Diferensiasi Sel Meristem: Motor Utama Pertumbuhan Tanaman"
+metaTitle: "Sains Diferensiasi Sel Meristem: Regenerasi Jaringan Cepat"
+description: "Pahami sains pembelahan dan diferensiasi sel meristem apikal dan lateral: totipotensi seluler pembentukan kalus akar stek dan pemulihan luka pangkas."
 slug: "sains-diferensiasi-sel-meristem-tanaman"
-category: "Fisiologi & Anatomi Tumbuhan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "sains-tanaman"
+commodities:
+  - "jagung"
+  - "mangga"
 tags:
   - "diferensiasi sel meristem tanaman"
   - "jaringan meristem apikal pucuk akar"
   - "totipotensi seluler kultur jaringan"
   - "pembentukan kalus akar stek batang"
   - "kambium vaskular pertumbuhan sekunder"
-meta_title: "Sains Diferensiasi Sel Meristem: Regenerasi Jaringan Cepat"
-meta_description: "Pahami sains pembelahan dan diferensiasi sel meristem apikal dan lateral: totipotensi seluler pembentukan kalus akar stek dan pemulihan luka pangkas."
+draft: true
 ---
-
-# Sains Diferensiasi Sel Meristem: Motor Utama Pertumbuhan Tanaman
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Sel meristem adalah 'sel punca' (stem cells) tumbuhan yang terus-menerus membelah secara aktif melalui proses mitosis tanpa henti.

@@ -1,22 +1,23 @@
 ---
 title: "Pemanfaatan Semut Rangrang: Predator Alami Pelindung Kebun Buah"
+metaTitle: "Semut Rangrang Predator Alami: Kebun Buah Aman Hama"
+description: "Cara membudidayakan semut rangrang Oecophylla smaragdina sebagai predator alami kebun jeruk dan mangga: pasang tali penghubung dan pakan tambahan."
 slug: "pemanfaatan-semut-rangrang-predator-kebun-buah"
-category: "Pengendalian Hama Terpadu & Bioproteksi"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "kakao"
+  - "mangga"
+  - "jeruk"
 tags:
   - "semut rangrang predator kebun"
   - "oecophylla smaragdina pengendali hama"
   - "musuh alami lalat buah kepik"
   - "cara memelihara semut rangrang pohon"
   - "pengendalian hayati kebun jeruk mangga"
-meta_title: "Semut Rangrang Predator Alami: Kebun Buah Aman Hama"
-meta_description: "Cara membudidayakan semut rangrang Oecophylla smaragdina sebagai predator alami kebun jeruk dan mangga: pasang tali penghubung dan pakan tambahan."
+draft: true
 ---
-
-# Pemanfaatan Semut Rangrang: Predator Alami Pelindung Kebun Buah
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Semut rangrang (Oecophylla smaragdina) adalah predator kanopi pohon yang sangat agresif memangsa lalat buah, kepik, dan ulat perusak daun.

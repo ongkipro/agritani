@@ -1,22 +1,22 @@
 ---
 title: "Teknik Cangkok Susu Tanaman Buah: Rahasia Akar Ganda Super Lebat"
+metaTitle: "Teknik Cangkok Susu Tanaman Buah: Akar Ganda Cepat"
+description: "Pelajari teknik cangkok susu tanaman buah durian, mangga, dan nangka: menyatukan batang bawah penopang akar untuk menghasilkan bibit besar siap berbuah."
 slug: "teknik-cangkok-susu-tanaman-buah-akar-ganda"
-category: "Teknik Budidaya & Manajemen Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "durian"
+  - "mangga"
 tags:
   - "teknik cangkok susu tanaman buah"
   - "cangkok akar ganda durian mangga"
   - "cara mencangkok dahan besar berhasil"
   - "media cocopeat cangkok susu"
   - "keunggulan bibit cangkok susu"
-meta_title: "Teknik Cangkok Susu Tanaman Buah: Akar Ganda Cepat"
-meta_description: "Pelajari teknik cangkok susu tanaman buah durian, mangga, dan nangka: menyatukan batang bawah penopang akar untuk menghasilkan bibit besar siap berbuah."
+draft: true
 ---
-
-# Teknik Cangkok Susu Tanaman Buah: Rahasia Akar Ganda Super Lebat
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Cangkok susu memadukan teknik cangkok dahan besar dengan penyambungan 2–4 bibit semai berakar tunggang sebagai 'kaki penyuplai hara'.

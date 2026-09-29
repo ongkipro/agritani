@@ -1,22 +1,21 @@
 ---
 title: "Cara Pengendalian Gulma Rumput Teki: Basmi Tuntas Umbi Bawah Tanah"
+metaTitle: "Atasi Gulma Rumput Teki Membandel: Basmi Umbi Akar"
+description: "Trik membasmi tuntas rumput teki Cyperus rotundus yang kebal herbisida: bongkar rantai umbi dorman, herbisida sistemik glifosat, dan mulsa rapat."
 slug: "cara-pengendalian-gulma-rumput-teki-membandel"
-category: "Teknik Budidaya & Manajemen Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "padi"
 tags:
   - "cara membasmi rumput teki membandel"
   - "gulma cyperus rotundus kebal"
   - "umbi akar rumput teki dorman"
   - "herbisida sistemik pembasmi teki"
   - "pengendalian gulma hortikultura sawah"
-meta_title: "Atasi Gulma Rumput Teki Membandel: Basmi Umbi Akar"
-meta_description: "Trik membasmi tuntas rumput teki Cyperus rotundus yang kebal herbisida: bongkar rantai umbi dorman, herbisida sistemik glifosat, dan mulsa rapat."
+draft: true
 ---
-
-# Cara Pengendalian Gulma Rumput Teki: Basmi Tuntas Umbi Bawah Tanah
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Rumput teki (Cyperus rotundus) dinobatkan sebagai gulma terburuk di dunia karena perbanyakannya melalui rantai umbi bawah tanah yang dorman.

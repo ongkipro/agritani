@@ -1,22 +1,22 @@
 ---
 title: "Peranan Unsur Mikro Tembaga (Cu): Fondasi Imunitas dan Pembentukan Biji"
+metaTitle: "Peran Unsur Mikro Tembaga Cu: Imunitas & Biji Berisi"
+description: "Pelajari fungsi penting unsur hara mikro tembaga Cu pada tanaman: aktivasi enzim plastosianin, sintesis lignin tahan jamur, dan pencegahan pucuk mati."
 slug: "peranan-unsur-mikro-tembaga-cu-imunitas-tanaman"
-category: "Nutrisi Tanaman, Pupuk & Biostimulan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "padi"
+  - "jagung"
 tags:
   - "unsur mikro tembaga cu tanaman"
   - "fungsi hara tembaga tanaman"
   - "gejala defisiensi tembaga daun menguning"
   - "peran tembaga sintesis lignin"
   - "pupuk mikro tembaga sulfat cuso4"
-meta_title: "Peran Unsur Mikro Tembaga Cu: Imunitas & Biji Berisi"
-meta_description: "Pelajari fungsi penting unsur hara mikro tembaga Cu pada tanaman: aktivasi enzim plastosianin, sintesis lignin tahan jamur, dan pencegahan pucuk mati."
+draft: true
 ---
-
-# Peranan Unsur Mikro Tembaga (Cu): Fondasi Imunitas dan Pembentukan Biji
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Tembaga (Cu) adalah unsur hara mikro esensial yang mengaktifkan enzim fotosintesis plastosianin dan sintesis lignin pelindung dinding sel.

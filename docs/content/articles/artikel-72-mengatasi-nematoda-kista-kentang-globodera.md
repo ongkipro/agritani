@@ -1,22 +1,22 @@
 ---
 title: "Mengatasi Nematoda Kista Kentang: Hama Tersembunyi Perusak Umbi"
+metaTitle: "Atasi Nematoda Kista Kentang Globodera: Solusi Umbi"
+description: "Strategi membasmi nematoda kista kentang Globodera rostochiensis di dataran tinggi dengan rotasi tanaman bukan inang, nematisida, dan fumigasi tanah."
 slug: "mengatasi-nematoda-kista-kentang-globodera"
-category: "Hama & Serangga Pengganggu Tanaman"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "jagung"
+  - "kopi"
 tags:
   - "nematoda kista kentang nkk"
   - "globodera rostochiensis kentang"
   - "cara basmi kista kentang"
   - "rotasi tanaman lahan kentang"
   - "gejala nematoda umbi kerdil"
-meta_title: "Atasi Nematoda Kista Kentang Globodera: Solusi Umbi"
-meta_description: "Strategi membasmi nematoda kista kentang Globodera rostochiensis di dataran tinggi dengan rotasi tanaman bukan inang, nematisida, dan fumigasi tanah."
+draft: true
 ---
-
-# Mengatasi Nematoda Kista Kentang: Hama Tersembunyi Perusak Umbi
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Nematoda Kista Kentang (Globodera rostochiensis) adalah hama karantina yang kistanya mampu bertahan di dalam tanah hingga 20 tahun.

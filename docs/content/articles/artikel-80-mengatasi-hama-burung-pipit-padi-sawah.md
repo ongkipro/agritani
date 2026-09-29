@@ -1,22 +1,21 @@
 ---
 title: "Mengatasi Hama Burung Pipit pada Padi: Amankan Bulir Menjelang Panen"
+metaTitle: "Atasi Hama Burung Pipit Padi: Bulir Utuh Panen"
+description: "Trik ampuh menghalau hama burung pipit bondol pada padi bunting dan masak susu: teknik jaring perangkap, tali kresek, dan tanaman pagar pengalih."
 slug: "mengatasi-hama-burung-pipit-padi-sawah"
-category: "Hama & Serangga Pengganggu Tanaman"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "padi"
 tags:
   - "hama burung pipit padi sawah"
   - "cara mengusir burung bondol emprit"
   - "jaring pengaman burung sawah"
   - "padi masak susu diserang burung"
   - "tanaman pagar refugia pengalih burung"
-meta_title: "Atasi Hama Burung Pipit Padi: Bulir Utuh Panen"
-meta_description: "Trik ampuh menghalau hama burung pipit bondol pada padi bunting dan masak susu: teknik jaring perangkap, tali kresek, dan tanaman pagar pengalih."
+draft: true
 ---
-
-# Mengatasi Hama Burung Pipit pada Padi: Amankan Bulir Menjelang Panen
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Hama burung pipit (Lonchura spp.) menyerang tanaman padi sawah paling ganas pada fase masak susu hingga fase pematangan bulir gabah.

@@ -1,22 +1,22 @@
 ---
 title: "Saving Seed: Cara Menyeleksi dan Menyimpan Benih Mandiri Antar Musim Tanam"
+metaTitle: "Cara Menyimpan Benih Tanaman Sendiri Antar Musim"
+description: "Panduan seleksi buah matang fisiologis dan teknik mengeringkan benih mandiri ke kadar air 8-10 persen agar daya kecambah tetap tinggi."
 slug: "saving-seed-seleksi-simpan-benih-mandiri"
-category: "Teknik Pembenihan & Agronomi"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "cabai"
+  - "tomat"
 tags:
   - "cara menyimpan benih tanaman"
   - "saving seed mandiri"
   - "seleksi benih cabai unggul"
   - "kadar air simpan benih"
   - "kemandirian benih petani"
-meta_title: "Cara Menyimpan Benih Tanaman Sendiri Antar Musim"
-meta_description: "Panduan seleksi buah matang fisiologis dan teknik mengeringkan benih mandiri ke kadar air 8-10 persen agar daya kecambah tetap tinggi."
+draft: true
 ---
-
-# Saving Seed: Cara Menyeleksi dan Menyimpan Benih Mandiri Antar Musim Tanam
 
 > **Key Takeaways**:
 > 1. Saving seed memungkinkan petani mandiri benih unggul, menghemat biaya input berkala, dan mempertahankan varietas yang tahan iklim lokal.

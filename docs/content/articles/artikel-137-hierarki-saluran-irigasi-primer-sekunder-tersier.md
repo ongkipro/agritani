@@ -1,22 +1,21 @@
 ---
 title: "Hierarki Saluran Irigasi: Primer, Sekunder, dan Tersier di Sawah"
+metaTitle: "Saluran Irigasi Primer Sekunder Tersier: Distribusi Adil"
+description: "Pahami tata kelola sistem jaringan irigasi persawahan: perbedaan saluran primer, sekunder, dan tersier, serta peran organisasi P3A dalam pembagian air."
 slug: "hierarki-saluran-irigasi-primer-sekunder-tersier"
-category: "Manajemen Air & Sistem Irigasi Pertanian"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "air-irigasi"
+commodities:
+  - "padi"
 tags:
   - "hierarki saluran irigasi sawah"
   - "saluran primer sekunder tersier"
   - "organisasi pemakai air p3a sawah"
   - "manajemen pembagian air irigasi adil"
   - "pemeliharaan saluran irigasi pertanian"
-meta_title: "Saluran Irigasi Primer Sekunder Tersier: Distribusi Adil"
-meta_description: "Pahami tata kelola sistem jaringan irigasi persawahan: perbedaan saluran primer, sekunder, dan tersier, serta peran organisasi P3A dalam pembagian air."
+draft: true
 ---
-
-# Hierarki Saluran Irigasi: Primer, Sekunder, dan Tersier di Sawah
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Jaringan irigasi teknis tersusun atas hierarki saluran pembawa bertingkat: saluran primer (utama), sekunder (cabang), dan tersier (petak sawah).

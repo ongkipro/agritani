@@ -1,22 +1,21 @@
 ---
 title: "Mengatasi Kepik Penghisap Buah Kakao (Helopeltis): Cegah Buah Hitam Cekung"
+metaTitle: "Cara Mengatasi Kepik Helopeltis pada Buah Kakao"
+description: "Panduan membasmi hama kepik penghisap Helopeltis antonii pada buah kakao dan pucuk teh lewat semprotan nabati dan pemeliharaan semut hitam."
 slug: "mengatasi-kepik-penghisap-buah-kakao-helopeltis"
-category: "Perkebunan & Hama Tanaman"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "kakao"
 tags:
   - "hama helopeltis pada kakao"
   - "kepik pengisap buah kakao"
   - "buah kakao bercak cekung hitam"
   - "pengendalian helopeltis alami"
   - "semut hitam predator kakao"
-meta_title: "Cara Mengatasi Kepik Helopeltis pada Buah Kakao"
-meta_description: "Panduan membasmi hama kepik penghisap Helopeltis antonii pada buah kakao dan pucuk teh lewat semprotan nabati dan pemeliharaan semut hitam."
+draft: true
 ---
-
-# Mengatasi Kepik Penghisap Buah Kakao (Helopeltis): Cegah Buah Hitam Cekung
 
 Bagi pekebun kakao, teh, jambu mete, dan lada, salah satu hama pengisap getah yang paling merusak kualitas buah muda dan tunas ranting adalah **Kepik Penghisap Buah (*Helopeltis antonii*)**.
 

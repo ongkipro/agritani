@@ -1,22 +1,21 @@
 ---
 title: "Mengatasi Penyakit Akar Gada pada Kubis: Kenali Gejala dan Solusi Lahan Asam"
+metaTitle: "Cara Mengatasi Akar Gada Kubis Plasmodiophora"
+description: "Panduan mengendalikan penyakit bengkak akar gada Plasmodiophora brassicae pada tanaman kubis dan brokoli dengan pengapuran tanah dolomit tinggi."
 slug: "mengatasi-akar-gada-plasmodiophora-pada-kubis"
-category: "Patologi Tanaman & Sayuran"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "sayuran-daun"
 tags:
   - "penyebab penyakit akar gada kubis"
   - "plasmodiophora brassicae kubis"
   - "cara mengatasi akar bengkak brokoli"
   - "pengapuran dolomit tanah asam"
   - "penyakit tanaman brassicaceae"
-meta_title: "Cara Mengatasi Akar Gada Kubis Plasmodiophora"
-meta_description: "Panduan mengendalikan penyakit bengkak akar gada Plasmodiophora brassicae pada tanaman kubis dan brokoli dengan pengapuran tanah dolomit tinggi."
+draft: true
 ---
-
-# Mengatasi Penyakit Akar Gada pada Kubis: Kenali Gejala dan Solusi Lahan Asam
 
 Bagi petani sayuran dataran tinggi di sentra sayur seperti Lembang, Dieng, Malang, dan Brastagi, penyakit **Akar Gada (*Clubroot*)** adalah momok yang mampu melumpuhkan lahan pertanian selama bertahun-tahun.
 

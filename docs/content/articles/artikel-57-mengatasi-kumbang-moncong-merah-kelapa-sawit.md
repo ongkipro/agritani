@@ -1,22 +1,22 @@
 ---
 title: "Mengatasi Kumbang Moncong Merah: Pembunuh Senyap Pohon Kelapa dan Sawit"
+metaTitle: "Cara Mengatasi Kumbang Moncong Merah Kelapa Sawit"
+description: "Kenali bahaya larva kumbang moncong Rhynchophorus ferrugineus yang memakan umbut pucuk kelapa dari dalam dan cara deteksi bunyinya."
 slug: "mengatasi-kumbang-moncong-merah-kelapa-sawit"
-category: "Perkebunan Kelapa Sawit"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "kelapa-sawit"
+  - "sayuran-daun"
 tags:
   - "kumbang moncong merah kelapa"
   - "rhynchophorus ferrugineus"
   - "ulat sagu pemakan umbut sawit"
   - "perangkap feromon kumbang moncong"
   - "penyakit pucuk kelapa patah"
-meta_title: "Cara Mengatasi Kumbang Moncong Merah Kelapa Sawit"
-meta_description: "Kenali bahaya larva kumbang moncong Rhynchophorus ferrugineus yang memakan umbut pucuk kelapa dari dalam dan cara deteksi bunyinya."
+draft: true
 ---
-
-# Mengatasi Kumbang Moncong Merah: Pembunuh Senyap Pohon Kelapa dan Sawit
 
 Bagi petani kelapa sawit, kelapa dalam, maupun kurma, hama perusak batang dalam yang paling mematikan dan bekerja laksana pembunuh senyap di dalam kegelapan jaringan kayu adalah **Kumbang Moncong Merah (*Red Palm Weevil / Rhynchophorus ferrugineus*)**.
 

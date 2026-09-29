@@ -1,22 +1,22 @@
 ---
 title: "Seleksi Marka Molekuler MAS: Perakitan Benih Cepat Unggul"
+metaTitle: "Seleksi Marka Molekuler MAS: Pemuliaan Benih Cepat Unggul"
+description: "Mengenal seleksi marka molekuler MAS dalam pemuliaan tanaman: mempercepat perakitan varietas tahan hama dan cekaman cuaca tanpa uji lapang bertahun-tahun."
 slug: "seleksi-marka-molekuler-mas-pemuliaan-benih"
-category: "Bioteknologi, Agribisnis & Pasca Panen"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "pascapanen-agribisnis"
+commodities:
+  - "padi"
+  - "jagung"
 tags:
   - "seleksi marka molekuler mas tanaman"
   - "pemuliaan tanaman marker assisted selection"
   - "perakitan varietas benih padi unggul"
   - "deteksi gen tahan hama penyakit tanaman"
   - "bioteknologi benih non transgenik"
-meta_title: "Seleksi Marka Molekuler MAS: Pemuliaan Benih Cepat Unggul"
-meta_description: "Mengenal seleksi marka molekuler MAS dalam pemuliaan tanaman: mempercepat perakitan varietas tahan hama dan cekaman cuaca tanpa uji lapang bertahun-tahun."
+draft: true
 ---
-
-# Seleksi Marka Molekuler MAS: Perakitan Benih Cepat Unggul
 
 Metode pemuliaan tanaman konvensional membutuhkan waktu 8 hingga 12 generasi persilangan (setara 6 sampai 10 tahun) untuk menghasilkan satu galur varietas benih unggul baru. Pemulia harus menanam ribuan anakan padi atau jagung di lahan sawah, menunggu tanaman terserang penyakit secara alami, lalu mengamati satu per satu tanaman mana yang tetap berdiri sehat. Proses seleksi visual berbasis penampakan luar (*fenotipe*) ini selain memakan waktu panjang dan biaya lahan besar, juga sangat rentan terkecoh oleh fluktuasi cuaca musiman.
 

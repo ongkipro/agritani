@@ -1,22 +1,22 @@
 ---
 title: "Budidaya Pepaya Calina (California): Pohon Pendek Berbuah Lebat"
+metaTitle: "Budidaya Pepaya Calina California: Pohon Pendek Berbuah"
+description: "Panduan budidaya pepaya Calina California: cara seleksi bunga hermaprodit lonjong, pemupukan kalsium boron bebas jamur, dan panen buah mingguan."
 slug: "budidaya-pepaya-calina-california-pohon-pendek"
-category: "Komoditas Pangan, Perkebunan & Hortikultura"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "melon"
+  - "semangka"
 tags:
   - "budidaya pepaya calina california"
   - "seleksi bunga pepaya hermaprodit lonjong"
   - "cara menanam pepaya berbuah lebat"
   - "pengendalian tungau dan kutu putih pepaya"
   - "panen pepaya california pasar induk"
-meta_title: "Budidaya Pepaya Calina California: Pohon Pendek Berbuah"
-meta_description: "Panduan budidaya pepaya Calina California: cara seleksi bunga hermaprodit lonjong, pemupukan kalsium boron bebas jamur, dan panen buah mingguan."
+draft: true
 ---
-
-# Budidaya Pepaya Calina (California): Pohon Pendek Berbuah Lebat
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Pepaya Calina (IPB 9 / California) berpostur pohon kerdil pendek (mulai berbuah pada ketinggian 30 cm) dan panen perdana usia 7–8 bulan.

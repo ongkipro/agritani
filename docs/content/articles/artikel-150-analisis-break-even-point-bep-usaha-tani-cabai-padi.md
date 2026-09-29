@@ -1,22 +1,22 @@
 ---
 title: "Analisis Break Even Point BEP Usaha Tani Cabai dan Padi"
+metaTitle: "Analisis BEP Usaha Tani Cabai & Padi: Hitung Titik Impas"
+description: "Rumus praktis menghitung Break Even Point BEP unit dan harga pada usaha tani cabai serta padi: hitung biaya modal, upah tenaga kerja, dan target laba."
 slug: "analisis-break-even-point-bep-usaha-tani-cabai-padi"
-category: "Bioteknologi, Agribisnis & Pasca Panen"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "pascapanen-agribisnis"
+commodities:
+  - "padi"
+  - "cabai"
 tags:
   - "analisis break even point bep usaha tani"
   - "cara menghitung titik impas panen cabai"
   - "biaya tetap dan variabel bertani padi"
   - "rumus bep unit dan harga panen"
   - "analisis kelayakan usaha tani rc ratio"
-meta_title: "Analisis BEP Usaha Tani Cabai & Padi: Hitung Titik Impas"
-meta_description: "Rumus praktis menghitung Break Even Point BEP unit dan harga pada usaha tani cabai serta padi: hitung biaya modal, upah tenaga kerja, dan target laba."
+draft: true
 ---
-
-# Analisis Break Even Point BEP Usaha Tani Cabai dan Padi
 
 Banyak petani bekerja keras bermandi lumpur sepanjang musim tanam, namun ketika musim panen usai dan seluruh hasil terjual, uang di dalam dompet habis tanpa sisa tabungan yang jelas. Kesalahan fatal yang kerap terjadi adalah mengelola usaha tani hanya mengandalkan intuisi perasaan, tanpa pernah menghitung struktur biaya produksi secara matematis.
 

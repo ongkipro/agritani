@@ -1,22 +1,22 @@
 ---
 title: "Membasmi Hama Tungau Merah pada Cabai: Daun Kaku Melengkung ke Bawah"
+metaTitle: "Cara Mengatasi Hama Tungau Merah pada Tanaman Cabai"
+description: "Kenali perbedaan thrips dan tungau merah Tetranychus urticae pada cabai serta trik membasminya dengan semprotan belerang organik."
 slug: "mengatasi-hama-tungau-merah-pada-cabai"
-category: "Hama & Proteksi Tanaman"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "cabai"
+  - "kopi"
 tags:
   - "hama tungau merah cabai"
   - "tetranychus urticae"
   - "daun cabai melengkung ke bawah"
   - "akarisisida nabati belerang"
   - "mengatasi daun cabai berkarat"
-meta_title: "Cara Mengatasi Hama Tungau Merah pada Tanaman Cabai"
-meta_description: "Kenali perbedaan thrips dan tungau merah Tetranychus urticae pada cabai serta trik membasminya dengan semprotan belerang organik."
+draft: true
 ---
-
-# Membasmi Hama Tungau Merah pada Cabai: Daun Kaku Melengkung ke Bawah
 
 Banyak petani cabai pemula kebingungan ketika melihat kebun cabainya mendadak keriting kaku saat musim kemarau panas. Sering kali mereka mengira tanamannya diserang hama Thrips atau Virus Gemini, lalu menyemprotkan insektisida kimia biasa yang sama sekali tidak membuahkan hasil.
 

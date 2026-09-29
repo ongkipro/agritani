@@ -1,22 +1,21 @@
 ---
 title: "Mengatasi Penyakit Busuk Buah Kakao: Panduan Sanitasi dan Rorak Kebun"
+metaTitle: "Cara Mengatasi Busuk Buah Kakao Phytophthora Palmivora"
+description: "Panduan mengendalikan penyakit busuk buah kakao dengan pemangkasan aerasi, sanitasi buah hitam, dan penyemprotan tembaga terpadu."
 slug: "mengatasi-busuk-buah-kakao-phytophthora"
-category: "Perkebunan & Patologi Tanaman"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "kakao"
 tags:
   - "penyebab busuk buah kakao"
   - "phytophthora palmivora kakao"
   - "cara mengatasi busuk buah kakao"
   - "pemangkasan pohon kakao"
   - "sanitasi kebun kakao"
-meta_title: "Cara Mengatasi Busuk Buah Kakao Phytophthora Palmivora"
-meta_description: "Panduan mengendalikan penyakit busuk buah kakao dengan pemangkasan aerasi, sanitasi buah hitam, dan penyemprotan tembaga terpadu."
+draft: true
 ---
-
-# Mengatasi Penyakit Busuk Buah Kakao: Panduan Sanitasi dan Rorak Kebun
 
 Bagi petani kakao di Sulawesi, Sumatra, dan Flores, penyakit Busuk Buah Kakao (BBK) yang disebabkan oleh jamur *Phytophthora palmivora* adalah pencuri hasil panen nomor satu yang paling merusak.
 

@@ -1,22 +1,23 @@
 ---
 title: "Keunggulan Gliocladium virens: Jamur Antagonis Pembasmi Busuk Akar"
+metaTitle: "Biofungisida Gliocladium virens: Basmi Busuk Akar Tanah"
+description: "Pahami cara kerja jamur antagonis Gliocladium virens membasmi jamur patogen tular tanah Sclerotium, Rhizoctonia, dan Fusarium melalui antibiotik gliovirin."
 slug: "keunggulan-biofungisida-gliocladium-virens"
-category: "Pengendalian Hama Terpadu & Bioproteksi"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "cabai"
+  - "bawang-merah"
+  - "tomat"
 tags:
   - "biofungisida gliocladium virens"
   - "jamur antagonis tular tanah"
   - "cara mengatasi sclerotium rolfsii"
   - "antibiotik gliovirin pembasmi jamur"
   - "pengendalian hayati layu fusarium"
-meta_title: "Biofungisida Gliocladium virens: Basmi Busuk Akar Tanah"
-meta_description: "Pahami cara kerja jamur antagonis Gliocladium virens membasmi jamur patogen tular tanah Sclerotium, Rhizoctonia, dan Fusarium melalui antibiotik gliovirin."
+draft: true
 ---
-
-# Keunggulan Gliocladium virens: Jamur Antagonis Pembasmi Busuk Akar
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Gliocladium virens adalah jamur saprofit tanah yang bertindak sebagai musuh alami paling mematikan bagi patogen tular tanah tular akar.

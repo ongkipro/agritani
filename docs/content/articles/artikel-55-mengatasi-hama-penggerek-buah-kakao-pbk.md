@@ -1,22 +1,21 @@
 ---
 title: "Mengatasi Penggerek Buah Kakao (PBK): Rahasia Kondomisasi Buah dan Panen Sering"
+metaTitle: "Cara Mengatasi Penggerek Buah Kakao PBK di Kebun"
+description: "Strategi menuntaskan hama penggerek buah kakao Conopomorpha cramerella lewat teknik sarungisasi plastik dan panen sering seminggu sekali."
 slug: "mengatasi-hama-penggerek-buah-kakao-pbk"
-category: "Perkebunan & Hama Tanaman"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "kakao"
 tags:
   - "hama penggerek buah kakao pbk"
   - "conopomorpha cramerella"
   - "cara mengatasi buah kakao lengket"
   - "sarungisasi buah kakao"
   - "panen sering kebun kakao"
-meta_title: "Cara Mengatasi Penggerek Buah Kakao PBK di Kebun"
-meta_description: "Strategi menuntaskan hama penggerek buah kakao Conopomorpha cramerella lewat teknik sarungisasi plastik dan panen sering seminggu sekali."
+draft: true
 ---
-
-# Mengatasi Penggerek Buah Kakao (PBK): Rahasia Kondomisasi Buah dan Panen Sering
 
 Bagi petani kakao di seluruh pelosok Indonesia, musuh biologis yang paling meremukkan pendapatan ekonomi kebun adalah **Hama Penggerek Buah Kakao (PBK)** yang disebabkan oleh ngengat kecil **Conopomorpha cramerella**.
 

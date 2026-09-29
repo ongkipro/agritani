@@ -1,22 +1,23 @@
 ---
 title: "Peranan Klorin dan Batas Toksisitas: Kawan atau Racun bagi Tanaman?"
+metaTitle: "Peran Klorin & Bahaya Toksisitas: Pupuk KCl vs ZK"
+description: "Pelajari fungsi unsur mikro klorin Cl dalam regulasi osmotik sel stomata, serta bahaya toksisitas klorida pada tembakau, kentang, durian, dan jeruk."
 slug: "peranan-unsur-klorin-dan-batas-toksisitas-tanaman"
-category: "Nutrisi Tanaman, Pupuk & Biostimulan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "tomat"
+  - "durian"
+  - "jeruk"
 tags:
   - "peranan unsur klorin cl tanaman"
   - "bahaya toksisitas klorida tanah"
   - "perbedaan pupuk kcl dan zk kalium"
   - "tanaman sensitif klorin tembakau kentang"
   - "gejala daun terbakar keracunan klor"
-meta_title: "Peran Klorin & Bahaya Toksisitas: Pupuk KCl vs ZK"
-meta_description: "Pelajari fungsi unsur mikro klorin Cl dalam regulasi osmotik sel stomata, serta bahaya toksisitas klorida pada tembakau, kentang, durian, dan jeruk."
+draft: true
 ---
-
-# Peranan Klorin dan Batas Toksisitas: Kawan atau Racun bagi Tanaman?
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Klorin (Cl) adalah unsur hara mikro esensial yang mengatur tekanan osmotik sel penjaga stomata dan reaksi fotolisis air di kloroplas.

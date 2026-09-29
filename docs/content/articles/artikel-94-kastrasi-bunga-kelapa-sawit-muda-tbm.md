@@ -1,22 +1,22 @@
 ---
 title: "Kastrasi Bunga Kelapa Sawit Muda (TBM): Bangun Pohon Kokoh TBS Berat"
+metaTitle: "Kastrasi Kelapa Sawit TBM: Batang Kokoh TBS Berat"
+description: "Pahami manfaat kastrasi membuang bunga sawit usia 14-26 bulan: membesarkan diameter batang, memperkuat perakaran, dan menghasilkan panen perdana seragam."
 slug: "kastrasi-bunga-kelapa-sawit-muda-tbm"
-category: "Teknik Budidaya & Manajemen Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "kelapa-sawit"
+  - "sayuran-daun"
 tags:
   - "kastrasi bunga kelapa sawit"
   - "manajemen sawit tbm fase vegetatif"
   - "tujuan kastrasi buah pasir sawit"
   - "alat dodos kastrasi pohon sawit"
   - "meningkatkan bobot tbs panen perdana"
-meta_title: "Kastrasi Kelapa Sawit TBM: Batang Kokoh TBS Berat"
-meta_description: "Pahami manfaat kastrasi membuang bunga sawit usia 14-26 bulan: membesarkan diameter batang, memperkuat perakaran, dan menghasilkan panen perdana seragam."
+draft: true
 ---
-
-# Kastrasi Bunga Kelapa Sawit Muda (TBM): Bangun Pohon Kokoh TBS Berat
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Kastrasi adalah tindakan sanitasi membuang seluruh bunga jantan dan betina pada tanaman kelapa sawit usia 14 hingga 26 bulan.

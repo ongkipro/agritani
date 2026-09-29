@@ -1,22 +1,22 @@
 ---
 title: "Mengatasi Toksisitas Aluminium pada Tanah Masam: Solusi Akar Kerdil"
+metaTitle: "Atasi Toksisitas Aluminium Tanah Masam: Akar Kerdil"
+description: "Ketahui bahaya keracunan aluminium Al3+ pada tanah masam yang mematikan ujung akar dan cara menetralisirnya dengan kapur kalsit serta asam humat."
 slug: "mengatasi-toksisitas-aluminium-tanah-masam"
-category: "Ilmu Tanah & Kesuburan Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "jagung"
+  - "kedelai"
 tags:
   - "toksisitas aluminium tanah masam"
   - "bahaya al3+ akar kerdil"
   - "cara netralisir racun aluminium"
   - "pengapuran dolomit tanah pmk"
   - "manfaat asam humat tanah masam"
-meta_title: "Atasi Toksisitas Aluminium Tanah Masam: Akar Kerdil"
-meta_description: "Ketahui bahaya keracunan aluminium Al3+ pada tanah masam yang mematikan ujung akar dan cara menetralisirnya dengan kapur kalsit serta asam humat."
+draft: true
 ---
-
-# Mengatasi Toksisitas Aluminium pada Tanah Masam: Solusi Akar Kerdil
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Pada tanah masam dengan pH di bawah 5.0, ion Aluminium (Al3+) larut bebas dan meracuni tudung akar tanaman.

@@ -1,22 +1,22 @@
 ---
 title: "Teknik Budidaya Nanas Madu Subang: Panen Manis Legit Tanpa Gatal"
+metaTitle: "Budidaya Nanas Madu Subang: Buah Manis Bebas Gatal"
+description: "Panduan budidaya nanas madu Subang Smooth Cayenne: trik aplikasi etefon pemacu bunga serempak, pemupukan kalium rasa manis, dan pencegahan buah busuk."
 slug: "teknik-budidaya-nanas-madu-subang-manis"
-category: "Komoditas Pangan, Perkebunan & Hortikultura"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "melon"
+  - "semangka"
 tags:
   - "budidaya nanas madu subang"
   - "cara menanam nanas cepat berbuah"
   - "aplikasi ethephon pemacu bunga nanas"
   - "penyebab nanas rasa gatal di lidah"
   - "pupuk kalium pembesar buah nanas"
-meta_title: "Budidaya Nanas Madu Subang: Buah Manis Bebas Gatal"
-meta_description: "Panduan budidaya nanas madu Subang Smooth Cayenne: trik aplikasi etefon pemacu bunga serempak, pemupukan kalium rasa manis, dan pencegahan buah busuk."
+draft: true
 ---
-
-# Teknik Budidaya Nanas Madu Subang: Panen Manis Legit Tanpa Gatal
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Nanas madu Subang (kelompok Smooth Cayenne) memiliki daging buah berserat halus, berair melimpah, dan berkadar gula tinggi di atas 14% Brix.

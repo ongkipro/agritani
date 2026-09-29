@@ -1,22 +1,23 @@
 ---
 title: "Mengatasi Hama Lalat Bibit Kacang (Ophiomyia): Batang Pecah dan Bibit Roboh"
+metaTitle: "Cara Mengatasi Lalat Bibit Kacang Ophiomyia Phaseoli"
+description: "Panduan melindungi bibit kedelai, kacang hijau, dan kacang panjang dari larva lalat penggerek batang Ophiomyia phaseoli lewat seed treatment."
 slug: "mengatasi-hama-lalat-bibit-kacang-ophiomyia"
-category: "Tanaman Pangan & Palawija"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "kedelai"
+  - "kopi"
+  - "sayuran-daun"
 tags:
   - "cara membasmi lalat bibit kacang"
   - "ophiomyia phaseoli kedelai"
   - "batang bibit kacang panjang pecah"
   - "perlakuan benih kacang tanah"
   - "hama tanaman palawija"
-meta_title: "Cara Mengatasi Lalat Bibit Kacang Ophiomyia Phaseoli"
-meta_description: "Panduan melindungi bibit kedelai, kacang hijau, dan kacang panjang dari larva lalat penggerek batang Ophiomyia phaseoli lewat seed treatment."
+draft: true
 ---
-
-# Mengatasi Hama Lalat Bibit Kacang (Ophiomyia): Batang Pecah dan Bibit Roboh
 
 Bagi petani tanaman palawija dan sayuran kacang-kacangan—seperti kedelai, kacang hijau, kacang panjang, dan buncis—fase paling kritis yang menentukan kelangsungan hidup populasi tanaman di lahan adalah pada **umur 1 sampai 14 Hari Setelah Tanam (HST)**.
 

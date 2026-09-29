@@ -1,22 +1,21 @@
 ---
 title: "Rahasia Bakteri Pelarut Fosfat (BPF): Buka Kunci Fosfor Terikat di Tanah Masam"
+metaTitle: "Manfaat Bakteri Pelarut Fosfat BPF untuk Tanah Masam"
+description: "Pelajari cara kerja bakteri pelarut fosfat Pseudomonas dan Bacillus dalam mengurai endapan fosfor terikat agar hemat pupuk kimia."
 slug: "manfaat-bakteri-pelarut-fosfat-tanah"
-category: "Ilmu Tanah & Mikrobioma Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "kopi"
 tags:
   - "bakteri pelarut fosfat bpf"
   - "pupuk hayati pelarut fosfat"
   - "mengatasi fosfat terikat tanah"
   - "pseudomonas fluorescens tanah"
   - "hemat pupuk sp36 npk"
-meta_title: "Manfaat Bakteri Pelarut Fosfat BPF untuk Tanah Masam"
-meta_description: "Pelajari cara kerja bakteri pelarut fosfat Pseudomonas dan Bacillus dalam mengurai endapan fosfor terikat agar hemat pupuk kimia."
+draft: true
 ---
-
-# Rahasia Bakteri Pelarut Fosfat (BPF): Buka Kunci Fosfor Terikat di Tanah Masam
 
 Banyak petani mengeluh: setiap musim tanam sudah menabur pupuk Fosfat (seperti SP-36 atau pupuk NPK berkadar P tinggi) dalam jumlah berkarung-karung, namun tanaman tetap lambat tumbuh, batangnya kecil kurus, dan perakaran kerdil.
 

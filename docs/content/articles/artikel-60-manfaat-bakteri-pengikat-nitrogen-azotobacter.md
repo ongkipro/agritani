@@ -1,22 +1,23 @@
 ---
 title: "Manfaat Bakteri Pengikat Nitrogen (Azotobacter): Pupuk Urea Gratis dari Udara Bebas"
+metaTitle: "Manfaat Bakteri Pengikat Nitrogen Azotobacter Tanah"
+description: "Pahami cara kerja bakteri penambat nitrogen non-simbiotik Azotobacter dan Azospirillum dalam menyuplai nitrogen gratis bagi perakaran."
 slug: "manfaat-bakteri-pengikat-nitrogen-azotobacter"
-category: "Ilmu Tanah & Mikrobioma Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "padi"
+  - "cabai"
+  - "jagung"
 tags:
   - "bakteri pengikat nitrogen tanah"
   - "azotobacter dan azospirillum"
   - "pupuk hayati penambat nitrogen"
   - "menghemat pupuk urea kimia"
   - "mikroba penyubur tanah alami"
-meta_title: "Manfaat Bakteri Pengikat Nitrogen Azotobacter Tanah"
-meta_description: "Pahami cara kerja bakteri penambat nitrogen non-simbiotik Azotobacter dan Azospirillum dalam menyuplai nitrogen gratis bagi perakaran."
+draft: true
 ---
-
-# Manfaat Bakteri Pengikat Nitrogen (Azotobacter): Pupuk Urea Gratis dari Udara Bebas
 
 Hampir 78% dari seluruh udara atmosfer yang melingkupi bumi tersusun atas gas **Nitrogen ($N_2$)**. Di atas hamparan satu hektar lahan pertanian, melayang ribuan ton gas Nitrogen murni yang potensinya setara dengan ratusan juta rupiah pupuk Urea.
 

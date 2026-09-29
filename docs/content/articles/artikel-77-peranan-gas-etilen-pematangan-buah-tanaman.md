@@ -1,22 +1,22 @@
 ---
 title: "Peranan Gas Etilen: Mengatur Pematangan Buah dan Rontok Daun"
+metaTitle: "Peran Gas Etilen: Pematangan Buah dan Gugur Daun"
+description: "Pelajari fungsi gas etilen C2H4 dalam pematangan buah klimakterik, pembentukan zona absisi kerontokan, serta cara pengelolaannya pasca panen."
 slug: "peranan-gas-etilen-pematangan-buah-tanaman"
-category: "Fisiologi & Anatomi Tumbuhan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "sains-tanaman"
+commodities:
+  - "padi"
+  - "alpukat"
 tags:
   - "peranan gas etilen tanaman"
   - "pematangan buah klimakterik"
   - "hormon etilen c2h4 tumbuhan"
   - "mekanisme absisi gugur daun"
   - "pengawetan buah pasca panen"
-meta_title: "Peran Gas Etilen: Pematangan Buah dan Gugur Daun"
-meta_description: "Pelajari fungsi gas etilen C2H4 dalam pematangan buah klimakterik, pembentukan zona absisi kerontokan, serta cara pengelolaannya pasca panen."
+draft: true
 ---
-
-# Peranan Gas Etilen: Mengatur Pematangan Buah dan Rontok Daun
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Etilen (C2H4) adalah satu-satunya fitohormon alami tumbuhan yang berwujud gas pada temperatur ruang.

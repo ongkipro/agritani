@@ -1,22 +1,21 @@
 ---
 title: "Teknik Degreening Buah Jeruk: Ubah Kulit Hijau Menjadi Oranye Menawan"
+metaTitle: "Teknik Degreening Jeruk: Kulit Oranye Kuning Menawan"
+description: "Cara kerja proses degreening buah jeruk menggunakan gas etilen konsentrasi rendah: merombak klorofil kulit tanpa merusak rasa manis daging buah."
 slug: "teknik-degreening-kulit-buah-jeruk"
-category: "Bioteknologi, Agribisnis & Pasca Panen"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "pascapanen-agribisnis"
+commodities:
+  - "jeruk"
 tags:
   - "teknik degreening buah jeruk"
   - "cara mengubah kulit jeruk jadi kuning"
   - "aplikasi gas etilen ruang degreening"
   - "perombakan klorofil kulit jeruk tropis"
   - "standar mutu jeruk pasar modern"
-meta_title: "Teknik Degreening Jeruk: Kulit Oranye Kuning Menawan"
-meta_description: "Cara kerja proses degreening buah jeruk menggunakan gas etilen konsentrasi rendah: merombak klorofil kulit tanpa merusak rasa manis daging buah."
+draft: true
 ---
-
-# Teknik Degreening Buah Jeruk: Ubah Kulit Hijau Menjadi Oranye Menawan
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Jeruk tropis dataran rendah sering tetap berkulit hijau kusam meski daging buah di dalamnya sudah matang manis sempurna.

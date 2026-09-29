@@ -1,22 +1,22 @@
 ---
 title: "Budidaya Buncis Tegak dan Rambat: Panen Polong Renyah Bebas Ulat"
+metaTitle: "Budidaya Buncis Tegak & Rambat: Polong Renyah Bebas Ulat"
+description: "Perbedaan budidaya buncis tegak tipe bush dan buncis rambat: teknik pasang lanjaran, inokulasi rhizobium penyubur tanah, dan pencegahan karat daun."
 slug: "budidaya-buncis-tegak-dan-rambat-panen-renyah"
-category: "Komoditas Pangan, Perkebunan & Hortikultura"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "kedelai"
+  - "sayuran-daun"
 tags:
   - "budidaya buncis tegak dan rambat"
   - "perbedaan buncis bush dan pole bean"
   - "cara menanam buncis polong renyah"
   - "pengendalian ulat polong maruca buncis"
   - "pupuk fosfat bintil akar legum"
-meta_title: "Budidaya Buncis Tegak & Rambat: Polong Renyah Bebas Ulat"
-meta_description: "Perbedaan budidaya buncis tegak tipe bush dan buncis rambat: teknik pasang lanjaran, inokulasi rhizobium penyubur tanah, dan pencegahan karat daun."
+draft: true
 ---
-
-# Budidaya Buncis Tegak dan Rambat: Panen Polong Renyah Bebas Ulat
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Buncis tegak (bush bean) berumur genjah (panen 45 HST) tanpa ajir, sedangkan buncis rambat (pole bean) berproduksi jauh lebih lama (panen 60–90 HST).

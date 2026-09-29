@@ -1,22 +1,21 @@
 ---
 title: "Manajemen Budidaya Tebu: Strategi Mendongkrak Rendemen Gula Pabrik"
+metaTitle: "Budidaya Tebu Rendemen Tinggi: Trik Gula Kristal Manis"
+description: "Strategi budidaya tebu Saccharum officinarum rendemen di atas 8%: manajemen klentek daun kering, pemupukan kalium, dan teknik stres air pra-tebang."
 slug: "manajemen-budidaya-tebu-meningkatkan-rendemen-gula"
-category: "Komoditas Pangan, Perkebunan & Hortikultura"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "jagung"
 tags:
   - "budidaya tebu rendemen tinggi"
   - "cara meningkatkan rendemen gula tebu"
   - "teknik klentek daun tebu kering"
   - "pemupukan kalium tanaman tebu"
   - "jadwal tebang muat angkut tma tebu"
-meta_title: "Budidaya Tebu Rendemen Tinggi: Trik Gula Kristal Manis"
-meta_description: "Strategi budidaya tebu Saccharum officinarum rendemen di atas 8%: manajemen klentek daun kering, pemupukan kalium, dan teknik stres air pra-tebang."
+draft: true
 ---
-
-# Manajemen Budidaya Tebu: Strategi Mendongkrak Rendemen Gula Pabrik
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Rendemen tebu adalah persentase kristal gula murni (sukrosa) yang berhasil diekstrak dari setiap kuintal batang tebu giling di pabrik.

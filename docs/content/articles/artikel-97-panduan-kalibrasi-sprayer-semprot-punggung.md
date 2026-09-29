@@ -1,22 +1,22 @@
 ---
 title: "Panduan Kalibrasi Sprayer Punggung: Takaran Tepat Racun Hemat"
+metaTitle: "Kalibrasi Sprayer Punggung: Takaran Pestisida Tepat"
+description: "Cara mudah kalibrasi tangki semprot punggung knapsack sprayer: hitung volume semprot per hektar, kecepatan jalan, dan hindari pemborosan pestisida."
 slug: "panduan-kalibrasi-sprayer-semprot-punggung"
-category: "Teknik Budidaya & Manajemen Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "padi"
+  - "cabai"
 tags:
   - "kalibrasi sprayer punggung"
   - "knapsack sprayer pertanian manual"
   - "cara hitung volume semprot hektar"
   - "takaran tepat pestisida per tangki"
   - "efisiensi biaya semprot pestisida"
-meta_title: "Kalibrasi Sprayer Punggung: Takaran Pestisida Tepat"
-meta_description: "Cara mudah kalibrasi tangki semprot punggung knapsack sprayer: hitung volume semprot per hektar, kecepatan jalan, dan hindari pemborosan pestisida."
+draft: true
 ---
-
-# Panduan Kalibrasi Sprayer Punggung: Takaran Tepat Racun Hemat
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Kalibrasi sprayer adalah proses menghitung volume cairan semprot yang dikeluarkan alat pada luasan lahan dan kecepatan jalan tertentu.

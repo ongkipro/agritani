@@ -1,22 +1,22 @@
 ---
 title: "Peranan L-Triptofan: Prekursor Alami Pelebat Akar dan Tunas"
+metaTitle: "Peran L-Triptofan Prekursor Auksin: Akar Lebat Kokoh"
+description: "Pahami cara kerja asam amino L-triptofan sebagai bahan baku alami pembentukan hormon auksin IAA untuk memacu perakaran bibit dan cabang produktif."
 slug: "peranan-l-triptofan-prekursor-hormon-auksin-akar"
-category: "Nutrisi Tanaman, Pupuk & Biostimulan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "cabai"
+  - "tomat"
 tags:
   - "asam amino l-triptofan tanaman"
   - "prekursor hormon auksin iaa"
   - "cara melebatkan akar bibit tanaman"
   - "biostimulan asam amino murni"
   - "perangsang akar alami triptofan"
-meta_title: "Peran L-Triptofan Prekursor Auksin: Akar Lebat Kokoh"
-meta_description: "Pahami cara kerja asam amino L-triptofan sebagai bahan baku alami pembentukan hormon auksin IAA untuk memacu perakaran bibit dan cabang produktif."
+draft: true
 ---
-
-# Peranan L-Triptofan: Prekursor Alami Pelebat Akar dan Tunas
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. L-Triptofan adalah asam amino aromatik esensial yang bertindak sebagai bahan baku utama (prekursor) biosintesis hormon auksin (IAA).

@@ -1,22 +1,22 @@
 ---
 title: "Mengatasi Penyakit Embun Tepung pada Melon: Daun Putih Berkapur dan Rontok"
+metaTitle: "Cara Mengatasi Embun Tepung Melon Powdery Mildew"
+description: "Panduan membasmi jamur embun tepung powdery mildew pada tanaman melon dan semangka dengan semprotan baking soda dan belerang alami."
 slug: "mengatasi-embun-tepung-powdery-mildew-melon"
-category: "Patologi Tanaman & Hortikultura"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "semangka"
+  - "melon"
 tags:
   - "penyakit embun tepung melon"
   - "powdery mildew semangka"
   - "cara mengatasi daun putih berkapur"
   - "fungisida embun tepung alami"
   - "baking soda untuk tanaman"
-meta_title: "Cara Mengatasi Embun Tepung Melon Powdery Mildew"
-meta_description: "Panduan membasmi jamur embun tepung powdery mildew pada tanaman melon dan semangka dengan semprotan baking soda dan belerang alami."
+draft: true
 ---
-
-# Mengatasi Penyakit Embun Tepung pada Melon: Daun Putih Berkapur dan Rontok
 
 Bagi petani hortikultura pembudidaya tanaman merambat—seperti melon, semangka, mentimun, labu madu (*butternut squash*), dan anggur—pemandangan daun tanaman yang mendadak diselimuti bercak putih seperti bedak tabur atau tepung terigu adalah pertanda bahaya besar.
 

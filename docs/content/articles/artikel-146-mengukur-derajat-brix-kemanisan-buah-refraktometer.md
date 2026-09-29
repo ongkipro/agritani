@@ -1,22 +1,24 @@
 ---
 title: "Mengukur Derajat Brix Kemanisan Buah Pakai Refraktometer"
+metaTitle: "Ukur Derajat Brix Kemanisan Buah Pakai Refraktometer"
+description: "Panduan ukur derajat Brix kemanisan buah melon, semangka, dan jeruk pakai refraktometer: cara kalibrasi, sampling cairan, dan standar pasar supermarket."
 slug: "mengukur-derajat-brix-kemanisan-buah-refraktometer"
-category: "Bioteknologi, Agribisnis & Pasca Panen"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "pascapanen-agribisnis"
+commodities:
+  - "mangga"
+  - "jeruk"
+  - "semangka"
+  - "melon"
 tags:
   - "derajat brix kemanisan buah"
   - "cara menggunakan refraktometer optik"
   - "standar brix melon semangka jeruk"
   - "uji laboratorium rasa manis buah"
   - "mutu buah segar pasar supermarket"
-meta_title: "Ukur Derajat Brix Kemanisan Buah Pakai Refraktometer"
-meta_description: "Panduan ukur derajat Brix kemanisan buah melon, semangka, dan jeruk pakai refraktometer: cara kalibrasi, sampling cairan, dan standar pasar supermarket."
+draft: true
 ---
-
-# Mengukur Derajat Brix Kemanisan Buah Pakai Refraktometer
 
 Di pasar hortikultura modern dan jejaring supermarket premium, klaim bahwa buah "pasti manis" tidak lagi cukup diucapkan dengan kata-kata manis dari pedagang. Pembeli grosir (*offtaker*) dan jaringan ritel kini menggunakan parameter ilmiah kuantitatif bernama **Derajat Brix (°Brix)** untuk menentukan harga beli dan penerimaan komoditas buah segar dari petani.
 

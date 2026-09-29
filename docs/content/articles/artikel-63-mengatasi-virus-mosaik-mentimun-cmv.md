@@ -1,22 +1,24 @@
 ---
 title: "Mengatasi Virus Mosaik Mentimun (CMV): Gejala Daun Belang dan Pengendaliannya"
+metaTitle: "Cara Mengatasi Virus Mosaik Mentimun CMV pada Tanaman"
+description: "Solusi mengendalikan virus mosaik mentimun CMV pada cabai, tomat, dan melon lewat pemutusan kutu daun vektor serta biostimulan imun."
 slug: "mengatasi-virus-mosaik-mentimun-cmv"
-category: "Patologi Tanaman & Hortikultura"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "cabai"
+  - "tomat"
+  - "semangka"
+  - "melon"
 tags:
   - "virus mosaik mentimun cmv"
   - "daun cabai belang kuning hijau"
   - "gejala virus mosaik tanaman"
   - "cara mengatasi virus daun timun"
   - "vektor virus kutu daun afid"
-meta_title: "Cara Mengatasi Virus Mosaik Mentimun CMV pada Tanaman"
-meta_description: "Solusi mengendalikan virus mosaik mentimun CMV pada cabai, tomat, dan melon lewat pemutusan kutu daun vektor serta biostimulan imun."
+draft: true
 ---
-
-# Mengatasi Virus Mosaik Mentimun (CMV): Gejala Daun Belang dan Pengendaliannya
 
 Bagi petani tanaman hortikultura—termasuk cabai rawit, cabai keriting, mentimun, semangka, melon, dan tomat—penyakit belang daun yang paling luas sebarannya di seluruh dunia adalah **Cucumber Mosaic Virus (CMV)** atau **Virus Mosaik Mentimun**.
 

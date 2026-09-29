@@ -1,22 +1,21 @@
 ---
 title: "Mesin Flat Bed Dryer: Solusi Pengering Gabah Musim Hujan"
+metaTitle: "Mesin Flat Bed Dryer: Pengering Gabah Efisien Saat Hujan"
+description: "Solusi jemur gabah musim hujan dengan mesin flat bed dryer: hemat bahan bakar sekam, kontrol suhu 43 derajat Celsius, dan cegah beras pecah kuning."
 slug: "keunggulan-mesin-pengering-gabah-flat-bed-dryer"
-category: "Bioteknologi, Agribisnis & Pasca Panen"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "pascapanen-agribisnis"
+commodities:
+  - "padi"
 tags:
   - "mesin flat bed dryer gabah padi"
   - "pengering gabah mekanis musim hujan"
   - "suhu pengeringan gabah ideal 42 derajat"
   - "pemanas sekam biomassa flat bed dryer"
   - "mengatasi gabah kecambah musim hujan"
-meta_title: "Mesin Flat Bed Dryer: Pengering Gabah Efisien Saat Hujan"
-meta_description: "Solusi jemur gabah musim hujan dengan mesin flat bed dryer: hemat bahan bakar sekam, kontrol suhu 43 derajat Celsius, dan cegah beras pecah kuning."
+draft: true
 ---
-
-# Mesin Flat Bed Dryer: Solusi Pengering Gabah Musim Hujan
 
 Panen raya padi yang jatuh tepat di puncak musim hujan selalu menjadi mimpi buruk bagi kelompok tani dan pemilik penggilingan beras. Ketiadaan sinar matahari selama berhari-hari membuat gabah basah bertumpuk di teras rumah dan halaman pabrik, memicu kenaikan suhu internal tumpukan yang mengakibatkan gabah berkecambah, berjamur hitam, dan bulir beras berubah warna menjadi kuning busuk.
 

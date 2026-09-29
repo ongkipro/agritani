@@ -1,22 +1,21 @@
 ---
 title: "Jurus Mengendalikan Wereng Batang Coklat Padi: Cegah Puso Akibat Hopperburn"
+metaTitle: "Pengendalian Wereng Batang Coklat Padi: Cegah Puso"
+description: "Strategi memutus siklus hama wereng batang coklat Nilaparvata lugens pada padi dengan pengeringan sawah dan agens hayati Beauveria."
 slug: "pengendalian-wereng-batang-coklat-padi"
-category: "Tanaman Pangan & Budidaya Padi"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "padi"
 tags:
   - "cara membasmi wereng coklat padi"
   - "nilaparvata lugens wereng"
   - "gejala hopperburn padi puso"
   - "agens hayati beauveria bassiana"
   - "insektisida wereng ramah musuh alami"
-meta_title: "Pengendalian Wereng Batang Coklat Padi: Cegah Puso"
-meta_description: "Strategi memutus siklus hama wereng batang coklat Nilaparvata lugens pada padi dengan pengeringan sawah dan agens hayati Beauveria."
+draft: true
 ---
-
-# Jurus Mengendalikan Wereng Batang Coklat Padi: Cegah Puso Akibat Hopperburn
 
 Di antara sekian banyak hama tanaman pangan di Indonesia, tidak ada yang mampu melenyapkan hamparan padi ratusan hektar dalam tempo beberapa hari selain **Wereng Batang Coklat (*Nilaparvata lugens*)**.
 

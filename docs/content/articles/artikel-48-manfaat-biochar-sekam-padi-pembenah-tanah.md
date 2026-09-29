@@ -1,22 +1,22 @@
 ---
 title: "Manfaat Biochar Sekam Padi: Rumah Mikroba Abadi dan Spons Air di Tanah Lahan"
+metaTitle: "Manfaat Biochar Sekam Padi: Pembenah Tanah Alami"
+description: "Panduan membuat dan mengaplikasikan biochar arang sekam padi sebagai spons air dan rumah mikroba tanah yang bertahan ratusan tahun."
 slug: "manfaat-biochar-sekam-padi-pembenah-tanah"
-category: "Ilmu Tanah & Kesuburan Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "padi"
+  - "kopi"
 tags:
   - "manfaat biochar sekam padi"
   - "cara membuat biochar arang sekam"
   - "pembenah tanah liat keras"
   - "karbon organik tanah abadi"
   - "meningkatkan ktk tanah"
-meta_title: "Manfaat Biochar Sekam Padi: Pembenah Tanah Alami"
-meta_description: "Panduan membuat dan mengaplikasikan biochar arang sekam padi sebagai spons air dan rumah mikroba tanah yang bertahan ratusan tahun."
+draft: true
 ---
-
-# Manfaat Biochar Sekam Padi: Rumah Mikroba Abadi dan Spons Air di Tanah Lahan
 
 Di banyak sentra penggilingan padi di pedesaan, gunungan sekam padi limbah panen sering kali dibiarkan menumpuk membusuk atau dibakar begitu saja hingga menimbulkan asap polusi yang mengganggu warga.
 

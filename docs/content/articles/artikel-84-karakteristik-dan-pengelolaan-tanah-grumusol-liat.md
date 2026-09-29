@@ -1,22 +1,21 @@
 ---
 title: "Karakteristik Tanah Grumusol Liat Berat: Mengolah Lahan Rekah Kering"
+metaTitle: "Kesuburan Tanah Grumusol Vertisol: Cara Olah Liat Rekah"
+description: "Panduan budidaya di tanah grumusol liat berat Vertisol: pahami sifat mengembang basah dan merekah kering, serta teknik perbaikan drainase lahan."
 slug: "karakteristik-dan-pengelolaan-tanah-grumusol-liat"
-category: "Ilmu Tanah & Kesuburan Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "padi"
 tags:
   - "tanah grumusol liat berat"
   - "karakteristik tanah vertisol"
   - "pengolahan tanah liat mengembang merekah"
   - "mineral montmorilonit smektit"
   - "budidaya padi tegalan grumusol"
-meta_title: "Kesuburan Tanah Grumusol Vertisol: Cara Olah Liat Rekah"
-meta_description: "Panduan budidaya di tanah grumusol liat berat Vertisol: pahami sifat mengembang basah dan merekah kering, serta teknik perbaikan drainase lahan."
+draft: true
 ---
-
-# Karakteristik Tanah Grumusol Liat Berat: Mengolah Lahan Rekah Kering
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Tanah Grumusol (Vertisol) dicirikan oleh dominasi mineral liat tipe 2:1 (montmorilonit) yang memicu sifat kembang-kerut ekstrem.

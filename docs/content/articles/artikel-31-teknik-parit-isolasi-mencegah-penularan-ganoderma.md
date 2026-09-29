@@ -1,22 +1,22 @@
 ---
 title: "Teknik Parit Isolasi: Cara Ampuh Mencegah Penularan Ganoderma Sawit"
+metaTitle: "Parit Isolasi Ganoderma: Cara Mencegah Penularan Sawit"
+description: "Teknik agronomi pembuatan parit isolasi keliling untuk memutus kontak akar pohon sawit yang terinfeksi Ganoderma agar tidak menular ke blok kebun."
 slug: "teknik-parit-isolasi-mencegah-penularan-ganoderma"
-category: "Perkebunan Kelapa Sawit"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "kelapa-sawit"
+  - "sayuran-daun"
 tags:
   - "parit isolasi ganoderma"
   - "mencegah penularan jamur sawit"
   - "busuk pangkal batang sawit"
   - "sanitasi kebun sawit terpadu"
   - "ganoderma boninense kelapa sawit"
-meta_title: "Parit Isolasi Ganoderma: Cara Mencegah Penularan Sawit"
-meta_description: "Teknik agronomi pembuatan parit isolasi keliling untuk memutus kontak akar pohon sawit yang terinfeksi Ganoderma agar tidak menular ke blok kebun."
+draft: true
 ---
-
-# Teknik Parit Isolasi: Cara Ampuh Mencegah Penularan Ganoderma Sawit
 
 Bagi pengelola perkebunan kelapa sawit, menyaksikan pohon sawit produktif tumbang satu per satu akibat jamur *Ganoderma boninense* adalah mimpi buruk yang menggerus laba kebun secara permanen.
 

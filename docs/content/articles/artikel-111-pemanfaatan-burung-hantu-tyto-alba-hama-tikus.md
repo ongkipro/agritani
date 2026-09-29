@@ -1,22 +1,23 @@
 ---
 title: "Pemanfaatan Burung Hantu Tyto alba: Predator Alami Pembasmi Tikus"
+metaTitle: "Burung Hantu Tyto alba: Predator Alami Hama Tikus Sawah"
+description: "Cara efektif mengendalikan hama tikus sawah Rattus argentiventer dengan konservasi burung hantu Tyto alba: pembuatan rubuha dan larangan racun kimia."
 slug: "pemanfaatan-burung-hantu-tyto-alba-hama-tikus"
-category: "Pengendalian Hama Terpadu & Bioproteksi"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "kelapa-sawit"
+  - "padi"
+  - "sayuran-daun"
 tags:
   - "burung hantu tyto alba sawah"
   - "pengendalian hama tikus alami"
   - "cara membuat rubuha rumah burung hantu"
   - "predator tikus sawah perkebunan"
   - "pht ramah lingkungan bebas racun"
-meta_title: "Burung Hantu Tyto alba: Predator Alami Hama Tikus Sawah"
-meta_description: "Cara efektif mengendalikan hama tikus sawah Rattus argentiventer dengan konservasi burung hantu Tyto alba: pembuatan rubuha dan larangan racun kimia."
+draft: true
 ---
-
-# Pemanfaatan Burung Hantu Tyto alba: Predator Alami Pembasmi Tikus
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Burung hantu serak jawa (Tyto alba) adalah predator malam spesialis yang sanggup memangsa 2 hingga 5 ekor tikus sawah setiap malam.

@@ -1,22 +1,21 @@
 ---
 title: "Rahasia Potong Pucuk Cabai: Trik Agronomi Melipatgandakan Cabang Produktif dan Hasil Panen"
+metaTitle: "Cara Potong Pucuk Cabai Biar Berbuah Lebat dan Rimbun"
+description: "Panduan teknis potong pucuk (topping) tanaman cabai pada 20-30 HST untuk melipatgandakan cabang produktif dan mendongkrak tonase panen."
 slug: "panduan-potong-pucuk-cabai-lebat"
-category: "Hortikultura & Teknik Budidaya"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "cabai"
 tags:
   - "cara potong pucuk cabai"
   - "topping tanaman cabai"
   - "merawat cabai berbuah lebat"
   - "cabang produktif cabai"
   - "budidaya cabai rawit"
-meta_title: "Cara Potong Pucuk Cabai Biar Berbuah Lebat dan Rimbun"
-meta_description: "Panduan teknis potong pucuk (topping) tanaman cabai pada 20-30 HST untuk melipatgandakan cabang produktif dan mendongkrak tonase panen."
+draft: true
 ---
-
-# Rahasia Potong Pucuk Cabai: Trik Agronomi Melipatgandakan Cabang Produktif dan Hasil Panen
 
 > **Key Takeaways**:
 > 1. Pemotongan pucuk (*topping / pinching*) bertujuan mematahkan dominansi apikal (hormon auksin ujung) sehingga hormon sitokinin memicu pertumbuhan serentak tunas lateral.

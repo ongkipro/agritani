@@ -1,22 +1,23 @@
 ---
 title: "Mengatasi Hama Ulat Kantung Kelapa Sawit: Cegah Daun Lidi Merana"
+metaTitle: "Atasi Ulat Kantung Sawit Metisa Plana: Daun Utuh"
+description: "Panduan mengendalikan hama ulat kantung Metisa plana kelapa sawit: kenali biologi kantung kepompong dan teknik infus batang insektisida sistemik."
 slug: "mengatasi-hama-ulat-kantung-sawit-metisa"
-category: "Hama & Serangga Pengganggu Tanaman"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "kelapa-sawit"
+  - "melon"
+  - "sayuran-daun"
 tags:
   - "ulat kantung kelapa sawit"
   - "hama metisa plana sawit"
   - "cara basmi ulat pemakan daun sawit"
   - "teknik infus batang trunk injection"
   - "insektisida asetat acephate sawit"
-meta_title: "Atasi Ulat Kantung Sawit Metisa Plana: Daun Utuh"
-meta_description: "Panduan mengendalikan hama ulat kantung Metisa plana kelapa sawit: kenali biologi kantung kepompong dan teknik infus batang insektisida sistemik."
+draft: true
 ---
-
-# Mengatasi Hama Ulat Kantung Kelapa Sawit: Cegah Daun Lidi Merana
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Ulat kantung Metisa plana adalah hama pemakan daun kelapa sawit yang hidup tersembunyi di dalam kantung kerucut dari serat daun.

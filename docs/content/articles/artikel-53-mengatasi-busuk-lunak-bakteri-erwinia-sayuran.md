@@ -1,22 +1,22 @@
 ---
 title: "Mengatasi Busuk Lunak Bakteri (Erwinia): Mengapa Sayuran Berbau Busuk Menyengat?"
+metaTitle: "Cara Mengatasi Busuk Lunak Bakteri Erwinia Sayuran"
+description: "Protokol mencegah busuk basah berbau busuk menyengat akibat bakteri Erwinia carotovora pada kubis, wortel, dan sawi saat musim hujan."
 slug: "mengatasi-busuk-lunak-bakteri-erwinia-sayuran"
-category: "Patologi Tanaman & Sayuran"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "padi"
+  - "sayuran-daun"
 tags:
   - "busuk lunak bakteri erwinia"
   - "erwinia carotovora sayuran"
   - "penyebab kubis busuk berbau"
   - "bakterisida busuk lunak alami"
   - "pencegahan busuk basah sawi"
-meta_title: "Cara Mengatasi Busuk Lunak Bakteri Erwinia Sayuran"
-meta_description: "Protokol mencegah busuk basah berbau busuk menyengat akibat bakteri Erwinia carotovora pada kubis, wortel, dan sawi saat musim hujan."
+draft: true
 ---
-
-# Mengatasi Busuk Lunak Bakteri (Erwinia): Mengapa Sayuran Berbau Busuk Menyengat?
 
 Bagi petani dan pedagang sayuran dataran tinggi, tidak ada pemandangan yang lebih menjijikkan dan merugikan dibanding melihat krop kubis, sawi putih, brokoli, atau umbi wortel yang semula padat segar mendadak berubah menjadi bubur lembek berair yang mengeluarkan bau busuk amis menyengat hidung.
 

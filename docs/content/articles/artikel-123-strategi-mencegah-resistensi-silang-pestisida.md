@@ -1,22 +1,21 @@
 ---
 title: "Strategi Mencegah Resistensi Silang Pestisida: Lawan Hama Kebal"
+metaTitle: "Cegah Resistensi Silang Pestisida: Basmi Hama Kebal"
+description: "Pelajari bahaya resistensi silang pestisida sintetis pada ulat grayak dan wereng: cara rotasi kode cara kerja IRAC dan FRAC agar semprotan tetap ampuh."
 slug: "strategi-mencegah-resistensi-silang-pestisida"
-category: "Pengendalian Hama Terpadu & Bioproteksi"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "padi"
 tags:
   - "resistensi silang pestisida kimia"
   - "rotasi kode cara kerja irac"
   - "cara mengatasi hama ulat kebal"
   - "bahaya mencampur pestisida sembarangan"
   - "manajemen resistensi insektisida fungisida"
-meta_title: "Cegah Resistensi Silang Pestisida: Basmi Hama Kebal"
-meta_description: "Pelajari bahaya resistensi silang pestisida sintetis pada ulat grayak dan wereng: cara rotasi kode cara kerja IRAC dan FRAC agar semprotan tetap ampuh."
+draft: true
 ---
-
-# Strategi Mencegah Resistensi Silang Pestisida: Lawan Hama Kebal
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Resistensi silang terjadi saat populasi hama menjadi kebal terhadap beberapa merek pestisida sekaligus karena memiliki target cara kerja (MoA) yang sama.

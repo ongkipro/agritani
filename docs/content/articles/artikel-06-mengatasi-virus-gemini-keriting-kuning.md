@@ -1,22 +1,21 @@
 ---
 title: "Mencegah dan Menangani Virus Gemini (Bule Cabai): Putus Rantai Vektor Kutu Kebul"
+metaTitle: "Cara Mengatasi Virus Gemini Cabai: Putus Kutu Kebul"
+description: "Solusi menghentikan penyebaran penyakit bule dan virus gemini pada cabai lewat perangkap kuning kutu kebul serta bioproteksi bawah daun."
 slug: "mengatasi-virus-gemini-keriting-kuning"
-category: "Patologi Tanaman & Hama Vektor"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "cabai"
 tags:
   - "cara mengatasi virus gemini"
   - "penyebab daun cabai kuning"
   - "kutu kebul cabai"
   - "perangkap kuning kutu kebul"
   - "pencegahan penyakit bule"
-meta_title: "Cara Mengatasi Virus Gemini Cabai: Putus Kutu Kebul"
-meta_description: "Solusi menghentikan penyebaran penyakit bule dan virus gemini pada cabai lewat perangkap kuning kutu kebul serta bioproteksi bawah daun."
+draft: true
 ---
-
-# Mencegah dan Menangani Virus Gemini (Bule Cabai): Putus Rantai Vektor Kutu Kebul
 
 > **Key Takeaways**:
 > 1. Penyakit "Kuning / Bule" pada tanaman cabai disebabkan oleh *Pepper Yellow Leaf Curl Virus (PepYLCV)* dari kelompok Gemini Virus.

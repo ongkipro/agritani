@@ -1,22 +1,23 @@
 ---
 title: "Memahami Tanaman Stres: Gejala, Penyebab Cekaman Lingkungan, dan Protokol Pemulihannya"
+metaTitle: "Cara Mengatasi Tanaman Stres Panas dan Overwatering"
+description: "Protokol memulihkan tanaman yang mengalami stres akibat panas terik, genangan air berlebih, atau overdosis pupuk lewat asam amino daun."
 slug: "mengatasi-tanaman-stres-panas-overwatering"
-category: "Fisiologi Tanaman & Perawatan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "sains-tanaman"
+commodities:
+  - "cabai"
+  - "tomat"
+  - "sayuran-daun"
 tags:
   - "cara mengatasi tanaman stres"
   - "gejala overwatering tanaman"
   - "cekaman panas pada tanaman"
   - "pemulihan tanaman layu"
   - "pupuk antistres tanaman"
-meta_title: "Cara Mengatasi Tanaman Stres Panas dan Overwatering"
-meta_description: "Protokol memulihkan tanaman yang mengalami stres akibat panas terik, genangan air berlebih, atau overdosis pupuk lewat asam amino daun."
+draft: true
 ---
-
-# Memahami Tanaman Stres: Gejala, Penyebab Cekaman Lingkungan, dan Protokol Pemulihannya
 
 > **Key Takeaways**:
 > 1. Stres tanaman terbagi menjadi cekaman air (kelebihan/kekurangan penyiraman), cekaman suhu panas ekstrem, dan luka bakar akibat overdosis pupuk kimia.

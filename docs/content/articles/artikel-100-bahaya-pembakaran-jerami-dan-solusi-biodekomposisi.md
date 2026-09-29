@@ -1,22 +1,21 @@
 ---
 title: "Bahaya Pembakaran Jerami Padi dan Solusi Biodekomposisi di Sawah"
+metaTitle: "Stop Bakar Jerami Padi: Biodekomposisi Hemat Pupuk"
+description: "Pahami kerugian membakar jerami padi di sawah: hilangnya nitrogen dan bahan organik, serta trik biodekomposisi cepat jerami menjadi kompos kaya kalium."
 slug: "bahaya-pembakaran-jerami-dan-solusi-biodekomposisi"
-category: "Teknik Budidaya & Manajemen Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "padi"
 tags:
   - "bahaya pembakaran jerami padi"
   - "biodekomposer jerami sawah cepat"
   - "pupuk organik jerami kaya kalium"
   - "mikroba pengurai trichoderma laccase"
   - "mengembalikan kesuburan tanah sawah"
-meta_title: "Stop Bakar Jerami Padi: Biodekomposisi Hemat Pupuk"
-meta_description: "Pahami kerugian membakar jerami padi di sawah: hilangnya nitrogen dan bahan organik, serta trik biodekomposisi cepat jerami menjadi kompos kaya kalium."
+draft: true
 ---
-
-# Bahaya Pembakaran Jerami Padi dan Solusi Biodekomposisi di Sawah
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Membakar jerami padi melenyapkan 100% nitrogen, 80% sulfur, dan memusnahkan jutaan mikroba tanah serta cacing penyubur di lapisan olah.

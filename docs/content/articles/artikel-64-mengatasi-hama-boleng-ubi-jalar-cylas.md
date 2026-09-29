@@ -1,22 +1,21 @@
 ---
 title: "Mengatasi Hama Boleng Ubi Jalar (Cylas): Umbi Berlubang Hitam dan Rasa Pahit"
+metaTitle: "Cara Mengatasi Hama Boleng Ubi Jalar Cylas Formicarius"
+description: "Panduan membasmi hama kumbang boleng Cylas formicarius pada ubi jalar lewat pembumbunan tanah guludan, rotasi tanam, dan jamur Beauveria."
 slug: "mengatasi-hama-boleng-ubi-jalar-cylas"
-category: "Tanaman Pangan & Umbi-Umbian"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "padi"
 tags:
   - "cara mengatasi hama boleng ubi jalar"
   - "cylas formicarius ubi jalar"
   - "umbi ubi jalar pahit berlubang"
   - "kumbang moncong boleng"
   - "pengendalian hama ubi cilembu"
-meta_title: "Cara Mengatasi Hama Boleng Ubi Jalar Cylas Formicarius"
-meta_description: "Panduan membasmi hama kumbang boleng Cylas formicarius pada ubi jalar lewat pembumbunan tanah guludan, rotasi tanam, dan jamur Beauveria."
+draft: true
 ---
-
-# Mengatasi Hama Boleng Ubi Jalar (Cylas): Umbi Berlubang Hitam dan Rasa Pahit
 
 Bagi petani ubi jalar di berbagai sentra produksi—seperti ubi Cilembu Sumedang, ubi ungu Malang, dan ubi oranye Karanganyar—musuh utama yang paling sering merusak umbi di dalam tanah adalah **Hama Boleng (*Sweet Potato Weevil / Cylas formicarius*)**.
 

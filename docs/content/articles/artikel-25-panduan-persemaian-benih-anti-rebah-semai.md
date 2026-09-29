@@ -1,22 +1,22 @@
 ---
 title: "Panduan Sukses Menyemai Benih Hortikultura: Bebas Penyakit Rebah Semai (Damping-Off)"
+metaTitle: "Panduan Persemaian Benih Bebas Rebah Semai Damping-Off"
+description: "Cegah kematian bibit muda akibat rebah semai (damping-off) dengan komposisi media semai steril dan penjemuran matahari pagi sejak hari ke-3."
 slug: "panduan-persemaian-benih-anti-rebah-semai"
-category: "Teknik Pembenihan & Pembibitan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "cabai"
+  - "tomat"
 tags:
   - "media semai cabai anti rebah"
   - "penyakit rebah semai damping off"
   - "cara menyemai benih hortikultura"
   - "mencegah bibit etiolasi"
   - "sterilisasi media semai"
-meta_title: "Panduan Persemaian Benih Bebas Rebah Semai Damping-Off"
-meta_description: "Cegah kematian bibit muda akibat rebah semai (damping-off) dengan komposisi media semai steril dan penjemuran matahari pagi sejak hari ke-3."
+draft: true
 ---
-
-# Panduan Sukses Menyemai Benih Hortikultura: Bebas Penyakit Rebah Semai (Damping-Off)
 
 > **Key Takeaways**:
 > 1. Penyakit Rebah Semai (Damping-off) disebabkan oleh jamur patogen tular tanah (Pythium, Rhizoctonia) yang membusukkan pangkal batang bibit muda.

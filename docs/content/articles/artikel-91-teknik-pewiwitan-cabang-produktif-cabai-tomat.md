@@ -1,22 +1,22 @@
 ---
 title: "Teknik Pewiwitan Cabang Cabai dan Tomat: Buah Lebat Bebas Jamur"
+metaTitle: "Teknik Pewiwitan Cabang Cabai Tomat: Buah Lebat"
+description: "Panduan teknik pewiwitan tunas air cabai dan tomat yang benar: waktu buang cabang liar, optimasi nutrisi buah, dan pencegahan serangan jamur patek."
 slug: "teknik-pewiwitan-cabang-produktif-cabai-tomat"
-category: "Teknik Budidaya & Manajemen Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "cabai"
+  - "tomat"
 tags:
   - "teknik pewiwitan cabang cabai"
   - "cara membuang tunas air tomat"
   - "pemangkasan cabang liar hortikultura"
   - "optimasi nutrisi buah lebat"
   - "mencegah kelembapan kanopi cabai"
-meta_title: "Teknik Pewiwitan Cabang Cabai Tomat: Buah Lebat"
-meta_description: "Panduan teknik pewiwitan tunas air cabai dan tomat yang benar: waktu buang cabang liar, optimasi nutrisi buah, dan pencegahan serangan jamur patek."
+draft: true
 ---
-
-# Teknik Pewiwitan Cabang Cabai dan Tomat: Buah Lebat Bebas Jamur
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Pewiwitan adalah pembuangan tunas air liar di ketiak daun sebelum cabang utama membentuk percabangan huruf Y pertama.

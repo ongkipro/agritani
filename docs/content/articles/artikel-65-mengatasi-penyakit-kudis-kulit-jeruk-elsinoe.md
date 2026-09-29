@@ -1,22 +1,21 @@
 ---
 title: "Mengatasi Penyakit Kudis Kulit Jeruk (Elsinoe): Bintik Kutil Kasar pada Buah"
+metaTitle: "Cara Mengatasi Penyakit Kudis Kulit Jeruk Elsinoe"
+description: "Panduan menyembuhkan penyakit kudis jeruk Elsinoe fawcettii pembuat kutil gabus kasar pada kulit buah dengan fungisida tembaga dan pemangkasan."
 slug: "mengatasi-penyakit-kudis-kulit-jeruk-elsinoe"
-category: "Hortikultura & Tanaman Buah"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "jeruk"
 tags:
   - "penyebab kudis pada buah jeruk"
   - "elsinoe fawcettii jeruk"
   - "cara mengatasi kulit jeruk berkerak kutil"
   - "fungisida kudis jeruk alami"
   - "perawatan kebun jeruk siam"
-meta_title: "Cara Mengatasi Penyakit Kudis Kulit Jeruk Elsinoe"
-meta_description: "Panduan menyembuhkan penyakit kudis jeruk Elsinoe fawcettii pembuat kutil gabus kasar pada kulit buah dengan fungisida tembaga dan pemangkasan."
+draft: true
 ---
-
-# Mengatasi Penyakit Kudis Kulit Jeruk (Elsinoe): Bintik Kutil Kasar pada Buah
 
 Bagi petani jeruk—baik jeruk siam madu, keprok, nipis, maupun jeruk purut—penyakit kulit yang paling sering menjatuhkan kelas mutu panen dari kualitas super menjadi kualitas afkir adalah **Penyakit Kudis Jeruk (*Citrus Scab*)**.
 

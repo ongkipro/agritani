@@ -1,22 +1,25 @@
 ---
 title: "Teknik Penjarangan Buah: Rahasia Panen Buah Jumbo Grade A"
+metaTitle: "Teknik Penjarangan Buah: Hasilkan Panen Jumbo Grade A"
+description: "Pelajari teknik penjarangan buah fruit thinning pada semangka, melon, durian, dan jeruk untuk meningkatkan ukuran, kadar gula brix, dan harga jual."
 slug: "teknik-penjarangan-buah-fruit-thinning"
-category: "Teknik Budidaya & Manajemen Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "padi"
+  - "durian"
+  - "jeruk"
+  - "semangka"
+  - "melon"
 tags:
   - "teknik penjarangan buah hortikultura"
   - "fruit thinning melon semangka"
   - "cara seleksi buah durian jumbo"
   - "meningkatkan kadar gula brix buah"
   - "mencegah patah dahan buah lebat"
-meta_title: "Teknik Penjarangan Buah: Hasilkan Panen Jumbo Grade A"
-meta_description: "Pelajari teknik penjarangan buah fruit thinning pada semangka, melon, durian, dan jeruk untuk meningkatkan ukuran, kadar gula brix, dan harga jual."
+draft: true
 ---
-
-# Teknik Penjarangan Buah: Rahasia Panen Buah Jumbo Grade A
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Penjarangan buah (fruit thinning) adalah pembuangan sebagian bakal buah muda yang cacat atau berlebih pada satu tangkai tanaman.

@@ -1,22 +1,21 @@
 ---
 title: "Panduan Hidroponik Styrofoam Rakit Apung: Panen Sayur Segar Tanpa Listrik dan Pompa"
+metaTitle: "Hidroponik Rakit Apung Styrofoam Tanpa Listrik"
+description: "Panduan bertanam sayur hidroponik rakit apung menggunakan boks styrofoam bekas buah tanpa bantuan pompa listrik, hemat dan anti ribet."
 slug: "panduan-hidroponik-styrofoam-rakit-apung"
-category: "Urban Farming & Hidroponik"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "sayuran-daun"
 tags:
   - "hidroponik styrofoam rakit apung"
   - "hidroponik tanpa listrik"
   - "cara menanam pakcoy hidroponik"
   - "nutrisi hidroponik sayur"
   - "urban farming hemat biaya"
-meta_title: "Hidroponik Rakit Apung Styrofoam Tanpa Listrik"
-meta_description: "Panduan bertanam sayur hidroponik rakit apung menggunakan boks styrofoam bekas buah tanpa bantuan pompa listrik, hemat dan anti ribet."
+draft: true
 ---
-
-# Panduan Hidroponik Styrofoam Rakit Apung: Panen Sayur Segar Tanpa Listrik dan Pompa
 
 > **Key Takeaways**:
 > 1. Sistem rakit apung (floating raft) boks styrofoam memanfaatkan genangan larutan nutrisi statis tanpa ketergantungan pompa listrik.

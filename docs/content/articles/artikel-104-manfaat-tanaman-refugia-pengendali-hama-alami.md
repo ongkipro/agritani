@@ -1,22 +1,21 @@
 ---
 title: "Manfaat Tanaman Refugia: Benteng Bunga Pemikat Musuh Alami Hama"
+metaTitle: "Manfaat Tanaman Refugia: Usir Hama Tanpa Pestisida"
+description: "Pahami peranan tanaman bunga refugia marigold, bunga matahari, dan kenikir di pematang sawah untuk mengundang musuh alami pemangsa hama ulat dan wereng."
 slug: "manfaat-tanaman-refugia-pengendali-hama-alami"
-category: "Teknik Budidaya & Manajemen Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "padi"
 tags:
   - "manfaat tanaman refugia sawah"
   - "bunga marigold pengusir hama"
   - "musuh alami wereng dan ulat"
   - "konservasi parasitoid predator lahan"
   - "pengendalian hama terpadu pht alami"
-meta_title: "Manfaat Tanaman Refugia: Usir Hama Tanpa Pestisida"
-meta_description: "Pahami peranan tanaman bunga refugia marigold, bunga matahari, dan kenikir di pematang sawah untuk mengundang musuh alami pemangsa hama ulat dan wereng."
+draft: true
 ---
-
-# Manfaat Tanaman Refugia: Benteng Bunga Pemikat Musuh Alami Hama
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Refugia adalah tanaman berbunga yang ditanam di pematang kebun atau sawah sebagai habitat dan sumber pakan bagi musuh alami hama.

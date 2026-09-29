@@ -1,22 +1,23 @@
 ---
 title: "Membasmi Kutu Daun Afid pada Sayuran: Daun Keriting dan Menghitam di Balik Daun"
+metaTitle: "Cara Membasmi Kutu Daun Afid pada Tanaman Sayuran"
+description: "Trik membasmi koloni kutu daun afid Aphis gossypii penghisap pucuk sayuran menggunakan semprotan air cabai bawang dan musuh alami."
 slug: "membasmi-kutu-daun-afid-pada-sayuran"
-category: "Hama & Proteksi Tanaman"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "cabai"
+  - "bawang-merah"
+  - "sayuran-daun"
 tags:
   - "cara membasmi kutu daun afid"
   - "aphis gossypii tanaman"
   - "hama kutu daun sayuran"
   - "insektisida nabati kutu daun"
   - "mengatasi pucuk cabai keriting"
-meta_title: "Cara Membasmi Kutu Daun Afid pada Tanaman Sayuran"
-meta_description: "Trik membasmi koloni kutu daun afid Aphis gossypii penghisap pucuk sayuran menggunakan semprotan air cabai bawang dan musuh alami."
+draft: true
 ---
-
-# Membasmi Kutu Daun Afid pada Sayuran: Daun Keriting dan Menghitam di Balik Daun
 
 Pucuk muda tanaman cabai, terong, kacang panjang, atau sawi yang mendadak berkerut melinting dan macet bertumbuh adalah pemandangan yang mengkhawatirkan di bedengan sayur. Saat helai daun dibalik, tampak ribuan serangga kecil bertubuh lunak berwarna hijau pucat, kuning, atau hitam legam berdesak-desakan menutupi tulang daun.
 

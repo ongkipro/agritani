@@ -1,22 +1,21 @@
 ---
 title: "Jurus Ampuh Membasmi Hama Siput dan Bekicot Tanpa Racun Moluskisida Kimia"
+metaTitle: "Cara Mengusir Siput dan Bekicot Tanpa Racun Kimia"
+description: "Trik mengendalikan hama siput dan bekicot pemakan semai malam hari dengan barier fisik abu sekam serta perangkap ragi organik aman."
 slug: "jurus-ampuh-usir-hama-siput-bekicot"
-category: "Hama & Proteksi Tanaman"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "4 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "sayuran-daun"
 tags:
   - "cara mengusir hama siput"
   - "membasmi bekicot di kebun"
   - "perangkap siput alami"
   - "barier abu sekam tanaman"
   - "moluskisida alami tanaman"
-meta_title: "Cara Mengusir Siput dan Bekicot Tanpa Racun Kimia"
-meta_description: "Trik mengendalikan hama siput dan bekicot pemakan semai malam hari dengan barier fisik abu sekam serta perangkap ragi organik aman."
+draft: true
 ---
-
-# Jurus Ampuh Membasmi Hama Siput dan Bekicot Tanpa Racun Moluskisida Kimia
 
 > **Key Takeaways**:
 > 1. Siput telanjang (slug) dan bekicot (Achatina fulica) merusak tanaman di malam hari dengan memotong batang semai muda dan melubangi daun lunak.

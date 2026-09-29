@@ -1,22 +1,21 @@
 ---
 title: "Teknik Budidaya Wortel Oranye: Umbi Lurus Mulus Tanpa Cabang"
+metaTitle: "Budidaya Wortel Oranye Lahan Pasir: Umbi Lurus Mulus"
+description: "Panduan budidaya wortel oranye Daucus carota: cara olah tanah remah bebas batu, pencegahan umbi bercabang, seleksi penjarangan bibit, dan pemupukan fosfat."
 slug: "teknik-budidaya-wortel-oranye-lahan-berpasir"
-category: "Komoditas Pangan, Perkebunan & Hortikultura"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "sayuran-daun"
 tags:
   - "budidaya wortel oranye lahan pasir"
   - "cara menanam wortel umbi lurus"
   - "mencegah umbi wortel bercabang"
   - "penjarangan bibit wortel bedengan"
   - "panen wortel kualitas ekspor"
-meta_title: "Budidaya Wortel Oranye Lahan Pasir: Umbi Lurus Mulus"
-meta_description: "Panduan budidaya wortel oranye Daucus carota: cara olah tanah remah bebas batu, pencegahan umbi bercabang, seleksi penjarangan bibit, dan pemupukan fosfat."
+draft: true
 ---
-
-# Teknik Budidaya Wortel Oranye: Umbi Lurus Mulus Tanpa Cabang
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Wortel (Daucus carota) membutuhkan tanah gembur dalam berpasir yang bebas dari kerikil dan bongkahan tanah keras.

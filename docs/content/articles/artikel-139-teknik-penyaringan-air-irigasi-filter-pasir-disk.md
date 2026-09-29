@@ -1,22 +1,21 @@
 ---
 title: "Teknik Penyaringan Air Irigasi: Filter Pasir dan Disk Anti-Mampet"
+metaTitle: "Penyaringan Air Irigasi: Filter Pasir & Disk Anti Mampet"
+description: "Panduan sistem penyaringan air irigasi pertanian: keunggulan filter pasir silika dan filter disk cincin untuk mencegah emiter tetes dan selang tersumbat."
 slug: "teknik-penyaringan-air-irigasi-filter-pasir-disk"
-category: "Manajemen Air & Sistem Irigasi Pertanian"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "air-irigasi"
+commodities:
+  - "sayuran-daun"
 tags:
   - "penyaringan air irigasi pertanian"
   - "filter pasir media filter media silika"
   - "filter disk cincin irigasi tetes"
   - "mencegah emiter drip sprayer tersumbat"
   - "teknik backwash pembersihan filter"
-meta_title: "Penyaringan Air Irigasi: Filter Pasir & Disk Anti Mampet"
-meta_description: "Panduan sistem penyaringan air irigasi pertanian: keunggulan filter pasir silika dan filter disk cincin untuk mencegah emiter tetes dan selang tersumbat."
+draft: true
 ---
-
-# Teknik Penyaringan Air Irigasi: Filter Pasir dan Disk Anti-Mampet
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Penyaringan air adalah jantung operasional sistem irigasi presisi: lubang emiter tetes berdiameter <1 mm sangat rentan tersumbat kotoran.

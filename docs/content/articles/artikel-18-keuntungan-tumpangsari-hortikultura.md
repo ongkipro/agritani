@@ -1,22 +1,23 @@
 ---
 title: "Sains di Balik Tumpangsari Hortikultura: Memutus Siklus Hama dan Melipatgandakan Panen"
+metaTitle: "Manfaat Tumpangsari Hortikultura: Cegah Hama Kebun"
+description: "Pelajari sains tumpangsari sistem push-pull menggunakan tanaman aromatik untuk menolak hama dan melipatgandakan panen per meter persegi."
 slug: "keuntungan-tumpangsari-hortikultura"
-category: "Agro-Ekologi & Teknik Budidaya"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "cabai"
+  - "bawang-merah"
+  - "sayuran-daun"
 tags:
   - "manfaat tumpangsari tanaman"
   - "sistem intercropping sayuran"
   - "tanaman penangkal hama"
   - "rekayasa agroekologi kebun"
   - "meningkatkan hasil panen"
-meta_title: "Manfaat Tumpangsari Hortikultura: Cegah Hama Kebun"
-meta_description: "Pelajari sains tumpangsari sistem push-pull menggunakan tanaman aromatik untuk menolak hama dan melipatgandakan panen per meter persegi."
+draft: true
 ---
-
-# Sains di Balik Tumpangsari Hortikultura: Memutus Siklus Hama dan Melipatgandakan Panen
 
 > **Key Takeaways**:
 > 1. Tumpangsari (intercropping) bukan sekadar menanam campuran sembarangan, melainkan pemanfaatan sinergi biologi antartanaman yang saling menguntungkan.

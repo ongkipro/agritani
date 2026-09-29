@@ -1,22 +1,21 @@
 ---
 title: "Mengatasi Penyakit Sapu Setan pada Ubi Jalar: Cegah Umbi Mandul"
+metaTitle: "Atasi Penyakit Sapu Setan Ubi Jalar: Umbi Lebat"
+description: "Kenali gejala penyakit sapu setan ubi jalar akibat fitoplasma: ruas batang memendek, daun mengecil rimbun, dan cara pencegahan tular bibit di kebun."
 slug: "mengatasi-penyakit-sapu-setan-ubi-jalar"
-category: "Patologi Tanaman & Penyakit Fisiologis"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "padi"
 tags:
   - "penyakit sapu setan ubi jalar"
   - "witches broom phytoplasma sweet potato"
   - "daun ubi jalar mengecil rimbun"
   - "vektor wereng daun orosius ubi"
   - "cara seleksi bibit stek ubi jalar"
-meta_title: "Atasi Penyakit Sapu Setan Ubi Jalar: Umbi Lebat"
-meta_description: "Kenali gejala penyakit sapu setan ubi jalar akibat fitoplasma: ruas batang memendek, daun mengecil rimbun, dan cara pencegahan tular bibit di kebun."
+draft: true
 ---
-
-# Mengatasi Penyakit Sapu Setan pada Ubi Jalar: Cegah Umbi Mandul
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Penyakit sapu setan disebabkan oleh Fitoplasma (bakteri tanpa dinding sel) yang menginfeksi dan melumpuhkan jaringan floem tanaman ubi jalar.

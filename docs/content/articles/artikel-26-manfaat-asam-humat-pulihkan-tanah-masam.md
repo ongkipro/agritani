@@ -1,22 +1,21 @@
 ---
 title: "Manfaat Asam Humat: Solusi Tanah Keras dan Masam Jadi Subur"
+metaTitle: "Manfaat Asam Humat: Solusi Tanah Keras dan Masam Jadi Subur"
+description: "Panduan lengkap manfaat asam humat untuk menggemburkan tanah keras, menetralkan pH tanah masam, dan melipatgandakan serapan pupuk agar panen melimpah."
 slug: "manfaat-asam-humat-pulihkan-tanah-masam"
-category: "Kesuburan Tanah & Pembenah Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "padi"
 tags:
   - "asam humat"
   - "cara menyuburkan tanah masam"
   - "pembenah tanah alami"
   - "manfaat asam humat untuk tanaman"
   - "mengatasi tanah keras dan bantat"
-meta_title: "Manfaat Asam Humat: Solusi Tanah Keras dan Masam Jadi Subur"
-meta_description: "Panduan lengkap manfaat asam humat untuk menggemburkan tanah keras, menetralkan pH tanah masam, dan melipatgandakan serapan pupuk agar panen melimpah."
+draft: true
 ---
-
-# Rahasia Asam Humat: Cara Menyulap Tanah Keras dan Masam Menjadi Gembur Subur Kembali
 
 Kondisi tanah sawah atau tegalan yang mengeras seperti batu bata saat terik kemarau dan berubah becek lengket saat hujan lebat adalah keluhan klasik di berbagai sentra pertanian. Ironisnya, jatah pupuk kimia yang ditebar tiap musim tanam tidak pernah berkurang—bahkan dosisnya cenderung ditambah karena tanaman tampak lambat tumbuh dan daunnya gampang menguning.
 

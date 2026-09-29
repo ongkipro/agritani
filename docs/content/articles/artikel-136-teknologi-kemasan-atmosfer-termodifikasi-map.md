@@ -1,22 +1,22 @@
 ---
 title: "Teknologi Kemasan Atmosfer Termodifikasi (MAP): Kunci Ekspor Buah"
+metaTitle: "Kemasan Atmosfer Termodifikasi MAP: Ekspor Buah Segar"
+description: "Teknik pengemasan Modified Atmosphere Packaging MAP buah dan sayuran: memodifikasi rasio gas oksigen dan karbon dioksida untuk menidurkan respirasi sel."
 slug: "teknologi-kemasan-atmosfer-termodifikasi-map"
-category: "Bioteknologi, Agribisnis & Pasca Panen"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "pascapanen-agribisnis"
+commodities:
+  - "mangga"
+  - "sayuran-daun"
 tags:
   - "kemasan atmosfer termodifikasi map"
   - "modified atmosphere packaging buah sayur"
   - "teknik memperpanjang masa simpan hortikultura"
   - "plastik permeabel mikro-perforasi"
   - "ekspor komoditas buah segar indonesia"
-meta_title: "Kemasan Atmosfer Termodifikasi MAP: Ekspor Buah Segar"
-meta_description: "Teknik pengemasan Modified Atmosphere Packaging MAP buah dan sayuran: memodifikasi rasio gas oksigen dan karbon dioksida untuk menidurkan respirasi sel."
+draft: true
 ---
-
-# Teknologi Kemasan Atmosfer Termodifikasi (MAP): Kunci Ekspor Buah
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Modified Atmosphere Packaging (MAP) memodifikasi komposisi gas di dalam kemasan untuk memperlambat metabolisme respirasi sayur dan buah.

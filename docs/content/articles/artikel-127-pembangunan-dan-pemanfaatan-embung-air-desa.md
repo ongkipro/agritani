@@ -1,22 +1,22 @@
 ---
 title: "Pembangunan Embung Penampung Air Hujan: Asuransi Kemarau Petani"
+metaTitle: "Pembangunan Embung Air Hujan Desa: Tangkal Kemarau Lahan"
+description: "Panduan pembangunan embung penampung air hujan desa: pemilihan lokasi topografi cekungan, pelapisan geomembrane anti-bocor, dan distribusi gravitasi."
 slug: "pembangunan-dan-pemanfaatan-embung-air-desa"
-category: "Manajemen Air & Sistem Irigasi Pertanian"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "air-irigasi"
+commodities:
+  - "padi"
+  - "jagung"
 tags:
   - "pembangunan embung air hujan desa"
   - "waduk mini penampung air pertanian"
   - "geomembrane hdpe kolam embung"
   - "solusi kekeringan lahan tegalan kering"
   - "manajemen air irigasi musim kemarau"
-meta_title: "Pembangunan Embung Air Hujan Desa: Tangkal Kemarau Lahan"
-meta_description: "Panduan pembangunan embung penampung air hujan desa: pemilihan lokasi topografi cekungan, pelapisan geomembrane anti-bocor, dan distribusi gravitasi."
+draft: true
 ---
-
-# Pembangunan Embung Penampung Air Hujan: Asuransi Kemarau Petani
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Embung adalah kolam penampung air hujan dan limpasan permukaan berskala mikro (kapasitas 500–5.000 m3) untuk cadangan irigasi musim kemarau.

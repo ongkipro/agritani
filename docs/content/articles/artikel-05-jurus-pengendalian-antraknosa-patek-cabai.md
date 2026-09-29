@@ -1,22 +1,22 @@
 ---
 title: "Jurus Mengatasi Antraknosa (Patek Cabai): Protokol Terpadu Mencegah Busuk Buah Melingkar"
+metaTitle: "Cara Mengatasi Patek Cabai dan Antraknosa Musim Hujan"
+description: "Protokol lengkap mengatasi penyakit patek dan antraknosa pada cabai dengan sanitasi spora, jarak tanam ideal, serta asupan kalsium boron."
 slug: "jurus-pengendalian-antraknosa-patek-cabai"
-category: "Patologi Tanaman & Hortikultura"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "cabai"
+  - "kopi"
 tags:
   - "cara mengatasi patek cabai"
   - "obat antraknosa cabai alami"
   - "busuk buah cabai melingkar"
   - "kalsium boron untuk cabai"
   - "pencegahan patek musim hujan"
-meta_title: "Cara Mengatasi Patek Cabai dan Antraknosa Musim Hujan"
-meta_description: "Protokol lengkap mengatasi penyakit patek dan antraknosa pada cabai dengan sanitasi spora, jarak tanam ideal, serta asupan kalsium boron."
+draft: true
 ---
-
-# Jurus Mengatasi Antraknosa (Patek Cabai): Protokol Terpadu Mencegah Busuk Buah Melingkar
 
 > **Key Takeaways**:
 > 1. Penyakit patek disebabkan oleh infeksi jamur *Colletotrichum capsici* dan *Colletotrichum gloeosporioides* yang menyebar masif saat kelembapan tinggi dan musim hujan.

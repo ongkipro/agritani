@@ -1,22 +1,22 @@
 ---
 title: "Teknik Penyerbukan Buatan Vanili dan Durian: Kunci Buah Menempel 100%"
+metaTitle: "Penyerbukan Buatan Vanili & Durian: Panen Berhasil"
+description: "Panduan teknik penyerbukan manual bunga vanili tusuk bilah bambu dan bunga durian kuas malam hari untuk meningkatkan fruit-set panen lebat."
 slug: "teknik-penyerbukan-buatan-vanili-dan-durian"
-category: "Teknik Budidaya & Manajemen Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "kedelai"
+  - "durian"
 tags:
   - "penyerbukan buatan vanili durian"
   - "cara mengawinkan bunga vanili"
   - "penyerbukan manual bunga durian malam"
   - "anatomi rostellum bunga vanili"
   - "meningkatkan fruit set buah durian"
-meta_title: "Penyerbukan Buatan Vanili & Durian: Panen Berhasil"
-meta_description: "Panduan teknik penyerbukan manual bunga vanili tusuk bilah bambu dan bunga durian kuas malam hari untuk meningkatkan fruit-set panen lebat."
+draft: true
 ---
-
-# Teknik Penyerbukan Buatan Vanili dan Durian: Kunci Buah Menempel 100%
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Bunga vanili memiliki penghalang fisik (rostellum) yang menutup kepala putik sehingga mutlak memerlukan bantuan penyerbukan manusia.

@@ -1,22 +1,24 @@
 ---
 title: "Karakteristik Tanah Latosol Merah dan Strategi Pengelolaan Kesuburannya"
+metaTitle: "Kesuburan Tanah Latosol Merah Tropis: Cara Olah Lahan"
+description: "Pahami karakteristik tanah latosol merah Inceptisol, solum dalam, pelapukan lanjut, serta cara mendongkrak hara makro dan kapasitas tukar kation."
 slug: "karakteristik-dan-kesuburan-tanah-latosol-merah"
-category: "Ilmu Tanah & Kesuburan Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "padi"
+  - "kopi"
+  - "kakao"
+  - "cengkeh"
 tags:
   - "tanah latosol merah tropis"
   - "karakteristik tanah inceptisol"
   - "cara mengolah tanah merah latosol"
   - "kapasitas tukar kation tanah masam"
   - "pemupukan efisien lahan tegalan"
-meta_title: "Kesuburan Tanah Latosol Merah Tropis: Cara Olah Lahan"
-meta_description: "Pahami karakteristik tanah latosol merah Inceptisol, solum dalam, pelapukan lanjut, serta cara mendongkrak hara makro dan kapasitas tukar kation."
+draft: true
 ---
-
-# Karakteristik Tanah Latosol Merah dan Strategi Pengelolaan Kesuburannya
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Tanah Latosol merah terbentuk dari proses pelapukan intensif batuan vulkanik di bawah iklim tropis basah dengan ciri solum tebal dan drainase baik.

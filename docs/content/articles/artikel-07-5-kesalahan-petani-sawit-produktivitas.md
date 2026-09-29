@@ -1,22 +1,22 @@
 ---
 title: "5 Kesalahan Umum Pengelolaan Kebun Sawit yang Menurunkan Produktivitas Tandan Buah"
+metaTitle: "5 Kesalahan Pemupukan Sawit yang Bikin TBS Merosot"
+description: "Ketahui 5 kesalahan umum pengelolaan kebun kelapa sawit rakyat yang memicu penurunan tonase TBS dan cara agronomi memperbaikinya."
 slug: "5-kesalahan-petani-sawit-produktivitas"
-category: "Perkebunan & Manajemen Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "kelapa-sawit"
+  - "sayuran-daun"
 tags:
   - "kesalahan pemupukan sawit"
   - "cara meningkatkan tandan sawit"
   - "pemupukan sawit berbuah lebat"
   - "perawatan kebun sawit"
   - "penyebab sawit trek"
-meta_title: "5 Kesalahan Pemupukan Sawit yang Bikin TBS Merosot"
-meta_description: "Ketahui 5 kesalahan umum pengelolaan kebun kelapa sawit rakyat yang memicu penurunan tonase TBS dan cara agronomi memperbaikinya."
+draft: true
 ---
-
-# 5 Kesalahan Umum Pengelolaan Kebun Sawit yang Menurunkan Produktivitas Tandan Buah
 
 > **Key Takeaways**:
 > 1. Penurunan produksi Tandan Buah Segar (TBS) sering kali bukan karena faktor cuaca semata, melainkan kesalahan agronomi dasar yang berulang di tingkat kebun rakyat.

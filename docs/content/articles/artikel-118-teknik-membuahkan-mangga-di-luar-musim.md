@@ -1,22 +1,22 @@
 ---
 title: "Teknik Membuahkan Mangga di Luar Musim: Panen Raya Harga Selangit"
+metaTitle: "Membuahkan Mangga di Luar Musim: Trik Panen Cuan Selangit"
+description: "Teknik membuahkan mangga Arum Manis dan Gedong Gincu di luar musim (off-season): aplikasi zat pengatur tumbuh paklobutrazol dan pupuk KNO3 pemicu bunga."
 slug: "teknik-membuahkan-mangga-di-luar-musim"
-category: "Komoditas Pangan, Perkebunan & Hortikultura"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "mangga"
+  - "melon"
 tags:
   - "membuahkan mangga di luar musim"
   - "aplikasi paklobutrazol pohon mangga"
   - "cara paksa mangga berbunga lebat"
   - "mangga gedong gincu arum manis"
   - "panen mangga off season harga mahal"
-meta_title: "Membuahkan Mangga di Luar Musim: Trik Panen Cuan Selangit"
-meta_description: "Teknik membuahkan mangga Arum Manis dan Gedong Gincu di luar musim (off-season): aplikasi zat pengatur tumbuh paklobutrazol dan pupuk KNO3 pemicu bunga."
+draft: true
 ---
-
-# Teknik Membuahkan Mangga di Luar Musim: Panen Raya Harga Selangit
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Membuahkan mangga di luar musim (off-season) menghindarkan petani dari anjloknya harga akibat panen raya serentak nasional.

@@ -1,22 +1,22 @@
 ---
 title: "Sains Asimilasi Nitrogen Seluler: Mengubah Pupuk Menjadi Protein"
+metaTitle: "Sains Asimilasi Nitrogen Seluler: Ubah Pupuk Jadi Protein"
+description: "Pelajari proses asimilasi nitrat dan amonium di sel tanaman melalui enzim reduktase dan siklus GS-GOGAT untuk pembentukan asam amino produktif."
 slug: "sains-asimilasi-nitrogen-seluler-tanaman"
-category: "Fisiologi & Anatomi Tumbuhan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "sains-tanaman"
+commodities:
+  - "padi"
+  - "sayuran-daun"
 tags:
   - "asimilasi nitrogen seluler tanaman"
   - "siklus gs gogat sintesis protein"
   - "enzim nitrat reduktase tanaman"
   - "bahaya penumpukan nitrat berlebih"
   - "peran molibdenum dan magnesium n"
-meta_title: "Sains Asimilasi Nitrogen Seluler: Ubah Pupuk Jadi Protein"
-meta_description: "Pelajari proses asimilasi nitrat dan amonium di sel tanaman melalui enzim reduktase dan siklus GS-GOGAT untuk pembentukan asam amino produktif."
+draft: true
 ---
-
-# Sains Asimilasi Nitrogen Seluler: Mengubah Pupuk Menjadi Protein
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Nitrogen yang diserap akar dalam bentuk Nitrat (NO3-) atau Amonium (NH4+) harus diubah menjadi asam amino melalui jalur metabolisme seluler.

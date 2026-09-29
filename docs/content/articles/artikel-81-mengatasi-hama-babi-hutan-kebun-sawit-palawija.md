@@ -1,22 +1,23 @@
 ---
 title: "Mengatasi Hama Babi Hutan pada Kebun: Lindungi Sawit dan Umbi"
+metaTitle: "Atasi Hama Babi Hutan Kebun Sawit: Pagar Kejut"
+description: "Strategi ampuh menghalau hama babi hutan Sus scrofa di kebun sawit dan palawija: pagar listrik tenaga surya, aroma pengusir belerang, dan parit batas."
 slug: "mengatasi-hama-babi-hutan-kebun-sawit-palawija"
-category: "Hama & Serangga Pengganggu Tanaman"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "kelapa-sawit"
+  - "jagung"
+  - "sayuran-daun"
 tags:
   - "hama babi hutan kebun sawit"
   - "cara mengusir babi hutan"
   - "pagar listrik kejut tenaga surya"
   - "aroma belerang pengusir babi"
   - "perlindungan bibit sawit tbm"
-meta_title: "Atasi Hama Babi Hutan Kebun Sawit: Pagar Kejut"
-meta_description: "Strategi ampuh menghalau hama babi hutan Sus scrofa di kebun sawit dan palawija: pagar listrik tenaga surya, aroma pengusir belerang, dan parit batas."
+draft: true
 ---
-
-# Mengatasi Hama Babi Hutan pada Kebun: Lindungi Sawit dan Umbi
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Babi hutan (Sus scrofa) adalah hama mamalia paling merusak pada tanaman sawit muda (TBM), singkong, ubi jalar, dan jagung.

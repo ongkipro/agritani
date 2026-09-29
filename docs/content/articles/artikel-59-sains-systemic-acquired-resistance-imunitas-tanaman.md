@@ -1,22 +1,23 @@
 ---
 title: "Sains Systemic Acquired Resistance (SAR): Cara Kerja Antibodi Alami Tanaman"
+metaTitle: "Sains Systemic Acquired Resistance SAR Imunitas Tanaman"
+description: "Pelajari mekanisme ketahanan sistemik yang didapat (SAR) pada tanaman dan cara memicunya dengan asam salisilat alami serta biostimulan."
 slug: "sains-systemic-acquired-resistance-imunitas-tanaman"
-category: "Fisiologi & Anatomi Tumbuhan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "sains-tanaman"
+commodities:
+  - "padi"
+  - "cabai"
+  - "kelapa-sawit"
 tags:
   - "systemic acquired resistance sar"
   - "imunitas alami tumbuhan"
   - "asam salisilat untuk tanaman"
   - "fitoaleksin penangkal penyakit"
   - "bioteknologi kekebalan tanaman"
-meta_title: "Sains Systemic Acquired Resistance SAR Imunitas Tanaman"
-meta_description: "Pelajari mekanisme ketahanan sistemik yang didapat (SAR) pada tanaman dan cara memicunya dengan asam salisilat alami serta biostimulan."
+draft: true
 ---
-
-# Sains Systemic Acquired Resistance (SAR): Cara Kerja Antibodi Alami Tanaman
 
 Selama puluhan tahun, paradigma pertanian konvensional memandang tanaman sebagai makhluk pasif tak berdaya yang sepenuhnya bergantung pada guyuran racun pestisida kimia petani setiap kali diserang penyakit.
 

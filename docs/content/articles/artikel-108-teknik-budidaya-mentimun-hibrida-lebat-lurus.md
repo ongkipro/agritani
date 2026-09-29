@@ -1,22 +1,21 @@
 ---
 title: "Teknik Budidaya Mentimun Hibrida: Panen Melimpah Buah Lurus Sempurna"
+metaTitle: "Budidaya Mentimun Hibrida: Buah Lurus Bebas Bengkok"
+description: "Trik sukses budidaya mentimun hibrida lebat: penyebab mentimun bengkok dan pahit, manajemen air siraman, serta pemupukan kalsium boron terpadu."
 slug: "teknik-budidaya-mentimun-hibrida-lebat-lurus"
-category: "Komoditas Pangan, Perkebunan & Hortikultura"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "sayuran-daun"
 tags:
   - "budidaya mentimun hibrida lebat"
   - "cara mengatasi mentimun bengkok"
   - "penyebab mentimun rasa pahit"
   - "pemupukan kalsium boron mentimun"
   - "panen mentimun harian hortikultura"
-meta_title: "Budidaya Mentimun Hibrida: Buah Lurus Bebas Bengkok"
-meta_description: "Trik sukses budidaya mentimun hibrida lebat: penyebab mentimun bengkok dan pahit, manajemen air siraman, serta pemupukan kalsium boron terpadu."
+draft: true
 ---
-
-# Teknik Budidaya Mentimun Hibrida: Panen Melimpah Buah Lurus Sempurna
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Mentimun hibrida adalah tanaman sayur buah berumur genjah (mulai panen usia 32–35 HST) dengan frekuensi petik setiap 1–2 hari sekali.

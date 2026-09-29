@@ -1,22 +1,21 @@
 ---
 title: "Peran Hormon Asam Absisat (ABA): Mekanisme Tanaman Melawan Kemarau"
+metaTitle: "Peran Hormon ABA: Sinyal Tanaman Tahan Kekeringan"
+description: "Pelajari cara kerja hormon asam absisat ABA menutup stomata daun, memicu biosintesis prolin, dan menjaga tanaman tetap hidup saat kemarau ekstrem."
 slug: "peran-hormon-asam-absisat-aba-cekaman-kekeringan"
-category: "Fisiologi & Anatomi Tumbuhan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "sains-tanaman"
+commodities:
+  - "tomat"
 tags:
   - "hormon asam absisat aba"
   - "mekanisme penutupan stomata daun"
   - "fisiologi adaptasi kekeringan tanaman"
   - "sinyal stres air rizosfer"
   - "biostimulan asam amino prolin"
-meta_title: "Peran Hormon ABA: Sinyal Tanaman Tahan Kekeringan"
-meta_description: "Pelajari cara kerja hormon asam absisat ABA menutup stomata daun, memicu biosintesis prolin, dan menjaga tanaman tetap hidup saat kemarau ekstrem."
+draft: true
 ---
-
-# Peran Hormon Asam Absisat (ABA): Mekanisme Tanaman Melawan Kemarau
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Asam Absisat (ABA) adalah fitohormon sinyal stres utama yang diproduksi tanaman saat mendeteksi kelangkaan air di zona perakaran.

@@ -1,22 +1,21 @@
 ---
 title: "Penerapan Sistem Pengairan Berselang Padi (AWD): Hemat Air Anakan Padat"
+metaTitle: "Irigasi Berselang Padi AWD: Hemat Air 30% Anakan Lebat"
+description: "Cara menerapkan sistem pengairan berselang Alternate Wetting and Drying AWD pada padi sawah: pipa paralon kontrol, hemat air irigasi, dan cegah rebah."
 slug: "penerapan-sistem-pengairan-berselang-padi-awd"
-category: "Manajemen Air & Sistem Irigasi Pertanian"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "air-irigasi"
+commodities:
+  - "padi"
 tags:
   - "sistem pengairan berselang padi awd"
   - "alternate wetting and drying sawah"
   - "cara hemat air irigasi padi"
   - "pipa kontrol air sawah paralon"
   - "mencegah rebah dan busuk akar padi"
-meta_title: "Irigasi Berselang Padi AWD: Hemat Air 30% Anakan Lebat"
-meta_description: "Cara menerapkan sistem pengairan berselang Alternate Wetting and Drying AWD pada padi sawah: pipa paralon kontrol, hemat air irigasi, dan cegah rebah."
+draft: true
 ---
-
-# Penerapan Sistem Pengairan Berselang Padi (AWD): Hemat Air Anakan Padat
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Sistem Pengairan Berselang (AWD) membantah mitos bahwa padi adalah tanaman air yang wajib terendam air terus-menerus.

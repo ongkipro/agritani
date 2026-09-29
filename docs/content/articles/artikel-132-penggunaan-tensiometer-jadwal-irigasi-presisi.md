@@ -1,22 +1,23 @@
 ---
 title: "Penggunaan Tensiometer Tanah: Panduan Jadwal Irigasi Presisi"
+metaTitle: "Tensiometer Tanah Irigasi Presisi: Anti Stres Kekeringan"
+description: "Cara kerja tensiometer mengukur tegangan hisap air tanah centibar: panduan jadwal irigasi presisi tanaman cabai, melon, dan bawang tanpa tebak-tebak."
 slug: "penggunaan-tensiometer-jadwal-irigasi-presisi"
-category: "Manajemen Air & Sistem Irigasi Pertanian"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "air-irigasi"
+commodities:
+  - "cabai"
+  - "bawang-merah"
+  - "melon"
 tags:
   - "tensiometer tegangan air tanah"
   - "alat ukur kelembapan tanah presisi"
   - "jadwal irigasi tetes centibar"
   - "mencegah stres air tanaman hortikultura"
   - "manajemen pengairan berbasis sensor"
-meta_title: "Tensiometer Tanah Irigasi Presisi: Anti Stres Kekeringan"
-meta_description: "Cara kerja tensiometer mengukur tegangan hisap air tanah centibar: panduan jadwal irigasi presisi tanaman cabai, melon, dan bawang tanpa tebak-tebak."
+draft: true
 ---
-
-# Penggunaan Tensiometer Tanah: Panduan Jadwal Irigasi Presisi
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Tensiometer adalah alat ukur fisik yang mengukur gaya hisap perakaran tanaman (tegangan matriks tanah) dalam satuan centibar (cb) atau kPa.

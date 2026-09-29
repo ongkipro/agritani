@@ -1,22 +1,22 @@
 ---
 title: "Mengenal Penyakit Karat Daun Kopi: Gejala Bercak Oranye dan Penanganannya"
+metaTitle: "Cara Mengatasi Karat Daun Kopi Hemileia Vastatrix"
+description: "Panduan mengendalikan penyakit karat daun kopi Hemileia vastatrix lewat pemangkasan kanopi aerasi, naungan ideal, dan bioproteksi hayati."
 slug: "mengenal-penyakit-karat-daun-kopi-hemileia"
-category: "Perkebunan Kopi & Patologi"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "tomat"
+  - "kopi"
 tags:
   - "cara mengatasi karat daun kopi"
   - "hemileia vastatrix kopi arabika"
   - "gejala bercak oranye daun kopi"
   - "pengendalian penyakit kebun kopi"
   - "fungisida karat daun kopi"
-meta_title: "Cara Mengatasi Karat Daun Kopi Hemileia Vastatrix"
-meta_description: "Panduan mengendalikan penyakit karat daun kopi Hemileia vastatrix lewat pemangkasan kanopi aerasi, naungan ideal, dan bioproteksi hayati."
+draft: true
 ---
-
-# Mengenal Penyakit Karat Daun Kopi: Gejala Bercak Oranye dan Penanganannya
 
 Dalam sejarah perkebunan dunia, penyakit **Karat Daun Kopi (*Coffee Leaf Rust*)** adalah salah satu penyakit paling legendaris yang pernah memusnahkan ratusan ribu hektar perkebunan kopi Arabika di Sri Lanka dan Indonesia pada akhir abad ke-19.
 

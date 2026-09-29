@@ -1,22 +1,23 @@
 ---
 title: "Teknik Sambung Pucuk (Grafting): Sukses 100% Bibit Buah Cepat Berbuah"
+metaTitle: "Teknik Sambung Pucuk Grafting: Sukses Bibit Buah Unggul"
+description: "Pelajari teknik sambung pucuk cleft grafting bibit durian, mangga, dan alpukat: pertautan kambium, seleksi entres dorman, dan sungkup plastik anti-gagal."
 slug: "teknik-sambung-pucuk-grafting-bibit-buah"
-category: "Teknik Budidaya & Manajemen Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "durian"
+  - "mangga"
+  - "alpukat"
 tags:
   - "teknik sambung pucuk grafting"
   - "cara grafting bibit durian alpukat"
   - "pertautan kambium batang bibit"
   - "kriteria entres mata tunas unggul"
   - "sungkup plastik sambung pucuk"
-meta_title: "Teknik Sambung Pucuk Grafting: Sukses Bibit Buah Unggul"
-meta_description: "Pelajari teknik sambung pucuk cleft grafting bibit durian, mangga, dan alpukat: pertautan kambium, seleksi entres dorman, dan sungkup plastik anti-gagal."
+draft: true
 ---
-
-# Teknik Sambung Pucuk (Grafting): Sukses 100% Bibit Buah Cepat Berbuah
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Sambung pucuk (cleft grafting) menyatukan batang bawah berakar kokoh (rootstock) dengan pucuk mata tunas pohon induk unggul (entres).

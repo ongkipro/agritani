@@ -1,22 +1,25 @@
 ---
 title: "Mengatasi Stres Pindah Tanam: Trik Mencegah Bibit Layu dan Mati di Lahan"
+metaTitle: "Cara Mengatasi Tanaman Stres Pindah Tanam di Kebun"
+description: "Protokol praktis mengatasi transplanting shock pada bibit cabai dan sayuran agar tidak layu menguning saat dipindah dari tray semai ke bedengan."
 slug: "mengatasi-stres-pindah-tanam-transplanting-shock"
-category: "Teknik Budidaya & Pembibitan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "cabai"
+  - "tomat"
+  - "kopi"
+  - "melon"
+  - "sayuran-daun"
 tags:
   - "cara mengatasi tanaman stres pindah tanam"
   - "transplanting shock bibit semai"
   - "merawat bibit baru ditanam"
   - "vitamin b1 untuk tanaman stres"
   - "penyebab bibit cabai layu mati"
-meta_title: "Cara Mengatasi Tanaman Stres Pindah Tanam di Kebun"
-meta_description: "Protokol praktis mengatasi transplanting shock pada bibit cabai dan sayuran agar tidak layu menguning saat dipindah dari tray semai ke bedengan."
+draft: true
 ---
-
-# Mengatasi Stres Pindah Tanam: Trik Mencegah Bibit Layu dan Mati di Lahan
 
 Bagi petani hortikultura, momen pemindahan bibit dari baki semai (*tray*) ke hamparan bedengan lahan terbuka adalah fase paling menegangkan. 
 

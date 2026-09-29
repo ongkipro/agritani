@@ -1,22 +1,22 @@
 ---
 title: "Pengendalian Hama Ulat Daun Menggunakan Bioinsektisida Bacillus thuringiensis"
+metaTitle: "Bioinsektisida Bt: Basmi Ulat Daun Tanpa Racun Kimia"
+description: "Sains bakteri Bacillus thuringiensis dalam membasmi hama ulat daun secara alami tanpa residu beracun dan aman bagi serangga musuh alami."
 slug: "pengendalian-ulat-daun-bioinsektisida-bt"
-category: "Hama & Proteksi Hayati"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "cabai"
+  - "sayuran-daun"
 tags:
   - "bioinsektisida bacillus thuringiensis"
   - "cara membasmi ulat daun alami"
   - "insektisida hayati tanaman"
   - "pengendalian ulat grayak"
   - "pestisida ramah lingkungan"
-meta_title: "Bioinsektisida Bt: Basmi Ulat Daun Tanpa Racun Kimia"
-meta_description: "Sains bakteri Bacillus thuringiensis dalam membasmi hama ulat daun secara alami tanpa residu beracun dan aman bagi serangga musuh alami."
+draft: true
 ---
-
-# Pengendalian Hama Ulat Daun Menggunakan Bioinsektisida Bacillus thuringiensis
 
 > **Key Takeaways**:
 > 1. Bakteri entomopatogen Bacillus thuringiensis (Bt) memproduksi kristal protein endotoksin yang spesifik melumpuhkan sistem pencernaan ulat ordo Lepidoptera.

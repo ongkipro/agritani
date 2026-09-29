@@ -1,22 +1,21 @@
 ---
 title: "Membasmi Ulat Grayak Jagung (FAW): Cara Melindungi Titik Tumbuh Tanaman"
+metaTitle: "Cara Membasmi Ulat Grayak Jagung FAW di Kebun"
+description: "Panduan jitu membasmi ulat grayak jagung Spodoptera frugiperda yang merusak titik tumbuh tanaman muda dengan bioinsektisida dan abu sekam."
 slug: "membasmi-ulat-grayak-jagung-faw-spodoptera"
-category: "Tanaman Pangan & Hama Lapangan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "jagung"
 tags:
   - "cara membasmi ulat grayak jagung"
   - "ulat tentara jagung faw"
   - "spodoptera frugiperda"
   - "insektisida ulat grayak jagung"
   - "mengatasi pupus jagung bolong"
-meta_title: "Cara Membasmi Ulat Grayak Jagung FAW di Kebun"
-meta_description: "Panduan jitu membasmi ulat grayak jagung Spodoptera frugiperda yang merusak titik tumbuh tanaman muda dengan bioinsektisida dan abu sekam."
+draft: true
 ---
-
-# Membasmi Ulat Grayak Jagung (FAW): Cara Melindungi Titik Tumbuh Tanaman
 
 Sejak kemunculannya pertama kali di Indonesia beberapa tahun lalu, hama Ulat Grayak Jagung atau *Fall Armyworm* (**FAW / *Spodoptera frugiperda*)** telah menjadi momok mengerikan bagi petani jagung di seluruh nusantara.
 

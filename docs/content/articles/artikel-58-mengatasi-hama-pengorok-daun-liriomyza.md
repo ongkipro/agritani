@@ -1,22 +1,25 @@
 ---
 title: "Mengatasi Hama Pengorok Daun (Liriomyza): Garis Putih Berkelok pada Bawang dan Tomat"
+metaTitle: "Cara Mengatasi Pengorok Daun Liriomyza pada Tanaman"
+description: "Panduan membasmi larva lalat pengorok daun Liriomyza pembuat alur putih batik pada daun bawang dan tomat dengan perangkap kuning."
 slug: "mengatasi-hama-pengorok-daun-liriomyza"
-category: "Hama & Proteksi Tanaman"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "6 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "proteksi-tanaman"
+commodities:
+  - "padi"
+  - "cabai"
+  - "bawang-merah"
+  - "tomat"
+  - "kopi"
 tags:
   - "hama pengorok daun liriomyza"
   - "daun bawang garis putih meliuk"
   - "ulat pengorok daun tomat"
   - "perangkap kuning pengorok daun"
   - "insektisida daun bergaris putih"
-meta_title: "Cara Mengatasi Pengorok Daun Liriomyza pada Tanaman"
-meta_description: "Panduan membasmi larva lalat pengorok daun Liriomyza pembuat alur putih batik pada daun bawang dan tomat dengan perangkap kuning."
+draft: true
 ---
-
-# Mengatasi Hama Pengorok Daun (Liriomyza): Garis Putih Berkelok pada Bawang dan Tomat
 
 Bagi petani bawang merah, tomat, kentang, cabai, dan kacang merah, salah satu pemandangan daun yang paling sering dijumpai adalah munculnya alur garis-garis putih keperakan yang meliuk-liuk tak beraturan di atas permukaan helai daun menyerupai motif kain batik atau peta labirin.
 

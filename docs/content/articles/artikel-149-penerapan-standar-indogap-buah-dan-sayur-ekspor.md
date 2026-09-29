@@ -1,22 +1,23 @@
 ---
 title: "Penerapan Standar IndoGAP Buah dan Sayur untuk Mutu Ekspor"
+metaTitle: "Penerapan Standar IndoGAP Buah & Sayur Lolos Pasar Ekspor"
+description: "Panduan penerapan IndoGAP pada hortikultura buah dan sayur: standar residu pestisida, higienitas panen, keselamatan kerja, dan sistem telusur kemasan."
 slug: "penerapan-standar-indogap-buah-dan-sayur-ekspor"
-category: "Bioteknologi, Agribisnis & Pasca Panen"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "pascapanen-agribisnis"
+commodities:
+  - "cabai"
+  - "tomat"
+  - "sayuran-daun"
 tags:
   - "standar indogap hortikultura sayur buah"
   - "good agricultural practices indonesia kementan"
   - "batas maksimum residu pestisida bmr"
   - "keamanan pangan rantai pasok hortikultura"
   - "audit sertifikasi mutu ekspor produk tani"
-meta_title: "Penerapan Standar IndoGAP Buah & Sayur Lolos Pasar Ekspor"
-meta_description: "Panduan penerapan IndoGAP pada hortikultura buah dan sayur: standar residu pestisida, higienitas panen, keselamatan kerja, dan sistem telusur kemasan."
+draft: true
 ---
-
-# Penerapan Standar IndoGAP Buah dan Sayur untuk Mutu Ekspor
 
 Persaingan pasar ekspor buah tropis dan sayuran segar dunia menuntut jaminan mutu yang jauh melampaui sekadar tampilan buah yang mulus dan berukuran seragam. Pasar internasional (seperti Singapura, Jepang, Timur Tengah, dan Eropa) mewajibkan sertifikasi sistem budidaya ramah lingkungan dan aman pangan. Di Indonesia, standar baku resmi yang diakui pemerintah adalah **Indonesian Good Agricultural Practices (IndoGAP)**.
 

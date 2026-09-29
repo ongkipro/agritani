@@ -1,22 +1,23 @@
 ---
 title: "Karakteristik Tanah Podsolik Merah Kuning (PMK) dan Cara Menyuburkannya"
+metaTitle: "Kesuburan Tanah Podsolik Merah Kuning PMK: Cara Olah"
+description: "Pahami ciri fisik kimia tanah podsolik merah kuning PMK masam, masalah fiksasi fosfat, dan langkah strategis menyulapnya menjadi lahan subur produktif."
 slug: "karakteristik-dan-kesuburan-tanah-podsolik-merah-kuning"
-category: "Ilmu Tanah & Kesuburan Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "tanah-nutrisi"
+commodities:
+  - "kelapa-sawit"
+  - "padi"
+  - "sayuran-daun"
 tags:
   - "tanah podsolik merah kuning pmk"
   - "cara menyuburkan tanah ultisol"
   - "reklamasi tanah masam tropika"
   - "masalah kejenuhan aluminium tanah"
   - "pemupukan efisien tanah merah liat"
-meta_title: "Kesuburan Tanah Podsolik Merah Kuning PMK: Cara Olah"
-meta_description: "Pahami ciri fisik kimia tanah podsolik merah kuning PMK masam, masalah fiksasi fosfat, dan langkah strategis menyulapnya menjadi lahan subur produktif."
+draft: true
 ---
-
-# Karakteristik Tanah Podsolik Merah Kuning (PMK) dan Cara Menyuburkannya
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Tanah Podsolik Merah Kuning (PMK/Ultisol) mendominasi lahan darat Indonesia dengan kendala pH rendah, miskin hara, dan peka erosi.

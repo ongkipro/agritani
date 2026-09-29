@@ -1,22 +1,22 @@
 ---
 title: "Teknik Budidaya Kentang Granola: Umbi Super Rendemen Tinggi"
+metaTitle: "Budidaya Kentang Granola Dataran Tinggi: Umbi Melimpah"
+description: "Panduan sukses bertanam kentang varietas Granola di dataran tinggi: seleksi benih G2 bersertifikat, teknik pembumbunan guludan, dan pencegahan busuk daun."
 slug: "teknik-budidaya-kentang-granola-dataran-tinggi"
-category: "Komoditas Pangan, Perkebunan & Hortikultura"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "padi"
+  - "sayuran-daun"
 tags:
   - "budidaya kentang granola dataran tinggi"
   - "benih kentang g2 bersertifikat"
   - "teknik pembumbunan guludan kentang"
   - "pengendalian hawar daun phytophthora"
   - "pupuk kcl kalium pembesar umbi"
-meta_title: "Budidaya Kentang Granola Dataran Tinggi: Umbi Melimpah"
-meta_description: "Panduan sukses bertanam kentang varietas Granola di dataran tinggi: seleksi benih G2 bersertifikat, teknik pembumbunan guludan, dan pencegahan busuk daun."
+draft: true
 ---
-
-# Teknik Budidaya Kentang Granola: Umbi Super Rendemen Tinggi
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Kentang Granola adalah varietas paling populer di Indonesia dengan adaptasi prima di dataran tinggi di atas 1.000 mdpl.

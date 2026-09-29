@@ -1,22 +1,22 @@
 ---
 title: "Teknik Budidaya Terung Ungu Panjang: Panen Berkelanjutan Buah Mengkilap"
+metaTitle: "Budidaya Terung Ungu Panjang: Panen Lebat Buah Mengkilap"
+description: "Panduan budidaya terung ungu panjang Solanum melongena: pengendalian hama penggerek buah, pemupukan kalium kulit mengkilap, dan masa panen panjang."
 slug: "teknik-budidaya-terung-ungu-panjang-lebat"
-category: "Komoditas Pangan, Perkebunan & Hortikultura"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "melon"
+  - "sayuran-daun"
 tags:
   - "budidaya terung ungu panjang"
   - "cara menanam terong ungu lebat"
   - "pengendalian penggerek buah terung leucinodes"
   - "pupuk kalium kulit terung mengkilap"
   - "panen terong ungu mingguan"
-meta_title: "Budidaya Terung Ungu Panjang: Panen Lebat Buah Mengkilap"
-meta_description: "Panduan budidaya terung ungu panjang Solanum melongena: pengendalian hama penggerek buah, pemupukan kalium kulit mengkilap, dan masa panen panjang."
+draft: true
 ---
-
-# Teknik Budidaya Terung Ungu Panjang: Panen Berkelanjutan Buah Mengkilap
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Terung ungu panjang (Solanum melongena) adalah komoditas sayuran bernilai ekonomi stabil dengan masa panen panjang hingga 4–6 bulan.

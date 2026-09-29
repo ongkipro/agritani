@@ -1,22 +1,22 @@
 ---
 title: "Teknik Pemasangan Ajir Bambu: Tanaman Tegak Buah Bebas Busuk"
+metaTitle: "Pasang Ajir Bambu Hortikultura: Tanaman Kokoh Bebas Busuk"
+description: "Panduan teknik pemasangan ajir bambu sistem tegak tunggal, segitiga huruf A, dan para-para untuk tanaman cabai, tomat, dan mentimun merambat."
 slug: "teknik-pemasangan-ajir-bambu-hortikultura"
-category: "Teknik Budidaya & Manajemen Lahan"
-author: "Tim Riset Agronomi Agritani"
-reading_time: "5 min read"
-published_date: "2026-09-29"
-source: "agritani.com"
+pubDate: "2026-09-29"
+author: "Arif Prabowo"
+topic: "budidaya"
+commodities:
+  - "cabai"
+  - "tomat"
 tags:
   - "teknik pemasangan ajir bambu"
   - "cara pasang lanjaran cabai tomat"
   - "model ajir segitiga huruf a"
   - "mencegah buah busuk menyentuh tanah"
   - "pengikatan batang tali rafia simpul 8"
-meta_title: "Pasang Ajir Bambu Hortikultura: Tanaman Kokoh Bebas Busuk"
-meta_description: "Panduan teknik pemasangan ajir bambu sistem tegak tunggal, segitiga huruf A, dan para-para untuk tanaman cabai, tomat, dan mentimun merambat."
+draft: true
 ---
-
-# Teknik Pemasangan Ajir Bambu: Tanaman Tegak Buah Bebas Busuk
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)
 > 1. Pemasangan ajir bambu (lanjaran) wajib dilakukan sejak dini sebelum akar tanaman menyebar luas agar tidak melukai perakaran.
