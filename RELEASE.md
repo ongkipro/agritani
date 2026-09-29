@@ -1,13 +1,13 @@
 # Release Manifest — agritani
 
-Release-ID: UNSET
-Base: UNSET
+Release-ID: agritani-v1.0.0-2026-09-29
+Base: 581ecc2
 Environment: production
-Declared-Risk: R0
-Rollback-Ref: UNSET
-Rollback-Command: UNSET
+Declared-Risk: R3
+Rollback-Ref: aec03f37-ec82-4423-bbd4-3c54f90f6d8e
+Rollback-Command: npx wrangler rollback aec03f37-ec82-4423-bbd4-3c54f90f6d8e
 Backup-Proof: NOT_REQUIRED
-Status: DRAFT
+Status: READY
 
 ## Contract
 

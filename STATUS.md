@@ -2,12 +2,12 @@
 
 Updated: 2026-09-29
 Status: Active
-State: READY
-Review-Risk: R1
-Independent-Review: PENDING
+State: SMOKE_TESTING
+Review-Risk: R3
+Independent-Review: PASS
 Primary-Worker: Antigravity
-Independent-Reviewer: UNSET
-Independent-Review-Head: UNSET
+Independent-Reviewer: Claude (Opus 5.5), lead reviewer, distinct from Primary-Worker
+Independent-Review-Head: 8f6c30a
 
 ## Delivery state machine
 
@@ -22,6 +22,15 @@ Use `BLOCKED` only as an interruption state. Record the blocker and exact state 
 `OBSERVABILITY.md` owns post-deploy verification probes. After deployment, transition to `SMOKE_TESTING` and run `release-check`. Every configured observability probe must pass before transition to `VERIFIED`.
 
 ## Current state
+
+### Rilis v1 — 2026-09-29 (live)
+
+- **Live**: https://agritani.com dan https://www.agritani.com (Cloudflare Workers static assets, custom domain). Version ID aktif `830924c1-4cae-4baa-8488-1d8e265bf8f8`; rollback: `npx wrangler rollback aec03f37-ec82-4423-bbd4-3c54f90f6d8e`.
+- **Isi rilis**: 35 halaman produksi; 8 artikel batch 1 terbit dengan referensi DOI terverifikasi Crossref (antraknosa, thrips, layu fusarium, wereng batang coklat, kresek, tungro, ulat grayak, bulai); 142 artikel tetap draft (4 ditahan karena masalah klaim inti, lihat `docs/build-notes/launch-content.md`). Cuaca Tani (BMKG), Kalkulator Dosis, Konsultasi, Produk (4), Kemitraan, Tentang Kami, profil penulis, Kebijakan Privasi, pencarian Pagefind.
+- **Disembunyikan sampai ditinjau Prof. Arif (OQ-11)**: Diagnosa Gejala dan Kalender Tanam (label "Segera hadir"); indikator waktu semprot.
+- **Verifikasi live** (via IP Cloudflare karena cache DNS lokal): semua halaman utama 200, 404 benar, `www` 200, header CSP/nosniff/Referrer/Permissions aktif; di browser headless: prakiraan BMKG tampil (Jawa Barat › Bandung › Cileunyi › Cileunyi Kulon), pencarian "wereng" menemukan artikel yang benar, menu mobile terbuka, ikon cuaca tampil setelah perbaikan CSP `img-src`.
+- **Review independen**: setiap task T-01…T-26 direview Claude dari kode, data, dan render nyata (bukan dari laporan agent); temuan dan koreksi tercatat di riwayat commit dan BUILD-LOG.
+- **Sisa**: beacon Cloudflare Web Analytics disisipkan zona dan diblokir CSP (tidak ada data terkirim) — matikan Web Analytics di dashboard zona; data pemilik OQ-2..OQ-12 (PRD §8); auto-deploy CI butuh secret `CLOUDFLARE_API_TOKEN`.
 
 Kontrak pra-pengembangan diaudit ulang pada 2026-09-29 dengan skill dotfiles terbaru (`development-kit` → `design-taste`):
 - Lane: `prd-taskbreaker` (PRD.md + TASKS.md root); satu kontrak desain di `DESIGN.md`. Tidak memakai spec suite.
