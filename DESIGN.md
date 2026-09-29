@@ -98,13 +98,78 @@ Aturan pemakaian:
 
 ## 2. Information Architecture & Behavior
 
+### 2.0. Peta Situs
+
+Semua halaman v1, hierarki, dan tautan utama antarhalaman. Sitemap XML untuk
+mesin pencari dihasilkan otomatis dari peta ini (§4.4.8); halaman `noindex`
+tidak masuk.
+
+```mermaid
+flowchart TD
+  H["/ Beranda"]
+
+  H --> A["/alat/ Alat Tani"]
+  A --> A1["/alat/diagnosa-gejala/"]
+  A --> A2["/alat/kalender-tanam/"]
+  A --> A3["/alat/cuaca-tani/"]
+  A --> A4["/alat/kalkulator-dosis/"]
+
+  H --> J["/jurnal/ Jurnal Tani"]
+  J --> JT["/jurnal/topik/{klaster}/ ×5"]
+  JT --> JA["/jurnal/{slug}/ Artikel"]
+  J --> JA
+  JA --> P["/penulis/arif-prabowo/"]
+
+  H --> K["/konsultasi/"]
+  H --> PR["/produk/"]
+  PR --> PD["/produk/{slug}/ ×4"]
+  H --> T["/tentang-kami/"]
+  H --> KM["/kemitraan-distributor/"]
+
+  F(["Footer"]) --> PV["/kebijakan-privasi/"]
+  S(["Ikon Cari"]) --> C["/cari/ (noindex)"]
+  X(["URL salah"]) --> E["404 (noindex)"]
+
+  A1 -. "Baca penanganan" .-> JA
+  JA -. "Diagnosa ?k=" .-> A1
+  A2 -. "Cek cuaca" .-> A3
+  A3 -. "Hitung dosis" .-> A4
+  PD -. "artikel komoditas" .-> JA
+  JA -. "produk relevan (bila klaim diizinkan)" .-> PD
+```
+
+| URL | Tipe / layout (§4.2.2) | Index | Anatomi | Task |
+| :--- | :--- | :---: | :--- | :--- |
+| `/` | Beranda · Lapangan | ✓ | §4.2.3 | T-08 |
+| `/alat/` | Indeks alat · Lapangan | ✓ | §2.6.4 | T-22 |
+| `/alat/diagnosa-gejala/` | Alat · Lapangan | ✓ | §2.2 | T-09 |
+| `/alat/kalender-tanam/` | Alat · Lapangan | ✓ | §2.6.1 | T-19 |
+| `/alat/cuaca-tani/` | Alat · Lapangan | ✓ | §2.6.2 | T-20 |
+| `/alat/kalkulator-dosis/` | Alat · Lapangan | ✓ | §2.6.3 | T-21 |
+| `/konsultasi/` | Konsultasi · Lapangan | ✓ | §2.7 | T-22 |
+| `/jurnal/` | Indeks jurnal · Sains | ✓ | §4.2.3 | T-05 |
+| `/jurnal/topik/{klaster}/` (5) | Hub · Sains | ✓ bila ada artikel terbit | §4.2.3 | T-05 |
+| `/jurnal/{slug}/` (25 naskah) | Artikel · Sains | ✓ bila terbit | §4.3 | T-05…T-07 |
+| `/penulis/arif-prabowo/` | Profil · Sains | ✓ | §4.2.3 | T-10 |
+| `/produk/` | Indeks produk · Lapangan | ✓ | §2.5 | T-11 |
+| `/produk/{aussie,bensu,kojien,saratoga}/` | Detail produk · Lapangan | ✓ | §2.5 | T-11 |
+| `/tentang-kami/` | Profil perusahaan · Sains | ✓ | §4.2.3 | T-10 |
+| `/kemitraan-distributor/` | Kemitraan · Lapangan | ✓ | §2.3 | T-12 |
+| `/kebijakan-privasi/` | Legal · Sains | ✓ | §4.2.3 | T-17 |
+| `/cari/` | Pencarian · Lapangan | ✗ | §4.2.3 | T-14 |
+| 404 | Galat · Lapangan | ✗ | §4.2.3 | T-04 |
+
+Total v1: 17 tipe halaman; maksimal 47 URL indexable saat semua artikel terbit
+(13 halaman tetap + 5 hub + 25 artikel + 4 produk). Hub dan artikel yang belum
+terbit tidak dibangun dan tidak masuk sitemap.
+
 ### 2.1. Navigasi
 
 ```
 Desktop: [Agritani]  Alat Tani · Jurnal Tani · Konsultasi · Produk · Tentang Kami   (Ajukan Kemitraan) [Cari]
 Mobile:  [Agritani]                                              [Cari] [Menu]
          Menu: Alat Tani (Diagnosa Gejala, Kalender Tanam, Cuaca Tani, Kalkulator Dosis), Jurnal Tani, Konsultasi, Produk, Tentang Kami, Ajukan Kemitraan
-Footer:  identitas legal, alamat, WhatsApp resmi, Kebijakan Privasi, tautan utama
+Footer:  identitas legal, alamat, nomor WhatsApp resmi sebagai teks kontak (bukan tombol), Kebijakan Privasi, tautan utama
 ```
 
 - Anatomi lengkap header/footer ada di §4.2.1. Header berlatar `--color-brand`, tidak sticky. "Ajukan Kemitraan" tampil sebagai tombol **outline putih** (sekunder): prioritas petani dulu berarti aksi B2B tidak boleh menjadi elemen paling mencolok di setiap halaman.
@@ -127,9 +192,9 @@ State wajib:
 
 - **Jenis penyebab**: setiap kandidat diberi label penyebab — **Penyakit**, **Hama**, **Kekurangan hara**, atau **Lingkungan** (misal terbakar matahari, genangan). Cabang hara & lingkungan penting karena banyak gejala bukan patogen (pola UC IPM, §4.0).
 - **Judul hasil = jalur pilihan**: "Cabai › Buah › Bercak cekung melingkar" sebagai H1 hasil + breadcrumb (pola UMN, §4.0).
-- **Aksi per hasil**: "Baca penanganan" (artikel) dan "Tanya agronom via WhatsApp" dengan pesan terisi konteks (komoditas, bagian, gejala).
+- **Aksi per hasil**: hanya "Baca penanganan" (tautan artikel). Satu blok konsultasi muncul **sekali** di bawah seluruh daftar hasil, dengan pesan terisi konteks (komoditas, bagian, gejala) — bukan tombol per kandidat (§2.8).
 - **Tanpa JS**: indeks gejala per komoditas sebagai daftar tautan statis.
-- **Kosong**: "Belum ada diagnosis untuk kombinasi ini" + Konsultasi via WhatsApp + tautan Jurnal Tani.
+- **Kosong**: "Belum ada diagnosis untuk kombinasi ini" + tautan Jurnal Tani + blok konsultasi (satu-satunya ajakan WhatsApp di state ini).
 - **Kandidat mirip**: tanda pembeda wajib tampil (misal thrips vs virus kuning keriting).
 - **Disclaimer** satu kalimat di atas hasil: panduan awal, bukan pengganti pemeriksaan agronomis di lahan.
 - Foto gejala: hanya bila berlisensi dan identifikasinya diverifikasi (Proposal P-2). v1 boleh tanpa foto.
@@ -178,17 +243,17 @@ Tampilan:
 - `/produk`: empat baris yang dapat dibandingkan (nama, komoditas, peran, metode aplikasi); ≥1024px boleh tabel perbandingan. Empat item sebanding → baris/tabel seragam dibenarkan.
 - Filter/anchor per komoditas ("Untuk sawit", "Untuk padi", "Untuk sayur & buah") agar petani langsung ke produk yang relevan.
 - Dari hasil Diagnosa Gejala dan artikel, tautan produk hanya muncul bila komoditas cocok dan klaimnya diizinkan labelnya.
-- Detail: fungsi, komposisi, dosis & metode aplikasi dari label resmi, **nomor izin edar** (OQ-2), cara cek keaslian kemasan (OQ-8), Konsultasi via WhatsApp. Tanpa harga, keranjang, atau tautan marketplace (NG-1).
+- Detail: fungsi, komposisi, dosis & metode aplikasi dari label resmi, **nomor izin edar** (OQ-2), cara cek keaslian kemasan (OQ-8), lalu satu ajakan konsultasi di akhir halaman (§2.8). Tanpa harga, keranjang, atau tautan marketplace (NG-1).
 
 ### 2.6. Alat Tani (REQ-06, REQ-09, REQ-10, REQ-11)
 
 Prinsip bersama semua alat:
 
 - **Tanpa akun, tanpa server milik Agritani.** Semua perhitungan di browser; satu-satunya data jaringan adalah prakiraan BMKG (Cuaca Tani).
-- **Hasil bisa dibagikan**: status alat tercermin di URL query (`?k=cabai&t=2026-10-12`), sehingga tautan WhatsApp membuka hasil yang sama.
+- **Hasil bisa dibagikan**: status alat tercermin di URL query (`?k=cabai&t=2026-10-12`), sehingga tautan yang dibagikan membuka hasil yang sama.
 - **Ingat pilihan terakhir** (komoditas, lokasi) di `localStorage` perangkat pengguna, dibungkus `try/catch`; alat tetap berfungsi bila penyimpanan diblokir. Tidak pernah dikirim ke mana pun.
 - **Tanpa JS**: setiap alat menampilkan konten statis yang tetap berguna (indeks gejala, tabel musim tanam, rumus kalkulator, tautan BMKG) + pesan bahwa fitur interaktif butuh JavaScript.
-- **Setiap hasil punya jalan lanjut**: artikel terkait, alat lain yang relevan, dan "Tanya agronom via WhatsApp" dengan kode sumber (G-6).
+- **Setiap hasil punya jalan lanjut**: artikel terkait, alat lain yang relevan, dan **satu** blok konsultasi di akhir hasil dengan kode sumber (G-6). Blok konsultasi hanya muncul setelah ada hasil, tidak sebelum pengguna mencoba alatnya (§2.8).
 - **Hierarki halaman alat**: H1 nama alat → satu kalimat kegunaan → form input (label di atas field) → hasil (`aria-live="polite"`, fokus pindah ke judul hasil) → penjelasan cara kerja & sumber data → tautan lanjut.
 
 #### 2.6.1. Kalender Tanam — "Rencana Tanam Saya" (REQ-09)
@@ -203,7 +268,7 @@ Hasil untuk tanaman semusim:
 
 - Ringkasan atas: "Hari ini **HST 34** — fase **Vegetatif**" (bila tanggal tanam lampau) + perkiraan panen "12–26 Feb 2027".
 - Timeline vertikal (bukan tabel lebar): tiap fase = nama fase, rentang HST, rentang tanggal, 2–4 kegiatan kunci, "Waspadai" (OPT dengan tautan artikel/Diagnosa). Fase berjalan disorot dengan latar `tint` + label teks "Sedang berjalan".
-- Aksi: **Simpan ke kalender HP** (`.ics` dibuat di browser, satu event per fase + pengingat panen), **Cetak**, **Bagikan ke WhatsApp**, **Cek cuaca untuk aplikasi** (→ Cuaca Tani).
+- Aksi: **Simpan ke kalender HP** (`.ics` dibuat di browser, satu event per fase + pengingat panen), **Cetak**, **Bagikan** (lembar bagi bawaan perangkat, §2.8), **Cek cuaca untuk aplikasi** (→ Cuaca Tani).
 - Bagian "Musim tanam nasional": MT1/MT2/MT3 bulan tanam & panen untuk komoditas itu, diberi label "rata-rata nasional — jadwal di daerah Anda bisa berbeda; tanyakan penyuluh setempat".
 
 Kelapa sawit (tahunan): tanpa HST; tampilkan kalender perawatan 12 bulan (pemupukan, sensus/pengamatan Ganoderma, sanitasi, panen rutin) dari data yang ditinjau.
@@ -257,6 +322,34 @@ H1 "Alat Tani" · satu kalimat · 4 baris alat (nama, kegunaan, "Buka") · catat
 - Tombol konsultasi berkonteks di tempat lain memakai kode: `[Web·Diagnosa]`, `[Web·Kalender]`, `[Web·Cuaca]`, `[Web·Kalkulator]`, `[Web·Artikel:{slug}]`, `[Web·Produk:{slug}]`, `[Web·Kemitraan]`.
 - Pernyataan tetap: saran konsultasi adalah panduan, bukan jaminan hasil; untuk keadaan darurat hama wabah, hubungi juga penyuluh/dinas pertanian setempat.
 - Tanpa chatbot, tanpa widget chat melayang.
+
+### 2.8. Aturan Ajakan WhatsApp (anti-spam)
+
+WhatsApp adalah jalur konsultasi utama, justru karena itu tidak boleh diobral.
+Ajakan yang muncul di mana-mana terasa seperti iklan dan merusak kesan tepercaya
+Jurnal Tani (keputusan Paduka Ongki 2026-09-29).
+
+**Aturan:**
+
+1. **Maksimal satu ajakan WhatsApp per halaman** (satu `ConsultPrompt` atau satu tombol kirim form). Tautan nomor di footer tidak dihitung karena berupa teks kontak, bukan ajakan.
+2. **Di akhir tugas, bukan di awal**: setelah hasil alat, di akhir isi artikel/produk, atau sebagai tombol kirim form. Tidak pernah di header, menu, hero, di atas lipatan pertama sebelum pengguna mendapat nilai, atau di tengah prosa.
+3. **Tidak ada elemen WhatsApp melayang, sticky bar, pop-up, atau per item daftar.**
+4. **Bentuk**: tombol sekunder (outline) dengan ikon `MessageCircle` monokrom dan label kata kerja yang spesifik ("Tanya agronom tentang hasil ini"), bukan hijau khas WhatsApp. Tombol primer hanya di `/konsultasi/` dan `/kemitraan-distributor/`, di mana mengirim ke WhatsApp memang tugas utamanya.
+5. **Bagikan ≠ konsultasi**: fitur bagikan memakai lembar bagi bawaan perangkat (`navigator.share`), yang di HP sudah memuat WhatsApp, sehingga tidak ada ikon WhatsApp kedua di halaman.
+
+**Penempatan per halaman:**
+
+| Halaman | Ajakan WhatsApp | Letak |
+| :--- | :--- | :--- |
+| Beranda | **Tidak ada** | Section Konsultasi menaut ke `/konsultasi/` |
+| Header, menu, footer | **Tidak ada** tombol | Nav "Konsultasi" → halaman; footer: nomor sebagai teks kontak |
+| Indeks Jurnal, hub, profil penulis, Tentang Kami, indeks Alat, indeks Produk, Kebijakan Privasi, Cari, 404 | **Tidak ada** | — |
+| Artikel | 1 | Blok "Kapan harus konsultasi" setelah isi, sebelum Daftar Pustaka |
+| Diagnosa Gejala | 1 | Di bawah seluruh daftar hasil (atau di state kosong), setelah pengguna memilih |
+| Kalender Tanam, Cuaca Tani, Kalkulator Dosis | 1 | Di akhir hasil, hanya setelah hasil tampil |
+| Detail produk | 1 | Akhir halaman: "Tanya dosis untuk lahan Anda" |
+| Konsultasi | 1 (primer) | Tombol kirim form penyusun pesan |
+| Kemitraan | 1 (primer) | Tombol kirim form kemitraan |
 
 ---
 
@@ -374,7 +467,7 @@ knowablemagazine.org (tantangan Cloudflare), cybex.pertanian.go.id
 Sintesis (terinferensi dari observasi di atas):
 
 1. Hijau jenuh + kuning dan kolase korporat adalah klise kategori → aturan takaran warna §3.1 dan larangan kolase §3.5.
-2. WhatsApp adalah kanal kontak yang dominan → WhatsApp berkonteks di hasil diagnosa, produk, dan kemitraan (§2).
+2. WhatsApp adalah kanal kontak yang dominan, tetapi referensi yang menumpuk tombol/tab kontak (Petrokimia, Pupuk Indonesia) terasa mengganggu → WhatsApp berkonteks, **maksimal satu per halaman** di akhir tugas (§2.8).
 3. Nomor izin edar tidak terlihat di halaman produk yang diinspeksi → menampilkannya (OQ-2) adalah pembeda kepercayaan.
 4. Pola diagnosa terbaik: satu keputusan per langkah, pengelompokan per bagian tanaman, kandidat dengan tanda pembeda, jenis penyebab termasuk hara → §2.2.
 5. Petani mengenali gejala dari gambar → P-2 (foto gejala berlisensi) dinaikkan prioritasnya setelah v1.
@@ -410,7 +503,7 @@ menyusun ulang kerangka sendiri.
 | 2 | Breadcrumb | `<nav aria-label="Breadcrumb">` | Semua halaman kecuali Beranda dan 404; + `BreadcrumbList` JSON-LD |
 | 3 | Isi | `<main id="isi">` | Satu `<h1>` per halaman; heading tidak melompat level |
 | 4 | Footer | `<footer>` berlatar `brand`, teks putih | Tanpa garis di atas footer; transisi dari band sebelumnya lewat warna latar |
-| 4a | Kolom footer | Alat Tani (4 alat) · Jurnal Tani (5 hub) · Produk (4 produk) · Perusahaan (Tentang Kami, Penulis, Kemitraan, Kebijakan Privasi) · Kontak (WhatsApp resmi, alamat — OQ-1/OQ-7) | <1024px: kolom menjadi daftar bertumpuk, bukan akordeon |
+| 4a | Kolom footer | Alat Tani (4 alat) · Jurnal Tani (5 hub) · Produk (4 produk) · Perusahaan (Tentang Kami, Penulis, Kemitraan, Kebijakan Privasi) · Kontak (nomor WhatsApp resmi, alamat — OQ-1/OQ-7) | <1024px: kolom menjadi daftar bertumpuk, bukan akordeon. Nomor WhatsApp ditulis sebagai teks + tautan biasa, tanpa ikon/tombol berwarna (§2.8) |
 | 4b | Baris legal | "© {tahun} PT Agritani Internasional · Distributor resmi" | Tahun dari waktu build |
 
 Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol WhatsApp melayang, widget chat, pengumuman berjalan.
@@ -430,7 +523,7 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 2. Band `tint` — H2 "Jurnal per komoditas": 5 baris hub + jumlah artikel nyata.
 3. H2 "Bacaan pilihan": 1 artikel dominan (judul serif, dek, byline ringkas) + 3 baris artikel terbaru.
 4. H2 "Alat Tani": 4 baris alat (nama · satu kalimat kegunaan) → `/alat/…`. Daftar, bukan grid kartu.
-5. H2 "Tanya langsung ke tim agronomi": 2 kalimat + apa yang disiapkan + tombol primer "Konsultasi via WhatsApp" → `/konsultasi/`.
+5. H2 "Tanya langsung ke tim agronomi": 2 kalimat + tautan sekunder "Cara konsultasi" → `/konsultasi/` (halaman, bukan membuka WhatsApp; Beranda tidak punya tombol WhatsApp).
 6. H2 "Tentang penulis": foto + nama + peran Prof. Arif Prabowo → profil.
 7. H2 "Produk untuk lahan Anda": 4 baris produk (nama · komoditas sasaran · peran) → `/produk/{slug}/` (referensi).
 8. Band `harvest-tint` — H2 "Menjadi mitra distributor resmi": langkah `01–03` + tombol aksen "Ajukan Kemitraan".
@@ -439,7 +532,7 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 
 1. H1 "Diagnosa Gejala Tanaman" + satu kalimat cara pakai + disclaimer.
 2. Langkah 1 Komoditas · 2 Bagian tanaman · 3 Gejala — masing-masing `<fieldset>` + `<legend>`, bernomor karena urutannya nyata.
-3. Hasil: H2 jalur ("Cabai › Buah › Bercak cekung melingkar") · daftar kandidat (nama lokal, nama ilmiah, label jenis penyebab, tanda pembeda) · per kandidat "Baca penanganan" + "Tanya agronom via WhatsApp".
+3. Hasil: H2 jalur ("Cabai › Buah › Bercak cekung melingkar") · daftar kandidat (nama lokal, nama ilmiah, label jenis penyebab, tanda pembeda, "Baca penanganan") · di bawah daftar: satu blok konsultasi berisi pilihan pengguna (§2.8).
 4. Tanpa JS/di bawah hasil: indeks gejala statis per komoditas (tautan ke artikel).
 
 **Indeks Alat Tani `/alat/`** (Lapangan) — §2.6.4.
@@ -499,7 +592,7 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 1. H1 "Produk Agritani" + satu kalimat posisi distributor resmi.
 2. Tautan anchor per komoditas: Untuk sawit & tanaman keras · Untuk padi · Untuk palawija & sayur · Untuk semua tanaman.
 3. 4 baris produk (≥1024px boleh tabel perbandingan): nama · komoditas · peran · bentuk & cara aplikasi · nomor izin edar (bila ada) → detail.
-4. H2 "Cara memastikan produk asli" (OQ-8) · Konsultasi via WhatsApp.
+4. H2 "Cara memastikan produk asli" (OQ-8) · tautan ke detail produk (tanpa ajakan WhatsApp di indeks produk).
 
 **Detail Produk `/produk/{slug}/`** (Lapangan)
 
@@ -558,7 +651,7 @@ lebar di mobile.
 | 3 | Dek | `<p class="dek">` | Satu kalimat 120–160 karakter = teks yang sama dengan meta description, jadi deskripsi selalu terlihat di halaman | `description` |
 | 4 | Byline | `<div>` + `<address>` untuk penulis | Foto 40×40 (setelah diterima) · "Oleh **Prof. Arif Prabowo**" (tautan `/penulis/arif-prabowo/`) · "Profesor Pertanian · Moderator Jurnal Tani" | `author` |
 | 5 | Baris metadata | `<p>` + `<time datetime>` | "Terbit 12 Okt 2026 · Diperbarui 3 Jan 2027 · 7 menit baca · {Komoditas}" — "Diperbarui" hanya bila `updatedDate` ada; format `id-ID`, tanpa jam | `pubDate`, `updatedDate`, dihitung |
-| 6 | Aksi artikel | tautan | "Bagikan ke WhatsApp" (`wa.me/?text=` judul + URL) · "Cetak Panduan" (`window.print()`, disembunyikan tanpa JS) | — |
+| 6 | Aksi artikel | tombol teks | "Bagikan" (`navigator.share` → lembar bagi perangkat, yang sudah memuat WhatsApp; cadangan: salin tautan) · "Cetak Panduan" (`window.print()`). Keduanya disembunyikan tanpa JS; tanpa ikon/warna WhatsApp. | — |
 | 7 | **Jawaban Singkat** | `<section aria-labelledby>` + `<h2>` | 40–60 kata yang langsung menjawab pertanyaan utama artikel (penyebab + tindakan pertama). Prosa biasa di latar `canvas`, tanpa kotak. Kandidat featured snippet & kutipan AI. | `answer` (baru) |
 | 8 | **Ringkasan Lapangan** | `<section>` + `<h2>` + `<dl>` | Panel `tint`, radius 2px. Field: Masalah · Gejala khas · Langkah pertama · Dosis per tangki 16 L · Waktu aplikasi. Hanya field terisi; dosis tidak pernah ditebak. Label field warna `soil`. Tidak dirender bila `fieldTakeaways` kosong. | `fieldTakeaways` |
 | 9 | Gambar utama | `<figure>` + `<figcaption>` | Hanya bila foto asli/berlisensi ada. `width`/`height` eksplisit, `loading="eager"`, `fetchpriority="high"` (kandidat LCP), caption + kredit. Tanpa foto → blok dilewati (artikel tetap utuh). | `heroImage` (baru, opsional) |
@@ -792,7 +885,7 @@ Search Console & Bing Webmaster (§4.3.7) per halaman: impresi, klik, CTR, posis
 | `AuthorByline` / `AuthorBio` | Byline artikel & blok Tentang Penulis (§4.3.1 blok 4, 15) | Tidak ada |
 | `ShortAnswer` | Jawaban Singkat (§4.3.1 blok 7) | Tidak ada |
 | `SymptomCompare` | Tabel Pembeda Gejala (§4.3.1 blok 12) | Tidak ada |
-| `ConsultPrompt` | Kapan harus konsultasi + WhatsApp terisi | Tidak ada |
+| `ConsultPrompt` | Satu-satunya ajakan WhatsApp di halaman yang mengizinkannya (§2.8) + pesan terisi | Tidak ada |
 | `CommodityPicker` | Tombol komoditas → `/alat/diagnosa-gejala/?k=` (homepage), label + `ChevronRight` | Tidak ada (tautan) |
 | `TriageFilter` | Langkah 1–4 dari data `symptoms`, sinkron URL, state §2.2 | Script kecil |
 | `FieldSummaryBox` | Ringkasan Lapangan dari `fieldTakeaways` yang terisi | Tidak ada |
@@ -855,6 +948,7 @@ Ditahan sampai ada bukti uji: klaim kenaikan hasil ("hingga 50%"), "100% keaslia
 - [ ] Permukaan bawaan browser sudah bertema (§3.6).
 - [ ] Tidak ada foto yang menyiratkan bukti palsu; tidak ada statistik/testimoni/afiliasi tanpa data resmi.
 - [ ] Aksi B2B tidak mendominasi region petani.
+- [ ] Maksimal satu ajakan WhatsApp per halaman, sesuai tabel §2.8; tidak ada di header, menu, hero, sticky, atau per item daftar.
 - [ ] Nama pihak ketiga hanya di Daftar Pustaka (DEC-005).
 
 ---

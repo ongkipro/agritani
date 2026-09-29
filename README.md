@@ -24,7 +24,7 @@ Setiap dokumen di bawah ini memiliki fungsi spesifik dan merupakan sumber kebena
 - 📋 [**PRD.md**](./PRD.md) — Kontrak kebutuhan produk terstruktur (empat pilar situs, REQ-01 s.d. REQ-12 + REQ-06b, EARS format, proto-persona, non-goals, checklist data pemilik).
 - 🎨 [**DESIGN.md**](./DESIGN.md) — Spesifikasi UI/UX, token desain botani, tipografi editorial Newsreader/Plus Jakarta Sans, kontrak perilaku, dan gate bukti UI.
 - 🏗️ [**ARCHITECTURE.md**](./ARCHITECTURE.md) — Arsitektur Astro 7 statis, skema content layer 6 koleksi, integrasi BMKG, pencarian Pagefind, dan batas keamanan.
-- ✅ [**TASKS.md**](./TASKS.md) — Antrean 23 tugas eksekusi bertahap (T-00 s.d. T-22) dengan penelusuran 1 task = 1 primary requirement.
+- ✅ [**TASKS.md**](./TASKS.md) — Antrean 26 tugas (T-00 s.d. T-25) dalam 6 milestone, dengan protokol eksekusi dengan penelusuran 1 task = 1 primary requirement.
 - 📊 [**STATUS.md**](./STATUS.md) — State machine workflow, status fase saat ini (`READY`), dan bukti verifikasi.
 - 📝 [**DECISIONS.md**](./DECISIONS.md) — Daftar keputusan arsitektural yang disepakati.
 - 🚀 [**RELEASE.md**](./RELEASE.md) — Batasan rilis dan mitigasi risiko.

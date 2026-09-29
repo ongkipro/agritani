@@ -6,12 +6,50 @@ This file contains repository-specific rules only. Global safety, Git, secret-ha
 
 ## Project
 
-- Purpose: Agritani - Hybrid Company Profile and Agriculture Portal
-- Category: agriculture
-- Stack: static content site — Astro 7 + Tailwind CSS 4 + Pagefind (see `DECISIONS.md` DEC-004). No database, auth, or server runtime.
-- UI owner skills: `design-taste` (public/editorial), then `impeccable` and `ui-validation`; `DESIGN.md` §10 is the UI done-gate. Not an admin dashboard; do not use `shadcn-ui`.
-- Positioning: PT Agritani Internasional is an official distributor, not a manufacturer or research institute (DEC-010).
-- Content rules: never invent citations, DOIs, dosages, registration numbers, reviewers, statistics, or testimonials; unknown owner data is tracked in `PRD.md` §8.
+- **What**: agritani.com for PT Agritani Internasional, an **official distributor** (not a manufacturer or research institute, DEC-010). The site has four pillars: **Jurnal Tani** (articles by Prof. Arif Prabowo), **Alat Tani** (Diagnosa Gejala, Kalender Tanam, Cuaca Tani, Kalkulator Dosis), **Konsultasi** (WhatsApp), and the company profile. Four products (Aussie, BENSU, Kojien, Saratoga) serve as reference; B2B partnership comes second (PRD §1.5).
+- **Stack**: static site on TypeScript strict + Astro 7 + Tailwind CSS 4 (`@theme` tokens, no `tailwind.config`) + Pagefind, hosted on Cloudflare Workers static assets (DEC-004, DEC-009). No database, auth, server runtime, UI framework, or third-party tracking. The only runtime network call is the browser-direct BMKG forecast (DEC-014).
+- **Audience & language**: Indonesian farmers on low-end Android phones outdoors. All UI copy is Bahasa Indonesia (DESIGN §1.3); code, identifiers, and commit messages are English.
+
+## Read before any task
+
+1. `STATUS.md` holds the current state and whether development is authorized.
+2. `TASKS.md` gives the task, its protocol, Allowed paths, Owner skill, and Done when.
+3. The `DESIGN.md` and `ARCHITECTURE.md` sections the task cites.
+4. `DECISIONS.md` before adding any dependency, service, or pattern.
+
+Do not start implementation while `STATUS.md` says development authorization is pending.
+
+## Skill routing
+
+| Work | Skill(s) |
+| :--- | :--- |
+| Astro pages, content collections, routing, build | `astro-development` (+ `native-first` for any dependency question) |
+| Visual/UX decisions on public pages | `design-taste`. Then, for every changed UI: `impeccable` (critique + polish), then `ui-validation` (browser proof at 360px & 1440px) |
+| Metadata, JSON-LD, sitemap, robots, canonical | `seo-website-builder` (contract: DESIGN §4.4) |
+| Tests for pure logic | `testing-engineering` (`node --test`, table-driven cases) |
+| CSP, form input handling | `application-security` |
+| Performance budget, Lighthouse | `web-perf` |
+| Cloudflare config, deploy | `cloudflare`, `wrangler` (deploy needs approval) |
+| CI workflow | `github-actions` |
+| Copy, article fields, hub intros | `copywriting`, `content`, `volumx-writer` |
+
+## Hard rules for this repository
+
+- **Contracts first**: implement what DESIGN/ARCHITECTURE specify. If the code must differ, update `ARCHITECTURE.md` (what was actually built) and record the decision; never leave two current claims.
+- **Allowed paths**: only touch the files a task allows. Start each task with `delivery-ledger --repo . start … --allow <pattern>` and close it with `check-boundary` and `finish` (TASKS protocol).
+- **Articles folder**: `docs/content/articles/` is also edited on another device. Change it only inside T-03, T-16, or T-25, only after `git pull`, and only the fields those tasks name. Never rewrite article bodies.
+- **Content integrity**: never invent citations, DOIs, dosages, registration numbers, reviewers, credentials, statistics, prices, or testimonials. Unknown owner data stays a placeholder marked `TODO(OQ-n)` and tracked in `PRD.md` §8. Product claims marked "Ditahan" in DESIGN §2.5 never render.
+- **No third-party brands** outside article reference lists (NG-3, DEC-005). No personal data from `agrimarket` or anywhere else (DEC-015).
+- **Reviewed data only**: crop calendars, symptoms, and spray thresholds render in production only when `reviewedBy` is set. Draft or unreviewed content appears only in draft-preview mode (ARCHITECTURE §3.2).
+- **WhatsApp**: at most one WhatsApp CTA per page, placed after the task. Never in the header, menu, hero, a sticky or floating element, or per list item. All links go through `waLink()` (DESIGN §2.8).
+- **UI invariants**: no kickers/eyebrows, no divider lines between sections, 2px max radius, no decorative icons, text contrast ≥ 7:1, touch targets ≥ 44px (DESIGN §3, §8).
+- **No new dependencies or runtime services** without a `DECISIONS.md` entry. Prefer platform features (native form validation, `<dialog>`, `<details>`, `Intl`, `navigator.share`).
+- **CSP-safe code**: no inline executed scripts, `on*=` attributes, or `style=` attributes (ARCHITECTURE §5).
+- **Approval gates**: production deploy, DNS/redirect changes, search-engine submissions, and pushing to `main` each need Paduka Ongki's explicit approval.
+
+## Commands (available after T-01)
+
+`npm run dev` · `npm run build` (includes Pagefind + `check-seo.mjs`) · `npx astro check` · `npm test` · `npm run check:contrast` · draft preview: `PUBLIC_INCLUDE_DRAFTS=true npm run dev`
 
 ## Sources of truth
 
