@@ -1,0 +1,46 @@
+---
+/**
+ * src/pages/alat/kalender-tanam.astro
+ * Dedicated tool page for Kalender Tanam (REQ-09, DESIGN §2.6.1, §4.2.3)
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import CropTimeline from '../../components/CropTimeline.astro';
+import type { SeoInput } from '../../lib/seo';
+
+const breadcrumbs = [
+  { name: 'Beranda', url: '/' },
+  { name: 'Alat Tani', url: '/alat/' },
+  { name: 'Kalender Tanam', url: '/alat/kalender-tanam/' },
+];
+
+const seo: SeoInput = {
+  title: 'Kalender Tanam & Rencana Musim',
+  description:
+    'Rencanakan jadwal fase tanam, pemupukan, pemantauan hama, dan perkiraan panen berdasarkan tanggal tanam komoditas Anda. Simpan jadwal ke kalender HP tanpa akun.',
+  canonicalPath: '/alat/kalender-tanam/',
+  breadcrumbs,
+  pageType: 'website',
+};
+---
+
+<BaseLayout seo={seo} currentPath="/alat/kalender-tanam/">
+  <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+
+    <!-- Page Header (Lapangan Layout) -->
+    <header class="my-6 sm:my-8 max-w-[68ch]">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--color-text)] mb-3 leading-tight tracking-tight">
+        Kalender Tanam
+      </h1>
+      <p class="text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed">
+        Buat jadwal tanam mandiri dari tanggal tanam Anda. Ketahui umur HST hari ini, fase pertumbuhan aktif, kegiatan lapangan kunci, serta jendela waktu panen yang dapat disimpan ke kalender ponsel.
+      </p>
+    </header>
+
+    <!-- Main Tool Container -->
+    <div class="max-w-[54rem]">
+      <CropTimeline />
+    </div>
+  </div>
+</BaseLayout>

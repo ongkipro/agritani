@@ -458,5 +458,54 @@ Record only durable implementation changes, validation evidence, and gotchas tha
   - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 180 HTML pages, Pagefind indexed 150 articles, `check-seo` PASS (0 errors, 0 warnings), `check-csp` PASS (0/0/0).
   - Boundary check passed: `BOUNDARY PASS effectiveRisk=R2`. Ledger run `RUN-20260929T140942Z-d9f3e7b6` finished with result PASS.
 
+## 2026-09-29 — T-19: Kalender Tanam & Rencana Musim (READY - PENDING INDEPENDENT REVIEW)
+
+- **Dataset `src/data/crop-calendars.json`**:
+  - Seeded 6 authentic commodities conforming to DEC-015:
+    - Semusim (5): Padi (105–125 hari), Jagung (95–110 hari), Cabai (120–150 hari), Tomat (90–110 hari), Bawang Merah (60–75 hari).
+    - Tahunan (1): Kelapa Sawit (rotasi tugas pemeliharaan & panen 12 bulan).
+  - Cleaned & audited per DEC-015 & NG-3: 0 mention of commercial brand names, 0 prices/rupiah, 0 pesticide dosage numbers (verified by strict grep regex).
+  - Authentic scientific sources attached: BSIP Padi Sukamandi, BSIP Serealia Maros, Balitsa Lembang, PPKS Medan, Kementan RI.
+  - Initial `reviewedBy` kept empty (`undefined`) pending Prof. Arif's review (OQ-11b).
+- **Core Engine & Utilities (`src/lib/crop-calendar.ts`)**:
+  - Calculation of days after planting (HST) for past planting dates: `Math.floor((today - plantDate) / msPerDay)`.
+  - Dynamic detection of active growth phase ("Sedang berjalan").
+  - Date calculations supporting leap year transitions (Feb 29), cross-year calendar boundaries (Dec to next year's harvest), and future planned dates.
+  - Filter logic enforcing ARCHITECTURE §3.1: unreviewed calendars are hidden in production builds and displayed with clear `[Draf — validasi OQ-11b]` badge in draft preview mode.
+- **RFC 5545 iCalendar Generator (`src/lib/ics.ts`)**:
+  - Creates fully standard `.ics` files compatible with Google Calendar, Apple Calendar, and Outlook.
+  - All-day `VEVENT` entries for each cultivation phase with exclusive `DTEND` (+1 day per RFC 5545).
+  - Dedicated Harvest Window reminder event (`🌾 Perkiraan Panen: [Komoditas]`).
+  - Text escaping and line folding (75 octets max).
+- **Comprehensive Unit Test Suite (`src/lib/crop-calendar.test.ts`)**:
+  - 8 new table-driven unit tests (total 58/58 passing):
+    - Past planting date (HST positive, active phase highlighted).
+    - Future planting date (HST null, no active phase).
+    - Leap year (2024-02-20 through 2024-02-29).
+    - Cross-year transition (Dec 2026 planting, March 2027 harvest).
+    - Perennial crop behavior (kelapa sawit with 12-month tasks).
+    - Filtering of unreviewed commodities in production vs draft preview.
+    - RFC 5545 format and date string formatting.
+- **Interactive Component & UI (`src/components/CropTimeline.astro` & `src/pages/alat/kalender-tanam.astro`)**:
+  - Tap-first commodity selector and native `<input type="date">`.
+  - Summary Card ("Rencana Tanam Saya"): Active HST, growth status, estimated harvest range.
+  - Action buttons: "Simpan ke Kalender HP (.ics)" (instant client-side Blob download), "Cetak Jadwal", "Bagikan" (`navigator.share` with clipboard fallback), "Cek Cuaca Tani" link.
+  - Vertical timeline: Phase badges, date ranges, 2–4 field activities, and "Waspadai" pest/disease warnings with direct links to authentic articles.
+  - 12-month maintenance & harvest rotation schedule for perennial Kelapa Sawit.
+  - National Cropping Seasons table (MT1, MT2, MT3) rendered statically for full readability without JS.
+  - Full `<noscript>` fallback rendering complete commodity cycles and seasonal tables.
+  - Exactly 1 WhatsApp ConsultPrompt at the bottom of results (`source="[Web·Kalender]"`).
+  - Zero executed inline scripts, zero inline `on*=`, zero inline `style=`.
+  - UI proof captured at port 4330 via `agritani-shot.cjs`:
+    - `proof/ui/t19/kalender-initial-390.png` & `proof/ui/t19/kalender-initial-1440.png`
+    - `proof/ui/t19/kalender-padi-hst34-390.png` & `proof/ui/t19/kalender-padi-hst34-1440.png`
+    - `proof/ui/t19/kalender-sawit-tahunan-390.png` & `proof/ui/t19/kalender-sawit-tahunan-1440.png`
+- **Verifications**:
+  - `npm test`: 58/58 unit tests PASS.
+  - `npx astro check`: 0 errors, 0 warnings.
+  - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 181 HTML pages, Pagefind indexed 150 articles, `check-seo` PASS (0 errors, 0 warnings), `check-csp` PASS (0/0/0).
+  - Boundary check produced `REVIEW_REQUIRED` (declared risk R2, effective risk escalated to R3 due to UI Astro components & domain calculations). Stopped without self-review; finished as `BLOCKED` awaiting independent review.
+
+
 
 

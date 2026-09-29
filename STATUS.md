@@ -40,14 +40,15 @@ Kontrak pra-pengembangan diaudit ulang pada 2026-09-29 dengan skill dotfiles ter
 
 ### Active work
 
-T-09 (Triage Engine: Diagnosa Gejala `/alat/diagnosa-gejala/` & Dataset `symptoms.json`) selesai diimplementasikan dan diverifikasi penuh:
-- Dataset `src/data/symptoms.json`: 22 entri gejala autentik dari artikel nyata pada 5 komoditas (Cabai: 9, Padi: 8, Sawit: 2, Jagung: 2, Tomat: 1) dengan tanda pembeda kunci akurat dan slug artikel valid.
-- Komponen `src/components/TriageFilter.astro`: Alur tap-first 3 langkah (Komoditas -> Bagian -> Gejala), sinkronisasi URL query params (`?k=...&b=...&g=...`), navigasi browser popstate Back/Forward, kartu hasil diagnosa dengan badge penyebab dan status review, tombol 'Baca Penanganan Lengkap', tepat satu CTA WhatsApp (`[Web·Diagnosa]`) di bawah hasil, serta fallback `<noscript>` lengkap.
-- Halaman `src/pages/alat/diagnosa-gejala.astro`: Tipografi Lapangan, breadcrumb SEO, zero inline scripts/style/on*=.
-- Verifikasi: 50 unit tests PASS, `npx astro check` 0 errors, `check-seo` PASS (180 halaman), `check-csp` PASS (0/0/0), screenshot UI mobile 390px dan desktop 1440px di `proof/ui/t09/`. Boundary check PASS R2.
+T-19 (Kalender Tanam `/alat/kalender-tanam/`, Dataset `crop-calendars.json`, & Engine `.ics`) selesai diimplementasikan dan diverifikasi penuh:
+- Dataset `src/data/crop-calendars.json`: 6 komoditas autentik disemai sesuai DEC-015 (Padi, Jagung, Cabai, Tomat, Bawang Merah, Kelapa Sawit) dengan 0 nama merek, 0 harga, dan 0 dosis pestisida (diaudit via strict grep regex). Rujukan standar ilmiah disematkan (BSIP Padi, BSIP Serealia, Balitsa, PPKS Medan, Kementan).
+- Engine & Utilities `src/lib/crop-calendar.ts`: Perhitungan HST real-time dari tanggal tanam lampau, deteksi fase aktif ("Sedang Berjalan"), dukungan tahun kabisat (29 Feb), pergantian tahun kalender, estimasi rentang panen, serta penyaringan produksi vs mode pratinjau (ARCHITECTURE §3.1).
+- Generator iCalendar `src/lib/ics.ts`: Pembangkit file RFC 5545 `.ics` valid dengan all-day VEVENT per fase (DTEND eksklusif +1 hari) dan event pengingat panen, didukung unduhan instan client-side via Blob.
+- Komponen `src/components/CropTimeline.astro` & Halaman `src/pages/alat/kalender-tanam.astro`: Pemilih komoditas tap-first, kartu ringkasan HST & panen, aksi simpan ke kalender HP / cetak / bagikan / cek cuaca, timeline fase vertikal dengan kegiatan kunci & peringatan OPT tertaut artikel, pola pemeliharaan 12 bulan kelapa sawit, tabel musim tanam nasional MT1–MT3 yang terbaca tanpa JS, fallback `<noscript>` lengkap, tepat satu WhatsApp ConsultPrompt (`[Web·Kalender]`), serta zero inline scripts/style/on*=.
+- Verifikasi: 58 unit tests PASS (8 tes kalender & ics baru), `npx astro check` 0 errors, `check-seo` PASS (181 halaman), `check-csp` PASS (0/0/0), screenshot UI mobile 390px dan desktop 1440px di `proof/ui/t19/`. Boundary check menghasilkan REVIEW_REQUIRED (eskalasi R2 -> R3). Task dihentikan menunggu review independen Claude.
 
 Selanjutnya:
-Mengeksekusi **T-19** (Kalender Tanam: data `crop-calendars.json` + UI `/alat/kalender-tanam/`).
+Mengeksekusi **T-20** (Cuaca Tani: BMKG API client + UI `/alat/cuaca-tani/` + region dataset).
 
 ## Blockers
 
@@ -59,6 +60,7 @@ Mengeksekusi **T-19** (Kalender Tanam: data `crop-calendars.json` + UI `/alat/ka
 - T-21 (termasuk revisi) menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
 - T-22 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
 - T-09 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
+- T-19 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 
 ## Verification evidence
 
@@ -74,8 +76,9 @@ Mengeksekusi **T-19** (Kalender Tanam: data `crop-calendars.json` + UI `/alat/ka
 - T-14: Pagefind static search engine, SearchBox component, dan dedicated `/cari/` search page selesai dan PASS (RUN-20260929T133042Z-fc2aae13). Pengujian query 'patek cabai' (6 hasil) dan 'ganoderma' (3 hasil) lulus dengan rendering judul, kutipan highlight, dan link artikel; 0 aset pagefind di halaman non-pencarian; UI screenshot 390px dan 1440px terverifikasi. Boundary check PASS R2.
 - T-21: Kalkulator Dosis Semprot selesai (commit `6583920`). 48/48 unit tests PASS (9 tes kalkulasi dosis), check commodities PASS, contrast check PASS, `astro check` PASS, build 177 halaman PASS. UI screenshots `dose-calc-390.png` dan `dose-calc-1440.png` di `proof/ui/t21/`. Boundary check menghasilkan REVIEW_REQUIRED (eskalasi R1 -> R2), berhenti menunggu review independen.
 - T-22: Konsultasi & Indeks Alat Tani selesai (commit `b36db9f`). 50/50 unit tests PASS, check-seo PASS (179 halaman), check-csp PASS (0/0/0). UI screenshots `alat-index-*.png` dan `konsultasi-*.png` di `proof/ui/t22/`. Boundary check menghasilkan REVIEW_REQUIRED (eskalasi R1 -> R2), berhenti menunggu review independen.
-- T-09: Triage Engine: Diagnosa Gejala & Dataset Gejala selesai. 50/50 unit tests PASS, `astro check` 0 errors, check-seo PASS (180 halaman), check-csp PASS (0/0/0). UI screenshots `diagnosa-initial-*.png` dan `diagnosa-result-cabai-patek-*.png` di `proof/ui/t09/`. Boundary check PASS R2.
+- T-09: Triage Engine: Diagnosa Gejala & Dataset Gejala selesai (commit `ed1c9c5`). 50/50 unit tests PASS, `astro check` 0 errors, check-seo PASS (180 halaman), check-csp PASS (0/0/0). UI screenshots `diagnosa-initial-*.png` dan `diagnosa-result-cabai-patek-*.png` di `proof/ui/t09/`. Boundary check PASS R2.
+- T-19: Kalender Tanam & Rencana Musim selesai. 58/58 unit tests PASS (8 tes kalkulasi tanggal, kabisat, cross-year, ics, dan filter review), `astro check` 0 errors, check-seo PASS (181 halaman), check-csp PASS (0/0/0). UI screenshots `kalender-initial-*.png`, `kalender-padi-hst34-*.png`, dan `kalender-sawit-tahunan-*.png` di `proof/ui/t19/`. Boundary check menghasilkan REVIEW_REQUIRED (eskalasi R2 -> R3).
 
 ## Next verified action
 
-T-19: Kalender Tanam: data `crop-calendars.json` + UI `/alat/kalender-tanam/`.
+T-20: Cuaca Tani: BMKG API client + UI `/alat/cuaca-tani/` + region dataset.

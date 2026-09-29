@@ -1,1 +1,552 @@
-[]
+[
+  {
+    "id": "padi",
+    "type": "semusim",
+    "cycleDays": { "min": 105, "max": 125 },
+    "phases": [
+      {
+        "id": "persemaian",
+        "name": "Persemaian & Persiapan Lahan",
+        "startDay": -21,
+        "endDay": 0,
+        "activities": [
+          "Pengolahan tanah sempurna (bajak dan garu) hingga macak-macak",
+          "Seleksi benih bernas dengan larutan garam dan perendaman 24 jam",
+          "Pemeraman benih 24-48 jam hingga keluar calon akar",
+          "Penebaran benih di bedengan persemaian basah atau kering"
+        ],
+        "watch": [
+          { "name": "Keong Mas", "article": "mengatasi-hama-keong-mas-pada-padi-sawah" },
+          { "name": "Penggerek Batang (Sundep)", "article": "mengendalikan-penggerek-batang-padi-sundep-beluk" }
+        ]
+      },
+      {
+        "id": "vegetatif-awal",
+        "name": "Fase Vegetatif Awal & Pembentukan Anakan",
+        "startDay": 1,
+        "endDay": 25,
+        "activities": [
+          "Pindah tanam bibit muda umur 15-21 hari (1-3 bibit per rumpun)",
+          "Aplikasi pupuk dasar berimbang saat tanam atau umur 7-10 HST",
+          "Penyulaman bibit mati maksimal umur 7 HST",
+          "Penyiangan gulma pertama dan pemantauan air dangkal"
+        ],
+        "watch": [
+          { "name": "Hama Keong Mas", "article": "mengatasi-hama-keong-mas-pada-padi-sawah" },
+          { "name": "Hawar Daun Bakteri (Kresek)", "article": "mengatasi-penyakit-kresek-hawar-daun-bakteri-padi" }
+        ]
+      },
+      {
+        "id": "vegetatif-aktif",
+        "name": "Fase Vegetatif Aktif & Maksimal",
+        "startDay": 26,
+        "endDay": 50,
+        "activities": [
+          "Pemupukan susulan kedua untuk mendorong anakan produktif",
+          "Penerapan sistem pengairan berselang (intermittent) untuk aerasi akar",
+          "Penyiangan gulma kedua dan pembersihan pematang sawah"
+        ],
+        "watch": [
+          { "name": "Wereng Batang Coklat", "article": "pengendalian-wereng-batang-coklat-padi" },
+          { "name": "Penyakit Tungro Padi", "article": "mencegah-penyakit-tungro-dan-wereng-hijau-padi" }
+        ]
+      },
+      {
+        "id": "generatif-bunting",
+        "name": "Fase Bunting & Pembungaan (Heading)",
+        "startDay": 51,
+        "endDay": 80,
+        "activities": [
+          "Penggenangan air teratur setinggi 2-3 cm saat bunting",
+          "Pemupukan susulan kalium untuk mengoptimalkan pengisian malai",
+          "Pengamatan rutin daun bendera dan kondisi pelepah"
+        ],
+        "watch": [
+          { "name": "Penyakit Blas Leher (Potong Leher)", "article": "revolusi-daun-tegak-blast-padi" },
+          { "name": "Penggerek Batang Padi (Beluk)", "article": "mengendalikan-penggerek-batang-padi-sundep-beluk" }
+        ]
+      },
+      {
+        "id": "pemasakan-panen",
+        "name": "Fase Pengisian Butir & Pemanenan",
+        "startDay": 81,
+        "endDay": 115,
+        "activities": [
+          "Pengeringan air sawah total 10-14 hari menjelang panen",
+          "Pemeriksaan kematangan gabah (90-95% malai telah menguning)",
+          "Pemanenan tepat waktu untuk meminimalkan kehilangan hasil gabah"
+        ],
+        "watch": [
+          { "name": "Hama Walang Sangit", "article": "mengatasi-hama-walang-sangit-pada-padi" },
+          { "name": "Hama Tikus Sawah", "article": "pemanfaatan-burung-hantu-tyto-alba-hama-tikus" }
+        ]
+      }
+    ],
+    "annualTasks": [],
+    "seasons": [
+      {
+        "code": "MT1",
+        "label": "Musim Hujan (Rendengan)",
+        "plantMonths": [10, 11, 12],
+        "harvestMonths": [2, 3, 4]
+      },
+      {
+        "code": "MT2",
+        "label": "Musim Kemarau I (Gadu)",
+        "plantMonths": [3, 4, 5],
+        "harvestMonths": [6, 7, 8]
+      },
+      {
+        "code": "MT3",
+        "label": "Musim Kemarau II / Palawija",
+        "plantMonths": [7, 8],
+        "harvestMonths": [10, 11]
+      }
+    ],
+    "sources": [
+      "Badan Standardisasi Instrumen Pertanian (BSIP Padi Sukamandi)",
+      "Pedoman Teknis Budidaya Padi Sawah Kementerian Pertanian RI"
+    ],
+    "seededFrom": "agrimarket KALENDER-TANAM-NASIONAL (DEC-015)"
+  },
+  {
+    "id": "jagung",
+    "type": "semusim",
+    "cycleDays": { "min": 95, "max": 110 },
+    "phases": [
+      {
+        "id": "tanam-perkecambahan",
+        "name": "Tanam & Perkecambahan Benih",
+        "startDay": 0,
+        "endDay": 10,
+        "activities": [
+          "Penanaman benih kedalaman 3-5 cm dengan jarak tanam teratur",
+          "Aplikasi pupuk dasar saat tanam atau tugal di samping lubang benih",
+          "Penyiraman menjaga kelembapan tanah persemaian"
+        ],
+        "watch": [
+          { "name": "Penyakit Bulai Jagung", "article": "mengatasi-penyakit-bulai-jagung-peronosclerospora" }
+        ]
+      },
+      {
+        "id": "vegetatif-awal",
+        "name": "Fase Vegetatif Awal (V3 - V6)",
+        "startDay": 11,
+        "endDay": 30,
+        "activities": [
+          "Penyiangan gulma pertama di sekitar barisan tanaman",
+          "Aplikasi pemupukan susulan pertama umur 15-20 HST",
+          "Penggemburan tanah dangkal di sekitar perakaran"
+        ],
+        "watch": [
+          { "name": "Ulat Grayak Jagung (FAW)", "article": "membasmi-ulat-grayak-jagung-faw-spodoptera" },
+          { "name": "Penyakit Bulai Jagung", "article": "mengatasi-penyakit-bulai-jagung-peronosclerospora" }
+        ]
+      },
+      {
+        "id": "vegetatif-maksimal",
+        "name": "Fase Vegetatif Cepat & Pembumbunan (V8 - VT)",
+        "startDay": 31,
+        "endDay": 50,
+        "activities": [
+          "Pembumbunan tanah ke pangkal batang memperkokoh perakaran",
+          "Pemupukan susulan kedua menjelang fase pembungaan",
+          "Pemberian air cukup saat transisi menuju fase generatif"
+        ],
+        "watch": [
+          { "name": "Ulat Grayak Jagung (FAW)", "article": "membasmi-ulat-grayak-jagung-faw-spodoptera" }
+        ]
+      },
+      {
+        "id": "generatif-pengisian",
+        "name": "Fase Berbunga & Pengisian Biji (R1 - R4)",
+        "startDay": 51,
+        "endDay": 80,
+        "activities": [
+          "Pemantauan pembungaan serentak (keluar malai dan rambut tongkol)",
+          "Pengairan optimal fase pengisian butir jagung",
+          "Sanitasi tongkol dari kelembapan berlebih"
+        ],
+        "watch": [
+          { "name": "Penggerek Tongkol Jagung", "article": "membasmi-ulat-grayak-jagung-faw-spodoptera" }
+        ]
+      },
+      {
+        "id": "pemasakan-panen",
+        "name": "Fase Masak Fisiologis & Pemanenan (R6)",
+        "startDay": 81,
+        "endDay": 105,
+        "activities": [
+          "Penghentian pengairan saat kelobot mulai mengering",
+          "Pemeriksaan tanda lapisan hitam (black layer) pada biji",
+          "Pemanenan tongkol saat kadar air biji turun di lapangan"
+        ],
+        "watch": [
+          { "name": "Jamur Pascapanen", "article": "penerapan-rantai-dingin-cold-chain-hortikultura" }
+        ]
+      }
+    ],
+    "annualTasks": [],
+    "seasons": [
+      {
+        "code": "MT1",
+        "label": "Musim Hujan Awal",
+        "plantMonths": [10, 11],
+        "harvestMonths": [1, 2]
+      },
+      {
+        "code": "MT2",
+        "label": "Musim Kemarau I",
+        "plantMonths": [2, 3],
+        "harvestMonths": [5, 6]
+      },
+      {
+        "code": "MT3",
+        "label": "Musim Kemarau II",
+        "plantMonths": [6, 7],
+        "harvestMonths": [9, 10]
+      }
+    ],
+    "sources": [
+      "Balai Standardisasi Instrumen Tanaman Serealia (BSIP Serealia Maros)",
+      "Kementerian Pertanian RI"
+    ],
+    "seededFrom": "agrimarket KALENDER-TANAM-NASIONAL (DEC-015)"
+  },
+  {
+    "id": "cabai",
+    "type": "semusim",
+    "cycleDays": { "min": 120, "max": 150 },
+    "phases": [
+      {
+        "id": "persemaian",
+        "name": "Persemaian Benih",
+        "startDay": -30,
+        "endDay": 0,
+        "activities": [
+          "Penyemaian benih di polybag kecil / tray semai bersungkup kasa",
+          "Penyiraman teratur pagi hari menjaga kelembapan media semai",
+          "Aklimatisasi bibit di bawah sinar matahari langsung sebelum pindah tanam"
+        ],
+        "watch": [
+          { "name": "Penyakit Rebah Semai", "article": "panduan-persemaian-benih-anti-rebah-semai" }
+        ]
+      },
+      {
+        "id": "vegetatif-awal",
+        "name": "Fase Vegetatif Awal & Penyesuaian Lahan",
+        "startDay": 1,
+        "endDay": 30,
+        "activities": [
+          "Pindah tanam bibit berdaun 4-5 helai ke bedengan mulsa",
+          "Pemasangan ajir bambu di samping pangkal batang",
+          "Penyiraman cor pupuk dasar perangsang perakaran"
+        ],
+        "watch": [
+          { "name": "Hama Thrips Cabai", "article": "mengenal-hama-thrips-cabai-dan-pengendalian" },
+          { "name": "Hama Tungau Merah", "article": "mengatasi-hama-tungau-merah-pada-cabai" }
+        ]
+      },
+      {
+        "id": "percabangan-bunga",
+        "name": "Fase Percabangan Y & Pembungaan",
+        "startDay": 31,
+        "endDay": 60,
+        "activities": [
+          "Pewiwitan tunas air di bawah cabang Y utama",
+          "Pengikatan batang utama ke ajir bambu penopang",
+          "Aplikasi nutrisi kalsium dan boron untuk ketahanan bunga"
+        ],
+        "watch": [
+          { "name": "Layu Bakteri & Fusarium", "article": "perbedaan-layu-bakteri-dan-layu-fusarium" },
+          { "name": "Virus Gemini (Bule Cabai)", "article": "mengatasi-virus-gemini-keriting-kuning" }
+        ]
+      },
+      {
+        "id": "pembentukan-buah",
+        "name": "Fase Pembesaran Buah",
+        "startDay": 61,
+        "endDay": 90,
+        "activities": [
+          "Pemupukan cor kalium berkala untuk kepadatan daging buah",
+          "Sanitasi gulma di lorong parit antar bedengan",
+          "Pembersihan buah rontok dari sekitar perakaran"
+        ],
+        "watch": [
+          { "name": "Antraknosa (Patek Cabai)", "article": "jurus-pengendalian-antraknosa-patek-cabai" },
+          { "name": "Hama Lalat Buah", "article": "cara-mengatasi-hama-lalat-buah-bactrocera" }
+        ]
+      },
+      {
+        "id": "panen-berkala",
+        "name": "Fase Panen Berkala",
+        "startDay": 91,
+        "endDay": 140,
+        "activities": [
+          "Pemanenan buah matang petik merah berkala tiap 3-5 hari",
+          "Pemupukan susulan setelah panen untuk merangsang bunga baru",
+          "Sortasi buah di tempat teduh bersirkulasi udara baik"
+        ],
+        "watch": [
+          { "name": "Busuk Lunak Bakteri", "article": "mengatasi-busuk-lunak-bakteri-erwinia-sayuran" },
+          { "name": "Antraknosa Buah", "article": "jurus-pengendalian-antraknosa-patek-cabai" }
+        ]
+      }
+    ],
+    "annualTasks": [],
+    "seasons": [
+      {
+        "code": "MT1",
+        "label": "Awal Musim Kemarau (Musim Utama)",
+        "plantMonths": [4, 5],
+        "harvestMonths": [7, 8, 9]
+      },
+      {
+        "code": "MT2",
+        "label": "Akhir Musim Kemarau",
+        "plantMonths": [8, 9],
+        "harvestMonths": [11, 12, 1]
+      },
+      {
+        "code": "MT3",
+        "label": "Musim Hujan (Bedengan Tinggi & Mulsa)",
+        "plantMonths": [11, 12],
+        "harvestMonths": [2, 3, 4]
+      }
+    ],
+    "sources": [
+      "Balai Penelitian Tanaman Sayuran (Balitsa Lembang)",
+      "Direktorat Perlindungan Hortikultura Kementan RI"
+    ],
+    "seededFrom": "agrimarket KALENDER-TANAM-NASIONAL (DEC-015)"
+  },
+  {
+    "id": "tomat",
+    "type": "semusim",
+    "cycleDays": { "min": 90, "max": 110 },
+    "phases": [
+      {
+        "id": "persemaian",
+        "name": "Persemaian Benih Tomat",
+        "startDay": -25,
+        "endDay": 0,
+        "activities": [
+          "Penyemaian benih di media gembur terlindung naungan",
+          "Penyiraman bibit teratur dengan sprayer halus",
+          "Pengenalan sinar matahari langsung bertahap menjelang pindah tanam"
+        ],
+        "watch": [
+          { "name": "Penyakit Rebah Semai", "article": "panduan-persemaian-benih-anti-rebah-semai" }
+        ]
+      },
+      {
+        "id": "vegetatif",
+        "name": "Fase Vegetatif Awal & Pemasangan Ajir",
+        "startDay": 1,
+        "endDay": 25,
+        "activities": [
+          "Pindah tanam bibit sore hari ke bedengan",
+          "Pemasangan ajir bambu setinggi 1,5 meter di dekat tanaman",
+          "Penyiraman menjaga kestabilan kelembapan perakaran"
+        ],
+        "watch": [
+          { "name": "Pengorok Daun (Liriomyza)", "article": "mengatasi-hama-pengorok-daun-liriomyza" }
+        ]
+      },
+      {
+        "id": "berbunga-berbuah",
+        "name": "Fase Berbunga & Pembentukan Buah",
+        "startDay": 26,
+        "endDay": 60,
+        "activities": [
+          "Pewiwitan tunas samping menyisakan 1-2 cabang produktif",
+          "Pengikatan batang utama secara bertahap ke tiang ajir",
+          "Pemberian nutrisi kalsium mencegah pembusukan ujung buah"
+        ],
+        "watch": [
+          { "name": "Layu Bakteri Tomat", "article": "perbedaan-layu-bakteri-dan-layu-fusarium" },
+          { "name": "Hama Lalat Buah", "article": "cara-mengatasi-hama-lalat-buah-bactrocera" }
+        ]
+      },
+      {
+        "id": "pemasakan-panen",
+        "name": "Fase Pemasakan & Pemanenan Buah",
+        "startDay": 61,
+        "endDay": 95,
+        "activities": [
+          "Pemanenan bertahap saat buah semburat merah/oranye",
+          "Pemetikan dengan menyertakan kelopak tangkai buah utuh",
+          "Penyimpanan di wadah berventilasi baik tanpa tumpukan tinggi"
+        ],
+        "watch": [
+          { "name": "Busuk Lunak Buah", "article": "mengatasi-busuk-lunak-bakteri-erwinia-sayuran" }
+        ]
+      }
+    ],
+    "annualTasks": [],
+    "seasons": [
+      {
+        "code": "MT1",
+        "label": "Musim Kemarau (Kondisi Optimal)",
+        "plantMonths": [4, 5, 6],
+        "harvestMonths": [7, 8, 9]
+      },
+      {
+        "code": "MT2",
+        "label": "Peralihan Musim Hujan",
+        "plantMonths": [9, 10],
+        "harvestMonths": [12, 1]
+      },
+      {
+        "code": "MT3",
+        "label": "Musim Hujan Dataran Tinggi",
+        "plantMonths": [11, 12],
+        "harvestMonths": [2, 3]
+      }
+    ],
+    "sources": [
+      "Balai Standardisasi Instrumen Tanaman Sayuran (BSIP Sayuran Lembang)",
+      "Kementerian Pertanian RI"
+    ],
+    "seededFrom": "agrimarket KALENDER-TANAM-NASIONAL (DEC-015)"
+  },
+  {
+    "id": "bawang-merah",
+    "type": "semusim",
+    "cycleDays": { "min": 60, "max": 75 },
+    "phases": [
+      {
+        "id": "tanam-tunas",
+        "name": "Penyiapan Umbi Bibit & Pertunasan",
+        "startDay": 0,
+        "endDay": 10,
+        "activities": [
+          "Pemotongan sepertiga ujung umbi bibit merangsang tunas merata",
+          "Penanaman umbi rata dengan permukaan tanah bedengan gembur",
+          "Penyiraman intensif 2 kali sehari pagi dan sore"
+        ],
+        "watch": [
+          { "name": "Ulat Grayak Daun", "article": "membasmi-ulat-grayak-jagung-faw-spodoptera" }
+        ]
+      },
+      {
+        "id": "vegetatif-anakan",
+        "name": "Fase Vegetatif & Pembentukan Daun",
+        "startDay": 11,
+        "endDay": 30,
+        "activities": [
+          "Penyiangan gulma hati-hati agar perakaran tidak terganggu",
+          "Aplikasi pemupukan susulan pertama pupuk berimbang",
+          "Pengurangan penyiraman menjadi satu kali sehari"
+        ],
+        "watch": [
+          { "name": "Ulat Daun Sayuran", "article": "pengendalian-ulat-daun-bioinsektisida-bt" }
+        ]
+      },
+      {
+        "id": "pembesaran-umbi",
+        "name": "Fase Pembesaran & Pengisian Umbi",
+        "startDay": 31,
+        "endDay": 50,
+        "activities": [
+          "Pemupukan susulan kedua tinggi kalium untuk bobot umbi",
+          "Pembersihan daun layu dan aerasi parit bedengan",
+          "Pengaturan drainase agar lahan tidak tergenang air"
+        ],
+        "watch": [
+          { "name": "Layu Fusarium (Moler)", "article": "mengatasi-layu-fusarium-pada-cabai-tomat" }
+        ]
+      },
+      {
+        "id": "pematangan-panen",
+        "name": "Fase Pematangan Umbi & Pemanenan",
+        "startDay": 51,
+        "endDay": 65,
+        "activities": [
+          "Penghentian penyiraman total 7 hari sebelum jadwal panen",
+          "Pencabutan tanaman saat 70-80% daun rebah layu menguning",
+          "Penjemuran dan pelayuan daun di para-para bambu (curing)"
+        ],
+        "watch": [
+          { "name": "Busuk Umbi Pascapanen", "article": "mengatasi-busuk-lunak-bakteri-erwinia-sayuran" }
+        ]
+      }
+    ],
+    "annualTasks": [],
+    "seasons": [
+      {
+        "code": "MT1",
+        "label": "Musim Kemarau Awal (Musim Utama)",
+        "plantMonths": [5, 6],
+        "harvestMonths": [7, 8]
+      },
+      {
+        "code": "MT2",
+        "label": "Musim Kemarau Akhir",
+        "plantMonths": [7, 8],
+        "harvestMonths": [9, 10]
+      },
+      {
+        "code": "MT3",
+        "label": "Musim Hujan (Off-Season / Naungan Rain Shelter)",
+        "plantMonths": [11, 12],
+        "harvestMonths": [1, 2]
+      }
+    ],
+    "sources": [
+      "Balai Standardisasi Instrumen Tanaman Sayuran (BSIP Sayuran Lembang)",
+      "Kementerian Pertanian RI"
+    ],
+    "seededFrom": "agrimarket KALENDER-TANAM-NASIONAL (DEC-015)"
+  },
+  {
+    "id": "kelapa-sawit",
+    "type": "tahunan",
+    "phases": [],
+    "annualTasks": [
+      {
+        "months": [1, 2, 7, 8],
+        "task": "Aplikasi pemupukan makro semesteran berimbang di piringan pohon kelapa sawit"
+      },
+      {
+        "months": [3, 9],
+        "task": "Aplikasi pupuk mikro boron di ketiak pelepah atau piringan pohon"
+      },
+      {
+        "months": [1, 4, 7, 10],
+        "task": "Sensus berkala Busuk Pangkal Batang (Ganoderma) dan sanitasi pokok terinfeksi"
+      },
+      {
+        "months": [2, 5, 8, 11],
+        "task": "Pengendalian gulma piringan dan pembersihan jalur rintis panen"
+      },
+      {
+        "months": [3, 6, 9, 12],
+        "task": "Perunasan pelepah (pruning) mempertahankan standar songgo dua"
+      },
+      {
+        "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        "task": "Panen rotasi Tandan Buah Segar (TBS) setiap 7-10 hari dengan standar kematangan brondol"
+      }
+    ],
+    "seasons": [
+      {
+        "code": "MT1",
+        "label": "Semester I (Pemeliharaan & Puncak Panen Awal)",
+        "plantMonths": [1, 2, 3, 4, 5, 6],
+        "harvestMonths": [1, 2, 3, 4, 5, 6]
+      },
+      {
+        "code": "MT2",
+        "label": "Semester II (Pemupukan Akhir & Panen Raya)",
+        "plantMonths": [7, 8, 9, 10, 11, 12],
+        "harvestMonths": [7, 8, 9, 10, 11, 12]
+      }
+    ],
+    "sources": [
+      "Pusat Penelitian Kelapa Sawit (PPKS Medan)",
+      "Direktorat Jenderal Perkebunan Kementerian Pertanian RI"
+    ],
+    "seededFrom": "agrimarket KALENDER-TANAM-NASIONAL (DEC-015)"
+  }
+]

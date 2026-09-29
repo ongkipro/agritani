@@ -1,0 +1,792 @@
+---
+/**
+ * src/components/CropTimeline.astro
+ * Interactive Crop Calendar & Timeline component (REQ-09, DESIGN §2.6.1, ARCHITECTURE §5b)
+ * Clean tap-first workflow, vertical timeline, .ics download, and no-JS fallback.
+ */
+import { getCollection } from 'astro:content';
+import ConsultPrompt from './ConsultPrompt.astro';
+
+const allCalendars = await getCollection('cropCalendars');
+const allCommodities = await getCollection('commodities');
+
+const isDraftPreview = import.meta.env.PUBLIC_INCLUDE_DRAFTS === 'true' || process.env.PUBLIC_INCLUDE_DRAFTS === 'true';
+
+// Filter calendars based on reviewedBy in production mode (ARCHITECTURE §3.1)
+const visibleCalendars = allCalendars.filter((cal) => isDraftPreview || Boolean(cal.data.reviewedBy && cal.data.reviewedBy.trim().length > 0));
+
+const commodityMap = new Map(allCommodities.map((c) => [c.id, c.data.name]));
+
+const availableCommodities = visibleCalendars.map((cal) => ({
+  id: cal.data.id,
+  name: commodityMap.get(cal.data.id) || cal.data.id,
+  type: cal.data.type,
+})).sort((a, b) => a.name.localeCompare(b.name));
+
+const serializedCalendars = visibleCalendars.map((c) => ({
+  id: c.data.id,
+  type: c.data.type,
+  cycleDays: c.data.cycleDays,
+  phases: c.data.phases,
+  annualTasks: c.data.annualTasks,
+  seasons: c.data.seasons,
+  sources: c.data.sources,
+  reviewedBy: c.data.reviewedBy || '',
+}));
+
+const monthNames = [
+  'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+  'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+];
+---
+
+<div id="crop-calendar-root" class="space-y-8" data-calendars={JSON.stringify(serializedCalendars)}>
+
+  <!-- Input Form Container -->
+  <div class="bg-[var(--color-surface)] p-6 sm:p-8 border border-[var(--color-border)] rounded-[2px] space-y-6">
+    
+    <!-- Step 1: Pilih Komoditas -->
+    <div>
+      <span class="block text-xs font-bold text-[var(--color-soil)] uppercase tracking-wider mb-2.5">
+        Langkah 1: Pilih Komoditas Tanaman
+      </span>
+      <div class="flex flex-wrap gap-2.5" id="group-crop-commodity" role="radiogroup" aria-label="Pilih Komoditas">
+        {availableCommodities.map((comm) => (
+          <button
+            type="button"
+            role="radio"
+            aria-checked="false"
+            data-commodity={comm.id}
+            data-crop-type={comm.type}
+            class="crop-comm-btn px-4 py-2.5 min-h-[44px] text-sm font-bold border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] transition-all cursor-pointer"
+          >
+            {comm.name}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Step 2: Tanggal Tanam / Pindah Tanam -->
+    <div id="section-plant-date" class="space-y-2">
+      <label for="input-plant-date" class="block text-xs font-bold text-[var(--color-soil)] uppercase tracking-wider">
+        Langkah 2: Tanggal Tanam / Pindah Tanam
+      </label>
+      <div class="max-w-xs">
+        <input
+          type="date"
+          id="input-plant-date"
+          class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] text-sm font-medium"
+        />
+      </div>
+      <p class="text-xs text-[var(--color-text-muted)]">
+        Pilih tanggal tanam di masa lampau untuk melihat fase berjalan, atau tanggal rencana tanam mendatang.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Results Section (ARIA Live) -->
+  <section id="calendar-results" aria-live="polite" class="space-y-6 hidden">
+    
+    <!-- Summary Header Card (Rencana Tanam Saya) -->
+    <div class="p-6 bg-[var(--color-tint)] border border-[var(--color-brand)]/30 rounded-[2px] space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--color-brand)]/20 pb-3">
+        <div>
+          <h2 id="plan-title" class="text-xl sm:text-2xl font-extrabold text-[var(--color-text)]">
+            Rencana Tanam Saya
+          </h2>
+          <p id="plan-subtitle" class="text-xs sm:text-sm text-[var(--color-text-muted)] mt-0.5"></p>
+        </div>
+        <div id="plan-badge-container">
+          <!-- Dynamic review/draft badge -->
+        </div>
+      </div>
+
+      <!-- Semusim Status Indicators -->
+      <div id="semusim-summary-box" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="p-3.5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-1">
+          <span class="block text-xs font-bold text-[var(--color-soil)] uppercase tracking-wider">Status Pertumbuhan</span>
+          <p id="summary-hst" class="text-base sm:text-lg font-extrabold text-[var(--color-brand)] tabular-nums"></p>
+          <p id="summary-phase-name" class="text-xs text-[var(--color-text-muted)]"></p>
+        </div>
+        <div class="p-3.5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-1">
+          <span class="block text-xs font-bold text-[var(--color-soil)] uppercase tracking-wider">Perkiraan Panen</span>
+          <p id="summary-harvest-range" class="text-base sm:text-lg font-extrabold text-[var(--color-text)] tabular-nums"></p>
+          <p class="text-xs text-[var(--color-text-muted)]">Bergantung pada varietas dan cuaca lokal</p>
+        </div>
+      </div>
+
+      <!-- Action Buttons Row (DESIGN §2.6.1) -->
+      <div class="pt-2 flex flex-wrap items-center gap-2.5">
+        <button
+          type="button"
+          id="btn-save-ics"
+          class="inline-flex items-center gap-2 px-4 py-2 min-h-[44px] text-xs font-bold rounded-[2px] bg-[var(--color-brand)] text-white hover:bg-[var(--color-brand-strong)] transition-colors cursor-pointer"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+            <line x1="16" x2="16" y1="2" y2="6"/>
+            <line x1="8" x2="8" y1="2" y2="6"/>
+            <line x1="3" x2="21" y1="10" y2="10"/>
+          </svg>
+          <span>Simpan ke Kalender HP (.ics)</span>
+        </button>
+
+        <button
+          type="button"
+          id="btn-print-schedule"
+          class="inline-flex items-center gap-2 px-3.5 py-2 min-h-[44px] text-xs font-bold rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)] transition-colors cursor-pointer"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 6 2 18 2 18 9"/>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+            <rect width="12" height="8" x="6" y="14"/>
+          </svg>
+          <span>Cetak Jadwal</span>
+        </button>
+
+        <button
+          type="button"
+          id="btn-share-schedule"
+          class="inline-flex items-center gap-2 px-3.5 py-2 min-h-[44px] text-xs font-bold rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)] transition-colors cursor-pointer"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="18" cy="5" r="3"/>
+            <circle cx="6" cy="12" r="3"/>
+            <circle cx="18" cy="19" r="3"/>
+            <line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/>
+            <line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/>
+          </svg>
+          <span>Bagikan</span>
+        </button>
+
+        <a
+          href="/alat/cuaca-tani/"
+          class="inline-flex items-center gap-2 px-3.5 py-2 min-h-[44px] text-xs font-bold rounded-[2px] border border-[var(--color-brand)]/40 bg-[var(--color-surface)] text-[var(--color-brand-strong)] hover:border-[var(--color-brand)] transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+          </svg>
+          <span>Cek Cuaca Tani</span>
+        </a>
+      </div>
+      <p id="share-feedback" class="text-xs text-[var(--color-brand-strong)] font-semibold hidden"></p>
+    </div>
+
+    <!-- Vertical Timeline Container (Semusim) -->
+    <div id="timeline-container" class="space-y-4">
+      <h3 class="text-lg font-bold text-[var(--color-text)]">
+        Tahapan Fase Tanam & Rencana Lapangan
+      </h3>
+      <div id="phases-list" class="space-y-3.5">
+        <!-- Rendered by client script -->
+      </div>
+    </div>
+
+    <!-- Annual Tasks Container (Kelapa Sawit) -->
+    <div id="annual-tasks-container" class="space-y-4 hidden">
+      <h3 class="text-lg font-bold text-[var(--color-text)]">
+        Pola Pemeliharaan & Rotasi Panen 12 Bulan
+      </h3>
+      <div id="annual-tasks-list" class="space-y-3">
+        <!-- Rendered by client script -->
+      </div>
+    </div>
+
+    <!-- Musim Tanam Nasional MT1 - MT3 (DESIGN §2.6.1) -->
+    <div id="national-seasons-container" class="bg-[var(--color-surface)] p-6 border border-[var(--color-border)] rounded-[2px] space-y-4">
+      <div class="border-b border-[var(--color-border)] pb-2.5">
+        <h3 id="seasons-heading" class="text-base font-extrabold text-[var(--color-text)]">
+          Musim Tanam Nasional
+        </h3>
+        <p class="text-xs text-[var(--color-text-muted)] mt-0.5">
+          Jadwal rata-rata nasional — waktu pelaksanaan di lapangan dapat bervariasi sesuai curah hujan wilayah dan ketersediaan air irigasi setempat.
+        </p>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs sm:text-sm text-left border-collapse">
+          <thead>
+            <tr class="border-b border-[var(--color-border)] bg-[var(--color-tint)] text-[var(--color-soil)] font-bold">
+              <th scope="col" class="py-2.5 px-3">Pola Musim</th>
+              <th scope="col" class="py-2.5 px-3">Bulan Tanam</th>
+              <th scope="col" class="py-2.5 px-3">Bulan Panen</th>
+            </tr>
+          </thead>
+          <tbody id="seasons-table-body" class="divide-y divide-[var(--color-border)]">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- About this Data & Credibility -->
+    <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-2 text-xs text-[var(--color-text-muted)]">
+      <p class="font-bold text-[var(--color-soil)] uppercase tracking-wider">
+        Tentang Sumber Data & Acuan Agronomi
+      </p>
+      <p id="sources-info" class="leading-relaxed"></p>
+      <p id="reviewed-info" class="leading-relaxed font-mono text-[11px]"></p>
+    </div>
+
+    <!-- Single WhatsApp Consultation Prompt (DESIGN §2.6.1 & §2.8) -->
+    <div class="pt-4 border-t border-[var(--color-border)]">
+      <ConsultPrompt
+        source="[Web·Kalender]"
+        title="Butuh penyesuaian jadwal tanam untuk kondisi cuaca daerah Anda?"
+        description="Konsultasikan waktu tanam, kebutuhan varietas, dan antisipasi musim bersama tim agronomi PT Agritani Internasional melalui WhatsApp."
+        label="Konsultasi Jadwal Tanam"
+        variant="secondary"
+      />
+    </div>
+
+  </section>
+
+  <!-- Static No-JS Fallback: Full National Cropping Calendars (DESIGN §2.6.1) -->
+  <noscript>
+    <div class="p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-6">
+      <div class="border-b border-[var(--color-border)] pb-3">
+        <h2 class="text-lg font-bold text-[var(--color-brand)]">
+          Musim Tanam Nasional Komoditas (Mode Tanpa JavaScript)
+        </h2>
+        <p class="text-xs text-[var(--color-text-muted)] mt-1">
+          Peramban Anda menjalankan mode statis. Anda dapat langsung melihat pola musim tanam nasional dan siklus fase budidaya komoditas di bawah ini:
+        </p>
+      </div>
+
+      <div class="space-y-8">
+        {visibleCalendars.map((cal) => {
+          const commName = commodityMap.get(cal.data.id) || cal.data.id;
+          return (
+            <div class="space-y-4">
+              <h3 class="text-base font-extrabold text-[var(--color-text)] flex items-center gap-2">
+                <span class="w-2.5 h-2.5 bg-[var(--color-brand)] rounded-[2px]"></span>
+                <span>{commName} ({cal.data.type === 'semusim' ? `Siklus ${cal.data.cycleDays?.min}–${cal.data.cycleDays?.max} hari` : 'Tanaman Tahunan'})</span>
+              </h3>
+
+              <!-- Seasons Table -->
+              <div class="overflow-x-auto">
+                <table class="w-full text-xs text-left border-collapse border border-[var(--color-border)]">
+                  <thead>
+                    <tr class="bg-[var(--color-tint)] text-[var(--color-soil)] font-bold">
+                      <th class="p-2 border border-[var(--color-border)]">Musim</th>
+                      <th class="p-2 border border-[var(--color-border)]">Bulan Tanam</th>
+                      <th class="p-2 border border-[var(--color-border)]">Bulan Panen</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {cal.data.seasons.map((s) => (
+                      <tr class="border-b border-[var(--color-border)]">
+                        <td class="p-2 font-semibold">{s.code} ({s.label})</td>
+                        <td class="p-2">{s.plantMonths.map((m) => monthNames[m - 1]).join(', ')}</td>
+                        <td class="p-2">{s.harvestMonths.map((m) => monthNames[m - 1]).join(', ')}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Phases List (Semusim) -->
+              {cal.data.type === 'semusim' && (
+                <div class="space-y-2">
+                  <h4 class="text-xs font-bold text-[var(--color-soil)] uppercase tracking-wider">Tahapan Fase Budidaya</h4>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                    {cal.data.phases.map((p) => (
+                      <div class="p-3 bg-[var(--color-tint)] border border-[var(--color-border)] rounded-[2px] space-y-1">
+                        <div class="flex items-center justify-between text-xs font-bold text-[var(--color-brand-strong)]">
+                          <span>{p.name}</span>
+                          <span class="tabular-nums">HST {p.startDay}–{p.endDay}</span>
+                        </div>
+                        <ul class="text-[11px] text-[var(--color-text)] list-disc pl-4 space-y-0.5">
+                          {p.activities.map((act) => (
+                            <li>{act}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </noscript>
+
+</div>
+
+<script>
+  import { calculateCropPlan } from '../lib/crop-calendar.ts';
+  import type { CropCalendarEntry, CropPlanResult } from '../lib/crop-calendar.ts';
+  import { generateCropCalendarIcs } from '../lib/ics.ts';
+
+  const monthNamesId = [
+    'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+    'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+  ];
+
+  function initCropCalendar() {
+    const root = document.getElementById('crop-calendar-root');
+    if (!root) return;
+
+    let calendars: CropCalendarEntry[] = [];
+    try {
+      calendars = JSON.parse(root.dataset.calendars || '[]');
+    } catch {
+      calendars = [];
+    }
+
+    const commodityBtns = Array.from(root.querySelectorAll<HTMLButtonElement>('.crop-comm-btn'));
+    const plantDateInput = document.getElementById('input-plant-date') as HTMLInputElement | null;
+    const resultsArea = document.getElementById('calendar-results');
+
+    const planTitle = document.getElementById('plan-title');
+    const planSubtitle = document.getElementById('plan-subtitle');
+    const planBadgeContainer = document.getElementById('plan-badge-container');
+    const semusimSummaryBox = document.getElementById('semusim-summary-box');
+    const summaryHst = document.getElementById('summary-hst');
+    const summaryPhaseName = document.getElementById('summary-phase-name');
+    const summaryHarvestRange = document.getElementById('summary-harvest-range');
+
+    const timelineContainer = document.getElementById('timeline-container');
+    const phasesList = document.getElementById('phases-list');
+    const annualTasksContainer = document.getElementById('annual-tasks-container');
+    const annualTasksList = document.getElementById('annual-tasks-list');
+
+    const seasonsHeading = document.getElementById('seasons-heading');
+    const seasonsTableBody = document.getElementById('seasons-table-body');
+    const sourcesInfo = document.getElementById('sources-info');
+    const reviewedInfo = document.getElementById('reviewed-info');
+
+    const btnSaveIcs = document.getElementById('btn-save-ics');
+    const btnPrintSchedule = document.getElementById('btn-print-schedule');
+    const btnShareSchedule = document.getElementById('btn-share-schedule');
+    const shareFeedback = document.getElementById('share-feedback');
+
+    let selectedCommodityId: string | null = null;
+    let selectedPlantDate: string = '';
+    let currentPlan: CropPlanResult | null = null;
+
+    // Helper: today YYYY-MM-DD string in local time
+    function getTodayIso(): string {
+      const now = new Date();
+      const y = now.getFullYear();
+      const m = String(now.getMonth() + 1).padStart(2, '0');
+      const d = String(now.getDate()).padStart(2, '0');
+      return `${y}-${m}-${d}`;
+    }
+
+    // Read URL & LocalStorage state
+    function readInitialState() {
+      const params = new URLSearchParams(window.location.search);
+      const urlK = params.get('k');
+      const urlT = params.get('t');
+
+      let savedK: string | null = null;
+      let savedT: string | null = null;
+      try {
+        savedK = localStorage.getItem('agritani_crop_comm');
+        savedT = localStorage.getItem('agritani_crop_date');
+      } catch {
+        // localStorage disabled
+      }
+
+      if (urlK && calendars.some((c) => c.id === urlK)) {
+        selectedCommodityId = urlK;
+      } else if (savedK && calendars.some((c) => c.id === savedK)) {
+        selectedCommodityId = savedK;
+      } else if (calendars.length > 0) {
+        selectedCommodityId = calendars[0].id;
+      }
+
+      if (urlT && /^\d{4}-\d{2}-\d{2}$/.test(urlT)) {
+        selectedPlantDate = urlT;
+      } else if (savedT && /^\d{4}-\d{2}-\d{2}$/.test(savedT)) {
+        selectedPlantDate = savedT;
+      } else {
+        selectedPlantDate = getTodayIso();
+      }
+
+      if (plantDateInput) {
+        plantDateInput.value = selectedPlantDate;
+      }
+
+      syncUI();
+    }
+
+    function updateUrlAndStorage() {
+      const url = new URL(window.location.href);
+      if (selectedCommodityId) {
+        url.searchParams.set('k', selectedCommodityId);
+      } else {
+        url.searchParams.delete('k');
+      }
+
+      if (selectedPlantDate) {
+        url.searchParams.set('t', selectedPlantDate);
+      } else {
+        url.searchParams.delete('t');
+      }
+
+      window.history.replaceState({ k: selectedCommodityId, t: selectedPlantDate }, '', url.toString());
+
+      try {
+        if (selectedCommodityId) localStorage.setItem('agritani_crop_comm', selectedCommodityId);
+        if (selectedPlantDate) localStorage.setItem('agritani_crop_date', selectedPlantDate);
+      } catch {
+        // localStorage unavailable
+      }
+    }
+
+    function syncUI() {
+      // 1. Sync Commodity Radio Buttons
+      commodityBtns.forEach((btn) => {
+        const id = btn.dataset.commodity;
+        const isSelected = id === selectedCommodityId;
+        btn.setAttribute('aria-checked', String(isSelected));
+        if (isSelected) {
+          btn.classList.add('bg-[var(--color-brand)]', 'text-white', 'border-[var(--color-brand)]');
+          btn.classList.remove('bg-[var(--color-surface)]', 'text-[var(--color-text)]');
+        } else {
+          btn.classList.remove('bg-[var(--color-brand)]', 'text-white', 'border-[var(--color-brand)]');
+          btn.classList.add('bg-[var(--color-surface)]', 'text-[var(--color-text)]');
+        }
+      });
+
+      // 2. Calculate and render results
+      const activeCalendar = calendars.find((c) => c.id === selectedCommodityId);
+      if (!activeCalendar || !selectedPlantDate) {
+        resultsArea?.classList.add('hidden');
+        return;
+      }
+
+      resultsArea?.classList.remove('hidden');
+
+      try {
+        currentPlan = calculateCropPlan(activeCalendar, selectedPlantDate);
+      } catch {
+        currentPlan = null;
+        resultsArea?.classList.add('hidden');
+        return;
+      }
+
+      renderPlan(currentPlan, activeCalendar);
+    }
+
+    function renderPlan(plan: CropPlanResult, calendar: CropCalendarEntry) {
+      const commBtn = commodityBtns.find((b) => b.dataset.commodity === plan.commodityId);
+      const commName = commBtn?.textContent?.trim() || plan.commodityId;
+
+      if (planTitle) {
+        planTitle.textContent = `Rencana Tanam: ${commName}`;
+      }
+
+      if (planSubtitle) {
+        planSubtitle.textContent = `Tanggal tanam acuan: ${plan.plantDateStr}`;
+      }
+
+      // Review status badge
+      if (planBadgeContainer) {
+        planBadgeContainer.innerHTML = '';
+        const badge = document.createElement('span');
+        if (calendar.reviewedBy) {
+          badge.className = 'text-xs font-semibold px-2.5 py-1 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-brand-strong)]';
+          badge.textContent = `Ditinjau oleh ${calendar.reviewedBy}`;
+        } else {
+          badge.className = 'text-xs font-semibold px-2.5 py-1 rounded-[2px] bg-[var(--color-harvest-tint)] text-[var(--color-soil)]';
+          badge.textContent = 'Draf Agronomi (OQ-11b)';
+        }
+        planBadgeContainer.appendChild(badge);
+      }
+
+      // Check crop type: semusim vs tahunan
+      if (plan.type === 'semusim') {
+        semusimSummaryBox?.classList.remove('hidden');
+        timelineContainer?.classList.remove('hidden');
+        annualTasksContainer?.classList.add('hidden');
+
+        // Status pertumbuhan HST
+        if (summaryHst) {
+          if (plan.currentHst !== null) {
+            summaryHst.textContent = `HST ${plan.currentHst}`;
+          } else {
+            summaryHst.textContent = 'Rencana Mendatang';
+          }
+        }
+
+        if (summaryPhaseName) {
+          if (plan.currentPhase) {
+            summaryPhaseName.textContent = `Fase aktif: ${plan.currentPhase.name}`;
+          } else if (plan.currentHst !== null && plan.currentHst > (calendar.cycleDays?.max || 120)) {
+            summaryPhaseName.textContent = 'Melewati siklus panen standar';
+          } else {
+            summaryPhaseName.textContent = 'Menunggu tanggal tanam';
+          }
+        }
+
+        if (summaryHarvestRange) {
+          summaryHarvestRange.textContent = plan.harvestRangeStr || 'Sesuai umur varietas';
+        }
+
+        // Render phases timeline
+        if (phasesList) {
+          phasesList.innerHTML = '';
+          plan.computedPhases.forEach((ph) => {
+            const card = document.createElement('div');
+            card.className = `p-4 sm:p-5 border rounded-[2px] transition-all space-y-2.5 ${
+              ph.isCurrent
+                ? 'bg-[var(--color-tint)] border-[var(--color-brand)] ring-1 ring-[var(--color-brand)]/20 shadow-xs'
+                : 'bg-[var(--color-surface)] border-[var(--color-border)]'
+            }`;
+
+            // Top Header: Phase step & Dates
+            const headRow = document.createElement('div');
+            headRow.className = 'flex flex-wrap items-center justify-between gap-2';
+
+            const leftHead = document.createElement('div');
+            leftHead.className = 'flex items-center gap-2';
+
+            const stepBadge = document.createElement('span');
+            stepBadge.className = `text-xs font-mono font-bold px-2 py-0.5 rounded-[2px] ${
+              ph.isCurrent
+                ? 'bg-[var(--color-brand)] text-white'
+                : 'bg-[var(--color-tint)] text-[var(--color-soil)]'
+            }`;
+            stepBadge.textContent = `HST ${ph.startDay} – ${ph.endDay}`;
+
+            const title = document.createElement('h4');
+            title.className = 'text-sm sm:text-base font-extrabold text-[var(--color-text)]';
+            title.textContent = ph.name;
+
+            leftHead.appendChild(stepBadge);
+            leftHead.appendChild(title);
+
+            const rightHead = document.createElement('div');
+            rightHead.className = 'flex items-center gap-2 text-xs font-semibold tabular-nums';
+
+            if (ph.isCurrent) {
+              const activeTag = document.createElement('span');
+              activeTag.className = 'px-2 py-0.5 rounded-[2px] bg-[var(--color-harvest)] text-[var(--color-text)] font-bold';
+              activeTag.textContent = 'Sedang Berjalan';
+              rightHead.appendChild(activeTag);
+            }
+
+            const dateSpan = document.createElement('span');
+            dateSpan.className = 'text-[var(--color-text-muted)]';
+            dateSpan.textContent = ph.dateRangeStr;
+            rightHead.appendChild(dateSpan);
+
+            headRow.appendChild(leftHead);
+            headRow.appendChild(rightHead);
+            card.appendChild(headRow);
+
+            // Activities list
+            const actBox = document.createElement('div');
+            actBox.className = 'space-y-1';
+            const actTitle = document.createElement('span');
+            actTitle.className = 'block text-[11px] font-bold text-[var(--color-soil)] uppercase tracking-wider';
+            actTitle.textContent = 'Kegiatan Kunci Lapangan:';
+            actBox.appendChild(actTitle);
+
+            const ul = document.createElement('ul');
+            ul.className = 'list-disc pl-4 text-xs text-[var(--color-text)] space-y-0.5 leading-relaxed';
+            ph.activities.forEach((act) => {
+              const li = document.createElement('li');
+              li.textContent = act;
+              ul.appendChild(li);
+            });
+            actBox.appendChild(ul);
+            card.appendChild(actBox);
+
+            // Watch out pests/diseases
+            if (ph.watch.length > 0) {
+              const watchBox = document.createElement('div');
+              watchBox.className = 'p-2.5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] text-xs flex flex-wrap items-center gap-2';
+
+              const wLabel = document.createElement('span');
+              wLabel.className = 'font-bold text-[var(--color-soil)]';
+              wLabel.textContent = 'Waspadai:';
+              watchBox.appendChild(wLabel);
+
+              ph.watch.forEach((w) => {
+                if (w.article) {
+                  const a = document.createElement('a');
+                  a.href = `/jurnal/${w.article}/`;
+                  a.className = 'text-[var(--color-brand-strong)] underline font-semibold hover:text-[var(--color-brand)]';
+                  a.textContent = w.name;
+                  watchBox.appendChild(a);
+                } else {
+                  const s = document.createElement('span');
+                  s.className = 'text-[var(--color-text)]';
+                  s.textContent = w.name;
+                  watchBox.appendChild(s);
+                }
+              });
+
+              card.appendChild(watchBox);
+            }
+
+            phasesList.appendChild(card);
+          });
+        }
+      } else {
+        // Kelapa Sawit (tahunan)
+        semusimSummaryBox?.classList.add('hidden');
+        timelineContainer?.classList.add('hidden');
+        annualTasksContainer?.classList.remove('hidden');
+
+        if (annualTasksList) {
+          annualTasksList.innerHTML = '';
+          plan.annualTasks.forEach((task) => {
+            const card = document.createElement('div');
+            card.className = 'p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-1.5';
+
+            const monthsLabel = task.months.map((m) => monthNamesId[m - 1]).join(', ');
+            const mSpan = document.createElement('span');
+            mSpan.className = 'text-xs font-bold px-2 py-0.5 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-soil)]';
+            mSpan.textContent = `Bulan: ${monthsLabel}`;
+
+            const taskP = document.createElement('p');
+            taskP.className = 'text-sm font-semibold text-[var(--color-text)] mt-1';
+            taskP.textContent = task.task;
+
+            card.appendChild(mSpan);
+            card.appendChild(taskP);
+            annualTasksList.appendChild(card);
+          });
+        }
+      }
+
+      // National Seasons Table
+      if (seasonsHeading) {
+        seasonsHeading.textContent = `Musim Tanam Nasional: ${commName}`;
+      }
+      if (seasonsTableBody) {
+        seasonsTableBody.innerHTML = '';
+        calendar.seasons.forEach((season) => {
+          const tr = document.createElement('tr');
+          tr.className = 'hover:bg-[var(--color-tint)]/40 transition-colors';
+
+          const tdCode = document.createElement('td');
+          tdCode.className = 'py-2.5 px-3 font-bold text-[var(--color-text)]';
+          tdCode.textContent = `${season.code} (${season.label})`;
+
+          const tdPlant = document.createElement('td');
+          tdPlant.className = 'py-2.5 px-3 text-[var(--color-text-muted)]';
+          tdPlant.textContent = season.plantMonths.map((m) => monthNamesId[m - 1]).join(', ');
+
+          const tdHarvest = document.createElement('td');
+          tdHarvest.className = 'py-2.5 px-3 text-[var(--color-text-muted)]';
+          tdHarvest.textContent = season.harvestMonths.map((m) => monthNamesId[m - 1]).join(', ');
+
+          tr.appendChild(tdCode);
+          tr.appendChild(tdPlant);
+          tr.appendChild(tdHarvest);
+          seasonsTableBody.appendChild(tr);
+        });
+      }
+
+      // Sources & Review info
+      if (sourcesInfo) {
+        sourcesInfo.innerHTML = `<strong>Rujukan Standar:</strong> ${calendar.sources.join('; ')}.`;
+      }
+      if (reviewedInfo) {
+        if (calendar.reviewedBy) {
+          reviewedInfo.textContent = `Status telaah agronomi: Ditinjau oleh ${calendar.reviewedBy}`;
+        } else {
+          reviewedInfo.textContent = 'Status telaah agronomi: [Draf — validasi OQ-11b]';
+        }
+      }
+    }
+
+    // Event listener for Commodity Buttons
+    commodityBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.commodity;
+        if (id && selectedCommodityId !== id) {
+          selectedCommodityId = id;
+          updateUrlAndStorage();
+          syncUI();
+        }
+      });
+    });
+
+    // Event listener for Date Input
+    plantDateInput?.addEventListener('change', () => {
+      const val = plantDateInput.value;
+      if (val && selectedPlantDate !== val) {
+        selectedPlantDate = val;
+        updateUrlAndStorage();
+        syncUI();
+      }
+    });
+
+    // Action: Save to .ics
+    btnSaveIcs?.addEventListener('click', () => {
+      if (!currentPlan) return;
+      const commBtn = commodityBtns.find((b) => b.dataset.commodity === currentPlan?.commodityId);
+      const commName = commBtn?.textContent?.trim() || currentPlan.commodityId;
+
+      const icsString = generateCropCalendarIcs(currentPlan, commName);
+      const blob = new Blob([icsString], { type: 'text/calendar;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `jadwal-tanam-${currentPlan.commodityId}.ics`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    });
+
+    // Action: Print Schedule
+    btnPrintSchedule?.addEventListener('click', () => {
+      window.print();
+    });
+
+    // Action: Share Schedule
+    btnShareSchedule?.addEventListener('click', async () => {
+      const commBtn = commodityBtns.find((b) => b.dataset.commodity === currentPlan?.commodityId);
+      const commName = commBtn?.textContent?.trim() || 'Tanaman';
+      const shareUrl = window.location.href;
+      const shareTitle = `Jadwal Tanam ${commName} - Agritani`;
+
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: shareTitle,
+            text: `Rencana kalender budidaya ${commName} dari Agritani.`,
+            url: shareUrl,
+          });
+          return;
+        } catch {
+          // User dismissed or share failed, fallback to copy
+        }
+      }
+
+      // Fallback: Copy URL to clipboard
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        if (shareFeedback) {
+          shareFeedback.textContent = '✓ Tautan jadwal tanam berhasil disalin ke papan klip!';
+          shareFeedback.classList.remove('hidden');
+          setTimeout(() => shareFeedback.classList.add('hidden'), 3500);
+        }
+      } catch {
+        // Clipboard blocked
+      }
+    });
+
+    // Browser back/forward navigation
+    window.addEventListener('popstate', () => {
+      readInitialState();
+    });
+
+    // Initial state setup
+    readInitialState();
+  }
+
+  initCropCalendar();
+  document.addEventListener('astro:page-load', initCropCalendar);
+</script>
