@@ -740,12 +740,19 @@ Record only durable implementation changes, validation evidence, and gotchas tha
   - `npm test`: 79/79 unit tests PASS.
   - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 186 halaman terkompilasi, check-seo PASS, check-csp PASS (0/0/0).
 
+## 2026-09-29 — T-17: Kebijakan Privasi & Metadata Pages Cleanup (REVISED - PASS)
 
-
-
-
-
-
-
-
-
+- **Perbaikan Kebijakan Privasi (`src/pages/kebijakan-privasi.astro`)**:
+  - Menghapus alamat email karangan (`info@agritani.com`); saluran korespondensi privasi sepenuhnya diarahkan ke nomor WhatsApp resmi sebagai teks: `+62 877-7045-7256`.
+  - Menghapus komponen `ConsultPrompt`; tabel DESIGN §2.8 menetapkan Kebijakan Privasi dengan 0 ajakan WhatsApp (terverifikasi 0 elemen `data-cta="whatsapp"` pada HTML build).
+  - Menghapus penyebutan merek pihak ketiga ("Meta Pixel", "Google Ads Remarketing") sesuai NG-3, diganti dengan istilah teknis generik: "piksel pelacak iklan pihak ketiga".
+  - Menambahkan klausul perlindungan: setelah pesan terkirim, pemrosesan dan penyimpanan pesan tunduk pada ketentuan layanan dan kebijakan privasi WhatsApp.
+  - Mempertahankan tanggal berlaku kebijakan: 29 September 2026.
+  - Bukti render UI baru: `proof/ui/t17/kebijakan-privasi-390.webp` (213 KB) dan `proof/ui/t17/kebijakan-privasi-1440.webp` (247 KB).
+- **Pembersihan Metadata & Integritas Atribusi (`src/content/pages/`)**:
+  - Menghapus field `reviewedBy` dari semua file di `src/content/pages/` (termasuk 6 file hub topik, `tentang-kami.md`, `penulis-arif-prabowo.md`, dan `kebijakan-privasi.md`) guna mencegah atestasi palsu sebelum adanya persetujuan tertulis resmi.
+  - Memastikan seluruh pengantar hub topik hanya merangkum ruang lingkup topik secara umum tanpa angka, klaim hasil, maupun penyebutan nama institusi/lembaga.
+- **Verifikasi**:
+  - `npx astro check`: 0 errors.
+  - `npm test`: 79/79 unit tests PASS.
+  - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 186 halaman terkompilasi, check-seo PASS, check-csp 0/0/0 PASS.

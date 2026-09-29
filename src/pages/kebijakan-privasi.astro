@@ -1,13 +1,12 @@
 ---
 /**
  * src/pages/kebijakan-privasi.astro
- * Privacy Policy page for PT Agritani Internasional (T-17, DESIGN §4.2.3, DEC-014)
+ * Privacy Policy page for PT Agritani Internasional (T-17, DESIGN §2.8, DESIGN §4.2.3, DEC-014)
  * Clarifies zero third-party trackers, browser-direct BMKG fetch, localStorage, and WhatsApp form flow.
- * Invariants: Single WhatsApp CTA, 0/0/0 CSP, 2px radius, text contrast >= 7:1.
+ * Invariants: Zero WhatsApp CTA (DESIGN §2.8), 0/0/0 CSP, 2px radius, text contrast >= 7:1.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
-import ConsultPrompt from '../components/ConsultPrompt.astro';
 import type { SeoInput } from '../lib/seo';
 
 const breadcrumbs = [
@@ -58,7 +57,7 @@ const seo: SeoInput = {
           </p>
           <ul class="list-disc pl-6 space-y-2">
             <li>Kami <strong>tidak menanam cookies pihak ketiga</strong> (third-party cookies) pada peramban Anda.</li>
-            <li>Kami <strong>tidak menggunakan piksel pelacak iklan</strong> (seperti Meta Pixel atau Google Ads Remarketing) yang merekam aktivitas penjelajahan Anda lintas situs.</li>
+            <li>Kami <strong>tidak menggunakan piksel pelacak iklan pihak ketiga</strong> yang merekam aktivitas penjelajahan Anda lintas situs.</li>
             <li>Kami <strong>tidak memasang layanan pelacakan perilaku pihak ketiga</strong> yang memprofilkan identitas pribadi pengguna.</li>
             <li>Kami tidak memperjualbelikan, menyewakan, atau membagikan riwayat akses situs Anda kepada jaringan periklanan manapun.</li>
           </ul>
@@ -80,7 +79,10 @@ const seo: SeoInput = {
               <strong>Keputusan Pengiriman Berada di Tangan Anda:</strong> Tidak ada data yang terkirim sampai Anda secara sadar menekan tombol kirim di dalam aplikasi WhatsApp Anda.
             </p>
             <p>
-              <strong>Perlindungan Enkripsi End-to-End:</strong> Pesan yang Anda kirimkan ke nomor resmi PT Agritani Internasional dilindungi oleh enkripsi ujung-ke-ujung (end-to-end encryption) dari WhatsApp sesuai standar privasi penyedia aplikasi tersebut.
+              <strong>Perlindungan Enkripsi End-to-End:</strong> Pesan yang Anda kirimkan ke nomor resmi PT Agritani Internasional dilindungi oleh enkripsi ujung-ke-ujung (end-to-end encryption) dari WhatsApp.
+            </p>
+            <p>
+              <strong>Ketentuan Layanan Pihak Ketiga:</strong> Setelah pesan dikirimkan oleh pengguna melalui aplikasi perpesanan tersebut, pemrosesan dan penyimpanan data pesan tunduk pada ketentuan layanan dan kebijakan privasi WhatsApp.
             </p>
           </div>
         </section>
@@ -127,24 +129,16 @@ const seo: SeoInput = {
             5. Hak Pengguna & Pusat Pertanyaan Privasi
           </h2>
           <p>
-            Anda berhak mengetahui dan mengontrol bagaimana interaksi Anda berlangsung. Jika Anda memiliki pertanyaan, klarifikasi, atau masukan terkait kebijakan privasi dan perlindungan data di PT Agritani Internasional, Anda dapat menghubungi tim kami melalui saluran resmi:
+            Anda berhak mengetahui dan mengontrol bagaimana interaksi Anda berlangsung. Jika Anda memiliki pertanyaan atau masukan terkait kebijakan privasi dan perlindungan data di PT Agritani Internasional, Anda dapat menghubungi kami melalui kontak resmi berikut:
           </p>
-          <ul class="list-none space-y-2 p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] text-sm sm:text-base">
-            <li><strong>Pengelola Situs:</strong> PT Agritani Internasional</li>
-            <li><strong>Situs Resmi:</strong> <a href="https://agritani.com" class="text-[var(--color-brand)] underline">agritani.com</a></li>
-            <li><strong>Email Korespondensi:</strong> info@agritani.com</li>
-          </ul>
-
-          <!-- Single WhatsApp CTA per Page (DESIGN §2.8) -->
-          <div class="pt-4">
-            <ConsultPrompt
-              source="kebijakan-privasi"
-              title="Pertanyaan Terkait Kebijakan Privasi?"
-              description="Untuk konsultasi resmi mengenai kepatuhan data, legalitas kemitraan, atau operasional situs, hubungi sekretariat PT Agritani Internasional via WhatsApp."
-              label="Hubungi WhatsApp Agritani"
-              variant="secondary"
-            />
+          <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] text-sm sm:text-base space-y-2 font-mono">
+            <p><strong>Pengelola Situs:</strong> PT Agritani Internasional</p>
+            <p><strong>Situs Resmi:</strong> https://agritani.com</p>
+            <p><strong>Kontak WhatsApp Resmi:</strong> +62 877-7045-7256</p>
           </div>
+          <p class="text-sm text-[var(--color-text-muted)]">
+            Hubungi nomor WhatsApp resmi di atas pada jam operasional kerja untuk konfirmasi dan korespondensi seputar perlindungan privasi pengguna.
+          </p>
         </section>
 
       </div>

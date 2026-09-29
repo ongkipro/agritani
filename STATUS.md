@@ -71,6 +71,12 @@ T-17 (Kebijakan Privasi) selesai diimplementasikan dan diverifikasi (RUN-2026092
 - Koleksi `pages`: Menambahkan `kebijakan-privasi.md`.
 - Verifikasi: 76/76 unit tests PASS, `astro check` 0 error, build 186 halaman PASS (check-seo PASS, check-csp 0/0/0 PASS), bukti UI browser di `proof/ui/t17/`.
 
+T-17 REVISE & Metadata Pages Cleanup selesai diimplementasikan dan diverifikasi (RUN-20260929T153603Z-1d7bab27):
+- Halaman `kebijakan-privasi.astro`: Menghapus email karangan info@agritani.com, menyajikan nomor kontak resmi WhatsApp sebagai teks biasa (+62 877-7045-7256), menghapus komponen ConsultPrompt (0 ajakan WhatsApp sesuai DESIGN §2.8), mengubah merek iklan menjadi istilah generik "piksel pelacak iklan pihak ketiga", dan menambahkan klausul ketentuan privasi WhatsApp.
+- Koleksi `pages`: Menghapus field `reviewedBy` dari semua file di `src/content/pages/` (termasuk 6 topik dan halaman statis) untuk mencegah atestasi palsu. Menetralkan seluruh pengantar hub topik.
+- Bukti UI WebP kualitas 70 tersimpan di `proof/ui/t17/kebijakan-privasi-390.webp` dan `proof/ui/t17/kebijakan-privasi-1440.webp`.
+- Verifikasi: 79/79 unit tests PASS, `npx astro check` 0 error, build 186 halaman PASS (check-seo PASS, check-csp 0/0/0 PASS).
+
 T-08 REVISE (Homepage Hibrida) selesai diimplementasikan dan diverifikasi (RUN-20260929T153010Z-5ebb5dd4):
 - Produk dirender dinamis dari koleksi `products` (`src/data/products.json`), menghapus teks manual.
 - Bio Prof. Arif Prabowo di beranda distandarkan menjadi: "Profesor Pertanian · Moderator Jurnal Tani PT Agritani Internasional".
@@ -102,6 +108,7 @@ Melanjutkan ke **T-11 (Katalog & Detail Produk `/produk/` dan `/produk/[slug]`)*
 - T-20 (termasuk revisi) menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 - T-26 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 - T-08 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
+- T-17 (termasuk revisi) menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 
 ## Verification evidence
 
