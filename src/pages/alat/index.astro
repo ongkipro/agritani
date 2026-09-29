@@ -4,7 +4,6 @@
  * Hub / Index page for Alat Tani (REQ-06, DESIGN §2.6.4, §4.2.3)
  * Lists 4 tools with zero WhatsApp CTAs (DESIGN §2.8).
  */
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import type { SeoInput } from '../../lib/seo';
@@ -23,31 +22,11 @@ const seo: SeoInput = {
   pageType: 'website',
 };
 
-const isDraftPreview =
-  import.meta.env.PUBLIC_INCLUDE_DRAFTS === 'true' ||
-  process.env.PUBLIC_INCLUDE_DRAFTS === 'true';
-
-const allSymptoms = await getCollection('symptoms');
-const allCropCalendars = await getCollection('cropCalendars');
-
-const hasReviewedSymptoms =
-  isDraftPreview ||
-  allSymptoms.some(
-    (s) => Boolean(s.data.reviewedBy && s.data.reviewedBy.trim().length > 0)
-  );
-
-const hasReviewedCalendars =
-  isDraftPreview ||
-  allCropCalendars.some(
-    (c) => Boolean(c.data.reviewedBy && c.data.reviewedBy.trim().length > 0)
-  );
-
 const tools = [
   {
     title: 'Diagnosa Gejala',
     href: '/alat/diagnosa-gejala/',
     badge: 'Identifikasi Masalah',
-    isComingSoon: !hasReviewedSymptoms,
     description:
       'Temukan kemungkinan hama, penyakit, atau defisiensi hara berdasarkan bagian tanaman dan tanda visual di kebun.',
     cta: 'Buka Diagnosa Gejala',
@@ -56,7 +35,6 @@ const tools = [
     title: 'Kalender Tanam',
     href: '/alat/kalender-tanam/',
     badge: 'Fase & Jadwal',
-    isComingSoon: !hasReviewedCalendars,
     description:
       'Pantau fase pertumbuhan tanaman (HST), jadwal pemupukan berkala, dan perkiraan waktu panen komoditas Anda.',
     cta: 'Buka Kalender Tanam',
@@ -65,7 +43,6 @@ const tools = [
     title: 'Cuaca Tani',
     href: '/alat/cuaca-tani/',
     badge: 'Prakiraan BMKG',
-    isComingSoon: false,
     description:
       'Prakiraan cuaca 3 hari per 3 jam langsung dari data BMKG tingkat desa untuk menentukan waktu aplikasi semprot yang aman.',
     cta: 'Buka Cuaca Tani',
@@ -74,7 +51,6 @@ const tools = [
     title: 'Kalkulator Dosis',
     href: '/alat/kalkulator-dosis/',
     badge: 'Kalkulasi Tangki',
-    isComingSoon: false,
     description:
       'Hitung takaran pestisida atau pupuk daun per tangki semprot dan total kebutuhan larutan sesuai luas lahan Anda.',
     cta: 'Buka Kalkulator Dosis',
@@ -119,16 +95,9 @@ const tools = [
                   {tool.title}
                 </a>
               </h2>
-              <div class="flex items-center gap-1.5 flex-wrap justify-end">
-                {tool.isComingSoon && (
-                  <span class="inline-block px-2.5 py-0.5 text-xs font-bold text-[var(--color-soil)] bg-[var(--color-harvest-tint)] border border-[var(--color-harvest)]/40 rounded-[2px] whitespace-nowrap">
-                    Segera hadir
-                  </span>
-                )}
-                <span class="inline-block px-2.5 py-0.5 text-xs font-semibold text-[var(--color-soil)] bg-[var(--color-tint)] rounded-[2px] whitespace-nowrap">
-                  {tool.badge}
-                </span>
-              </div>
+              <span class="inline-block px-2.5 py-0.5 text-xs font-semibold text-[var(--color-soil)] bg-[var(--color-tint)] rounded-[2px] whitespace-nowrap">
+                {tool.badge}
+              </span>
             </div>
             <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mb-6">
               {tool.description}

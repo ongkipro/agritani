@@ -15,7 +15,7 @@ Dokumen ini mencatat catatan implementasi, bukti verifikasi, dan temuan telaah e
 
 ## 2. Alat Tersembunyi (A.8)
 
-- **Halaman Indeks Alat (`src/pages/alat/index.astro`)**: Memeriksa ketersediaan data yang telah ditinjau (`reviewedBy`). Jika belum ada data tertinjau di produksi, kartu Diagnosa Gejala dan Kalender Tanam secara otomatis diberi badge "Segera hadir".
+- **Halaman Indeks Alat (`src/pages/alat/index.astro`)**: Dibiarkan tidak disentuh pada branch ini sesuai koordinasi (dikerjakan di branch lain).
 - **Integritas Gejala (`src/lib/content-integrity.ts`)**: Gejala yang belum ditinjau (`reviewedBy` kosong) disembunyikan di produksi dan tidak menggagalkan build produksi jika merujuk artikel draf. Hanya gejala yang tampil (`reviewedBy` terisi) yang wajib menunjuk artikel terbit.
 
 ---
@@ -181,7 +181,7 @@ x-content-type-options: nosniff
 Tangkapan layar resolusi seluler (390px) dan desktop (1440px) dihasilkan menggunakan `agritani-shot.cjs` dan tersimpan di `proof/ui/launch-content/`:
 - `beranda-390.png` & `beranda-1440.png`: Membuktikan footer dengan tautan resmi WhatsApp tanpa placeholder alamat.
 - `konsultasi-390.png` & `konsultasi-1440.png`: Membuktikan halaman konsultasi bersih tanpa baris jam operasional placeholder.
-- `alat-index-390.png` & `alat-index-1440.png`: Membuktikan badge "Segera hadir" pada Diagnosa Gejala dan Kalender Tanam saat data tertinjau belum tersedia di produksi.
+- `alat-index-390.png` & `alat-index-1440.png`: Membuktikan tampilan halaman indeks alat tani tanpa perubahan pada berkas `src/pages/alat/index.astro`.
 - `jurnal-index-390.png` & `jurnal-index-1440.png`: Membuktikan indeks jurnal hanya memuat 8 artikel terbitan Batch 1.
 - `artikel-antraknosa-390.png` & `artikel-antraknosa-1440.png`: Membuktikan artikel antraknosa dengan judul terevisi, DOI Crossref resmi, dan jawaban singkat 40–60 kata.
 - `artikel-wereng-390.png` & `artikel-wereng-1440.png`: Membuktikan artikel wereng batang coklat dengan DOI terverifikasi dan tanpa klaim overpromising.
