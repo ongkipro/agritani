@@ -40,19 +40,21 @@ Kontrak pra-pengembangan diaudit ulang pada 2026-09-29 dengan skill dotfiles ter
 
 ## Active work
 
-T-02 selesai dikerjakan dan terverifikasi secara lokal (tes 9/9 lulus, build dan check lulus), namun check-boundary menghasilkan REVIEW_REQUIRED (effectiveRisk R2). Sesuai aturan, task T-02 dihentikan menunggu review independen resmi dari Claude/Paduka Ongki. Melanjutkan ke T-23 dan T-04 yang tidak bergantung pada T-02.
+T-02 dan T-23 selesai dikerjakan dan terverifikasi secara lokal (check, build, test, yaml valid). Namun keduanya menghasilkan REVIEW_REQUIRED karena kenaikan risiko deterministik (T-02 ke R2, T-23 ke R3 karena CI workflow). Sesuai aturan, kedua task dihentikan menunggu review independen resmi dari Claude/Paduka Ongki. Melanjutkan ke T-04 (Kerangka global, 404, waLink).
 
 ## Blockers
 
-T-02 menunggu review independen (boundary review) dari Claude/Paduka Ongki karena kenaikan risiko deterministik skema koleksi ke R2.
+- T-02 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
+- T-23 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 
 ## Verification evidence
 
 - T-01 fondasi Astro 7.3.5 + Tailwind 4.3.3 + sitemap 3.7.4 selesai dan ter-commit.
-- T-02 lokal: `src/lib/content-integrity.test.ts` (9 kasus uji gagal/lulus PASS dalam 5.5ms), `npx astro check` PASS (0 errors), `npm run build` PASS, `npm run check:contrast` PASS.
-- Bukti visual T-01: `spesimen-390.png` dan `spesimen-1440.png` tersimpan.
+- T-02 lokal: `src/lib/content-integrity.test.ts` (9 kasus uji PASS dalam 5.5ms), `npx astro check` PASS, `npm run build` PASS, `npm run check:contrast` PASS.
+- T-23 lokal: `.github/workflows/ci.yml` sintaks YAML valid (Python safe_load), build, check, test, kontras lulus.
 
 ## Next verified action
 
-T-23: CI GitHub Actions (`.github/workflows/ci.yml`) dan T-04: Kerangka global, 404, `waLink`.
+T-04: Kerangka global, Navbar, Footer, Breadcrumb, 404, waLink WhatsApp (`src/layouts/BaseLayout.astro`, `src/components/*`, `src/lib/whatsapp.*`, `src/lib/seo.*`).
+
 
