@@ -43,37 +43,48 @@ Tidak dipakai: React/Vue/Svelte, CMS, database, server runtime, analitik pihak k
 ```
 agritani/
 ├── docs/
-│   ├── content/articles/         # SUMBER TUNGGAL 25 artikel (dibaca langsung oleh glob loader)
+│   ├── brand/logo/               # Logo "Tunas A" (DEC-013)
+│   ├── content/articles/         # SUMBER TUNGGAL artikel (dibaca langsung oleh glob loader)
 │   ├── content/*.md              # Naskah profil & content vault (bahan tulis, bukan halaman)
 │   └── research/                 # Riset SEO, validasi ilmiah, blueprint (bukan halaman)
+├── public/
+│   ├── fonts/                    # woff2 self-hosted
+│   ├── wilayah/                  # Kode wilayah Kemendagri bertingkat + SOURCE.md (T-20)
+│   ├── og/                       # Gambar Open Graph statis 1200×630 (DESIGN §4.4.6)
+│   ├── robots.txt  _headers  _redirects  favicon.svg  apple-touch-icon.png
+├── scripts/
+│   ├── check-contrast.mjs        # T-01
+│   ├── check-seo.mjs             # T-13, dijalankan setelah build (DESIGN §4.4.1)
+│   └── build-wilayah.mjs         # T-20
 ├── src/
-│   ├── content.config.ts         # Definisi koleksi: articles, products, symptoms, pages
+│   ├── content.config.ts         # Koleksi: commodities, articles, products, symptoms, cropCalendars, pages
+│   ├── content/pages/*.md        # Teks halaman statis yang kelak diedit CMS (§6)
 │   ├── data/
-│   │   ├── products.json         # 4 produk: aussie, bensu, kojien, saratoga (data resmi; OQ-2)
-│   │   ├── symptoms.json         # Dataset diagnosa: komoditas × bagian × gejala → diagnosis
-│   │   └── crop-calendars.json   # Kalender tanam per komoditas (ditinjau Prof. Arif)
-├── public/wilayah/               # Kode wilayah Kemendagri: provinsi.json, {prov}.json, {kab}.json (dimuat bertahap)
-│   ├── components/
-│   │   ├── Navbar.astro  Footer.astro  StructuredData.astro
-│   │   ├── FieldSummaryBox.astro  ArticleToc.astro  References.astro
-│   │   ├── TriageFilter.astro  PartnerForm.astro  ProductRow.astro  SearchBox.astro
+│   │   ├── commodities.json      # Daftar komoditas bersama (satu sumber slug)
+│   │   ├── products.json         # 4 produk: aussie, bensu, kojien, saratoga (OQ-2)
+│   │   ├── symptoms.json         # Dataset diagnosa
+│   │   ├── crop-calendars.json   # Kalender tanam (T-02 membuat `[]`, T-19 mengisi)
+│   │   └── spray-thresholds.json # Ambang indikator Cuaca Tani (§5b)
+│   ├── dev/spesimen.astro        # Spesimen token; hanya di-inject saat `astro dev` (T-01)
+│   ├── lib/                      # Fungsi murni + tes: seo, content-integrity, reading-time, crop-calendar, ics, bmkg, spray-window, dose, whatsapp
+│   ├── components/               # Nama sesuai DESIGN §5
 │   ├── layouts/
 │   │   ├── BaseLayout.astro      # <head>, meta/canonical/OG, font, skip link, header/footer
-│   │   └── ArticleLayout.astro   # Kanvas baca, TOC, takeaway, referensi
+│   │   └── ArticleLayout.astro   # Kanvas Jurnal Tani (DESIGN §4.3)
 │   ├── pages/
-│   │   ├── index.astro  404.astro  tentang-kami.astro  konsultasi.astro
-│   │   ├── alat/index.astro  alat/diagnosa-gejala.astro  alat/kalender-tanam.astro
+│   │   ├── index.astro  404.astro  tentang-kami.astro  konsultasi.astro  cari.astro
 │   │   ├── kemitraan-distributor.astro  kebijakan-privasi.astro
+│   │   ├── alat/index.astro  alat/diagnosa-gejala.astro  alat/kalender-tanam.astro
+│   │   ├── alat/cuaca-tani.astro  alat/kalkulator-dosis.astro
 │   │   ├── produk/index.astro  produk/[slug].astro
 │   │   ├── jurnal/index.astro  jurnal/[slug].astro  jurnal/topik/[klaster].astro
-│   │   └── penulis/arif-prabowo.astro  cari.astro
+│   │   └── penulis/arif-prabowo.astro
 │   └── styles/global.css         # @import "tailwindcss"; @theme token DESIGN §3; print CSS
-├── public/                       # favicon, robots.txt, font woff2, _headers, _redirects
-├── wrangler.jsonc                # Cloudflare Workers static assets (DEC-009)
-└── astro.config.mjs
+├── astro.config.mjs
+└── wrangler.jsonc                # Cloudflare Workers static assets (DEC-009)
 ```
 
-`astro.config.mjs`: `trailingSlash: 'always'`, `build.format: 'directory'`, `site: 'https://agritani.com'`. Anatomi halaman: DESIGN §4.2–4.3.
+`astro.config.mjs`: `site: 'https://agritani.com'`, `trailingSlash: 'always'`, `build.format: 'directory'`, `build.inlineStylesheets: 'never'` (CSP tanpa `unsafe-inline`, §5). Spesimen token tidak memakai prefiks `_` (Astro tidak pernah merutekan file `_*`); ia di-inject sebagai rute hanya saat `command === 'dev'` lewat integrasi kecil (`injectRoute`, API dicek saat T-01), sehingga tidak ada di `dist/`.
 
 Artikel **tidak** disalin ke `src/content/`. Glob loader membaca `docs/content/articles/` agar hanya ada satu salinan naskah.
 
@@ -81,63 +92,90 @@ Artikel **tidak** disalin ke `src/content/`. Glob loader membaca `docs/content/a
 
 ## 3. Content Contracts (`src/content.config.ts`)
 
-API mengikuti dokumentasi Astro saat ini: `defineCollection` + `glob`/`file` loader, `z` dari `astro/zod`. Frontmatter naskah saat ini (`reading_time: "5 min read"`, `published_date`, `category` teks bebas, `slug`) harus dinormalisasi ke skema ini di T-03.
+API mengikuti dokumentasi Astro saat ini: `defineCollection` + `glob`/`file` loader, `z` dari `astro/zod`, `reference()` untuk relasi antarkoleksi, helper `image()` untuk gambar yang diproses `astro:assets`. Detail sintaks dicek terhadap versi terpasang saat T-02.
 
 ```ts
-import { defineCollection } from 'astro:content';
+import { defineCollection, reference } from 'astro:content';
 import { glob, file } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-const reference = z.object({
+// Satu sumber slug komoditas (S7): dipakai artikel, produk, gejala, kalender, tombol homepage.
+const commodities = defineCollection({
+  loader: file('./src/data/commodities.json'),
+  schema: z.object({
+    id: z.string(),                                  // mis. 'cabai', 'kelapa-sawit', 'padi'
+    name: z.string(),                                // 'Cabai'
+    group: z.enum(['perkebunan', 'pangan', 'hortikultura', 'urban']),
+  }),
+});
+
+const reference_ = z.object({
   authors: z.string(),
   year: z.number().int(),
   title: z.string(),
-  source: z.string(),               // jurnal / lembaga penerbit
-  doi: z.string().optional(),       // hanya jika benar-benar ada
+  source: z.string(),                                // jurnal / lembaga penerbit
+  doi: z.string().optional(),                        // hanya jika benar-benar ada
   url: z.string().url().optional(),
 });
 
+const fieldTakeaways = z.discriminatedUnion('kind', [
+  z.object({                                         // artikel penyakit/hama
+    kind: z.literal('masalah'),
+    problem: z.string(),
+    typicalSymptom: z.string(),
+    firstStep: z.string(),
+    dosagePer16LTank: z.string().optional(),         // hanya dari label/sumber; tidak ditebak
+    applicationTiming: z.string().optional(),
+  }),
+  z.object({                                         // artikel panduan budidaya
+    kind: z.literal('panduan'),
+    goal: z.string(),
+    materials: z.string().optional(),
+    keySteps: z.string(),
+    timing: z.string().optional(),
+  }),
+]);
+
 const articles = defineCollection({
   loader: glob({ pattern: '*.md', base: './docs/content/articles' }),
-  schema: z.object({
-    title: z.string().min(20).max(70),
-    seoTitle: z.string().max(60).optional(),        // bila title terlalu panjang untuk <title>
-    description: z.string().min(120).max(160),      // juga dirender sebagai dek
-    answer: z.string(),                              // Jawaban Singkat 40–60 kata (DESIGN §4.3.1 blok 7)
-    heroImage: z.object({ src: z.string(), alt: z.string().min(5).max(125), credit: z.string() }).optional(),
+  schema: ({ image }) => z.object({
+    title: z.string().min(20).max(110),              // H1; naskah saat ini 73–103 karakter
+    seoTitle: z.string().max(48).optional(),         // wajib bila title > 48 (dicek integritas); <title> = `${seoTitle ?? title} | Agritani`
+    description: z.string().min(120).max(160),       // meta description = dek
+    answer: z.string().optional(),                   // Jawaban Singkat 40–60 kata; wajib untuk non-draft (dicek integritas)
     slug: z.string(),
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
-    author: z.string().default('Arif Prabowo'),     // profesor pertanian, penulis & moderator (OQ-4)
+    author: z.string().default('Arif Prabowo'),
     reviewedBy: z.string().optional(),               // hanya bila peninjau berbeda dari penulis
     cluster: z.enum(['sawit', 'pangan', 'hortikultura', 'tanah-nutrisi', 'urban-farming']),
-    commodities: z.array(z.string()).min(1),
+    commodities: z.array(reference('commodities')).min(1),
     focusKeyword: z.string(),
     featured: z.boolean().default(false),
-    fieldTakeaways: z.object({
-      problem: z.string(),
-      typicalSymptom: z.string(),
-      recommendedProtocol: z.string(),
-      dosagePer16LTank: z.string().optional(),       // tidak boleh diisi tebakan
-      applicationTiming: z.string().optional(),
-    }).optional(),
-    references: z.array(reference).default([]),
-    draft: z.boolean().default(false),
+    heroImage: z.object({ src: image(), alt: z.string().min(5).max(125), credit: z.string() }).optional(),
+    fieldTakeaways: fieldTakeaways.optional(),
+    references: z.array(reference_).default([]),
+    draft: z.boolean().default(true),                // terbit hanya setelah lolos integritas & OQ-3
   }),
 });
 
 const products = defineCollection({
   loader: file('./src/data/products.json'),
-  schema: z.object({
-    id: z.string(),                                  // slug
+  schema: ({ image }) => z.object({
+    id: z.string(),                                  // aussie | bensu | kojien | saratoga
     name: z.string(),
-    tagline: z.string(),
-    commodities: z.array(z.string()).min(1),        // komoditas sasaran dari label/data resmi
+    tagline: z.string().optional(),                  // hanya tagline yang lolos DESIGN §2.5
+    role: z.string(),                                // peran singkat, mis. "Aktivator imun khusus padi"
+    commodities: z.array(reference('commodities')).min(1),
     summary: z.string(),
-    composition: z.string().optional(),
+    composition: z.string().optional(),              // sesuai label
+    form: z.string().optional(),                     // bentuk sediaan & ukuran kemasan (OQ-2)
     applicationMethods: z.array(z.string()),
-    dosage: z.string().optional(),
+    dosage: z.string().optional(),                   // sesuai label (OQ-2)
     registrationNumber: z.string().optional(),       // izin edar Kementan (OQ-2)
+    registrationCategory: z.string().optional(),     // pupuk / pembenah tanah / ... (OQ-9)
+    authenticityCheck: z.string().optional(),        // cara cek keaslian (OQ-8)
+    packshot: image().optional(),                    // foto kemasan asli (OQ-5)
   }),
 });
 
@@ -145,56 +183,66 @@ const symptoms = defineCollection({
   loader: file('./src/data/symptoms.json'),
   schema: z.object({
     id: z.string(),
-    commodity: z.string(),
+    commodity: reference('commodities'),
     part: z.enum(['daun', 'batang-pangkal', 'buah-bunga', 'akar']),
     causeType: z.enum(['penyakit', 'hama', 'hara', 'lingkungan']),
     symptom: z.string(),                             // bahasa awam
     diagnosis: z.string(),                           // nama umum
     scientificName: z.string().optional(),
-    distinguishingSign: z.string(),                  // pembeda dari diagnosis mirip
-    article: z.string(),                             // slug artikel; build gagal jika tidak ada
+    distinguishingSign: z.string(),
+    article: z.string(),                             // slug artikel terbit (dicek integritas)
+    seededFrom: z.string().optional(),               // mis. 'agrimarket FIELD_PLAYBOOK_DICTIONARY'
+    reviewedBy: z.string().optional(),               // wajib agar tampil (DEC-015)
   }),
 });
 
-const pages = defineCollection({
-  loader: glob({ pattern: '*.md', base: './src/content/pages' }),
-  schema: z.object({ title: z.string(), description: z.string().min(120).max(160) }),
-});
-
 const phase = z.object({
-  id: z.string(),                                  // persemaian | vegetatif | generatif | panen | ...
+  id: z.string(),                                    // persemaian | vegetatif | generatif | panen | ...
   name: z.string(),
-  startDay: z.number().int(),                      // HST, boleh negatif untuk persemaian (T-30)
+  startDay: z.number().int(),                        // HST; negatif untuk persemaian (mis. -30 = 30 hari sebelum tanam)
   endDay: z.number().int(),
-  activities: z.array(z.string()).max(4),          // kegiatan agronomi, tanpa merek/dosis pestisida
+  activities: z.array(z.string()).max(4),            // kegiatan agronomi, tanpa merek/dosis pestisida
   watch: z.array(z.object({ name: z.string(), article: z.string().optional() })).default([]),
 });
 
 const cropCalendars = defineCollection({
   loader: file('./src/data/crop-calendars.json'),
   schema: z.object({
-    id: z.string(),                                // slug komoditas, sama dengan symptoms.commodity
-    name: z.string(),
+    id: z.string(),                                  // slug komoditas; keberadaannya di `commodities` dicek integritas (§3.1)
     type: z.enum(['semusim', 'tahunan']),
-    cycleDays: z.object({ min: z.number().int(), max: z.number().int() }).optional(),   // semusim
-    phases: z.array(phase).default([]),                                                  // semusim
-    annualTasks: z.array(z.object({ months: z.array(z.number().int().min(1).max(12)), task: z.string() })).default([]), // tahunan
+    cycleDays: z.object({ min: z.number().int(), max: z.number().int() }).optional(),
+    phases: z.array(phase).default([]),
+    annualTasks: z.array(z.object({ months: z.array(z.number().int().min(1).max(12)), task: z.string() })).default([]),
     seasons: z.array(z.object({ code: z.enum(['MT1', 'MT2', 'MT3']), label: z.string(), plantMonths: z.array(z.number().int()), harvestMonths: z.array(z.number().int()) })).default([]),
     sources: z.array(z.string()).min(1),
-    seededFrom: z.string().optional(),             // mis. 'agrimarket docs/spec/KALENDER-TANAM-NASIONAL.md §3.1'
-    reviewedBy: z.string().optional(),             // wajib terisi agar tampil (REQ-09)
+    seededFrom: z.string().optional(),
+    reviewedBy: z.string().optional(),               // wajib agar tampil (REQ-09)
     reviewedAt: z.coerce.date().optional(),
   }),
 });
 
-export const collections = { articles, products, symptoms, pages, cropCalendars };
+const pages = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/pages' }),
+  schema: z.object({ title: z.string(), description: z.string().min(120).max(160), updatedDate: z.coerce.date().optional(), reviewedBy: z.string().optional() }),
+});
+
+export const collections = { commodities, articles, products, symptoms, cropCalendars, pages };
 ```
 
-Aturan integritas yang dicek saat build (bukan hanya dokumentasi):
+Catatan: `file()` loader mewajibkan `id` string per entri; karena itu relasi `cropCalendars.id` → `commodities` dicek oleh integritas (§3.1), bukan `reference()`.
 
-- Setiap `symptoms[].article` menunjuk slug artikel yang ada dan tidak `draft`.
-- Artikel non-draft wajib punya ≥ 1 `references` (REQ-05). Selama OQ-3 belum terjawab, artikel tanpa referensi berstatus `draft: true` dan tidak dipublikasikan.
-- Slug artikel unik.
+### 3.1. Integritas konten (dijalankan setiap build dan dev)
+
+`src/lib/content-integrity.ts` mengekspor `assertContentIntegrity()` yang dipanggil di `getStaticPaths` `src/pages/jurnal/[slug].astro` (selalu dieksekusi saat build/dev); galat menggagalkan build dengan nama file:
+
+- Slug artikel unik; `symptoms[].article` menunjuk artikel **terbit**; `cropCalendars[].id` ada di `commodities`.
+- Artikel terbit (`draft: false`) wajib: ≥ 1 `references` (REQ-05), `answer` 40–60 kata, `seoTitle` bila `title` > 48 karakter, `author` terisi.
+- Gejala dan kalender tanpa `reviewedBy` tidak dirender di produksi (bukan galat).
+- Di mode pratinjau (§3.2), rujukan ke artikel draft diizinkan dan data tanpa `reviewedBy` ikut dirender dengan label "BELUM DITINJAU".
+
+### 3.2. Mode pratinjau draft
+
+Karena artikel baru terbit setelah pustaka terverifikasi (OQ-3/T-16), UI dikembangkan dan dibuktikan dengan **mode pratinjau**: `PUBLIC_INCLUDE_DRAFTS=true` (hanya untuk `astro dev` dan build pratinjau lokal) merender artikel draft dengan pita "DRAF — belum terbit" dan `noindex`. Build produksi tanpa variabel ini tidak pernah memuat draft. Bukti UI task (DESIGN §10) boleh memakai mode pratinjau; bukti rilis (T-15) harus dari build produksi.
 
 ---
 
@@ -218,8 +266,15 @@ Aturan integritas yang dicek saat build (bukan hanya dokumentasi):
 1. **Tanpa server runtime**: host hanya menyajikan file statis. Tidak ada endpoint yang menerima input.
 2. **Formulir kemitraan**: data pengguna tidak meninggalkan peramban kecuali lewat tautan `wa.me` yang dibuka pengguna sendiri. Nilai di-encode dengan `encodeURIComponent`; tidak pernah dirender kembali ke DOM sebagai HTML. Tidak ada webhook di v1 (DEC-006).
 3. **Konten**: Markdown dari repositori (tepercaya). Tautan eksternal referensi memakai `rel="noopener"`; tanpa HTML mentah dari sumber luar.
-4. **Header keamanan** (`public/_headers`, diterapkan Cloudflare ke respons aset statis): `Content-Security-Policy` tanpa `unsafe-eval`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy` minimal.
-5. **Privasi**: tanpa cookie dan pelacak pihak ketiga. Bila analitik ditambah kemudian, butuh keputusan baru + pembaruan kebijakan privasi.
+4. **Header keamanan** (`public/_headers`, diterapkan Cloudflare ke respons aset statis):
+   ```
+   Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.bmkg.go.id; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+   X-Content-Type-Options: nosniff
+   Referrer-Policy: strict-origin-when-cross-origin
+   Permissions-Policy: camera=(), microphone=(), geolocation=()
+   ```
+   `'wasm-unsafe-eval'` dan `worker-src 'self' blob:` dibutuhkan Pagefind (pagefind.app/docs/hosting, diakses 2026-09-29); `connect-src` BMKG untuk Cuaca Tani (DEC-014). Konsekuensi: tanpa script inline yang dieksekusi, tanpa atribut `onclick`/`style="…"`, CSS tidak di-inline (`build.inlineStylesheets: 'never'`), inisialisasi Pagefind di file JS sendiri, data untuk script memakai `<script type="application/json">` (data block, tidak dieksekusi). Astro dapat meng-inline script terproses yang kecil; T-18 memeriksa HTML hasil build bahwa tidak ada `<script>` inline yang dieksekusi (selain data block JSON) dan mematikan inlining bila ada. Bila Astro versi terpasang menyediakan CSP berbasis hash bawaan, evaluasi di T-18 sebelum melonggarkan kebijakan.
+5. **Privasi**: tanpa cookie dan pelacak pihak ketiga. Pilihan Alat Tani hanya di `localStorage` perangkat; Cuaca Tani mengirim kode `adm4` ke BMKG dari browser pengguna (diungkap di Kebijakan Privasi). Bila analitik ditambah kemudian, butuh keputusan baru + pembaruan kebijakan privasi.
 
 ---
 
@@ -230,7 +285,19 @@ Aturan integritas yang dicek saat build (bukan hanya dokumentasi):
 - Endpoint publik: `https://api.bmkg.go.id/publik/prakiraan-cuaca?adm4={kode}` — tanpa API key; prakiraan 3 hari per 3 jam; batas 60 permintaan/menit/IP; **wajib mencantumkan BMKG sebagai sumber** (data.bmkg.go.id/prakiraan-cuaca, diakses 2026-09-29).
 - Diuji 2026-09-29: respons `access-control-allow-origin: *`, `cache-control: public, max-age=3600`, field per slot `local_datetime, t, hu, tp, ws, wd, tcc, weather_desc, vs_text, analysis_date` → **dipanggil langsung dari browser**, tanpa Worker. Setiap pengguna memakai kuotanya sendiri (IP masing-masing).
 - Klien menyimpan respons terakhir per `adm4` di `localStorage` (maks 1 jam) agar tidak memanggil ulang saat halaman dibuka lagi; bila gagal, tampilkan state error §2.6.2.
-- Indikator aplikasi lapangan = fungsi murni `sprayWindow(slot, thresholds)` dengan `thresholds` dari `src/data/spray-thresholds.json` (bertanda `reviewedBy`; indikator disembunyikan bila kosong, OQ-11). Fungsi ini punya satu tes berbasis tabel kasus.
+- Indikator aplikasi lapangan = fungsi murni `sprayWindow(slot, nextSlot, thresholds)` → `{ status: 'layak' | 'hati-hati' | 'tunda', reasons: string[] }`. `thresholds` dari `src/data/spray-thresholds.json`, divalidasi zod di `src/lib/spray-window.ts`:
+  ```ts
+  z.object({
+    rainTundaMm: z.number(),          // tp slot ini atau slot berikut ≥ nilai → Tunda
+    windTundaKmh: z.number(),         // ws ≥ nilai → Tunda
+    windHatiKmh: z.number(),          // ws ≥ nilai → Hati-hati
+    tempHatiC: z.number(),            // t ≥ nilai → Hati-hati
+    humidityHatiPct: z.number(),      // hu ≤ nilai → Hati-hati
+    reviewedBy: z.string().optional(),
+    sources: z.array(z.string()),
+  }).nullable()                        // null atau reviewedBy kosong → indikator disembunyikan (OQ-11b)
+  ```
+  T-02 membuat file berisi `null`. Fungsi punya satu tes berbasis tabel kasus.
 - Worker proxy hanya ditambahkan bila CORS BMKG berubah atau kuota bermasalah — butuh keputusan baru.
 
 ### Data wilayah (kode `adm4`)

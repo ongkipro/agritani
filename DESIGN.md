@@ -108,8 +108,8 @@ Footer:  identitas legal, alamat, WhatsApp resmi, Kebijakan Privasi, tautan utam
 ```
 
 - Anatomi lengkap header/footer ada di §4.2.1. Header berlatar `--color-brand`, tidak sticky. "Ajukan Kemitraan" tampil sebagai tombol **outline putih** (sekunder): prioritas petani dulu berarti aksi B2B tidak boleh menjadi elemen paling mencolok di setiap halaman.
-- Menu mobile: `<dialog>` native atau tombol `aria-expanded`; tutup dengan Esc dan tap di luar; fokus kembali ke tombol.
-- Halaman aktif: `aria-current="page"` + garis bawah 2px `--color-harvest` (bukan hanya warna).
+- Menu mobile: `<dialog>` layar penuh dengan tombol "Tutup" terlihat; tutup dengan tombol atau Esc; fokus kembali ke tombol Menu.
+- Halaman aktif: `aria-current="page"` + garis bawah 3px `--color-harvest` (bukan hanya warna).
 
 ### 2.2. Diagnosa Gejala (REQ-06)
 
@@ -118,7 +118,7 @@ pencarian teks adalah jalur kedua lewat Pagefind (REQ-06b).
 
 | Langkah | Kontrol | Perilaku |
 | :--- | :--- | :--- |
-| 1. Komoditas | Radio group bergaya tombol besar (Sawit, Cabai, Padi, Jagung, Tomat, Sayuran Daun) | Tersimpan di URL (`?k=cabai`); Back memulihkan state |
+| 1. Komoditas | Radio group bergaya tombol besar; daftar diturunkan dari `commodities` yang punya data gejala tertinjau (awal diharapkan: Sawit, Cabai, Padi, Jagung, Tomat) | Tersimpan di URL (`?k=cabai`); Back memulihkan state |
 | 2. Bagian tanaman | Radio group (Daun, Batang/Pangkal, Buah/Bunga, Akar) | Hanya bagian yang punya data yang aktif; yang lain disabled + keterangan |
 | 3. Gejala | Daftar pilihan berbahasa awam dari `symptoms` | Filter teks lokal opsional |
 | 4. Hasil | Daftar kandidat: nama lokal, nama ilmiah, **tanda pembeda**, tautan artikel | Semua kandidat ditampilkan, diurutkan kecocokan |
@@ -305,11 +305,11 @@ Aturan pemakaian:
 
 | Peran | Font | Dipakai di |
 | :--- | :--- | :--- |
-| Display & UI | **Plus Jakarta Sans** (typeface buatan studio Indonesia, OFL) 400/600/800 | Wordmark, judul region lapangan, navigasi, tombol, form, body |
-| Editorial | **Newsreader** (OFL) 500/600 | Judul artikel, H2/H3 artikel, judul bacaan unggulan, `/tentang-kami` |
+| Display & UI | **Plus Jakarta Sans** (typeface buatan studio Indonesia, OFL) 400, 400 italic, 600, 800 | Wordmark, judul region lapangan, navigasi, tombol, form, body; italic untuk nama ilmiah |
+| Editorial | **Newsreader** (OFL) 600, 600 italic | Judul artikel, H2/H3 artikel, judul bacaan unggulan, `/tentang-kami`; italic untuk nama ilmiah di dalam judul |
 | Angka teknis | Plus Jakarta Sans + `font-variant-numeric: tabular-nums` | Dosis, NPK, HST, luas lahan |
 
-- Self-hosted `woff2` subset Latin + Latin Extended; total font ≤ 110 KB; `font-display: swap` dengan fallback metrik yang disesuaikan (`size-adjust`) untuk menekan CLS.
+- Self-hosted `woff2` subset Latin + Latin Extended (6 file); total font ≤ 130 KB, dan hanya file yang dipakai halaman itu yang dimuat; `font-display: swap` dengan fallback metrik yang disesuaikan (`size-adjust`) untuk menekan CLS.
 - Tanpa monospace untuk dosis (terbaca seperti kode di spesimen).
 - Skala: display `clamp(2rem, 1.4rem + 2.6vw, 3rem)` / 1.1 · H1 artikel `clamp(2rem, 1.5rem + 2vw, 2.75rem)` / 1.15 · H2 `clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem)` / 1.25 · H3 `1.1875rem` / 1.35 · body UI `1rem` / 1.5 · body artikel `1.0625rem` (mobile) → `1.125rem` (≥768px) / **1.75** · kecil `0.875rem` / 1.45 (minimum teks bermakna).
 - Line-height 1.75 hanya untuk prosa artikel; UI, metadata, dan form 1.4–1.5.
@@ -382,10 +382,10 @@ Sintesis (terinferensi dari observasi di atas):
 ### 4.1. Composition contract — PROPOSED
 
 - **C1 Skeleton homepage per breakpoint**
-  - ≥1024px: header → hero dua kolom (teks + pemilih komoditas 7/12, media 5/12) → band `tint` "Diagnosa per komoditas" → bacaan unggulan (1 dominan 7/12 + daftar terbaru 5/12) → lini produk (daftar 4 produk + komoditas sasarannya, tanpa nomor) → tentang penulis → band `harvest-tint` kemitraan → footer (lihat §4.2.3 Beranda).
+  - ≥1024px: header → hero dua kolom (teks + pemilih komoditas 7/12, media/Ringkasan Lapangan 5/12) → band `tint` "Jurnal per komoditas" → bacaan pilihan (1 dominan 7/12 + daftar terbaru 5/12) → Alat Tani (daftar 4 alat) → Konsultasi → tentang penulis → produk (daftar 4 produk, referensi) → band `harvest-tint` kemitraan → footer (urutan & isi: §4.2.3 Beranda).
   - <1024px: satu kolom dengan urutan sama; media hero pindah **di bawah** pemilih komoditas atau dihilangkan; pemilih komoditas terlihat tanpa scroll di 390×740.
 - **C2 Frame**: rata kiri di seluruh halaman; judul hero maks `16ch`; paragraf pendamping maks `52ch`; prosa artikel `68ch`.
-- **C3 Hero**: fokus utama = pertanyaan "Tanaman apa yang bermasalah?" + 6 tombol komoditas (min 48px tinggi, grid 2 kolom mobile / 3 kolom desktop); kedua = tautan teks "atau cari gejala" (Pagefind); ketiga = tautan ke Jurnal Tani. Tanpa pola badge → headline tengah → dua tombol. Bila foto belum ada, kolom media diganti **Ringkasan Lapangan contoh dari artikel nyata** (bukan kosong, bukan ilustrasi generik).
+- **C3 Hero**: fokus utama = pertanyaan "Tanaman apa yang bermasalah?" + tombol komoditas dari data (min 48px tinggi, grid 2 kolom mobile / 3 kolom desktop); kedua = tautan teks "atau cari gejala" (Pagefind); ketiga = tautan ke Jurnal Tani. Tanpa pola badge → headline tengah → dua tombol. Bila foto belum ada, kolom media diganti **Ringkasan Lapangan contoh dari artikel nyata** (bukan kosong, bukan ilustrasi generik).
 - **C4 Hierarki tipe**: region lapangan = Plus Jakarta Sans 800 untuk display, 600 untuk H2; region sains = Newsreader 600. Satu halaman tidak mencampur dua font display di satu region.
 - **C5 Ritme**: band lapangan padat (spasi 1–1.5rem di dalam), band editorial lapang (2–3rem). Pergantian band `canvas` ↔ `tint` menandai perubahan tugas, bukan dekorasi.
 - **C6 Elemen khas**: (a) tombol komoditas besar tap-first; (b) Ringkasan Lapangan berlatar `tint` dengan label field `soil`; (c) langkah bernomor `01–03` hanya untuk urutan nyata (langkah kemitraan, alur distribusi), tidak untuk daftar produk; (d) baris indeks artikel dengan jumlah artikel nyata per klaster.
@@ -419,14 +419,14 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 
 | Layout | Halaman | Judul | Latar pembuka | Kepadatan |
 | :--- | :--- | :--- | :--- | :--- |
-| **Lapangan** | Beranda, Diagnosa Gejala, Produk (indeks & detail), Kemitraan, Cari, 404 | Plus Jakarta Sans 800 | `canvas`, band `tint`/`harvest-tint` | Padat, tap-first |
+| **Lapangan** | Beranda, Alat Tani (indeks + 4 alat), Konsultasi, Produk (indeks & detail), Kemitraan, Cari, 404 | Plus Jakarta Sans 800 | `canvas`, band `tint`/`harvest-tint` | Padat, tap-first |
 | **Sains** | Indeks jurnal, Hub klaster, Artikel, Penulis, Tentang Kami, Kebijakan Privasi | Newsreader 600 | `canvas` | Lapang, prosa 68ch |
 
 #### 4.2.3. Anatomi per tipe halaman
 
 **Beranda `/`** (Lapangan) — komposisi rinci di C1–C8 (§4.1)
 
-1. Hero: H1 "Tanaman Anda bermasalah? Kenali dari gejalanya." · paragraf pendamping · "Pilih tanaman Anda:" + 6 tombol komoditas → `/alat/diagnosa-gejala/?k=` · tautan "cari gejala dengan kata kunci" & "baca Jurnal Tani" · kolom kanan: Ringkasan Lapangan dari artikel unggulan (atau foto asli).
+1. Hero: H1 "Tanaman Anda bermasalah? Kenali dari gejalanya." · paragraf pendamping · "Pilih tanaman Anda:" + tombol komoditas (dari data) → `/alat/diagnosa-gejala/?k=` · tautan "cari gejala dengan kata kunci" & "baca Jurnal Tani" · kolom kanan: Ringkasan Lapangan dari artikel unggulan (atau foto asli).
 2. Band `tint` — H2 "Jurnal per komoditas": 5 baris hub + jumlah artikel nyata.
 3. H2 "Bacaan pilihan": 1 artikel dominan (judul serif, dek, byline ringkas) + 3 baris artikel terbaru.
 4. H2 "Alat Tani": 4 baris alat (nama · satu kalimat kegunaan) → `/alat/…`. Daftar, bukan grid kartu.
@@ -480,7 +480,7 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 **Hub Klaster `/jurnal/topik/{klaster}/`** (Sains)
 
 1. Breadcrumb · H1 nama klaster ("Kelapa Sawit & Perkebunan").
-2. Pengantar 80–150 kata ditulis manusia: masalah utama klaster, komoditas yang dicakup.
+2. Pengantar 80–150 kata dari `src/content/pages/topik-{klaster}.md` (opsional sampai OQ-12): masalah utama klaster, komoditas yang dicakup.
 3. Tautan "Diagnosa gejala {komoditas}" untuk komoditas di klaster ini.
 4. Daftar artikel klaster (baris, sama seperti indeks jurnal).
 5. Produk relevan (hanya yang komoditasnya cocok, maksimal 2 baris).
@@ -525,7 +525,7 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 3. Form (desktop: kolom kanan 5/12; mobile: di bawah alur).
 4. Setelah kirim: "Lanjutkan percakapan di WhatsApp" + nomor tertulis.
 
-**Kebijakan Privasi `/kebijakan-privasi/`** (Sains) — prosa 68ch, tanggal berlaku, identitas pengelola (OQ-7), tanpa cookie/pelacak, data form hanya lewat WhatsApp.
+**Kebijakan Privasi `/kebijakan-privasi/`** (Sains) — prosa 68ch, tanggal berlaku, identitas pengelola (OQ-7), tanpa cookie/pelacak, data form hanya lewat WhatsApp; Cuaca Tani mengirim kode desa yang dipilih langsung ke BMKG (alamat IP pengguna terlihat oleh BMKG); pilihan alat disimpan hanya di perangkat pengguna (`localStorage`) dan bisa dihapus lewat pengaturan browser.
 
 **Cari `/cari/`** (Lapangan, `noindex`) — H1 "Cari di Jurnal Tani" · kotak cari (label terlihat) · hasil Pagefind berupa baris artikel · kosong: saran "coba nama tanaman + gejala" + tautan Diagnosa Gejala.
 
@@ -533,27 +533,7 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 
 #### 4.2.4. SEO per tipe halaman
 
-| Tipe | `<title>` | Index | JSON-LD |
-| :--- | :--- | :---: | :--- |
-| Beranda | `Agritani — Diagnosa Gejala & Jurnal Tani untuk Petani Indonesia` | ya | `Organization`, `WebSite` |
-| Indeks Alat Tani | `Alat Tani Gratis untuk Petani — Agritani` | ya | `BreadcrumbList` |
-| Diagnosa Gejala | `Diagnosa Gejala Tanaman — Agritani` | ya | `BreadcrumbList`, `WebApplication` |
-| Kalender Tanam | `Kalender Tanam: Jadwal dari Tanggal Tanam — Agritani` | ya | `BreadcrumbList`, `WebApplication` |
-| Cuaca Tani | `Cuaca Tani: Prakiraan BMKG & Waktu Semprot — Agritani` | ya | `BreadcrumbList`, `WebApplication` |
-| Kalkulator Dosis | `Kalkulator Dosis Semprot per Tangki — Agritani` | ya | `BreadcrumbList`, `WebApplication` |
-| Konsultasi | `Konsultasi Pertanian via WhatsApp — Agritani` | ya | `BreadcrumbList` |
-| Indeks jurnal | `Jurnal Tani — Panduan Agronomi Berbasis Riset \| Agritani` | ya | `BreadcrumbList` |
-| Hub klaster | `{Klaster}: Panduan & Penanganan — Jurnal Tani Agritani` | ya | `CollectionPage`, `BreadcrumbList` |
-| Artikel | §4.3.4 | ya | §4.3.5 |
-| Penulis | `Prof. Arif Prabowo — Jurnal Tani Agritani` | ya | `ProfilePage` → `Person` |
-| Produk | `Produk Agritani untuk Sawit, Padi, dan Hortikultura` | ya | `BreadcrumbList` |
-| Detail produk | `{Produk} — {peran} untuk {komoditas utama} \| Agritani` | ya | `BreadcrumbList` (tanpa `Product`: tidak ada harga/penawaran) |
-| Tentang Kami | `Tentang PT Agritani Internasional` | ya | `Organization`, `BreadcrumbList` |
-| Kemitraan | `Kemitraan Distributor Resmi — Agritani` | ya | `BreadcrumbList` |
-| Kebijakan Privasi | `Kebijakan Privasi — Agritani` | ya | — |
-| Cari, 404 | — | **noindex** | — |
-
-Semua halaman: `meta description` unik 120–160 karakter, canonical absolut self-referencing, Open Graph + Twitter, `html lang="id"`, trailing slash konsisten.
+Dipindahkan ke **§4.4 Kontrak SEO Dinamis** (template judul, deskripsi, robots, JSON-LD, dan breadcrumb per tipe halaman ada di §4.4.3).
 
 ### 4.3. Anatomi Halaman Artikel — "Kanvas Jurnal Tani"
 
@@ -574,7 +554,7 @@ lebar di mobile.
 | # | Blok | Elemen HTML | Isi & aturan | Sumber data |
 | :---: | :--- | :--- | :--- | :--- |
 | 1 | Breadcrumb | `<nav aria-label="Breadcrumb"><ol>` | Beranda › Jurnal Tani › {Klaster}. Klaster tertaut ke hub. Menggantikan kicker. | `cluster` |
-| 2 | Judul | `<h1>` (satu-satunya) | 20–70 karakter, Newsreader 600, `text-wrap: balance`, maks `20ch` desktop | `title` |
+| 2 | Judul | `<h1>` (satu-satunya) | 20–110 karakter (naskah saat ini 73–103; `<title>` memakai `seoTitle` ≤ 48 bila perlu), Newsreader 600, `text-wrap: balance`, maks `24ch` desktop | `title` |
 | 3 | Dek | `<p class="dek">` | Satu kalimat 120–160 karakter = teks yang sama dengan meta description, jadi deskripsi selalu terlihat di halaman | `description` |
 | 4 | Byline | `<div>` + `<address>` untuk penulis | Foto 40×40 (setelah diterima) · "Oleh **Prof. Arif Prabowo**" (tautan `/penulis/arif-prabowo/`) · "Profesor Pertanian · Moderator Jurnal Tani" | `author` |
 | 5 | Baris metadata | `<p>` + `<time datetime>` | "Terbit 12 Okt 2026 · Diperbarui 3 Jan 2027 · 7 menit baca · {Komoditas}" — "Diperbarui" hanya bila `updatedDate` ada; format `id-ID`, tanpa jam | `pubDate`, `updatedDate`, dihitung |
@@ -635,41 +615,171 @@ Ringkasan Lapangan dan Isi; tidak ada elemen melayang.
 
 #### 4.3.4. Head & metadata per artikel
 
-| Field | Pola | Batas |
-| :--- | :--- | :--- |
-| `<title>` | `{seoTitle ?? title} — Jurnal Tani Agritani` | 45–60 karakter; bila `title` > 45, isi `seoTitle` |
-| `meta description` | `description` (sama dengan dek) | 120–160 karakter |
-| canonical | `https://agritani.com/jurnal/{slug}/` absolut, self-referencing | trailing slash konsisten |
-| robots | `index, follow, max-image-preview:large` | draft/404/cari: `noindex` |
-| Open Graph | `og:type=article`, `og:locale=id_ID`, `article:published_time`, `article:modified_time`, `article:author`, `og:image` 1200×630 absolut | gambar klaster default bila tanpa foto |
-| Twitter | `summary_large_image` | — |
-| `html lang` | `id` | — |
+Lihat **§4.4.3** (baris Artikel) dan §4.4.2 (aturan field).
 
 #### 4.3.5. Structured data (JSON-LD, hanya menandai konten yang terlihat)
 
-- `Article`: `headline`, `description`, `image`, `datePublished`, `dateModified` (atau `datePublished` bila belum diperbarui), `inLanguage: "id-ID"`, `mainEntityOfPage`, `author` → `Person` (`name`, `jobTitle: "Profesor Pertanian"`, `url` profil, `image` bila ada), `publisher` → `Organization` (PT Agritani Internasional, `logo` wordmark), `citation` → daftar referensi yang terlihat di blok 14.
-- `BreadcrumbList` sesuai blok 1.
-- Halaman `/penulis/arif-prabowo/`: `ProfilePage` dengan `mainEntity` → `Person` (`name`, `jobTitle`, `image`, `affiliation` bila institusi diberikan, `worksFor` PT Agritani Internasional hanya bila hubungan kerja itu benar).
-- Tidak ada `FAQPage`/`HowTo` (DEC-007). Tidak ada rating/review.
+Lihat **§4.4.5** (templat `Article`, `Person`, `BreadcrumbList`).
 
 #### 4.3.6. URL, hub, dan internal link
 
-| Halaman | URL | Index | Isi minimum |
-| :--- | :--- | :---: | :--- |
-| Indeks jurnal | `/jurnal/` | ya | Semua artikel terbaru + tautan 5 hub |
-| Hub klaster | `/jurnal/topik/{sawit\|pangan\|hortikultura\|tanah-nutrisi\|urban-farming}/` | ya | H1 klaster + paragraf pengantar 80–150 kata yang ditulis manusia + daftar artikel klaster; hub tanpa artikel terbit tidak dibangun |
-| Artikel | `/jurnal/{slug}/` | ya | §4.3.1 |
-| Profil penulis | `/penulis/arif-prabowo/` | ya | Foto, gelar, keahlian, daftar artikel beliau |
-| Hasil cari | `/cari/` | **noindex** | Pagefind |
-
-- Slug: huruf kecil, 3–6 kata, tanpa tanggal dan tanpa nomor urut ("artikel-05-…" dari nama file tidak dipakai di URL). Slug tidak diubah setelah terbit; bila terpaksa, redirect 301 di host.
-- Setiap artikel menerima tautan dari: hub klasternya, indeks jurnal, profil penulis, minimal 2 artikel terkait, dan (bila relevan) hasil Diagnosa Gejala. Setiap artikel memberi tautan ke: hub klaster (breadcrumb), 3 artikel terkait, `/alat/diagnosa-gejala/?k=`, profil penulis.
-- Anchor tautan dalam isi deskriptif ("cara membuat parit isolasi Ganoderma"), bukan "klik di sini".
-- `sitemap-index.xml` memuat artikel, hub, profil, halaman statis; `lastmod` dari `updatedDate ?? pubDate`. `robots.txt` menautnya.
+Lihat **§4.4.4** (breadcrumb), **§4.4.7** (URL & canonical), dan **§4.4.10** (internal link).
 
 #### 4.3.7. Pengukuran
 
 Tanpa pelacak pihak ketiga (§6.1): pengukuran memakai Google Search Console dan Bing Webmaster Tools (verifikasi DNS atau meta, tanpa cookie). Pantau per artikel: impresi, klik, CTR, kueri, dan status indeks. Kueri yang tidak terjawab menjadi bahan artikel baru.
+
+### 4.4. Kontrak SEO Dinamis
+
+Satu sumber untuk semua metadata, canonical, Open Graph, breadcrumb, JSON-LD, sitemap, dan robots. Semua nilai **dihasilkan dari data konten** (frontmatter/koleksi), bukan ditulis tangan per halaman. Sumber aturan: skill `seo-website-builder` (Page Completeness Formula) dan dokumentasi Google Search Central (Article, BreadcrumbList; diakses 2026-09-29).
+
+#### 4.4.1. Mekanisme
+
+- `src/lib/seo.ts` — fungsi murni `buildSeo(input: SeoInput): SeoMeta`. `SeoInput` = `{ type, path, title, description, image?, publishedTime?, modifiedTime?, author?, breadcrumbs, noindex?, jsonLd }`. Fungsi ini menormalisasi URL, memotong/menolak nilai di luar batas, menyusun judul dengan sufiks, dan memilih gambar OG cadangan.
+- `src/components/SeoHead.astro` — dipanggil sekali di `BaseLayout`, merender semua tag `<head>` di §4.4.2 dan satu `<script type="application/ld+json">` berisi `@graph`.
+- Setiap halaman **wajib** mengoper `SeoInput` bertipe; field wajib yang kosong → galat build (TypeScript + `assertSeo()` di `buildSeo`).
+- `src/lib/seo.test.ts` — tes tabel kasus (panjang judul, sufiks, canonical, fallback gambar, noindex).
+- `scripts/check-seo.mjs` (setelah build, bagian `npm run build`) — memindai `dist/**/*.html`: tepat satu `<title>`, `<h1>`, canonical absolut; `<title>` & description unik antarhalaman; JSON-LD bisa di-parse; halaman `noindex` tidak ada di sitemap. Gagal → build gagal.
+
+#### 4.4.2. Aturan field (semua halaman)
+
+| Tag | Aturan |
+| :--- | :--- |
+| `<html lang>` | `id` |
+| `<title>` | ≤ 60 karakter. Beranda tanpa sufiks; halaman lain `{judul} \| Agritani`. Artikel memakai `seoTitle ?? title` (≤ 48 + sufiks). Unik per halaman. |
+| `meta description` | 120–160 karakter, unik, sama dengan teks yang terlihat (dek/pengantar). Tanpa CTA "beli", tanpa daftar kata kunci. |
+| `link rel="canonical"` | URL absolut `https://agritani.com{path}` dengan trailing slash; self-referencing; **tanpa query string** (status alat `?k=`, `?t=` tidak punya canonical sendiri). |
+| `meta robots` | Default `index, follow, max-image-preview:large, max-snippet:-1`; `noindex, follow` untuk `/cari/`, 404, mode pratinjau draft. |
+| Open Graph | `og:site_name=Agritani`, `og:locale=id_ID`, `og:type` (`website` / `article` / `profile`), `og:title` (= judul tanpa sufiks), `og:description`, `og:url` (= canonical), `og:image` + `og:image:width/height/alt` (1200×630, absolut). Artikel: `article:published_time`, `article:modified_time`, `article:author` (URL profil), `article:section` (klaster). |
+| Twitter/X | `twitter:card=summary_large_image`, `twitter:title`, `twitter:description`, `twitter:image`, `twitter:image:alt` |
+| Lainnya | `meta name="author"` (artikel), `meta name="theme-color" content="#1A6335"`, `link rel="icon" href="/favicon.svg" type="image/svg+xml"` + `apple-touch-icon` PNG 180×180, `link rel="sitemap"`. Tanpa `meta keywords`. Satu bahasa → tanpa `hreflang`. |
+
+#### 4.4.3. Template per tipe halaman
+
+| Tipe | `<title>` (contoh, ≤ 60) | Description dari | `og:type` / gambar | Robots | JSON-LD (`@graph`) |
+| :--- | :--- | :--- | :--- | :---: | :--- |
+| Beranda | `Agritani: Diagnosa Gejala & Jurnal Tani` | teks pendamping hero | website / default situs | index | `Organization`, `WebSite`, `WebPage` |
+| Indeks Alat Tani | `Alat Tani Gratis untuk Petani \| Agritani` | pengantar | website / default alat | index | `WebPage`, `BreadcrumbList` |
+| Diagnosa Gejala | `Diagnosa Gejala Tanaman \| Agritani` | pengantar | website / gambar alat | index | `WebPage`, `BreadcrumbList` |
+| Kalender Tanam | `Kalender Tanam dari Tanggal Tanam \| Agritani` | pengantar | website / gambar alat | index | `WebPage`, `BreadcrumbList` |
+| Cuaca Tani | `Cuaca Tani: Prakiraan BMKG \| Agritani` | pengantar | website / gambar alat | index | `WebPage`, `BreadcrumbList` |
+| Kalkulator Dosis | `Kalkulator Dosis Semprot \| Agritani` | pengantar | website / gambar alat | index | `WebPage`, `BreadcrumbList` |
+| Konsultasi | `Konsultasi Pertanian via WhatsApp \| Agritani` | pengantar | website / default | index | `WebPage`, `BreadcrumbList` |
+| Indeks Jurnal | `Jurnal Tani: Panduan Agronomi \| Agritani` | pengantar | website / default jurnal | index | `CollectionPage`, `BreadcrumbList` |
+| Hub klaster | `{Nama klaster} \| Agritani` | `pages/topik-{klaster}.md` → fallback: "Kumpulan panduan {klaster} dari Jurnal Tani…" (dibentuk dari data, 120–160) | website / gambar klaster | index (hanya bila ≥ 1 artikel terbit) | `CollectionPage` (+`ItemList` artikel), `BreadcrumbList` |
+| Artikel | `{seoTitle ?? title} \| Agritani` | `description` | article / `heroImage` → gambar klaster | index | `Article`, `BreadcrumbList` |
+| Profil penulis | `Prof. Arif Prabowo, Penulis \| Agritani` | `pages/penulis-arif-prabowo.md` | profile / foto beliau → default | index | `ProfilePage` (`mainEntity` → `Person`), `BreadcrumbList` |
+| Indeks produk | `Produk Agritani untuk Sawit, Padi & Sayur` | pengantar | website / default produk | index | `CollectionPage`, `BreadcrumbList` |
+| Detail produk | `{Nama}: {peran singkat} \| Agritani` | `summary` (dipangkas ke 160 di batas kata) | website / `packshot` → default produk | index | `WebPage`, `BreadcrumbList` (tanpa `Product`: tidak ada harga/penawaran) |
+| Tentang Kami | `Tentang PT Agritani Internasional` | `pages/tentang-kami.md` | website / default | index | `AboutPage`, `Organization`, `BreadcrumbList` |
+| Kemitraan | `Kemitraan Distributor Resmi \| Agritani` | pengantar | website / default | index | `WebPage`, `BreadcrumbList` |
+| Kebijakan Privasi | `Kebijakan Privasi \| Agritani` | `pages/kebijakan-privasi.md` | website / default | index | `WebPage`, `BreadcrumbList` |
+| Cari, 404 | `Cari di Jurnal Tani \| Agritani` / `Halaman Tidak Ditemukan \| Agritani` | tetap | website / default | **noindex** | — |
+
+#### 4.4.4. Breadcrumb (terlihat + JSON-LD dari data yang sama)
+
+| Rute | Jejak |
+| :--- | :--- |
+| `/alat/{alat}/` | Beranda › Alat Tani › {Nama alat} |
+| `/jurnal/topik/{klaster}/` | Beranda › Jurnal Tani › {Klaster} |
+| `/jurnal/{slug}/` | Beranda › Jurnal Tani › {Klaster} › {Judul artikel} |
+| `/penulis/arif-prabowo/` | Beranda › Jurnal Tani › Prof. Arif Prabowo |
+| `/produk/{slug}/` | Beranda › Produk › {Nama produk} |
+| halaman tingkat satu (`/alat/`, `/jurnal/`, `/produk/`, `/konsultasi/`, `/tentang-kami/`, `/kemitraan-distributor/`, `/kebijakan-privasi/`) | Beranda › {Nama halaman} |
+
+- Elemen terakhir: teks biasa dengan `aria-current="page"`; di JSON-LD tanpa `item` (Google memakai URL halaman). Elemen lain: `position`, `name`, `item` absolut (wajib).
+- Judul artikel panjang dipotong visual (`text-overflow`) di layar sempit, tetapi `name` di JSON-LD tetap lengkap.
+
+#### 4.4.5. JSON-LD — satu `@graph` per halaman dengan `@id` stabil
+
+`@id` tetap: `https://agritani.com/#organization`, `https://agritani.com/#website`, `https://agritani.com/penulis/arif-prabowo/#person`, `{canonical}#webpage`, `{canonical}#article`, `{canonical}#breadcrumb`. Entitas di halaman lain dirujuk lewat `@id`, tidak diulang penuh.
+
+Artikel (contoh bentuk, nilai dari data):
+
+```json
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://agritani.com/jurnal/antraknosa-cabai/#article",
+      "mainEntityOfPage": { "@id": "https://agritani.com/jurnal/antraknosa-cabai/#webpage" },
+      "headline": "Mengatasi Antraknosa (Patek) pada Cabai",
+      "description": "…",
+      "image": ["…/16x9.webp", "…/4x3.webp", "…/1x1.webp"],
+      "datePublished": "2026-10-12",
+      "dateModified": "2027-01-03",
+      "inLanguage": "id-ID",
+      "articleSection": "Hortikultura",
+      "author": { "@id": "https://agritani.com/penulis/arif-prabowo/#person" },
+      "publisher": { "@id": "https://agritani.com/#organization" },
+      "citation": [{ "@type": "ScholarlyArticle", "name": "…", "sameAs": "https://doi.org/…" }]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://agritani.com/penulis/arif-prabowo/#person",
+      "name": "Arif Prabowo",
+      "honorificPrefix": "Prof.",
+      "jobTitle": "Profesor Pertanian",
+      "url": "https://agritani.com/penulis/arif-prabowo/",
+      "image": "…/arif-prabowo.webp"
+    },
+    { "@type": "BreadcrumbList", "@id": "…#breadcrumb", "itemListElement": ["…"] }
+  ]
+}
+```
+
+Aturan:
+
+- `author.name` hanya nama ("Arif Prabowo"); gelar di `honorificPrefix`, jabatan di `jobTitle` (sesuai panduan Google). `affiliation` hanya bila institusi diberikan (OQ-4).
+- `image` artikel: 3 turunan `heroImage` (16:9, 4:3, 1:1, ≥ 50.000 piksel) dibuat `astro:assets` saat build; tanpa `heroImage` → properti `image` dihilangkan (tidak memakai logo sebagai gambar artikel).
+- `Organization`: `name` "PT Agritani Internasional", `alternateName` "Agritani", `url`, `logo` (PNG 512×512 dari `agritani-mark.svg`), `contactPoint` (WhatsApp, bila OQ-1 terjawab), `address` (bila OQ-7). Tanpa `sameAs` sampai akun media sosial resmi diberikan.
+- `WebSite` di Beranda saja: `name`, `url`, `inLanguage`, `publisher` → organisasi. **Tanpa** `SearchAction` (sitelinks search box dihentikan Google sejak 21-11-2024 — Search Central Blog "Farewell, Sitelinks Search Box").
+- Hanya menandai konten yang terlihat; tanpa `FAQPage`, `HowTo`, `Product`, `Review`/`AggregateRating` (DEC-007).
+- Validasi: Schema Markup Validator + Rich Results Test untuk satu contoh per tipe (T-13).
+
+#### 4.4.6. Gambar Open Graph
+
+- PNG 1200×630, < 150 KB, dibuat **statis sekali** dari aset brand (logo reverse di atas `brand`, judul bagian dalam Plus Jakarta Sans 800) di `public/og/`: `default.png`, `jurnal.png`, 5 × `klaster-{klaster}.png`, 4 × `alat-{alat}.png`, `produk.png`.
+- Artikel dengan `heroImage` memakai potongan 1200×630 dari foto itu; tanpa foto → gambar klaster.
+- Batas yang disengaja: gambar OG per artikel yang digenerate otomatis (judul di atas gambar) ditunda; jalur peningkatan: generator saat build, dengan keputusan baru di DECISIONS bila ditambahkan.
+
+#### 4.4.7. URL, canonical, dan pengalihan
+
+- Satu host kanonik: `https://agritani.com` (apex, HTTPS). `www.` dan `http://` → 301 ke apex HTTPS lewat aturan Cloudflare (dikonfigurasi saat DNS disiapkan — butuh persetujuan, OQ-6).
+- Trailing slash selalu (`trailingSlash: 'always'`); tanpa slash → 301 (Cloudflare static assets / `_redirects`, diuji di T-18).
+- Slug huruf kecil, kata dipisah `-`, 3–6 kata, tanpa tanggal/nomor file. Slug tidak diubah setelah terbit; bila terpaksa, 301 di `public/_redirects`.
+- Parameter query (`?k=`, `?t=`, `?q=`) tidak mengubah canonical dan tidak masuk sitemap.
+
+#### 4.4.8. Sitemap & robots
+
+- `@astrojs/sitemap` dengan `filter` yang membuang `/cari/`, `/404/`, `/spesimen/`, dan halaman `noindex`; `serialize` mengisi `lastmod` dari `updatedDate ?? pubDate` (artikel), `reviewedAt` (kalender), atau `updatedDate` koleksi `pages`; halaman tanpa tanggal perubahan bermakna **tidak** diberi `lastmod` (Google hanya memakai `lastmod` yang akurat). Tanpa `priority`/`changefreq` (diabaikan Google — developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap, diakses 2026-09-29).
+- `public/robots.txt`:
+  ```
+  User-agent: *
+  Allow: /
+  Disallow: /cari/
+
+  Sitemap: https://agritani.com/sitemap-index.xml
+  ```
+  Kebijakan crawler AI tidak dibedakan di v1 (semua diizinkan); bila ingin membatasi pelatihan model, keputusan baru via skill `ai-traffic-os`.
+
+#### 4.4.9. Indeksasi & verifikasi (setelah rilis — tindakan eksternal, butuh persetujuan)
+
+- Google Search Console: properti Domain via TXT DNS di Cloudflare (OQ-6); kirim `sitemap-index.xml`.
+- Bing Webmaster Tools: impor dari Search Console.
+- IndexNow (Bing, Yandex, dll.): opsional setelah rilis; kunci di `public/{key}.txt`, notifikasi URL berubah sesudah deploy. Mekanisme (skrip pasca-deploy atau fitur Cloudflare) diputuskan saat itu.
+
+#### 4.4.10. Konten & internal link
+
+- Satu `<h1>` = judul halaman; heading tidak melompat level; H2 artikel berbentuk pertanyaan bila cocok.
+- Artikel menerima tautan dari: hub klasternya, indeks jurnal, profil penulis, ≥ 2 artikel terkait, dan hasil Diagnosa Gejala yang relevan. Artikel menaut ke: hub (breadcrumb), 3 artikel terkait, alat yang relevan (`/alat/diagnosa-gejala/?k=`, Kalender Tanam), profil penulis.
+- Anchor deskriptif ("cara membuat parit isolasi Ganoderma"), bukan "klik di sini".
+- Gambar: nama file kebab-case berbahasa Indonesia yang deskriptif, `alt` 5–125 karakter menjelaskan isi agronomis, `width`/`height` eksplisit, `loading="lazy"` kecuali gambar LCP.
+
+#### 4.4.11. Pengukuran
+
+Search Console & Bing Webmaster (§4.3.7) per halaman: impresi, klik, CTR, posisi, status indeks, hasil rich result. Tanpa pelacak di situs.
 
 ---
 
@@ -685,17 +795,17 @@ Tanpa pelacak pihak ketiga (§6.1): pengukuran memakai Google Search Console dan
 | `ConsultPrompt` | Kapan harus konsultasi + WhatsApp terisi | Tidak ada |
 | `CommodityPicker` | Tombol komoditas → `/alat/diagnosa-gejala/?k=` (homepage), label + `ChevronRight` | Tidak ada (tautan) |
 | `TriageFilter` | Langkah 1–4 dari data `symptoms`, sinkron URL, state §2.2 | Script kecil |
-| `FieldSummary` | Ringkasan Lapangan dari `fieldTakeaways` yang terisi | Tidak ada |
+| `FieldSummaryBox` | Ringkasan Lapangan dari `fieldTakeaways` yang terisi | Tidak ada |
 | `ArticleToc` | Daftar Isi + penanda bagian aktif | Enhancement kecil |
 | `References` | Daftar Pustaka dalam `<details>` | Tidak ada |
-| `ArticleRow` | Satu baris indeks artikel | Tidak ada |
+| `ArticleRow` | Satu baris indeks artikel (jurnal, hub, penulis, cari, beranda) | Tidak ada |
 | `ProductRow` | Satu baris katalog produk | Tidak ada |
 | `PartnerForm` | Validasi native + tautan `wa.me` | Script kecil |
 | `SearchBox` | Pagefind dimuat saat fokus | Lazy |
 | `CropTimeline` | Timeline fase Kalender Tanam + unduh `.ics` | Script kecil |
 | `RegionPicker` / `ForecastTable` | Pemilih wilayah 4 tingkat + tabel prakiraan BMKG + indikator | Script kecil |
 | `DoseCalculator` | Rumus dosis & hasil `aria-live` | Script kecil |
-| `StructuredData` | JSON-LD `Organization`, `Article` (`author` → `Person` Arif Prabowo dengan `jobTitle`, `url` profil, `image` bila ada), `BreadcrumbList` | Tidak ada |
+| `SeoHead` | Semua tag `<head>` SEO + JSON-LD `@graph` dari `buildSeo()` (§4.4.1) | Tidak ada |
 
 Tombol: **Primer** (fill `brand`, teks putih), **Aksen** (fill `harvest`, teks gelap; maksimal satu per viewport), **Sekunder** (outline `border-control`/putih di header), **Tautan teks**. Semua ≥ 44×44 px, radius 2px, label kata kerja + objek ("Ajukan Kemitraan", "Cari Diagnosa").
 
@@ -713,7 +823,7 @@ Tombol: **Primer** (fill `brand`, teks putih), **Aksen** (fill `harvest`, teks g
 
 ### 6.1. Performance budget (REQ-08)
 
-≤ 350 KB transfer awal per halaman (font ≤ 110 KB, gambar hero ≤ 90 KB), JS ≤ 10 KB di luar Pagefind, CLS ≤ 0.05, LCP ≤ 2.5 s (Lighthouse mobile), Lighthouse mobile ≥ 95 (Performance, Accessibility, SEO). Tanpa pelacak pihak ketiga.
+≤ 350 KB transfer awal per halaman (font ≤ 130 KB, gambar hero ≤ 90 KB), JS ≤ 10 KB di luar Pagefind, CLS ≤ 0.05, LCP ≤ 2.5 s (Lighthouse mobile), Lighthouse mobile ≥ 95 (Performance, Accessibility, SEO). Tanpa pelacak pihak ketiga.
 
 ---
 
@@ -769,13 +879,13 @@ Render kedua (palet baru, hero tap-first) di 390px dan 1440px — diamati:
 - Enam tombol komoditas terlihat tanpa scroll di 390×844; Ringkasan Lapangan mengisi kolom kanan desktop sehingga hero tidak kosong.
 - Satu aksen kuning (tombol kemitraan) di band `harvest-tint` cukup; tidak bersaing dengan aksi petani.
 - Kekurangan: tanpa foto, halaman terasa rapi tapi generik → fotografi asli (OQ-5) adalah sumber identitas terbesar yang belum ada. Tombol komoditas polos terlihat seperti field form → tambahkan ikon `ChevronRight` dan, setelah P-2, gambar kecil.
-- Spesimen belum memuat menu/cari mobile; spesimen di repo dibuat di T-01 (`/_spesimen`, tidak dipublikasikan).
+- Spesimen belum memuat menu/cari mobile; spesimen di repo dibuat di T-01 (`/spesimen/`, di-inject hanya saat `astro dev`, tidak ada di `dist/`).
 
 ---
 
 ## 10. UI Delivery Evidence (per task UI)
 
-Task yang mengubah tampilan (T-04 s.d. T-12, T-14, T-17) belum Done sebelum:
+Task yang mengubah tampilan (T-04 s.d. T-12, T-14, T-17, T-19 s.d. T-22) belum Done sebelum:
 
 1. `impeccable` critique + polish dijalankan dan temuannya diperbaiki.
 2. `ui-validation` membuka halaman nyata, menjalankan alur kritis, render 360px dan 1440px, keyboard, dan state §2 yang relevan.
