@@ -4,8 +4,8 @@
  * All outbound WhatsApp links MUST pass through this function.
  */
 
-// TODO(OQ-1): Nomor WhatsApp resmi PT Agritani Internasional dari pemilik
-export const DEFAULT_WA_PHONE = '';
+// Nomor WhatsApp resmi PT Agritani Internasional (sumber: docs/research/web-scan.md baris 146)
+export const DEFAULT_WA_PHONE = '6287770457256';
 export const DEV_PLACEHOLDER_PHONE = '62000000000';
 
 export interface WaField {
@@ -24,7 +24,7 @@ export function waLink(options: WaLinkOptions): string {
   const { source, fields = [], note, phone } = options;
   const envPhone =
     typeof process !== 'undefined' ? process.env?.DEFAULT_WA_PHONE : undefined;
-  let targetPhone = phone || envPhone || DEFAULT_WA_PHONE;
+  let targetPhone = phone !== undefined ? phone : (envPhone || DEFAULT_WA_PHONE);
 
   if (!targetPhone) {
     const isDraftPreview =
