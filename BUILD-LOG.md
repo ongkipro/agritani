@@ -631,6 +631,35 @@ Record only durable implementation changes, validation evidence, and gotchas tha
   - Lisensi: Unsplash License (bebas komersial tanpa royalti).
   - Dicatat lengkap: nama berkas, peruntukan, dimensi & rasio, ukuran KB, nama fotografer, tautan sumber, dan status wajib "DUMMY — ganti (OQ-5)".
 
+## 2026-09-29 — T-08: Homepage Hibrida (PASS)
+
+- **Komponen Pemilih Komoditas (`src/components/CommodityPicker.astro`)**:
+  - Dibuat sesuai DESIGN §4.1 (C1) dan §4.2.3: tap-first min 48px, grid 2 kolom di mobile dan 3 kolom di desktop.
+  - 6 komoditas utama (Cabai, Padi, Kelapa Sawit, Tomat, Bawang Merah, Jagung) dengan tautan langsung ke `/alat/diagnosa-gejala/?k={slug}`.
+  - Tautan pembantu ke `/cari/` dan `/jurnal/`.
+- **Halaman Beranda Hibrida (`src/pages/index.astro`)**:
+  - Mengimplementasikan 8 bagian terstruktur DESIGN §4.1 (C1–C8):
+    1. Hero: H1 max-w-[16ch] ("Tanaman Anda bermasalah? Kenali dari gejalanya."), deskripsi max-w-[52ch], CommodityPicker, media hero `hero-beranda.webp` (5:4 aspect ratio, eager Image) dengan caption "Lahan Tropis Indonesia".
+    2. Band tint: Jurnal per komoditas dengan jumlah artikel terhitung nyata dari koleksi `articles`.
+    3. Bacaan Pilihan: 1 artikel utama serif + 3 baris artikel terbaru (`ArticleRow`).
+    4. Alat Tani: 4 baris terbuka (Diagnosa, Kalender, Cuaca, Dosis) tanpa kartu bento.
+    5. Tanya Tim Agronomi: 2 kalimat + tombol sekunder "Cara Konsultasi" menaut ke `/konsultasi/` (tanpa link wa.me langsung di Beranda per DESIGN §4.2.3 butir 5).
+    6. Tentang Penulis: Inisial "AP", Prof. Arif Prabowo, tautan profil.
+    7. Produk: 4 baris referensi (Aussie, BENSU, Kojien, Saratoga) tanpa klaim tertahan.
+    8. Band harvest-tint: Kemitraan alur `01-03` + tombol aksen "Ajukan Kemitraan".
+- **Kepatuhan Invarian Desain & Keamanan**:
+  - 0 kickers, 0 garis pemisah seksi horizontal, radius 2px konsisten.
+  - Kontras teks di atas 7:1 (misal #1A6335 di atas putih 7.29:1, #222222 di atas putih 16:1).
+  - CSP 0/0/0: zero executed inline scripts, zero on*= attributes, zero style= attributes.
+  - SEO: Canonical apex `https://agritani.com/`, og:image menunjuk `/og/default.png` yang valid di disk.
+- **Bukti Render UI Browser**:
+  - Port 4330 via `agritani-shot.cjs`: `proof/ui/t08/beranda-390.png` (mobile) dan `proof/ui/t08/beranda-1440.png` (desktop).
+- **Verifikasi**:
+  - `npx astro check`: 0 errors.
+  - `npm test`: 76/76 unit tests PASS.
+  - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 183 halaman terkompilasi, check-seo PASS (0 error, 0 warning), check-csp PASS (0/0/0).
+
+
 
 
 

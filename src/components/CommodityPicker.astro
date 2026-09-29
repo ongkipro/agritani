@@ -1,0 +1,60 @@
+---
+/**
+ * src/components/CommodityPicker.astro
+ * Tap-first commodity picker for homepage hero (DESIGN §4.1 C3, §4.2.3).
+ * Links directly to Diagnosa Gejala filtered by commodity: /alat/diagnosa-gejala/?k={slug}
+ */
+
+interface CommodityItem {
+  slug: string;
+  name: string;
+  icon?: string;
+}
+
+interface Props {
+  commodities?: CommodityItem[];
+}
+
+const DEFAULT_COMMODITIES: CommodityItem[] = [
+  { slug: 'cabai', name: 'Cabai' },
+  { slug: 'padi', name: 'Padi' },
+  { slug: 'kelapa-sawit', name: 'Kelapa Sawit' },
+  { slug: 'tomat', name: 'Tomat' },
+  { slug: 'bawang-merah', name: 'Bawang Merah' },
+  { slug: 'jagung', name: 'Jagung' },
+];
+
+const { commodities = DEFAULT_COMMODITIES } = Astro.props;
+---
+
+<div class="space-y-3">
+  <span class="block text-xs font-bold text-[var(--color-soil)] uppercase tracking-wider">
+    Pilih Tanaman Anda:
+  </span>
+
+  <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+    {commodities.map((c) => (
+      <a
+        href={`/alat/diagnosa-gejala/?k=${c.slug}`}
+        class="flex items-center justify-between px-4 py-3 min-h-[48px] rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] text-[var(--color-text)] font-bold text-sm sm:text-base hover:border-[var(--color-brand)] hover:bg-[var(--color-tint)] transition-colors group"
+      >
+        <span>{c.name}</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="text-[var(--color-text-muted)] group-hover:text-[var(--color-brand-strong)] transition-colors shrink-0"
+          aria-hidden="true"
+        >
+          <path d="m9 18 6-6-6-6"/>
+        </svg>
+      </a>
+    ))}
+  </div>
+</div>

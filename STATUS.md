@@ -53,8 +53,15 @@ T-26 (Gambar Dummy WebP 10 Slot) selesai diimplementasikan dan diverifikasi (RUN
 - Kepatuhan Format & Ukuran: Seluruh berkas bertipe `.webp` (tanpa format lain), masing-masing berukuran <= 250 KB (terkecil 35.3 KB, terbesar 241.9 KB).
 - Atribusi Lengkap: `src/assets/images/dummy/CREDITS.md` mendokumentasikan nama berkas, fotografer, lisensi Unsplash, tanggal unduh, dan status wajib "DUMMY — ganti (OQ-5)".
 
+T-08 (Homepage Hibrida) selesai diimplementasikan dan diverifikasi (RUN-20260929T145637Z-f73f7b8f):
+- Komponen `CommodityPicker.astro`: tap-first min 48px, 6 komoditas utama menaut ke diagnosa gejala.
+- Halaman `index.astro`: 8 bagian DESIGN §4.1 (Hero dengan hero-beranda.webp, Band tint topik, Bacaan Pilihan, Alat Tani terbuka, Tanya Agronomi tanpa link WA langsung, Tentang Penulis AP, Produk tanpa klaim tertahan, Band Kemitraan alur 01-03).
+- Kepatuhan Desain: 0 kickers, 0 garis pemisah, radius 2px, kontras teks >= 7:1, CSP 0/0/0, og:image menunjuk /og/default.png valid.
+- Bukti UI Browser: `proof/ui/t08/beranda-390.png` dan `proof/ui/t08/beranda-1440.png` di port 4330.
+- Verifikasi: 76/76 unit tests PASS, `astro check` 0 error, build 183 halaman PASS, check-seo PASS, check-csp PASS.
+
 Selanjutnya:
-Mengeksekusi **T-08** (Beranda Hibrida: `src/pages/index.astro`, `src/components/CommodityPicker.astro`, dan komponen beranda).
+Mengeksekusi **T-10** (Tentang Kami & Profil Penulis Prof. Arif Prabowo: `src/pages/tentang-kami.astro`, `src/pages/penulis/arif-prabowo.astro`).
 
 ## Blockers
 
@@ -68,6 +75,7 @@ Mengeksekusi **T-08** (Beranda Hibrida: `src/pages/index.astro`, `src/components
 - T-19 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 - T-20 (termasuk revisi) menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 - T-26 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
+- T-08 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
 
 ## Verification evidence
 
@@ -86,9 +94,12 @@ Mengeksekusi **T-08** (Beranda Hibrida: `src/pages/index.astro`, `src/components
 - T-09: Triage Engine: Diagnosa Gejala & Dataset Gejala selesai direvisi (RUN-20260929T142508Z-97394bc1). 62/62 unit tests PASS (4 tes triage review gating), `astro check` 0 errors, check-seo PASS (181 halaman), check-csp PASS (0/0/0). Kontras tombol 7.29:1 terverifikasi dengan Playwright computed style dan crop zoom. Honest empty state terverifikasi untuk mode produksi unreviewed. Boundary check PASS R2.
 - T-19: Kalender Tanam & Rencana Musim selesai direvisi (commit `07b6545`). 72/72 unit tests PASS (8 tes kalkulasi tanggal, kabisat, cross-year, ics, dan filter review), `astro check` 0 errors, check-seo PASS (182 halaman), check-csp PASS (0/0/0). Seluruh 6 sumber data disanitasi dari institusi karangan (NG-3, DEC-005, DEC-015), siklus panen fase akhir diselaraskan ke cycleDays.max, label status draf memenuhi font-size >= 14px.
 - T-20: Cuaca Tani & Integrasi BMKG selesai direvisi (RUN-20260929T144716Z-29b68cd1). 76/76 unit tests PASS (4 tes formatter BMKG termasuk WIB timezone, 10 tes jendela semprot), `astro check` 0 errors, check-seo PASS (182 halaman), check-csp PASS (0/0/0). Regulasi Kepmendagri 300.2.2-2430 Tahun 2025 dan commit SHA sumber tercatat jujur; kolom Hujan tampil utuh tanpa scroll di 390px/360px mobile; 0 atribut style= inline. Boundary check menghasilkan REVIEW_REQUIRED (eskalasi R2 -> R3).
+- T-26: Gambar Dummy WebP 10 Slot selesai diimplementasikan (RUN-20260929T145254Z-076e455a). 10 berkas WebP (<= 250 KB), atribusi Unsplash jujur dengan penanda "DUMMY — ganti (OQ-5)".
+- T-08: Homepage Hibrida selesai diimplementasikan (RUN-20260929T145637Z-f73f7b8f). Hero tap-first min 48px, band topik dinamis, bacaan pilihan serif, alat tani terbuka, 0 link WA langsung di beranda, tentang penulis AP, produk tanpa klaim tertahan, band kemitraan 01-03. Bukti UI 390px & 1440px terverifikasi.
 
 ## Next verified action
 
-T-26: Gambar Dummy WebP 10 Slot (`src/assets/images/dummy/**`).
+T-10: Tentang Kami & Profil Penulis (`src/pages/tentang-kami.astro`, `src/pages/penulis/arif-prabowo.astro`).
+
 
 

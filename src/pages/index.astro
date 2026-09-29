@@ -1,0 +1,562 @@
+---
+/**
+ * src/pages/index.astro
+ * Homepage hibrida Agritani (REQ-01, DESIGN §4.1 C1-C8, §4.2.3).
+ * Tap-first hero, dynamic commodity counts, featured journal articles, Alat Tani list,
+ * moderator bio, official product references, and partnership pathway.
+ */
+
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CommodityPicker from '../components/CommodityPicker.astro';
+import ArticleRow from '../components/ArticleRow.astro';
+import heroImage from '../assets/images/dummy/hero-beranda.webp';
+import { getReadingTime } from '../lib/reading-time';
+
+// 1. Fetch articles (respecting draft preview environment)
+const isDraftPreview = import.meta.env.PUBLIC_INCLUDE_DRAFTS === 'true';
+const allArticles = await getCollection('articles', ({ data }) => {
+  return isDraftPreview || !data.draft;
+});
+
+// Sort articles by publication date descending
+const sortedArticles = [...allArticles].sort((a, b) => {
+  return new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime();
+});
+
+const featuredArticle = sortedArticles[0] || null;
+const recentArticles = sortedArticles.slice(1, 4);
+
+// 2. Derive dynamic commodity article counts
+const commodityCounts: Record<string, number> = {};
+allArticles.forEach((art) => {
+  if (Array.isArray(art.data.commodities)) {
+    art.data.commodities.forEach((c) => {
+      const slug = typeof c === 'string' ? c : c?.id;
+      if (slug) {
+        commodityCounts[slug] = (commodityCounts[slug] || 0) + 1;
+      }
+    });
+  }
+});
+
+// Top 8 commodities by article count for the band
+const commodityNames: Record<string, string> = {
+  padi: 'Padi',
+  cabai: 'Cabai',
+  'kelapa-sawit': 'Kelapa Sawit',
+  tomat: 'Tomat',
+  'sayuran-daun': 'Sayuran Daun',
+  'bawang-merah': 'Bawang Merah',
+  jagung: 'Jagung',
+  kedelai: 'Kedelai',
+  durian: 'Durian',
+  jeruk: 'Jeruk',
+  kopi: 'Kopi',
+};
+
+const topCommodities = Object.keys(commodityCounts)
+  .sort((a, b) => (commodityCounts[b] || 0) - (commodityCounts[a] || 0))
+  .slice(0, 8)
+  .map((slug) => ({
+    slug,
+    name: commodityNames[slug] || slug.replace('-', ' '),
+    count: commodityCounts[slug] || 0,
+  }));
+
+const featuredReadingTime = featuredArticle ? getReadingTime(featuredArticle.body || '') : null;
+
+const seoProps = {
+  title: 'Distributor Resmi Sarana Pertanian Modern',
+  description: 'Distributor resmi saprotan dan biostimulan aktivator sel tanaman. Dilengkapi Jurnal Tani karya Prof. Arif Prabowo dan alat diagnosis hama, kalender tanam, serta cuaca BMKG.',
+  canonical: '/',
+  ogType: 'website' as const,
+  ogImage: '/og/default.png',
+};
+---
+
+<BaseLayout seo={seoProps}>
+
+  <!-- 1. Hero Lapangan (DESIGN §4.1 C1-C3, §4.2.3) -->
+  <section class="py-10 sm:py-16 bg-[var(--color-canvas)]">
+    <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        
+        <!-- Left Column (7/12 desktop): Problem Framing & Tap-First Selector -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="space-y-3">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--color-text)] tracking-tight leading-[1.15] max-w-[16ch]">
+              Tanaman Anda bermasalah? Kenali dari gejalanya.
+            </h1>
+            <p class="text-base sm:text-lg text-[var(--color-text-muted)] max-w-[52ch] leading-relaxed">
+              Identifikasi cepat hama, penyakit, dan kekurangan hara berdasarkan ciri visual di lapangan, didukung telaah agronomi ilmiah.
+            </p>
+          </div>
+
+          <!-- Commodity Picker (6 major commodities tap-first min 48px) -->
+          <div class="pt-2">
+            <CommodityPicker />
+          </div>
+
+          <!-- Secondary Navigation Links -->
+          <div class="pt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+            <a
+              href="/cari/"
+              class="inline-flex items-center gap-1.5 font-bold text-[var(--color-brand-strong)] hover:text-[var(--color-brand)] underline transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.3-4.3"/>
+              </svg>
+              <span>atau cari gejala dengan kata kunci</span>
+            </a>
+            <span class="text-[var(--color-border-control)]" aria-hidden="true">·</span>
+            <a
+              href="/jurnal/"
+              class="font-semibold text-[var(--color-soil)] hover:text-[var(--color-brand-strong)] underline transition-colors"
+            >
+              Jelajahi Jurnal Tani
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column (5/12 desktop): Hero Media (DESIGN §4.1 C3) -->
+        <div class="lg:col-span-5">
+          <div class="relative bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] overflow-hidden shadow-sm">
+            <Image
+              src={heroImage}
+              alt="Bentangan lahan pertanian pangan dan hortikultura tropis Indonesia"
+              class="w-full aspect-[5/4] object-cover"
+              loading="eager"
+              fetchpriority="high"
+              width={1600}
+              height={1280}
+            />
+            <div class="p-3.5 bg-[var(--color-surface)] border-t border-[var(--color-border)]">
+              <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
+                <strong class="text-[var(--color-soil)] uppercase tracking-wider font-bold">Lahan Tropis Indonesia:</strong> Pendampingan agronomi presisi untuk ketahanan tanaman pangan, hortikultura, dan perkebunan.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Band Tint: Jurnal per Komoditas (DESIGN §4.1 C1, §4.2.3) -->
+  <section class="py-12 sm:py-16 bg-[var(--color-tint)] border-y border-[var(--color-border)]">
+    <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <div class="flex flex-wrap items-baseline justify-between gap-4">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-[var(--color-text)] tracking-tight">
+            Jurnal per Komoditas
+          </h2>
+          <p class="text-sm text-[var(--color-text-muted)] mt-1">
+            Panduan lapangan terperinci disusun berdasarkan komoditas utama sentra tani.
+          </p>
+        </div>
+        <a
+          href="/jurnal/"
+          class="inline-flex items-center gap-1 text-sm font-bold text-[var(--color-brand-strong)] hover:text-[var(--color-brand)] underline"
+        >
+          <span>Lihat Semua Topik</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m9 18 6-6-6-6"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Commodity Badges with Actual Article Counts -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        {topCommodities.map((item) => (
+          <a
+            href={`/jurnal/komoditas/${item.slug}/`}
+            class="p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] hover:border-[var(--color-brand)] hover:bg-[var(--color-surface)] transition-all group"
+          >
+            <div class="font-bold text-sm sm:text-base text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] transition-colors">
+              {item.name}
+            </div>
+            <div class="text-xs text-[var(--color-text-muted)] mt-1 font-mono">
+              {item.count} artikel panduan
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Section Bacaan Pilihan (DESIGN §4.1 C1, §4.2.3) -->
+  <section class="py-12 sm:py-16 bg-[var(--color-canvas)]">
+    <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-[var(--color-text)] tracking-tight">
+          Bacaan Pilihan Jurnal Tani
+        </h2>
+        <p class="text-sm text-[var(--color-text-muted)] mt-1">
+          Kajian lapangan dan dasar fisiologis tanaman oleh Prof. Arif Prabowo.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Dominant Featured Article (7/12 desktop) -->
+        {featuredArticle && (
+          <div class="lg:col-span-7 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] p-6 sm:p-8 space-y-4">
+            <div class="flex items-center gap-2 text-xs text-[var(--color-soil)] font-medium">
+              <span class="font-bold uppercase tracking-wider">Artikel Utama</span>
+              <span aria-hidden="true">·</span>
+              <span>{featuredReadingTime?.text}</span>
+            </div>
+
+            <h3 class="text-2xl sm:text-3xl font-serif font-bold text-[var(--color-text)] leading-snug">
+              <a
+                href={`/jurnal/${featuredArticle.data.slug}/`}
+                class="hover:text-[var(--color-brand-strong)] transition-colors"
+              >
+                {featuredArticle.data.title}
+              </a>
+            </h3>
+
+            <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed line-clamp-3">
+              {featuredArticle.data.description}
+            </p>
+
+            <div class="pt-2 flex items-center justify-between">
+              <span class="text-xs text-[var(--color-text-muted)] font-mono">
+                Penulis: Prof. Arif Prabowo
+              </span>
+              <a
+                href={`/jurnal/${featuredArticle.data.slug}/`}
+                class="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-[2px] bg-[var(--color-brand)] !text-white hover:bg-[var(--color-brand-hover)] transition-colors"
+              >
+                <span>Baca Selengkapnya</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </div>
+        )}
+
+        <!-- 3 Recent Articles List (5/12 desktop) -->
+        <div class="lg:col-span-5 space-y-2 divide-y divide-[var(--color-border)]">
+          {recentArticles.map((art) => (
+            <div class="pt-4 first:pt-0">
+              <ArticleRow article={art} />
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Section Alat Tani (DESIGN §4.2.3, C7) -->
+  <section class="py-12 sm:py-16 bg-[var(--color-surface)] border-t border-[var(--color-border)]">
+    <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div class="flex flex-wrap items-baseline justify-between gap-4">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-[var(--color-text)] tracking-tight">
+            Alat Tani Lapangan
+          </h2>
+          <p class="text-sm text-[var(--color-text-muted)] mt-1">
+            Kalkulator dan panduan interaktif untuk mendukung keputusan budidaya yang presisi.
+          </p>
+        </div>
+        <a
+          href="/alat/"
+          class="inline-flex items-center gap-1 text-sm font-bold text-[var(--color-brand-strong)] hover:text-[var(--color-brand)] underline"
+        >
+          <span>Buka Semua Alat</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+
+      <!-- 4 Tools List (DESIGN §4.2.3: open list without boxes) -->
+      <div class="divide-y divide-[var(--color-border)] border-y border-[var(--color-border)]">
+        
+        <a
+          href="/alat/diagnosa-gejala/"
+          class="py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:bg-[var(--color-tint)]/40 px-3 -mx-3 transition-colors group"
+        >
+          <div class="space-y-0.5">
+            <span class="text-base sm:text-lg font-bold text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] transition-colors">
+              Diagnosa Gejala Tanaman
+            </span>
+            <p class="text-xs sm:text-sm text-[var(--color-text-muted)]">
+              Kenali hama, penyakit, dan defisiensi nutrisi lewat panduan visual bertahap spesifik komoditas.
+            </p>
+          </div>
+          <span class="text-xs font-bold text-[var(--color-brand-strong)] inline-flex items-center gap-1 shrink-0">
+            <span>Buka Diagnosa</span>
+            <span aria-hidden="true">&rarr;</span>
+          </span>
+        </a>
+
+        <a
+          href="/alat/kalender-tanam/"
+          class="py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:bg-[var(--color-tint)]/40 px-3 -mx-3 transition-colors group"
+        >
+          <div class="space-y-0.5">
+            <span class="text-base sm:text-lg font-bold text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] transition-colors">
+              Kalender Tanam & Rencana Musim
+            </span>
+            <p class="text-xs sm:text-sm text-[var(--color-text-muted)]">
+              Hitung estimasi fase perkembangan HST, jadwal tindakan lapangan, serta unduh kalender (.ics) ke HP.
+            </p>
+          </div>
+          <span class="text-xs font-bold text-[var(--color-brand-strong)] inline-flex items-center gap-1 shrink-0">
+            <span>Buka Kalender</span>
+            <span aria-hidden="true">&rarr;</span>
+          </span>
+        </a>
+
+        <a
+          href="/alat/cuaca-tani/"
+          class="py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:bg-[var(--color-tint)]/40 px-3 -mx-3 transition-colors group"
+        >
+          <div class="space-y-0.5">
+            <span class="text-base sm:text-lg font-bold text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] transition-colors">
+              Cuaca Tani & Jendela Semprot
+            </span>
+            <p class="text-xs sm:text-sm text-[var(--color-text-muted)]">
+              Prakiraan cuaca langsung dari BMKG per 3 jam tingkat desa untuk menentukan waktu aplikasi yang optimal.
+            </p>
+          </div>
+          <span class="text-xs font-bold text-[var(--color-brand-strong)] inline-flex items-center gap-1 shrink-0">
+            <span>Cek Cuaca Desa</span>
+            <span aria-hidden="true">&rarr;</span>
+          </span>
+        </a>
+
+        <a
+          href="/alat/kalkulator-dosis/"
+          class="py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:bg-[var(--color-tint)]/40 px-3 -mx-3 transition-colors group"
+        >
+          <div class="space-y-0.5">
+            <span class="text-base sm:text-lg font-bold text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] transition-colors">
+              Kalkulator Dosis Semprot
+            </span>
+            <p class="text-xs sm:text-sm text-[var(--color-text-muted)]">
+              Hitung takaran produk per tangki semprot dan total kebutuhan larutan berdasarkan luas petak lahan.
+            </p>
+          </div>
+          <span class="text-xs font-bold text-[var(--color-brand-strong)] inline-flex items-center gap-1 shrink-0">
+            <span>Hitung Dosis</span>
+            <span aria-hidden="true">&rarr;</span>
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Section Tanya Tim Agronomi (DESIGN §4.2.3 butir 5: NO direct WA button, links to /konsultasi/) -->
+  <section class="py-12 sm:py-16 bg-[var(--color-canvas)]">
+    <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="p-6 sm:p-8 bg-[var(--color-tint)] border border-[var(--color-border)] rounded-[2px] flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+        <div class="space-y-2 max-w-[60ch]">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-[var(--color-text)]">
+            Tanya Langsung ke Tim Agronomi
+          </h2>
+          <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
+            Menemukan kendala hama, busuk buah, atau tanaman kerdil yang sulit diidentifikasi? Diskusikan foto gejala dan riwayat pemupukan lahan Anda bersama tim agronomi PT Agritani Internasional.
+          </p>
+        </div>
+        <div class="shrink-0">
+          <a
+            href="/konsultasi/"
+            class="inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[44px] text-xs font-bold rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)] transition-colors"
+          >
+            <span>Cara Konsultasi</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Section Tentang Penulis (DESIGN §4.2.3) -->
+  <section class="py-12 sm:py-16 bg-[var(--color-surface)] border-t border-[var(--color-border)]">
+    <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+        <!-- Avatar Initial "AP" per DESIGN §3.5.1 -->
+        <div class="w-14 h-14 rounded-full bg-[var(--color-brand)] !text-white font-bold flex items-center justify-center text-lg shrink-0">
+          AP
+        </div>
+        <div class="space-y-1">
+          <h2 class="text-lg sm:text-xl font-extrabold text-[var(--color-text)]">
+            Prof. Arif Prabowo
+          </h2>
+          <p class="text-xs sm:text-sm font-semibold text-[var(--color-soil)]">
+            Profesor Pertanian · Moderator Jurnal Tani
+          </p>
+          <p class="text-xs sm:text-sm text-[var(--color-text-muted)] max-w-[64ch] leading-relaxed">
+            Mengasuh telaah agronomi ilmiah dan menjawab pertanyaan budidaya petani di Jurnal Tani untuk menjembatani riset terapan dengan praktik lapangan.
+          </p>
+          <div class="pt-1">
+            <a
+              href="/penulis/arif-prabowo/"
+              class="text-xs font-bold text-[var(--color-brand-strong)] hover:text-[var(--color-brand)] underline"
+            >
+              Lihat Profil Lengkap & Publikasi &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Section Produk untuk Lahan Anda (DESIGN §4.2.3, §2.5: reference only) -->
+  <section class="py-12 sm:py-16 bg-[var(--color-canvas)] border-t border-[var(--color-border)]">
+    <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-[var(--color-text)] tracking-tight">
+          Produk untuk Lahan Anda
+        </h2>
+        <p class="text-sm text-[var(--color-text-muted)] mt-1 max-w-[65ch]">
+          Sarana produksi pertanian dan biostimulan aktivator sel resmi PT Agritani Internasional untuk efisiensi pemupukan dan ketahanan alami tanaman.
+        </p>
+      </div>
+
+      <!-- 4 Products List (Open rows, DESIGN §4.2.3) -->
+      <div class="divide-y divide-[var(--color-border)] border-y border-[var(--color-border)]">
+        
+        <div class="py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="space-y-0.5">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-base sm:text-lg text-[var(--color-text)]">Aussie</span>
+              <span class="px-2 py-0.5 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-soil)] text-xs font-mono font-semibold">Padi & Hortikultura</span>
+            </div>
+            <p class="text-xs sm:text-sm text-[var(--color-text-muted)]">
+              Aktivator kekebalan seluler tanaman untuk merangsang sintesis fitoaleksin dan perlindungan perakaran.
+            </p>
+          </div>
+          <a
+            href="/produk/aussie/"
+            class="text-xs font-bold text-[var(--color-brand-strong)] hover:text-[var(--color-brand)] inline-flex items-center gap-1 shrink-0"
+          >
+            <span>Lihat Spesifikasi</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+
+        <div class="py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="space-y-0.5">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-base sm:text-lg text-[var(--color-text)]">BENSU</span>
+              <span class="px-2 py-0.5 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-soil)] text-xs font-mono font-semibold">Tanaman Pangan</span>
+            </div>
+            <p class="text-xs sm:text-sm text-[var(--color-text-muted)]">
+              Biostimulan pembenah lingkungan perakaran untuk memaksimalkan daya serap hara tanah masam.
+            </p>
+          </div>
+          <a
+            href="/produk/bensu/"
+            class="text-xs font-bold text-[var(--color-brand-strong)] hover:text-[var(--color-brand)] inline-flex items-center gap-1 shrink-0"
+          >
+            <span>Lihat Spesifikasi</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+
+        <div class="py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="space-y-0.5">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-base sm:text-lg text-[var(--color-text)]">Kojien</span>
+              <span class="px-2 py-0.5 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-soil)] text-xs font-mono font-semibold">Palawija & Sayuran</span>
+            </div>
+            <p class="text-xs sm:text-sm text-[var(--color-text-muted)]">
+              Formula asam amino hidrolisis berpartikel mikro untuk memulihkan stres dan pembentukan bobot buah.
+            </p>
+          </div>
+          <a
+            href="/produk/kojien/"
+            class="text-xs font-bold text-[var(--color-brand-strong)] hover:text-[var(--color-brand)] inline-flex items-center gap-1 shrink-0"
+          >
+            <span>Lihat Spesifikasi</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+
+        <div class="py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="space-y-0.5">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-base sm:text-lg text-[var(--color-text)]">Saratoga</span>
+              <span class="px-2 py-0.5 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-soil)] text-xs font-mono font-semibold">Sawit & Perkebunan</span>
+            </div>
+            <p class="text-xs sm:text-sm text-[var(--color-text-muted)]">
+              Nutrisi ketahanan jaringan tanaman perkebunan menahun terhadap cekaman lingkungan dan patogen tanah.
+            </p>
+          </div>
+          <a
+            href="/produk/saratoga/"
+            class="text-xs font-bold text-[var(--color-brand-strong)] hover:text-[var(--color-brand)] inline-flex items-center gap-1 shrink-0"
+          >
+            <span>Lihat Spesifikasi</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Band Harvest-Tint: Kemitraan Distributor (DESIGN §4.1 C1, C6, §4.2.3) -->
+  <section class="py-12 sm:py-16 bg-[var(--color-harvest-tint)] border-t border-[var(--color-border)]">
+    <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div class="space-y-2">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-[var(--color-text)] tracking-tight">
+          Menjadi Mitra Distributor Resmi
+        </h2>
+        <p class="text-sm sm:text-base text-[var(--color-text-muted)] max-w-[60ch]">
+          PT Agritani Internasional membuka kerja sama distribusi resmi untuk kios saprotan, kelompok tani, dan kemitraan perkebunan daerah di seluruh Indonesia.
+        </p>
+      </div>
+
+      <!-- Real Sequential Steps 01-03 (DESIGN §4.1 C6) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-2">
+          <span class="text-2xl font-mono font-extrabold text-[var(--color-soil)]">01</span>
+          <h3 class="text-base font-bold text-[var(--color-text)]">
+            Pelajari Wilayah Distribusi
+          </h3>
+          <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
+            Identifikasi kebutuhan petani dan sentra komoditas utama di wilayah operasional Anda.
+          </p>
+        </div>
+
+        <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-2">
+          <span class="text-2xl font-mono font-extrabold text-[var(--color-soil)]">02</span>
+          <h3 class="text-base font-bold text-[var(--color-text)]">
+            Ajukan Profil Kios atau Usaha
+          </h3>
+          <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
+            Lengkapi formulir kemitraan online untuk verifikasi kesiapan rantai pasok daerah.
+          </p>
+        </div>
+
+        <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-2">
+          <span class="text-2xl font-mono font-extrabold text-[var(--color-soil)]">03</span>
+          <h3 class="text-base font-bold text-[var(--color-text)]">
+            Mulai Penyaluran Resmi
+          </h3>
+          <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
+            Dapatkan proteksi wilayah, kepastian produk asli, dan pendampingan materi agronomi lapangan.
+          </p>
+        </div>
+      </div>
+
+      <div class="pt-2">
+        <a
+          href="/kemitraan-distributor/"
+          class="inline-flex items-center justify-center px-6 py-3.5 min-h-[48px] text-sm font-extrabold rounded-[2px] bg-[var(--color-harvest)] !text-[var(--color-text)] hover:opacity-95 transition-opacity"
+        >
+          <span>Ajukan Kemitraan Distributor</span>
+          <span aria-hidden="true" class="ml-1.5">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
