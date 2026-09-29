@@ -59,10 +59,10 @@ function isActive(match: string): boolean {
           return (
             <a
               href={link.href}
-              class={`px-3 py-2 min-h-[44px] flex items-center text-sm font-semibold transition-colors rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-harvest)] ${
+              class={`px-3 py-2 min-h-[44px] flex items-center text-sm font-semibold transition-colors rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-harvest)] text-white ${
                 active
-                  ? 'border-b-2 border-[var(--color-harvest)] text-white'
-                  : 'text-white/90 hover:text-white hover:bg-white/10'
+                  ? 'border-b-2 border-[var(--color-harvest)]'
+                  : 'hover:bg-white/10'
               }`}
               aria-current={active ? 'page' : undefined}
             >
@@ -84,10 +84,10 @@ function isActive(match: string): boolean {
         </svg>
       </a>
 
-      <!-- B2B Action (Outline button per DESIGN §2.1) -->
+      <!-- B2B Action (Outline button per DESIGN §2.1, text-sm >= 14px) -->
       <a
         href="/kemitraan-distributor/"
-        class="ml-2 px-3.5 py-1.5 min-h-[44px] flex items-center border border-white/80 hover:border-white text-white hover:bg-white hover:text-[var(--color-brand)] text-xs font-semibold rounded-[2px] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--color-harvest)]"
+        class="ml-2 px-3.5 py-1.5 min-h-[44px] flex items-center border border-white hover:border-white text-white hover:bg-white hover:text-[var(--color-brand)] text-sm font-semibold rounded-[2px] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--color-harvest)]"
       >
         Ajukan Kemitraan
       </a>

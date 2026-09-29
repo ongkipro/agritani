@@ -50,15 +50,26 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - Created `.github/workflows/ci.yml` with Node 24, checkout@v4, setup-node@v4, read-only permissions, and steps for check, test, contrast, and build.
 - Verification passed: YAML syntax valid, CI commands mirror local checks. Boundary check requires independent review (R3 CI workflow). Stopped for review.
 
-## 2026-09-29 — T-04: Global Framework, Navbar, Footer, Breadcrumb, 404, waLink (READY - PENDING INDEPENDENT REVIEW)
+## 2026-09-29 — T-04: Global Framework, Navbar, Footer, Breadcrumb, 404, waLink (REVISED - READY, PENDING INDEPENDENT REVIEW)
 
-- Implemented `src/lib/whatsapp.ts` with strict anti-spam query param encoding, source tracking, and newline serialization. Tests in `src/lib/whatsapp.test.ts` (7 tests).
-- Implemented `src/lib/seo.ts` with `buildSeo()`, title suffixing, canonical url sanitization, OpenGraph metadata fallback, and robots directives. Tests in `src/lib/seo.test.ts` (6 tests).
-- Created `src/components/SeoHead.astro`, `src/components/Breadcrumb.astro`, `src/components/ConsultPrompt.astro`.
-- Created accessible `src/components/Navbar.astro` (desktop nav, modal dialog for mobile, skip link target) and `src/components/Footer.astro` (legal identity placeholder TODO(OQ-7), WA text TODO(OQ-1)).
-- Created `src/layouts/BaseLayout.astro` and `src/pages/404.astro`.
-- Captured UI proof at 390px and 1440px via `agritani-shot.cjs` on port 4330.
-- Verification passed: `npm test` (22/22 tests), `npx astro check`, `npm run build`, `npm run check:contrast`. Boundary check requires independent review (R3). Stopped for review.
+- Implemented `src/lib/whatsapp.ts`: `DEFAULT_WA_PHONE = ''`, throws error on production build when empty, falls back to `62000000000` only in dev/test/preview. Unit tests in `src/lib/whatsapp.test.ts`.
+- Updated `src/components/Footer.astro` to DESIGN §4.2.1 baris 4a:
+  - 5 columns: Alat Tani (4 tools), Jurnal Tani (6 topics), Produk (4 products), Perusahaan (5 links), and Kontak.
+  - Eliminated fictitious address and phone; displays explicit placeholders `[Nomor WhatsApp menyusul - OQ-1]` and `[Alamat menyusul - OQ-7]`.
+  - Replaced all text opacity classes (`text-white/60`, `/70`, `/80`) with full solid `text-white` (7.29:1 contrast, WCAG AAA compliant).
+  - Removed top border line over copyright text per DESIGN §3.3; relies on vertical padding.
+  - Standardized nav label to "Konsultasi".
+- Updated `src/components/Navbar.astro`:
+  - Increased "Ajukan Kemitraan" button font size to `text-sm` (14px).
+  - Removed text opacity classes on brand.
+- Updated `src/pages/404.astro`:
+  - Removed "Galat 404" kicker pill per DESIGN §3.4.
+  - Updated links to Diagnosa Gejala, Jelajahi Jurnal Tani, and Beranda.
+- Added global `:focus-visible` ring styles in `src/styles/global.css` (`--color-brand-strong` on light, `--color-harvest` on brand).
+- Extended `scripts/check-contrast.mjs` to explicitly test white text on brand for footer text and links.
+- Impeccable review pass: visual hierarchy verified, touch targets ≥ 44px, no divider lines, 2px radius.
+- Captured UI proof at 390px and 1440px on port 4330 via `agritani-shot.cjs`: `notfound-390.png` and `notfound-1440.png`.
+- Verification passed: `npm run check:contrast`, `npm test` (38/38 pass), `npx astro check` (0 errors), `npm run build`. Boundary check requires independent review (R2 boundary). Stopped for review.
 
 ## 2026-09-29 — T-03: Frontmatter Normalization for 150 Articles (READY - PENDING INDEPENDENT REVIEW)
 

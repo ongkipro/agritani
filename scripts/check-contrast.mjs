@@ -64,7 +64,7 @@ function contrastRatio(hex1, hex2) {
 
 // Text pairs: must be >= 7.0:1
 const textPairs = [
-  { fg: tokens.white, bg: tokens.brand, name: 'white on brand (header/primary btn)' },
+  { fg: tokens.white, bg: tokens.brand, name: 'white on brand (header/primary btn/footer text & links)' },
   { fg: tokens.white, bg: tokens.brandHover, name: 'white on brandHover' },
   { fg: tokens.brandStrong, bg: tokens.canvas, name: 'brandStrong on canvas' },
   { fg: tokens.brandStrong, bg: tokens.surface, name: 'brandStrong on surface' },

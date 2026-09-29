@@ -1,16 +1,35 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { waLink, DEFAULT_WA_PHONE } from './whatsapp.ts';
+import { waLink, DEFAULT_WA_PHONE, DEV_PLACEHOLDER_PHONE } from './whatsapp.ts';
 
 describe('WhatsApp Link Generator (DESIGN §2.7, G-6)', () => {
-  it('generates wa.me link with first line as bracketed source code', () => {
+  it('falls back to DEV_PLACEHOLDER_PHONE in dev/test when DEFAULT_WA_PHONE is empty', () => {
+    assert.equal(DEFAULT_WA_PHONE, '');
     const url = waLink({ source: 'Web·Konsultasi' });
-    const expectedPrefix = `https://wa.me/${DEFAULT_WA_PHONE}?text=`;
+    const expectedPrefix = `https://wa.me/${DEV_PLACEHOLDER_PHONE}?text=`;
     assert.ok(url.startsWith(expectedPrefix));
 
     const text = decodeURIComponent(url.replace(expectedPrefix, ''));
     const lines = text.split('\n');
     assert.equal(lines[0], '[Web·Konsultasi]');
+  });
+
+  it('throws an error in production environment when phone is empty', () => {
+    const prevEnv = process.env.NODE_ENV;
+    try {
+      process.env.NODE_ENV = 'production';
+      assert.throws(
+        () => {
+          waLink({ source: 'Web·Konsultasi' });
+        },
+        {
+          name: 'Error',
+          message: /\[OQ-1\] Nomor WhatsApp resmi PT Agritani Internasional belum diisi/,
+        }
+      );
+    } finally {
+      process.env.NODE_ENV = prevEnv;
+    }
   });
 
   it('correctly encodes Indonesian characters, spaces, and newlines', () => {
