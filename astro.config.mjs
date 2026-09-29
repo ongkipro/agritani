@@ -98,27 +98,53 @@ export default defineConfig({
       },
     },
     {
-      name: 'sanitize-csp-html',
+      name: 'csp-table-align-converter',
       hooks: {
         'astro:build:done': async ({ dir }) => {
           const distDir = fileURLToPath(dir);
           /** @param {string} current */
-          function walkAndSanitize(current) {
+          function walkAndConvert(current) {
             if (!fs.existsSync(current)) return;
             for (const item of fs.readdirSync(current)) {
               const full = path.join(current, item);
               if (fs.statSync(full).isDirectory()) {
-                walkAndSanitize(full);
+                walkAndConvert(full);
               } else if (full.endsWith('.html')) {
                 let html = fs.readFileSync(full, 'utf8');
                 if (html.includes('style=')) {
-                  const cleaned = html.replace(/\s+style=["'][^"']*["']/gi, '');
-                  fs.writeFileSync(full, cleaned, 'utf8');
+                  // Convert text-align inline styles on th/td from markdown tables to Tailwind classes (AGENTS.md, ARCHITECTURE §5)
+                  html = html.replace(/<(th|td)\b([^>]*?)style=["']([^"']*?)["']([^>]*?)>/gi, (match, tag, before, styleVal, after) => {
+                    let alignClass = '';
+                    if (/text-align:\s*left/i.test(styleVal)) alignClass = 'text-left';
+                    else if (/text-align:\s*center/i.test(styleVal)) alignClass = 'text-center';
+                    else if (/text-align:\s*right/i.test(styleVal)) alignClass = 'text-right';
+
+                    const cleanedStyle = styleVal
+                      .replace(/text-align:\s*(left|center|right);?/gi, '')
+                      .trim();
+
+                    let combinedAttrs = `${before} ${after}`.trim();
+                    if (cleanedStyle) {
+                      combinedAttrs += ` style="${cleanedStyle}"`;
+                    }
+
+                    if (alignClass) {
+                      if (/class=["']([^"']*)["']/i.test(combinedAttrs)) {
+                        combinedAttrs = combinedAttrs.replace(/class=["']([^"']*)["']/i, (m, existing) => `class="${existing} ${alignClass}"`);
+                      } else {
+                        combinedAttrs = `class="${alignClass}" ${combinedAttrs}`.trim();
+                      }
+                    }
+
+                    return `<${tag} ${combinedAttrs}>`.replace(/\s+/g, ' ').replace(' >', '>');
+                  });
+
+                  fs.writeFileSync(full, html, 'utf8');
                 }
               }
             }
           }
-          walkAndSanitize(distDir);
+          walkAndConvert(distDir);
         },
       },
     },

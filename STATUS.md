@@ -40,17 +40,17 @@ Kontrak pra-pengembangan diaudit ulang pada 2026-09-29 dengan skill dotfiles ter
 
 ### Active work
 
-FIX-CSP dan perbaikan nit pencarian `/cari/` selesai diimplementasikan dan terverifikasi penuh:
-- 0 inline scripts yang dieksekusi (vite `assetsInlineLimit: 0` memindahkan semua skrip komponen ke file eksternal `/_astro/*.js`).
-- 0 atribut event `on*=` (tombol cetak dan submit form ditangani via DOM listener).
-- 0 atribut inline `style=` (diganti utilitas Tailwind `bg-[var(--color-brand)]`, penonaktifan Shiki inline styles, dan sanitasi HTML build-time).
-- Auditor integritas CSP resmi `scripts/check-csp.mjs` terpasang di build pipeline.
-- Kueri ngawur "xyzzy" pada `/cari/` kini menampilkan empty state yang jelas `Tidak ada hasil untuk "..."` tanpa false positive.
-- Verifikasi build `PUBLIC_INCLUDE_DRAFTS=true npm run build` (177 halaman HTML) lulus dengan 0/0 SEO dan 0/0/0 CSP.
-Boundary check menghasilkan REVIEW_REQUIRED karena eskalasi ke R3 (`package.json` dan scope expansion). Sesuai aturan, task dihentikan untuk menunggu review independen.
+T-21 revisi (Kalkulator Dosis) dan perbaikan table alignment CSP selesai diimplementasikan dan diverifikasi penuh:
+- Awal halaman form dosis kini bersih tanpa prefill dosis produk (PRD REQ-11 & DESIGN §2.6.3), dengan empty-state card `Isi dosis dari label untuk melihat hasil`.
+- Hasil menampilkan dua angka berlabel jelas: "Kebutuhan tepat sesuai volume semprot" (mencegah angka menyesatkan pada lahan kecil seperti 100 m²) dan "Jika menyiapkan tangki penuh".
+- Satuan `ml/tangki` dan `g/tangki` kini memuat input kapasitas tangki pada label (bawaan 16 L) dan menghitung skala konsentrasi ke tangki pengguna secara presisi.
+- Seluruh klaim agronomi tanpa sumber ("standar 200–400 L/ha", "umumnya 14–17 L") telah dibersihkan menjadi rujukan label dan konsultasi agronom (`TODO(OQ-11)`).
+- Plugin `csp-table-align-converter` di `astro.config.mjs` mengonversi style perataan tabel markdown menjadi kelas Tailwind (`text-left`, `text-center`, `text-right`) tanpa regex global.
+- Verifikasi: 50 unit tests PASS, `npx astro check` 0 errors, `check-seo` PASS, `check-csp` PASS (0/0/0), screenshot UI mobile dan desktop (empty & calculated) tersimpan di `proof/ui/t21/`.
+Boundary check menghasilkan REVIEW_REQUIRED (effectiveRisk=R2, accepted scope expansion proof). Sesuai aturan, task dihentikan untuk menunggu review independen Claude.
 
 Selanjutnya:
-Mengeksekusi **T-22** (Konsultasi `/konsultasi/` + indeks `/alat/`) sesuai urutan yang ditentukan.
+Mengeksekusi **T-22** (Konsultasi `/konsultasi/` + indeks `/alat/`).
 
 ## Blockers
 
@@ -58,8 +58,8 @@ Mengeksekusi **T-22** (Konsultasi `/konsultasi/` + indeks `/alat/`) sesuai uruta
 - T-23 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 - T-04 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 - T-03 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
-- T-21 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
 - FIX-CSP menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
+- T-21 (termasuk revisi) menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
 
 ## Verification evidence
 

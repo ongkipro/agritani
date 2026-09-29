@@ -1,22 +1,10 @@
 ---
 /**
  * src/components/DoseCalculator.astro
- * Interactive & SSR spray dose calculator component (REQ-11, DESIGN §2.6.3)
+ * Interactive & accessible spray dose calculator component (REQ-11, DESIGN §2.6.3)
+ * No prefilled product dosage (PRD REQ-11 & DESIGN §2.6.3 strict rule).
  */
-import { calculateDose, formatNumber, type DoseInput } from '../lib/dose';
 import ConsultPrompt from './ConsultPrompt.astro';
-
-// Initial default calculation for SSR / No-JS fallback
-const defaultInput: DoseInput = {
-  dose: 2,
-  doseUnit: 'ml/L',
-  tankVolume: 16,
-  area: 1,
-  areaUnit: 'ha',
-  sprayVolumePerHa: 200,
-};
-
-const initialResult = calculateDose(defaultInput);
 ---
 
 <div class="space-y-8" id="dose-calculator-root">
@@ -27,14 +15,15 @@ const initialResult = calculateDose(defaultInput);
       <!-- Field 1: Dosis Label -->
       <div>
         <label for="input-dose" class="block text-sm font-semibold text-[var(--color-text)] mb-1.5">
-          Dosis Konsentrasi pada Label <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+          Dosis dari Label Kemasan <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
         </label>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <input
             type="number"
             id="input-dose"
             name="dose"
-            value="2"
+            value=""
+            placeholder="Misal: 2 atau 1.5"
             step="any"
             min="0.001"
             required
@@ -53,15 +42,37 @@ const initialResult = calculateDose(defaultInput);
           </select>
         </div>
         <p id="dose-unit-desc" class="text-xs text-[var(--color-text-muted)] mt-1.5">
-          Sesuai angka petunjuk anjuran di botol / kemasan produk.
+          Sesuai angka petunjuk anjuran di botol / kemasan produk resmi.
         </p>
         <p id="err-dose" class="text-xs text-[var(--color-danger)] mt-1 hidden"></p>
       </div>
 
-      <!-- Field 2: Volume Tangki -->
+      <!-- Field 1b: Volume Tangki pada Label (khusus per tangki) -->
+      <div id="wrapper-label-tank" class="hidden">
+        <label for="input-label-tank-vol" class="block text-sm font-semibold text-[var(--color-text)] mb-1.5">
+          Volume Tangki pada Label (Liter) <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="number"
+          id="input-label-tank-vol"
+          name="labelTankVolume"
+          value="16"
+          step="any"
+          min="1"
+          max="1000"
+          class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] tabular-nums"
+          aria-describedby="label-tank-desc"
+        />
+        <p id="label-tank-desc" class="text-xs text-[var(--color-text-muted)] mt-1.5">
+          Ukuran tangki yang diasumsikan label produk (umumnya 16 Liter).
+        </p>
+        <p id="err-label-tank-vol" class="text-xs text-[var(--color-danger)] mt-1 hidden"></p>
+      </div>
+
+      <!-- Field 2: Volume Tangki Pengguna -->
       <div>
         <label for="input-tank-vol" class="block text-sm font-semibold text-[var(--color-text)] mb-1.5">
-          Kapasitas Tangki Semprot (Liter) <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+          Kapasitas Tangki Semprot Anda (Liter) <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
         </label>
         <input
           type="number"
@@ -76,7 +87,7 @@ const initialResult = calculateDose(defaultInput);
           aria-describedby="tank-vol-desc"
         />
         <p id="tank-vol-desc" class="text-xs text-[var(--color-text-muted)] mt-1.5">
-          Umumnya 14–17 Liter untuk tangki semprot knapsack gendong.
+          Kapasitas tangki semprot punggung Anda (bawaan 16 Liter).
         </p>
         <p id="err-tank-vol" class="text-xs text-[var(--color-danger)] mt-1 hidden"></p>
       </div>
@@ -91,7 +102,8 @@ const initialResult = calculateDose(defaultInput);
             type="number"
             id="input-area"
             name="area"
-            value="1"
+            value=""
+            placeholder="Misal: 1 atau 2500"
             step="any"
             min="0.001"
             required
@@ -122,7 +134,8 @@ const initialResult = calculateDose(defaultInput);
           type="number"
           id="input-spray-vol"
           name="sprayVolumePerHa"
-          value="200"
+          value=""
+          placeholder="Misal: 200 atau 400"
           step="any"
           min="50"
           max="1000"
@@ -131,7 +144,7 @@ const initialResult = calculateDose(defaultInput);
           aria-describedby="spray-vol-desc"
         />
         <p id="spray-vol-desc" class="text-xs text-[var(--color-text-muted)] mt-1.5">
-          Kebutuhan air per hektar sesuai kalibrasi nozzle (standar 200–400 L/ha).
+          Volume semprot air per hektar sesuai anjuran label produk atau tanyakan agronom (TODO(OQ-11)).
         </p>
         <p id="err-spray-vol" class="text-xs text-[var(--color-danger)] mt-1 hidden"></p>
       </div>
@@ -140,13 +153,30 @@ const initialResult = calculateDose(defaultInput);
   </form>
 
   <noscript>
-    <div class="p-4 bg-[var(--color-tint)] border border-[var(--color-border)] rounded-[2px] text-xs text-[var(--color-text-muted)]">
-      Kalkulator otomatis membutuhkan peramban dengan JavaScript aktif. Angka hasil di bawah menampilkan kalkulasi standar awal (1 ha, 2 ml/L, tangki 16 L).
+    <div class="p-5 bg-[var(--color-tint)] border border-[var(--color-border)] rounded-[2px] text-xs text-[var(--color-text)] space-y-3">
+      <p class="font-bold text-sm text-[var(--color-brand)]">Panduan Rumus Kalkulasi Mandiri (Tanpa JavaScript):</p>
+      <p>Kalkulator interaktif membutuhkan JavaScript aktif. Anda tetap dapat menghitung kebutuhan di lapangan menggunakan rumus baku berikut:</p>
+      <ul class="list-disc pl-5 space-y-1">
+        <li><strong>Takaran per tangki:</strong> Dosis konsentrasi (ml/L atau g/L) × Kapasitas tangki (L).</li>
+        <li><strong>Total kebutuhan air semprot:</strong> Luas lahan (ha) × Volume semprot anjuran (L/ha).</li>
+        <li><strong>Jumlah tangki semprot:</strong> Total kebutuhan air (L) ÷ Kapasitas tangki (L).</li>
+        <li><strong>Kebutuhan tepat produk:</strong> Total kebutuhan air (L) × Dosis konsentrasi per Liter.</li>
+      </ul>
     </div>
   </noscript>
 
-  <!-- Output Results Panel -->
-  <section aria-labelledby="calc-result-heading" aria-live="polite" class="space-y-6">
+  <!-- Empty State Panel (Initial state before valid input) -->
+  <div id="calc-empty-state" class="p-8 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] text-center space-y-2">
+    <p class="text-base font-semibold text-[var(--color-text)]">
+      Isi dosis dari label untuk melihat hasil
+    </p>
+    <p class="text-xs text-[var(--color-text-muted)] max-w-[50ch] mx-auto leading-relaxed">
+      Masukkan angka dosis dari label kemasan resmi, luas lahan, dan volume semprot anjuran untuk menghitung takaran per tangki serta kebutuhan produk.
+    </p>
+  </div>
+
+  <!-- Output Results Panel (Hidden until all inputs are valid) -->
+  <section id="calc-result-container" aria-labelledby="calc-result-heading" aria-live="polite" class="space-y-6 hidden">
     <div class="flex items-center justify-between border-b border-[var(--color-border)] pb-3">
       <h2 id="calc-result-heading" class="text-xl font-bold text-[var(--color-brand)]">
         Hasil Rekomendasi Takaran
@@ -160,13 +190,13 @@ const initialResult = calculateDose(defaultInput);
       <!-- 1. Per Tangki -->
       <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px]">
         <span class="text-xs font-semibold text-[var(--color-soil)] uppercase tracking-wider block">
-          Kebutuhan per Tangki
+          Takaran per Tangki Anda
         </span>
         <div class="text-3xl md:text-4xl font-extrabold text-[var(--color-brand)] tabular-nums mt-2">
-          <span id="res-per-tank">{formatNumber(initialResult.perTank)}</span>
-          <span id="res-per-tank-unit" class="text-lg font-normal text-[var(--color-text-muted)]">{initialResult.perTankUnit}</span>
+          <span id="res-per-tank">0</span>
+          <span id="res-per-tank-unit" class="text-lg font-normal text-[var(--color-text-muted)]">ml</span>
         </div>
-        <p class="text-xs text-[var(--color-text-muted)] mt-1.5">
+        <p class="text-xs text-[var(--color-text-muted)] mt-1.5" id="res-per-tank-desc">
           Campurkan ke dalam satu tangki air penuh.
         </p>
       </div>
@@ -177,28 +207,46 @@ const initialResult = calculateDose(defaultInput);
           Jumlah Tangki Semprot
         </span>
         <div class="text-3xl md:text-4xl font-extrabold text-[var(--color-brand)] tabular-nums mt-2">
-          <span id="res-total-tanks">{initialResult.totalTanks}</span>
+          <span id="res-total-tanks">0</span>
           <span class="text-lg font-normal text-[var(--color-text-muted)]">tangki</span>
         </div>
         <p class="text-xs text-[var(--color-text-muted)] mt-1.5">
-          Dibulatkan ke atas dari <span id="res-exact-tanks" class="tabular-nums font-semibold">{formatNumber(initialResult.exactTanks, 1)}</span> tangki.
+          Dibulatkan ke atas dari <span id="res-exact-tanks" class="tabular-nums font-semibold">0</span> tangki (<span id="res-total-water" class="tabular-nums font-semibold">0</span> L air).
         </p>
       </div>
 
-      <!-- 3. Total Produk -->
-      <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px]">
-        <span class="text-xs font-semibold text-[var(--color-soil)] uppercase tracking-wider block">
-          Total Kebutuhan Produk
-        </span>
-        <div class="text-3xl md:text-4xl font-extrabold text-[var(--color-brand)] tabular-nums mt-2">
-          <span id="res-total-product-large">{formatNumber(initialResult.totalProductLarge, 2)}</span>
-          <span id="res-total-product-large-unit" class="text-lg font-normal text-[var(--color-text-muted)]">{initialResult.totalProductLargeUnit}</span>
+      <!-- 3. Total Kebutuhan Produk (Two distinctly labeled numbers) -->
+      <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-3">
+        <div>
+          <span class="text-xs font-semibold text-[var(--color-soil)] uppercase tracking-wider block">
+            Kebutuhan Tepat Sesuai Semprot
+          </span>
+          <div class="text-2xl md:text-3xl font-extrabold text-[var(--color-brand)] tabular-nums mt-1">
+            <span id="res-exact-product-large">0</span>
+            <span id="res-exact-product-large-unit" class="text-base font-normal text-[var(--color-text-muted)]">L</span>
+          </div>
+          <p class="text-xs text-[var(--color-text-muted)] mt-0.5">
+            Setara <span id="res-exact-product-small" class="tabular-nums font-semibold">0</span> <span id="res-exact-product-small-unit">ml</span> bersih untuk seluruh lahan.
+          </p>
         </div>
-        <p class="text-xs text-[var(--color-text-muted)] mt-1.5">
-          Setara <span id="res-total-product-small" class="tabular-nums font-semibold">{formatNumber(initialResult.totalProductSmall)}</span> <span id="res-total-product-small-unit">{initialResult.totalProductSmallUnit}</span> untuk seluruh lahan.
-        </p>
+
+        <div class="pt-2.5 border-t border-[var(--color-border)]">
+          <span class="text-[11px] font-semibold text-[var(--color-text-muted)] uppercase tracking-wider block">
+            Jika Menyiapkan Tangki Penuh:
+          </span>
+          <p class="text-xs text-[var(--color-text)] mt-1">
+            <span id="res-batch-product-large" class="font-bold tabular-nums">0</span> <span id="res-batch-product-large-unit">L</span>
+            (<span id="res-batch-product-small" class="tabular-nums font-semibold">0</span> <span id="res-batch-product-small-unit">ml</span> untuk <span id="res-batch-tanks-count" class="font-bold">0</span> tangki penuh).
+          </p>
+        </div>
       </div>
 
+    </div>
+
+    <!-- Rekomendasi Pengisian Tangki Terakhir -->
+    <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-brand)]/30 rounded-[2px] text-xs md:text-sm text-[var(--color-text)] space-y-1">
+      <p class="font-bold text-[var(--color-brand)]">Panduan Pengisian Tangki:</p>
+      <p id="res-partial-tank" class="leading-relaxed"></p>
     </div>
 
     <!-- Rincian Cara Hitung (Collapsible) -->
@@ -207,9 +255,6 @@ const initialResult = calculateDose(defaultInput);
         Lihat rincian langkah perhitungan & rumus
       </summary>
       <ul id="res-steps" class="mt-3.5 space-y-2 text-xs md:text-sm text-[var(--color-text)] list-disc pl-5">
-        {initialResult.calculationSteps.map((step) => (
-          <li>{step}</li>
-        ))}
       </ul>
     </details>
 
@@ -265,24 +310,39 @@ const initialResult = calculateDose(defaultInput);
 
     const inputDose = document.getElementById('input-dose') as HTMLInputElement | null;
     const inputDoseUnit = document.getElementById('input-dose-unit') as HTMLSelectElement | null;
+    const wrapperLabelTank = document.getElementById('wrapper-label-tank') as HTMLElement | null;
+    const inputLabelTankVol = document.getElementById('input-label-tank-vol') as HTMLInputElement | null;
     const inputTankVol = document.getElementById('input-tank-vol') as HTMLInputElement | null;
     const inputArea = document.getElementById('input-area') as HTMLInputElement | null;
     const inputAreaUnit = document.getElementById('input-area-unit') as HTMLSelectElement | null;
     const inputSprayVol = document.getElementById('input-spray-vol') as HTMLInputElement | null;
 
+    // Containers
+    const emptyState = document.getElementById('calc-empty-state');
+    const resultContainer = document.getElementById('calc-result-container');
+
     // Result elements
     const resPerTank = document.getElementById('res-per-tank');
     const resPerTankUnit = document.getElementById('res-per-tank-unit');
+    const resPerTankDesc = document.getElementById('res-per-tank-desc');
     const resTotalTanks = document.getElementById('res-total-tanks');
     const resExactTanks = document.getElementById('res-exact-tanks');
-    const resTotalProductLarge = document.getElementById('res-total-product-large');
-    const resTotalProductLargeUnit = document.getElementById('res-total-product-large-unit');
-    const resTotalProductSmall = document.getElementById('res-total-product-small');
-    const resTotalProductSmallUnit = document.getElementById('res-total-product-small-unit');
+    const resTotalWater = document.getElementById('res-total-water');
+    const resExactProductLarge = document.getElementById('res-exact-product-large');
+    const resExactProductLargeUnit = document.getElementById('res-exact-product-large-unit');
+    const resExactProductSmall = document.getElementById('res-exact-product-small');
+    const resExactProductSmallUnit = document.getElementById('res-exact-product-small-unit');
+    const resBatchProductLarge = document.getElementById('res-batch-product-large');
+    const resBatchProductLargeUnit = document.getElementById('res-batch-product-large-unit');
+    const resBatchProductSmall = document.getElementById('res-batch-product-small');
+    const resBatchProductSmallUnit = document.getElementById('res-batch-product-small-unit');
+    const resBatchTanksCount = document.getElementById('res-batch-tanks-count');
+    const resPartialTank = document.getElementById('res-partial-tank');
     const resSteps = document.getElementById('res-steps');
 
     // Error elements
     const errDose = document.getElementById('err-dose');
+    const errLabelTankVol = document.getElementById('err-label-tank-vol');
     const errTankVol = document.getElementById('err-tank-vol');
     const errArea = document.getElementById('err-area');
     const errSprayVol = document.getElementById('err-spray-vol');
@@ -291,18 +351,42 @@ const initialResult = calculateDose(defaultInput);
       return;
     }
 
+    function toggleLabelTankVisibility() {
+      const unit = inputDoseUnit?.value || '';
+      if (unit === 'ml/tangki' || unit === 'g/tangki') {
+        wrapperLabelTank?.classList.remove('hidden');
+      } else {
+        wrapperLabelTank?.classList.add('hidden');
+      }
+    }
+
     function recompute() {
-      const dose = parseFloat(inputDose?.value || '0');
+      toggleLabelTankVisibility();
+
+      const doseStr = inputDose?.value.trim() || '';
+      const areaStr = inputArea?.value.trim() || '';
+      const sprayVolStr = inputSprayVol?.value.trim() || '';
+
+      // If user hasn't started filling required fields, stay in empty state
+      if (!doseStr || !areaStr || !sprayVolStr) {
+        emptyState?.classList.remove('hidden');
+        resultContainer?.classList.add('hidden');
+        return;
+      }
+
+      const dose = parseFloat(doseStr);
       const doseUnit = (inputDoseUnit?.value || 'ml/L') as DoseUnit;
       const tankVolume = parseFloat(inputTankVol?.value || '0');
-      const area = parseFloat(inputArea?.value || '0');
+      const labelTankVolume = inputLabelTankVol ? parseFloat(inputLabelTankVol.value || '16') : 16;
+      const area = parseFloat(areaStr);
       const areaUnit = (inputAreaUnit?.value || 'ha') as AreaUnit;
-      const sprayVolumePerHa = parseFloat(inputSprayVol?.value || '0');
+      const sprayVolumePerHa = parseFloat(sprayVolStr);
 
       const input: DoseInput = {
         dose,
         doseUnit,
         tankVolume,
+        labelTankVolume,
         area,
         areaUnit,
         sprayVolumePerHa,
@@ -317,6 +401,15 @@ const initialResult = calculateDose(defaultInput);
           errDose.classList.remove('hidden');
         } else {
           errDose.classList.add('hidden');
+        }
+      }
+
+      if (errLabelTankVol) {
+        if (result.errors.labelTankVolume) {
+          errLabelTankVol.textContent = result.errors.labelTankVolume;
+          errLabelTankVol.classList.remove('hidden');
+        } else {
+          errLabelTankVol.classList.add('hidden');
         }
       }
 
@@ -348,18 +441,38 @@ const initialResult = calculateDose(defaultInput);
       }
 
       if (!result.isValid) {
+        emptyState?.classList.remove('hidden');
+        resultContainer?.classList.add('hidden');
         return;
       }
+
+      // Show result container, hide empty state
+      emptyState?.classList.add('hidden');
+      resultContainer?.classList.remove('hidden');
 
       // Update numbers
       if (resPerTank) resPerTank.textContent = formatNumber(result.perTank);
       if (resPerTankUnit) resPerTankUnit.textContent = result.perTankUnit;
+      if (resPerTankDesc) {
+        resPerTankDesc.textContent = `Campurkan ke dalam satu tangki air Anda (${formatNumber(tankVolume)} Liter).`;
+      }
+
       if (resTotalTanks) resTotalTanks.textContent = String(result.totalTanks);
-      if (resExactTanks) resExactTanks.textContent = formatNumber(result.exactTanks, 1);
-      if (resTotalProductLarge) resTotalProductLarge.textContent = formatNumber(result.totalProductLarge, 2);
-      if (resTotalProductLargeUnit) resTotalProductLargeUnit.textContent = result.totalProductLargeUnit;
-      if (resTotalProductSmall) resTotalProductSmall.textContent = formatNumber(result.totalProductSmall);
-      if (resTotalProductSmallUnit) resTotalProductSmallUnit.textContent = result.totalProductSmallUnit;
+      if (resExactTanks) resExactTanks.textContent = formatNumber(result.exactTanks, 2);
+      if (resTotalWater) resTotalWater.textContent = formatNumber(result.totalWaterLiters, 1);
+
+      if (resExactProductLarge) resExactProductLarge.textContent = formatNumber(result.exactProductLarge, 3);
+      if (resExactProductLargeUnit) resExactProductLargeUnit.textContent = result.exactProductLargeUnit;
+      if (resExactProductSmall) resExactProductSmall.textContent = formatNumber(result.exactProductSmall, 1);
+      if (resExactProductSmallUnit) resExactProductSmallUnit.textContent = result.exactProductSmallUnit;
+
+      if (resBatchProductLarge) resBatchProductLarge.textContent = formatNumber(result.batchProductLarge, 2);
+      if (resBatchProductLargeUnit) resBatchProductLargeUnit.textContent = result.batchProductLargeUnit;
+      if (resBatchProductSmall) resBatchProductSmall.textContent = formatNumber(result.batchProductSmall);
+      if (resBatchProductSmallUnit) resBatchProductSmallUnit.textContent = result.batchProductSmallUnit;
+      if (resBatchTanksCount) resBatchTanksCount.textContent = String(result.totalTanks);
+
+      if (resPartialTank) resPartialTank.textContent = result.partialTankExplanation;
 
       // Update calculation steps
       if (resSteps) {
@@ -372,9 +485,10 @@ const initialResult = calculateDose(defaultInput);
       }
     }
 
-    const listeners: [HTMLElement, string][] = [
+    const listeners: [HTMLElement | null, string][] = [
       [inputDose, 'input'],
       [inputDoseUnit, 'change'],
+      [inputLabelTankVol, 'input'],
       [inputTankVol, 'input'],
       [inputArea, 'input'],
       [inputAreaUnit, 'change'],
@@ -382,8 +496,10 @@ const initialResult = calculateDose(defaultInput);
     ];
 
     listeners.forEach(([elem, evt]) => {
-      elem.addEventListener(evt, recompute);
+      elem?.addEventListener(evt, recompute);
     });
+
+    toggleLabelTankVisibility();
   }
 
   // Support direct and view transitions
