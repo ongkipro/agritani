@@ -96,3 +96,96 @@ Sebanyak 8 artikel telah diterbitkan (`draft: false`) dengan referensi ilmiah Cr
 2. `perbedaan-layu-bakteri-dan-layu-fusarium`: Klaim uji gelas air "100% akurat dalam 3 menit" overclaim tanpa sumber terverifikasi.
 3. `ganoderma-sawit-immune-activator`: Bingkai klaim aktivator imun dan molibdenum-fitoaleksin tanpa sumber ilmiah.
 4. `teknik-parit-isolasi-mencegah-penularan-ganoderma`: Ukuran parit tidak didukung rujukan terverifikasi.
+
+---
+
+## 4. Konfigurasi CI (A.10)
+
+- `.github/workflows/ci.yml`: Langkah build utama menjalankan `npm run build` dalam mode produksi murni tanpa `PUBLIC_INCLUDE_DRAFTS`.
+- Menambahkan langkah build pratinjau terpisah (`Build preview with drafts`) dengan `PUBLIC_INCLUDE_DRAFTS: "true"` untuk memverifikasi draf tetap valid tanpa mencemari indeks produksi.
+- Menjalankan seluruh pengujian dan audit kualitas: `npx astro check`, `npm test`, `npm run check:contrast`, dan seluruh skrip audit bawaan di `npm run build` (`check-commodities`, `check-seo`, `check-csp`, `check-placeholders`).
+
+---
+
+## 5. Konfigurasi Deployment T-18 (Cloudflare Workers & Headers)
+
+- **`wrangler.jsonc`**:
+  - `name`: `"agritani"`
+  - `compatibility_date`: `"2026-09-29"`
+  - `assets.directory`: `"./dist"`
+  - Tanpa properti `main` (statik murni)
+  - Custom domain: `agritani.com` dan `www.agritani.com` (`custom_domain: true`)
+- **`public/_headers`**:
+  - Menetapkan header keamanan ketat sesuai ARCHITECTURE §5:
+    - `Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.bmkg.go.id; frame-ancestors 'none'; base-uri 'self'; form-action 'self'`
+    - `X-Content-Type-Options: nosniff`
+    - `Referrer-Policy: strict-origin-when-cross-origin`
+    - `Permissions-Policy: camera=(), microphone=(), geolocation=()`
+  - Cache kontrol aset statik immutable:
+    - `/_astro/*`: `Cache-Control: public, max-age=31536000, immutable`
+    - `/fonts/*`: `Cache-Control: public, max-age=31536000, immutable`
+
+---
+
+## 6. Bukti Verifikasi Lengkap (Langkah 6)
+
+### 6.1. Build Produksi Murni & Pemeriksaan Kualitas
+Build produksi dieksekusi tanpa `PUBLIC_INCLUDE_DRAFTS` (`npm run build`):
+- **Commodity Assignments**: 118 penugasan komoditas diverifikasi valid terhadap judul dan tag (0 invalid).
+- **Astro Build**: 29 rute statik berhasil dibuat (termasuk 8 artikel terbit).
+- **Pagefind**: Mengindeks 8 artikel publikasi (1 bahasa: id, 1304 kata).
+- **Audit SEO (`check-seo.mjs`)**: 29 file HTML diperiksa, 0 error, 0 warning.
+- **Audit CSP (`check-csp.mjs`)**: 29 file HTML diperiksa, invariant 0/0/0 terpenuhi (0 inline script, 0 inline on*= handler, 0 inline style= attribute).
+- **Audit Placeholder (`check-placeholders.mjs`)**: 29 file HTML produksi bersih dari placeholder draf dan TODO.
+- **Type Checking (`npx astro check`)**: 0 error, 0 warning, 0 hint.
+- **Unit & behavioral tests (`npm test`)**: 78 tes lulus dari 12 suite (0 gagal, 0 diskip).
+- **Contrast Check (`npm run check:contrast`)**: Semua rasio kontras teks (≥ 7.0:1) dan kontrol non-teks (≥ 3.0:1) lulus.
+
+### 6.2. Wrangler Deploy Dry-Run
+```bash
+$ npx wrangler deploy --dry-run
+ ⛅️ wrangler 4.143.1
+────────────────────
+✨ Read 686 files from the assets directory /home/ongki/Projects/agritani-launch/dist
+Total Upload: 0.31 KiB / gzip: 0.22 KiB
+No bindings found.
+--dry-run: exiting now.
+```
+Exit code: 0.
+
+### 6.3. Verifikasi Header Lokal (`wrangler dev` + `curl -I`)
+Dijalankan pada server lokal port 8787:
+```http
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Cache-Control: public, max-age=0, must-revalidate
+ETag: "3b40e4f717c0f9bb063251cde2fa0aca"
+CF-Cache-Status: HIT
+content-security-policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.bmkg.go.id; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+permissions-policy: camera=(), microphone=(), geolocation=()
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+```
+Header aset immutable (`curl -I http://localhost:8787/_astro/BaseLayout.B5hu0LA5.css`):
+```http
+HTTP/1.1 200 OK
+Content-Type: text/css; charset=utf-8
+Cache-Control: public, max-age=31536000, immutable
+content-security-policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.bmkg.go.id; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+permissions-policy: camera=(), microphone=(), geolocation=()
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+```
+
+### 6.4. Bukti Tangkapan Layar UI (Port 4331)
+Tangkapan layar resolusi seluler (390px) dan desktop (1440px) dihasilkan menggunakan `agritani-shot.cjs` dan tersimpan di `proof/ui/launch-content/`:
+- `beranda-390.png` & `beranda-1440.png`: Membuktikan footer dengan tautan resmi WhatsApp tanpa placeholder alamat.
+- `konsultasi-390.png` & `konsultasi-1440.png`: Membuktikan halaman konsultasi bersih tanpa baris jam operasional placeholder.
+- `alat-index-390.png` & `alat-index-1440.png`: Membuktikan badge "Segera hadir" pada Diagnosa Gejala dan Kalender Tanam saat data tertinjau belum tersedia di produksi.
+- `jurnal-index-390.png` & `jurnal-index-1440.png`: Membuktikan indeks jurnal hanya memuat 8 artikel terbitan Batch 1.
+- `artikel-antraknosa-390.png` & `artikel-antraknosa-1440.png`: Membuktikan artikel antraknosa dengan judul terevisi, DOI Crossref resmi, dan jawaban singkat 40–60 kata.
+- `artikel-wereng-390.png` & `artikel-wereng-1440.png`: Membuktikan artikel wereng batang coklat dengan DOI terverifikasi dan tanpa klaim overpromising.
+
+---
+
+LAUNCH-CONTENT SELESAI
