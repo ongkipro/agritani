@@ -1,0 +1,350 @@
+---
+/**
+ * src/pages/cari.astro
+ * Dedicated client-side search page powered by Pagefind (REQ-06b, DESIGN §4.4.3)
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import SearchBox from '../components/SearchBox.astro';
+import type { SeoInput } from '../lib/seo';
+
+const breadcrumbItems = [
+  { name: 'Beranda', url: '/' },
+  { name: 'Pencarian', url: '/cari/' },
+];
+
+const seo: SeoInput = {
+  title: 'Cari di Jurnal Tani',
+  description:
+    'Pusat pencarian artikel agronomi, identifikasi hama penyakit tanaman, dan panduan budidaya lapangan terpercaya di Jurnal Tani oleh Prof. Arif Prabowo.',
+  canonicalPath: '/cari/',
+  noindex: true,
+  breadcrumbs: breadcrumbItems,
+  pageType: 'website',
+};
+
+const popularQueries = [
+  'patek cabai',
+  'ganoderma',
+  'blas padi',
+  'wereng batang coklat',
+  'kutu kebul',
+  'tanah masam',
+  'lalat buah',
+];
+---
+
+<BaseLayout seo={seo} currentPath="/cari/">
+  <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+    <Breadcrumb items={breadcrumbItems} />
+
+    <!-- Page Header -->
+    <header class="my-6 sm:my-8 max-w-[68ch]">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[var(--color-text)] mb-3 leading-tight">
+        Pencarian Jurnal Tani
+      </h1>
+      <p class="text-base sm:text-lg text-[var(--color-text-muted)] font-serif leading-relaxed">
+        Temukan panduan pencegahan penyakit, teknik budidaya lapangan, dan ulasan ilmiah tanaman langsung dari naskah <strong>Prof. Arif Prabowo</strong>.
+      </p>
+    </header>
+
+    <!-- Search Box Area -->
+    <div class="max-w-[48rem] mb-6">
+      <SearchBox
+        id="search-query-input"
+        size="large"
+        placeholder="Ketik masalah tanaman (mis. patek cabai, ganoderma, blas padi)..."
+        autofocus={true}
+      />
+
+      <!-- Popular Query Chips -->
+      <div class="mt-4 flex flex-wrap items-center gap-2 text-xs text-[var(--color-text-muted)]">
+        <span class="font-medium text-[var(--color-soil)]">Sering dicari:</span>
+        {
+          popularQueries.map((q) => (
+            <button
+              type="button"
+              class="quick-search-btn px-2.5 py-1 rounded-[2px] bg-[var(--color-tint)] hover:bg-[var(--color-harvest)] hover:text-[var(--color-text)] font-semibold text-[var(--color-text)] transition-colors min-h-[32px] flex items-center"
+              data-query={q}
+            >
+              {q}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Search Status & Results Container -->
+    <div
+      id="search-results-area"
+      class="max-w-[48rem] min-h-[300px] pt-4"
+      aria-live="polite"
+    >
+      <!-- Initial State (rendered server-side before search) -->
+      <div id="initial-state" class="py-8 text-[var(--color-text-muted)]">
+        <div class="p-6 rounded-[2px] bg-[var(--color-tint)] border border-[var(--color-border)]">
+          <h2 class="text-base font-bold text-[var(--color-text)] mb-2">
+            Cara Mencari Panduan:
+          </h2>
+          <ul class="text-sm space-y-1.5 list-disc pl-5 leading-relaxed">
+            <li>Ketik nama penyakit atau gejala umum (contoh: <em>busuk buah</em>, <em>daun kuning</em>, <em>antraknosa</em>).</li>
+            <li>Ketik nama komoditas dan hama (contoh: <em>padi wereng</em>, <em>cabai trips</em>, <em>sawit ganoderma</em>).</li>
+            <li>Hasil pencarian langsung dicocokkan ke ulasan ilmiah dan rekomendasi lapangan.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Loading State -->
+      <div id="loading-state" class="hidden py-10 text-center text-sm font-semibold text-[var(--color-soil)]">
+        <div class="inline-block animate-pulse">Sedang mencari naskah Jurnal Tani...</div>
+      </div>
+
+      <!-- Results Count & List -->
+      <div id="results-state" class="hidden">
+        <div id="results-count" class="text-sm font-semibold text-[var(--color-soil)] mb-4"></div>
+        <div id="results-list" class="divide-y divide-[var(--color-border)]"></div>
+      </div>
+
+      <!-- Empty State -->
+      <div id="empty-state" class="hidden py-8">
+        <div class="p-6 rounded-[2px] bg-[var(--color-tint)] border border-[var(--color-border)] text-sm leading-relaxed text-[var(--color-text-muted)]">
+          <h2 class="text-base font-bold text-[var(--color-text)] mb-2">
+            Tidak Ditemukan Hasil
+          </h2>
+          <p class="mb-3">
+            Tidak ditemukan artikel yang sesuai untuk kata kunci <strong id="empty-query-term" class="text-[var(--color-text)]"></strong>.
+          </p>
+          <p class="mb-4">
+            Saran pencarian:
+          </p>
+          <ul class="list-disc pl-5 space-y-1 mb-4">
+            <li>Periksa kembali ejaan kata kunci (contoh: <em>antraknosa</em> bukan <em>antrak</em>).</li>
+            <li>Gunakan istilah komoditas umum (contoh: <em>cabai</em>, <em>padi</em>, <em>sawit</em>).</li>
+            <li>Gunakan fitur diagnosa gejala bertahap untuk mencocokkan ciri fisik tanaman di lapangan.</li>
+          </ul>
+          <div class="flex flex-wrap gap-4 pt-2 font-semibold text-xs text-[var(--color-brand-strong)]">
+            <a href="/alat/diagnosa-gejala/" class="hover:underline">
+              Buka Diagnosa Gejala Tanaman →
+            </a>
+            <a href="/jurnal/" class="hover:underline">
+              Jelajahi Semua Topik Jurnal →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  let pagefindInstance: any = null;
+  let isInitializing = false;
+
+  const searchInput = document.getElementById('search-query-input') as HTMLInputElement | null;
+  const searchForm = document.getElementById('search-form') as HTMLFormElement | null;
+  const initialState = document.getElementById('initial-state');
+  const loadingState = document.getElementById('loading-state');
+  const resultsState = document.getElementById('results-state');
+  const emptyState = document.getElementById('empty-state');
+  const resultsCount = document.getElementById('results-count');
+  const resultsList = document.getElementById('results-list');
+  const emptyQueryTerm = document.getElementById('empty-query-term');
+
+  // Lazy-load Pagefind library on first focus or search invocation
+  async function getPagefind() {
+    if (pagefindInstance) return pagefindInstance;
+    if (isInitializing) {
+      while (isInitializing) {
+        await new Promise((r) => setTimeout(r, 50));
+      }
+      return pagefindInstance;
+    }
+
+    isInitializing = true;
+    try {
+      // Dynamic import loads /pagefind/pagefind.js ONLY when user searches
+      const pagefindPath = '/pagefind/pagefind.js';
+      // @ts-ignore
+      const pf = await import(/* @vite-ignore */ pagefindPath);
+      await pf.init();
+      pagefindInstance = pf;
+      return pagefindInstance;
+    } catch (err) {
+      console.warn('Pagefind is unavailable or still indexing:', err);
+      return null;
+    } finally {
+      isInitializing = false;
+    }
+  }
+
+  // Pre-load Pagefind when user focuses input or hovers quick buttons
+  if (searchInput) {
+    searchInput.addEventListener('focus', () => {
+      getPagefind();
+    }, { once: true });
+  }
+
+  document.querySelectorAll('.quick-search-btn').forEach((btn) => {
+    btn.addEventListener('mouseenter', () => {
+      getPagefind();
+    }, { once: true });
+  });
+
+  async function executeSearch(query: string) {
+    const trimmed = query.trim();
+
+    if (!trimmed || trimmed.length < 2) {
+      if (initialState) initialState.classList.remove('hidden');
+      if (loadingState) loadingState.classList.add('hidden');
+      if (resultsState) resultsState.classList.add('hidden');
+      if (emptyState) emptyState.classList.add('hidden');
+      return;
+    }
+
+    if (initialState) initialState.classList.add('hidden');
+    if (loadingState) loadingState.classList.remove('hidden');
+    if (resultsState) resultsState.classList.add('hidden');
+    if (emptyState) emptyState.classList.add('hidden');
+
+    const pf = await getPagefind();
+    if (!pf) {
+      if (loadingState) loadingState.classList.add('hidden');
+      if (emptyState) {
+        emptyState.classList.remove('hidden');
+        if (emptyQueryTerm) emptyQueryTerm.textContent = trimmed;
+      }
+      return;
+    }
+
+    try {
+      const searchResponse = await pf.search(trimmed);
+      const results = await Promise.all(
+        searchResponse.results.slice(0, 30).map((r: any) => r.data())
+      );
+
+      if (loadingState) loadingState.classList.add('hidden');
+
+      if (results.length === 0) {
+        if (emptyState) {
+          emptyState.classList.remove('hidden');
+          if (emptyQueryTerm) emptyQueryTerm.textContent = `"${trimmed}"`;
+        }
+        return;
+      }
+
+      if (resultsState && resultsList && resultsCount) {
+        resultsCount.textContent = `Ditemukan ${results.length} ulasan agronomi untuk "${trimmed}":`;
+        resultsList.innerHTML = '';
+
+        results.forEach((item: any) => {
+          const row = document.createElement('div');
+          row.className = 'py-4 sm:py-5 space-y-1.5';
+
+          const title = item.meta?.title || item.raw_title || 'Panduan Agronomi';
+          const url = item.url;
+          const excerpt = item.excerpt || '';
+
+          row.innerHTML = `
+            <h2 class="text-lg sm:text-xl font-serif font-bold text-[var(--color-text)]">
+              <a href="${url}" class="hover:text-[var(--color-brand-strong)] hover:underline focus:outline-none focus:ring-1 focus:ring-[var(--color-brand-strong)] rounded-[2px]">
+                ${title}
+              </a>
+            </h2>
+            <p class="text-sm text-[var(--color-text-muted)] font-serif leading-relaxed line-clamp-3">
+              ${excerpt}
+            </p>
+            <div class="pt-1">
+              <a href="${url}" class="inline-flex items-center text-xs font-semibold text-[var(--color-brand-strong)] hover:underline">
+                Baca ulasan lengkap →
+              </a>
+            </div>
+          `;
+          resultsList.appendChild(row);
+        });
+
+        resultsState.classList.remove('hidden');
+      }
+    } catch (err) {
+      console.error('Search failed:', err);
+      if (loadingState) loadingState.classList.add('hidden');
+      if (emptyState) {
+        emptyState.classList.remove('hidden');
+        if (emptyQueryTerm) emptyQueryTerm.textContent = `"${trimmed}"`;
+      }
+    }
+  }
+
+  // Debounced input handler for reactive typing search
+  let debounceTimer: any = null;
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        const q = searchInput.value;
+        const newUrl = new URL(window.location.href);
+        if (q.trim()) {
+          newUrl.searchParams.set('q', q.trim());
+        } else {
+          newUrl.searchParams.delete('q');
+        }
+        window.history.replaceState({}, '', newUrl.toString());
+        executeSearch(q);
+      }, 150);
+    });
+  }
+
+  // Form submit handler
+  if (searchForm) {
+    searchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      clearTimeout(debounceTimer);
+      if (searchInput) {
+        const q = searchInput.value;
+        const newUrl = new URL(window.location.href);
+        if (q.trim()) {
+          newUrl.searchParams.set('q', q.trim());
+        } else {
+          newUrl.searchParams.delete('q');
+        }
+        window.history.replaceState({}, '', newUrl.toString());
+        executeSearch(q);
+      }
+    });
+  }
+
+  // Quick suggestion button handlers
+  document.querySelectorAll('.quick-search-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const q = btn.getAttribute('data-query');
+      if (q && searchInput) {
+        searchInput.value = q;
+        const newUrl = new URL(window.location.href);
+        newUrl.searchParams.set('q', q);
+        window.history.replaceState({}, '', newUrl.toString());
+        executeSearch(q);
+      }
+    });
+  });
+
+  // Handle URL query parameters on initial page load
+  const initialParams = new URLSearchParams(window.location.search);
+  const qParam = initialParams.get('q');
+  if (qParam && qParam.trim()) {
+    if (searchInput) {
+      searchInput.value = qParam.trim();
+    }
+    executeSearch(qParam.trim());
+  }
+</script>
+
+<style>
+  /* Style Pagefind highlighted marks cleanly with design tokens */
+  :global(#results-list mark) {
+    background-color: var(--color-harvest-tint, #FEF7E6);
+    color: var(--color-text, #16211A);
+    font-weight: 600;
+    padding: 0 2px;
+    border-radius: 1px;
+  }
+</style>

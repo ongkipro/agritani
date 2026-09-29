@@ -1,0 +1,133 @@
+---
+/**
+ * src/components/SearchBox.astro
+ * Accessible search input component conforming to DESIGN §3, §6, and REQ-06b
+ */
+
+interface Props {
+  id?: string;
+  initialQuery?: string;
+  autofocus?: boolean;
+  placeholder?: string;
+  size?: 'default' | 'large';
+  class?: string;
+}
+
+const {
+  id = 'search-query-input',
+  initialQuery = '',
+  autofocus = false,
+  placeholder = 'Cari nama penyakit, hama, komoditas, atau topik...',
+  size = 'default',
+  class: className = '',
+} = Astro.props;
+
+const isLarge = size === 'large';
+---
+
+<form
+  role="search"
+  action="/cari/"
+  method="get"
+  class={`relative w-full flex items-stretch gap-2 ${className}`}
+  id="search-form"
+>
+  <div class="relative flex-1 flex items-center">
+    <label for={id} class="sr-only">
+      Cari artikel agronomi dan panduan Jurnal Tani
+    </label>
+
+    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[var(--color-border-control)]">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class={isLarge ? "w-5 h-5" : "w-4 h-4"}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </div>
+
+    <input
+      type="search"
+      name="q"
+      id={id}
+      value={initialQuery}
+      placeholder={placeholder}
+      autofocus={autofocus}
+      autocomplete="off"
+      spellcheck="false"
+      class={`w-full pl-10 pr-10 rounded-[2px] bg-white text-[var(--color-text)] border border-[var(--color-border-control)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent transition-colors placeholder:text-[var(--color-border-control)] ${
+        isLarge
+          ? "py-3.5 text-base sm:text-lg min-h-[52px]"
+          : "py-2.5 text-sm sm:text-base min-h-[44px]"
+      }`}
+    />
+
+    <button
+      type="button"
+      id="search-clear-btn"
+      class="absolute inset-y-0 right-0 pr-3 flex items-center text-[var(--color-border-control)] hover:text-[var(--color-text)] hidden focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] rounded-[2px] min-h-[44px] min-w-[44px] justify-center"
+      aria-label="Hapus kata kunci"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-4 h-4"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <button
+    type="submit"
+    class={`shrink-0 px-5 rounded-[2px] bg-[var(--color-brand)] text-white font-semibold hover:bg-[var(--color-brand-hover)] focus:outline-none focus:ring-2 focus:ring-[var(--color-harvest)] transition-colors min-h-[44px] flex items-center justify-center ${
+      isLarge ? "text-base py-3.5 min-h-[52px]" : "text-sm py-2.5"
+    }`}
+  >
+    Cari
+  </button>
+</form>
+
+<script>
+  const searchInput = document.getElementById('search-query-input') as HTMLInputElement | null;
+  const clearBtn = document.getElementById('search-clear-btn') as HTMLButtonElement | null;
+
+  if (searchInput && clearBtn) {
+    function toggleClearBtn() {
+      if (searchInput && clearBtn) {
+        if (searchInput.value.trim().length > 0) {
+          clearBtn.classList.remove('hidden');
+        } else {
+          clearBtn.classList.add('hidden');
+        }
+      }
+    }
+
+    searchInput.addEventListener('input', toggleClearBtn);
+    toggleClearBtn();
+
+    clearBtn.addEventListener('click', () => {
+      if (searchInput) {
+        searchInput.value = '';
+        searchInput.focus();
+        toggleClearBtn();
+        searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+    });
+  }
+</script>

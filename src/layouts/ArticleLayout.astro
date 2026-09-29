@@ -180,7 +180,7 @@ if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV)
       <div class="lg:col-span-3 hidden lg:block" aria-hidden="true"></div>
       <div class="lg:col-span-9 max-w-[68ch]">
         <!-- 2. H1 Title -->
-        <h1 class="text-3xl sm:text-4xl lg:text-[2.75rem] font-serif font-bold text-[var(--color-text)] leading-tight mb-4 text-balance">
+        <h1 class="text-3xl sm:text-4xl lg:text-[2.75rem] font-serif font-bold text-[var(--color-text)] leading-tight mb-4 text-balance" data-pagefind-meta="title">
           {data.title}
         </h1>
 
@@ -251,13 +251,13 @@ if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV)
       </aside>
 
       <!-- 11. Article Prose -->
-      <article class="lg:col-span-7 prose-container max-w-[68ch]">
+      <article class="lg:col-span-7 prose-container max-w-[68ch]" data-pagefind-body>
         <div class="prose text-[var(--color-text)] text-[1.0625rem] sm:text-[1.125rem] leading-[1.75]">
           <slot />
         </div>
 
         <!-- 13. Kapan Harus Konsultasi -->
-        <section class="my-10 pt-8 border-t border-[var(--color-border)]" aria-labelledby="konsultasi-heading">
+        <section class="my-10 pt-8 border-t border-[var(--color-border)]" aria-labelledby="konsultasi-heading" data-pagefind-ignore>
           <h2 id="konsultasi-heading" class="text-xl font-bold font-serif text-[var(--color-text)] mb-3">
             Kapan Harus Berkonsultasi?
           </h2>
@@ -273,13 +273,17 @@ if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV)
         </section>
 
         <!-- 14. Daftar Pustaka -->
-        <References references={activeReferences} />
+        <div data-pagefind-ignore>
+          <References references={activeReferences} />
+        </div>
 
         <!-- 15. Tentang Penulis -->
-        <AuthorBio />
+        <div data-pagefind-ignore>
+          <AuthorBio />
+        </div>
 
         <!-- 16. Pengungkapan -->
-        <div class="my-8 py-3 px-4 rounded-[2px] bg-[var(--color-tint)] text-xs text-[var(--color-text-muted)] leading-relaxed">
+        <div class="my-8 py-3 px-4 rounded-[2px] bg-[var(--color-tint)] text-xs text-[var(--color-text-muted)] leading-relaxed" data-pagefind-ignore>
           <p>
             <strong>Pengungkapan:</strong> Artikel ini ditulis oleh Prof. Arif Prabowo sebagai moderator Jurnal Tani, portal edukasi PT Agritani Internasional, distributor produk nutrisi dan aktivator tanaman.
           </p>
@@ -287,7 +291,7 @@ if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV)
 
         <!-- 17. Lanjut Membaca -->
         {relatedArticles.length > 0 && (
-          <nav class="my-10 pt-8 border-t border-[var(--color-border)]" aria-label="Artikel terkait">
+          <nav class="my-10 pt-8 border-t border-[var(--color-border)]" aria-label="Artikel terkait" data-pagefind-ignore>
             <h2 class="text-xl font-bold font-serif text-[var(--color-text)] mb-4">
               Bacaan Terkait
             </h2>

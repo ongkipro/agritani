@@ -40,7 +40,7 @@ Kontrak pra-pengembangan diaudit ulang pada 2026-09-29 dengan skill dotfiles ter
 
 ## Active work
 
-T-13 telah diperbaiki sesuai review Claude: nama file OG `topik-budidaya.png` dan `topik-tanah-nutrisi.png` disesuaikan dengan slug kanonikal, pemeriksa `check-seo.mjs` memvalidasi keberadaan fisik seluruh aset `og:image` dan gambar JSON-LD, skema Article meniadakan properti `image` jika `heroImage` tidak ada (DESIGN §4.4.5), dan sitemap noindex rule diverifikasi. Seluruh cek PASS dan boundary check PASS (effectiveRisk=R2). Ledger run RUN-20260929T132557Z-d177f66c FINISHED PASS. Selanjutnya melanjutkan ke T-14 (Pencarian statis Pagefind).
+T-14 (Pencarian statis Pagefind) selesai dan terverifikasi penuh: pagefind 1.5.2 terintegrasi, ArticleLayout terindeks via data-pagefind-body, halaman /cari/ dan SearchBox aktif dengan lazy-loading dan sinkronisasi URL parameter, kueri 'patek cabai' (6 hasil) dan 'ganoderma' (3 hasil) lulus pengujian nyata di headless browser, 0 aset pagefind di halaman non-pencarian. Boundary check PASS (effectiveRisk=R2). Ledger run RUN-20260929T133042Z-fc2aae13 FINISHED PASS. Selanjutnya melanjutkan ke T-21 (Kalkulator Dosis).
 
 ## Blockers
 
@@ -60,10 +60,11 @@ T-13 telah diperbaiki sesuai review Claude: nama file OG `topik-budidaya.png` da
 - T-06: FieldSummaryBox selesai dan PASS (RUN-20260929T125122Z-81b067e9). Varian masalah & panduan terverifikasi; ketiadaan takeaways tidak merender kotak kosong; kontras label soil di atas tint 8.95:1 (>= 7:1); unit test 38/38 PASS, check, build, kontras PASS; boundary PASS R1.
 - T-07: References component selesai dan PASS (RUN-20260929T130452Z-a04d15c3). Native `<details open>`, daftar bernomor, tautan DOI dan URL, tidak merender kotak kosong jika referensi kosong; screenshot 390px dan 1440px terverifikasi; check, build, test, kontras PASS; boundary PASS R1.
 - T-13: Dynamic SEO engine, sitemap filter/serialize, robots.txt, 14 static OG images, dan post-build verifier `scripts/check-seo.mjs` selesai dan diperbaiki sesuai review Claude (RUN-20260929T132557Z-d177f66c). Gambar OG topik budidaya dan tanah-nutrisi sinkron dengan slug kanonikal, aset diperiksa secara fisik di disk, schema Article patuh DESIGN §4.4.5. Semua cek PASS (39/39 test, 8 hal produksi & 175 hal pratinjau, 0 error, 0 warning). Boundary check PASS R2.
+- T-14: Pagefind static search engine, SearchBox component, dan dedicated `/cari/` search page selesai dan PASS (RUN-20260929T133042Z-fc2aae13). Pengujian query 'patek cabai' (6 hasil) dan 'ganoderma' (3 hasil) lulus dengan rendering judul, kutipan highlight, dan link artikel; 0 aset pagefind di halaman non-pencarian; UI screenshot 390px dan 1440px terverifikasi. Boundary check PASS R2.
 
 ## Next verified action
 
-T-14: Pencarian statis Pagefind (`package.json`, `src/components/SearchBox.astro`, `src/pages/cari.astro`, `src/layouts/BaseLayout.astro`, `src/layouts/ArticleLayout.astro`).
+T-21: Kalkulator Dosis Semprot `/alat/kalkulator-dosis/` (`src/pages/alat/kalkulator-dosis.astro`, `src/components/DoseCalculator.astro`, `src/lib/dose-calculator.ts`, `src/lib/dose-calculator.test.ts`).
 
 
 

@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/check-commodities.mjs && astro build && node scripts/check-seo.mjs",
+    "build": "node scripts/check-commodities.mjs && astro build && pagefind --site dist && node scripts/check-seo.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "test": "node --experimental-strip-types --test 'src/**/*.test.ts'",
@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "pagefind": "^1.5.2",
     "typescript": "^5.8.3"
   }
 }

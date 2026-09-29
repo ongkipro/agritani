@@ -268,4 +268,42 @@ Record only durable implementation changes, validation evidence, and gotchas tha
   - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 175 draft preview pages, `check-seo` PASS (0 errors, 0 warnings).
 - Boundary check passed: `BOUNDARY PASS effectiveRisk=R2`. Ledger run `RUN-20260929T132557Z-d177f66c` finished with result PASS.
 
+## 2026-09-29 — T-14: Pagefind Static Search Engine & Dedicated UI (PASS)
+
+- Installed `pagefind@1.5.2` as devDependency per DEC-004.
+- Updated `package.json` build pipeline: `node scripts/check-commodities.mjs && astro build && pagefind --site dist && node scripts/check-seo.mjs`.
+- Article indexing configuration (`src/layouts/ArticleLayout.astro`):
+  - Attached `data-pagefind-body` to the `<article>` prose container so only article content is indexed.
+  - Attached `data-pagefind-meta="title"` to the `<h1>` title element.
+  - Attached `data-pagefind-ignore` to non-body elements (consult prompt, references, author bio, disclosure, related articles).
+- Search UI components created:
+  - `src/components/SearchBox.astro`: Accessible search input conforming to DESIGN §3 & §6. Includes prefix icon, clear button, and accessible submit button with focus rings.
+  - `src/pages/cari.astro`: Dedicated client-side search page.
+    - SEO: `noindex: true`, canonical `/cari/`, breadcrumb `Beranda › Pencarian`.
+    - Suggested quick query chips for popular terms.
+    - Dynamic lazy loading of `/pagefind/pagefind.js` on focus / search (0 pagefind assets on initial load of other pages).
+    - Real-time debounced typing search with URL `?q=` synchronization.
+    - Clean state transitions: Initial state, Loading state, Results count & highlighted excerpts, Empty state with tips.
+- Impeccable critique pass:
+  - Mode: `Operate`/`Read`. Clean typographic hierarchy (Plus Jakarta Sans inputs/chips, Newsreader serif article titles).
+  - Highlights use `<mark>` styled with `--color-harvest-tint` background and dark text (WCAG AAA compliant).
+  - Touch targets ≥ 44px; input min-height 52px; focus-visible rings active.
+  - UI evidence captured via `agritani-shot.cjs` on port 4330:
+    - `search-initial-390.png` & `search-initial-1440.png`
+    - `search-patek-cabai-390.png` & `search-patek-cabai-1440.png`
+    - `search-ganoderma-390.png` & `search-ganoderma-1440.png`
+  - Functional search proofs:
+    - Query "patek cabai" returned 6 relevant articles (top result: "Jurus Mengatasi Antraknosa (Patek Cabai)").
+    - Query "ganoderma" returned 3 relevant articles (top result: "Mengapa Jamur Ganoderma Kebal Terhadap Fungisida Kimia...").
+    - Verified 0 Pagefind assets loaded on non-search pages (`/jurnal/` and `/`).
+- Verifications:
+  - `npm test`: 39/39 unit tests PASS.
+  - `npm run check:commodities`: 118/118 valid assignments.
+  - `npm run check:contrast`: PASS (all text ≥ 7:1, UI ≥ 3:1).
+  - `npx astro check`: 0 errors.
+  - `npm run build`: 9 production pages, Pagefind indexed, `check-seo` PASS (0 errors, 0 warnings).
+  - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 176 draft preview pages, Pagefind indexed 150 articles, `check-seo` PASS (0 errors, 0 warnings).
+- Boundary check passed: `BOUNDARY PASS effectiveRisk=R2`. Ledger run `RUN-20260929T133042Z-fc2aae13` finished with result PASS.
+
+
 
