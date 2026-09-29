@@ -659,6 +659,40 @@ Record only durable implementation changes, validation evidence, and gotchas tha
   - `npm test`: 76/76 unit tests PASS.
   - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 183 halaman terkompilasi, check-seo PASS (0 error, 0 warning), check-csp PASS (0/0/0).
 
+## 2026-09-29 — T-10: Tentang Kami & Profil Penulis (PASS)
+
+- **Halaman Profil Perusahaan (`src/pages/tentang-kami.astro`)**:
+  - Posisi resmi: Distributor resmi sarana produksi pertanian dan bioteknologi tanaman (DEC-010, bukan produsen atau lembaga riset).
+  - Aliansi teknologi teruji dari Thailand (biostimulan kekebalan tanaman tropis) dan Jepang (hidrolisis peptida asam amino nano-molekuler).
+  - Paradigma solusi: Aktivasi daya tahan alami tanaman (*Systemic Acquired Resistance*) dalam prosa rapi tanpa bento grid.
+  - Alur distribusi `01–03` berurutan nyata: 01 Kurasi & Uji Lapangan, 02 Rantai Pasok Terlindungi, 03 Pendampingan & Edukasi Agronomi.
+  - Menghubungkan peran edukasi mandiri ke Jurnal Tani dan profil Prof. Arif Prabowo.
+  - Menampilkan media `tentang-kami.webp` terverifikasi.
+  - Tepat satu ajakan WhatsApp resmi di akhir halaman bertanda `data-cta="whatsapp"` melalui komponen `ConsultPrompt`.
+- **Halaman Profil Penulis (`src/pages/penulis/arif-prabowo.astro`)**:
+  - Inisial "AP" (placeholder foto resmi OQ-4) berdimensi 80px/96px dengan latar belakang brand-soft.
+  - Bio minimalis tanpa klaim institusi karangan (agritani-launch-plan A.4): "Profesor Pertanian · Moderator Jurnal Tani".
+  - Blok Pengungkapan Editorial & Prinsip Independensi (DESIGN §4.3 Blok 16).
+  - Menampilkan daftar karya tulis/panduan agronomi dari koleksi `articles` dengan filter status draf dan tautan topik.
+  - Tepat satu ajakan konsultasi WhatsApp resmi di akhir halaman.
+- **Koleksi Halaman (`src/content/pages/`)**:
+  - Menambahkan `tentang-kami.md` dan `penulis-arif-prabowo.md` dengan deskripsi memenuhi rentang 120–160 karakter.
+- **Kepatuhan Invarian Desain & Keamanan**:
+  - Zero kickers, zero garis pemisah seksi horizontal, radius 2px konsisten, touch target >= 44px.
+  - Kontras teks di atas 7:1 (WCAG AAA).
+  - CSP 0/0/0: zero executed inline scripts, zero inline on*=, zero inline style=.
+  - JSON-LD `@graph`: `AboutPage` dan `Organization` pada Tentang Kami; `ProfilePage` dan `Person` pada Profil Penulis.
+- **Bukti Render UI Browser**:
+  - `proof/ui/t10/tentang-kami-390.png`
+  - `proof/ui/t10/tentang-kami-1440.png`
+  - `proof/ui/t10/penulis-arif-prabowo-390.png`
+  - `proof/ui/t10/penulis-arif-prabowo-1440.png`
+- **Verifikasi**:
+  - `npx astro check`: 0 errors.
+  - `npm test`: 76/76 unit tests PASS.
+  - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 185 halaman terkompilasi, check-seo PASS, check-csp PASS (0/0/0).
+
+
 
 
 

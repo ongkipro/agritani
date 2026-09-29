@@ -1,0 +1,235 @@
+---
+/**
+ * src/pages/tentang-kami.astro
+ * Company profile page for PT Agritani Internasional (DEC-010, DESIGN §4.2.3)
+ * Position: Official distributor of biotechnology agricultural inputs (not a manufacturer or research institute).
+ * Invariants: Single WhatsApp CTA, 0/0/0 CSP, 2px radius, no divider lines, text contrast >= 7:1.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import ConsultPrompt from '../components/ConsultPrompt.astro';
+import { Image } from 'astro:assets';
+import type { SeoInput } from '../lib/seo';
+import tentangKamiImg from '../assets/images/dummy/tentang-kami.webp';
+
+const breadcrumbs = [
+  { name: 'Beranda', url: '/' },
+  { name: 'Tentang Kami', url: '/tentang-kami/' },
+];
+
+const seo: SeoInput = {
+  title: 'Tentang PT Agritani Internasional',
+  description:
+    'Profil PT Agritani Internasional, distributor resmi sarana pertanian dan bioteknologi tanaman presisi hasil aliansi teknologi teruji dari Thailand dan Jepang.',
+  canonicalPath: '/tentang-kami/',
+  breadcrumbs,
+  pageType: 'about',
+};
+---
+
+<BaseLayout seo={seo} currentPath="/tentang-kami/">
+  <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+
+    <!-- Article-Style Container (Sains Canvas) -->
+    <article class="max-w-[68ch] mx-auto my-8 sm:my-12">
+      <!-- Header -->
+      <header class="mb-8 sm:mb-10">
+        <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--color-text)] leading-tight tracking-tight mb-4">
+          Tentang PT Agritani Internasional
+        </h1>
+        <p class="text-lg sm:text-xl text-[var(--color-text-muted)] leading-relaxed font-sans">
+          Distributor resmi sarana produksi pertanian dan bioteknologi tanaman modern, berdedikasi menjembatani teknologi hayati mutakhir dengan kebutuhan nyata petani Indonesia.
+        </p>
+      </header>
+
+      <!-- Featured Image -->
+      <figure class="mb-10 sm:mb-12">
+        <Image
+          src={tentangKamiImg}
+          alt="Lanskap panorama perbukitan sawah terasering tropis Asia Tenggara di masa panen"
+          width={1200}
+          height={800}
+          class="w-full h-auto object-cover rounded-[2px] border border-[var(--color-border)]"
+          loading="eager"
+        />
+        <figcaption class="mt-2.5 text-xs sm:text-sm text-[var(--color-text-muted)] font-sans">
+          Lanskap terasering pertanian tropis Asia Tenggara — sentra pengembangan budidaya ramah lingkungan.
+        </figcaption>
+      </figure>
+
+      <!-- Main Prose Content -->
+      <div class="space-y-8 text-base sm:text-lg text-[var(--color-text)] leading-relaxed font-sans">
+        
+        <!-- Section 1: Posisi Distributor Resmi & Asal Teknologi -->
+        <section class="space-y-4">
+          <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
+            Menjembatani Inovasi Hayati dengan Lahan Pertanian
+          </h2>
+          <p>
+            <strong>PT Agritani Internasional</strong> beroperasi sebagai <strong>distributor resmi</strong> sarana produksi pertanian berbasis bioteknologi. Kami bukan pabrik manufaktur kimia maupun lembaga riset mandiri, melainkan mitra distribusi resmi yang mengkurasi, menguji coba secara komparatif, dan menyalurkan teknologi hayati unggulan ke jaringan pertanian di seluruh nusantara.
+          </p>
+          <p>
+            Langkah ini berawal dari kenyataan di lapangan: penurunan kesuburan tanah akibat pemakaian pupuk kimia sintetis berkepanjangan, resistensi patogen tanaman yang kian sulit dikendalikan, dan lonjakan biaya input yang memberatkan petani. Agritani hadir menjembatani aliansi teknologi teruji dari dua sentra agrikultur terkemuka di Asia:
+          </p>
+          <ul class="list-disc pl-6 space-y-2 text-[var(--color-text)]">
+            <li>
+              <strong>Aliansi Bioteknologi Thailand:</strong> Pemanfaatan biostimulan dan pengatur ketahanan alami tanaman tropis yang telah teruji efikasinya pada sentra tanaman pangan dan hortikultura di iklim muson Asia Tenggara.
+            </li>
+            <li>
+              <strong>Formulasi Asam Amino Jepang:</strong> Teknologi hidrolisis berpresisi tinggi yang menghasilkan peptida asam amino berukuran mikro untuk penyerapan langsung melalui stomata dan perakaran dalam hitungan jam tanpa membebani metabolisme tanaman.
+            </li>
+          </ul>
+        </section>
+
+        <!-- Section 2: Pendekatan: Aktivasi Imun Tanaman -->
+        <section class="space-y-4 pt-4">
+          <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
+            Pendekatan Solusi: Aktivasi Daya Tahan Alami Tanaman
+          </h2>
+          <p>
+            Pendekatan konvensional kerap berfokus pada upaya meracuni hama dan jamur menggunakan senyawa kimia sintetis berdaya bunuh tinggi. Ketika patogen membentuk kekebalan, dosis dinaikkan dan biaya terus membengkak, sementara ekosistem mikroba tanah kian tergerus.
+          </p>
+          <p>
+            Agritani memprioritaskan pemulihan daya tahan mandiri tanaman melalui prinsip <em>Systemic Acquired Resistance</em> (SAR). Melalui aktivasi kekebalan seluler:
+          </p>
+          <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-3 text-sm sm:text-base">
+            <p>
+              <strong>1. Pembentukan Senyawa Pertahanan Mandiri:</strong> Merangsang tanaman memproduksi fitoaleksin dan mempertebal dinding sel lignin untuk membendung penetrasi hifa jamur dan bakteri patogen.
+            </p>
+            <p>
+              <strong>2. Regenerasi Jaringan Cepat:</strong> Mempercepat pemulihan sel titik tumbuh daun, batang, dan pucuk pasca cekaman cuaca ekstrem, kekeringan, atau gigitan hama.
+            </p>
+            <p>
+              <strong>3. Efisiensi Serapan Nutrisi:</strong> Menjaga fungsi perakaran aktif sehingga pupuk dasar yang diberikan dapat diserap optimal tanpa meninggalkan residu beracun di media tanam.
+            </p>
+          </div>
+        </section>
+
+        <!-- Section 3: Rantai Pasok Berintegritas & Alur 01–03 -->
+        <section class="space-y-4 pt-4">
+          <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
+            Integritas Rantai Pasok dan Kemitraan Lapangan
+          </h2>
+          <p>
+            Sebagai distributor resmi, kepatuhan regulasi dan perlindungan terhadap petani dari produk palsu merupakan komitmen mutlak. Seluruh portofolio yang disalurkan berlandaskan pendaftaran resmi Kementerian Pertanian Republik Indonesia.
+          </p>
+          <p>
+            Distribusi dijalankan melalui tiga tahapan berurutan:
+          </p>
+          <ol class="space-y-4">
+            <li class="p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px]">
+              <span class="font-mono text-sm font-bold text-[var(--color-brand)] block mb-1">01. Kurasi & Validasi Lapangan</span>
+              <p class="text-sm sm:text-base text-[var(--color-text)]">
+                Menyeleksi formulasi hayati ramah lingkungan yang memenuhi baku mutu keamanan, bebas logam berat berbahaya, dan teruji nyata pada komoditas strategis nasional.
+              </p>
+            </li>
+            <li class="p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px]">
+              <span class="font-mono text-sm font-bold text-[var(--color-brand)] block mb-1">02. Rantai Pasok Terlindungi</span>
+              <p class="text-sm sm:text-base text-[var(--color-text)]">
+                Menyalurkan produk langsung melalui distributor kabupaten, kios saprotan resmi, dan kemitraan kelompok tani guna menjamin kepastian keaslian formula serta stabilitas ketersediaan saat musim tanam.
+              </p>
+            </li>
+            <li class="p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px]">
+              <span class="font-mono text-sm font-bold text-[var(--color-brand)] block mb-1">03. Edukasi & Pendampingan Agronomi</span>
+              <p class="text-sm sm:text-base text-[var(--color-text)]">
+                Mendampingi petani dan agronom perkebunan dengan panduan aplikasi takaran yang tepat, demonstrasi plot (demplot), serta konsultasi penanganan kendala spesifik di lahan.
+              </p>
+            </li>
+          </ol>
+        </section>
+
+        <!-- Section 4: Penulis & Moderator Jurnal Tani -->
+        <section class="pt-6 border-t border-[var(--color-border)] space-y-4">
+          <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
+            Edukasi Mandiri Bersama Jurnal Tani
+          </h2>
+          <p>
+            Sebagai bentuk dedikasi keilmuan kepada masyarakat tani, PT Agritani Internasional mengelola <strong>Jurnal Tani</strong>, portal rujukan agronomi terbuka yang diasuh oleh <strong>Prof. Arif Prabowo</strong>.
+          </p>
+          <div class="p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-4">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 bg-[var(--color-brand-soft)] border border-[var(--color-border)] rounded-[2px] flex items-center justify-center text-lg font-bold text-[var(--color-brand)]">
+                AP
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-[var(--color-text)]">
+                  Prof. Arif Prabowo
+                </h3>
+                <p class="text-xs sm:text-sm text-[var(--color-text-muted)]">
+                  Profesor Pertanian · Moderator Jurnal Tani
+                </p>
+              </div>
+            </div>
+            <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed">
+              Seluruh artikel dan pedoman pengendalian hama terpadu di Jurnal Tani disusun berlandaskan kaidah sains tanaman dan literatur agronomi terverifikasi guna memberikan panduan objektif bagi petani.
+            </p>
+            <div>
+              <a
+                href="/penulis/arif-prabowo/"
+                class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-brand)] hover:underline min-h-[44px]"
+              >
+                <span>Lihat Profil dan Karya Tulis Penulis</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: Pusat Informasi & Kemitraan -->
+        <section class="pt-6 border-t border-[var(--color-border)] space-y-6">
+          <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
+            Pusat Informasi & Kerja Sama
+          </h2>
+          <p>
+            Kami menyambut kolaborasi bersama kios saprotan, kelompok tani, pengelola perkebunan, dan calon distributor daerah yang ingin memperluas penyediaan teknologi pertanian ramah lingkungan di wilayah masing-masing.
+          </p>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] flex flex-col justify-between">
+              <div>
+                <h3 class="font-bold text-[var(--color-text)] mb-2">Program Kemitraan Agen</h3>
+                <p class="text-sm text-[var(--color-text-muted)] mb-4">
+                  Ajukan kerja sama distribusi resmi di tingkat kabupaten atau kios saprotan dengan proteksi area pasokan.
+                </p>
+              </div>
+              <a
+                href="/kemitraan-distributor/"
+                class="inline-flex items-center justify-center px-4 py-2.5 min-h-[44px] text-sm font-semibold border border-[var(--color-brand-strong)] text-[var(--color-brand-strong)] hover:bg-[var(--color-tint)] rounded-[2px] transition-colors"
+              >
+                Ajukan Kemitraan Distributor
+              </a>
+            </div>
+
+            <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] flex flex-col justify-between">
+              <div>
+                <h3 class="font-bold text-[var(--color-text)] mb-2">Pilar Layanan Agritani</h3>
+                <p class="text-sm text-[var(--color-text-muted)] mb-4">
+                  Jelajahi panduan praktis agronomi, prakiraan cuaca pertanian, atau kalkulator dosis semprot gratis.
+                </p>
+              </div>
+              <a
+                href="/alat/"
+                class="inline-flex items-center justify-center px-4 py-2.5 min-h-[44px] text-sm font-semibold border border-[var(--color-border)] text-[var(--color-text)] hover:bg-[var(--color-surface-sunken)] rounded-[2px] transition-colors"
+              >
+                Buka Alat Tani Gratis
+              </a>
+            </div>
+          </div>
+
+          <!-- Single WhatsApp CTA per Page (DESIGN §2.8) -->
+          <div class="pt-4">
+            <ConsultPrompt
+              source="tentang-kami"
+              title="Hubungi Sekretariat PT Agritani Internasional"
+              description="Pertanyaan umum seputar profil perusahaan, sertifikasi produk, atau informasi keagenan dapat disampaikan langsung ke nomor WhatsApp resmi kami."
+              label="Hubungi WhatsApp Agritani"
+              variant="primary"
+            />
+          </div>
+        </section>
+
+      </div>
+    </article>
+  </div>
+</BaseLayout>

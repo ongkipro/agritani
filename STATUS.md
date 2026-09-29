@@ -60,8 +60,15 @@ T-08 (Homepage Hibrida) selesai diimplementasikan dan diverifikasi (RUN-20260929
 - Bukti UI Browser: `proof/ui/t08/beranda-390.png` dan `proof/ui/t08/beranda-1440.png` di port 4330.
 - Verifikasi: 76/76 unit tests PASS, `astro check` 0 error, build 183 halaman PASS, check-seo PASS, check-csp PASS.
 
+T-10 (Tentang Kami & Profil Penulis) selesai diimplementasikan dan diverifikasi (RUN-20260929T151900Z-fc507dc5):
+- Halaman `tentang-kami.astro`: Posisi distributor resmi (DEC-010), asal teknologi Thailand & Jepang, aktivasi imun (SAR), alur distribusi 01–03, media `tentang-kami.webp`, tepat 1 ajakan WhatsApp via ConsultPrompt.
+- Halaman `penulis/arif-prabowo.astro`: Inisial AP, bio minimalis (A.4: Profesor Pertanian · Moderator Jurnal Tani), pengungkapan independensi, daftar panduan teknis, 1 ajakan konsultasi.
+- Koleksi `pages`: Menambahkan `tentang-kami.md` dan `penulis-arif-prabowo.md`.
+- Verifikasi: 76/76 unit tests PASS, `astro check` 0 error, build 185 halaman PASS (check-seo PASS, check-csp 0/0/0 PASS), bukti UI browser di `proof/ui/t10/`.
+
 Selanjutnya:
-Mengeksekusi **T-10** (Tentang Kami & Profil Penulis Prof. Arif Prabowo: `src/pages/tentang-kami.astro`, `src/pages/penulis/arif-prabowo.astro`).
+Mengeksekusi **T-17** (Kebijakan Privasi: `src/pages/kebijakan-privasi.astro`).
+
 
 ## Blockers
 

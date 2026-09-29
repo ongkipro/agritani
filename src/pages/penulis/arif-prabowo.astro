@@ -1,0 +1,148 @@
+---
+/**
+ * src/pages/penulis/arif-prabowo.astro
+ * Author profile page for Prof. Arif Prabowo (DESIGN §4.2.3, §4.4.3, §4.4.5)
+ * Bio strictly constrained: "Profesor Pertanian · Moderator Jurnal Tani" (agritani-launch-plan A.4, OQ-4).
+ * Invariants: Single WhatsApp CTA, 0/0/0 CSP, 2px radius, no divider lines, text contrast >= 7:1.
+ */
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import ArticleRow from '../../components/ArticleRow.astro';
+import ConsultPrompt from '../../components/ConsultPrompt.astro';
+import type { SeoInput } from '../../lib/seo';
+
+const breadcrumbs = [
+  { name: 'Beranda', url: '/' },
+  { name: 'Jurnal Tani', url: '/jurnal/' },
+  { name: 'Prof. Arif Prabowo', url: '/penulis/arif-prabowo/' },
+];
+
+const seo: SeoInput = {
+  title: 'Prof. Arif Prabowo, Penulis',
+  description:
+    'Profil Prof. Arif Prabowo, profesor pertanian dan moderator Jurnal Tani Agritani. Menghadirkan panduan agronomi berbasis sains untuk kemajuan petani nusantara.',
+  canonicalPath: '/penulis/arif-prabowo/',
+  breadcrumbs,
+  pageType: 'profile',
+  ogType: 'profile',
+};
+
+const includeDrafts =
+  import.meta.env.PUBLIC_INCLUDE_DRAFTS === 'true' || import.meta.env.DEV;
+
+const allArticles = await getCollection('articles');
+
+// Filter articles authored or moderated by Prof. Arif Prabowo
+const authorArticles = allArticles.filter(
+  (a) => !a.data.author || a.data.author === 'Arif Prabowo' || a.data.author.includes('Arif')
+);
+
+const visibleArticles = includeDrafts
+  ? authorArticles
+  : authorArticles.filter((a) => !a.data.draft);
+
+const sortedArticles = visibleArticles.sort(
+  (a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+);
+---
+
+<BaseLayout seo={seo} currentPath="/penulis/arif-prabowo/">
+  <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+
+    <!-- Profile Header (Sains Editorial Canvas) -->
+    <header class="max-w-[68ch] mx-auto my-8 sm:my-12">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-6">
+        <!-- Initial Avatar (Official photo pending OQ-4) -->
+        <div
+          class="w-20 h-20 sm:w-24 sm:h-24 bg-[var(--color-brand-soft)] border border-[var(--color-border)] rounded-[2px] flex items-center justify-center text-2xl sm:text-3xl font-bold text-[var(--color-brand)] shrink-0"
+          aria-label="Inisial Prof. Arif Prabowo"
+        >
+          AP
+        </div>
+
+        <div class="space-y-1">
+          <h1 class="font-serif text-3xl sm:text-4xl font-bold text-[var(--color-text)] tracking-tight">
+            Prof. Arif Prabowo
+          </h1>
+          <p class="text-base sm:text-lg font-semibold text-[var(--color-brand)]">
+            Profesor Pertanian · Moderator Jurnal Tani
+          </p>
+        </div>
+      </div>
+
+      <!-- Bio Prose -->
+      <div class="space-y-4 text-base sm:text-lg text-[var(--color-text)] leading-relaxed font-sans mb-8">
+        <p>
+          Prof. Arif Prabowo adalah profesor pertanian dan akademisi yang mendedikasikan keilmuannya pada penelitian terapan agronomi dan perlindungan tanaman pangan, hortikultura, serta perkebunan tropis di Indonesia.
+        </p>
+        <p>
+          Sebagai <strong>moderator Jurnal Tani</strong>, beliau mengasuh dan meninjau panduan teknis budidaya, diagnosa gejala penyakit, serta strategi pengendalian hama terpadu agar petani dan praktisi lapangan mendapatkan rujukan ilmiah yang lugas, teruji, dan dapat diterapkan secara mandiri di lahan.
+        </p>
+      </div>
+
+      <!-- Independence & Disclosure Block (DESIGN §4.3 Blok 16) -->
+      <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] text-xs sm:text-sm text-[var(--color-text-muted)] space-y-2">
+        <span class="font-bold text-[var(--color-text)] block">
+          Pengungkapan Editorial & Prinsip Independensi
+        </span>
+        <p>
+          Artikel dan rekomendasi penanganan masalah tanaman yang diasuh oleh Prof. Arif Prabowo di Jurnal Tani disusun secara objektif berbasis kaidah agronomi, sains proteksi tanaman, dan literatur ilmiah terverifikasi untuk kepentingan edukasi petani, independen dari materi komersial penjualan produk.
+        </p>
+      </div>
+    </header>
+
+    <!-- Articles Section -->
+    <main class="max-w-[68ch] mx-auto mb-12 sm:mb-16">
+      <div class="flex items-baseline justify-between mb-6 pb-3 border-b border-[var(--color-border)]">
+        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[var(--color-text)] tracking-tight">
+          Panduan & Karya Tulis
+        </h2>
+        <span class="text-xs sm:text-sm text-[var(--color-text-muted)] font-mono">
+          {sortedArticles.length} artikel {includeDrafts ? '(termasuk draf)' : 'terbit'}
+        </span>
+      </div>
+
+      {sortedArticles.length === 0 ? (
+        <div class="p-8 text-center bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px]">
+          <p class="text-[var(--color-text-muted)]">Belum ada artikel yang diterbitkan untuk saat ini.</p>
+        </div>
+      ) : (
+        <div class="divide-y divide-[var(--color-border)]">
+          {sortedArticles.map((article) => (
+            <ArticleRow article={article} />
+          ))}
+        </div>
+      )}
+
+      <!-- Bottom Navigation & Single WhatsApp CTA -->
+      <div class="mt-12 pt-8 border-t border-[var(--color-border)] space-y-6">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px]">
+          <div>
+            <h3 class="font-bold text-[var(--color-text)] text-sm sm:text-base">
+              Jelajahi Berdasarkan Topik
+            </h3>
+            <p class="text-xs sm:text-sm text-[var(--color-text-muted)]">
+              Kunjungi indeks lengkap Jurnal Tani untuk menyaring artikel per komoditas dan bidang keilmuan.
+            </p>
+          </div>
+          <a
+            href="/jurnal/"
+            class="shrink-0 px-4 py-2.5 min-h-[44px] inline-flex items-center text-sm font-semibold border border-[var(--color-brand-strong)] text-[var(--color-brand-strong)] hover:bg-[var(--color-tint)] rounded-[2px] transition-colors"
+          >
+            Buka Indeks Jurnal Tani &rarr;
+          </a>
+        </div>
+
+        <ConsultPrompt
+          source="penulis-arif-prabowo"
+          title="Butuh Bimbingan Teknis untuk Lahan Anda?"
+          description="Kirimkan pertanyaan seputar penerapan panduan agronomi atau konsultasi masalah tanaman langsung ke tim agronomi PT Agritani Internasional melalui WhatsApp."
+          label="Konsultasi Tim Agronomi"
+          variant="secondary"
+        />
+      </div>
+    </main>
+  </div>
+</BaseLayout>
