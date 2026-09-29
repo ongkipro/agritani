@@ -23,12 +23,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        # Pin to official major release v4 (compatible with GitHub Actions runner Node 20 runtime)
-        uses: actions/checkout@v4
+        # Pinned to major v7 (runs on node24); tag verified via gh api 2026-09-29
+        uses: actions/checkout@v7
 
       - name: Setup Node.js 24
-        # Pin to official major release v4 (compatible with GitHub Actions runner Node 20 runtime)
-        uses: actions/setup-node@v4
+        # Pinned to major v7 (runs on node24); tag verified via gh api 2026-09-29
+        uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
@@ -74,10 +74,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Node.js 24
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
