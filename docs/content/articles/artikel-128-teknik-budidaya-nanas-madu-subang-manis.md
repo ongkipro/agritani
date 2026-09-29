@@ -7,8 +7,7 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
-  - "melon"
-  - "semangka"
+  - "nanas"
 tags:
   - "budidaya nanas madu subang"
   - "cara menanam nanas cepat berbuah"

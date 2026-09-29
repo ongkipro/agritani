@@ -7,8 +7,7 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
-  - "kedelai"
-  - "sayuran-daun"
+  - "buncis"
 tags:
   - "budidaya buncis tegak dan rambat"
   - "perbedaan buncis bush dan pole bean"

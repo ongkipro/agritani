@@ -6,8 +6,7 @@ slug: "manfaat-bakteri-pelarut-fosfat-tanah"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "tanah-nutrisi"
-commodities:
-  - "kopi"
+commodities: []
 tags:
   - "bakteri pelarut fosfat bpf"
   - "pupuk hayati pelarut fosfat"

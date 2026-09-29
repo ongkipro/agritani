@@ -6,11 +6,7 @@ slug: "karakteristik-dan-kesuburan-tanah-latosol-merah"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "tanah-nutrisi"
-commodities:
-  - "padi"
-  - "kopi"
-  - "kakao"
-  - "cengkeh"
+commodities: []
 tags:
   - "tanah latosol merah tropis"
   - "karakteristik tanah inceptisol"

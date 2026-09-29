@@ -8,9 +8,6 @@ author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
   - "cabai"
-  - "tomat"
-  - "semangka"
-  - "melon"
 tags:
   - "pemasangan mulsa plastik mphp"
   - "cara pasang mulsa hitam perak"

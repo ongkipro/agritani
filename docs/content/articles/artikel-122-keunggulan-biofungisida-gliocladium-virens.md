@@ -6,10 +6,7 @@ slug: "keunggulan-biofungisida-gliocladium-virens"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "proteksi-tanaman"
-commodities:
-  - "cabai"
-  - "bawang-merah"
-  - "tomat"
+commodities: []
 tags:
   - "biofungisida gliocladium virens"
   - "jamur antagonis tular tanah"

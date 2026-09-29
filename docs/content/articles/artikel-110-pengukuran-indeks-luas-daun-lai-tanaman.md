@@ -6,10 +6,7 @@ slug: "pengukuran-indeks-luas-daun-lai-tanaman"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "sains-tanaman"
-commodities:
-  - "kelapa-sawit"
-  - "padi"
-  - "sayuran-daun"
+commodities: []
 tags:
   - "indeks luas daun lai tanaman"
   - "leaf area index kanopi tanaman"

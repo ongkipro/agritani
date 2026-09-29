@@ -8,7 +8,6 @@ author: "Arif Prabowo"
 topic: "tanah-nutrisi"
 commodities:
   - "padi"
-  - "kopi"
 tags:
   - "manfaat biochar sekam padi"
   - "cara membuat biochar arang sekam"

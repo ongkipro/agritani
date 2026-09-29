@@ -8,6 +8,7 @@ author: "Arif Prabowo"
 topic: "proteksi-tanaman"
 commodities:
   - "padi"
+  - "ubi-jalar"
 tags:
   - "penyakit sapu setan ubi jalar"
   - "witches broom phytoplasma sweet potato"

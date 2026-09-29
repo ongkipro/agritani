@@ -6,10 +6,7 @@ slug: "karakteristik-dan-kesuburan-tanah-podsolik-merah-kuning"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "tanah-nutrisi"
-commodities:
-  - "kelapa-sawit"
-  - "padi"
-  - "sayuran-daun"
+commodities: []
 tags:
   - "tanah podsolik merah kuning pmk"
   - "cara menyuburkan tanah ultisol"

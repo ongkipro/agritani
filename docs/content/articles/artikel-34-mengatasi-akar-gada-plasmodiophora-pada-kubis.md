@@ -7,7 +7,7 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "proteksi-tanaman"
 commodities:
-  - "sayuran-daun"
+  - "kubis"
 tags:
   - "penyebab penyakit akar gada kubis"
   - "plasmodiophora brassicae kubis"

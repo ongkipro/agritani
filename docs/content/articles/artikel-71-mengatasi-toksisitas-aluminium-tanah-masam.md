@@ -6,9 +6,7 @@ slug: "mengatasi-toksisitas-aluminium-tanah-masam"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "tanah-nutrisi"
-commodities:
-  - "jagung"
-  - "kedelai"
+commodities: []
 tags:
   - "toksisitas aluminium tanah masam"
   - "bahaya al3+ akar kerdil"

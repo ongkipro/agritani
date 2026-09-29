@@ -8,7 +8,6 @@ author: "Arif Prabowo"
 topic: "proteksi-tanaman"
 commodities:
   - "jagung"
-  - "tomat"
 tags:
   - "gejala bulai pada jagung"
   - "cara mengatasi bulai jagung"

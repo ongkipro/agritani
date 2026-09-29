@@ -8,7 +8,6 @@ author: "Arif Prabowo"
 topic: "proteksi-tanaman"
 commodities:
   - "cabai"
-  - "kopi"
 tags:
   - "hama tungau merah cabai"
   - "tetranychus urticae"

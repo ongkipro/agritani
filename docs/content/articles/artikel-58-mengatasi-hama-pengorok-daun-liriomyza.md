@@ -7,11 +7,8 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "proteksi-tanaman"
 commodities:
-  - "padi"
-  - "cabai"
-  - "bawang-merah"
   - "tomat"
-  - "kopi"
+  - "bawang-merah"
 tags:
   - "hama pengorok daun liriomyza"
   - "daun bawang garis putih meliuk"

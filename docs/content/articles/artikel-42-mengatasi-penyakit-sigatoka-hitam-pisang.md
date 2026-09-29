@@ -7,8 +7,7 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
-  - "durian"
-  - "mangga"
+  - "pisang"
 tags:
   - "penyakit sigatoka pisang"
   - "daun pisang mengering garis hitam"

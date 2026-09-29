@@ -6,9 +6,7 @@ slug: "manfaat-zeolit-alam-pembenah-tanah-pertanian"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "tanah-nutrisi"
-commodities:
-  - "padi"
-  - "kopi"
+commodities: []
 tags:
   - "manfaat zeolit alam pertanian"
   - "zeolit penghemat pupuk urea"

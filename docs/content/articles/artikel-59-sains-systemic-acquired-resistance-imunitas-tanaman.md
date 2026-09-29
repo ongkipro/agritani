@@ -6,10 +6,7 @@ slug: "sains-systemic-acquired-resistance-imunitas-tanaman"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "sains-tanaman"
-commodities:
-  - "padi"
-  - "cabai"
-  - "kelapa-sawit"
+commodities: []
 tags:
   - "systemic acquired resistance sar"
   - "imunitas alami tumbuhan"

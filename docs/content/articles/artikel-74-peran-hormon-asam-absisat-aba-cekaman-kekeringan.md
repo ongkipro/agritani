@@ -6,8 +6,7 @@ slug: "peran-hormon-asam-absisat-aba-cekaman-kekeringan"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "sains-tanaman"
-commodities:
-  - "tomat"
+commodities: []
 tags:
   - "hormon asam absisat aba"
   - "mekanisme penutupan stomata daun"

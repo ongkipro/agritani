@@ -6,12 +6,7 @@ slug: "syarat-dan-tahap-sertifikasi-pertanian-organik-sni"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "pascapanen-agribisnis"
-commodities:
-  - "padi"
-  - "jagung"
-  - "kopi"
-  - "kakao"
-  - "sayuran-daun"
+commodities: []
 tags:
   - "sertifikasi pertanian organik kementan"
   - "standar sni 6729 sistem pertanian organik"

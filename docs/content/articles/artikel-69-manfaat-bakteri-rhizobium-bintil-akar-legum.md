@@ -7,7 +7,7 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "tanah-nutrisi"
 commodities:
-  - "kedelai"
+  - "kacang-tanah"
 tags:
   - "bakteri rhizobium bintil akar"
   - "simbiosis mutualisme rhizobium"

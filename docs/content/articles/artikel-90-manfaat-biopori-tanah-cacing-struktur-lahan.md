@@ -6,9 +6,7 @@ slug: "manfaat-biopori-tanah-cacing-struktur-lahan"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "tanah-nutrisi"
-commodities:
-  - "padi"
-  - "sayuran-daun"
+commodities: []
 tags:
   - "manfaat cacing tanah pertanian"
   - "biopori alami liang cacing tanah"

@@ -8,7 +8,6 @@ author: "Arif Prabowo"
 topic: "proteksi-tanaman"
 commodities:
   - "kelapa-sawit"
-  - "sayuran-daun"
 tags:
   - "obat ganoderma sawit"
   - "busuk pangkal batang sawit"

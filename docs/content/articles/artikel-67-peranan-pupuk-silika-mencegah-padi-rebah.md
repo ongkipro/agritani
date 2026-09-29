@@ -8,7 +8,6 @@ author: "Arif Prabowo"
 topic: "tanah-nutrisi"
 commodities:
   - "padi"
-  - "melon"
 tags:
   - "manfaat pupuk silika untuk padi"
   - "cara mencegah tanaman padi roboh"

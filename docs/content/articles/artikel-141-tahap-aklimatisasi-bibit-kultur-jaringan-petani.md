@@ -6,8 +6,7 @@ slug: "tahap-aklimatisasi-bibit-kultur-jaringan-petani"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "pascapanen-agribisnis"
-commodities:
-  - "tomat"
+commodities: []
 tags:
   - "aklimatisasi bibit kultur jaringan"
   - "tahap pengeluaran bibit botol planlet"

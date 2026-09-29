@@ -6,10 +6,7 @@ slug: "trichoderma-harzianum-benteng-alami-perakaran"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "proteksi-tanaman"
-commodities:
-  - "cabai"
-  - "bawang-merah"
-  - "kelapa-sawit"
+commodities: []
 tags:
   - "cara kerja trichoderma pada tanah"
   - "jamur antagonis perakaran"

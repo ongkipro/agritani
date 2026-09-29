@@ -8,7 +8,6 @@ author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
   - "mangga"
-  - "melon"
 tags:
   - "membuahkan mangga di luar musim"
   - "aplikasi paklobutrazol pohon mangga"

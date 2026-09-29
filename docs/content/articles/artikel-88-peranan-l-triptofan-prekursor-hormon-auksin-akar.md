@@ -6,9 +6,7 @@ slug: "peranan-l-triptofan-prekursor-hormon-auksin-akar"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "tanah-nutrisi"
-commodities:
-  - "cabai"
-  - "tomat"
+commodities: []
 tags:
   - "asam amino l-triptofan tanaman"
   - "prekursor hormon auksin iaa"

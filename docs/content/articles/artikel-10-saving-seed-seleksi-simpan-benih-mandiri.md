@@ -8,7 +8,6 @@ author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
   - "cabai"
-  - "tomat"
 tags:
   - "cara menyimpan benih tanaman"
   - "saving seed mandiri"

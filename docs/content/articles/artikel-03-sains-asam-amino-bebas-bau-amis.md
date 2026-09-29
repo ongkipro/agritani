@@ -6,11 +6,7 @@ slug: "sains-asam-amino-bebas-bau-amis"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "tanah-nutrisi"
-commodities:
-  - "padi"
-  - "cabai"
-  - "tomat"
-  - "melon"
+commodities: []
 tags:
   - "pupuk asam amino untuk tanaman"
   - "pupuk organik tidak bau amis"

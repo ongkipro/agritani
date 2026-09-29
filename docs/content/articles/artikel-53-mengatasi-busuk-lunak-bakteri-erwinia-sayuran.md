@@ -7,8 +7,8 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "proteksi-tanaman"
 commodities:
-  - "padi"
   - "sayuran-daun"
+  - "kubis"
 tags:
   - "busuk lunak bakteri erwinia"
   - "erwinia carotovora sayuran"

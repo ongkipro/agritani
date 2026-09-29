@@ -7,9 +7,6 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "air-irigasi"
 commodities:
-  - "cabai"
-  - "tomat"
-  - "melon"
   - "sayuran-daun"
 tags:
   - "teknik fertigasi otomatis presisi"

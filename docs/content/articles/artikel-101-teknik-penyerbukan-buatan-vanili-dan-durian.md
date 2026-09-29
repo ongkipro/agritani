@@ -7,8 +7,8 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
-  - "kedelai"
   - "durian"
+  - "vanili"
 tags:
   - "penyerbukan buatan vanili durian"
   - "cara mengawinkan bunga vanili"

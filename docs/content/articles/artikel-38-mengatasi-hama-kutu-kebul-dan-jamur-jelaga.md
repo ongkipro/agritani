@@ -8,8 +8,6 @@ author: "Arif Prabowo"
 topic: "proteksi-tanaman"
 commodities:
   - "cabai"
-  - "tomat"
-  - "jeruk"
 tags:
   - "cara membasmi kutu kebul"
   - "jamur jelaga hitam daun"

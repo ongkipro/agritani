@@ -7,8 +7,7 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
-  - "melon"
-  - "sayuran-daun"
+  - "terung"
 tags:
   - "budidaya terung ungu panjang"
   - "cara menanam terong ungu lebat"

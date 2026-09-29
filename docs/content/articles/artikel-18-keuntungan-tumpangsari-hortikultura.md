@@ -7,8 +7,6 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
-  - "cabai"
-  - "bawang-merah"
   - "sayuran-daun"
 tags:
   - "manfaat tumpangsari tanaman"

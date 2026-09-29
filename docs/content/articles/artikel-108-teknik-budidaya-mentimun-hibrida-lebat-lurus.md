@@ -7,7 +7,7 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
-  - "sayuran-daun"
+  - "mentimun"
 tags:
   - "budidaya mentimun hibrida lebat"
   - "cara mengatasi mentimun bengkok"

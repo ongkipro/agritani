@@ -7,7 +7,6 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "pascapanen-agribisnis"
 commodities:
-  - "mangga"
   - "sayuran-daun"
 tags:
   - "kemasan atmosfer termodifikasi map"

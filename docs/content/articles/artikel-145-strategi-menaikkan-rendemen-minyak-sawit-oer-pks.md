@@ -8,7 +8,6 @@ author: "Arif Prabowo"
 topic: "pascapanen-agribisnis"
 commodities:
   - "kelapa-sawit"
-  - "sayuran-daun"
 tags:
   - "rendemen minyak kelapa sawit oer"
   - "oil extraction rate pabrik pks"

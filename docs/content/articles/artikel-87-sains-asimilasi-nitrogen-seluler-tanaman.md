@@ -6,9 +6,7 @@ slug: "sains-asimilasi-nitrogen-seluler-tanaman"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "sains-tanaman"
-commodities:
-  - "padi"
-  - "sayuran-daun"
+commodities: []
 tags:
   - "asimilasi nitrogen seluler tanaman"
   - "siklus gs gogat sintesis protein"

@@ -8,8 +8,6 @@ author: "Arif Prabowo"
 topic: "sains-tanaman"
 commodities:
   - "padi"
-  - "cabai"
-  - "jagung"
 tags:
   - "biosintesis lignin tanaman"
   - "proses lignifikasi dinding sel"

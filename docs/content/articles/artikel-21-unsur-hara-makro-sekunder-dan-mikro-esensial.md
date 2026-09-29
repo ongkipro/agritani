@@ -6,9 +6,7 @@ slug: "unsur-hara-makro-sekunder-dan-mikro-esensial"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "tanah-nutrisi"
-commodities:
-  - "cabai"
-  - "mangga"
+commodities: []
 tags:
   - "unsur hara makro dan mikro"
   - "fungsi kalsium untuk tanaman"

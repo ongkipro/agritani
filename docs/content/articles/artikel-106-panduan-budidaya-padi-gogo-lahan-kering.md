@@ -7,9 +7,7 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
-  - "kelapa-sawit"
   - "padi"
-  - "sayuran-daun"
 tags:
   - "budidaya padi gogo lahan kering"
   - "varietas inpago tahan kekeringan"

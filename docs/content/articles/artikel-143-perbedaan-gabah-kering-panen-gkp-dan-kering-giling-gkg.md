@@ -8,7 +8,6 @@ author: "Arif Prabowo"
 topic: "pascapanen-agribisnis"
 commodities:
   - "padi"
-  - "melon"
 tags:
   - "perbedaan gabah gkp dan gkg"
   - "kadar air gabah kering giling 14 persen"

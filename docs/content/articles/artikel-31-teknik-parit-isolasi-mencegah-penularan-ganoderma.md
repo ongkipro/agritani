@@ -8,7 +8,6 @@ author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
   - "kelapa-sawit"
-  - "sayuran-daun"
 tags:
   - "parit isolasi ganoderma"
   - "mencegah penularan jamur sawit"

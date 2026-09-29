@@ -8,7 +8,6 @@ author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
   - "kelapa-sawit"
-  - "sayuran-daun"
 tags:
   - "kastrasi bunga kelapa sawit"
   - "manajemen sawit tbm fase vegetatif"

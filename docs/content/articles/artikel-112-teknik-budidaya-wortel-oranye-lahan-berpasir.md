@@ -7,7 +7,7 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
-  - "sayuran-daun"
+  - "wortel"
 tags:
   - "budidaya wortel oranye lahan pasir"
   - "cara menanam wortel umbi lurus"

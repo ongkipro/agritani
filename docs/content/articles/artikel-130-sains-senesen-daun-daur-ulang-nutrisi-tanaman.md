@@ -8,8 +8,6 @@ author: "Arif Prabowo"
 topic: "sains-tanaman"
 commodities:
   - "padi"
-  - "jagung"
-  - "kedelai"
 tags:
   - "sains senesen daun tanaman"
   - "proses penuaan daun fisiologis"

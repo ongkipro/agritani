@@ -7,8 +7,6 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "pascapanen-agribisnis"
 commodities:
-  - "mangga"
-  - "jeruk"
   - "semangka"
   - "melon"
 tags:

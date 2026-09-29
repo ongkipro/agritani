@@ -6,9 +6,7 @@ slug: "pembangunan-dan-pemanfaatan-embung-air-desa"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "air-irigasi"
-commodities:
-  - "padi"
-  - "jagung"
+commodities: []
 tags:
   - "pembangunan embung air hujan desa"
   - "waduk mini penampung air pertanian"

@@ -8,8 +8,6 @@ author: "Arif Prabowo"
 topic: "proteksi-tanaman"
 commodities:
   - "cabai"
-  - "mangga"
-  - "melon"
 tags:
   - "cara mengatasi hama lalat buah"
   - "perangkap lalat buah alami"

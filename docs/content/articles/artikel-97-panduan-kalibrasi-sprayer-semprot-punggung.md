@@ -6,9 +6,7 @@ slug: "panduan-kalibrasi-sprayer-semprot-punggung"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "budidaya"
-commodities:
-  - "padi"
-  - "cabai"
+commodities: []
 tags:
   - "kalibrasi sprayer punggung"
   - "knapsack sprayer pertanian manual"

@@ -6,9 +6,7 @@ slug: "cara-praktis-membuat-kompos-sampah-dapur"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "tanah-nutrisi"
-commodities:
-  - "kopi"
-  - "sayuran-daun"
+commodities: []
 tags:
   - "cara membuat kompos sampah dapur"
   - "kompos organik tanpa bau"

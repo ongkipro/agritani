@@ -7,8 +7,7 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
-  - "cabai"
-  - "tomat"
+  - "tembakau"
 tags:
   - "budidaya tembakau rajangan krosok"
   - "teknik topping pangkas bunga tembakau"

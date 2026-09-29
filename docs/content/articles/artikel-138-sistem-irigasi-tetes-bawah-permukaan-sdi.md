@@ -6,10 +6,7 @@ slug: "sistem-irigasi-tetes-bawah-permukaan-sdi"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "air-irigasi"
-commodities:
-  - "cabai"
-  - "tomat"
-  - "jagung"
+commodities: []
 tags:
   - "irigasi tetes bawah permukaan sdi"
   - "subsurface drip irrigation hortikultura"

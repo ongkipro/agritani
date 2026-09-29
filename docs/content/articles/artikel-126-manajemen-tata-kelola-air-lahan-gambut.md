@@ -8,8 +8,6 @@ author: "Arif Prabowo"
 topic: "air-irigasi"
 commodities:
   - "kelapa-sawit"
-  - "tomat"
-  - "sayuran-daun"
 tags:
   - "tata kelola air lahan gambut"
   - "water table management sawit gambut"

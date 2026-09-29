@@ -7,8 +7,7 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
-  - "melon"
-  - "semangka"
+  - "pepaya"
 tags:
   - "budidaya pepaya calina california"
   - "seleksi bunga pepaya hermaprodit lonjong"

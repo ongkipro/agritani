@@ -7,8 +7,7 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "proteksi-tanaman"
 commodities:
-  - "jagung"
-  - "kopi"
+  - "kentang"
 tags:
   - "nematoda kista kentang nkk"
   - "globodera rostochiensis kentang"

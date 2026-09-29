@@ -8,7 +8,6 @@ author: "Arif Prabowo"
 topic: "proteksi-tanaman"
 commodities:
   - "cabai"
-  - "kopi"
 tags:
   - "hama thrips pada cabai"
   - "daun cabai keriting ke atas"

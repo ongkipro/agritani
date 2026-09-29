@@ -6,8 +6,7 @@ slug: "jurus-ampuh-usir-hama-siput-bekicot"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "proteksi-tanaman"
-commodities:
-  - "sayuran-daun"
+commodities: []
 tags:
   - "cara mengusir hama siput"
   - "membasmi bekicot di kebun"

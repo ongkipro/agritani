@@ -7,8 +7,8 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
+  - "padi"
   - "cabai"
-  - "tomat"
 tags:
   - "media semai cabai anti rebah"
   - "penyakit rebah semai damping off"

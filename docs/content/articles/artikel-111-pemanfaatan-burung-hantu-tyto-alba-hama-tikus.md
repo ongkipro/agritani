@@ -7,9 +7,7 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "proteksi-tanaman"
 commodities:
-  - "kelapa-sawit"
   - "padi"
-  - "sayuran-daun"
 tags:
   - "burung hantu tyto alba sawah"
   - "pengendalian hama tikus alami"

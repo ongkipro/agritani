@@ -8,7 +8,6 @@ author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
   - "cabai"
-  - "kopi"
 tags:
   - "tanaman pendamping cabai"
   - "manfaat bunga marigold untuk cabai"

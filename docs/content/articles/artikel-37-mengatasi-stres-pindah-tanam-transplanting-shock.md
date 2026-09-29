@@ -8,10 +8,6 @@ author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
   - "cabai"
-  - "tomat"
-  - "kopi"
-  - "melon"
-  - "sayuran-daun"
 tags:
   - "cara mengatasi tanaman stres pindah tanam"
   - "transplanting shock bibit semai"

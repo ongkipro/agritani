@@ -8,7 +8,6 @@ author: "Arif Prabowo"
 topic: "proteksi-tanaman"
 commodities:
   - "cabai"
-  - "bawang-merah"
   - "sayuran-daun"
 tags:
   - "cara membasmi kutu daun afid"

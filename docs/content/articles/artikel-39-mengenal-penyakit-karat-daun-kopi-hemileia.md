@@ -7,7 +7,6 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "proteksi-tanaman"
 commodities:
-  - "tomat"
   - "kopi"
 tags:
   - "cara mengatasi karat daun kopi"

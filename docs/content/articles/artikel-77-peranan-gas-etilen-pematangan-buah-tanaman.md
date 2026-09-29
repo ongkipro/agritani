@@ -6,9 +6,7 @@ slug: "peranan-gas-etilen-pematangan-buah-tanaman"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "sains-tanaman"
-commodities:
-  - "padi"
-  - "alpukat"
+commodities: []
 tags:
   - "peranan gas etilen tanaman"
   - "pematangan buah klimakterik"

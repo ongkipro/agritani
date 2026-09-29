@@ -7,7 +7,6 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
-  - "padi"
   - "alpukat"
 tags:
   - "budidaya alpukat mentega aligator"

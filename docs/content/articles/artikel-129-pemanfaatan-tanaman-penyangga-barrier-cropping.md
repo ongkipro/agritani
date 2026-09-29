@@ -7,9 +7,8 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "proteksi-tanaman"
 commodities:
-  - "cabai"
   - "jagung"
-  - "tomat"
+  - "cabai"
 tags:
   - "barrier cropping tanaman penyangga"
   - "tanaman pagar jagung pelindung cabai"

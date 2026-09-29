@@ -6,8 +6,7 @@ slug: "teknik-penyaringan-air-irigasi-filter-pasir-disk"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "air-irigasi"
-commodities:
-  - "sayuran-daun"
+commodities: []
 tags:
   - "penyaringan air irigasi pertanian"
   - "filter pasir media filter media silika"

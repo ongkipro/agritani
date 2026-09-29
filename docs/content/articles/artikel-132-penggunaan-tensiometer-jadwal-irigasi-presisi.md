@@ -6,10 +6,7 @@ slug: "penggunaan-tensiometer-jadwal-irigasi-presisi"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "air-irigasi"
-commodities:
-  - "cabai"
-  - "bawang-merah"
-  - "melon"
+commodities: []
 tags:
   - "tensiometer tegangan air tanah"
   - "alat ukur kelembapan tanah presisi"

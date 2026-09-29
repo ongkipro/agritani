@@ -7,8 +7,6 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "pascapanen-agribisnis"
 commodities:
-  - "cabai"
-  - "tomat"
   - "sayuran-daun"
 tags:
   - "standar indogap hortikultura sayur buah"

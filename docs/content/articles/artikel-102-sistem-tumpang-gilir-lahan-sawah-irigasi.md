@@ -8,9 +8,6 @@ author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
   - "padi"
-  - "jagung"
-  - "kedelai"
-  - "sayuran-daun"
 tags:
   - "sistem tumpang gilir sawah"
   - "rotasi tanaman padi palawija"

@@ -7,9 +7,6 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
-  - "padi"
-  - "durian"
-  - "jeruk"
   - "semangka"
   - "melon"
 tags:

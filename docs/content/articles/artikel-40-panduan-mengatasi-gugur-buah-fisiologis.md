@@ -6,14 +6,7 @@ slug: "panduan-mengatasi-gugur-buah-fisiologis"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "tanah-nutrisi"
-commodities:
-  - "kelapa-sawit"
-  - "cabai"
-  - "durian"
-  - "mangga"
-  - "alpukat"
-  - "jeruk"
-  - "sayuran-daun"
+commodities: []
 tags:
   - "penyebab gugur buah fisiologis"
   - "cara mencegah pentil buah rontok"

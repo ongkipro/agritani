@@ -6,9 +6,7 @@ slug: "sains-chitosan-biostimulan-imunitas-tanaman"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "tanah-nutrisi"
-commodities:
-  - "padi"
-  - "tomat"
+commodities: []
 tags:
   - "manfaat chitosan untuk tanaman"
   - "biostimulan kitosan cair"

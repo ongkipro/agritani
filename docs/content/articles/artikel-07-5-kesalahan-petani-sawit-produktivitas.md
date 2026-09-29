@@ -8,7 +8,6 @@ author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
   - "kelapa-sawit"
-  - "sayuran-daun"
 tags:
   - "kesalahan pemupukan sawit"
   - "cara meningkatkan tandan sawit"

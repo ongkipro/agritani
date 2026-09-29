@@ -6,9 +6,7 @@ slug: "manfaat-ekstrak-rumput-laut-ascophyllum"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "tanah-nutrisi"
-commodities:
-  - "padi"
-  - "mangga"
+commodities: []
 tags:
   - "ekstrak rumput laut untuk tanaman"
   - "ascophyllum nodosum biostimulan"

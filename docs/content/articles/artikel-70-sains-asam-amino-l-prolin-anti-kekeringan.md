@@ -6,11 +6,7 @@ slug: "sains-asam-amino-l-prolin-anti-kekeringan"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "tanah-nutrisi"
-commodities:
-  - "padi"
-  - "cabai"
-  - "tomat"
-  - "mangga"
+commodities: []
 tags:
   - "manfaat asam amino l-prolin"
   - "pupuk tanaman tahan kemarau"

@@ -6,9 +6,7 @@ slug: "peranan-unsur-mikro-tembaga-cu-imunitas-tanaman"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "tanah-nutrisi"
-commodities:
-  - "padi"
-  - "jagung"
+commodities: []
 tags:
   - "unsur mikro tembaga cu tanaman"
   - "fungsi hara tembaga tanaman"

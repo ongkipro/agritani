@@ -6,8 +6,7 @@ slug: "strategi-mencegah-resistensi-silang-pestisida"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "proteksi-tanaman"
-commodities:
-  - "padi"
+commodities: []
 tags:
   - "resistensi silang pestisida kimia"
   - "rotasi kode cara kerja irac"

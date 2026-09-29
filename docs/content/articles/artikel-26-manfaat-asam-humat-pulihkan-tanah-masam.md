@@ -6,8 +6,7 @@ slug: "manfaat-asam-humat-pulihkan-tanah-masam"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "tanah-nutrisi"
-commodities:
-  - "padi"
+commodities: []
 tags:
   - "asam humat"
   - "cara menyuburkan tanah masam"

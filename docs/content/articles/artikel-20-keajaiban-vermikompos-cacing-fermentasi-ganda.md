@@ -6,9 +6,7 @@ slug: "keajaiban-vermikompos-cacing-fermentasi-ganda"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "tanah-nutrisi"
-commodities:
-  - "sayuran-daun"
-  - "cabai"
+commodities: []
 tags:
   - "manfaat kascing untuk tanaman"
   - "cara membuat vermikompos"

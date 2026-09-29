@@ -8,7 +8,6 @@ author: "Arif Prabowo"
 topic: "pascapanen-agribisnis"
 commodities:
   - "padi"
-  - "jagung"
 tags:
   - "seleksi marka molekuler mas tanaman"
   - "pemuliaan tanaman marker assisted selection"

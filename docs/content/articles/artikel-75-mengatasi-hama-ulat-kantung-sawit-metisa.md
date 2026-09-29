@@ -8,8 +8,6 @@ author: "Arif Prabowo"
 topic: "proteksi-tanaman"
 commodities:
   - "kelapa-sawit"
-  - "melon"
-  - "sayuran-daun"
 tags:
   - "ulat kantung kelapa sawit"
   - "hama metisa plana sawit"

@@ -8,9 +8,7 @@ author: "Arif Prabowo"
 topic: "proteksi-tanaman"
 commodities:
   - "cabai"
-  - "tomat"
-  - "semangka"
-  - "melon"
+  - "mentimun"
 tags:
   - "virus mosaik mentimun cmv"
   - "daun cabai belang kuning hijau"

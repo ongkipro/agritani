@@ -7,7 +7,7 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
-  - "jagung"
+  - "tebu"
 tags:
   - "budidaya tebu rendemen tinggi"
   - "cara meningkatkan rendemen gula tebu"

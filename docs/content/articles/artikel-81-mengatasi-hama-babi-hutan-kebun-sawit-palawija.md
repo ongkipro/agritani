@@ -8,8 +8,6 @@ author: "Arif Prabowo"
 topic: "proteksi-tanaman"
 commodities:
   - "kelapa-sawit"
-  - "jagung"
-  - "sayuran-daun"
 tags:
   - "hama babi hutan kebun sawit"
   - "cara mengusir babi hutan"

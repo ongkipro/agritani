@@ -6,8 +6,7 @@ slug: "manfaat-jamur-mikoriza-mva-untuk-perakaran"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "tanah-nutrisi"
-commodities:
-  - "kopi"
+commodities: []
 tags:
   - "manfaat mikoriza untuk tanaman"
   - "jamur mikoriza perakaran"

@@ -8,7 +8,6 @@ author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
   - "kelapa-sawit"
-  - "sayuran-daun"
 tags:
   - "kumbang moncong merah kelapa"
   - "rhynchophorus ferrugineus"

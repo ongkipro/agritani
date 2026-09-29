@@ -7,8 +7,6 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "tanah-nutrisi"
 commodities:
-  - "padi"
-  - "bawang-merah"
   - "sayuran-daun"
 tags:
   - "tanah andosol vulkanik subur"

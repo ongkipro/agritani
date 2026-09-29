@@ -6,9 +6,7 @@ slug: "memilih-ukuran-droplet-nozzle-semprot-pertanian"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "budidaya"
-commodities:
-  - "padi"
-  - "cabai"
+commodities: []
 tags:
   - "ukuran droplet nozzle semprot"
   - "nozzle kipas flat fan herbisida"

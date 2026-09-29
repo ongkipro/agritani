@@ -8,7 +8,6 @@ author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
   - "durian"
-  - "mangga"
   - "alpukat"
 tags:
   - "teknik sambung pucuk grafting"

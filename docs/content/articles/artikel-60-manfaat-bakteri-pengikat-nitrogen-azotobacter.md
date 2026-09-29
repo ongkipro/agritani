@@ -6,10 +6,7 @@ slug: "manfaat-bakteri-pengikat-nitrogen-azotobacter"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "tanah-nutrisi"
-commodities:
-  - "padi"
-  - "cabai"
-  - "jagung"
+commodities: []
 tags:
   - "bakteri pengikat nitrogen tanah"
   - "azotobacter dan azospirillum"

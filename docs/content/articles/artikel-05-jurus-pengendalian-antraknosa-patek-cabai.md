@@ -8,7 +8,6 @@ author: "Arif Prabowo"
 topic: "proteksi-tanaman"
 commodities:
   - "cabai"
-  - "kopi"
 tags:
   - "cara mengatasi patek cabai"
   - "obat antraknosa cabai alami"

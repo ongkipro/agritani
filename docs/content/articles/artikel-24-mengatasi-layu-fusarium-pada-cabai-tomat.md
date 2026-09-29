@@ -8,8 +8,6 @@ author: "Arif Prabowo"
 topic: "proteksi-tanaman"
 commodities:
   - "cabai"
-  - "bawang-merah"
-  - "tomat"
 tags:
   - "mengapa tanaman cabai layu siang"
   - "gejala layu fusarium cabai"

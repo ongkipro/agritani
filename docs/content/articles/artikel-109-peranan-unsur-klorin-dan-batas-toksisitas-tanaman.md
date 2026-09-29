@@ -7,9 +7,8 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "tanah-nutrisi"
 commodities:
-  - "tomat"
-  - "durian"
-  - "jeruk"
+  - "kentang"
+  - "tembakau"
 tags:
   - "peranan unsur klorin cl tanaman"
   - "bahaya toksisitas klorida tanah"

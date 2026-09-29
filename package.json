@@ -5,11 +5,12 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/check-commodities.mjs && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "test": "node --experimental-strip-types --test 'src/**/*.test.ts'",
-    "check:contrast": "node scripts/check-contrast.mjs"
+    "check:contrast": "node scripts/check-contrast.mjs",
+    "check:commodities": "node scripts/check-commodities.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

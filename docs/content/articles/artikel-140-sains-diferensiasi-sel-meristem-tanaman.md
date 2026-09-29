@@ -6,9 +6,7 @@ slug: "sains-diferensiasi-sel-meristem-tanaman"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "sains-tanaman"
-commodities:
-  - "jagung"
-  - "mangga"
+commodities: []
 tags:
   - "diferensiasi sel meristem tanaman"
   - "jaringan meristem apikal pucuk akar"

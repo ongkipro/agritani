@@ -8,8 +8,6 @@ author: "Arif Prabowo"
 topic: "air-irigasi"
 commodities:
   - "padi"
-  - "bawang-merah"
-  - "tomat"
 tags:
   - "pompa air tenaga surya sawah"
   - "solar water pump irigasi pertanian"

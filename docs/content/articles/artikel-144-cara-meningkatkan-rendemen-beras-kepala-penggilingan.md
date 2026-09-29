@@ -8,7 +8,6 @@ author: "Arif Prabowo"
 topic: "pascapanen-agribisnis"
 commodities:
   - "padi"
-  - "kopi"
 tags:
   - "rendemen beras giling kepala"
   - "mengurangi beras butir patah menir"

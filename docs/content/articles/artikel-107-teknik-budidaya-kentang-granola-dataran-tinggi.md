@@ -7,8 +7,7 @@ pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
-  - "padi"
-  - "sayuran-daun"
+  - "kentang"
 tags:
   - "budidaya kentang granola dataran tinggi"
   - "benih kentang g2 bersertifikat"

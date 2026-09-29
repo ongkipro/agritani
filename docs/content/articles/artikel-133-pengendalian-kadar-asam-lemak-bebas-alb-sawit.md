@@ -8,7 +8,6 @@ author: "Arif Prabowo"
 topic: "pascapanen-agribisnis"
 commodities:
   - "kelapa-sawit"
-  - "sayuran-daun"
 tags:
   - "asam lemak bebas alb kelapa sawit"
   - "free fatty acid ffa cpo sawit"

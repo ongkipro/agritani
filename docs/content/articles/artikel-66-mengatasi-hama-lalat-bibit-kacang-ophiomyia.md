@@ -8,8 +8,7 @@ author: "Arif Prabowo"
 topic: "budidaya"
 commodities:
   - "kedelai"
-  - "kopi"
-  - "sayuran-daun"
+  - "kacang-tanah"
 tags:
   - "cara membasmi lalat bibit kacang"
   - "ophiomyia phaseoli kedelai"

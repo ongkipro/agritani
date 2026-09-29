@@ -6,10 +6,7 @@ slug: "peranan-npk-fase-vegetatif-generatif"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "tanah-nutrisi"
-commodities:
-  - "padi"
-  - "jagung"
-  - "cabai"
+commodities: []
 tags:
   - "fungsi pupuk npk tanaman"
   - "kapan waktu pupuk tinggi k"

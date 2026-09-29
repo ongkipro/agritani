@@ -6,10 +6,7 @@ slug: "mengatasi-tanaman-stres-panas-overwatering"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
 topic: "sains-tanaman"
-commodities:
-  - "cabai"
-  - "tomat"
-  - "sayuran-daun"
+commodities: []
 tags:
   - "cara mengatasi tanaman stres"
   - "gejala overwatering tanaman"
