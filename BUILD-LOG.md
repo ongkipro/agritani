@@ -609,27 +609,27 @@ Record only durable implementation changes, validation evidence, and gotchas tha
      - Tested on mobile (390px) and desktop (1440px) with live BMKG API response.
      - Updated screenshot evidence in `proof/ui/t20/cuaca-jabar-margaasih-390.png` and `1440.png`.
 
-## 2026-09-29 — T-26: Gambar Dummy WebP 10 Slot (PASS)
+## 2026-09-29 — T-26: Gambar Dummy WebP 10 Slot (REVISED - PASS)
 
 - **10 Slot Gambar WebP Resmi (`src/assets/images/dummy/**`)**:
-  - Dibuat persis sesuai spesifikasi `DESIGN.md` §3.5.1 dan `~/Documents/work/notes/agritani-T26-gambar-dummy.md`:
-    1. `hero-beranda.webp`: 1600×1280 (5:4), 108.8 KB.
-    2. `topik-proteksi-tanaman.webp`: 1600×900 (16:9), 35.3 KB.
-    3. `topik-tanah-nutrisi.webp`: 1600×900 (16:9), 213.5 KB.
-    4. `topik-budidaya.webp`: 1600×900 (16:9), 191.5 KB.
-    5. `topik-air-irigasi.webp`: 1600×900 (16:9), 60.5 KB.
-    6. `topik-pascapanen-agribisnis.webp`: 1600×900 (16:9), 71.1 KB.
-    7. `topik-sains-tanaman.webp`: 1600×900 (16:9), 71.6 KB.
-    8. `kemitraan.webp`: 1600×1067 (3:2), 241.9 KB.
-    9. `tentang-kami.webp`: 1600×1067 (3:2), 126.9 KB.
-    10. `konsultasi.webp`: 1600×1067 (3:2), 158.9 KB.
-- **Kepatuhan Anggaran & Format**:
-  - Semua berkas bertipe `.webp`, tidak ada berkas `.jpg` maupun `.png`.
-  - Semua berkas memenuhi anggaran ukuran `<= 250 KB` per berkas.
-  - Skrip pengolah `scripts/to-webp.mjs` dan `scripts/generate-dummy-images.mjs` memproses gambar dengan `sharp` dan mengoptimasi kualitas secara otomatis.
-- **Kredit & Lisensi (`src/assets/images/dummy/CREDITS.md`)**:
-  - Lisensi: Unsplash License (bebas komersial tanpa royalti).
-  - Dicatat lengkap: nama berkas, peruntukan, dimensi & rasio, ukuran KB, nama fotografer, tautan sumber, dan status wajib "DUMMY — ganti (OQ-5)".
+  - Dibuat ulang sesuai instruksi koreksi reviewer: dicari via browser headless Playwright pada Pixabay dan Pexels, diekstraksi dari DOM/JSON-LD resmi, diverifikasi visual montase (`proof/ui/t26/montage.png`), dan dikompresi ke WebP murni:
+    1. `hero-beranda.webp`: Sawah terasering tropis di Bali dengan pohon kelapa & parit (DaFranzos, 1600×1280, 246.8 KB).
+    2. `topik-proteksi-tanaman.webp`: Ulat hama pada daun kubis hortikultura (neelam279, 1600×900, 55.7 KB).
+    3. `topik-tanah-nutrisi.webp`: Tangan memegang segenggam tanah gembur subur siap tanam (Jing, 1600×900, 160.5 KB).
+    4. `topik-budidaya.webp`: Bedengan tanaman budidaya rapi di lahan terbuka berkabut (Hgartley, 1600×900, 242.7 KB).
+    5. `topik-air-irigasi.webp`: Terasering sawah basah berair dengan aliran air menggenangi petak sawah (Nguyễn Thanh Ngọc, 1600×900, 240.2 KB).
+    6. `topik-pascapanen-agribisnis.webp`: Hasil panen tomat segar dalam wadah keranjang (Cheerfully_lost, 1600×900, 78.5 KB).
+    7. `topik-sains-tanaman.webp`: Makro penampang helai daun hijau menampilkan tulang daun & jaringan klorofil (ignartonosbg, 1600×900, 133.5 KB).
+    8. `kemitraan.webp`: Tumpukan karung goni logistik saprotan dan hasil bumi di gudang penyimpanan (Pexels Contributor, 1600×1067, 234.5 KB).
+    9. `tentang-kami.webp`: Lanskap panorama perbukitan sawah terasering tropis Asia Tenggara di Tu Le pada masa panen (motlancuoi2018, 1600×1067, 182.7 KB).
+    10. `konsultasi.webp`: Close-up tangan merawat dan menyiram bibit tanaman muda di tanah subur (thophilong, 1600×1067, 80.1 KB).
+- **Kepatuhan Invarian Isi & Anggaran**:
+  - Tanpa wajah manusia yang dapat dikenali (no recognizable faces).
+  - Tanpa logo, merek dagang, atau perangkat elektronik pihak ketiga (no laptop/brands).
+  - Format 100% WebP murni dengan ukuran <= 250 KB per gambar (berkisar antara 55.7 KB s.d. 246.8 KB).
+- **Kredit & Verifikasi Visual**:
+  - `src/assets/images/dummy/CREDITS.md` memuat tabel kredit lengkap dengan tautan halaman resmi fotografer, lisensi, dan status wajib "DUMMY — ganti (OQ-5)".
+  - Bukti montase grid 10 gambar tersimpan di `proof/ui/t26/montage.png`.
 
 ## 2026-09-29 — T-08: Homepage Hibrida (PASS)
 

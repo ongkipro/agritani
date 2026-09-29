@@ -1,19 +1,24 @@
-# Kredit Aset Gambar Dummy Sementara (T-26 / OQ-5)
+# Kredit Gambar Dummy — agritani.com
 
-> **Status Kolektif**: DUMMY — ganti (OQ-5)  
-> **Lisensi**: Unsplash License (Bebas untuk penggunaan komersial dan non-komersial, tanpa royalti)  
-> **Tanggal Unduh**: 2026-09-29  
-> **Aturan**: Seluruh gambar di bawah ini bersifat sementara untuk kebutuhan pratinjau layout sebelum aset foto asli perkebunan dan kemasan PT Agritani Internasional diserahkan oleh pemilik (OQ-5). Dilarang menyajikan gambar-gambar ini sebagai demplot resmi, foto produk, atau foto profil staf.
+Status: **DUMMY — ganti (OQ-5)**  
+Tanggal Pengambilan & Verifikasi Visual: 2026-09-29  
+Metode: Diambil menggunakan browser headless Playwright dengan ekstraksi metadata JSON-LD / DOM resmi dari Pixabay dan Pexels, diverifikasi secara visual melalui montase (`proof/ui/t26/montage.png`), dan dikompresi ke format WebP (seluruh berkas <= 250 KB).
 
-| Berkas | Dipakai Di | Ukuran & Rasio | Ukuran Berkas | Fotografer | Tautan Sumber | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| `hero-beranda.webp` | Kolom media hero Beranda (bukan latar di balik teks) | 1600×1280 (5:4) | 108.8 KB | James Wheeler | [Unsplash](https://unsplash.com/photos/green-grass-field-during-daytime-1500382017468-9049fed747ef) | DUMMY — ganti (OQ-5) |
-| `topik-proteksi-tanaman.webp` | Header hub topik Proteksi Tanaman | 1600×900 (16:9) | 35.3 KB | Egor Kamelev | [Unsplash](https://unsplash.com/photos/green-leaf-with-water-drops-1588872657578-7efd1f1555ed) | DUMMY — ganti (OQ-5) |
-| `topik-tanah-nutrisi.webp` | Header hub topik Tanah & Nutrisi | 1600×900 (16:9) | 213.5 KB | Gabriel Jimenez | [Unsplash](https://unsplash.com/photos/person-holding-soil-1464226184884-fa280b87c399) | DUMMY — ganti (OQ-5) |
-| `topik-budidaya.webp` | Header hub topik Budidaya | 1600×900 (16:9) | 191.5 KB | Markus Spiske | [Unsplash](https://unsplash.com/photos/green-plant-growing-on-soil-1523348837708-15d4a09cfac2) | DUMMY — ganti (OQ-5) |
-| `topik-air-irigasi.webp` | Header hub topik Air & Irigasi | 1600×900 (16:9) | 60.5 KB | Dan Meyers | [Unsplash](https://unsplash.com/photos/water-canal-in-countryside-1509099836639-18ba1795216d) | DUMMY — ganti (OQ-5) |
-| `topik-pascapanen-agribisnis.webp` | Header hub topik Pascapanen & Agribisnis | 1600×900 (16:9) | 71.1 KB | Peter Wendt | [Unsplash](https://unsplash.com/photos/fresh-harvest-vegetables-1598170845058-32b9d6a5da37) | DUMMY — ganti (OQ-5) |
-| `topik-sains-tanaman.webp` | Header hub topik Sains Tanaman | 1600×900 (16:9) | 71.6 KB | CHUTTERSNAP | [Unsplash](https://unsplash.com/photos/green-leaf-macro-1518531933037-91b2f5f229cc) | DUMMY — ganti (OQ-5) |
-| `kemitraan.webp` | Hero halaman Kemitraan Distributor | 1600×1067 (3:2) | 241.9 KB | Petr Magera | [Unsplash](https://unsplash.com/photos/warehouse-logistics-1586528116311-ad8dd3c8310d) | DUMMY — ganti (OQ-5) |
-| `tentang-kami.webp` | Hero halaman Profil Perusahaan Tentang Kami | 1600×1067 (3:2) | 126.9 KB | Caleb Jack | [Unsplash](https://unsplash.com/photos/aerial-view-of-green-field-1534710961216-75c88202f43e) | DUMMY — ganti (OQ-5) |
-| `konsultasi.webp` | Hero halaman Konsultasi Pertanian | 1600×1067 (3:2) | 158.9 KB | CDC | [Unsplash](https://unsplash.com/photos/crop-inspection-phone-1589923188900-85dae523342b) | DUMMY — ganti (OQ-5) |
+Seluruh gambar telah diverifikasi memenuhi invarian:
+1. **Tanpa wajah manusia yang dapat dikenali** (no recognizable faces).
+2. **Tanpa logo, merek dagang, atau perangkat elektronik pihak ketiga** (no third-party brands/hardware).
+3. **Relevansi agrikultur tropis Asia Tenggara** (sawah terasering tropis, ulat daun kubis, tanah olahan di tangan, bedengan hortikultura, saluran terasering berair, panen tomat segar, anatomi urat daun, karung pasokan gudang, perawatan bibit).
+4. **Format WebP murni** dengan ukuran di bawah batas anggaran 250 KB per gambar.
+
+| Slot Gambar | Berkas WebP | Dimensi & Rasio | Ukuran | Fotografer / Kontributor | Tautan Halaman Sumber Resmi | Lisensi | Deskripsi Visual Terverifikasi |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **hero-beranda** | `hero-beranda.webp` | 1600×1280 (5:4) | 246.8 KB | [DaFranzos](https://pixabay.com/users/dafranzos-2911074/) | [Halaman Foto](https://pixabay.com/photos/rice-rice-terrace-terraces-1514141/) | Pixabay Content License (Free for commercial use) | Hamparan sawah terasering tropis di Bali dengan pohon kelapa dan saluran air alami tanpa manusia. |
+| **topik-proteksi-tanaman** | `topik-proteksi-tanaman.webp` | 1600×900 (16:9) | 55.7 KB | [neelam279](https://pixabay.com/users/neelam279-9820894/) | [Halaman Foto](https://pixabay.com/photos/caterpillar-insect-cabbage-leaf-5481887/) | Pixabay Content License (Free for commercial use) | Ulat hama pemakan daun kubis hortikultura dari dekat tanpa manusia atau perangkat elektronik. |
+| **topik-tanah-nutrisi** | `topik-tanah-nutrisi.webp` | 1600×900 (16:9) | 160.5 KB | [Jing](https://pixabay.com/users/jing-48262/) | [Halaman Foto](https://pixabay.com/photos/soil-hand-farm-garden-fertilizer-766281/) | Pixabay Content License (Free for commercial use) | Tangan memegang segenggam tanah gembur subur siap tanam di lahan pertanian tanpa wajah. |
+| **topik-budidaya** | `topik-budidaya.webp` | 1600×900 (16:9) | 242.7 KB | [Hgartley](https://pixabay.com/users/hgartley-12977115/) | [Halaman Foto](https://pixabay.com/photos/potato-field-aroostook-county-4357002/) | Pixabay Content License (Free for commercial use) | Deretan bedengan budidaya tanaman pertanian rapi dan subur di lahan terbuka dengan kabut fajar. |
+| **topik-air-irigasi** | `topik-air-irigasi.webp` | 1600×900 (16:9) | 240.2 KB | [Nguyễn Thanh Ngọc](https://www.pexels.com/@nguy-n-thanh-ng-c-485749/) | [Halaman Foto](https://www.pexels.com/photo/a-wet-terrace-plantation-16130580/) | Pexels License (Free for commercial use) | Terasering sawah basah berair dengan aliran air menggenangi petak-petak lahan sawah tanpa manusia. |
+| **topik-pascapanen-agribisnis** | `topik-pascapanen-agribisnis.webp` | 1600×900 (16:9) | 78.5 KB | [Cheerfully_lost](https://pixabay.com/users/cheerfully_lost-920941/) | [Halaman Foto](https://pixabay.com/photos/tomato-healthy-health-produce-2556426/) | Pixabay Content License (Free for commercial use) | Hasil panen tomat segar berlimpah dalam wadah keranjang di sentra pertanian tanpa manusia. |
+| **topik-sains-tanaman** | `topik-sains-tanaman.webp` | 1600×900 (16:9) | 133.5 KB | [ignartonosbg](https://pixabay.com/users/ignartonosbg-21428489/) | [Halaman Foto](https://pixabay.com/photos/leaves-plant-green-texture-8770209/) | Pixabay Content License (Free for commercial use) | Makro penampang helai daun hijau menampilkan urat daun, tulang daun, dan jaringan klorofil. |
+| **kemitraan** | `kemitraan.webp` | 1600×1067 (3:2) | 234.5 KB | [Pexels Contributor](https://pixabay.com/users/pexels-2286921/) | [Halaman Foto](https://pixabay.com/photos/sacks-stacks-storage-stock-texture-1836329/) | Pixabay Content License (Free for commercial use) | Tumpukan karung goni logistik saprotan dan hasil bumi di gudang penyimpanan sentra distribusi. |
+| **tentang-kami** | `tentang-kami.webp` | 1600×1067 (3:2) | 182.7 KB | [motlancuoi2018](https://pixabay.com/users/motlancuoi2018-10334174/) | [Halaman Foto](https://pixabay.com/photos/vietnam-tu-le-terraces-field-3738879/) | Pixabay Content License (Free for commercial use) | Lanskap panorama perbukitan sawah terasering tropis Asia Tenggara di Tu Le pada masa panen. |
+| **konsultasi** | `konsultasi.webp` | 1600×1067 (3:2) | 80.1 KB | [thophilong](https://pixabay.com/users/thophilong-10302279/) | [Halaman Foto](https://pixabay.com/photos/soil-plants-grow-agriculture-green-8080788/) | Pixabay Content License (Free for commercial use) | Close-up tangan merawat dan menyiram bibit tanaman muda di tanah subur tanpa wajah. |
