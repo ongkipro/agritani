@@ -56,25 +56,25 @@ Berlaku untuk agent maupun manusia. Detail aturan agent ada di [AGENTS.md](AGENT
 | T-05 | ArticleLayout, TOC, indeks `/jurnal` | REQ-03 | REQ-08 | R2 | ✓ | T-03, T-04 | — | Done 2026-09-29 |
 | T-06 | FieldSummaryBox | REQ-04 | REQ-08 | R1 | ✓ | T-05 | — | Done 2026-09-29 |
 | T-07 | References (daftar pustaka) | REQ-05 | REQ-03 | R1 | ✓ | T-05 | — | Done 2026-09-29 |
-| T-08 | Homepage hibrida | REQ-01 | REQ-03, REQ-06, REQ-08 | R2 | ✓ | T-00, T-05 | — | Pending |
-| T-09 | Triage: dataset `symptoms.json` + `/alat/diagnosa-gejala/` | REQ-06 | REQ-08 | R2 | ✓ | T-00, T-03, T-04 | — | Pending |
-| T-10 | Tentang Kami & profil penulis | REQ-01 | REQ-08 | R1 | ✓ | T-00, T-04, T-05 | OQ-4 (file foto, gelar lengkap, institusi) | Pending |
-| T-11 | Katalog & detail produk | REQ-01 | REQ-04, NG-1 | R1 | ✓ | T-00, T-02, T-04 | OQ-1, OQ-2, OQ-5 | Pending |
-| T-12 | Formulir kemitraan → WhatsApp | REQ-02 | REQ-08, NG-4 | R1 | ✓ | T-00, T-04 | OQ-1 | Pending |
+| T-08 | Homepage hibrida | REQ-01 | REQ-03, REQ-06, REQ-08 | R2 | ✓ | T-00, T-05 | — | Menunggu review independen |
+| T-09 | Triage: dataset `symptoms.json` + `/alat/diagnosa-gejala/` | REQ-06 | REQ-08 | R2 | ✓ | T-00, T-03, T-04 | — | Menunggu review independen |
+| T-10 | Tentang Kami & profil penulis | REQ-01 | REQ-08 | R1 | ✓ | T-00, T-04, T-05 | OQ-4 (file foto, gelar lengkap, institusi) | Menunggu review independen |
+| T-11 | Katalog & detail produk | REQ-01 | REQ-04, NG-1 | R1 | ✓ | T-00, T-02, T-04 | OQ-1, OQ-2, OQ-5 | Menunggu review independen |
+| T-12 | Formulir kemitraan → WhatsApp | REQ-02 | REQ-08, NG-4 | R1 | ✓ | T-00, T-04 | OQ-1 | Menunggu review independen |
 | T-13 | SEO dinamis: JSON-LD, breadcrumb, sitemap, robots, OG, pemeriksa pasca-build | REQ-07 | REQ-03 | R1 | — | T-05 | — | Done 2026-09-29 |
 | T-14 | Pencarian statis Pagefind | REQ-06b | REQ-08 | R2 | ✓ | T-05 | — | Done 2026-09-29 |
-| T-15 | Audit akhir: kontras render, a11y, budget, Lighthouse, brand | REQ-08 | REQ-01, REQ-07 | R1 | ✓ | T-04…T-14, T-17…T-23, T-25 | T-16/OQ-3 (butuh artikel terbit) | Pending |
-| T-16 | Sumber pustaka tingkat paper per artikel | REQ-05 | NG-3 | R1 | — | T-03 | OQ-3 (verifikasi pemilik) | Pending |
-| T-17 | Halaman Kebijakan Privasi | REQ-02 | NG-4, REQ-10 | R1 | ✓ | T-04 | OQ-7 | Pending |
-| T-18 | Konfigurasi Cloudflare Workers static assets + header keamanan | REQ-08 | ARCHITECTURE §5 | R2 | — | T-01, T-13 | OQ-6 (akun & domain) | Pending |
-| T-19 | Kalender Tanam: data `crop-calendars.json` + `/alat/kalender-tanam/` | REQ-09 | REQ-08, NG-3, DEC-015 | R2 | ✓ | T-02, T-04, T-05 | OQ-11a (tinjauan data) | Pending |
-| T-20 | Cuaca Tani: dataset wilayah + klien BMKG + `/alat/cuaca-tani/` | REQ-10 | REQ-08, DEC-014 | R2 | ✓ | T-04 | OQ-11b (ambang indikator; halaman boleh rilis tanpa indikator) | Pending |
+| T-15 | Audit akhir: kontras render, a11y, budget, Lighthouse, brand | REQ-08 | REQ-01, REQ-07 | R1 | ✓ | T-04…T-14, T-17…T-23, T-25 | T-16/OQ-3 (butuh artikel terbit) | Pending (audit akhir pasca-merge) |
+| T-16 | Sumber pustaka tingkat paper per artikel | REQ-05 | NG-3 | R1 | — | T-03 | OQ-3 (verifikasi pemilik) | Terblokir OQ-3 / Branch konten paralel |
+| T-17 | Halaman Kebijakan Privasi | REQ-02 | NG-4, REQ-10 | R1 | ✓ | T-04 | OQ-7 | Menunggu review independen |
+| T-18 | Konfigurasi Cloudflare Workers static assets + header keamanan | REQ-08 | ARCHITECTURE §5 | R2 | — | T-01, T-13 | OQ-6 (akun & domain) | Menunggu persetujuan deploy |
+| T-19 | Kalender Tanam: data `crop-calendars.json` + `/alat/kalender-tanam/` | REQ-09 | REQ-08, NG-3, DEC-015 | R2 | ✓ | T-02, T-04, T-05 | OQ-11a (tinjauan data) | Menunggu review independen |
+| T-20 | Cuaca Tani: dataset wilayah + klien BMKG + `/alat/cuaca-tani/` | REQ-10 | REQ-08, DEC-014 | R2 | ✓ | T-04 | OQ-11b (ambang indikator; halaman boleh rilis tanpa indikator) | Menunggu review independen |
 | T-21 | Kalkulator Dosis `/alat/kalkulator-dosis/` | REQ-11 | REQ-08, OQ-2 | R1 | ✓ | T-04 | — | Menunggu review independen |
-| T-22 | Konsultasi `/konsultasi/` + indeks `/alat/` | REQ-12 | G-6, REQ-08 | R1 | ✓ | T-04 | OQ-1 | Pending |
+| T-22 | Konsultasi `/konsultasi/` + indeks `/alat/` | REQ-12 | G-6, REQ-08 | R1 | ✓ | T-04 | OQ-1 | Menunggu review independen |
 | T-23 | CI GitHub Actions: build, check, test, kontras, SEO | REQ-08 | REQ-07 | R1 | — | T-01 | — | Menunggu review independen |
-| T-25 | Konten terbit: Jawaban Singkat, judul tanpa klaim absolut, pengantar hub, tinjauan data | REQ-03 | REQ-05, REQ-09, DEC-015 | R1 | — | T-03 | Device lain (naskah), OQ-3, OQ-11, OQ-12 | Pending |
-| T-26 | Gambar dummy WebP (10 slot) | REQ-01 | REQ-08, OQ-5 | R1 | — | T-01 | — | Pending |
-| T-24 | Rilis produksi & observability | REQ-08 | RELEASE.md, OBSERVABILITY.md | R2 | — | T-15, T-18 | OQ-6 + **persetujuan deploy Paduka Ongki** | Pending |
+| T-25 | Konten terbit: Jawaban Singkat, judul tanpa klaim absolut, pengantar hub, tinjauan data | REQ-03 | REQ-05, REQ-09, DEC-015 | R1 | — | T-03 | Device lain (naskah), OQ-3, OQ-11, OQ-12 | Terblokir refs batch 1 / Branch konten paralel |
+| T-26 | Gambar dummy WebP (10 slot) | REQ-01 | REQ-08, OQ-5 | R1 | — | T-01 | — | Done 2026-09-29 |
+| T-24 | Rilis produksi & observability | REQ-08 | RELEASE.md, OBSERVABILITY.md | R2 | — | T-15, T-18 | OQ-6 + **persetujuan deploy Paduka Ongki** | Menunggu persetujuan deploy |
 
 Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 → T-23 → T-04 → T-03 → T-05 → (T-06, T-07, T-13, T-14) → T-21 → T-22 → T-09 → T-19 → T-20 → T-26 → T-08 → T-10 → T-17 → T-11 → T-12 → T-16 & T-25 (jalur konten, paralel) → T-18 → T-15 → T-24.
 
