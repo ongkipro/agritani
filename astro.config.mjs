@@ -42,6 +42,10 @@ export default defineConfig({
   devToolbar: {
     enabled: false,
   },
+  server: {
+    host: true,
+    port: 4321,
+  },
   build: {
     format: 'directory',
     inlineStylesheets: 'never',
@@ -151,6 +155,10 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      host: true,
+      allowedHosts: true,
+    },
     build: {
       assetsInlineLimit: 0,
     },

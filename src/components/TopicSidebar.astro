@@ -26,52 +26,80 @@ const commodities = (await getCollection('commodities'))
   .sort((a, b) => b.count - a.count);
 ---
 
-<nav aria-label="Topik dan komoditas Jurnal Tani" class="text-sm">
-  <p class="font-bold text-[var(--color-text)] mb-2">Topik</p>
-  <ul class="flex flex-wrap gap-x-5 gap-y-1 lg:block lg:border-t lg:border-[var(--color-border)]">
-    {TOPICS.map((t) => {
-      const active = t.slug === currentTopic;
-      return (
-        <li class:list={[`topic-${t.slug}`, 'lg:border-b lg:border-[var(--color-border)]']}>
-          <a
-            href={`/jurnal/topik/${t.slug}/`}
-            aria-current={active ? 'page' : undefined}
-            class:list={[
-              'flex items-center gap-2.5 min-h-[44px] py-2 hover:text-[var(--color-brand-strong)] hover:underline underline-offset-4',
-              active ? 'font-bold text-[var(--color-text)]' : 'text-[var(--color-text-muted)]',
-            ]}
-          >
-            <span class="w-2 h-2 shrink-0 bg-[var(--topic)]" aria-hidden="true"></span>
-            {t.name}
-          </a>
-        </li>
-      );
-    })}
-  </ul>
+<nav aria-label="Topik dan komoditas Jurnal Tani" class="text-sm space-y-6">
+  <div>
+    <div class="flex items-center justify-between pb-2 mb-1 border-b border-[var(--color-border)]">
+      <h3 class="text-xs font-extrabold uppercase tracking-wider text-[var(--color-brand-strong)]">
+        Sektor Keilmuan
+      </h3>
+      <span class="text-[10px] font-bold text-[var(--color-soil)]">
+        6 Topik
+      </span>
+    </div>
+    <ul class="divide-y divide-[var(--color-border)]">
+      {TOPICS.map((t) => {
+        const active = t.slug === currentTopic;
+        return (
+          <li class={`topic-${t.slug}`}>
+            <a
+              href={`/jurnal/topik/${t.slug}/`}
+              aria-current={active ? 'page' : undefined}
+              class:list={[
+                'flex items-center justify-between min-h-[40px] py-2 px-2 -mx-2 rounded-[2px] transition-colors',
+                active
+                  ? 'bg-[var(--color-tint)] font-bold text-[var(--color-brand-strong)] border-l-2 border-[var(--color-brand)]'
+                  : 'text-[var(--color-text)] hover:bg-[var(--color-canvas)] hover:text-[var(--color-brand-strong)]',
+              ]}
+            >
+              <span class="flex items-center gap-2.5">
+                <span class="w-2 h-2 rounded-full shrink-0 bg-[var(--topic)]" aria-hidden="true"></span>
+                <span>{t.name}</span>
+              </span>
+              <span class="text-xs text-[var(--color-border-control)]" aria-hidden="true">&rarr;</span>
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
 
   {commodities.length > 0 && (
-    <>
-      <p class="font-bold text-[var(--color-text)] mt-6 mb-2">Komoditas</p>
-      <ul class="flex flex-wrap gap-x-5 gap-y-1 lg:block lg:border-t lg:border-[var(--color-border)]">
+    <div>
+      <div class="flex items-center justify-between pb-2 mb-3 border-b border-[var(--color-border)]">
+        <h3 class="text-xs font-extrabold uppercase tracking-wider text-[var(--color-brand-strong)]">
+          Rujukan Komoditas
+        </h3>
+        <span class="text-[10px] font-bold text-[var(--color-soil)]">
+          {commodities.length} Komoditas
+        </span>
+      </div>
+      <div class="flex flex-wrap gap-1.5">
         {commodities.map((c) => {
           const active = c.id === currentCommodity;
           return (
-            <li class="lg:border-b lg:border-[var(--color-border)]">
-              <a
-                href={`/jurnal/komoditas/${c.id}/`}
-                aria-current={active ? 'page' : undefined}
+            <a
+              href={`/jurnal/komoditas/${c.id}/`}
+              aria-current={active ? 'page' : undefined}
+              class:list={[
+                'inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-[2px] text-xs font-medium transition-colors border min-h-[34px]',
+                active
+                  ? 'bg-[var(--color-brand)] text-white border-[var(--color-brand)] font-bold shadow-2xs'
+                  : 'bg-[var(--color-canvas)] text-[var(--color-text)] border-[var(--color-border)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)]',
+              ]}
+            >
+              <span>{c.name}</span>
+              <span
                 class:list={[
-                  'flex items-center justify-between gap-3 min-h-[44px] py-2 hover:text-[var(--color-brand-strong)] hover:underline underline-offset-4',
-                  active ? 'font-bold text-[var(--color-text)]' : 'text-[var(--color-text-muted)]',
+                  'text-[10px] tabular-nums font-semibold px-1 py-0.2 rounded-[2px]',
+                  active ? 'bg-white/20 text-white' : 'bg-[var(--color-tint)] text-[var(--color-soil)]',
                 ]}
               >
-                <span>{c.name}</span>
-                <span class="tabular-nums text-xs">{c.count}</span>
-              </a>
-            </li>
+                {c.count}
+              </span>
+            </a>
           );
         })}
-      </ul>
-    </>
+      </div>
+    </div>
   )}
 </nav>
