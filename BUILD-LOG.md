@@ -756,3 +756,32 @@ Record only durable implementation changes, validation evidence, and gotchas tha
   - `npx astro check`: 0 errors.
   - `npm test`: 79/79 unit tests PASS.
   - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 186 halaman terkompilasi, check-seo PASS, check-csp 0/0/0 PASS.
+
+## 2026-09-29 — T-11: Katalog & Detail Produk (READY - PENDING INDEPENDENT REVIEW)
+
+- **Katalog Produk (`src/pages/produk/index.astro` & `src/components/ProductRow.astro`)**:
+  - Posisi distributor resmi PT Agritani Internasional tertera jelas di pembuka halaman (DEC-010).
+  - Navigasi anchor cepat per komoditas (#aussie, #kojien, #bensu, #saratoga).
+  - Tabel perbandingan komparatif 4 produk untuk viewport desktop ($\ge 1024px$) dan kartu modular perbandingan (`ProductRow.astro`) untuk mobile.
+  - Memastikan keaslian produk resmi (OQ-8): penjelasan segel pengaman ShieldedTag dan alur distribusi resmi.
+  - Tepat 0 ajakan WhatsApp pada halaman indeks produk sesuai ketetapan DESIGN §2.8 & DESIGN §4.2.3 baris 628 (terverifikasi `data-cta="whatsapp"` = 0).
+  - Tanpa harga, tanpa keranjang, tanpa tombol marketplace pihak ketiga (NG-1).
+- **Halaman Detail Produk (`src/pages/produk/[slug].astro`)**:
+  - Mengimplementasikan dynamic route untuk 4 produk: Aussie, Kojien, BENSU, Saratoga.
+  - Sub-navigasi anchor lengket (*sticky*): `#fungsi`, `#komposisi`, `#cara-pakai`, `#keaslian`.
+  - Fungsi, peran, kandungan, serta metode aplikasi & takaran berangka `tabular-nums` mengikuti data label resmi; bersih dari klaim tertahan ("obat", "membasmi", "naik 50%", "setara 3-4 produk", "bebas hama").
+  - Tanpa blok foto kemasan (karena foto kemasan resmi pemilik di OQ-5 belum ada; blok gambar dihilangkan, bukan placeholder).
+  - Rekomendasi panduan budidaya & proteksi terkait dari koleksi Jurnal Tani berdasarkan kecocokan komoditas produk.
+  - Tepat 1 ajakan WhatsApp bertanda `data-cta="whatsapp"` via `ConsultPrompt` untuk tanya dosis lapangan.
+- **Kepatuhan Invarian**:
+  - CSP 0/0/0: zero inline script, zero onclick, zero inline style.
+  - Kontras teks $\ge 7:1$, radius 2px, touch targets $\ge 44px$.
+- **Bukti Render UI Browser**:
+  - `proof/ui/t11/produk-katalog-390.webp` (148 KB)
+  - `proof/ui/t11/produk-katalog-1440.webp` (197 KB)
+  - `proof/ui/t11/produk-detail-aussie-390.webp` (114 KB)
+  - `proof/ui/t11/produk-detail-aussie-1440.webp` (121 KB)
+- **Verifikasi**:
+  - `npx astro check`: 0 errors.
+  - `npm test`: 79/79 unit tests PASS.
+  - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 191 halaman terkompilasi, check-seo PASS (0 error, 0 warning), check-csp PASS (0/0/0).

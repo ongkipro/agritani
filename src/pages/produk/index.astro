@@ -1,0 +1,181 @@
+---
+/**
+ * src/pages/produk/index.astro
+ * Product Catalog & Comparison Index (T-11, DESIGN §2.5, §4.2.3)
+ * Invariants: Zero WhatsApp CTAs (DESIGN §2.8), 2px radius, text contrast >= 7:1, 0/0/0 CSP.
+ */
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import ProductRow from '../../components/ProductRow.astro';
+import type { SeoInput } from '../../lib/seo';
+
+const allProducts = await getCollection('products');
+const allCommodities = await getCollection('commodities');
+const commoditiesMap = new Map(allCommodities.map((c) => [c.id, c.data.name]));
+
+// Sort order: aussie, kojien, bensu, saratoga
+const order = ['aussie', 'kojien', 'bensu', 'saratoga'];
+const sortedProducts = [...allProducts].sort((a, b) => {
+  const indexA = order.indexOf(a.id);
+  const indexB = order.indexOf(b.id);
+  return (indexA === -1 ? 99 : indexA) - (indexB === -1 ? 99 : indexB);
+});
+
+const breadcrumbs = [
+  { name: 'Beranda', url: '/' },
+  { name: 'Produk', url: '/produk/' },
+];
+
+const seo: SeoInput = {
+  title: 'Katalog Produk Pertanian',
+  description:
+    'Katalog resmi produk biostimulan dan aktivator imun tanaman PT Agritani Internasional: Aussie, Kojien, BENSU, dan Saratoga. Panduan peran dan sasaran komoditas.',
+  canonicalPath: '/produk/',
+  breadcrumbs,
+  pageType: 'website',
+};
+---
+
+<BaseLayout seo={seo} currentPath="/produk/">
+  <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+
+    <!-- Page Header (Lapangan Canvas) -->
+    <header class="my-8 sm:my-12 max-w-3xl">
+      <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--color-text)] tracking-tight leading-tight mb-4">
+        Produk Agritani
+      </h1>
+      <p class="text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed">
+        PT Agritani Internasional adalah distributor resmi produk biostimulan dan aktivator kekebalan sel tanaman berlisensi teknologi terapan dari Thailand dan Jepang. Kami menghadirkan sarana produksi presisi untuk memperkuat ketahanan alami tanaman di iklim tropis.
+      </p>
+    </header>
+
+    <!-- Commodity Anchor Shortcuts -->
+    <section class="mb-10 p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px]" aria-label="Navigasi cepat per komoditas">
+      <span class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-3">
+        Pilih Komoditas Anda
+      </span>
+      <div class="flex flex-wrap gap-2.5">
+        <a
+          href="#aussie"
+          class="inline-flex items-center px-3.5 py-2 min-h-[44px] text-sm font-medium bg-[var(--color-surface-raised)] hover:bg-[var(--color-tint)] border border-[var(--color-border)] hover:border-[var(--color-brand)] text-[var(--color-text)] rounded-[2px] transition-colors"
+        >
+          Sawit & Tanaman Keras (Aussie)
+        </a>
+        <a
+          href="#kojien"
+          class="inline-flex items-center px-3.5 py-2 min-h-[44px] text-sm font-medium bg-[var(--color-surface-raised)] hover:bg-[var(--color-tint)] border border-[var(--color-border)] hover:border-[var(--color-brand)] text-[var(--color-text)] rounded-[2px] transition-colors"
+        >
+          Spesialis Padi (Kojien)
+        </a>
+        <a
+          href="#bensu"
+          class="inline-flex items-center px-3.5 py-2 min-h-[44px] text-sm font-medium bg-[var(--color-surface-raised)] hover:bg-[var(--color-tint)] border border-[var(--color-border)] hover:border-[var(--color-brand)] text-[var(--color-text)] rounded-[2px] transition-colors"
+        >
+          Palawija & Sayuran (BENSU)
+        </a>
+        <a
+          href="#saratoga"
+          class="inline-flex items-center px-3.5 py-2 min-h-[44px] text-sm font-medium bg-[var(--color-surface-raised)] hover:bg-[var(--color-tint)] border border-[var(--color-border)] hover:border-[var(--color-brand)] text-[var(--color-text)] rounded-[2px] transition-colors"
+        >
+          Semua Tanaman & Bunga (Saratoga)
+        </a>
+      </div>
+    </section>
+
+    <!-- Desktop Comparison Table (Visible on lg screens >= 1024px) -->
+    <section class="hidden lg:block mb-12" aria-label="Tabel Perbandingan Produk">
+      <h2 class="text-xl font-bold font-serif text-[var(--color-brand)] mb-4">
+        Tabel Perbandingan Produk
+      </h2>
+      <div class="overflow-x-auto border border-[var(--color-border)] rounded-[2px]">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="bg-[var(--color-surface-raised)] border-b border-[var(--color-border)] text-xs uppercase tracking-wider text-[var(--color-text-muted)]">
+              <th scope="col" class="py-3 px-4 font-bold">Produk</th>
+              <th scope="col" class="py-3 px-4 font-bold">Peran Utama</th>
+              <th scope="col" class="py-3 px-4 font-bold">Sasaran Komoditas</th>
+              <th scope="col" class="py-3 px-4 font-bold">Bentuk & Aplikasi</th>
+              <th scope="col" class="py-3 px-4 font-bold text-right">Rincian</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[var(--color-border)] bg-[var(--color-surface)]">
+            {sortedProducts.map((p) => {
+              const d = p.data;
+              return (
+                <tr class="hover:bg-[var(--color-surface-raised)] transition-colors">
+                  <td class="py-4 px-4 font-bold text-[var(--color-brand)] text-base whitespace-nowrap">
+                    {d.name}
+                  </td>
+                  <td class="py-4 px-4 text-[var(--color-text)] font-medium max-w-xs">
+                    {d.role}
+                  </td>
+                  <td class="py-4 px-4 text-[var(--color-text-muted)] text-xs">
+                    <div class="flex flex-wrap gap-1 max-w-xs">
+                      {d.commodities.slice(0, 4).map((c) => {
+                        const cId = typeof c === 'string' ? c : c.id;
+                        return (
+                          <span class="px-1.5 py-0.5 bg-[var(--color-surface-raised)] rounded-[2px]">
+                            {commoditiesMap.get(cId) || cId}
+                          </span>
+                        );
+                      })}
+                      {d.commodities.length > 4 && (
+                        <span class="px-1.5 py-0.5 text-[var(--color-text-muted)]">
+                          +{d.commodities.length - 4} lainnya
+                        </span>
+                      )}
+                    </div>
+                  </td>
+                  <td class="py-4 px-4 text-[var(--color-text-muted)] text-xs whitespace-nowrap">
+                    {d.applicationMethods.join(', ')}
+                  </td>
+                  <td class="py-4 px-4 text-right whitespace-nowrap">
+                    <a
+                      href={`/produk/${p.id}/`}
+                      class="inline-flex items-center justify-center px-3 py-1.5 min-h-[44px] text-xs font-semibold text-[var(--color-brand-strong)] hover:text-[var(--color-brand)] underline"
+                    >
+                      Buka Detail
+                    </a>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Product Rows List -->
+    <section class="space-y-6 mb-16" aria-label="Daftar Rincian Produk">
+      {sortedProducts.map((product) => (
+        <ProductRow product={product} commoditiesMap={commoditiesMap} />
+      ))}
+    </section>
+
+    <!-- Section: Cara Memastikan Produk Asli (OQ-8) -->
+    <section class="p-6 sm:p-8 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] max-w-3xl">
+      <h2 class="text-2xl font-bold font-serif text-[var(--color-brand)] tracking-tight mb-3">
+        Memastikan Keaslian Produk Resmi
+      </h2>
+      <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed mb-4">
+        Setiap produk biostimulan dan aktivator imun yang didistribusikan secara sah oleh PT Agritani Internasional dilengkapi dengan standar keamanan kemasan resmi untuk melindungi petani dari pemalsuan di lapangan:
+      </p>
+      <ul class="list-disc pl-6 space-y-2 text-sm sm:text-base text-[var(--color-text)] mb-6">
+        <li>
+          <strong>Segel Keamanan ShieldedTag:</strong> Setiap botol dan jeriken resmi memiliki segel segel fisik anti-rusak yang merekatkan tutup kemasan.
+        </li>
+        <li>
+          <strong>Verifikasi Kode Unik:</strong> Terdapat kode seri unik tersembunyi di balik lapisan segel yang dapat divalidasi langsung saat kemasan pertama kali dibuka.
+        </li>
+        <li>
+          <strong>Saluran Distributor Resmi:</strong> Produk asli hanya didistribusikan melalui jaringan kemitraan kios saprotan dan kelompok tani terdaftar resmi.
+        </li>
+      </ul>
+      <p class="text-sm text-[var(--color-text-muted)]">
+        Pilihlah salah satu produk di atas untuk membaca panduan dosis resmi dan rekomendasi waktu aplikasi lapangan.
+      </p>
+    </section>
+  </div>
+</BaseLayout>

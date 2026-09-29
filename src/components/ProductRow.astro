@@ -1,0 +1,97 @@
+---
+/**
+ * src/components/ProductRow.astro
+ * Comparison row / card for product index (T-11, DESIGN §2.5, §4.2.3)
+ * Invariants: Touch target >= 44px, 2px radius, text contrast >= 7:1, no divider lines.
+ */
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  product: CollectionEntry<'products'>;
+  commoditiesMap: Map<string, string>;
+}
+
+const { product, commoditiesMap } = Astro.props;
+const p = product.data;
+---
+
+<div
+  id={product.id}
+  class="scroll-mt-24 p-6 sm:p-8 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] transition-colors"
+>
+  <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+    <!-- Main Info -->
+    <div class="space-y-4 max-w-2xl">
+      <div>
+        <div class="flex flex-wrap items-center gap-2 mb-2">
+          <h2 class="text-2xl sm:text-3xl font-bold font-serif text-[var(--color-brand)] tracking-tight">
+            {p.name}
+          </h2>
+          {p.tagline && (
+            <span class="inline-block px-2.5 py-1 text-xs font-semibold bg-[var(--color-tint)] text-[var(--color-brand-strong)] rounded-[2px]">
+              {p.tagline}
+            </span>
+          )}
+        </div>
+        <p class="text-base sm:text-lg font-medium text-[var(--color-text)]">
+          {p.role}
+        </p>
+      </div>
+
+      <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed">
+        {p.summary}
+      </p>
+
+      <!-- Specifications Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-sm">
+        <div>
+          <span class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-1">
+            Komoditas Sasaran
+          </span>
+          <div class="flex flex-wrap gap-1.5">
+            {p.commodities.map((c) => {
+              const cId = typeof c === 'string' ? c : c.id;
+              const name = commoditiesMap.get(cId) || cId;
+              return (
+                <span class="inline-block px-2 py-0.5 text-xs bg-[var(--color-surface-raised)] border border-[var(--color-border)] text-[var(--color-text)] rounded-[2px]">
+                  {name}
+                </span>
+              );
+            })}
+          </div>
+        </div>
+
+        <div>
+          <span class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-1">
+            Bentuk & Cara Aplikasi
+          </span>
+          <p class="text-[var(--color-text)] font-medium mb-1">
+            {p.form || 'Cairan konsentrat'}
+          </p>
+          <ul class="text-xs text-[var(--color-text-muted)] space-y-0.5">
+            {p.applicationMethods.map((m) => (
+              <li class="flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand)]" aria-hidden="true"></span>
+                <span>{m}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Link -->
+    <div class="lg:self-center shrink-0 pt-2 lg:pt-0">
+      <a
+        href={`/produk/${product.id}/`}
+        class="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] text-sm font-semibold bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)] text-white rounded-[2px] transition-colors"
+      >
+        <span>Lihat Spesifikasi & Dosis</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14"></path>
+          <path d="m12 5 7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>

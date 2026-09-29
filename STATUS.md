@@ -87,13 +87,18 @@ T-08 REVISE (Homepage Hibrida) selesai diimplementasikan dan diverifikasi (RUN-2
 - Bukti UI WebP kualitas 70 tersimpan di `proof/ui/t08/beranda-390.webp` dan `proof/ui/t08/beranda-1440.webp`.
 - Verifikasi: 79/79 unit tests PASS, `npx astro check` 0 error, build 186 halaman PASS (check-seo PASS, check-csp 0/0/0 PASS).
 
+T-11 (Katalog & Detail Produk) selesai diimplementasikan dan diverifikasi (RUN-20260929T154148Z-820d40cc):
+- Katalog `/produk/`: Posisi distributor resmi tertera jelas (DEC-010), shortcut anchor per komoditas, tabel perbandingan desktop (>=1024px), kartu modular perbandingan (ProductRow.astro), penjelasan keaslian ShieldedTag (OQ-8), dan 0 ajakan WhatsApp sesuai DESIGN §2.8.
+- Detail `/produk/[slug]`: 4 rute dinamis (Aussie, Kojien, BENSU, Saratoga), sub-navigasi anchor lengket (#fungsi, #komposisi, #cara-pakai, #keaslian), data resmi tanpa klaim tertahan ("obat", "membasmi", "naik 50%", dll), tanpa blok gambar kemasan dummy/placeholder, rekomendasi panduan budidaya terkait, dan tepat 1 ajakan WhatsApp via ConsultPrompt untuk tanya dosis lapangan.
+- Bukti UI WebP kualitas 70: `proof/ui/t11/produk-katalog-*.webp` dan `proof/ui/t11/produk-detail-aussie-*.webp`.
+- Verifikasi: 79/79 unit tests PASS, `npx astro check` 0 error, build 191 halaman PASS (check-seo PASS, check-csp 0/0/0 PASS).
+
 Selanjutnya:
-Melanjutkan ke **T-11 (Katalog & Detail Produk `/produk/` dan `/produk/[slug]`)** sesuai `TASKS.md` dan `agritani-launch-plan.md` Bagian A.5 & B:
-- Katalog produk `/produk/` (tabel perbandingan 4 produk resmi: Aussie, Kojien, BENSU, Saratoga).
-- Halaman detail produk `/produk/[slug]` dengan spesifikasi teknis dan tombol Konsultasi Dosis via `waLink()`, tanpa klaim tertahan.
+Melanjutkan ke **T-12 (Formulir Kemitraan Distributor `/kemitraan-distributor/`)** sesuai `TASKS.md` dan scope kerja:
+- Halaman `/kemitraan-distributor.astro` dan komponen `src/components/PartnerForm.astro`.
+- Alur 01-03, validasi native + per-field error message, penyusunan draf pesan WhatsApp via `waLink()`, fallback nomor teks resmi, keyboard-accessible.
 - Pengambilan bukti UI WebP kualitas 70 di 390px dan 1440px.
-
-
+- Setelah T-12 selesai, menulis "IMPLEMENT-TASKS SELESAI" di `STATUS.md` dan commit lokal.
 
 ## Blockers
 
@@ -109,6 +114,7 @@ Melanjutkan ke **T-11 (Katalog & Detail Produk `/produk/` dan `/produk/[slug]`)*
 - T-26 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
 - T-08 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
 - T-17 (termasuk revisi) menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
+- T-11 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
 
 ## Verification evidence
 
