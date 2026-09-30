@@ -445,6 +445,7 @@ Sumber tunggal slug → nama → warna: `src/lib/topics.ts`.
 - Baris artikel dengan thumbnail (Beranda, dan daftar artikel lain yang memakai thumbnail); baris produk memakai gambar `object-contain` berukuran tetap dan tidak termasuk aturan ini: **tepi atas gambar = tepi atas teks label**, **tepi bawah gambar = tepi bawah baris meta**. Caranya: baris `display:flex; align-items:stretch`; gambar `align-self:stretch` dengan lebar tetap (`w-28` / `sm:w-32`), tinggi minimum `4.5rem`, `object-fit: cover`, dan digeser turun sebesar jarak visual teks label di dalam area sentuh 44px (`mt-3`), sehingga area sentuh tetap ≥ 44px tanpa merusak garis sejajar. Kelas grid/tinggi diletakkan di `pictureAttributes` agar `<picture>` ikut meregang.
 - Toleransi terukur: selisih ≤ 1px di 390 & 1440 (skrip ukur geometri di bukti UI). Gambar dekoratif di baris yang sudah punya judul memakai `alt=""` dan tautan `aria-hidden`/`tabindex="-1"`.
 - Jarak tetap label → judul 4px, judul → meta 8px; judul maksimal 2 baris (`line-clamp-2`).
+- Offset atas mengikuti ukuran teks label di dalam area sentuh 44px: label 14px/20px → `mt-3` (Beranda); label 12px/16px → `mt-3.5` (`ArticleRow` di Jurnal, hub, penulis, cari). Bila baris diakhiri `.link-more`, tepi bawah gambar = bilah `.link-more` (wrapper `-mb-0.5`). Di bawah 640px baris bertumpuk (gambar di atas, 16:10) dengan jarak gambar → teks label ±20px (`gap-1.5`).
 
 ### 3.4. Ikon & ilustrasi
 

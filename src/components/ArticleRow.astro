@@ -30,10 +30,10 @@ const formattedDate = new Intl.DateTimeFormat('id-ID', {
 }).format(new Date(article.data.pubDate));
 ---
 
-<article class="py-5 sm:py-6 flex flex-col sm:flex-row gap-5 sm:gap-6 items-start group">
+<article class="py-5 sm:py-6 flex flex-col sm:flex-row gap-1.5 sm:gap-6 items-start sm:items-stretch group">
   <a
     href={`/jurnal/${article.data.slug}/`}
-    class="w-full sm:w-44 md:w-52 aspect-[16/10] rounded-[2px] overflow-hidden shrink-0 bg-[var(--color-canvas)] block"
+    class="w-full sm:w-44 md:w-52 aspect-[16/10] sm:aspect-auto sm:mt-3.5 sm:self-stretch sm:min-h-[6.5rem] rounded-[2px] overflow-hidden shrink-0 bg-[var(--color-canvas)] block"
     tabindex="-1"
     aria-hidden="true"
   >
@@ -43,7 +43,8 @@ const formattedDate = new Intl.DateTimeFormat('id-ID', {
       widths={[240, 420]}
       sizes="(min-width: 640px) 13rem, 100vw"
       quality={70}
-      alt={`Ilustrasi ${article.data.title}`}
+      alt=""
+      pictureAttributes={{ class: 'block h-full' }}
       class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
       loading="lazy"
     />
@@ -83,7 +84,7 @@ const formattedDate = new Intl.DateTimeFormat('id-ID', {
       {article.data.description}
     </p>
 
-    <div class="mt-2">
+    <div class="mt-2 sm:-mb-0.5">
       <a
         href={`/jurnal/${article.data.slug}/`}
         class="link-more text-xs"
