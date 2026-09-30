@@ -1,14 +1,14 @@
 {
   "activeRun": null,
   "lastRun": {
-    "finishedAt": "2026-09-30T16:12:41Z",
+    "finishedAt": "2026-09-30T16:17:12Z",
     "result": "FAIL",
-    "runId": "RUN-20260930T155456Z-86bf8bb0"
+    "runId": "RUN-20260930T161412Z-aa1eae24"
   },
-  "observedHead": "67e22aacd2f311821d2e60d4d645a5f751bc3669",
+  "observedHead": "1ad6a4ca8747f905c7630222d99dfe376c8af038",
   "observedState": "VERIFIED",
   "project": "agritani",
   "schemaVersion": 1,
   "statusAuthority": "STATUS.md",
-  "updatedAt": "2026-09-30T16:12:41Z"
+  "updatedAt": "2026-09-30T16:17:12Z"
 }

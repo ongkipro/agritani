@@ -93,6 +93,7 @@ Berlaku untuk agent maupun manusia. Detail aturan agent ada di [AGENTS.md](AGENT
 | T-43 | Tentang Kami diringkas: distributor resmi penjualan online, 4 produk, peluang agen/distributor + WhatsApp tim penjualan, satu baris pengelola | DEC-021 | DESIGN §4.2.3, §2.8 | R2 | — | T-42 | — | Done 2026-09-30 |
 | T-44 | SEO semua halaman: `<title>` 55–70 & description 120–155 (1.825 halaman), `fitText()`, `check-seo` jadi error, 43 deskripsi artikel diringkas | REQ-07 | DEC-022, DESIGN §4.4.2 | R2 | — | T-43 | — | Done 2026-09-30 |
 | T-45 | Cuaca Tani: ringkasan lokasi satu baris, kartu per hari + ringkasan suhu/hujan, tabel pas di HP; meta author & publisher semua halaman, `article:publisher`, logo raster | REQ-10, REQ-07 | DESIGN §4.2.3, §4.4.2 | R2 | — | T-44 | — | Done 2026-09-30 |
+| T-46 | Hapus "Alur kemitraan distributor" di Kemitraan; aturan intake artikel baru (`docs/content/ARTICLE-INTAKE.md`) + `scripts/check-articles.mjs` di awal build + tes | DEC-020, DEC-022 | AGENTS.md | R1 | — | T-45 | — | Done 2026-09-30 |
 | T-24 | Rilis produksi & observability | REQ-08 | RELEASE.md, OBSERVABILITY.md | R2 | — | T-15, T-18 | OQ-6 + **persetujuan deploy Paduka Ongki** | Menunggu persetujuan deploy |
 
 Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 → T-23 → T-04 → T-03 → T-05 → (T-06, T-07, T-13, T-14) → T-21 → T-22 → T-09 → T-19 → T-20 → T-26 → T-08 → T-10 → T-17 → T-11 → T-12 → T-16 & T-25 (jalur konten, paralel) → T-18 → T-15 → T-24.

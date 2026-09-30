@@ -882,3 +882,9 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - Catatan review (APPROVE): fokus keyboard pindah ke "Ganti wilayah" setelah desa dipilih pengguna (bukan saat pemulihan otomatis); ringkasan hari diawali huruf kapital.
 - Dokumen lain diselaraskan: PRD (REQ-07 panjang title/description + author/publisher, G-1 300 naskah, OQ-3), ARCHITECTURE (aturan integritas DEC-020, `<title>` bersufiks), README (300 naskah, 296 terbit), STATUS, RELEASE v1.2.0.
 - Catatan dev: cache Vite usang ("Outdated Optimize Dep") membuat prakiraan tidak muncul di dev; hilang setelah `node_modules/.vite` dihapus dan dev dijalankan ulang (bukan masalah produksi).
+
+## 2026-09-30 — T-46: Kemitraan tanpa alur; intake artikel baru (PASS)
+
+- `/kemitraan-distributor/`: bagian "Alur kemitraan distributor" (3 kartu langkah) dihapus atas permintaan pemilik; halaman langsung ke formulir. DESIGN §4.2.3 dicatat.
+- Aturan intake artikel (AI maupun berkas `.md`): `docs/content/ARTICLE-INTAKE.md` (templat frontmatter, aturan isi, verifikasi, terbit). `scripts/check-articles.mjs` menjadi langkah pertama `npm run build` (+ `npm run check:articles`): slug, field wajib, topik valid, `pubDate`, tags, `metaTitle` 44–59, `description` 120–155, kata hiperbola, pemisah "|"/"—", rujukan ber-DOI/URL, nama terlarang, placeholder, slug ganda. 300 naskah (296 terbit) lolos; 5 tes baru.
+- AGENTS.md menunjuk ke panduan intake.

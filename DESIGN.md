@@ -736,7 +736,7 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 **Kemitraan `/kemitraan-distributor/`** (Lapangan) — perilaku form di §2.3
 
 1. Breadcrumb · header dua kolom: H1 "Kemitraan Distributor & Kios" + paragraf siapa yang cocok (7/12) · foto gudang (5/12, dummy).
-2. "Alur Kemitraan Distributor": judul 4/12 kiri, daftar bernomor 1–3 (urutan nyata) 8/12 kanan, dipisah garis rambut.
+2. ~~Alur kemitraan distributor~~ — dihapus atas keputusan pemilik (2026-09-30, T-46); halaman langsung ke formulir.
 3. H2 "Formulir Pengajuan Kemitraan" + `PartnerForm` (maks 56rem, di bawah alur di semua lebar).
 4. Setelah kirim: "Lanjutkan percakapan di WhatsApp" + nomor tertulis. Penyimpanan server hanya bila ADR-0001 §2b diterima (OQ-13).
 

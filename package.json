@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/check-commodities.mjs && astro build && pagefind --site dist && node scripts/check-seo.mjs && node scripts/check-csp.mjs && node scripts/check-placeholders.mjs && node scripts/check-links.mjs && node scripts/check-owner-rules.mjs",
+    "build": "node scripts/check-articles.mjs && node scripts/check-commodities.mjs && astro build && pagefind --site dist && node scripts/check-seo.mjs && node scripts/check-csp.mjs && node scripts/check-placeholders.mjs && node scripts/check-links.mjs && node scripts/check-owner-rules.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "test": "node --experimental-strip-types --test 'src/**/*.test.ts'",
@@ -14,7 +14,8 @@
     "check:seo": "node scripts/check-seo.mjs",
     "check:csp": "node scripts/check-csp.mjs",
     "check:placeholders": "node scripts/check-placeholders.mjs && node scripts/check-links.mjs",
-    "check:owner-rules": "node scripts/check-owner-rules.mjs"
+    "check:owner-rules": "node scripts/check-owner-rules.mjs",
+    "check:articles": "node scripts/check-articles.mjs"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.1",
