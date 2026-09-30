@@ -58,10 +58,10 @@ const sortedArticles = visibleArticles.sort(
         <AuthorAvatar size={96} class="w-20 h-20 sm:w-24 sm:h-24" decorative={false} />
 
         <div class="space-y-1">
-          <h1 class="font-serif text-3xl sm:text-4xl font-bold text-[var(--color-text)] tracking-tight">
+          <h1 class="text-3xl sm:text-4xl font-serif font-semibold text-[var(--color-text)] leading-tight tracking-[-0.015em] text-balance">
             Arif Prabowo
           </h1>
-          <p class="text-base sm:text-lg font-semibold text-[var(--color-brand)]">
+          <p class="text-base sm:text-lg text-[var(--color-soil)]">
             Konsultan Pertanian Senior · Pengelola Jurnal Tani
           </p>
         </div>
@@ -84,7 +84,7 @@ const sortedArticles = visibleArticles.sort(
       />
 
       <!-- Pengungkapan (DESIGN §4.3.1 blok 16, DEC-016) -->
-      <div class="mt-6 text-xs sm:text-sm text-[var(--color-text-muted)] space-y-1">
+      <div class="mt-8 text-xs sm:text-sm text-[var(--color-text-muted)] space-y-1">
         <p class="font-semibold text-[var(--color-text)]">Pengungkapan</p>
         <p>
           Arif Prabowo juga bekerja sebagai sales dan konsultan produk Agritani (Aussie, BENSU, Kojien, Saratoga). Hubungan ini juga dicantumkan di bio penulis pada setiap artikel Jurnal Tani. Ikuti selalu petunjuk pada label kemasan.
@@ -94,9 +94,9 @@ const sortedArticles = visibleArticles.sort(
 
     <!-- Articles Section -->
     <main class="max-w-[68ch] mx-auto mb-12 sm:mb-16">
-      <div class="flex items-baseline justify-between mb-6">
-        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[var(--color-text)] tracking-tight">
-          Panduan & Karya Tulis
+      <div class="flex items-baseline justify-between gap-4 mb-6">
+        <h2 class="section-title !mb-0">
+          Panduan dan karya tulis
         </h2>
         <span class="text-xs sm:text-sm text-[var(--color-text-muted)] tabular-nums">
           {sortedArticles.length} artikel {includeDrafts ? '(termasuk draf)' : 'terbit'}
@@ -112,24 +112,12 @@ const sortedArticles = visibleArticles.sort(
       />
 
       <!-- Bottom navigation -->
-      <div class="mt-12 space-y-6">
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 py-4">
-          <div>
-            <h3 class="font-bold text-[var(--color-text)] text-sm sm:text-base">
-              Jelajahi Berdasarkan Topik
-            </h3>
-            <p class="text-xs sm:text-sm text-[var(--color-text-muted)]">
-              Kunjungi indeks lengkap Jurnal Tani untuk menyaring artikel per komoditas dan bidang keilmuan.
-            </p>
-          </div>
-          <a
-            href="/jurnal/"
-            class="shrink-0 px-4 py-2.5 min-h-[44px] inline-flex items-center text-sm font-semibold border border-[var(--color-brand-strong)] text-[var(--color-brand-strong)] hover:bg-[var(--color-tint)] rounded-[2px] transition-colors"
-          >
-            Buka Indeks Jurnal Tani &rarr;
-          </a>
-        </div>
-
+      <div class="mt-12 space-y-1">
+        <h3 class="font-serif text-lg font-semibold text-[var(--color-brand-strong)]">Jelajahi berdasarkan topik</h3>
+        <p class="text-sm sm:text-base text-[var(--color-text-muted)]">
+          Kunjungi indeks lengkap Jurnal Tani untuk menyaring artikel per komoditas dan bidang keilmuan.
+        </p>
+        <a href="/jurnal/" class="link-more text-sm">Buka indeks Jurnal Tani &rarr;</a>
       </div>
     </main>
   </div>

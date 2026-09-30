@@ -31,8 +31,8 @@ const seo: SeoInput = {
     <!-- Article Container (Sains Canvas) -->
     <article class="max-w-[68ch] mx-auto my-8 sm:my-12">
       <!-- Header -->
-      <header class="mb-8 sm:mb-10 pb-6 border-b border-[var(--color-border)]">
-        <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--color-text)] leading-tight tracking-tight mb-3">
+      <header class="mb-8 sm:mb-10">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold text-[var(--color-text)] leading-tight tracking-[-0.015em] text-balance mb-3">
           Kebijakan Privasi
         </h1>
         <p class="text-sm sm:text-base text-[var(--color-text-muted)] tabular-nums">
@@ -41,7 +41,7 @@ const seo: SeoInput = {
       </header>
 
       <!-- Main Content -->
-      <div class="space-y-8 text-base sm:text-lg text-[var(--color-text)] leading-relaxed font-sans">
+      <div class="space-y-12 text-base sm:text-lg text-[var(--color-text)] leading-relaxed font-sans">
         
         <p class="text-lg sm:text-xl text-[var(--color-text-muted)] leading-relaxed">
           Privasi petani, praktisi pertanian, dan seluruh pengunjung situs <strong>agritani.com</strong> merupakan komitmen mendasar Agritani. Dokumen ini menjelaskan transparansi pengelolaan data saat Anda mengakses dan menggunakan layanan kami.
@@ -49,8 +49,8 @@ const seo: SeoInput = {
 
         <!-- Section 1: Tanpa Pelacak Pihak Ketiga -->
         <section class="space-y-3">
-          <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
-            1. Tanpa Cookies Pihak Ketiga dan Tanpa Pelacak Iklan
+          <h2 class="section-title !mb-0">
+            1. Tanpa cookies pihak ketiga dan tanpa pelacak iklan
           </h2>
           <p>
             Situs <strong>agritani.com</strong> dibangun sebagai situs statis yang mengutamakan kecepatan akses, keamanan, dan privasi penuh bagi pengguna di lapangan:
@@ -64,33 +64,33 @@ const seo: SeoInput = {
         </section>
 
         <!-- Section 2: Komunikasi WhatsApp & Formulir -->
-        <section class="space-y-3 pt-4">
-          <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
-            2. Pengiriman Data Formulir Melalui WhatsApp Resmi
+        <section class="space-y-3">
+          <h2 class="section-title !mb-0">
+            2. Pengiriman data formulir melalui WhatsApp resmi
           </h2>
           <p>
             Situs ini tidak menyimpan basis data (database) pengguna di server web. Seluruh formulir yang Anda temui—termasuk formulir konsultasi agronomi, diagnosa gejala, dan pengajuan kemitraan distributor:
           </p>
-          <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-3 text-sm sm:text-base">
-            <p>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>
               <strong>Hanya Menyusun Draf Teks di Perangkat Anda:</strong> Saat Anda menekan tombol kirim formulir, situs ini hanya merangkai teks ringkasan isian Anda menjadi tautan percakapan WhatsApp resmi (aplikasi perpesanan pihak ketiga).
-            </p>
-            <p>
+            </li>
+            <li>
               <strong>Keputusan Pengiriman Berada di Tangan Anda:</strong> Tidak ada data yang terkirim sampai Anda secara sadar menekan tombol kirim di dalam aplikasi WhatsApp Anda.
-            </p>
-            <p>
+            </li>
+            <li>
               <strong>Perlindungan Enkripsi End-to-End:</strong> Pesan yang Anda kirimkan ke nomor WhatsApp resmi Agritani dilindungi oleh enkripsi ujung-ke-ujung (end-to-end encryption) dari WhatsApp.
-            </p>
-            <p>
+            </li>
+            <li>
               <strong>Ketentuan Layanan Pihak Ketiga:</strong> Setelah pesan dikirimkan oleh pengguna melalui aplikasi perpesanan tersebut, pemrosesan dan penyimpanan data pesan tunduk pada ketentuan layanan dan kebijakan privasi WhatsApp.
-            </p>
-          </div>
+            </li>
+          </ul>
         </section>
 
         <!-- Section 3: Integrasi Browser-Direct BMKG (DEC-014) -->
-        <section class="space-y-3 pt-4">
-          <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
-            3. Akses Prakiraan Cuaca Langsung ke Server BMKG
+        <section class="space-y-3">
+          <h2 class="section-title !mb-0">
+            3. Akses prakiraan cuaca langsung ke server BMKG
           </h2>
           <p>
             Pada layanan <strong>Cuaca Tani</strong>, prakiraan cuaca diperoleh langsung dari antarmuka pemrograman publik Badan Meteorologi, Klimatologi, dan Geofisika (BMKG):
@@ -109,9 +109,9 @@ const seo: SeoInput = {
         </section>
 
         <!-- Section 4: Penyimpanan Lokal (localStorage) -->
-        <section class="space-y-3 pt-4">
-          <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
-            4. Penyimpanan Preferensi Lokal di Perangkat Pengguna
+        <section class="space-y-3">
+          <h2 class="section-title !mb-0">
+            4. Penyimpanan preferensi lokal di perangkat pengguna
           </h2>
           <p>
             Untuk mempermudah penggunaan di lahan saat koneksi internet terbatas, beberapa preferensi pilihan alat (seperti nama desa/wilayah yang terakhir Anda periksa pada Cuaca Tani) disimpan secara lokal pada peramban web perangkat Anda menggunakan fitur standar <code>localStorage</code>:
@@ -124,18 +124,18 @@ const seo: SeoInput = {
         </section>
 
         <!-- Section 5: Hak Pengguna dan Kontak -->
-        <section class="space-y-4 pt-6">
-          <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
-            5. Hak Pengguna & Pusat Pertanyaan Privasi
+        <section class="space-y-3">
+          <h2 class="section-title !mb-0">
+            5. Hak pengguna dan pertanyaan privasi
           </h2>
           <p>
             Anda berhak mengetahui dan mengontrol bagaimana interaksi Anda berlangsung. Jika Anda memiliki pertanyaan atau masukan terkait kebijakan privasi dan perlindungan data di Agritani, Anda dapat menghubungi kami melalui kontak resmi berikut:
           </p>
-          <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] text-sm sm:text-base space-y-2 tabular-nums">
-            <p><strong>Pengelola Situs:</strong> Agritani Official (dikelola Arif Prabowo)</p>
-            <p><strong>Situs Resmi:</strong> https://agritani.com</p>
-            <p><strong>Kontak WhatsApp Resmi:</strong> +62 877-7045-7256</p>
-          </div>
+          <dl class="divide-y divide-[var(--color-border)] tabular-nums">
+            <div class="py-2 sm:grid sm:grid-cols-[14rem_1fr] sm:gap-4"><dt class="font-semibold">Pengelola situs</dt><dd>Agritani Official (dikelola Arif Prabowo)</dd></div>
+            <div class="py-2 sm:grid sm:grid-cols-[14rem_1fr] sm:gap-4"><dt class="font-semibold">Situs resmi</dt><dd>https://agritani.com</dd></div>
+            <div class="py-2 sm:grid sm:grid-cols-[14rem_1fr] sm:gap-4"><dt class="font-semibold">Kontak WhatsApp resmi</dt><dd>+62 877-7045-7256</dd></div>
+          </dl>
           <p class="text-sm text-[var(--color-text-muted)]">
             Hubungi nomor WhatsApp resmi di atas pada jam operasional kerja untuk konfirmasi dan korespondensi seputar perlindungan privasi pengguna.
           </p>
