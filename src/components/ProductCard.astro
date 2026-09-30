@@ -1,0 +1,64 @@
+---
+/**
+ * src/components/ProductCard.astro
+ * Catalog card (DESIGN §3.3.3, §4.2.3 Produk). One card = one product; the whole card is the link.
+ * <640px: packshot left, text right. >=640px: packshot square on top, price pinned to the bottom so a row of cards lines up.
+ * Invariants: no WhatsApp CTA, 2px radius, no shadow, tabular numbers, touch target = whole card.
+ */
+import type { CollectionEntry } from 'astro:content';
+import { Picture } from 'astro:assets';
+import { getProductImage } from '../lib/product-images';
+
+interface Props {
+  product: CollectionEntry<'products'>;
+  commoditiesMap: Map<string, string>;
+}
+
+const { product, commoditiesMap } = Astro.props;
+const p = product.data;
+
+const formatRupiah = (val: number) =>
+  new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(val);
+
+const names = p.commodities.map((c) => commoditiesMap.get(typeof c === 'string' ? c : c.id) || (typeof c === 'string' ? c : c.id));
+const shown = names.slice(0, 3).join(', ') + (names.length > 3 ? ` +${names.length - 3}` : '');
+const variants = p.variants ?? [];
+const fromPrice = variants.length ? Math.min(...variants.map((v) => v.price)) : null;
+---
+
+<article id={product.id} class="card card-link relative scroll-mt-24 grid grid-cols-[7rem_1fr] sm:flex sm:flex-col h-full overflow-hidden">
+  <div class="card-media aspect-square self-start sm:self-auto">
+    <Picture
+      src={getProductImage(product.id)}
+      formats={['webp']}
+      widths={[240, 480, 720]}
+      sizes="(min-width: 1024px) 17rem, (min-width: 640px) 45vw, 7rem"
+      quality={80}
+      alt={`Kemasan ${p.name}`}
+      class="w-full h-full object-cover"
+      pictureAttributes={{ class: 'block w-full h-full' }}
+      loading="lazy"
+    />
+  </div>
+
+  <div class="flex flex-col flex-1 p-4 sm:p-5">
+    <h2 class="font-serif text-xl font-semibold leading-tight text-[var(--color-brand-strong)]">
+      <a href={`/produk/${product.id}/`} class="after:absolute after:inset-0 focus-visible:outline-none focus-visible:underline">
+        {p.name}
+      </a>
+    </h2>
+    <p class="mt-1.5 text-sm leading-snug text-[var(--color-text)] line-clamp-3">{p.role}</p>
+    <p class="mt-2 text-[13px] leading-snug text-[var(--color-text-muted)]">Untuk {shown}</p>
+
+    {fromPrice !== null && (
+      <div class="mt-auto pt-4 flex items-end justify-between gap-3">
+        <p class="tabular-nums leading-tight">
+          <span class="block text-[13px] text-[var(--color-text-muted)]">Mulai</span>
+          <span class="text-lg font-semibold text-[var(--color-text)]">{formatRupiah(fromPrice)}</span>
+          <span class="block text-[13px] text-[var(--color-text-muted)]">{variants.map((v) => v.size).join(' · ')}</span>
+        </p>
+        <span class="link-more text-sm shrink-0" aria-hidden="true">Rincian &rarr;</span>
+      </div>
+    )}
+  </div>
+</article>

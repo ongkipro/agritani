@@ -2,13 +2,13 @@
 /**
  * src/pages/produk/index.astro
  * Product catalog & comparison index (T-11, DESIGN §2.5, §4.2.3)
- * Invariants: no WhatsApp CTA, 2px radius, no cards/kickers/section dividers, 0/0/0 CSP, tabular numbers.
+ * Invariants: no WhatsApp CTA, 2px radius, one card per product (DESIGN §3.3.3), no kickers/section dividers, 0/0/0 CSP, tabular numbers.
  * Prices come from src/data/products.json (petanisejahtera.com, checked 2026-09-30).
  */
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
-import ProductRow from '../../components/ProductRow.astro';
+import ProductCard from '../../components/ProductCard.astro';
 import type { SeoInput } from '../../lib/seo';
 
 const allProducts = await getCollection('products');
@@ -22,16 +22,6 @@ const sortedProducts = [...allProducts].sort((a, b) => {
   const indexB = order.indexOf(b.id);
   return (indexA === -1 ? 99 : indexA) - (indexB === -1 ? 99 : indexB);
 });
-
-const formatRupiah = (val: number) =>
-  new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(val);
-
-const quickLinks = [
-  { id: 'aussie', label: 'Sawit & tanaman keras (Aussie)' },
-  { id: 'kojien', label: 'Padi (Kojien)' },
-  { id: 'bensu', label: 'Pangan & hortikultura (BENSU)' },
-  { id: 'saratoga', label: 'Asam amino (Saratoga)' },
-];
 
 const breadcrumbs = [
   { name: 'Beranda', url: '/' },
@@ -52,87 +42,26 @@ const seo: SeoInput = {
   <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
     <Breadcrumb items={breadcrumbs} />
 
-    <header class="my-8 sm:my-12 max-w-3xl">
+    <header class="mt-6 mb-8 sm:mt-8 sm:mb-10 max-w-3xl">
       <h1 class="pillar-title">Produk Agritani</h1>
       <p class="pillar-lede">
-        Empat produk unggulan Agritani untuk ketahanan dan pemulihan tanaman, dengan teknologi asal Thailand dan Jepang. Bandingkan peran, komoditas sasaran, dan harga kemasan, lalu buka rincian tiap produk untuk dosis dan cara aplikasi.
+        Empat produk unggulan Agritani untuk ketahanan dan pemulihan tanaman, dengan teknologi asal Thailand dan Jepang. Pilih sesuai komoditas Anda, lalu buka rincian untuk dosis dan cara aplikasi.
       </p>
     </header>
 
-    <nav class="mb-12 sm:mb-16" aria-label="Langsung ke produk">
-      <ul class="flex flex-wrap gap-x-6 text-sm">
-        {quickLinks.map((l) => (
-          <li>
-            <a
-              href={`#${l.id}`}
-              class="inline-flex items-center min-h-[44px] text-[var(--color-brand-strong)] underline underline-offset-4 decoration-[var(--color-border-control)] hover:decoration-[var(--color-brand)] rounded-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
-            >
-              {l.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
-
-    <!-- Comparison table on wide screens; the rows below carry the same data on phones -->
-    <section class="hidden lg:block mb-16" aria-labelledby="heading-banding">
-      <h2 id="heading-banding" class="section-title">Perbandingan singkat</h2>
-      <table class="w-full text-left border-collapse text-sm">
-        <thead>
-          <tr class="border-b border-[var(--color-border-control)] text-[var(--color-text-muted)]">
-            <th scope="col" class="py-3 pr-6 font-semibold">Produk</th>
-            <th scope="col" class="py-3 pr-6 font-semibold">Peran</th>
-            <th scope="col" class="py-3 pr-6 font-semibold">Komoditas sasaran</th>
-            <th scope="col" class="py-3 pr-6 font-semibold">Harga kemasan</th>
-            <th scope="col" class="py-3 font-semibold"><span class="sr-only">Rincian</span></th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-[var(--color-border)]">
-          {sortedProducts.map((p) => {
-            const d = p.data;
-            return (
-              <tr class="align-top">
-                <th scope="row" class="py-4 pr-6 font-serif text-lg font-semibold text-[var(--color-text)] whitespace-nowrap">
-                  {d.name}
-                </th>
-                <td class="py-4 pr-6 text-[var(--color-text)] max-w-xs leading-relaxed">{d.role}</td>
-                <td class="py-4 pr-6 text-[var(--color-text-muted)] max-w-xs leading-relaxed">
-                  {d.commodities.slice(0, 4).map((c) => commoditiesMap.get(typeof c === 'string' ? c : c.id) || c).join(', ')}
-                  {d.commodities.length > 4 && ` +${d.commodities.length - 4} lainnya`}
-                </td>
-                <td class="py-4 pr-6 whitespace-nowrap tabular-nums">
-                  {d.variants?.map((v) => (
-                    <div>
-                      <span class="text-[var(--color-text-muted)]">{v.size}</span>{' '}
-                      <span class="font-semibold text-[var(--color-text)]">{formatRupiah(v.price)}</span>
-                    </div>
-                  ))}
-                </td>
-                <td class="py-4 text-right whitespace-nowrap">
-                  <a href={`/produk/${p.id}/`} class="link-more text-sm">
-                    Rincian<span class="sr-only"> {d.name}</span> &rarr;
-                  </a>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </section>
-
-    <section class="mb-8 divide-y divide-[var(--color-border)]" aria-label="Rincian produk">
+    <section class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6" aria-label="Empat produk Agritani">
       {sortedProducts.map((product) => (
-        <ProductRow product={product} commoditiesMap={commoditiesMap} />
+        <ProductCard product={product} commoditiesMap={commoditiesMap} />
       ))}
     </section>
 
-    <p class="mb-16 max-w-2xl text-xs text-[var(--color-text-muted)] leading-relaxed">
+    <p class="mt-4 mb-16 max-w-2xl text-xs text-[var(--color-text-muted)] leading-relaxed">
       Harga dari <a href="https://petanisejahtera.com/" target="_blank" rel="noopener" class="underline underline-offset-2">petanisejahtera.com<span class="sr-only"> (membuka tab baru)</span></a> per 30 September 2026 dan dapat berubah sewaktu-waktu; cek harga terbaru sebelum membeli.
     </p>
 
-    <section class="mb-16 max-w-3xl" aria-labelledby="heading-keaslian">
+    <section class="mb-16" aria-labelledby="heading-keaslian">
       <h2 id="heading-keaslian" class="section-title">Memeriksa keaslian kemasan</h2>
-      <dl class="space-y-5 text-sm leading-relaxed">
+      <dl class="grid gap-6 sm:grid-cols-3 sm:gap-8 text-sm leading-relaxed max-w-5xl">
         <div>
           <dt class="font-semibold text-[var(--color-text)]">Segel ShieldedTag™</dt>
           <dd class="mt-1 text-[var(--color-text-muted)]">

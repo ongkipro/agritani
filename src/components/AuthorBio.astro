@@ -20,9 +20,9 @@ const wa = externalLink('whatsapp');
 
 <section class="my-10" aria-labelledby="tentang-penulis-heading">
   <h2 id="tentang-penulis-heading" class="font-serif text-xl font-semibold text-[var(--color-text)] mb-4">
-    Tentang Penulis
+    Tentang penulis
   </h2>
-  <div class="flex gap-4 items-start">
+  <div class="card p-5 flex gap-4 items-start">
     <AuthorAvatar size={56} class="w-14 h-14" />
     <div class="min-w-0">
       <p class="font-semibold text-[var(--color-text)] leading-snug">
@@ -31,7 +31,7 @@ const wa = externalLink('whatsapp');
       <p class="mt-1 text-sm leading-relaxed text-[var(--color-text-muted)]">
         Lebih dari 8 tahun di bidang pertanian dan riset; kini sales dan konsultan produk Agritani.
       </p>
-      <p class="mt-1 flex flex-wrap items-center gap-x-4 text-sm font-semibold" data-cta="whatsapp">
+      <p class="mt-2 -mb-2 flex flex-wrap items-center gap-x-5 text-sm font-semibold" data-cta="whatsapp">
         <a
           href={href}
           target={wa.target}

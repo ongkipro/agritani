@@ -145,6 +145,9 @@ const variants = p.variants ?? [];
 
 const fieldPhotos = getProductFieldPhotos(product.id);
 
+const jump =
+  'inline-flex items-center min-h-[44px] px-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] font-semibold text-[var(--color-brand-strong)] hover:border-[var(--color-brand-strong)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]';
+
 const seo: SeoInput = {
   title: seoTitle,
   description: p.summary,
@@ -158,9 +161,9 @@ const seo: SeoInput = {
   <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
     <Breadcrumb items={breadcrumbs} />
 
-    <header class="my-8 sm:my-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+    <header class="mt-6 mb-10 sm:mt-8 sm:mb-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
       <div class="lg:col-span-5">
-        <div class="aspect-square max-w-[22rem] mx-auto lg:max-w-none">
+        <div class="card card-media aspect-square overflow-hidden max-w-[22rem] mx-auto lg:max-w-none">
           <Picture
             src={getProductImage(product.id)}
             formats={['webp']}
@@ -168,7 +171,8 @@ const seo: SeoInput = {
             sizes="(min-width: 1024px) 28rem, 22rem"
             quality={90}
             alt={`Kemasan ${p.name}`}
-            class="w-full h-full object-contain"
+            class="w-full h-full object-cover"
+            pictureAttributes={{ class: 'block w-full h-full' }}
             loading="eager"
           />
         </div>
@@ -185,38 +189,26 @@ const seo: SeoInput = {
 
         <!-- Packaging variants & prices copied from petanisejahtera.com product pages, checked 2026-09-30 -->
         {variants.length > 0 && (
-          <section aria-labelledby="heading-harga">
-            <h2 id="heading-harga" class="font-serif text-xl font-semibold text-[var(--color-text)]">
-              Pilihan kemasan & harga
-            </h2>
-            <table class="mt-3 w-full text-left border-collapse text-sm tabular-nums">
-              <thead>
-                <tr class="border-b border-[var(--color-border-control)] text-[var(--color-text-muted)]">
-                  <th scope="col" class="py-2 pr-4 font-semibold">Kemasan</th>
-                  <th scope="col" class="py-2 pr-4 font-semibold text-right">Harga</th>
-                  <th scope="col" class="py-2 font-semibold text-right">Harga normal</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-[var(--color-border)]">
-                {variants.map((v) => {
-                  const savings = v.comparePrice ? v.comparePrice - v.price : 0;
-                  return (
-                    <tr>
-                      <th scope="row" class="py-3 pr-4 font-semibold text-[var(--color-text)]">{v.size}</th>
-                      <td class="py-3 pr-4 text-right">
-                        <span class="font-serif text-lg font-semibold text-[var(--color-brand-strong)]">{formatRupiah(v.price)}</span>
-                        {savings > 0 && (
-                          <span class="block text-xs text-[var(--color-text-muted)]">Hemat {formatRupiah(savings)}</span>
-                        )}
-                      </td>
-                      <td class="py-3 text-right text-[var(--color-text-muted)]">
-                        {v.comparePrice ? <s>{formatRupiah(v.comparePrice)}</s> : '—'}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+          <section class="card p-5 sm:p-6" aria-labelledby="heading-harga">
+            <h2 id="heading-harga" class="font-serif text-lg font-semibold text-[var(--color-text)]">Pilihan kemasan & harga</h2>
+            <ul class="mt-3 divide-y divide-[var(--color-border)] tabular-nums">
+              {variants.map((v) => {
+                const savings = v.comparePrice ? v.comparePrice - v.price : 0;
+                return (
+                  <li class="flex items-baseline justify-between gap-4 py-3">
+                    <span class="font-semibold text-[var(--color-text)]">{v.size}</span>
+                    <span class="text-right">
+                      <span class="font-serif text-xl font-semibold text-[var(--color-brand-strong)]">{formatRupiah(v.price)}</span>
+                      {v.comparePrice && (
+                        <span class="block text-xs text-[var(--color-text-muted)]">
+                          <s>{formatRupiah(v.comparePrice)}</s>{savings > 0 && <> · hemat {formatRupiah(savings)}</>}
+                        </span>
+                      )}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
             <p class="mt-3 text-xs text-[var(--color-text-muted)] leading-relaxed">
               Harga dari <a href="https://petanisejahtera.com/" target="_blank" rel="noopener" class="underline underline-offset-2">petanisejahtera.com<span class="sr-only"> (membuka tab baru)</span></a> per 30 September 2026 dan dapat berubah sewaktu-waktu; cek harga terbaru sebelum membeli.
             </p>
@@ -239,16 +231,16 @@ const seo: SeoInput = {
     </header>
 
     <nav class="mb-12 sm:mb-16" aria-label="Bagian halaman produk">
-      <ul class="flex flex-wrap gap-x-6 text-sm">
-        <li><a href="#mekanisme" class="inline-flex items-center min-h-[44px] text-[var(--color-brand-strong)] underline underline-offset-4 decoration-[var(--color-border-control)] hover:decoration-[var(--color-brand)] rounded-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]">Cara kerja</a></li>
-        <li><a href="#spesifikasi" class="inline-flex items-center min-h-[44px] text-[var(--color-brand-strong)] underline underline-offset-4 decoration-[var(--color-border-control)] hover:decoration-[var(--color-brand)] rounded-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]">Kandungan</a></li>
-        <li><a href="#aplikasi-dosis" class="inline-flex items-center min-h-[44px] text-[var(--color-brand-strong)] underline underline-offset-4 decoration-[var(--color-border-control)] hover:decoration-[var(--color-brand)] rounded-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]">Dosis</a></li>
+      <ul class="flex flex-wrap gap-2 text-sm">
+        <li><a href="#mekanisme" class={jump}>Cara kerja</a></li>
+        <li><a href="#spesifikasi" class={jump}>Kandungan</a></li>
+        <li><a href="#aplikasi-dosis" class={jump}>Dosis</a></li>
         {fieldPhotos.length > 0 && (
-          <li><a href="#foto-lahan" class="inline-flex items-center min-h-[44px] text-[var(--color-brand-strong)] underline underline-offset-4 decoration-[var(--color-border-control)] hover:decoration-[var(--color-brand)] rounded-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]">Foto lahan</a></li>
+          <li><a href="#foto-lahan" class={jump}>Foto lahan</a></li>
         )}
-        <li><a href="#keaslian" class="inline-flex items-center min-h-[44px] text-[var(--color-brand-strong)] underline underline-offset-4 decoration-[var(--color-border-control)] hover:decoration-[var(--color-brand)] rounded-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]">Keaslian</a></li>
+        <li><a href="#keaslian" class={jump}>Keaslian</a></li>
         {relatedArticles.length > 0 && (
-          <li><a href="#jurnal" class="inline-flex items-center min-h-[44px] text-[var(--color-brand-strong)] underline underline-offset-4 decoration-[var(--color-border-control)] hover:decoration-[var(--color-brand)] rounded-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]">Panduan terkait</a></li>
+          <li><a href="#jurnal" class={jump}>Panduan terkait</a></li>
         )}
       </ul>
     </nav>
@@ -262,7 +254,7 @@ const seo: SeoInput = {
           <p class="text-[var(--color-text-muted)]">{fDetail.agronomicNote}</p>
         </div>
 
-        <div class="lg:col-span-5">
+        <div class="lg:col-span-5 card p-6">
           <h3 class="font-serif text-xl font-semibold text-[var(--color-text)]">Sifat formula</h3>
           <dl class="mt-3 space-y-4 text-sm leading-relaxed">
             <div>
@@ -283,22 +275,22 @@ const seo: SeoInput = {
 
       <section id="spesifikasi" class="scroll-mt-28" aria-labelledby="heading-spesifikasi">
         <h2 id="heading-spesifikasi" class="section-title">Kandungan dan sifat fisik</h2>
-        <dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-5 text-sm leading-relaxed">
-          <div>
+        <dl class="max-w-3xl divide-y divide-[var(--color-border)] border-y border-[var(--color-border)] text-sm leading-relaxed">
+          <div class="grid sm:grid-cols-[14rem_1fr] gap-x-6 gap-y-0.5 py-3">
             <dt class="text-[var(--color-text-muted)]">Bahan aktif & nutrisi</dt>
-            <dd class="mt-0.5 font-semibold text-[var(--color-text)]">{p.composition || 'Bahan organik dan biostimulan aktif berlisensi'}</dd>
+            <dd class="font-semibold text-[var(--color-text)]">{p.composition || 'Bahan organik dan biostimulan aktif berlisensi'}</dd>
           </div>
-          <div>
+          <div class="grid sm:grid-cols-[14rem_1fr] gap-x-6 gap-y-0.5 py-3">
             <dt class="text-[var(--color-text-muted)]">Bentuk</dt>
-            <dd class="mt-0.5 font-semibold text-[var(--color-text)]">{p.form || 'Cairan konsentrat larut air'}</dd>
+            <dd class="font-semibold text-[var(--color-text)]">{p.form || 'Cairan konsentrat larut air'}</dd>
           </div>
-          <div>
+          <div class="grid sm:grid-cols-[14rem_1fr] gap-x-6 gap-y-0.5 py-3">
             <dt class="text-[var(--color-text-muted)]">Kelarutan</dt>
-            <dd class="mt-0.5 font-semibold text-[var(--color-text)]">Larut dalam air tanpa menyumbat spuyer semprot</dd>
+            <dd class="font-semibold text-[var(--color-text)]">Larut dalam air tanpa menyumbat spuyer semprot</dd>
           </div>
-          <div>
+          <div class="grid sm:grid-cols-[14rem_1fr] gap-x-6 gap-y-0.5 py-3">
             <dt class="text-[var(--color-text-muted)]">Pencampuran tangki</dt>
-            <dd class="mt-0.5 font-semibold text-[var(--color-text)]">Dapat dicampur pupuk daun & insektisida non-alkalis</dd>
+            <dd class="font-semibold text-[var(--color-text)]">Dapat dicampur pupuk daun & insektisida non-alkalis</dd>
           </div>
         </dl>
       </section>
@@ -333,20 +325,16 @@ const seo: SeoInput = {
 
         <div class="lg:col-span-5">
           <h3 class="font-serif text-xl font-semibold text-[var(--color-text)]">Sebelum mengisi tangki</h3>
-          <ul class="mt-2 divide-y divide-[var(--color-border)]">
-            <li>
-              <a href="/alat/kalkulator-dosis/" class="group flex flex-col justify-center min-h-[44px] py-3 rounded-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]">
-                <span class="font-semibold text-sm text-[var(--color-brand-strong)] group-hover:underline">Kalkulator dosis &rarr;</span>
-                <span class="text-sm text-[var(--color-text-muted)]">Hitung takaran per tangki sesuai luas lahan.</span>
-              </a>
-            </li>
-            <li>
-              <a href="/alat/cuaca-tani/" class="group flex flex-col justify-center min-h-[44px] py-3 rounded-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]">
-                <span class="font-semibold text-sm text-[var(--color-brand-strong)] group-hover:underline">Cuaca Tani &rarr;</span>
-                <span class="text-sm text-[var(--color-text-muted)]">Prakiraan BMKG per 3 jam untuk memilih waktu semprot.</span>
-              </a>
-            </li>
-          </ul>
+          <div class="mt-3 grid gap-3">
+            <a href="/alat/kalkulator-dosis/" class="card card-link block p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]">
+              <span class="block font-serif text-lg font-semibold text-[var(--color-brand-strong)]">Kalkulator dosis</span>
+              <span class="mt-1 block text-sm text-[var(--color-text-muted)]">Hitung takaran per tangki sesuai luas lahan.</span>
+            </a>
+            <a href="/alat/cuaca-tani/" class="card card-link block p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]">
+              <span class="block font-serif text-lg font-semibold text-[var(--color-brand-strong)]">Cuaca Tani</span>
+              <span class="mt-1 block text-sm text-[var(--color-text-muted)]">Prakiraan BMKG per 3 jam untuk memilih waktu semprot.</span>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -380,9 +368,9 @@ const seo: SeoInput = {
         </section>
       )}
 
-      <section id="keaslian" class="scroll-mt-28 max-w-3xl" aria-labelledby="heading-keaslian">
+      <section id="keaslian" class="scroll-mt-28" aria-labelledby="heading-keaslian">
         <h2 id="heading-keaslian" class="section-title">Memeriksa keaslian kemasan</h2>
-        <dl class="space-y-5 text-sm leading-relaxed">
+        <dl class="grid gap-6 sm:grid-cols-3 sm:gap-8 text-sm leading-relaxed max-w-5xl">
           <div>
             <dt class="font-semibold text-[var(--color-text)]">Segel ShieldedTag™</dt>
             <dd class="mt-1 text-[var(--color-text-muted)]">
