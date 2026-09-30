@@ -9,7 +9,7 @@
     "runId": "RUN-20260930T011337Z-246838e3"
   },
   "model": "inherit",
-  "observedHead": "cccf5e8768a2d0c8ff1813e979cada81275958a2",
+  "observedHead": "d19bd209cff15c1faf7ddc39fdec80ab911ecb09",
   "observedState": "VERIFIED",
   "project": "agritani",
   "provider": "google",
@@ -18,6 +18,6 @@
   "risk": "R2",
   "schemaVersion": 1,
   "statusAuthority": "STATUS.md",
-  "updatedAt": "2026-09-30T01:34:35Z",
+  "updatedAt": "2026-09-30T01:47:24Z",
   "worker": "agy"
 }

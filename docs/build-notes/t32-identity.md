@@ -96,4 +96,26 @@ Tangkapan layar resolusi penuh dihasilkan via `agritani-shot.cjs` pada port stat
 
 ---
 
-T-32 SIAP REVIEW
+## 5. Penyempurnaan Hasil Review Kritis (2026-09-30)
+
+1. **Pembersihan AI Packshot**:
+   - Menghapus 4 berkas kemasan AI (`src/assets/images/dummy/produk-{aussie,bensu,kojien,saratoga}.webp`) dan modul `src/lib/product-images.ts`.
+   - Seluruh produk ditampilkan dalam tipografi editorial terstruktur tanpa foto hingga packshot asli tersedia (OQ-5).
+2. **Koreksi Angka Manual Panduan**:
+   - Menghapus angka statis "29" dan "20" pada Beranda; kini dihitung secara dinamis dari koleksi artikel terbit via `getCommodityArticleCount()` (Padi: 3, Cabai: 3, Jagung: 2).
+3. **Pemberantasan CTA WhatsApp di Beranda**:
+   - Menghapus seluruh tombol dan ajakan WhatsApp dari Beranda (`/`) per DESIGN §2.8 dan AGENTS.md; digantikan oleh tautan teks navigasi resmi ke `/konsultasi/`.
+4. **Alat Tani Berupa Baris Indeks**:
+   - Menghapus ikon dekoratif SVG dan grid 4 kartu; diganti baris indeks horizontal terbuka per DESIGN §4.2.3.
+5. **Penyempurnaan Footer**:
+   - Menghapus klaim aksesibilitas belum terverifikasi ("WCAG AAA 7:1").
+   - Menghapus garis pita warna antar-section di atas footer.
+   - Memperbarui komentar arsitektur di `Footer.astro`.
+6. **Hero Fokus Visual**:
+   - Mengembalikan layout editorial masthead dengan fokus visual foto sawah terbuka dan headline proporsional yang tidak mendominasi visual.
+7. **Pembersihan Token Warna**:
+   - Menghapus seluruh hardcoded hex `#B3261E` dan sejenisnya; beralih 100% ke token CSS `var(--color-topic-...)` dan `var(--color-brand-strong)`.
+
+---
+
+T-32 SIAP REVIEW ULANG

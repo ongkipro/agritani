@@ -15,7 +15,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { topicName } from '../lib/topics';
 import { getReadingTime } from '../lib/reading-time';
 import { getTopicImage } from '../lib/topic-images';
-import { getProductImage } from '../lib/product-images';
 import type { SeoInput } from '../lib/seo';
 
 // Media assets
@@ -28,6 +27,13 @@ const isDraftPreview = import.meta.env.PUBLIC_INCLUDE_DRAFTS === 'true';
 const allArticles = await getCollection('articles', ({ data }) => {
   return isDraftPreview || !data.draft;
 });
+
+// Helper for dynamic published count per commodity
+const getCommodityArticleCount = (commId: string) => {
+  return allArticles.filter((a) => {
+    return a.data.commodities?.some((c) => (typeof c === 'string' ? c : c.id) === commId);
+  }).length;
+};
 
 // Sort articles by publication date descending
 const sortedArticles = [...allArticles].sort((a, b) => {
@@ -62,15 +68,15 @@ const seoProps: SeoInput = {
 
 <BaseLayout seo={seoProps}>
 
-  <!-- 1. Hero Masthead & Precision Tools Deck -->
+  <!-- 1. Hero Photographic Masthead & Precision Tools Deck (Fokus Image, Proporsional) -->
   <section class="relative bg-[var(--color-canvas)] pt-6 pb-12 sm:pt-10 sm:pb-20">
     <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Asymmetric Editorial Grid (7/12 Landscape Visual + 5/12 Field Utility Deck) -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
         
-        <!-- Left Column: Photographic Editorial Masthead -->
-        <div class="lg:col-span-7 relative min-h-[420px] sm:min-h-[500px] flex flex-col justify-end p-6 sm:p-10 rounded-[2px] overflow-hidden group">
+        <!-- Left Column: Photographic Editorial Masthead (Fokus Image, Vignette Halus Bawah) -->
+        <div class="lg:col-span-7 relative min-h-[440px] sm:min-h-[520px] flex flex-col justify-end p-6 sm:p-8 lg:p-10 rounded-[2px] overflow-hidden group">
           <Picture
             src={heroImage}
             formats={['webp']}
@@ -81,31 +87,31 @@ const seoProps: SeoInput = {
             class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
             loading="eager"
           />
-          <!-- Atmospheric Vignette (Guarantees WCAG AAA 12:1 Contrast on White Text) -->
+          <!-- Atmospheric Bottom-Weighted Vignette: Bagian Atas Gambar Jernih, Bawah Bergradasi Halus -->
           <div
-            class="absolute inset-0 bg-gradient-to-t from-[#051A0E] via-[#0A2E19]/90 to-[#0A2E19]/40"
+            class="absolute inset-0 bg-gradient-to-t from-[var(--color-brand-strong)]/95 via-[var(--color-brand-strong)]/50 to-transparent"
             aria-hidden="true"
           ></div>
 
-          <!-- Hero Content -->
-          <div class="relative z-10 max-w-[38ch]">
-            <h1 class="display-editorial text-white">
+          <!-- Hero Content: Headline Proporsional & Elegan (Tidak Terlalu Besar) -->
+          <div class="relative z-10 max-w-[42ch]">
+            <h1 class="font-serif text-2xl sm:text-3xl lg:text-[2.25rem] font-bold text-white leading-tight tracking-tight">
               Standar Agronomi Presisi & Sains Lapangan Tropis
             </h1>
-            <p class="mt-4 text-base sm:text-lg text-white/95 leading-relaxed">
-              Portal pertanian resmi dan panduan budidaya tanaman PT Agritani Internasional. Dikelola langsung oleh Arif Prabowo bersama tim agronomi lapangan.
+            <p class="mt-3 text-sm sm:text-base text-white/95 leading-relaxed max-w-[38ch]">
+              Portal pertanian resmi PT Agritani Internasional yang dikelola Arif Prabowo bersama tim agronomi lapangan.
             </p>
-            <div class="mt-8 flex flex-wrap items-center gap-4">
+            <div class="mt-6 sm:mt-7 flex flex-wrap items-center gap-3 sm:gap-4">
               <a
                 href="/alat/"
-                class="inline-flex items-center gap-2 px-6 py-3.5 rounded-[2px] bg-[var(--color-harvest)] text-[var(--color-text)] font-extrabold text-sm hover:bg-[var(--color-harvest-hover)] transition-colors focus:outline-none focus:ring-2 focus:ring-white"
+                class="inline-flex items-center gap-2 px-5 py-3 rounded-[2px] bg-[var(--color-harvest)] text-[var(--color-text)] font-extrabold text-xs sm:text-sm hover:bg-[var(--color-harvest-hover)] transition-colors focus:outline-none focus:ring-2 focus:ring-white"
               >
                 <span>Buka Instrumen Tani</span>
                 <span aria-hidden="true">&rarr;</span>
               </a>
               <a
                 href="/jurnal/"
-                class="inline-flex items-center gap-2 px-5 py-3.5 rounded-[2px] bg-white/15 hover:bg-white/25 text-white text-sm font-bold transition-colors backdrop-blur-xs focus:outline-none focus:ring-2 focus:ring-white"
+                class="inline-flex items-center gap-2 px-5 py-3 rounded-[2px] bg-white/15 hover:bg-white/25 text-white text-xs sm:text-sm font-bold transition-colors backdrop-blur-xs focus:outline-none focus:ring-2 focus:ring-white"
               >
                 <span>Jelajahi Jurnal Ilmiah</span>
               </a>
@@ -203,13 +209,13 @@ const seoProps: SeoInput = {
             </div>
           </div>
 
-          <!-- Quick Consultation Entry -->
+          <!-- Quick Consultation Entry (Text link without WhatsApp mention, DESIGN §2.8) -->
           <div class="mt-4 pt-2">
             <a
               href="/konsultasi/"
               class="inline-flex items-center gap-2 text-xs font-bold text-[var(--color-brand-strong)] hover:underline py-1.5"
             >
-              <span>Butuh telaah kebun langsung? Konsultasi WhatsApp Agronomi</span>
+              <span>Butuh telaah kebun langsung? Pelajari alur konsultasi agronomi</span>
               <span aria-hidden="true">&rarr;</span>
             </a>
           </div>
@@ -401,7 +407,7 @@ const seoProps: SeoInput = {
               <span class="font-serif text-lg font-bold text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] transition-colors">
                 Padi Sawah
               </span>
-              <span class="text-xs font-bold text-[var(--color-brand-strong)] tabular-nums">29 Panduan &rarr;</span>
+              <span class="text-xs font-bold text-[var(--color-brand-strong)] tabular-nums">{getCommodityArticleCount('padi')} Panduan &rarr;</span>
             </div>
             <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
               Mitigasi hawar daun bakteri, blas, dan pengendalian wereng batang coklat.
@@ -412,10 +418,10 @@ const seoProps: SeoInput = {
             class="group block"
           >
             <div class="flex items-baseline justify-between mb-1">
-              <span class="font-serif text-lg font-bold text-[var(--color-text)] group-hover:text-[#B3261E] transition-colors">
+              <span class="font-serif text-lg font-bold text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] transition-colors">
                 Cabai
               </span>
-              <span class="text-xs font-bold text-[#B3261E] tabular-nums">20 Panduan &rarr;</span>
+              <span class="text-xs font-bold text-[var(--color-brand-strong)] tabular-nums">{getCommodityArticleCount('cabai')} Panduan &rarr;</span>
             </div>
             <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
               Protokol patek antraknosa, pencegahan layu fusarium, dan thrips keriting.
@@ -429,7 +435,7 @@ const seoProps: SeoInput = {
               <span class="font-serif text-lg font-bold text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] transition-colors">
                 Jagung
               </span>
-              <span class="text-xs font-bold text-[var(--color-soil)] tabular-nums">Fokus Hama &rarr;</span>
+              <span class="text-xs font-bold text-[var(--color-soil)] tabular-nums">{getCommodityArticleCount('jagung')} Panduan &rarr;</span>
             </div>
             <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
               Perlindungan titik tumbuh dari ulat grayak jagung (FAW) dan penyakit bulai.
@@ -441,134 +447,101 @@ const seoProps: SeoInput = {
     </div>
   </section>
 
-  <!-- 4. Tools Pertanian Presisi (Interactive Utility Deck) -->
+  <!-- 4. Alat Tani & Instrumen Lapangan (Baris Indeks, DESIGN §4.2.3) -->
   <section class="py-16 sm:py-24 bg-[var(--color-surface)]" aria-labelledby="tools-heading">
     <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="max-w-[50ch] mb-12">
-        <h2 id="tools-heading" class="section-headline">
-          Alat Tani & Instrumen Lapangan
-        </h2>
-        <p class="section-subheading">
-          Empat perangkat bantu gratis tanpa akun, tanpa registrasi, dan tanpa pemrosesan data pribadi untuk penggunaan sigap di kebun.
-        </p>
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div class="max-w-[54ch]">
+          <h2 id="tools-heading" class="section-headline">
+            Alat Tani & Instrumen Lapangan
+          </h2>
+          <p class="section-subheading">
+            Empat perangkat bantu gratis tanpa akun, tanpa registrasi, dan tanpa pemrosesan data pribadi untuk penggunaan sigap di kebun.
+          </p>
+        </div>
+        <div class="shrink-0">
+          <a href="/alat/" class="link-more text-sm">
+            Lihat semua instrumen &rarr;
+          </a>
+        </div>
       </div>
 
-      <!-- Modern 4-Tool Utility Grid (Open Columns, No Card Boxes) -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+      <!-- Index Rows of 4 Precision Tools (Free of Cards, Open Rows) -->
+      <div class="divide-y divide-[var(--color-border)] border-y border-[var(--color-border)]">
         
-        <!-- Tool 1: Cuaca Tani BMKG -->
-        <div class="flex flex-col justify-between group">
-          <div>
-            <div class="w-12 h-12 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-brand-strong)] flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-[var(--color-brand)] group-hover:text-white" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2v2" />
-                <path d="m4.93 4.93 1.41 1.41" />
-                <path d="M20 12h2" />
-                <path d="m19.07 4.93-1.41 1.41" />
-                <path d="M15.947 12.65a4 4 0 0 0-5.925-4.128" />
-                <path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z" />
-                <path d="m10 19-1.5 3" />
-                <path d="m14 19-1.5 3" />
-              </svg>
-            </div>
-            <h3 class="font-serif text-xl font-bold text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] transition-colors">
-              <a href="/alat/cuaca-tani/">
-                Cuaca Tani & Jendela Semprot
-              </a>
+        <!-- Row 1: Cuaca Tani -->
+        <div class="py-6 sm:py-7 flex flex-col md:flex-row md:items-baseline justify-between gap-4 group">
+          <div class="md:w-5/12">
+            <h3 class="font-serif text-xl sm:text-2xl font-bold text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] transition-colors">
+              <a href="/alat/cuaca-tani/">Cuaca Tani & Jendela Semprot</a>
             </h3>
-            <p class="mt-2 text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
+          </div>
+          <div class="md:w-5/12">
+            <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
               Prakiraan 3 hari per 3 jam langsung dari BMKG tingkat desa untuk memilih waktu semprot terbaik sebelum hujan turun.
             </p>
           </div>
-          <div class="mt-5 pt-3 border-t border-[var(--color-border)]">
-            <a href="/alat/cuaca-tani/" class="link-more text-xs">
-              Buka prakiraan desa &rarr;
+          <div class="md:w-2/12 md:text-right shrink-0">
+            <a href="/alat/cuaca-tani/" class="link-more text-xs sm:text-sm">
+              Buka prakiraan &rarr;
             </a>
           </div>
         </div>
 
-        <!-- Tool 2: Kalkulator Dosis Knapsack -->
-        <div class="flex flex-col justify-between group">
-          <div>
-            <div class="w-12 h-12 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-brand-strong)] flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-[var(--color-brand)] group-hover:text-white" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M10 2v7.31L4.67 17.69A2 2 0 0 0 6.36 21h11.28a2 2 0 0 0 1.69-3.31L14 9.31V2" />
-                <path d="M8.5 2h7" />
-                <path d="M14 9.3h-4" />
-                <path d="M6.3 17h11.4" />
-              </svg>
-            </div>
-            <h3 class="font-serif text-xl font-bold text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] transition-colors">
-              <a href="/alat/kalkulator-dosis/">
-                Kalkulator Dosis Tangki 16L
-              </a>
+        <!-- Row 2: Kalkulator Dosis -->
+        <div class="py-6 sm:py-7 flex flex-col md:flex-row md:items-baseline justify-between gap-4 group">
+          <div class="md:w-5/12">
+            <h3 class="font-serif text-xl sm:text-2xl font-bold text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] transition-colors">
+              <a href="/alat/kalkulator-dosis/">Kalkulator Dosis Tangki 16L</a>
             </h3>
-            <p class="mt-2 text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
+          </div>
+          <div class="md:w-5/12">
+            <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
               Takaran mililiter atau gram per tangki knapsack gendong dan drum 200L sesuai luas lahan dan petunjuk label resmi.
             </p>
           </div>
-          <div class="mt-5 pt-3 border-t border-[var(--color-border)]">
-            <a href="/alat/kalkulator-dosis/" class="link-more text-xs">
-              Hitung dosis tangki &rarr;
+          <div class="md:w-2/12 md:text-right shrink-0">
+            <a href="/alat/kalkulator-dosis/" class="link-more text-xs sm:text-sm">
+              Hitung dosis &rarr;
             </a>
           </div>
         </div>
 
-        <!-- Tool 3: Diagnosa Gejala -->
-        <div class="flex flex-col justify-between group">
-          <div>
-            <div class="w-12 h-12 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-brand-strong)] flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-[var(--color-brand)] group-hover:text-white" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 1 9.2A7 7 0 0 1 11 20Z" />
-                <path d="m21 21-4.3-4.3" />
-                <circle cx="15" cy="15" r="4" />
-              </svg>
-            </div>
-            <h3 class="font-serif text-xl font-bold text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] transition-colors">
-              <a href="/alat/diagnosa-gejala/">
-                Diagnosa Visual Gejala
-              </a>
+        <!-- Row 3: Diagnosa Visual Gejala -->
+        <div class="py-6 sm:py-7 flex flex-col md:flex-row md:items-baseline justify-between gap-4 group">
+          <div class="md:w-5/12">
+            <h3 class="font-serif text-xl sm:text-2xl font-bold text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] transition-colors">
+              <a href="/alat/diagnosa-gejala/">Diagnosa Visual Gejala</a>
             </h3>
-            <p class="mt-2 text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
+          </div>
+          <div class="md:w-5/12">
+            <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
               Identifikasi visual hama, patogen penyakit, dan kahat hara tanaman langsung dari ponsel tanpa mengetik di lahan.
             </p>
           </div>
-          <div class="mt-5 pt-3 border-t border-[var(--color-border)]">
-            <a href="/alat/diagnosa-gejala/" class="link-more text-xs">
-              Mulai diagnosa gejala &rarr;
+          <div class="md:w-2/12 md:text-right shrink-0">
+            <a href="/alat/diagnosa-gejala/" class="link-more text-xs sm:text-sm">
+              Mulai diagnosa &rarr;
             </a>
           </div>
         </div>
 
-        <!-- Tool 4: Kalender Tanam -->
-        <div class="flex flex-col justify-between group">
-          <div>
-            <div class="w-12 h-12 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-brand-strong)] flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-[var(--color-brand)] group-hover:text-white" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect width="18" height="18" x="3" y="4" rx="2" />
-                <path d="M16 2v4" />
-                <path d="M8 2v4" />
-                <path d="M3 10h18" />
-                <path d="M8 14h.01" />
-                <path d="M12 14h.01" />
-                <path d="M16 14h.01" />
-                <path d="M8 18h.01" />
-                <path d="M12 18h.01" />
-              </svg>
-            </div>
-            <h3 class="font-serif text-xl font-bold text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] transition-colors">
-              <a href="/alat/kalender-tanam/">
-                Kalender Tanam & Fase HST
-              </a>
+        <!-- Row 4: Kalender Tanam & Fase HST -->
+        <div class="py-6 sm:py-7 flex flex-col md:flex-row md:items-baseline justify-between gap-4 group">
+          <div class="md:w-5/12">
+            <h3 class="font-serif text-xl sm:text-2xl font-bold text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] transition-colors">
+              <a href="/alat/kalender-tanam/">Kalender Tanam & Fase HST</a>
             </h3>
-            <p class="mt-2 text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
+          </div>
+          <div class="md:w-5/12">
+            <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
               Perhitungan umur Hari Setelah Tanam, panduan tindakan berkala, dan ekspor pengingat kalender HP (.ics).
             </p>
           </div>
-          <div class="mt-5 pt-3 border-t border-[var(--color-border)]">
-            <a href="/alat/kalender-tanam/" class="link-more text-xs">
-              Buat rencana tanam &rarr;
+          <div class="md:w-2/12 md:text-right shrink-0">
+            <a href="/alat/kalender-tanam/" class="link-more text-xs sm:text-sm">
+              Buat rencana &rarr;
             </a>
           </div>
         </div>
@@ -577,7 +550,7 @@ const seoProps: SeoInput = {
     </div>
   </section>
 
-  <!-- 5. Pendampingan Lapangan & Konsultasi Kebun (WhatsApp Desk) -->
+  <!-- 5. Pendampingan Lapangan & Konsultasi Kebun -->
   <section class="py-16 sm:py-24 bg-[var(--color-canvas)]" aria-labelledby="consult-heading">
     <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-16 items-center">
@@ -620,13 +593,12 @@ const seoProps: SeoInput = {
             </div>
           </div>
 
-          <div class="pt-4">
+          <div class="pt-2">
             <a
               href="/konsultasi/"
-              class="inline-flex items-center gap-2 px-6 py-3.5 rounded-[2px] bg-[var(--color-brand)] text-white font-bold text-sm hover:bg-[var(--color-brand-hover)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--color-brand)]"
+              class="link-more text-sm sm:text-base font-bold"
             >
-              <span>Kirim Data Kebun ke Konsultasi WhatsApp</span>
-              <span aria-hidden="true">&rarr;</span>
+              Cara konsultasi & alur pendampingan kebun &rarr;
             </a>
           </div>
         </div>
@@ -650,44 +622,27 @@ const seoProps: SeoInput = {
         </div>
         <div class="shrink-0">
           <a href="/produk/" class="link-more text-sm">
-            Katalog 4 produk unggulan
+            Katalog 4 produk unggulan &rarr;
           </a>
         </div>
       </div>
 
-      <!-- 4 Verified Official Products (Open Editorial Grid, No Card Boxes) -->
+      <!-- 4 Verified Official Products (Dignified Open Rows, No AI Packshots per OQ-5) -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-16">
         {sortedProducts.map((prod) => (
-          <div class="flex flex-col justify-between group">
+          <div class="flex flex-col justify-between group pt-4 border-t border-[var(--color-border)]">
             <div>
-              <a
-                href={`/produk/${prod.id}/`}
-                class="block mb-4 aspect-square rounded-[2px] overflow-hidden bg-transparent flex items-center justify-center"
-                tabindex="-1"
-                aria-hidden="true"
-              >
-                <Picture
-                  src={getProductImage(prod.id)}
-                  formats={['webp']}
-                  widths={[240, 480]}
-                  sizes="(min-width: 1024px) 16rem, 50vw"
-                  quality={80}
-                  alt={`Kemasan botol resmi ${prod.data.name} terdaftar`}
-                  class="w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-105"
-                  loading="lazy"
-                />
-              </a>
               <h3 class="font-serif text-2xl font-bold text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] transition-colors">
                 <a href={`/produk/${prod.id}/`}>{prod.data.name}</a>
               </h3>
-              <p class="text-xs font-semibold text-[var(--color-brand-strong)] mt-1">
+              <p class="text-xs font-semibold text-[var(--color-brand-strong)] mt-1.5">
                 {prod.data.tagline || prod.data.role}
               </p>
-              <p class="text-xs text-[var(--color-text-muted)] mt-2 leading-relaxed line-clamp-3">
+              <p class="text-xs text-[var(--color-text-muted)] mt-2.5 leading-relaxed line-clamp-3">
                 {prod.data.role}
               </p>
             </div>
-            <div class="mt-4">
+            <div class="mt-5">
               <a href={`/produk/${prod.id}/`} class="link-more text-xs">
                 Spesifikasi & izin Kementan &rarr;
               </a>

@@ -14,12 +14,12 @@ const navLinks = [
 ];
 
 const taxonomySectors = [
-  { href: '/jurnal/topik/proteksi-tanaman/', label: 'Proteksi Tanaman', colorClass: 'bg-[#B3261E]', textHoverClass: 'group-hover:text-[#B3261E]', borderClass: 'border-[#B3261E]' },
-  { href: '/jurnal/topik/tanah-nutrisi/', label: 'Tanah & Nutrisi', colorClass: 'bg-[#7A4A22]', textHoverClass: 'group-hover:text-[#7A4A22]', borderClass: 'border-[#7A4A22]' },
-  { href: '/jurnal/topik/budidaya/', label: 'Budidaya', colorClass: 'bg-[#2F7D32]', textHoverClass: 'group-hover:text-[#2F7D32]', borderClass: 'border-[#2F7D32]' },
-  { href: '/jurnal/topik/air-irigasi/', label: 'Air & Irigasi', colorClass: 'bg-[#1F6FA8]', textHoverClass: 'group-hover:text-[#1F6FA8]', borderClass: 'border-[#1F6FA8]' },
-  { href: '/jurnal/topik/pascapanen-agribisnis/', label: 'Pascapanen & Agribisnis', colorClass: 'bg-[#B26A00]', textHoverClass: 'group-hover:text-[#B26A00]', borderClass: 'border-[#B26A00]' },
-  { href: '/jurnal/topik/sains-tanaman/', label: 'Sains Tanaman', colorClass: 'bg-[#0F766E]', textHoverClass: 'group-hover:text-[#0F766E]', borderClass: 'border-[#0F766E]' },
+  { href: '/jurnal/topik/proteksi-tanaman/', label: 'Proteksi Tanaman', colorClass: 'bg-[var(--color-topic-proteksi-tanaman)]', textHoverClass: 'group-hover:text-[var(--color-topic-proteksi-tanaman)]', borderClass: 'border-[var(--color-topic-proteksi-tanaman)]' },
+  { href: '/jurnal/topik/tanah-nutrisi/', label: 'Tanah & Nutrisi', colorClass: 'bg-[var(--color-topic-tanah-nutrisi)]', textHoverClass: 'group-hover:text-[var(--color-topic-tanah-nutrisi)]', borderClass: 'border-[var(--color-topic-tanah-nutrisi)]' },
+  { href: '/jurnal/topik/budidaya/', label: 'Budidaya', colorClass: 'bg-[var(--color-topic-budidaya)]', textHoverClass: 'group-hover:text-[var(--color-topic-budidaya)]', borderClass: 'border-[var(--color-topic-budidaya)]' },
+  { href: '/jurnal/topik/air-irigasi/', label: 'Air & Irigasi', colorClass: 'bg-[var(--color-topic-air-irigasi)]', textHoverClass: 'group-hover:text-[var(--color-topic-air-irigasi)]', borderClass: 'border-[var(--color-topic-air-irigasi)]' },
+  { href: '/jurnal/topik/pascapanen-agribisnis/', label: 'Pascapanen & Agribisnis', colorClass: 'bg-[var(--color-topic-pascapanen-agribisnis)]', textHoverClass: 'group-hover:text-[var(--color-topic-pascapanen-agribisnis)]', borderClass: 'border-[var(--color-topic-pascapanen-agribisnis)]' },
+  { href: '/jurnal/topik/sains-tanaman/', label: 'Sains Tanaman', colorClass: 'bg-[var(--color-topic-sains-tanaman)]', textHoverClass: 'group-hover:text-[var(--color-topic-sains-tanaman)]', borderClass: 'border-[var(--color-topic-sains-tanaman)]' },
 ];
 
 const alatSubLinks = [
@@ -139,7 +139,7 @@ function isActive(match: string): boolean {
   </div>
 
   <!-- Tier 2: Desktop 6-Sector Taxonomy Bar -->
-  <nav aria-label="Sektor Keilmuan Pertanian" class="hidden lg:block border-t border-[var(--color-border)] bg-[#FAFAF8] select-none">
+  <nav aria-label="Sektor Keilmuan Pertanian" class="hidden lg:block border-t border-[var(--color-border)] bg-[var(--color-canvas)] select-none">
     <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between gap-1 py-1">
         {
@@ -186,12 +186,12 @@ function isActive(match: string): boolean {
 >
   <!-- Multi-Disciplinary Taxonomy Strip in Dialog -->
   <div class="w-full grid grid-cols-6 h-[4px] select-none" aria-hidden="true">
-    <div class="bg-[#B3261E]"></div>
-    <div class="bg-[#7A4A22]"></div>
-    <div class="bg-[#2F7D32]"></div>
-    <div class="bg-[#1F6FA8]"></div>
-    <div class="bg-[#B26A00]"></div>
-    <div class="bg-[#0F766E]"></div>
+    <div class="bg-[var(--color-topic-proteksi-tanaman)]"></div>
+    <div class="bg-[var(--color-topic-tanah-nutrisi)]"></div>
+    <div class="bg-[var(--color-topic-budidaya)]"></div>
+    <div class="bg-[var(--color-topic-air-irigasi)]"></div>
+    <div class="bg-[var(--color-topic-pascapanen-agribisnis)]"></div>
+    <div class="bg-[var(--color-topic-sains-tanaman)]"></div>
   </div>
 
   <div class="min-h-full flex flex-col p-4 sm:p-6">

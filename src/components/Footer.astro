@@ -4,13 +4,12 @@
  * Agritani Footer perfected to match the authoritative, clean, minimal
  * UI/UX architecture of Teagasc.ie (https://teagasc.ie/):
  *
- * 1. 6-Sector Multi-Disciplinary Color Strip (Teagasc Signature Bookend)
- * 2. 4-Column Structured Directory with subtle hairline dividers per item:
+ * 1. 4-Column Structured Directory:
  *    - Col 1: Sektor Jurnal Tani (6 topik keilmuan)
- *    - Col 2: Organisasi & Riset (Profil, Dewan Pakar, Kemitraan, Kebijakan)
- *    - Col 3: Instrumen Lapangan (Diagnosa, Kalender, Cuaca BMKG, Dosis 16L, WhatsApp)
- *    - Col 4: Produk & Standar (4 Produk Resmi, Garansi ShieldedTag, Aksesibilitas)
- * 3. Clean Institutional Sub-Footer:
+ *    - Col 2: Organisasi & Riset (Profil, Pengelola Jurnal, Kemitraan, Kebijakan)
+ *    - Col 3: Instrumen Lapangan (Diagnosa, Kalender, Cuaca BMKG, Dosis 16L, Konsultasi)
+ *    - Col 4: Produk & Rujukan Resmi (4 Produk Unggulan, Segel ShieldedTag, Pencarian)
+ * 2. Clean Institutional Sub-Footer:
  *    - Head Office address, official WhatsApp & email
  *    - Registration & distributor credentials
  *    - Copyright © {currentYear} PT Agritani Internasional
@@ -20,12 +19,12 @@
 const currentYear = new Date().getFullYear();
 
 const topicLinks = [
-  { href: '/jurnal/topik/proteksi-tanaman/', label: 'Proteksi Tanaman', colorClass: 'bg-[#B3261E]' },
-  { href: '/jurnal/topik/tanah-nutrisi/', label: 'Tanah & Nutrisi', colorClass: 'bg-[#7A4A22]' },
-  { href: '/jurnal/topik/budidaya/', label: 'Budidaya', colorClass: 'bg-[#2F7D32]' },
-  { href: '/jurnal/topik/air-irigasi/', label: 'Air & Irigasi', colorClass: 'bg-[#1F6FA8]' },
-  { href: '/jurnal/topik/pascapanen-agribisnis/', label: 'Pascapanen & Agribisnis', colorClass: 'bg-[#B26A00]' },
-  { href: '/jurnal/topik/sains-tanaman/', label: 'Sains Tanaman', colorClass: 'bg-[#0F766E]' },
+  { href: '/jurnal/topik/proteksi-tanaman/', label: 'Proteksi Tanaman', colorClass: 'bg-[var(--color-topic-proteksi-tanaman)]' },
+  { href: '/jurnal/topik/tanah-nutrisi/', label: 'Tanah & Nutrisi', colorClass: 'bg-[var(--color-topic-tanah-nutrisi)]' },
+  { href: '/jurnal/topik/budidaya/', label: 'Budidaya', colorClass: 'bg-[var(--color-topic-budidaya)]' },
+  { href: '/jurnal/topik/air-irigasi/', label: 'Air & Irigasi', colorClass: 'bg-[var(--color-topic-air-irigasi)]' },
+  { href: '/jurnal/topik/pascapanen-agribisnis/', label: 'Pascapanen & Agribisnis', colorClass: 'bg-[var(--color-topic-pascapanen-agribisnis)]' },
+  { href: '/jurnal/topik/sains-tanaman/', label: 'Sains Tanaman', colorClass: 'bg-[var(--color-topic-sains-tanaman)]' },
 ];
 
 const orgLinks = [
@@ -55,18 +54,7 @@ const productAndStandardLinks = [
 ---
 
 <footer class="bg-[var(--color-surface)] text-[var(--color-text)] mt-16 select-none">
-  
-  <!-- 1. Multi-Disciplinary Taxonomy Strip (Teagasc Bookend) -->
-  <div class="w-full grid grid-cols-6 h-[4px]" aria-hidden="true">
-    <div class="bg-[#B3261E]"></div>
-    <div class="bg-[#7A4A22]"></div>
-    <div class="bg-[#2F7D32]"></div>
-    <div class="bg-[#1F6FA8]"></div>
-    <div class="bg-[#B26A00]"></div>
-    <div class="bg-[#0F766E]"></div>
-  </div>
-
-  <!-- 2. Main 4-Column Directory Grid -->
+  <!-- Main 4-Column Directory Grid -->
   <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
       
@@ -177,8 +165,6 @@ const productAndStandardLinks = [
           <span>WhatsApp Resmi: <a href="https://wa.me/6287770457256" class="font-bold text-[var(--color-brand-strong)] hover:underline whitespace-nowrap">+62 877-7045-7256</a></span>
           <span class="text-[var(--color-border-control)]" aria-hidden="true">&middot;</span>
           <span>Pengelola Jurnal Tani: <a href="/penulis/arif-prabowo/" class="text-[var(--color-brand-strong)] hover:underline">Arif Prabowo</a></span>
-          <span class="text-[var(--color-border-control)]" aria-hidden="true">&middot;</span>
-          <span>Aksesibilitas: <span class="font-bold text-[var(--color-text)]">WCAG AAA (≥ 7:1)</span></span>
         </div>
         <div class="text-[11px] text-[var(--color-text-muted)] pt-1">
           &copy; {currentYear} PT Agritani Internasional · Portal pertanian dikelola Arif Prabowo
