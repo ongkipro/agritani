@@ -422,6 +422,24 @@ button:disabled,
   .link-more::after { transition: none; }
 }
 
+/* Card (DESIGN §3.3.3): one quiet container for things that are a unit — product, tool result, author, related item.
+   White surface, 1px hairline, 2px radius, no shadow. Linked cards darken the border on hover/focus. */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+}
+.card-link {
+  transition: border-color 0.2s ease;
+}
+.card-link:hover,
+.card-link:focus-within {
+  border-color: var(--color-brand-strong);
+}
+.card-media {
+  background: var(--color-tint);
+}
+
 /* Progressive Article Reveal & Modern List Animations */
 .article-item-wrapper.is-hidden {
   display: none !important;

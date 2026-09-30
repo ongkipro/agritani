@@ -202,7 +202,7 @@ function isActive(match: string): boolean {
             placeholder="Ketik masalah tanaman (mis. patek cabai, blas padi, ganoderma)..."
             autocomplete="off"
             spellcheck="false"
-            class="w-full py-2.5 sm:py-3 pl-11 pr-11 text-base text-[var(--color-text)] bg-[var(--color-canvas)] focus:bg-white border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-0 focus:border-[var(--color-brand-strong)] placeholder:text-[var(--color-text-muted)] font-medium transition-all shadow-2xs"
+            class="w-full py-2.5 sm:py-3 pl-11 pr-11 text-base text-[var(--color-text)] bg-[var(--color-canvas)] focus:bg-white border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-0 focus:border-[var(--color-brand-strong)] placeholder:text-[var(--color-text-muted)] font-medium transition-all"
           />
 
           <!-- Touch-friendly In-input Clear Button -->
@@ -224,7 +224,7 @@ function isActive(match: string): boolean {
         <!-- Submit Button (Desktop/Tablet) -->
         <button
           type="submit"
-          class="hidden sm:inline-flex shrink-0 px-5 py-2.5 min-h-[44px] bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)] text-white text-xs sm:text-sm font-bold rounded-[2px] transition-colors items-center justify-center cursor-pointer shadow-2xs hover:shadow-xs active:scale-[0.99]"
+          class="hidden sm:inline-flex shrink-0 px-5 py-2.5 min-h-[44px] bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)] text-white text-xs sm:text-sm font-bold rounded-[2px] transition-colors items-center justify-center cursor-pointer active:scale-[0.99]"
         >
           Cari
         </button>
@@ -308,7 +308,7 @@ function isActive(match: string): boolean {
               <a
                 href={sector.href}
                 class={`group relative flex items-center gap-2 py-2 px-3 rounded-[2px] transition-all duration-200 min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)] ${
-                  isTopicActive ? 'bg-white font-bold shadow-2xs' : 'hover:bg-white/80'
+                  isTopicActive ? 'bg-white font-bold' : 'hover:bg-white/80'
                 }`}
               >
                 <span class={`w-2 h-2 rounded-full ${sector.colorClass} shrink-0 transition-transform duration-200 group-hover:scale-125`} aria-hidden="true"></span>
