@@ -45,11 +45,12 @@ Do not start implementation while `STATUS.md` says development authorization is 
 - **Reviewed data only**: crop calendars, symptoms, and spray thresholds render in production only when `reviewedBy` is set. Draft or unreviewed content appears only in draft-preview mode (ARCHITECTURE §3.2).
 - **WhatsApp**: at most one WhatsApp CTA per page, placed after the task. Never in the header, menu, hero, a sticky or floating element, or per list item. All links go through `waLink()` (DESIGN §2.8).
 - **UI invariants**: no kickers/eyebrows, no divider lines between sections, 2px max radius, no shadows, no decorative icons, text contrast ≥ 7:1, touch targets ≥ 44px (DESIGN §3, §3.3.4, §8).
-- **Owner decisions 2026-09-30 (DEC-016, DEC-017, DEC-019, T-37)** — do not undo without a new decision:
+- **Owner decisions 2026-09-30 (DEC-016, DEC-017, DEC-019, DEC-020, DEC-021, T-37)** — do not undo without a new decision:
   - Name: "Agritani" / "Agritani Official"; never "PT Agritani Internasional". Arif Prabowo is "Konsultan Pertanian Senior", never "Prof.".
   - Cards are allowed only as the single `.card` style for a whole unit (product, price, tool input/result, author, related item, form); never around sections or prose; no card inside a card (DESIGN §3.3.3). Homepage stays open (approved).
   - Footer is locked to the owner version (`src/components/Footer.astro`); do not restyle it.
-  - WhatsApp: none on the homepage, product pages, Tentang Kami, Jurnal index/hubs/tags, Alat index, Privasi, Cari, 404. Article: only the link in the author block. Tools: only after a result. Profile: one prompt under the bio. Konsultasi/Kemitraan: the form submit.
+  - WhatsApp: none on the homepage, product pages, Jurnal index/hubs/tags, Alat index, Privasi, Cari, 404. Article: only the link in the author block. Tools: only after a result. Profile: one prompt under the bio. Tentang Kami: one sales CTA (DEC-021). Konsultasi/Kemitraan: the form submit.
+  - Positioning (DEC-021): Agritani Official is the official and main distributor for online sales (marketplaces and other platforms).
   - Prices: from `src/data/products.json` only, with the check date; never name or link the source site.
   - Commodity hub: one article list with "Muat Panduan Lainnya", not split by topic. Article tags: "Tag:" + plain `#tag` links, no chips.
   - Page titles use " - " as the separator, never "|" (T-37).

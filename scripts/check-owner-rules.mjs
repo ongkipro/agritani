@@ -5,7 +5,8 @@
  * Runs on every `npm run build`; fails the build on the first violation list.
  *
  * - Forbidden text anywhere in a page: legal-entity name that does not exist, price source site, professor title.
- * - WhatsApp: no WhatsApp link inside <main> on pages without a CTA; at most one `data-cta="whatsapp"` block elsewhere.
+ * - WhatsApp: no WhatsApp link inside <main> on pages without a CTA; at most one `data-cta="whatsapp"` block elsewhere
+ *   (Tentang Kami has one sales CTA since DEC-021).
  * - Inside <main>: no `shadow-*` or `uppercase` utility classes (footer and header are outside <main>).
  */
 import fs from 'node:fs';
@@ -22,7 +23,6 @@ const FORBIDDEN = [
 const NO_WA = [
   /^\/$/,
   /^\/produk\//,
-  /^\/tentang-kami\/$/,
   /^\/jurnal\/$/,
   /^\/jurnal\/(halaman|topik|komoditas|tag)\//,
   /^\/alat\/$/,

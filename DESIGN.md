@@ -348,7 +348,8 @@ Jurnal Tani (keputusan Paduka Ongki 2026-09-29).
 | :--- | :--- | :--- |
 | Beranda | **Tidak ada** | Section Konsultasi menaut ke `/konsultasi/` |
 | Header, menu, footer | **Tidak ada** tombol | Nav "Konsultasi" → halaman; footer: nomor sebagai teks kontak |
-| Indeks Jurnal, hub, Tentang Kami, indeks Alat, indeks Produk, detail produk, Kebijakan Privasi, Cari, 404 | **Tidak ada** | Di indeks Jurnal, halaman paginasi, hub topik/komoditas, dan arsip tag, nomor di footer juga tampil sebagai **teks biasa tanpa tautan WhatsApp** (`BaseLayout noWhatsApp`, keputusan pemilik 2026-09-30) |
+| Indeks Jurnal, hub, indeks Alat, indeks Produk, detail produk, Kebijakan Privasi, Cari, 404 | **Tidak ada** | Di indeks Jurnal, halaman paginasi, hub topik/komoditas, dan arsip tag, nomor di footer juga tampil sebagai **teks biasa tanpa tautan WhatsApp** (`BaseLayout noWhatsApp`, keputusan pemilik 2026-09-30) |
+| Tentang Kami | 1 (primer) | "Chat tim penjualan via WhatsApp" di bagian "Menjadi agen atau distributor", sumber `Web·TentangKami` (DEC-021) |
 | Profil penulis `/penulis/arif-prabowo/` | 1 | "Konsultasi dengan Arif Prabowo" di bawah bio, sumber `Web·Penulis`; teks menyebut pesan dikirim ke WhatsApp resmi Agritani (keputusan pemilik 2026-09-30) |
 | Artikel | 1 | Tautan teks berikon "WhatsApp Agritani" di blok **Tentang Penulis** (sumber `Web·Artikel:{slug}`, pesan memuat judul artikel; keputusan pemilik 2026-09-30, kotak konsultasi terpisah dihapus) |
 | Diagnosa Gejala | 1 | Di bawah seluruh daftar hasil (atau di state kosong), setelah pengguna memilih |
@@ -724,13 +725,13 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 6. Foto lahan (ilustrasi, bukan dokumentasi hasil) · Memeriksa keaslian kemasan (3 kolom) · Panduan terkait di Jurnal Tani (`ArticleRow`).
 7. **Tanpa** ajakan WhatsApp, keranjang, marketplace, testimoni (keputusan pemilik 2026-09-30, §2.8). Harga hanya dari `products.json`; tanpa `variants` blok harga tidak tampil.
 
-**Tentang Kami `/tentang-kami/`** (Sains)
+**Tentang Kami `/tentang-kami/`** (Sains) — DEC-021, 2026-09-30
 
-1. H1 "Tentang Agritani" · portal pertanian yang dikelola resmi Arif Prabowo (Agritani Official) · kerja sama dengan brand pupuk & perusahaan pertanian (tanpa nama) · asal teknologi produk (Thailand, Jepang).
-2. Pendekatan: aktivasi imun tanaman — prosa, bukan kartu.
-3. Alur distribusi `01–03` (urutan nyata) · legalitas & identitas perusahaan (OQ-7).
-4. Pengelola Jurnal Tani (Arif Prabowo, foto) → profil penulis.
-5. Kontak.
+1. Breadcrumb · H1 "Tentang Agritani" · pembuka: Agritani Official distributor resmi dan utama untuk penjualan online (marketplace dan platform lain) · foto lanskap.
+2. H2 "Produk unggulan Agritani": satu kalimat + 4 `ProductCard` (Aussie, BENSU, Kojien, Saratoga) + catatan tanggal harga.
+3. H2 "Menjadi agen atau distributor": teks peluang kerja sama + `ConsultPrompt` primer "Hubungi tim penjualan" → WhatsApp (satu-satunya CTA WhatsApp halaman).
+4. Satu baris pengelola: avatar 40px · "Jurnal Tani dikelola Arif Prabowo, Konsultan Pertanian Senior." · "Lihat profil".
+5. Tidak ada: bagian keilmuan, alur rantai pasok, kartu Alat Tani, kartu bio panjang, kolom kanan.
 
 **Kemitraan `/kemitraan-distributor/`** (Lapangan) — perilaku form di §2.3
 

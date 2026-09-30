@@ -21,6 +21,7 @@ test('no WhatsApp inside main on product, home, and hub pages', () => {
   assert.equal(checkPage(page(wa), '/').length, 1);
   assert.equal(checkPage(page(wa), '/jurnal/komoditas/cabai/').length, 1);
   assert.deepEqual(checkPage(page(wa), '/penulis/arif-prabowo/'), []);
+  assert.deepEqual(checkPage(page(wa), '/tentang-kami/'), []); // one sales CTA allowed since DEC-021
 });
 
 test('at most one WhatsApp CTA block elsewhere', () => {

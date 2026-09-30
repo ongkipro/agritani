@@ -858,3 +858,9 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - Sitemap: 296 artikel, 24 hub komoditas, 6 hub topik, paginasi Jurnal 2–10; 1.471 arsip tag semuanya `noindex` (< 3 artikel) dan di luar sitemap.
 - Build: check-commodities, SEO, CSP 0/0/0, placeholders, links, owner-rules (1.825 halaman) PASS; npm test 93/93.
 - Kata absolut di badan 111 artikel terbit ditandai untuk T-25 (`docs/build-notes/t42-publish.md`), tidak ditulis ulang.
+
+## 2026-09-30 — T-43: Tentang Kami diringkas (DEC-021) (PASS)
+
+- Halaman ditulis ulang: pembuka "distributor resmi dan utama untuk penjualan online", 4 `ProductCard`, bagian "Menjadi agen atau distributor" dengan satu CTA WhatsApp primer ke tim penjualan (`[Web·TentangKami]`, keperluan konsultasi/penawaran), satu baris pengelola Arif Prabowo.
+- Dihapus: bagian keilmuan (aliansi Thailand/Jepang, pendekatan SAR), alur rantai pasok 3 tahap, kartu Alat Tani, kartu bio & kolom kanan. Footer tidak berubah.
+- `check-owner-rules`: Tentang Kami keluar dari daftar halaman tanpa WhatsApp; tes ditambah. DECISIONS DEC-021; DESIGN §2.8 & §4.2.3; AGENTS; PRODUCT; `src/content/pages/tentang-kami.md`.
