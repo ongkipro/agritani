@@ -830,3 +830,11 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - `ArticleList`: angka tombol "Muat Panduan Lainnya" tanpa monospace; `CommodityPicker`: bayangan sisa dihapus.
 - Worktree dan branch pekerja paralel yang sudah digabung dihapus.
 - Verifikasi: astro check 0 error, npm test 87/87, npm run build PASS; render 390 & 1440 hub cabai dan Proteksi Tanaman diperiksa.
+
+## 2026-09-30 — T-40: Audit tampilan HP (PASS)
+
+- Audit Playwright 20 halaman × 360/390 px: 0 scroll horizontal, 0 elemen keluar layar.
+- Area sentuh: `.link-more` diperluas `::before` (terukur: klik 4px di atas/bawah tetap mengenai tautan, tinggi visual 35px tak berubah); tag artikel & "Pilih sesuai tanaman" 38→42px baris sebaris; tombol hero Beranda 40→44px; tautan "Waspadai" Kalender Tanam 20→44px.
+- Padding kartu `p-4` di HP (sebelumnya 24px) di 13 berkas: formulir Konsultasi/Kemitraan, alat, Tentang Kami, Privasi, Cari, 404, detail produk.
+- Sidebar hub topik/komoditas/tag dipindah setelah konten di DOM: H1 kini judul pertama (temuan review T-39); tampilan desktop tetap.
+- Verifikasi: astro check 0 error, npm test 87/87, build PASS; render 390 Beranda, artikel, detail produk, Kalkulator, Cuaca, Konsultasi, Tentang Kami, dan hub padi 1440 diperiksa.

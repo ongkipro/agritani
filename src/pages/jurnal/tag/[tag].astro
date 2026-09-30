@@ -90,9 +90,6 @@ const seo: SeoInput = {
 
     <!-- Same frame as topic/commodity hubs (DESIGN §4.1 C10, §3.3.2) -->
     <div class="flex flex-col lg:grid lg:grid-cols-12 lg:gap-x-12">
-      <aside class="order-last my-8 lg:my-0 lg:mt-10 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:sticky lg:top-6 self-start">
-        <TopicSidebar />
-      </aside>
       <div class="lg:col-start-4 lg:col-span-9 lg:row-start-1">
         <header class="my-6 sm:my-10 pt-5 border-t border-[var(--color-border)] max-w-[68ch]">
           <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[var(--color-text)] mb-3 leading-tight text-balance">
@@ -111,6 +108,10 @@ const seo: SeoInput = {
           </div>
         </section>
       </div>
+    <!-- Sidebar after the content in DOM so the page H1 comes first; grid placement keeps it on the left at >=1024px -->
+      <aside class="order-last my-8 lg:my-0 lg:mt-10 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:sticky lg:top-6 self-start">
+        <TopicSidebar />
+      </aside>
     </div>
   </div>
 </BaseLayout>

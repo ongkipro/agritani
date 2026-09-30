@@ -78,7 +78,7 @@ const tools = [
     <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
       {[...tools].sort((a, b) => Number(a.isUpcoming) - Number(b.isUpcoming)).map((tool) => (
         <li>
-          <a href={tool.href} class="card card-link flex flex-col h-full p-6">
+          <a href={tool.href} class="card card-link flex flex-col h-full p-5 sm:p-6">
             <h2 class="font-serif text-[22px] leading-snug font-semibold text-[var(--color-brand-strong)]">
               {tool.title}
             </h2>

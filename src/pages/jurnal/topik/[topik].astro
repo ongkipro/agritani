@@ -92,9 +92,6 @@ const topicImage = Object.entries(topicImages).find(([path]) => path.endsWith(`t
     <Breadcrumb items={breadcrumbItems} />
 
     <div class="flex flex-col lg:grid lg:grid-cols-12 lg:gap-x-12">
-    <aside class="order-last my-8 lg:my-0 lg:mt-10 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:sticky lg:top-6 self-start">
-      <TopicSidebar currentTopic={topic.slug} />
-    </aside>
     <div class="lg:col-start-4 lg:col-span-9 lg:row-start-1">
 
     <header class={`topic-${topic.slug} my-6 sm:my-10 pt-5 border-t-[3px] border-[var(--topic)] grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center`}>
@@ -146,6 +143,10 @@ const topicImage = Object.entries(topicImages).find(([path]) => path.endsWith(`t
       />
     </section>
     </div>
+    <!-- Sidebar after the content in DOM so the page H1 comes first; grid placement keeps it on the left at >=1024px -->
+    <aside class="order-last my-8 lg:my-0 lg:mt-10 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:sticky lg:top-6 self-start">
+      <TopicSidebar currentTopic={topic.slug} />
+    </aside>
     </div>
   </div>
 </BaseLayout>

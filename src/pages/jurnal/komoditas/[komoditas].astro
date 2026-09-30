@@ -70,9 +70,6 @@ const seo: SeoInput = {
     <Breadcrumb items={breadcrumbItems} />
 
     <div class="flex flex-col lg:grid lg:grid-cols-12 lg:gap-x-12">
-    <aside class="order-last my-8 lg:my-0 lg:mt-10 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:sticky lg:top-6 self-start">
-      <TopicSidebar currentCommodity={commodity.id} />
-    </aside>
     <div class="lg:col-start-4 lg:col-span-9 lg:row-start-1">
 
     <header class="my-6 sm:my-8 max-w-[68ch]">
@@ -116,6 +113,10 @@ const seo: SeoInput = {
     <ArticleProducts topic="" commodities={[commodity.id]} />
 
     </div>
+    <!-- Sidebar after the content in DOM so the page H1 comes first; grid placement keeps it on the left at >=1024px -->
+    <aside class="order-last my-8 lg:my-0 lg:mt-10 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:sticky lg:top-6 self-start">
+      <TopicSidebar currentCommodity={commodity.id} />
+    </aside>
     </div>
   </div>
 </BaseLayout>

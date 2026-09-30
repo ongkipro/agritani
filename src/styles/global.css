@@ -404,6 +404,12 @@ button:disabled,
   text-decoration: none;
   transition: color 0.2s ease;
 }
+/* Invisible touch extension: keeps the visual line box (and §3.3.1 row geometry) but makes the hit area >= 44px */
+.link-more::before {
+  content: '';
+  position: absolute;
+  inset: -0.3125rem 0;
+}
 .link-more::after {
   content: '';
   position: absolute;

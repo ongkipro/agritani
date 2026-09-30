@@ -11,7 +11,7 @@ import ConsultPrompt from './ConsultPrompt.astro';
 <div class="space-y-12 lg:space-y-16" id="dose-calculator-root">
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
   <!-- Input card -->
-  <form id="dose-form" class="card p-6 lg:p-8 lg:col-span-7 space-y-6">
+  <form id="dose-form" class="card p-4 sm:p-6 lg:p-8 lg:col-span-7 space-y-6">
     <div class="max-w-[60ch] space-y-1.5">
       <h2 class="font-serif text-xl font-semibold text-[var(--color-brand-strong)]">Masukkan data label dan ukuran lahan</h2>
       <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
@@ -258,7 +258,7 @@ import ConsultPrompt from './ConsultPrompt.astro';
 
   <!-- Result column: one card, sticky beside the inputs on desktop -->
   <div class="lg:col-span-5 lg:sticky lg:top-6 self-start">
-    <div class="card p-6 lg:p-8">
+    <div class="card p-4 sm:p-6 lg:p-8">
       <!-- Empty State (before valid input) -->
       <div id="calc-empty-state" class="space-y-2">
         <h2 class="font-serif text-xl font-semibold text-[var(--color-brand-strong)] text-balance">
@@ -347,7 +347,7 @@ import ConsultPrompt from './ConsultPrompt.astro';
   </div>
 
   <noscript>
-    <div class="card p-6 text-sm text-[var(--color-text)] space-y-3 max-w-[68ch]">
+    <div class="card p-4 sm:p-6 text-sm text-[var(--color-text)] space-y-3 max-w-[68ch]">
       <p class="font-semibold text-[var(--color-brand-strong)]">Panduan rumus kalkulasi mandiri (tanpa JavaScript):</p>
       <p>Kalkulator interaktif membutuhkan JavaScript aktif. Anda tetap dapat menghitung kebutuhan di lapangan menggunakan rumus baku berikut:</p>
       <ul class="list-disc pl-5 space-y-1">

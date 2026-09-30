@@ -43,7 +43,7 @@ const monthNames = [
 <div id="crop-calendar-root" class="space-y-12 lg:space-y-16" data-calendars={JSON.stringify(serializedCalendars)}>
 
   <!-- Input card -->
-  <div class="card p-6 lg:p-8 space-y-10">
+  <div class="card p-4 sm:p-6 lg:p-8 space-y-10">
     
     <!-- Step 1: Pilih Komoditas -->
     <div class="space-y-3">
@@ -191,7 +191,7 @@ const monthNames = [
   <section id="calendar-results" aria-live="polite" class="space-y-12 hidden">
 
     <!-- The single results panel (Rencana Tanam Saya) -->
-    <div class="card p-6 lg:p-8 space-y-6">
+    <div class="card p-4 sm:p-6 lg:p-8 space-y-6">
       <div class="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h2 id="plan-title" class="font-serif text-2xl font-semibold text-[var(--color-brand-strong)] mb-1">
@@ -760,7 +760,7 @@ const monthNames = [
                 if (w.article) {
                   const a = document.createElement('a');
                   a.href = `/jurnal/${w.article}/`;
-                  a.className = 'text-[var(--color-brand-strong)] underline font-semibold hover:text-[var(--color-brand)]';
+                  a.className = 'inline-flex items-center min-h-[44px] text-[var(--color-brand-strong)] underline font-semibold hover:text-[var(--color-brand)]';
                   a.textContent = w.name;
                   watchBox.appendChild(a);
                 } else {

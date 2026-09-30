@@ -454,8 +454,15 @@ Pemilik: "boleh pakai card namun rapi". Kartu dipakai **hanya untuk satu unit ut
 - **Satu gaya kartu** di seluruh situs: kelas `.card` di `global.css` — latar `surface` (putih), garis 1px `border`, radius 2px, **tanpa bayangan**. Kartu bertaut: `.card.card-link`, garis menggelap ke `brand-strong` saat hover/fokus; seluruh kartu adalah area sentuh (tautan judul dengan `after:absolute after:inset-0`). Area gambar: `.card-media` (latar `tint`), gambar `object-cover` penuh tanpa bingkai kedua.
 - **Dipakai untuk:** produk (katalog, blok produk di artikel), panel harga di detail produk, panel "Sifat formula", input dan hasil alat, tautan alat lanjutan, kartu penulis di akhir artikel, bacaan terkait, formulir Konsultasi/Kemitraan.
 - **Tidak dipakai untuk:** section halaman, prosa, judul, daftar artikel di Jurnal/hub (tetap `ArticleRow` terbuka, §3.3.1), Beranda (disetujui 2026-09-30, tetap terbuka).
+- Padding kartu: `p-4` di bawah 640px, `sm:p-6` ke atas (formulir/alat boleh `lg:p-8`), agar kolom isian di HP tetap lebar (T-40).
 - Tanpa kartu di dalam kartu. Kartu dalam satu baris sama tinggi (`h-full`), padding sama (`p-4`/`p-5`/`p-6` per jenis), dan tepi kartu jatuh di garis grid yang sama.
 - Referensi arah (diperiksa 2026-09-30, tangkapan layar di bukti UI): katalog & detail Koppert (kartu produk putih, sumur gambar seragam, spesifikasi kunci–nilai), artikel GOV.UK / UMN Extension (prosa tanpa kotak, kotak penulis di akhir), alat GOV.UK (hasil = satu-satunya panel). Radius besar dan tombol WhatsApp di referensi **tidak** diambil (§3.3, §2.8).
+
+#### 3.3.4. Tampilan HP (audit 2026-09-30, T-40)
+
+- Diaudit otomatis di 360 & 390 px untuk 20 halaman: tanpa scroll horizontal, tanpa elemen keluar layar, teks ≥ 12px (kecuali lencana "Draf" khusus mode dev).
+- Area sentuh ≥ 44px: `.link-more` memakai perluasan tak terlihat `::before` (±5px atas-bawah) sehingga geometri baris §3.3.1 tidak berubah; tautan tag dan "Pilih sesuai tanaman" `py-3`; tombol hero Beranda `min-h-[44px]`; tautan "Waspadai" di Kalender Tanam `min-h-[44px]`. Tautan sebaris di dalam kalimat (byline, DOI) mengikuti pengecualian inline.
+- Sidebar hub (`TopicSidebar`) diletakkan **setelah** konten di DOM (≥1024px tetap di kiri lewat penempatan grid) agar H1 halaman menjadi judul pertama bagi pembaca layar.
 
 #### 3.3.2. Kolom sticky (aturan, 2026-09-30)
 
