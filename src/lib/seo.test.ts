@@ -8,8 +8,8 @@ describe('SEO & Metadata Builder (DESIGN §4.4)', () => {
       title: 'Diagnosa Gejala Tanaman',
       description: 'Panduan identifikasi gejala penyakit tanaman di lapangan.',
     });
-    assert.equal(seo.title, 'Diagnosa Gejala Tanaman | Agritani');
-    assert.equal(seo.og.title, 'Diagnosa Gejala Tanaman | Agritani');
+    assert.equal(seo.title, 'Diagnosa Gejala Tanaman - Agritani');
+    assert.equal(seo.og.title, 'Diagnosa Gejala Tanaman - Agritani');
   });
 
   it('uses metaTitle verbatim without suffix when provided (articles)', () => {

@@ -271,11 +271,11 @@ const nextTools = [
 
           <!-- Tags: hashtag chips (owner 2026-09-30); visual chip ~28px inside a 44px target -->
           {data.tags && data.tags.length > 0 && (
-            <ul class="mt-8 flex flex-wrap gap-x-2" aria-label="Tag artikel">
+            <ul class="mt-6 flex flex-wrap gap-x-1.5" aria-label="Tag artikel">
               {data.tags.map((tag) => (
                 <li>
                   <a href={`/jurnal/tag/${slugifyTag(tag)}/`} class="group/tag inline-flex items-center min-h-[44px]">
-                    <span class="inline-flex items-center px-2.5 py-1 rounded-[2px] bg-[var(--color-tint)] text-xs sm:text-[13px] font-medium text-[var(--color-text)] group-hover/tag:bg-[var(--color-brand)] group-hover/tag:text-white group-active/tag:bg-[var(--color-brand-hover)] group-active/tag:text-white transition-colors">
+                    <span class="inline-flex items-center h-9 px-3 rounded-[2px] bg-[var(--color-tint)] text-[13px] font-medium text-[var(--color-text)] group-hover/tag:bg-[var(--color-brand)] group-hover/tag:text-white group-active/tag:bg-[var(--color-brand-hover)] group-active/tag:text-white transition-colors">
                       <span class="text-[var(--color-soil)] group-hover/tag:text-white font-semibold mr-0.5" aria-hidden="true">#</span>{tag}
                     </span>
                   </a>

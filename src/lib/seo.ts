@@ -139,7 +139,7 @@ export function buildSeo(input: SeoInput): SeoOutput {
 
   // Title: metaTitle takes precedence verbatim (DESIGN §4.4.2); otherwise append site suffix unless already home
   const isHomePage = canonicalPath === '/' || title.startsWith('Agritani');
-  const resolvedTitle = metaTitle ? metaTitle : (isHomePage ? title : `${title} | ${SITE_NAME}`);
+  const resolvedTitle = metaTitle ? metaTitle : (isHomePage ? title : `${title} - ${SITE_NAME}`);
 
   const canonical = formatCanonicalUrl(canonicalPath);
   const fallbackOg = getDefaultOgImage(canonicalPath, article?.topic);

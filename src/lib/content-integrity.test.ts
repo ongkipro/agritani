@@ -8,7 +8,7 @@ const validAnswer =
 const validArticle: ArticleData = {
   slug: 'uji-sawit',
   title: 'Pengendalian Ganoderma pada Kelapa Sawit Berbasis Sains',
-  metaTitle: 'Pengendalian Ganoderma Sawit | Agritani',
+  metaTitle: 'Pengendalian Ganoderma Sawit - Agritani',
   description: 'Panduan lengkap pengendalian Ganoderma boninense pada tanaman kelapa sawit dengan metode sanitasi dan imunisasi.',
   answer: validAnswer,
   author: 'Arif Prabowo',

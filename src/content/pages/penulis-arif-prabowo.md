@@ -1,5 +1,5 @@
 ---
-title: "Arif Prabowo, Konsultan Pertanian Senior | Agritani"
+title: "Arif Prabowo, Konsultan Pertanian Senior - Agritani"
 description: "Profil Arif Prabowo, Konsultan Pertanian Senior dan Pengelola Jurnal Tani Agritani. Pengalaman lebih dari 8 tahun riset lapangan dan budidaya tanaman."
 updatedDate: 2026-09-30
 ---

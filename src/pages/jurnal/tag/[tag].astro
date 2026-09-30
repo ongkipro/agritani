@@ -62,7 +62,7 @@ const breadcrumbItems = [
   { name: displayName, url: `/jurnal/tag/${tagSlug}/` },
 ];
 
-// Title: trim at a word boundary so it never ends mid-word (the SEO helper appends " | Agritani").
+// Title: trim at a word boundary so it never ends mid-word (the SEO helper appends " - Agritani").
 const clip = (text: string, max: number) =>
   text.length <= max ? text : text.slice(0, text.lastIndexOf(' ', max)).replace(/[\s,.;:–-]+$/, '');
 const safeTitle = clip(displayName, 50);
