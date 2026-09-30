@@ -7,7 +7,7 @@
  * - Canonical is absolute https://agritani.com{path} with trailing slash and no query
  * - Unique titles and descriptions across indexed pages
  * - Valid and parseable JSON-LD @graph schema with stable @id
- * - No noindex pages in sitemap-index.xml
+ * - No noindex pages in the sitemap (/sitemap.xml index and its chunks)
  * - Robots.txt references sitemap and disallows /cari/
  * - Apple touch icon and static OG images exist (< 150 KB)
  */
@@ -36,8 +36,8 @@ if (!fs.existsSync(robotsPath)) {
   errors.push('dist/robots.txt does not exist.');
 } else {
   const robotsContent = fs.readFileSync(robotsPath, 'utf-8');
-  if (!robotsContent.includes('Sitemap: https://agritani.com/sitemap-index.xml')) {
-    errors.push('dist/robots.txt must reference https://agritani.com/sitemap-index.xml');
+  if (!robotsContent.includes('Sitemap: https://agritani.com/sitemap.xml')) {
+    errors.push('dist/robots.txt must reference https://agritani.com/sitemap.xml');
   }
   if (!robotsContent.includes('Disallow: /cari/')) {
     errors.push('dist/robots.txt must contain Disallow: /cari/');
@@ -88,7 +88,7 @@ for (const ogFile of requiredOgImages) {
 // 3. Load Sitemap URLs
 console.log('🔍 Loading sitemap files...');
 const sitemapUrls = new Set();
-const sitemapIndexPath = path.join(DIST_DIR, 'sitemap-index.xml');
+const sitemapIndexPath = path.join(DIST_DIR, 'sitemap.xml');
 
 if (fs.existsSync(sitemapIndexPath)) {
   const indexContent = fs.readFileSync(sitemapIndexPath, 'utf-8');

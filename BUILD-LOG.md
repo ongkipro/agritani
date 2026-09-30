@@ -899,3 +899,9 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 
 - Temuan saat verifikasi live T-47: URL tak dikenal mengembalikan `HTTP 404` dengan `content-length: 0` — halaman 404 Agritani tidak pernah tampil di produksi (Workers static assets tanpa `not_found_handling`).
 - Perbaikan: `wrangler.jsonc` → `assets.not_found_handling: "404-page"` (nilai diverifikasi di `node_modules/wrangler/config-schema.json`: `single-page-application` | `404-page` | `none`).
+
+## 2026-09-30 — T-49: Sitemap terpecah & indeksasi penuh (PASS)
+
+- `/sitemap.xml` (indeks; salinan `sitemap-index.xml` dibuat di hook `astro:build:done`) → 7 sitemap per jenis lewat opsi `chunks` bawaan `@astrojs/sitemap` 3.7.4: jurnal 306, topik 6, komoditas 24, tag 1.471, produk 5, alat 5, pages 6 = 1.823 URL.
+- DEC-023: arsip tag tidak lagi `noindex`; halaman `noindex` tinggal `/cari/`, `/404.html`, `/404/`. 1.826 halaman HTML = 1.823 di sitemap + 3 noindex.
+- `robots.txt` & `<link rel="sitemap">` → `/sitemap.xml`; `check-seo` membaca `/sitemap.xml` dan tetap melarang halaman noindex di sitemap.

@@ -18,7 +18,7 @@ Probe: health|https://agritani.com/robots.txt|200-299|Sitemap:|1000
 
 Probe: article|https://agritani.com/jurnal/jurus-pengendalian-antraknosa-patek-cabai/|200-299|Antraknosa|2000
 Probe: weather-tool|https://agritani.com/alat/cuaca-tani/|200-299|Cuaca Tani|2000
-Probe: sitemap|https://agritani.com/sitemap-index.xml|200-299|sitemap|1000
+Probe: sitemap|https://agritani.com/sitemap.xml|200-299|sitemap|1000
 
 ## Not applicable
 

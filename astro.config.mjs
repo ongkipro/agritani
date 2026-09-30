@@ -66,15 +66,23 @@ export default defineConfig({
         try {
           const url = new URL(page);
           const p = url.pathname;
-          // Filter out noindex pages: /cari/, /404, /spesimen/, and drafts (DESIGN §4.4.8)
-          // Tag archives stay out of the sitemap; thin ones are noindex (<3 articles), the rest are found via links.
-          if (p.includes('/cari') || p.includes('/404') || p.includes('/spesimen') || p.startsWith('/jurnal/tag/') || draftSet.has(p)) {
+          // Only search results and 404 are noindex (owner 2026-09-30, DEC-023); dev specimens and drafts never ship.
+          if (p.includes('/cari') || p.includes('/404') || p.includes('/spesimen') || draftSet.has(p)) {
             return false;
           }
           return true;
         } catch {
           return true;
         }
+      },
+      // One sitemap per page type (owner 2026-09-30): sitemap-{key}-0.xml; everything else lands in sitemap-pages-0.xml.
+      chunks: {
+        jurnal: (item) => (/^\/jurnal\/(?:$|halaman\/|(?!topik\/|komoditas\/|tag\/)[^/]+\/$)/.test(new URL(item.url).pathname) ? item : undefined),
+        topik: (item) => (new URL(item.url).pathname.startsWith('/jurnal/topik/') ? item : undefined),
+        komoditas: (item) => (new URL(item.url).pathname.startsWith('/jurnal/komoditas/') ? item : undefined),
+        tag: (item) => (new URL(item.url).pathname.startsWith('/jurnal/tag/') ? item : undefined),
+        produk: (item) => (new URL(item.url).pathname.startsWith('/produk/') ? item : undefined),
+        alat: (item) => (new URL(item.url).pathname.startsWith('/alat/') ? item : undefined),
       },
       serialize: (item) => {
         // Remove priority & changefreq (ignored by modern search engines per Google docs)
@@ -183,6 +191,10 @@ export default defineConfig({
             }
           }
           walkAndConvert(distDir);
+
+          // /sitemap.xml = the sitemap index (robots.txt points here); sitemap-index.xml stays for older references.
+          const sitemapIndex = path.join(distDir, 'sitemap-index.xml');
+          if (fs.existsSync(sitemapIndex)) fs.copyFileSync(sitemapIndex, path.join(distDir, 'sitemap.xml'));
 
           // Ensure /404/ directory index also exists alongside 404.html
           const html404 = path.join(distDir, '404.html');

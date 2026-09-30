@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /cari/
 
-Sitemap: https://agritani.com/sitemap-index.xml
+Sitemap: https://agritani.com/sitemap.xml
