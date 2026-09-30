@@ -1,30 +1,53 @@
 ---
 /**
  * src/components/Footer.astro
- * Agritani Footer perfected to match the authoritative, clean, minimal
- * UI/UX architecture of Teagasc.ie (https://teagasc.ie/):
+ * Agritani Footer (Teagasc Bookend UI/UX Architecture):
  *
- * 1. 4-Column Structured Directory:
- *    - Col 1: Sektor Jurnal Tani (6 topik keilmuan)
+ * 1. Multi-Disciplinary Taxonomy Strip (6 topic colors bookend)
+ * 2. 4-Column Structured Directory Grid:
+ *    - Col 1: Sektor Keilmuan Tani (6 topics with dot badges & slide hover)
  *    - Col 2: Organisasi & Riset (Profil, Pengelola Jurnal, Kemitraan, Kebijakan)
- *    - Col 3: Instrumen Lapangan (Diagnosa, Kalender, Cuaca BMKG, Dosis 16L, Konsultasi)
- *    - Col 4: Produk & Rujukan Resmi (4 Produk Unggulan, Segel ShieldedTag, Pencarian)
- * 2. Clean Institutional Sub-Footer:
- *    - Head Office address, official WhatsApp & email
- *    - Registration & distributor credentials
- *    - Copyright © {currentYear} PT Agritani Internasional
- *    - Official ShieldedTag authentication emblem
+ *    - Col 3: Instrumen Lapangan (Diagnosa, Cuaca BMKG, Dosis 16L, Kalender, Konsultasi)
+ *    - Col 4: Produk & Rujukan Resmi (4 Produk Unggulan, Katalog, Pencarian)
+ * 3. Institutional Sub-Footer:
+ *    - PT Agritani Internasional & Pengelola Jurnal Arif Prabowo (DEC-016 compliant)
+ *    - WhatsApp Resmi & Hak Cipta
+ *    - ShieldedTag™ Protection authentication seal card
  */
 
 const currentYear = new Date().getFullYear();
 
 const topicLinks = [
-  { href: '/jurnal/topik/proteksi-tanaman/', label: 'Proteksi Tanaman', colorClass: 'bg-[var(--color-topic-proteksi-tanaman)]' },
-  { href: '/jurnal/topik/tanah-nutrisi/', label: 'Tanah & Nutrisi', colorClass: 'bg-[var(--color-topic-tanah-nutrisi)]' },
-  { href: '/jurnal/topik/budidaya/', label: 'Budidaya', colorClass: 'bg-[var(--color-topic-budidaya)]' },
-  { href: '/jurnal/topik/air-irigasi/', label: 'Air & Irigasi', colorClass: 'bg-[var(--color-topic-air-irigasi)]' },
-  { href: '/jurnal/topik/pascapanen-agribisnis/', label: 'Pascapanen & Agribisnis', colorClass: 'bg-[var(--color-topic-pascapanen-agribisnis)]' },
-  { href: '/jurnal/topik/sains-tanaman/', label: 'Sains Tanaman', colorClass: 'bg-[var(--color-topic-sains-tanaman)]' },
+  {
+    href: '/jurnal/topik/proteksi-tanaman/',
+    label: 'Proteksi Tanaman',
+    colorClass: 'bg-[var(--color-topic-proteksi-tanaman)]',
+  },
+  {
+    href: '/jurnal/topik/tanah-nutrisi/',
+    label: 'Tanah & Nutrisi',
+    colorClass: 'bg-[var(--color-topic-tanah-nutrisi)]',
+  },
+  {
+    href: '/jurnal/topik/budidaya/',
+    label: 'Budidaya',
+    colorClass: 'bg-[var(--color-topic-budidaya)]',
+  },
+  {
+    href: '/jurnal/topik/air-irigasi/',
+    label: 'Air & Irigasi',
+    colorClass: 'bg-[var(--color-topic-air-irigasi)]',
+  },
+  {
+    href: '/jurnal/topik/pascapanen-agribisnis/',
+    label: 'Pascapanen & Agribisnis',
+    colorClass: 'bg-[var(--color-topic-pascapanen-agribisnis)]',
+  },
+  {
+    href: '/jurnal/topik/sains-tanaman/',
+    label: 'Sains Tanaman',
+    colorClass: 'bg-[var(--color-topic-sains-tanaman)]',
+  },
 ];
 
 const orgLinks = [
@@ -53,29 +76,44 @@ const productAndStandardLinks = [
 ];
 ---
 
-<footer class="bg-[var(--color-surface)] text-[var(--color-text)] mt-16 select-none">
-  <!-- Main 4-Column Directory Grid -->
+<footer class="bg-[#F8F9F8] text-[var(--color-text)] border-t border-[var(--color-border)] select-none">
+  <!-- 1. Multi-Disciplinary Taxonomy Strip (Teagasc Bookend) -->
+  <div class="w-full grid grid-cols-6 h-[4px]" aria-hidden="true">
+    <div class="bg-[var(--color-topic-proteksi-tanaman)]"></div>
+    <div class="bg-[var(--color-topic-tanah-nutrisi)]"></div>
+    <div class="bg-[var(--color-topic-budidaya)]"></div>
+    <div class="bg-[var(--color-topic-air-irigasi)]"></div>
+    <div class="bg-[var(--color-topic-pascapanen-agribisnis)]"></div>
+    <div class="bg-[var(--color-topic-sains-tanaman)]"></div>
+  </div>
+
+  <!-- 2. Main 4-Column Directory Grid -->
   <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
       
       <!-- Col 1: Sektor Jurnal Tani -->
       <div>
-        <h4 class="text-xs font-bold text-[var(--color-text)] mb-3">
+        <h4 class="text-xs font-extrabold uppercase tracking-wider text-[var(--color-text)] pb-2.5 mb-1 border-b-2 border-[var(--color-brand)]">
           Sektor Keilmuan Tani
         </h4>
-        <ul class="space-y-1">
+        <ul class="divide-y divide-[var(--color-border)]">
           {
             topicLinks.map((item) => (
               <li>
                 <a
                   href={item.href}
-                  class="group flex items-center justify-between py-1.5 text-xs sm:text-sm text-[var(--color-text-muted)] hover:text-[var(--color-brand-strong)] transition-colors min-h-[36px]"
+                  class="group flex items-center justify-between py-2.5 text-xs sm:text-sm font-semibold text-[var(--color-text)] hover:text-[var(--color-brand-strong)] transition-colors min-h-[44px]"
                 >
                   <span class="flex items-center gap-2">
-                    <span class={`w-1.5 h-1.5 rounded-full ${item.colorClass} shrink-0`} aria-hidden="true"></span>
+                    <span class={`w-2 h-2 rounded-full ${item.colorClass} shrink-0`} aria-hidden="true"></span>
                     <span>{item.label}</span>
                   </span>
-                  <span class="text-[var(--color-text-muted)] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs" aria-hidden="true">&rarr;</span>
+                  <span
+                    class="text-[var(--color-text-muted)] group-hover:text-[var(--color-brand)] group-hover:translate-x-1 transition-transform"
+                    aria-hidden="true"
+                  >
+                    &rarr;
+                  </span>
                 </a>
               </li>
             ))
@@ -85,19 +123,24 @@ const productAndStandardLinks = [
 
       <!-- Col 2: Organisasi & Riset -->
       <div>
-        <h4 class="text-xs font-bold text-[var(--color-text)] mb-3">
-          Organisasi & Riset
+        <h4 class="text-xs font-extrabold uppercase tracking-wider text-[var(--color-text)] pb-2.5 mb-1 border-b-2 border-[var(--color-brand)]">
+          Organisasi &amp; Riset
         </h4>
-        <ul class="space-y-1">
+        <ul class="divide-y divide-[var(--color-border)]">
           {
             orgLinks.map((item) => (
               <li>
                 <a
                   href={item.href}
-                  class="group flex items-center justify-between py-1.5 text-xs sm:text-sm text-[var(--color-text-muted)] hover:text-[var(--color-brand-strong)] transition-colors min-h-[36px]"
+                  class="group flex items-center justify-between py-2.5 text-xs sm:text-sm font-semibold text-[var(--color-text)] hover:text-[var(--color-brand-strong)] transition-colors min-h-[44px]"
                 >
                   <span>{item.label}</span>
-                  <span class="text-[var(--color-text-muted)] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs" aria-hidden="true">&rarr;</span>
+                  <span
+                    class="text-[var(--color-text-muted)] group-hover:text-[var(--color-brand)] group-hover:translate-x-1 transition-transform"
+                    aria-hidden="true"
+                  >
+                    &rarr;
+                  </span>
                 </a>
               </li>
             ))
@@ -107,19 +150,24 @@ const productAndStandardLinks = [
 
       <!-- Col 3: Instrumen Lapangan -->
       <div>
-        <h4 class="text-xs font-bold text-[var(--color-text)] mb-3">
+        <h4 class="text-xs font-extrabold uppercase tracking-wider text-[var(--color-text)] pb-2.5 mb-1 border-b-2 border-[var(--color-brand)]">
           Instrumen Lapangan
         </h4>
-        <ul class="space-y-1">
+        <ul class="divide-y divide-[var(--color-border)]">
           {
             toolLinks.map((item) => (
               <li>
                 <a
                   href={item.href}
-                  class="group flex items-center justify-between py-1.5 text-xs sm:text-sm text-[var(--color-text-muted)] hover:text-[var(--color-brand-strong)] transition-colors min-h-[36px]"
+                  class="group flex items-center justify-between py-2.5 text-xs sm:text-sm font-semibold text-[var(--color-text)] hover:text-[var(--color-brand-strong)] transition-colors min-h-[44px]"
                 >
                   <span>{item.label}</span>
-                  <span class="text-[var(--color-text-muted)] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs" aria-hidden="true">&rarr;</span>
+                  <span
+                    class="text-[var(--color-text-muted)] group-hover:text-[var(--color-brand)] group-hover:translate-x-1 transition-transform"
+                    aria-hidden="true"
+                  >
+                    &rarr;
+                  </span>
                 </a>
               </li>
             ))
@@ -129,19 +177,24 @@ const productAndStandardLinks = [
 
       <!-- Col 4: Produk & Standar -->
       <div>
-        <h4 class="text-xs font-bold text-[var(--color-text)] mb-3">
-          Produk & Rujukan Resmi
+        <h4 class="text-xs font-extrabold uppercase tracking-wider text-[var(--color-text)] pb-2.5 mb-1 border-b-2 border-[var(--color-brand)]">
+          Produk &amp; Rujukan Resmi
         </h4>
-        <ul class="space-y-1">
+        <ul class="divide-y divide-[var(--color-border)]">
           {
             productAndStandardLinks.map((item) => (
               <li>
                 <a
                   href={item.href}
-                  class="group flex items-center justify-between py-1.5 text-xs sm:text-sm text-[var(--color-text-muted)] hover:text-[var(--color-brand-strong)] transition-colors min-h-[36px]"
+                  class="group flex items-center justify-between py-2.5 text-xs sm:text-sm font-semibold text-[var(--color-text)] hover:text-[var(--color-brand-strong)] transition-colors min-h-[44px]"
                 >
                   <span>{item.label}</span>
-                  <span class="text-[var(--color-text-muted)] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs" aria-hidden="true">&rarr;</span>
+                  <span
+                    class="text-[var(--color-text-muted)] group-hover:text-[var(--color-brand)] group-hover:translate-x-1 transition-transform"
+                    aria-hidden="true"
+                  >
+                    &rarr;
+                  </span>
                 </a>
               </li>
             ))
@@ -159,7 +212,7 @@ const productAndStandardLinks = [
         <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
           <strong class="text-[var(--color-text)] font-extrabold text-sm">PT Agritani Internasional</strong>
           <span class="text-[var(--color-border-control)]" aria-hidden="true">&middot;</span>
-          <span>Portal Pertanian Resmi & Produk Unggulan Presisi</span>
+          <span>Portal Pertanian Resmi &amp; Produk Unggulan Presisi</span>
         </div>
         <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs">
           <span>WhatsApp Resmi: <a href="https://wa.me/6287770457256" class="font-bold text-[var(--color-brand-strong)] hover:underline whitespace-nowrap">+62 877-7045-7256</a></span>
@@ -171,13 +224,13 @@ const productAndStandardLinks = [
         </div>
       </div>
 
-      <!-- Right: Official Trust Emblem (ShieldedTag Packaging Protection) -->
-      <div class="shrink-0 flex items-center gap-3">
-        <div class="w-8 h-8 rounded-[2px] bg-[var(--color-tint)] flex items-center justify-center text-[var(--color-brand-strong)] font-bold text-xs" aria-hidden="true">
+      <!-- Right: Official Trust Emblem (ShieldedTag Protection Seal) -->
+      <div class="shrink-0 flex items-center gap-3 p-3 bg-white border border-[var(--color-border)] rounded-[2px] shadow-2xs">
+        <div class="w-8 h-8 rounded-full bg-[var(--color-tint)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-brand-strong)] font-bold text-xs" aria-hidden="true">
           ✓
         </div>
         <div class="text-left text-xs">
-          <span class="block font-bold text-[var(--color-text)] leading-tight">Keaslian Kemasan ShieldedTag™</span>
+          <span class="block font-bold text-[var(--color-text)] leading-tight">ShieldedTag™ Protection</span>
           <span class="block text-[10px] text-[var(--color-text-muted)] leading-tight">Segel Autentikasi Kemasan Resmi</span>
         </div>
       </div>
