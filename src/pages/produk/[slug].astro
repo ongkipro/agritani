@@ -63,6 +63,55 @@ const shortTitles: Record<string, string> = {
 };
 const seoTitle = shortTitles[product.id] || `${p.name} — Biostimulan`;
 
+const categoryBadges: Record<string, string> = {
+  aussie: 'Perkebunan & Tanaman Keras',
+  kojien: 'Teknologi Thailand · Spesialis Padi',
+  bensu: 'Teknologi Thailand · Pangan & Hortikultura',
+  saratoga: 'Japanese Pro-Plant Complex · Asam Amino',
+};
+const categoryBadge = categoryBadges[product.id] || 'Nutrisi & Biostimulan';
+
+const functionDetails: Record<string, { mechanism: string; targetAction: string; agronomicNote: string }> = {
+  aussie: {
+    mechanism:
+      'Aussie diformulasikan dengan senyawa biostimulan berbasis sulfur dan molibdenum untuk menstimulasi respon ketahanan sistemik (Systemic Acquired Resistance / SAR) pada tanaman berkayu.',
+    targetAction:
+      'Membantu memperkokoh dinding sel lignin pada pangkal batang dan perakaran kelapa sawit serta tanaman keras, sehingga meningkatkan daya tahan alami terhadap serangan jamur patogen tular tanah seperti Ganoderma.',
+    agronomicNote:
+      'Penggunaan teratur pada fase pemeliharaan membantu menjaga vaskular tanaman tetap aktif menyalurkan nutrisi dan menekan laju perkembangan gejala busuk pangkal batang.',
+  },
+  kojien: {
+    mechanism:
+      'Kojien merupakan aktivator kekebalan sel tanaman berlisensi teknologi Thailand yang dirancang khusus untuk anatomi dan siklus fisiologis tanaman padi sawah maupun ladang.',
+    targetAction:
+      'Memicu biosintesis fitoaleksin alami dalam jaringan daun dan pelepah guna memperkokoh daya tahan tanaman terhadap tekanan penyakit blas (Pyricularia oryzae), hawar pelepah (Rhizoctonia solani), dan bercak coklat.',
+    agronomicNote:
+      'Menjaga daun bendera tetap tegak, hijau, dan sehat untuk fotosintesis optimal selama fase bunting hingga pengisian malai penuh.',
+  },
+  bensu: {
+    mechanism:
+      'BENSU menggabungkan fungsi pemicu kekebalan sel dan pemacu regenerasi sel jaringan (cell regeneration) berlisensi teknologi Thailand untuk tanaman pangan dan hortikultura.',
+    targetAction:
+      'Bekerja memulihkan jaringan tanaman yang mengalami kerusakan atau stres fisiologis pasca serangan organisme pengganggu tanaman (OPT) maupun cekaman cuaca ekstrem (kekeringan atau curah hujan tinggi).',
+    agronomicNote:
+      'Membantu merangsang kembali pertumbuhan tunas produktif dan percabangan aktif pada tanaman hortikultura seperti cabai, tomat, dan bawang merah.',
+  },
+  saratoga: {
+    mechanism:
+      'Saratoga menghadirkan serum asam amino sistemik berbobot molekul rendah dengan teknologi Japanese Pro-Plant Complex yang diserap langsung oleh sel stomata tanpa pemborosan energi metabolisme.',
+    targetAction:
+      'Menyediakan prekursor asam amino esensial, chitosan, omega 3, dan vitamin B1 guna menjaga stabilitas hormon auksin dan giberelin saat tanaman memasuki fase transisi vegetatif ke generatif.',
+    agronomicNote:
+      'Bebas dari aroma amis yang umum pada pupuk asam amino hewani konvensional, sehingga aman dari risiko mengundang lalat buah atau hama serangga sekunder ke pertanaman.',
+  },
+};
+
+const fDetail = functionDetails[product.id] || {
+  mechanism: `${p.name} bekerja melalui stimulasi kekebalan endogen tanaman dan aktivasi metabolisme jaringan produktif.`,
+  targetAction: 'Meningkatkan daya tahan terhadap patogen tular tanah dan cekaman lingkungan.',
+  agronomicNote: 'Aplikasi tepat waktu membantu tanaman mempertahankan metabolisme normal pada fase pertumbuhan aktif.',
+};
+
 const seo: SeoInput = {
   title: seoTitle,
   description: p.summary,
@@ -82,7 +131,7 @@ const seo: SeoInput = {
         
         <!-- Left: Official Verified Product Packshot -->
         <div class="md:col-span-5 lg:col-span-4">
-          <div class="aspect-square flex items-center justify-center overflow-hidden">
+          <div class="aspect-square flex items-center justify-center p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] shadow-2xs overflow-hidden">
             <Picture
               src={getProductImage(product.id)}
               formats={['webp']}
@@ -94,7 +143,7 @@ const seo: SeoInput = {
               loading="eager"
             />
           </div>
-          <div class="mt-2 py-1 text-xs text-[var(--color-text-muted)] flex items-center gap-2">
+          <div class="mt-2.5 py-1 text-xs text-[var(--color-text-muted)] flex items-center gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand)] shrink-0" aria-hidden="true"></span>
             <span>Distribusi resmi dengan segel keaslian ShieldedTag™</span>
           </div>
@@ -102,9 +151,19 @@ const seo: SeoInput = {
 
         <!-- Right: Role, Tagline, Summary, Commodities -->
         <div class="md:col-span-7 lg:col-span-8 space-y-4">
-          <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--color-text)] tracking-tight leading-tight">
-            {p.name}
-          </h1>
+          <div>
+            <div class="flex flex-wrap items-center gap-2 mb-2">
+              <span class="inline-flex items-center px-2 py-0.5 text-xs font-semibold text-[var(--color-brand-strong)] bg-[var(--color-tint)] border border-[var(--color-brand-strong)]/20 rounded-[2px]">
+                {categoryBadge}
+              </span>
+              <span class="text-xs font-medium text-[var(--color-text-muted)]">
+                Formula Resmi PT Agritani Internasional
+              </span>
+            </div>
+            <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--color-text)] tracking-tight leading-tight">
+              {p.name}
+            </h1>
+          </div>
 
           <p class="text-lg sm:text-xl font-medium text-[var(--color-brand-strong)] leading-snug">
             {p.role}
@@ -115,11 +174,15 @@ const seo: SeoInput = {
             {p.summary}
           </p>
 
-          <div class="pt-4 border-t border-[var(--color-border)]">
+          <div class="pt-4 border-t border-[var(--color-border)] space-y-2">
             <p class="text-sm sm:text-base text-[var(--color-text)]">
               <strong>Komoditas sasaran:</strong>{" "}
               {p.commodities.map((c) => commoditiesMap.get(typeof c === 'string' ? c : c.id) || (typeof c === 'string' ? c : c.id)).join(', ')}
             </p>
+            <div class="flex flex-wrap gap-x-6 gap-y-1 text-xs text-[var(--color-text-muted)] pt-1">
+              <span><strong>Formulasi:</strong> {p.form || 'Cairan konsentrat'}</span>
+              <span><strong>Legalitas:</strong> Terdaftar Resmi Kementan RI</span>
+            </div>
           </div>
         </div>
 
@@ -127,12 +190,12 @@ const seo: SeoInput = {
     </header>
 
     <!-- Sub-navigation Anchor Links -->
-    <nav class="mb-10 border-y border-[var(--color-border)]" aria-label="Navigasi bagian produk">
+    <nav class="my-8 sm:my-10 border-y border-[var(--color-border)]" aria-label="Navigasi bagian produk">
       <ul class="flex flex-wrap items-center gap-1 sm:gap-2 text-sm font-medium">
         <li>
           <a
             href="#fungsi"
-            class="inline-flex items-center px-3 py-2 min-h-[44px] text-[var(--color-text)] hover:text-[var(--color-brand)] hover:bg-[var(--color-surface-raised)] rounded-[2px] transition-colors"
+            class="inline-flex items-center px-3.5 py-2.5 min-h-[44px] text-[var(--color-text)] hover:text-[var(--color-brand)] hover:bg-[var(--color-tint)] rounded-[2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
           >
             Fungsi & Peran
           </a>
@@ -140,7 +203,7 @@ const seo: SeoInput = {
         <li>
           <a
             href="#komposisi"
-            class="inline-flex items-center px-3 py-2 min-h-[44px] text-[var(--color-text)] hover:text-[var(--color-brand)] hover:bg-[var(--color-surface-raised)] rounded-[2px] transition-colors"
+            class="inline-flex items-center px-3.5 py-2.5 min-h-[44px] text-[var(--color-text)] hover:text-[var(--color-brand)] hover:bg-[var(--color-tint)] rounded-[2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
           >
             Kandungan
           </a>
@@ -148,7 +211,7 @@ const seo: SeoInput = {
         <li>
           <a
             href="#cara-pakai"
-            class="inline-flex items-center px-3 py-2 min-h-[44px] text-[var(--color-text)] hover:text-[var(--color-brand)] hover:bg-[var(--color-surface-raised)] rounded-[2px] transition-colors"
+            class="inline-flex items-center px-3.5 py-2.5 min-h-[44px] text-[var(--color-text)] hover:text-[var(--color-brand)] hover:bg-[var(--color-tint)] rounded-[2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
           >
             Aplikasi & Dosis
           </a>
@@ -156,11 +219,21 @@ const seo: SeoInput = {
         <li>
           <a
             href="#keaslian"
-            class="inline-flex items-center px-3 py-2 min-h-[44px] text-[var(--color-text)] hover:text-[var(--color-brand)] hover:bg-[var(--color-surface-raised)] rounded-[2px] transition-colors"
+            class="inline-flex items-center px-3.5 py-2.5 min-h-[44px] text-[var(--color-text)] hover:text-[var(--color-brand)] hover:bg-[var(--color-tint)] rounded-[2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
           >
             Keaslian Kemasan
           </a>
         </li>
+        {relatedArticles.length > 0 && (
+          <li>
+            <a
+              href="#jurnal"
+              class="inline-flex items-center px-3.5 py-2.5 min-h-[44px] text-[var(--color-text)] hover:text-[var(--color-brand)] hover:bg-[var(--color-tint)] rounded-[2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
+            >
+              Panduan Terkait ({relatedArticles.length})
+            </a>
+          </li>
+        )}
       </ul>
     </nav>
 
@@ -169,52 +242,76 @@ const seo: SeoInput = {
       
       <!-- Section: Fungsi & Peran -->
       <section id="fungsi" class="scroll-mt-28 space-y-4">
-        <h2 class="pillar-title !text-3xl">
-          Fungsi & Peran Tanaman
+        <h2 class="pillar-title !text-2xl sm:!text-3xl text-[var(--color-brand)] font-serif font-bold">
+          Fungsi & Mekanisme Kerja Tanaman
         </h2>
         <div class="space-y-3 text-base text-[var(--color-text)] leading-relaxed">
           <p>
-            {p.name} bekerja melalui stimulasi kekebalan endogen (*Systemic Acquired Resistance*) dan aktivasi metabolisme jaringan tanaman guna meningkatkan daya tahan terhadap patogen tular tanah maupun cekaman cuaca ekstrem.
+            {fDetail.mechanism}
           </p>
-          <p class="text-sm text-[var(--color-text-muted)]">
-            Aplikasi tepat waktu membantu tanaman mempertahankan metabolisme normal dan merangsang pembelahan sel produktif pada fase pertumbuhan aktif.
+          <p>
+            {fDetail.targetAction}
+          </p>
+          <p class="text-sm text-[var(--color-text-muted)] bg-[var(--color-tint)] border-l-2 border-[var(--color-brand)] p-3.5 rounded-[2px]">
+            {fDetail.agronomicNote}
           </p>
         </div>
       </section>
 
       <!-- Section: Komposisi -->
       <section id="komposisi" class="scroll-mt-28 space-y-4">
-        <h2 class="pillar-title !text-3xl">
-          Kandungan Formulasi
+        <h2 class="pillar-title !text-2xl sm:!text-3xl text-[var(--color-brand)] font-serif font-bold">
+          Kandungan Formulasi & Karakteristik
         </h2>
-        <div class="space-y-3 text-sm sm:text-base text-[var(--color-text)]">
-          <div>
-            <span class="block text-xs font-bold text-[var(--color-text-muted)] mb-1">
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] shadow-2xs">
+            <span class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-1">
               Bahan Aktif & Nutrisi
             </span>
             <p class="font-medium text-base text-[var(--color-text)]">
               {p.composition || 'Bahan organik dan biostimulan berlisensi resmi.'}
             </p>
           </div>
-          <div>
-            <span class="block text-xs font-bold text-[var(--color-text-muted)] mb-1">
+
+          <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] shadow-2xs">
+            <span class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-1">
               Bentuk Fisik Formula
             </span>
-            <p class="text-[var(--color-text)]">
+            <p class="font-medium text-base text-[var(--color-text)]">
               {p.form || 'Cairan konsentrat larut air'}
+            </p>
+          </div>
+
+          <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] shadow-2xs">
+            <span class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-1">
+              Kelarutan
+            </span>
+            <p class="text-sm font-medium text-[var(--color-text)]">
+              100% larut sempurna dalam air tanpa residu yang menyumbat spuyer semprot.
+            </p>
+          </div>
+
+          <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] shadow-2xs">
+            <span class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-1">
+              Kompatibilitas Tangki
+            </span>
+            <p class="text-sm font-medium text-[var(--color-text)]">
+              Dapat dikombinasikan dengan pupuk daun atau nutrisi semprot rutin sesuai anjuran teknis.
             </p>
           </div>
         </div>
       </section>
 
       <!-- Section: Cara Pakai & Dosis -->
-      <section id="cara-pakai" class="scroll-mt-28 space-y-4">
-        <h2 class="pillar-title !text-3xl">
+      <section id="cara-pakai" class="scroll-mt-28 space-y-6">
+        <h2 class="pillar-title !text-2xl sm:!text-3xl text-[var(--color-brand)] font-serif font-bold">
           Metode Aplikasi & Dosis Anjuran
         </h2>
+        
         <div class="space-y-4">
           <div>
-            <span class="block text-xs font-bold text-[var(--color-text-muted)] mb-2">
+            <span class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-2">
               Metode Aplikasi yang Dianjurkan
             </span>
             <ul class="list-disc pl-5 space-y-1.5 text-sm sm:text-base text-[var(--color-text)]">
@@ -226,39 +323,110 @@ const seo: SeoInput = {
             </ul>
           </div>
 
-          <div class="pt-3 border-t border-[var(--color-border)]">
-            <span class="block text-xs font-bold text-[var(--color-text-muted)] mb-1">
+          <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] shadow-2xs">
+            <span class="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-1">
               Takaran & Dosis Lapangan
             </span>
-            <p class="text-sm sm:text-base font-semibold text-[var(--color-brand)] tabular-nums">
+            <p class="text-base sm:text-lg font-bold text-[var(--color-brand)] tabular-nums mb-1">
               {p.dosage || 'Sesuai dosis anjuran pada label kemasan resmi'}
             </p>
-            <p class="text-xs text-[var(--color-text-muted)] mt-1 leading-relaxed">
+            <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
               Selalu periksa label resmi pada botol kemasan sebelum penyemprotan. Jangan melebihi konsentrasi anjuran teknis guna menjaga keseimbangan larutan semprot di tangki.
             </p>
+          </div>
+
+          <div class="p-4 bg-[var(--color-tint)] border border-[var(--color-border)] rounded-[2px]">
+            <span class="block text-xs font-bold uppercase tracking-wider text-[var(--color-brand-strong)] mb-1">
+              Waktu Aplikasi Optimal
+            </span>
+            <p class="text-xs sm:text-sm text-[var(--color-text)] leading-relaxed">
+              Semprot pada pagi hari (pukul 06.00–09.00) atau sore hari (pukul 15.30–17.30) saat stomata daun terbuka optimal dan suhu udara tidak terlalu terik. Hindari penyemprotan saat angin kencang atau menjelang hujan.
+            </p>
+          </div>
+
+          <!-- Tool Companions: Kalkulator Dosis & Cuaca Tani -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] flex flex-col justify-between shadow-2xs">
+              <div>
+                <h3 class="font-bold text-sm text-[var(--color-text)] mb-1">
+                  Hitung Takaran per Tangki
+                </h3>
+                <p class="text-xs text-[var(--color-text-muted)] leading-relaxed mb-3">
+                  Gunakan Kalkulator Dosis Tani untuk mengonversi anjuran label ke kapasitas tangki semprot (16 Liter) dan luas kebun Anda.
+                </p>
+              </div>
+              <a
+                href="/alat/kalkulator-dosis/"
+                class="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--color-brand-strong)] hover:text-[var(--color-brand)] underline min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
+              >
+                <span>Buka Kalkulator Dosis</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+
+            <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] flex flex-col justify-between shadow-2xs">
+              <div>
+                <h3 class="font-bold text-sm text-[var(--color-text)] mb-1">
+                  Periksa Cuaca Sebelum Semprot
+                </h3>
+                <p class="text-xs text-[var(--color-text-muted)] leading-relaxed mb-3">
+                  Cek prakiraan kecepatan angin dan potensi hujan BMKG di desa Anda agar larutan tidak terbuang atau tercuci air hujan.
+                </p>
+              </div>
+              <a
+                href="/alat/cuaca-tani/"
+                class="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--color-brand-strong)] hover:text-[var(--color-brand)] underline min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
+              >
+                <span>Cek Cuaca Tani Desa</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- Section: Keaslian Produk -->
       <section id="keaslian" class="scroll-mt-28 space-y-4">
-        <h2 class="pillar-title !text-3xl">
-          Keaslian Kemasan Resmi
+        <h2 class="pillar-title !text-2xl sm:!text-3xl text-[var(--color-brand)] font-serif font-bold">
+          Keaslian Kemasan Resmi & Legalitas
         </h2>
-        <div class="space-y-3 text-sm sm:text-base text-[var(--color-text)]">
-          <p>
+        <div class="space-y-4">
+          <p class="text-sm sm:text-base text-[var(--color-text)] leading-relaxed">
             {p.authenticityCheck || 'Setiap kemasan resmi dilengkapi segel pengaman ShieldedTag untuk verifikasi keaslian.'}
           </p>
-          <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
-            Pastikan segel penutup botol dalam kondisi utuh dan tidak rusak saat menerima produk dari jaringan kemitraan kios resmi PT Agritani Internasional.
-          </p>
+
+          <div class="space-y-3 text-xs sm:text-sm text-[var(--color-text)]">
+            <div class="flex items-start gap-3 p-3.5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px]">
+              <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand)] mt-2 shrink-0" aria-hidden="true"></span>
+              <div>
+                <strong class="block text-[var(--color-text)] mb-0.5">Segel Fisik ShieldedTag™</strong>
+                <span class="text-[var(--color-text-muted)]">Pastikan segel penutup botol dalam kondisi utuh dan tidak rusak saat menerima produk dari kemitraan resmi.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3.5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px]">
+              <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand)] mt-2 shrink-0" aria-hidden="true"></span>
+              <div>
+                <strong class="block text-[var(--color-text)] mb-0.5">Izin Edar Resmi Kementan</strong>
+                <span class="text-[var(--color-text-muted)]">Seluruh produk resmi terdaftar di Kementerian Pertanian Republik Indonesia dengan nomor izin edar fisik tercetak pada label botol.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3.5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px]">
+              <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand)] mt-2 shrink-0" aria-hidden="true"></span>
+              <div>
+                <strong class="block text-[var(--color-text)] mb-0.5">Jaringan Distribusi Sah</strong>
+                <span class="text-[var(--color-text-muted)]">Dapatkan hanya melalui kios saprotan dan kelompok tani mitra resmi PT Agritani Internasional.</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- Section: Related Articles (if available) -->
       {relatedArticles.length > 0 && (
-        <section class="space-y-4 pt-6">
-          <h2 class="pillar-title !text-3xl">
+        <section id="jurnal" class="scroll-mt-28 space-y-4 pt-6">
+          <h2 class="pillar-title !text-2xl sm:!text-3xl text-[var(--color-brand)] font-serif font-bold">
             Panduan Terkait di Jurnal Tani
           </h2>
           <div class="divide-y divide-[var(--color-border)]">
