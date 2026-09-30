@@ -348,12 +348,11 @@ Jurnal Tani (keputusan Paduka Ongki 2026-09-29).
 | :--- | :--- | :--- |
 | Beranda | **Tidak ada** | Section Konsultasi menaut ke `/konsultasi/` |
 | Header, menu, footer | **Tidak ada** tombol | Nav "Konsultasi" → halaman; footer: nomor sebagai teks kontak |
-| Indeks Jurnal, hub, Tentang Kami, indeks Alat, indeks Produk, Kebijakan Privasi, Cari, 404 | **Tidak ada** | Di indeks Jurnal, halaman paginasi, hub topik/komoditas, dan arsip tag, nomor di footer juga tampil sebagai **teks biasa tanpa tautan WhatsApp** (`BaseLayout noWhatsApp`, keputusan pemilik 2026-09-30) |
+| Indeks Jurnal, hub, Tentang Kami, indeks Alat, indeks Produk, detail produk, Kebijakan Privasi, Cari, 404 | **Tidak ada** | Di indeks Jurnal, halaman paginasi, hub topik/komoditas, dan arsip tag, nomor di footer juga tampil sebagai **teks biasa tanpa tautan WhatsApp** (`BaseLayout noWhatsApp`, keputusan pemilik 2026-09-30) |
 | Profil penulis `/penulis/arif-prabowo/` | 1 | "Konsultasi dengan Arif Prabowo" di bawah bio, sumber `Web·Penulis`; teks menyebut pesan dikirim ke WhatsApp resmi Agritani (keputusan pemilik 2026-09-30) |
 | Artikel | 1 | Tautan teks berikon "WhatsApp Agritani" di blok **Tentang Penulis** (sumber `Web·Artikel:{slug}`, pesan memuat judul artikel; keputusan pemilik 2026-09-30, kotak konsultasi terpisah dihapus) |
 | Diagnosa Gejala | 1 | Di bawah seluruh daftar hasil (atau di state kosong), setelah pengguna memilih |
 | Kalender Tanam, Cuaca Tani, Kalkulator Dosis | 1 | Di akhir hasil, hanya setelah hasil tampil |
-| Detail produk | 1 | Akhir halaman: "Tanya dosis untuk lahan Anda" |
 | Konsultasi | 1 (primer) | Tombol kirim form penyusun pesan |
 | Kemitraan | 1 (primer) | Tombol kirim form kemitraan |
 
@@ -436,7 +435,7 @@ Sumber tunggal slug → nama → warna: `src/lib/topics.ts`.
 
 - Skala spasi (rem): `0.25 · 0.5 · 0.75 · 1 · 1.5 · 2 · 3 · 4 · 6`. Jarak antar-section: `3rem` mobile, `4–6rem` desktop.
 - Kontainer: maks `72rem`, gutter `1rem` (<640px) / `1.5rem` / `2rem` (≥1024px). Grid 12 kolom di ≥1024px; satu kolom di bawahnya.
-- Radius: `0` untuk section, band, dan foto; `2px` untuk tombol, input, tabel, panel. Tanpa `rounded-2xl/3xl`, pill dekoratif, bayangan kartu.
+- Radius: `0` untuk section, band, dan foto; `2px` untuk tombol, input, tabel, panel, dan kartu. Tanpa `rounded-2xl/3xl`, pill dekoratif, bayangan kartu.
 - Elevasi hanya untuk menu mobile/dialog (satu bayangan).
 - **Tidak ada garis pemisah antar-section** atau di atas/bawah hero dan footer. Satu pengecualian pemilik (2026-09-30): bilah 6 warna topik di atas footer sebagai penanda sektor (bukan garis abu-abu pemisah). Transisi section memakai spasi dan pergantian latar (`canvas` ↔ `tint`). Garis hanya di dalam komponen (baris tabel/indeks, border input).
 - Tanpa garis tebal di sisi kiri kartu/panel sebagai aksen; panel dibedakan oleh latar `tint` dan judulnya.
@@ -447,6 +446,16 @@ Sumber tunggal slug → nama → warna: `src/lib/topics.ts`.
 - Toleransi terukur: selisih ≤ 1px di 390 & 1440 (skrip ukur geometri di bukti UI). Gambar dekoratif di baris yang sudah punya judul memakai `alt=""` dan tautan `aria-hidden`/`tabindex="-1"`.
 - Jarak tetap label → judul 4px, judul → meta 8px; judul maksimal 2 baris (`line-clamp-2`).
 - Offset atas mengikuti ukuran teks label di dalam area sentuh 44px: label 14px/20px → `mt-3` (Beranda); label 12px/16px → `mt-3.5` (`ArticleRow` di Jurnal, hub, penulis, cari). Bila baris diakhiri `.link-more`, tepi bawah gambar = bilah `.link-more` (wrapper `-mb-0.5`). Di bawah 640px baris bertumpuk (gambar di atas, 16:10) dengan jarak gambar → teks label ±20px (`gap-1.5`).
+
+#### 3.3.3. Kartu (aturan pemilik, 2026-09-30)
+
+Pemilik: "boleh pakai card namun rapi". Kartu dipakai **hanya untuk satu unit utuh** yang bisa dipilih atau dibandingkan, bukan untuk membungkus section atau paragraf.
+
+- **Satu gaya kartu** di seluruh situs: kelas `.card` di `global.css` — latar `surface` (putih), garis 1px `border`, radius 2px, **tanpa bayangan**. Kartu bertaut: `.card.card-link`, garis menggelap ke `brand-strong` saat hover/fokus; seluruh kartu adalah area sentuh (tautan judul dengan `after:absolute after:inset-0`). Area gambar: `.card-media` (latar `tint`), gambar `object-cover` penuh tanpa bingkai kedua.
+- **Dipakai untuk:** produk (katalog, blok produk di artikel), panel harga di detail produk, panel "Sifat formula", input dan hasil alat, tautan alat lanjutan, kartu penulis di akhir artikel, bacaan terkait, formulir Konsultasi/Kemitraan.
+- **Tidak dipakai untuk:** section halaman, prosa, judul, daftar artikel di Jurnal/hub (tetap `ArticleRow` terbuka, §3.3.1), Beranda (disetujui 2026-09-30, tetap terbuka).
+- Tanpa kartu di dalam kartu. Kartu dalam satu baris sama tinggi (`h-full`), padding sama (`p-4`/`p-5`/`p-6` per jenis), dan tepi kartu jatuh di garis grid yang sama.
+- Referensi arah (diperiksa 2026-09-30, tangkapan layar di bukti UI): katalog & detail Koppert (kartu produk putih, sumur gambar seragam, spesifikasi kunci–nilai), artikel GOV.UK / UMN Extension (prosa tanpa kotak, kotak penulis di akhir), alat GOV.UK (hasil = satu-satunya panel). Radius besar dan tombol WhatsApp di referensi **tidak** diambil (§3.3, §2.8).
 
 #### 3.3.2. Kolom sticky (aturan, 2026-09-30)
 
@@ -588,13 +597,13 @@ menyusun ulang kerangka sendiri.
 | Urutan | Blok | Elemen | Aturan |
 | :---: | :--- | :--- | :--- |
 | 0 | Skip link | `<a href="#isi">Langsung ke isi</a>` | Tersembunyi sampai fokus; muncul di kiri atas berlatar `harvest` |
-| 1 | Header | `<header>` berlatar `brand` | Tidak sticky (layar kecil lebih lega). Tinggi 64px. |
+| 1 | Header | `<header>` berlatar putih, garis bawah 1px | Tidak sticky (layar kecil lebih lega). Di bawahnya strip 6 topik (≥1024px) / deret topik geser (<1024px). |
 | 1a | ≥1024px | wordmark · nav 5 item · "Ajukan Kemitraan" (outline putih) · ikon Cari (`/cari/`) | Nav: Alat Tani (tautan ke `/alat/`, tanpa dropdown), Jurnal Tani, Konsultasi, Produk, Tentang Kami. Aktif: garis bawah `harvest` 3px + `aria-current` |
 | 1b | <1024px | wordmark · ikon Cari · tombol "Menu" (ikon + teks) | Menu = `<dialog>` layar penuh: Alat Tani beserta 4 alat terindentasi, Jurnal Tani, Konsultasi, Produk, Tentang Kami, Ajukan Kemitraan; Esc/tutup mengembalikan fokus |
 | 2 | Breadcrumb | `<nav aria-label="Breadcrumb">` | Semua halaman kecuali Beranda dan 404; + `BreadcrumbList` JSON-LD |
 | 3 | Isi | `<main id="isi">` | Satu `<h1>` per halaman; heading tidak melompat level |
-| 4 | Footer | `<footer>` berlatar `brand`, teks putih | Tanpa garis di atas footer; transisi dari band sebelumnya lewat warna latar |
-| 4a | Kolom footer | Alat Tani (4 alat) · Jurnal Tani (6 topik) · Produk (4 produk) · Perusahaan (Tentang Kami, Penulis, Kemitraan, Kebijakan Privasi) · Kontak (nomor WhatsApp resmi, alamat — OQ-1/OQ-7) | <1024px: kolom menjadi daftar bertumpuk, bukan akordeon. Nomor WhatsApp ditulis sebagai teks + tautan biasa, tanpa ikon/tombol berwarna (§2.8) |
+| 4 | Footer | `<footer>` berlatar `canvas`, teks gelap | Bilah 6 warna topik di atas (§3.3 pengecualian); tanpa garis abu-abu lain |
+| 4a | Kolom footer | Topik Jurnal Tani (6 topik) · Tentang Agritani · Alat Tani · Produk; judul kolom serif sentence case tanpa garis bawah, tautan 44px tanpa garis antar-baris dan tanpa panah | ≥1024px 4 kolom; <1024px 2 kolom (bukan akordeon). Nomor WhatsApp di baris kontak sebagai teks + tautan biasa (teks polos di halaman daftar, `noWhatsApp`), tanpa ikon/tombol berwarna (§2.8) |
 | 4b | Baris legal | "© {tahun} Agritani Official · Portal pertanian dikelola Arif Prabowo" | Tahun dari waktu build |
 
 Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol WhatsApp melayang, widget chat, pengumuman berjalan.
@@ -603,7 +612,7 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 
 | Layout | Halaman | Judul | Latar pembuka | Kepadatan |
 | :--- | :--- | :--- | :--- | :--- |
-| **Lapangan** | Beranda, Alat Tani (indeks + 4 alat), Konsultasi, Produk (indeks & detail), Kemitraan, Cari, 404 | Plus Jakarta Sans 800 | `canvas`, band `tint`/`harvest-tint` | Padat, tap-first |
+| **Lapangan** | Beranda, Alat Tani (indeks + 4 alat), Konsultasi, Produk (indeks & detail), Kemitraan, Cari, 404 | Serif 600 (sama dengan Sains sejak 2026-09-30; judul huruf biasa) | `canvas`, kartu `surface` untuk unit (§3.3.3) | Padat, tap-first |
 | **Sains** | Indeks jurnal, Hub topik & komoditas, Artikel, Penulis, Tentang Kami, Kebijakan Privasi | Newsreader 600 | `canvas` | Lapang, prosa 68ch |
 
 #### 4.2.3. Anatomi per tipe halaman
@@ -619,7 +628,7 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 4. **Alat Tani & Instrumen Lapangan**: 4 baris indeks (judul serif · kegunaan · tautan lanjutan C11), tanpa ikon dekoratif dan tanpa kartu.
 5. **Pendampingan Agronomi & Konsultasi Kebun**: foto (dummy) + pengantar + 3 langkah bernomor + tautan ke `/konsultasi/`. **Beranda tanpa CTA WhatsApp** (§2.8).
 6. **Empat Produk Unggulan & Integritas Saprotan**: 4 kolom produk (ilustrasi kemasan §3.5.1 · nama · tagline · ringkasan · "Spesifikasi & izin Kementan") · dua kolom teks: Keaslian kemasan ShieldedTag dan Kemitraan kios saprotan & gapoktan.
-7. **Footer**: bilah 6 warna topik di atas footer (penanda sektor ala teagasc.ie, disetujui pemilik sebagai pengecualian §3.3) · direktori 4 kolom (Sektor keilmuan, Organisasi, Instrumen, Produk & rujukan) · baris legal (§4.2.1).
+7. **Footer**: bilah 6 warna topik di atas footer (penanda sektor ala teagasc.ie, disetujui pemilik sebagai pengecualian §3.3) · direktori 4 kolom (Topik Jurnal Tani, Tentang Agritani, Alat Tani, Produk) · baris legal (§4.2.1).
 
 **Diagnosa Gejala `/alat/diagnosa-gejala/`** (Lapangan) — perilaku di §2.2
 
@@ -691,21 +700,22 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 3. Hubungan dengan Agritani (sama dengan kalimat bio di Tentang Penulis setiap artikel).
 4. H2 "Artikel oleh Arif Prabowo": daftar baris semua artikel.
 
-**Produk `/produk/`** (Lapangan) — isi & aturan klaim di §2.5
+**Produk `/produk/`** (Lapangan) — isi & aturan klaim di §2.5; dibangun 2026-09-30 (T-38)
 
-1. H1 "Produk Agritani" + satu kalimat: empat produk unggulan Agritani (DEC-016).
-2. Tautan anchor per komoditas: Untuk sawit & tanaman keras · Untuk padi · Untuk palawija & sayur · Untuk semua tanaman.
-3. 4 baris produk (≥1024px boleh tabel perbandingan): nama · komoditas · peran · bentuk & cara aplikasi · nomor izin edar (bila ada) → detail.
-4. H2 "Cara memastikan produk asli" (OQ-8) · tautan ke detail produk (tanpa ajakan WhatsApp di indeks produk).
+1. Breadcrumb · H1 "Produk Agritani" · satu paragraf: empat produk unggulan Agritani (DEC-016), pilih sesuai komoditas.
+2. **4 kartu produk** (`ProductCard`, §3.3.3): ≥1024px 4 kolom, 640–1023px 2 kolom, <640px 1 kolom dengan packshot 112px di kiri. Isi kartu: packshot persegi (`object-cover`, ilustrasi AI disetujui pemilik, alt "Kemasan {nama}") · nama serif · peran (maks 3 baris) · "Untuk {3 komoditas} +n" · "Mulai Rp …" + ukuran kemasan · "Rincian →". Harga terbawah disejajarkan antar-kartu (`mt-auto`). Anchor `#{id}` tetap.
+3. Catatan sumber harga (petanisejahtera.com, tanggal cek; `sr-only` "(membuka tab baru)" di dalam `<a>`).
+4. H2 "Memeriksa keaslian kemasan": 3 kolom teks (segel, sifat cairan, nomor izin edar), tanpa kartu. Tanpa ajakan WhatsApp, tanpa tabel perbandingan kedua.
 
-**Detail Produk `/produk/{slug}/`** (Lapangan)
+**Detail Produk `/produk/{slug}/`** (Lapangan) — dibangun 2026-09-30 (T-38)
 
-1. Breadcrumb · H1 nama produk · peran (hijau) · tagline (`soil`, teks biasa, bukan pill) · ringkasan · "Komoditas sasaran:" sebagai teks berkoma (bukan chip).
-2. Foto kemasan asli (OQ-5) atau tanpa gambar.
-3. Sub-navigasi anchor dalam garis rambut atas-bawah (tanpa kotak, tanpa sticky): Fungsi & Peran · Kandungan · Aplikasi & Dosis · Keaslian Kemasan. Bagian Legalitas (nomor izin edar) ditambahkan setelah OQ-2.
-4. Fungsi (klaim yang diizinkan) · Kandungan sesuai label · Cara pakai & dosis dari label (tabel `tabular-nums`) · Legalitas: nomor izin edar + cara cek keaslian.
-5. Judul section `.pillar-title`; isi tanpa panel berbingkai. "Panduan Terkait di Jurnal Tani" = 3 `ArticleRow` terbaru dengan komoditas yang sama. Terakhir: `ConsultPrompt` gaya sekunder "Tanya dosis untuk lahan Anda" → WhatsApp terisi nama produk.
-6. Tanpa harga, keranjang, marketplace, testimoni.
+1. Breadcrumb · ≥1024px dua kolom: kiri 5/12 packshot dalam kartu persegi; kanan 7/12 H1 · tagline (`soil`, teks biasa) · peran · ringkasan · **kartu "Pilihan kemasan & harga"** (baris ukuran → harga serif; harga coret + "hemat" kecil; catatan sumber harga) · "Komoditas sasaran" dan "Cara aplikasi" sebagai teks.
+2. Lompat-ke: tombol 44px bergaris 1px (Cara kerja · Kandungan · Dosis · Foto lahan · Keaslian · Panduan terkait), tanpa sticky.
+3. Cara kerja: prosa 7/12 + kartu "Sifat formula" 5/12.
+4. Kandungan dan sifat fisik: tabel kunci–nilai (label 14rem · nilai tebal), garis rambut antar-baris.
+5. Dosis dan cara aplikasi: tabel `tabular-nums` 7/12 + catatan label · kanan 5/12 "Sebelum mengisi tangki" = 2 kartu tautan (Kalkulator dosis, Cuaca Tani).
+6. Foto lahan (ilustrasi, bukan dokumentasi hasil) · Memeriksa keaslian kemasan (3 kolom) · Panduan terkait di Jurnal Tani (`ArticleRow`).
+7. **Tanpa** ajakan WhatsApp, keranjang, marketplace, testimoni (keputusan pemilik 2026-09-30, §2.8). Harga hanya dari `products.json`; tanpa `variants` blok harga tidak tampil.
 
 **Tentang Kami `/tentang-kami/`** (Sains)
 
@@ -825,15 +835,15 @@ Lihat **§4.4.4** (breadcrumb), **§4.4.7** (URL & canonical), dan **§4.4.10** 
 
 #### 4.3.8. Tata letak terbangun (T-35, 2026-09-30)
 
-Urutan di kolom artikel (7/12, measure 68ch): breadcrumb → H1 → dek → baris meta (Oleh Arif Prabowo · terbit · waktu baca · komoditas · Bagikan · Cetak; tampil di semua lebar) → **gambar utama** 16:9 + keterangan → **Jawaban singkat** (blok `tint`, judul serif huruf biasa, tanpa garis kiri/label kapital) → Ringkasan lapangan (bila ada data) → **Daftar isi** lipat (<1024px) → prosa (callout `[!NOTE]` dsb. = blok `tint` tanpa garis kiri, label serif; **FAQ**: paragraf yang diawali pertanyaan tebal + baris baru ditata sebagai subjudul lewat CSS `:has`, tanpa mengubah file artikel) → Tag (chip `#tag` 36px berlatar `tint`, teks 13px, "#" warna `soil`, hover isi `brand`; area sentuh 44px; jarak antarbaris 8px, 28px dari prosa; tanpa label "Tag:") → **Langkah berikutnya di lahan** (baris alat sesuai topik: Cuaca Tani, Kalkulator Dosis; Diagnosa Gejala hanya bila tidak "Segera hadir") → Daftar Pustaka → Tentang Penulis → Pengungkapan → Bacaan terkait.
+Urutan di kolom artikel (7/12, measure 68ch): breadcrumb → H1 → dek → baris meta (Oleh Arif Prabowo · terbit · waktu baca · komoditas · Bagikan · Cetak; tampil di semua lebar) → **gambar utama** 16:9 + keterangan → **Jawaban singkat** (blok `tint`, judul serif huruf biasa, tanpa garis kiri/label kapital) → Ringkasan lapangan (bila ada data) → **Daftar isi** lipat (<1024px) → prosa (callout `[!NOTE]` dsb. = blok `tint` tanpa garis kiri, label serif; **FAQ**: paragraf yang diawali pertanyaan tebal + baris baru ditata sebagai subjudul lewat CSS `:has`, tanpa mengubah file artikel) → Tag (chip `#tag` 36px berlatar `tint`, teks 13px, "#" warna `soil`, hover isi `brand`; area sentuh 44px; jarak antarbaris 8px, 28px dari prosa; tanpa label "Tag:") → **Langkah berikutnya di lahan** (2 kartu tautan alat sesuai topik: Cuaca Tani, Kalkulator Dosis; Diagnosa Gejala hanya bila tidak "Segera hadir") → Daftar Pustaka → Tentang penulis (kartu) → Produk untuk {komoditas} (kartu) → Bacaan terkait (kartu). Blok penutup memakai judul serif 20px huruf biasa dan jarak 40px antar-blok; kartu mengikuti §3.3.3.
 
 Kolom kiri ≥1024px (3/12): **Daftar isi sticky yang berhenti setelah Tag** (blok penutup — alat, pustaka, penulis, produk, bacaan terkait — ada di baris grid terpisah tanpa kolom kiri), dengan progres baca dan penanda bagian aktif (garis 1px `brand-strong`, bukan bilah tebal), aturan §3.3.2. Kartu penulis sticky dihapus (info penulis sudah di byline, Tentang Penulis, dan Pengungkapan). Tidak ada data contoh di mode dev: ringkasan dan pustaka hanya dari frontmatter.
 
 Arsip tag `/jurnal/tag/{tag}/`: `noindex` bila < 3 artikel terbit; semua arsip tag dikeluarkan dari sitemap. Kerangka sama dengan hub topik/komoditas: `TopicSidebar` kiri 3/12 (sticky §3.3.2; <1024px di bawah daftar), konten 9/12, H1 = nama tag tanpa "#" dan tanpa label kapital, satu kalimat jumlah artikel, daftar `ArticleRow`. SEO: `<title>` = nama tag (huruf awal kapital, dipotong di batas kata ≤ 50 karakter) + " - Agritani", tanpa "Tag:" dan "#"; deskripsi netral "{n} artikel Jurnal Tani tentang {tag} oleh Arif Prabowo, konsultan pertanian senior Agritani."; breadcrumb memakai nama yang sama.
 
-**Produk di artikel** (setelah Tentang Penulis): hanya produk yang komoditas sasarannya cocok dengan artikel, sebagai baris ringkas (kemasan 64px · nama · kalimat konteks dari data produk — artikel Proteksi Tanaman memakai `summary` dan mengurutkan produk yang ringkasannya menyebut patogen/imun lebih dulu; topik lain memakai `role`; tanpa klaim baru · "Sasaran: {komoditas}" dari data produk · "Lihat spesifikasi"); produk lain satu baris teks; catatan "Ikuti selalu dosis pada label kemasan." Tanpa artikel yang cocok: keempat produk tampil sebagai baris yang sama (keputusan pemilik 2026-09-30).
+**Produk di artikel** (setelah Tentang Penulis): hanya produk yang komoditas sasarannya cocok dengan artikel, sebagai kartu (≥640px 2 kolom; packshot 88px `object-cover` di kiri · nama · kalimat konteks dari data produk — artikel Proteksi Tanaman memakai `summary` dan mengurutkan produk yang ringkasannya menyebut patogen/imun lebih dulu; topik lain memakai `role`; tanpa klaim baru · "Sasaran: {komoditas}" dari data produk; seluruh kartu menaut ke detail produk); produk lain satu baris teks; catatan "Ikuti selalu dosis pada label kemasan." Tanpa artikel yang cocok: keempat produk tampil sebagai kartu yang sama (keputusan pemilik 2026-09-30). **Bacaan terkait**: kartu horizontal (gambar artikel 128px kiri — foto komoditas, bukan gambar topik yang sama untuk semua — · judul serif maks 2 baris · waktu baca), lalu tautan teks 44px ke Diagnosa dan hub topik.
 
-**Pengungkapan terpisah dihapus** (keputusan pemilik 2026-09-30); hubungan komersial tetap tertulis di bio Tentang Penulis ("kini sales dan konsultan produk Agritani"). **Tentang Penulis** (blok 15), sederhana: foto 56px · "Arif Prabowo · Konsultan Pertanian Senior" · satu kalimat dari DEC-016 · tautan "WhatsApp Agritani" (satu-satunya CTA WhatsApp artikel, §2.8) dan "Lihat profil"; tidak ada kotak konsultasi terpisah (keputusan pemilik 2026-09-30).
+**Pengungkapan terpisah dihapus** (keputusan pemilik 2026-09-30); hubungan komersial tetap tertulis di bio Tentang Penulis ("kini sales dan konsultan produk Agritani"). **Tentang penulis** (blok 15), satu kartu `p-5`: foto 56px · "Arif Prabowo · Konsultan Pertanian Senior" · satu kalimat dari DEC-016 · tautan "WhatsApp Agritani" (satu-satunya CTA WhatsApp artikel, §2.8) dan "Lihat profil"; tidak ada kotak konsultasi terpisah (keputusan pemilik 2026-09-30).
 
 #### 4.3.7. Pengukuran
 
