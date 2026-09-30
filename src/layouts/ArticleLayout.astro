@@ -555,6 +555,28 @@ const nextTools = [
     font-size: inherit;
     white-space: pre;
   }
+
+  /* LaTeX MathML formula styling (DEC-018) */
+  .prose :global(.katex-display),
+  .prose :global(math[display="block"]) {
+    display: block;
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+    padding: 0.75rem 0;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+    line-height: normal;
+    text-align: center;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .prose :global(.katex),
+  .prose :global(math) {
+    font-size: inherit;
+    line-height: normal;
+    text-indent: 0;
+  }
 </style>
 
 <script>
@@ -601,11 +623,11 @@ const nextTools = [
       });
     }
 
-    // 3. Keyboard accessibility for pre and scrollable containers (WCAG 2.1.1)
-    document.querySelectorAll<HTMLElement>('.prose pre, .prose table').forEach((el) => {
+    // 3. Keyboard accessibility for pre, table, and scrollable containers (WCAG 2.1.1)
+    document.querySelectorAll<HTMLElement>('.prose pre, .prose table, .prose .katex-display').forEach((el) => {
       el.setAttribute('tabindex', '0');
       el.setAttribute('role', 'region');
-      el.setAttribute('aria-label', el.tagName === 'PRE' ? 'Diagram / Kode' : 'Tabel data');
+      el.setAttribute('aria-label', el.tagName === 'PRE' ? 'Diagram / Kode' : el.tagName === 'TABLE' ? 'Tabel data' : 'Rumus matematika');
     });
 
     // 4. Enhance blockquote callouts in dev mode / client navigation

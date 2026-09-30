@@ -2,6 +2,9 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import { unified } from '@astrojs/markdown-remark';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -52,6 +55,10 @@ export default defineConfig({
   },
   markdown: {
     syntaxHighlight: false,
+    processor: unified({
+      remarkPlugins: [remarkMath],
+      rehypePlugins: [[rehypeKatex, { output: 'mathml' }]],
+    }),
   },
   integrations: [
     sitemap({
@@ -144,6 +151,9 @@ export default defineConfig({
 
                     return `<${tag} ${combinedAttrs}>`.replace(/\s+/g, ' ').replace(' >', '>');
                   });
+
+                  // Strip any remaining inline style attributes (e.g. from KaTeX error spans) to ensure strict CSP
+                  html = html.replace(/\sstyle=["'][^"']*["']/gi, '');
                   changed = true;
                 }
 
