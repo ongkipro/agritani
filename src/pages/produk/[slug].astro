@@ -2,7 +2,7 @@
 /**
  * src/pages/produk/[slug].astro
  * Product Detail Page (T-11, DESIGN §2.5, §4.2.3)
- * Invariants: no WhatsApp CTA on product pages (owner 2026-09-30), 2px radius, text contrast >= 7:1, 0/0/0 CSP, tabular numbers.
+ * Invariants: no WhatsApp CTA on product pages (owner 2026-09-30), no cards/kickers/section dividers, 2px radius, 0/0/0 CSP, tabular numbers.
  * Variants & prices from petanisejahtera.com product pages (checked 2026-09-30).
  */
 import { getCollection, type CollectionEntry } from 'astro:content';
@@ -62,14 +62,6 @@ const shortTitles: Record<string, string> = {
   saratoga: 'Saratoga — Serum Asam Amino Bebas Amis',
 };
 const seoTitle = shortTitles[product.id] || `${p.name} — Formula Biostimulan Resmi`;
-
-const categoryBadges: Record<string, string> = {
-  aussie: 'Perkebunan & Tanaman Keras',
-  kojien: 'Teknologi Thailand · Spesialis Padi',
-  bensu: 'Teknologi Thailand · Pangan & Hortikultura',
-  saratoga: 'Japanese Pro-Plant Complex · Asam Amino',
-};
-const categoryBadge = categoryBadges[product.id] || 'Nutrisi & Biostimulan';
 
 const functionDetails: Record<
   string,
@@ -148,10 +140,8 @@ const fDetail = functionDetails[product.id] || {
 const formatRupiah = (val: number) =>
   new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(val);
 
-const variants = p.variants || [
-  { size: '500 ml', volumeMl: 500, price: 130000, comparePrice: 198000 },
-  { size: '1 Liter', volumeMl: 1000, price: 215000, comparePrice: 298000 },
-];
+// No fallback prices: a product without variants in products.json shows no price block.
+const variants = p.variants ?? [];
 
 const fieldPhotos = getProductFieldPhotos(product.id);
 
@@ -168,434 +158,221 @@ const seo: SeoInput = {
   <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
     <Breadcrumb items={breadcrumbs} />
 
-    <!-- 1. Hero Showcase: 2-Column Balanced Architecture (Full Precision Width) -->
-    <header class="my-6 sm:my-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-        
-        <!-- Left Column (5 cols): Official Packshot Visual & Verification Badge -->
-        <div class="lg:col-span-5 space-y-4">
-          <div class="aspect-square flex items-center justify-center p-6 sm:p-8 bg-[var(--color-surface)] border border-[var(--color-border-control)]/30 rounded-[2px] shadow-2xs overflow-hidden">
-            <Picture
-              src={getProductImage(product.id)}
-              formats={['webp']}
-              widths={[320, 640]}
-              sizes="(min-width: 1024px) 28rem, 100vw"
-              quality={90}
-              alt={`Kemasan resmi botol ${p.name}`}
-              class="w-full h-full object-contain"
-              loading="eager"
-            />
-          </div>
+    <header class="my-8 sm:my-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      <div class="lg:col-span-5">
+        <div class="aspect-square max-w-[22rem] mx-auto lg:max-w-none">
+          <Picture
+            src={getProductImage(product.id)}
+            formats={['webp']}
+            widths={[320, 640]}
+            sizes="(min-width: 1024px) 28rem, 22rem"
+            quality={90}
+            alt={`Kemasan ${p.name}`}
+            class="w-full h-full object-contain"
+            loading="eager"
+          />
+        </div>
+      </div>
 
-          <!-- Official authenticity indicators below packshot -->
-          <div class="grid grid-cols-2 gap-3 text-xs bg-[var(--color-tint)]/40 p-3 rounded-[2px] border border-[var(--color-border-control)]/20">
-            <div class="flex items-start gap-2">
-              <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand)] mt-1.5 shrink-0" aria-hidden="true"></span>
-              <div>
-                <strong class="block text-[var(--color-text)]">Segel ShieldedTag™</strong>
-                <span class="text-[var(--color-text-muted)] text-[11px]">Segel hologram anti-buka</span>
-              </div>
-            </div>
-            <div class="flex items-start gap-2">
-              <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand)] mt-1.5 shrink-0" aria-hidden="true"></span>
-              <div>
-                <strong class="block text-[var(--color-text)]">Izin Edar Kementan</strong>
-                <span class="text-[var(--color-text-muted)] text-[11px]">Terdaftar resmi pemerintah</span>
-              </div>
-            </div>
-          </div>
+      <div class="lg:col-span-7 space-y-6">
+        <div>
+          <h1 class="pillar-title">{p.name}</h1>
+          {p.tagline && <p class="mt-3 text-sm font-semibold text-[var(--color-soil)]">{p.tagline}</p>}
+          <p class="mt-3 text-lg sm:text-xl text-[var(--color-text)] leading-snug">{p.role}</p>
         </div>
 
-        <!-- Right Column (7 cols): Identity, Role, Pricing, Variants, & Field Specs -->
-        <div class="lg:col-span-7 space-y-6">
-          <div>
-            <div class="flex flex-wrap items-center gap-2 mb-2">
-              <span class="inline-flex items-center px-2.5 py-0.5 text-xs font-semibold text-[var(--color-brand-strong)] bg-[var(--color-tint)] border border-[var(--color-brand-strong)]/20 rounded-[2px]">
-                {categoryBadge}
-              </span>
-              <span class="text-xs text-[var(--color-text-muted)]">
-                Formula Resmi Agritani Official
-              </span>
-            </div>
-            
-            <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--color-brand)] tracking-tight leading-tight">
-              {p.name}
-            </h1>
-            
-            <p class="mt-2 text-lg sm:text-xl font-medium text-[var(--color-text)] leading-snug">
-              {p.role}
-            </p>
-            {p.tagline && (
-              <p class="mt-1 text-sm font-semibold text-[var(--color-soil)]">
-                {p.tagline}
-              </p>
-            )}
-          </div>
+        <p class="text-base text-[var(--color-text-muted)] leading-relaxed">{p.summary}</p>
 
-          <p class="text-base text-[var(--color-text-muted)] leading-relaxed">
-            {p.summary}
-          </p>
-
-          <!-- Packaging variants & prices copied from petanisejahtera.com product pages, checked 2026-09-30 -->
-          <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border-control)]/30 rounded-[2px] space-y-4">
-            <div class="flex items-baseline justify-between border-b border-[var(--color-border-control)]/20 pb-2">
-              <span class="font-serif text-base font-semibold text-[var(--color-text)]">
-                Pilihan kemasan & harga
-              </span>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-              {variants.map((v, index) => {
-                const savings = v.comparePrice ? v.comparePrice - v.price : 0;
-                return (
-                  <div class={`p-3.5 border rounded-[2px] transition-colors ${index === 0 ? 'bg-[var(--color-tint)]/30 border-[var(--color-brand)]/40' : 'bg-[var(--color-surface)] border-[var(--color-border-control)]/30'}`}>
-                    <div class="flex items-center justify-between mb-1">
-                      <span class="font-bold text-sm text-[var(--color-text)]">
-                        Kemasan {v.size}
-                      </span>
-                      {v.comparePrice && (
-                        <span class="text-xs text-[var(--color-text-muted)] line-through tabular-nums">
-                          {formatRupiah(v.comparePrice)}
-                        </span>
-                      )}
-                    </div>
-                    <div class="text-xl font-bold font-serif text-[var(--color-brand-strong)] tabular-nums">
-                      {formatRupiah(v.price)}
-                    </div>
-                    <div class="mt-1.5 flex items-center justify-between text-[11px] text-[var(--color-text-muted)]">
-                      <span>{v.volumeMl ? `${v.volumeMl} ml konsentrat` : 'Kemasan botol'}</span>
-                      {savings > 0 && (
-                        <span class="text-[var(--color-brand-strong)] font-semibold">
-                          Hemat {formatRupiah(savings)}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            <p class="text-xs text-[var(--color-text-muted)]">
+        <!-- Packaging variants & prices copied from petanisejahtera.com product pages, checked 2026-09-30 -->
+        {variants.length > 0 && (
+          <section aria-labelledby="heading-harga">
+            <h2 id="heading-harga" class="font-serif text-xl font-semibold text-[var(--color-text)]">
+              Pilihan kemasan & harga
+            </h2>
+            <table class="mt-3 w-full text-left border-collapse text-sm tabular-nums">
+              <thead>
+                <tr class="border-b border-[var(--color-border-control)] text-[var(--color-text-muted)]">
+                  <th scope="col" class="py-2 pr-4 font-semibold">Kemasan</th>
+                  <th scope="col" class="py-2 pr-4 font-semibold text-right">Harga</th>
+                  <th scope="col" class="py-2 font-semibold text-right">Harga normal</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[var(--color-border)]">
+                {variants.map((v) => {
+                  const savings = v.comparePrice ? v.comparePrice - v.price : 0;
+                  return (
+                    <tr>
+                      <th scope="row" class="py-3 pr-4 font-semibold text-[var(--color-text)]">{v.size}</th>
+                      <td class="py-3 pr-4 text-right">
+                        <span class="font-serif text-lg font-semibold text-[var(--color-brand-strong)]">{formatRupiah(v.price)}</span>
+                        {savings > 0 && (
+                          <span class="block text-xs text-[var(--color-text-muted)]">Hemat {formatRupiah(savings)}</span>
+                        )}
+                      </td>
+                      <td class="py-3 text-right text-[var(--color-text-muted)]">
+                        {v.comparePrice ? <s>{formatRupiah(v.comparePrice)}</s> : '—'}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            <p class="mt-3 text-xs text-[var(--color-text-muted)] leading-relaxed">
               Harga dari <a href="https://petanisejahtera.com/" target="_blank" rel="noopener" class="underline underline-offset-2">petanisejahtera.com<span class="sr-only"> (membuka tab baru)</span></a> per 30 September 2026 dan dapat berubah sewaktu-waktu; cek harga terbaru sebelum membeli.
             </p>
+          </section>
+        )}
+
+        <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-sm">
+          <div>
+            <dt class="text-[var(--color-text-muted)]">Komoditas sasaran</dt>
+            <dd class="mt-0.5 text-[var(--color-text)]">
+              {p.commodities.map((c) => commoditiesMap.get(typeof c === 'string' ? c : c.id) || (typeof c === 'string' ? c : c.id)).join(', ')}
+            </dd>
           </div>
-
-          <!-- Quick Agronomic Tags -->
-          <dl class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-xs sm:text-sm">
-            <div>
-              <dt class="font-bold text-[var(--color-text-muted)] uppercase tracking-wider text-[11px]">
-                Komoditas Sasaran
-              </dt>
-              <dd class="text-[var(--color-text)] font-medium mt-1">
-                {p.commodities.map((c) => commoditiesMap.get(typeof c === 'string' ? c : c.id) || (typeof c === 'string' ? c : c.id)).join(', ')}
-              </dd>
-            </div>
-            <div>
-              <dt class="font-bold text-[var(--color-text-muted)] uppercase tracking-wider text-[11px]">
-                Metode Aplikasi
-              </dt>
-              <dd class="text-[var(--color-text)] font-medium mt-1">
-                {p.applicationMethods.join(' / ')}
-              </dd>
-            </div>
-          </dl>
-        </div>
-
+          <div>
+            <dt class="text-[var(--color-text-muted)]">Cara aplikasi</dt>
+            <dd class="mt-0.5 text-[var(--color-text)]">{p.applicationMethods.join(' / ')}</dd>
+          </div>
+        </dl>
       </div>
     </header>
 
-    <!-- Sub-navigation Anchor Jump Bar -->
-    <nav class="my-8 py-2.5 border-y border-[var(--color-border-control)]/30" aria-label="Navigasi bagian halaman produk">
-      <ul class="flex flex-wrap items-center gap-1 sm:gap-2 text-xs sm:text-sm font-medium">
-        <li>
-          <a
-            href="#mekanisme"
-            class="inline-flex items-center px-3 py-2 min-h-[44px] text-[var(--color-text)] hover:text-[var(--color-brand)] hover:bg-[var(--color-tint)] rounded-[2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
-          >
-            Mekanisme Tanaman
-          </a>
-        </li>
-        <li>
-          <a
-            href="#spesifikasi"
-            class="inline-flex items-center px-3 py-2 min-h-[44px] text-[var(--color-text)] hover:text-[var(--color-brand)] hover:bg-[var(--color-tint)] rounded-[2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
-          >
-            Kandungan & Sifat
-          </a>
-        </li>
-        <li>
-          <a
-            href="#aplikasi-dosis"
-            class="inline-flex items-center px-3 py-2 min-h-[44px] text-[var(--color-text)] hover:text-[var(--color-brand)] hover:bg-[var(--color-tint)] rounded-[2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
-          >
-            Takaran & Dosis
-          </a>
-        </li>
+    <nav class="mb-12 sm:mb-16" aria-label="Bagian halaman produk">
+      <ul class="flex flex-wrap gap-x-6 text-sm">
+        <li><a href="#mekanisme" class="inline-flex items-center min-h-[44px] text-[var(--color-brand-strong)] underline underline-offset-4 decoration-[var(--color-border-control)] hover:decoration-[var(--color-brand)] rounded-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]">Cara kerja</a></li>
+        <li><a href="#spesifikasi" class="inline-flex items-center min-h-[44px] text-[var(--color-brand-strong)] underline underline-offset-4 decoration-[var(--color-border-control)] hover:decoration-[var(--color-brand)] rounded-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]">Kandungan</a></li>
+        <li><a href="#aplikasi-dosis" class="inline-flex items-center min-h-[44px] text-[var(--color-brand-strong)] underline underline-offset-4 decoration-[var(--color-border-control)] hover:decoration-[var(--color-brand)] rounded-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]">Dosis</a></li>
         {fieldPhotos.length > 0 && (
-          <li>
-            <a
-              href="#dokumentasi"
-              class="inline-flex items-center px-3 py-2 min-h-[44px] text-[var(--color-text)] hover:text-[var(--color-brand)] hover:bg-[var(--color-tint)] rounded-[2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
-            >
-              Foto Lapangan ({fieldPhotos.length})
-            </a>
-          </li>
+          <li><a href="#foto-lahan" class="inline-flex items-center min-h-[44px] text-[var(--color-brand-strong)] underline underline-offset-4 decoration-[var(--color-border-control)] hover:decoration-[var(--color-brand)] rounded-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]">Foto lahan</a></li>
         )}
-        <li>
-          <a
-            href="#keaslian"
-            class="inline-flex items-center px-3 py-2 min-h-[44px] text-[var(--color-text)] hover:text-[var(--color-brand)] hover:bg-[var(--color-tint)] rounded-[2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
-          >
-            Verifikasi Keaslian
-          </a>
-        </li>
+        <li><a href="#keaslian" class="inline-flex items-center min-h-[44px] text-[var(--color-brand-strong)] underline underline-offset-4 decoration-[var(--color-border-control)] hover:decoration-[var(--color-brand)] rounded-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]">Keaslian</a></li>
         {relatedArticles.length > 0 && (
-          <li>
-            <a
-              href="#jurnal"
-              class="inline-flex items-center px-3 py-2 min-h-[44px] text-[var(--color-text)] hover:text-[var(--color-brand)] hover:bg-[var(--color-tint)] rounded-[2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
-            >
-              Panduan Terkait ({relatedArticles.length})
-            </a>
-          </li>
+          <li><a href="#jurnal" class="inline-flex items-center min-h-[44px] text-[var(--color-brand-strong)] underline underline-offset-4 decoration-[var(--color-border-control)] hover:decoration-[var(--color-brand)] rounded-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]">Panduan terkait</a></li>
         )}
       </ul>
     </nav>
 
-    <!-- 2. Balanced Technical Body (No Empty Whitespace, Zero AI Slop Cards) -->
-    <div class="space-y-14 sm:space-y-16 mb-16">
-      
-      <!-- Section 1: Mekanisme Kerja & Target Fisiologis -->
-      <section id="mekanisme" class="scroll-mt-28 space-y-6">
-        <div class="max-w-2xl">
-          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
-            Mekanisme Fisiologis pada Jaringan Tanaman
-          </h2>
-          <p class="mt-1 text-sm text-[var(--color-text-muted)]">
-            Prinsip kerja biokimia formula dalam mendukung ketahanan sel dan biosintesis nutrisi.
-          </p>
+    <div class="space-y-16 sm:space-y-20 mb-16">
+      <section id="mekanisme" class="scroll-mt-28 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start" aria-labelledby="heading-mekanisme">
+        <div class="lg:col-span-7 space-y-4 text-base text-[var(--color-text)] leading-relaxed">
+          <h2 id="heading-mekanisme" class="section-title">Cara kerja pada tanaman</h2>
+          <p>{fDetail.mechanism}</p>
+          <p>{fDetail.targetAction}</p>
+          <p class="text-[var(--color-text-muted)]">{fDetail.agronomicNote}</p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div class="lg:col-span-7 space-y-4 text-base text-[var(--color-text)] leading-relaxed">
-            <p>
-              {fDetail.mechanism}
-            </p>
-            <p>
-              {fDetail.targetAction}
-            </p>
-            <div class="p-4 bg-[var(--color-tint)]/40 rounded-[2px] border border-[var(--color-border-control)]/30 text-sm text-[var(--color-text)] leading-relaxed">
-              <strong>Catatan Tim Agronomi:</strong> {fDetail.agronomicNote}
+        <div class="lg:col-span-5">
+          <h3 class="font-serif text-xl font-semibold text-[var(--color-text)]">Sifat formula</h3>
+          <dl class="mt-3 space-y-4 text-sm leading-relaxed">
+            <div>
+              <dt class="font-semibold text-[var(--color-text)]">Sistemik</dt>
+              <dd class="mt-0.5 text-[var(--color-text-muted)]">Diserap melalui stomata daun dan diedarkan lewat jaringan pembuluh tanaman.</dd>
             </div>
-          </div>
-
-          <div class="lg:col-span-5 bg-[var(--color-surface)] p-5 rounded-[2px] border border-[var(--color-border-control)]/30 space-y-4">
-            <h3 class="font-serif font-bold text-base text-[var(--color-brand)] border-b border-[var(--color-border-control)]/20 pb-2">
-              Karakter Fisiologis Formula
-            </h3>
-            <ul class="space-y-3 text-xs sm:text-sm text-[var(--color-text)]">
-              <li class="flex items-start gap-2.5">
-                <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand)] mt-2 shrink-0" aria-hidden="true"></span>
-                <div>
-                  <strong>Aksi Sistemik Terarah:</strong>
-                  <span class="text-[var(--color-text-muted)] block mt-0.5">Diserap cepat melalui stomata daun dan berkas pembuluh xilem-floem tanpa residu phytotoxic.</span>
-                </div>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand)] mt-2 shrink-0" aria-hidden="true"></span>
-                <div>
-                  <strong>Kompatibilitas Cuaca Tropis:</strong>
-                  <span class="text-[var(--color-text-muted)] block mt-0.5">Formula stabil pada kelembapan tinggi dan suhu siang hari iklim tropis nusantara.</span>
-                </div>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand)] mt-2 shrink-0" aria-hidden="true"></span>
-                <div>
-                  <strong>Bebas Hambatan Stomata:</strong>
-                  <span class="text-[var(--color-text-muted)] block mt-0.5">Molekul terhidrolisis halus tidak meninggalkan kristal atau lapisan lilin yang menutup pori-pori pernapasan daun.</span>
-                </div>
-              </li>
-            </ul>
-          </div>
+            <div>
+              <dt class="font-semibold text-[var(--color-text)]">Cocok untuk iklim tropis</dt>
+              <dd class="mt-0.5 text-[var(--color-text-muted)]">Stabil pada kelembapan tinggi dan suhu siang hari di Indonesia.</dd>
+            </div>
+            <div>
+              <dt class="font-semibold text-[var(--color-text)]">Tidak menutup stomata</dt>
+              <dd class="mt-0.5 text-[var(--color-text-muted)]">Tidak meninggalkan kristal atau lapisan lilin pada permukaan daun.</dd>
+            </div>
+          </dl>
         </div>
       </section>
 
-      <!-- Section 2: Kandungan & Spesifikasi Teknis Formula (Definition List, Zero Cards) -->
-      <section id="spesifikasi" class="scroll-mt-28 space-y-6 pt-6 border-t border-[var(--color-border-control)]/20">
-        <div class="max-w-2xl">
-          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
-            Kandungan Formulasi & Spesifikasi Mutu
-          </h2>
-          <p class="mt-1 text-sm text-[var(--color-text-muted)]">
-            Parameter teknis dan sifat fisik formula untuk standarisasi aplikasi di lapangan.
-          </p>
-        </div>
-
-        <dl class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6 bg-[var(--color-surface)] border border-[var(--color-border-control)]/30 rounded-[2px]">
-          <div class="space-y-1">
-            <dt class="text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
-              Bahan Aktif & Nutrisi
-            </dt>
-            <dd class="text-sm font-semibold text-[var(--color-text)] leading-snug">
-              {p.composition || 'Bahan organik dan biostimulan aktif berlisensi'}
-            </dd>
+      <section id="spesifikasi" class="scroll-mt-28" aria-labelledby="heading-spesifikasi">
+        <h2 id="heading-spesifikasi" class="section-title">Kandungan dan sifat fisik</h2>
+        <dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-5 text-sm leading-relaxed">
+          <div>
+            <dt class="text-[var(--color-text-muted)]">Bahan aktif & nutrisi</dt>
+            <dd class="mt-0.5 font-semibold text-[var(--color-text)]">{p.composition || 'Bahan organik dan biostimulan aktif berlisensi'}</dd>
           </div>
-
-          <div class="space-y-1">
-            <dt class="text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
-              Bentuk Fisik
-            </dt>
-            <dd class="text-sm font-semibold text-[var(--color-text)] leading-snug">
-              {p.form || 'Cairan konsentrat larut air murni'}
-            </dd>
+          <div>
+            <dt class="text-[var(--color-text-muted)]">Bentuk</dt>
+            <dd class="mt-0.5 font-semibold text-[var(--color-text)]">{p.form || 'Cairan konsentrat larut air'}</dd>
           </div>
-
-          <div class="space-y-1">
-            <dt class="text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
-              Tingkat Kelarutan
-            </dt>
-            <dd class="text-sm font-semibold text-[var(--color-text)] leading-snug">
-              100% larut sempurna tanpa menyumbat spuyer semprot
-            </dd>
+          <div>
+            <dt class="text-[var(--color-text-muted)]">Kelarutan</dt>
+            <dd class="mt-0.5 font-semibold text-[var(--color-text)]">Larut dalam air tanpa menyumbat spuyer semprot</dd>
           </div>
-
-          <div class="space-y-1">
-            <dt class="text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
-              Kompatibilitas Tangki
-            </dt>
-            <dd class="text-sm font-semibold text-[var(--color-text)] leading-snug">
-              Dapat dicampur pupuk daun & insektisida non-alkalis
-            </dd>
+          <div>
+            <dt class="text-[var(--color-text-muted)]">Pencampuran tangki</dt>
+            <dd class="mt-0.5 font-semibold text-[var(--color-text)]">Dapat dicampur pupuk daun & insektisida non-alkalis</dd>
           </div>
         </dl>
       </section>
 
-      <!-- Section 3: Takaran & Dosis Aplikasi Lapangan -->
-      <section id="aplikasi-dosis" class="scroll-mt-28 space-y-6 pt-6 border-t border-[var(--color-border-control)]/20">
-        <div class="max-w-2xl">
-          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
-            Petunjuk Dosis & Tata Cara Aplikasi
-          </h2>
-          <p class="mt-1 text-sm text-[var(--color-text-muted)]">
-            Panduan kalibrasi semprot dan takaran per tangki 16 Liter untuk efisiensi larutan di lahan.
+      <section id="aplikasi-dosis" class="scroll-mt-28 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start" aria-labelledby="heading-dosis">
+        <div class="lg:col-span-7">
+          <h2 id="heading-dosis" class="section-title">Dosis dan cara aplikasi</h2>
+          <table class="w-full text-left border-collapse text-sm">
+            <tbody class="divide-y divide-[var(--color-border)] text-[var(--color-text)]">
+              <tr>
+                <th scope="row" class="py-3 pr-4 align-top font-semibold whitespace-nowrap">Tangki 16 L</th>
+                <td class="py-3 tabular-nums">{fDetail.dosageGuide.tank}</td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-3 pr-4 align-top font-semibold whitespace-nowrap">Per hektar</th>
+                <td class="py-3 tabular-nums">{fDetail.dosageGuide.hectare}</td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-3 pr-4 align-top font-semibold whitespace-nowrap">Waktu</th>
+                <td class="py-3 leading-relaxed">{fDetail.dosageGuide.timing}</td>
+              </tr>
+              <tr>
+                <th scope="row" class="py-3 pr-4 align-top font-semibold whitespace-nowrap">Cara</th>
+                <td class="py-3">{p.applicationMethods.join(' atau ')}</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="mt-4 text-xs text-[var(--color-text-muted)] leading-relaxed">
+            Ikuti selalu petunjuk pada label kemasan sebelum membuat larutan. Hindari menyemprot saat matahari terik di atas pukul 10.00 atau saat angin kencang.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <!-- Left: Table of Doses -->
-          <div class="lg:col-span-7 space-y-4">
-            <div class="overflow-x-auto border border-[var(--color-border-control)]/30 rounded-[2px] bg-[var(--color-surface)]">
-              <table class="w-full text-left border-collapse text-xs sm:text-sm">
-                <thead>
-                  <tr class="bg-[var(--color-tint)]/60 border-b border-[var(--color-border-control)]/20 text-xs font-bold uppercase tracking-wider text-[var(--color-text)]">
-                    <th scope="col" class="py-3 px-4">Parameter</th>
-                    <th scope="col" class="py-3 px-4">Anjuran Teknis Resmi</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-[var(--color-border-control)]/20 text-[var(--color-text)]">
-                  <tr>
-                    <td class="py-3.5 px-4 font-bold whitespace-nowrap text-[var(--color-brand)]">Dosis Tangki 16L</td>
-                    <td class="py-3.5 px-4 font-medium tabular-nums">{fDetail.dosageGuide.tank}</td>
-                  </tr>
-                  <tr>
-                    <td class="py-3.5 px-4 font-bold whitespace-nowrap text-[var(--color-brand)]">Kebutuhan per Ha</td>
-                    <td class="py-3.5 px-4 font-medium tabular-nums">{fDetail.dosageGuide.hectare}</td>
-                  </tr>
-                  <tr>
-                    <td class="py-3.5 px-4 font-bold whitespace-nowrap text-[var(--color-brand)]">Waktu Aplikasi</td>
-                    <td class="py-3.5 px-4 leading-relaxed">{fDetail.dosageGuide.timing}</td>
-                  </tr>
-                  <tr>
-                    <td class="py-3.5 px-4 font-bold whitespace-nowrap text-[var(--color-brand)]">Cara Aplikasi</td>
-                    <td class="py-3.5 px-4">{p.applicationMethods.join(' atau ')}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <p class="text-xs text-[var(--color-text-muted)]">
-              * Periksa selalu label resmi botol sebelum membuat larutan induk. Hindari aplikasi saat matahari terik di atas pukul 10.00 atau saat angin kencang berisiko drift.
-            </p>
-          </div>
-
-          <!-- Right: Companion Tools Bridge -->
-          <div class="lg:col-span-5 bg-[var(--color-tint)]/40 p-5 rounded-[2px] border border-[var(--color-border-control)]/30 space-y-4">
-            <h3 class="font-serif font-bold text-base text-[var(--color-brand)]">
-              Alat Bantu Pendamping di Lapangan
-            </h3>
-            <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
-              Gunakan perangkat bantu perhitungan dan prakiraan cuaca resmi BMKG sebelum mengisi tangki semprot Anda:
-            </p>
-
-            <div class="space-y-3 pt-2">
-              <a
-                href="/alat/kalkulator-dosis/"
-                class="flex items-center justify-between p-3 bg-[var(--color-surface)] border border-[var(--color-border-control)]/30 hover:border-[var(--color-brand)] rounded-[2px] transition-colors group min-h-[44px]"
-              >
-                <div>
-                  <strong class="block text-xs sm:text-sm text-[var(--color-text)] group-hover:text-[var(--color-brand)]">
-                    Kalkulator Dosis Tani
-                  </strong>
-                  <span class="text-[11px] text-[var(--color-text-muted)]">
-                    Hitung takaran tangki sesuai luas areal lahan
-                  </span>
-                </div>
-                <span class="text-sm text-[var(--color-brand-strong)] font-bold shrink-0 ml-2" aria-hidden="true">→</span>
+        <div class="lg:col-span-5">
+          <h3 class="font-serif text-xl font-semibold text-[var(--color-text)]">Sebelum mengisi tangki</h3>
+          <ul class="mt-2 divide-y divide-[var(--color-border)]">
+            <li>
+              <a href="/alat/kalkulator-dosis/" class="group flex flex-col justify-center min-h-[44px] py-3 rounded-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]">
+                <span class="font-semibold text-sm text-[var(--color-brand-strong)] group-hover:underline">Kalkulator dosis &rarr;</span>
+                <span class="text-sm text-[var(--color-text-muted)]">Hitung takaran per tangki sesuai luas lahan.</span>
               </a>
-
-              <a
-                href="/alat/cuaca-tani/"
-                class="flex items-center justify-between p-3 bg-[var(--color-surface)] border border-[var(--color-border-control)]/30 hover:border-[var(--color-brand)] rounded-[2px] transition-colors group min-h-[44px]"
-              >
-                <div>
-                  <strong class="block text-xs sm:text-sm text-[var(--color-text)] group-hover:text-[var(--color-brand)]">
-                    Cuaca Tani BMKG
-                  </strong>
-                  <span class="text-[11px] text-[var(--color-text-muted)]">
-                    Cek kecepatan angin & potensi hujan per jam
-                  </span>
-                </div>
-                <span class="text-sm text-[var(--color-brand-strong)] font-bold shrink-0 ml-2" aria-hidden="true">→</span>
+            </li>
+            <li>
+              <a href="/alat/cuaca-tani/" class="group flex flex-col justify-center min-h-[44px] py-3 rounded-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]">
+                <span class="font-semibold text-sm text-[var(--color-brand-strong)] group-hover:underline">Cuaca Tani &rarr;</span>
+                <span class="text-sm text-[var(--color-text-muted)]">Prakiraan BMKG per 3 jam untuk memilih waktu semprot.</span>
               </a>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
       </section>
 
-      <!-- Section 4: Dokumentasi Lapangan & Bukti Nyata Pertanaman -->
       {fieldPhotos.length > 0 && (
-        <section id="dokumentasi" class="scroll-mt-28 space-y-6 pt-6 border-t border-[var(--color-border-control)]/20">
-          <div class="max-w-2xl">
-            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
-              Dokumentasi Lapangan & Kondisi Tanaman
-            </h2>
-            <p class="mt-1 text-sm text-[var(--color-text-muted)]">
-              Rekaman visual dari kebun dan sawah mitra kerja sama agronomis di berbagai sentra pertanian.
-            </p>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <section id="foto-lahan" class="scroll-mt-28" aria-labelledby="heading-foto">
+          <h2 id="heading-foto" class="section-title">Foto lahan</h2>
+          <p class="-mt-3 mb-6 max-w-2xl text-sm text-[var(--color-text-muted)] leading-relaxed">
+            Foto ilustrasi kondisi lahan untuk komoditas sasaran, bukan dokumentasi hasil pemakaian produk.
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {fieldPhotos.map((photo) => (
-              <figure class="space-y-2.5">
-                <div class="aspect-4/3 overflow-hidden rounded-[2px] bg-[var(--color-surface)] border border-[var(--color-border-control)]/30 shadow-2xs">
+              <figure>
+                <div class="aspect-4/3 overflow-hidden rounded-[2px] bg-[var(--color-tint)]">
                   <Picture
                     src={photo.image}
                     formats={['webp']}
                     widths={[300, 600]}
-                    sizes="(min-width: 1024px) 24rem, (min-width: 768px) 50vw, 100vw"
+                    sizes="(min-width: 1024px) 24rem, (min-width: 640px) 50vw, 100vw"
                     quality={85}
                     alt={photo.caption}
                     class="w-full h-full object-cover"
                     loading="lazy"
                   />
                 </div>
-                <figcaption class="space-y-1">
-                  <span class="inline-block text-[11px] font-bold uppercase tracking-wider text-[var(--color-brand-strong)]">
-                    {photo.tag}
-                  </span>
-                  <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
-                    {photo.caption}
-                  </p>
+                <figcaption class="mt-2 text-xs text-[var(--color-text-muted)] leading-relaxed">
+                  {photo.tag}. {photo.caption}
                 </figcaption>
               </figure>
             ))}
@@ -603,71 +380,41 @@ const seo: SeoInput = {
         </section>
       )}
 
-      <!-- Section 5: Verifikasi Keaslian Kemasan Resmi -->
-      <section id="keaslian" class="scroll-mt-28 space-y-6 pt-6 border-t border-[var(--color-border-control)]/20">
-        <div class="max-w-2xl">
-          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
-            Memastikan Keaslian Kemasan Resmi
-          </h2>
-          <p class="mt-1 text-sm text-[var(--color-text-muted)]">
-            Pedoman pemeriksaan fisik saat menerima produk dari kios saprotan dan kelompok tani mitra.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="space-y-2">
-            <h3 class="font-bold text-sm sm:text-base text-[var(--color-text)] flex items-center gap-2">
-              <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand)] shrink-0" aria-hidden="true"></span>
-              Segel Hologram ShieldedTag™
-            </h3>
-            <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
-              Pastikan segel penutup botol dalam kondisi utuh dan tidak sobek saat dibeli. Segel resmi meninggalkan jejak rusak khusus bila dibuka paksa.
-            </p>
+      <section id="keaslian" class="scroll-mt-28 max-w-3xl" aria-labelledby="heading-keaslian">
+        <h2 id="heading-keaslian" class="section-title">Memeriksa keaslian kemasan</h2>
+        <dl class="space-y-5 text-sm leading-relaxed">
+          <div>
+            <dt class="font-semibold text-[var(--color-text)]">Segel ShieldedTag™</dt>
+            <dd class="mt-1 text-[var(--color-text-muted)]">
+              Pastikan segel tutup botol utuh dan tidak sobek saat dibeli. Segel meninggalkan bekas rusak bila dibuka paksa.
+            </dd>
           </div>
-
-          <div class="space-y-2">
-            <h3 class="font-bold text-sm sm:text-base text-[var(--color-text)] flex items-center gap-2">
-              <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand)] shrink-0" aria-hidden="true"></span>
-              Karakter Cairan Konsentrat
-            </h3>
-            <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
-              Cairan asli memiliki aroma khas hasil fermentasi organik yang stabil, larut homogen dalam air, dan tidak menggumpal di dasar kemasan.
-            </p>
+          <div>
+            <dt class="font-semibold text-[var(--color-text)]">Sifat cairan</dt>
+            <dd class="mt-1 text-[var(--color-text-muted)]">
+              Cairan asli beraroma khas fermentasi organik, larut merata dalam air, dan tidak menggumpal di dasar kemasan.
+            </dd>
           </div>
-
-          <div class="space-y-2">
-            <h3 class="font-bold text-sm sm:text-base text-[var(--color-text)] flex items-center gap-2">
-              <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand)] shrink-0" aria-hidden="true"></span>
-              Pendaftaran Kementan RI
-            </h3>
-            <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
-              Semua produk resmi Agritani Official telah melewati uji mutu dan terdaftar resmi di Kementerian Pertanian Republik Indonesia.
-            </p>
+          <div>
+            <dt class="font-semibold text-[var(--color-text)]">Nomor izin edar</dt>
+            <dd class="mt-1 text-[var(--color-text-muted)]">
+              Produk Agritani terdaftar di Kementerian Pertanian Republik Indonesia. Nomor izin edar tercetak pada label botol.
+            </dd>
           </div>
-        </div>
+        </dl>
       </section>
 
-      <!-- Section 6: Panduan Terkait di Jurnal Tani -->
       {relatedArticles.length > 0 && (
-        <section id="jurnal" class="scroll-mt-28 space-y-4 pt-6 border-t border-[var(--color-border-control)]/20">
-          <div class="flex items-baseline justify-between">
-            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
-              Panduan Terkait di Jurnal Tani
-            </h2>
-            <a
-              href="/jurnal/"
-              class="text-xs sm:text-sm font-semibold text-[var(--color-brand-strong)] hover:underline"
-            >
-              Semua Artikel Jurnal →
-            </a>
+        <section id="jurnal" class="scroll-mt-28" aria-labelledby="heading-jurnal">
+          <div class="flex flex-wrap items-baseline justify-between gap-x-6">
+            <h2 id="heading-jurnal" class="section-title">Panduan terkait di Jurnal Tani</h2>
+            <a href="/jurnal/" class="link-more text-sm mb-6">Semua artikel &rarr;</a>
           </div>
-          <div class="divide-y divide-[var(--color-border-control)]/20">
+          <div class="divide-y divide-[var(--color-border)]">
             {relatedArticles.map((art) => <ArticleRow article={art} />)}
           </div>
         </section>
       )}
-
-
     </div>
   </div>
 </BaseLayout>
