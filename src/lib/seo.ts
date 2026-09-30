@@ -5,6 +5,7 @@
 
 export const SITE_URL = 'https://agritani.com';
 export const SITE_NAME = 'Agritani';
+export const PUBLISHER_NAME = 'Agritani Official';
 export const DEFAULT_OG_IMAGE = 'https://agritani.com/og/default.png';
 
 export interface BreadcrumbItem {
@@ -44,7 +45,8 @@ export interface SeoOutput {
   description: string;
   canonical: string;
   robots: string;
-  author?: string;
+  author: string;
+  publisher: string;
   og: {
     title: string;
     description: string;
@@ -160,7 +162,12 @@ export function buildSeo(input: SeoInput): SeoOutput {
       name: 'Agritani',
       alternateName: 'Agritani Official',
       url: `${SITE_URL}/`,
-      logo: `${SITE_URL}/favicon.svg`,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_URL}/apple-touch-icon.png`,
+        width: 180,
+        height: 180,
+      },
       description: 'Portal pertanian resmi Agritani yang dikelola Arif Prabowo, menghadirkan empat produk unggulan dan panduan agronomi lapangan.',
     },
     {
@@ -237,6 +244,9 @@ export function buildSeo(input: SeoInput): SeoOutput {
       inLanguage: 'id-ID',
       isPartOf: {
         '@id': `${SITE_URL}/#website`,
+      },
+      publisher: {
+        '@id': `${SITE_URL}/#organization`,
       },
     };
     if (resolvedBreadcrumbs.length > 0) {
@@ -331,7 +341,9 @@ export function buildSeo(input: SeoInput): SeoOutput {
     description,
     canonical,
     robots,
-    author: article?.author || (ogType === 'article' ? 'Arif Prabowo' : undefined),
+    // meta author/publisher on every page (owner 2026-09-30): articles by Arif Prabowo; other pages and publisher = Agritani Official
+    author: article?.author || (ogType === 'article' ? 'Arif Prabowo' : PUBLISHER_NAME),
+    publisher: PUBLISHER_NAME,
     og: {
       title: resolvedTitle,
       description,

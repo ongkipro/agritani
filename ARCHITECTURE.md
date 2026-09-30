@@ -142,7 +142,7 @@ const articles = defineCollection({
     title: z.string().min(20).max(110),              // H1; naskah saat ini 73–103 karakter
     metaTitle: z.string().min(30).max(60),           // dari `meta_title` naskah; <title> = metaTitle + " - Agritani" (55–70 karakter, DEC-022)
     description: z.string().min(120).max(160),       // dari `meta_description` naskah; juga dek
-    answer: z.string().optional(),                   // Jawaban Singkat 40–60 kata; wajib untuk non-draft (dicek integritas)
+    answer: z.string().optional(),                   // Jawaban Singkat 40–60 kata bila diisi (opsional sejak DEC-020)
     slug: z.string(),
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
@@ -155,7 +155,7 @@ const articles = defineCollection({
     heroImage: z.object({ src: image(), alt: z.string().min(5).max(125), credit: z.string() }).optional(),
     fieldTakeaways: fieldTakeaways.optional(),
     references: z.array(reference_).default([]),
-    draft: z.boolean().default(true),                // terbit hanya setelah lolos integritas & OQ-3
+    draft: z.boolean().default(true),                // 296/300 terbit sejak DEC-020; 4 ditahan (launch-content.md §3)
   }),
 });
 
@@ -233,7 +233,7 @@ Catatan: `file()` loader mewajibkan `id` string per entri; karena itu relasi `cr
 
 ### 3.0. Pemetaan naskah → skema (diterapkan T-03)
 
-Naskah di `docs/content/articles/` (150 file per 2026-09-29) memakai frontmatter `title, slug, category, author, reading_time, published_date, source, tags, meta_title, meta_description`.
+Naskah di `docs/content/articles/` (300 file per 2026-09-30; awalnya 150 per 2026-09-29) memakai frontmatter `title, slug, category, author, reading_time, published_date, source, tags, meta_title, meta_description`.
 
 | Naskah | Skema | Aturan |
 | :--- | :--- | :--- |
@@ -261,13 +261,13 @@ Pemetaan kategori adalah titik awal; T-03 boleh memindahkan artikel ke topik yan
 `src/lib/content-integrity.ts` mengekspor `assertContentIntegrity()` yang dipanggil di `getStaticPaths` `src/pages/jurnal/[slug].astro` (selalu dieksekusi saat build/dev); galat menggagalkan build dengan nama file:
 
 - Slug artikel unik; `symptoms[].article` menunjuk artikel **terbit**; `cropCalendars[].id` ada di `commodities`.
-- Artikel terbit (`draft: false`) wajib: ≥ 1 `references` (REQ-05), `answer` 40–60 kata, `metaTitle` & `description` unik antarartikel, `author` terisi, dan minimal 1 `commodities` (REQ-03).
+- Artikel terbit (`draft: false`) wajib: `metaTitle` & `description` unik antarartikel, `author` terisi, slug unik, dan `answer` 40–60 kata **bila diisi**. Sejak DEC-020 `references`, `answer`, dan `commodities` opsional (blok hanya tampil bila ada; artikel tanpa rujukan menampilkan catatan "sedang dilengkapi"). `<title>` = `metaTitle` + " - Agritani" (55–70) dan description 120–155 dijaga `check-seo` (DEC-022).
 - Gejala dan kalender tanpa `reviewedBy` tidak dirender di produksi (bukan galat).
 - Di mode pratinjau (§3.2), rujukan ke artikel draft diizinkan dan data tanpa `reviewedBy` ikut dirender dengan label "BELUM DITINJAU".
 
 ### 3.2. Mode pratinjau draft
 
-Karena artikel baru terbit setelah pustaka terverifikasi (OQ-3/T-16), UI dikembangkan dan dibuktikan dengan **mode pratinjau**: `PUBLIC_INCLUDE_DRAFTS=true` (hanya untuk `astro dev` dan build pratinjau lokal) merender artikel draft dengan pita "DRAF — belum terbit" dan `noindex`. Build produksi tanpa variabel ini tidak pernah memuat draft. Bukti UI task (DESIGN §10) boleh memakai mode pratinjau; bukti rilis (T-15) harus dari build produksi.
+Sebelum DEC-020 artikel baru terbit setelah pustaka terverifikasi (OQ-3/T-16); mode ini tetap dipakai untuk 4 naskah yang ditahan dan data alat yang belum ditinjau. UI dikembangkan dan dibuktikan dengan **mode pratinjau**: `PUBLIC_INCLUDE_DRAFTS=true` (hanya untuk `astro dev` dan build pratinjau lokal) merender artikel draft dengan pita "DRAF — belum terbit" dan `noindex`. Build produksi tanpa variabel ini tidak pernah memuat draft. Bukti UI task (DESIGN §10) boleh memakai mode pratinjau; bukti rilis (T-15) harus dari build produksi.
 
 ---
 

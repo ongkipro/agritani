@@ -1,11 +1,11 @@
 # Release Manifest — agritani
 
-Release-ID: agritani-v1.1.0-2026-09-30
-Base: a64636b
+Release-ID: agritani-v1.2.0-2026-09-30
+Base: ee4886e
 Environment: production
 Declared-Risk: R2
-Rollback-Ref: f6088e01-dd02-46c3-9a25-90ee211f7210
-Rollback-Command: npx wrangler rollback f6088e01-dd02-46c3-9a25-90ee211f7210
+Rollback-Ref: bb4a8793-6099-44b0-b935-721fb0ab4181
+Rollback-Command: npx wrangler rollback bb4a8793-6099-44b0-b935-721fb0ab4181
 Backup-Proof: NOT_REQUIRED
 Status: READY
 

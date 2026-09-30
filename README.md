@@ -36,7 +36,7 @@ Setiap dokumen di bawah ini memiliki fungsi spesifik dan merupakan sumber kebena
 
 ## 🗂️ Direktori Konten & Bank Riset
 
-- 📄 [`docs/content/articles/`](./docs/content/articles/) — Bank 150 naskah artikel agronomi (6 topik); terbit bertahap setelah pustaka & Jawaban Singkat lengkap.
+- 📄 [`docs/content/articles/`](./docs/content/articles/) — Bank 300 naskah artikel agronomi (6 topik); 296 terbit (DEC-020), 4 ditahan karena masalah isi tercatat lengkap.
 - 🌿 [`docs/content/perkebunan-sawit-content-vault.md`](./docs/content/perkebunan-sawit-content-vault.md) — Bank pengetahuan agronomi perkebunan kelapa sawit & Ganoderma.
 - 🍅 [`docs/content/hortikultura-urban-farming-content-vault.md`](./docs/content/hortikultura-urban-farming-content-vault.md) — Bank pengetahuan hortikultura & urban farming.
 - 🏢 [`docs/content/company-profile.md`](./docs/content/company-profile.md) — Naskah profil awal (historis; menyebut nama PT yang tidak dipakai lagi, DEC-017).

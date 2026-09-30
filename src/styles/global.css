@@ -446,6 +446,11 @@ button:disabled,
   background: var(--color-tint);
 }
 
+/* Cuaca Tani region picker (T-45): once a village is chosen, show only the one-line summary + "Ganti wilayah". */
+#region-picker-root:has(#region-active-summary:not(.hidden)) :is(.region-levels, .region-intro, .region-status) {
+  display: none;
+}
+
 /* Progressive Article Reveal & Modern List Animations */
 .article-item-wrapper.is-hidden {
   display: none !important;

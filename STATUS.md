@@ -5,7 +5,7 @@ Status: Active
 State: VERIFIED
 Review-Risk: R3
 Independent-Review: PASS
-Primary-Worker: Claude (Opus 5.5) for T-35…T-41; Antigravity for T-01…T-34
+Primary-Worker: Claude (Opus 5.5) for T-35…T-45; Antigravity for T-01…T-34
 Independent-Reviewer: Claude Sonnet 5.5 subagent per run (see `.delivery/runs/`), distinct from Primary-Worker
 Independent-Review-Head: bdcdc6b
 
@@ -54,7 +54,7 @@ Kontrak pra-pengembangan diaudit ulang pada 2026-09-29 dengan skill dotfiles ter
 
 ### Active work
 
-Tidak ada task yang sedang berjalan. Pekerjaan terakhir (2026-09-30): T-35…T-41 — identitas (DEC-017), tata letak kartu (DEC-019), tampilan HP (T-40), dan pagar aturan pemilik di build (T-41). Riwayat lengkap ada di `BUILD-LOG.md`; antrean di `TASKS.md`.
+Tidak ada task yang sedang berjalan. Pekerjaan terakhir (2026-09-30): T-35…T-45 — identitas (DEC-017), tata letak kartu (DEC-019), tampilan HP (T-40), pagar aturan pemilik di build (T-41), terbit massal 296/300 artikel (T-42, DEC-020), Tentang Kami distributor resmi online (T-43, DEC-021), panjang title 55–70 & description 120–155 di semua halaman (T-44, DEC-022), Cuaca Tani + meta author/publisher (T-45). Riwayat lengkap ada di `BUILD-LOG.md`; antrean di `TASKS.md`.
 
 Aturan pemilik yang berlaku untuk semua agent diringkas di `AGENTS.md` ("Owner decisions 2026-09-30") dan dijaga otomatis oleh `scripts/check-owner-rules.mjs` di `npm run build`.
 
@@ -69,7 +69,7 @@ Tidak ada blocker teknis. Menunggu data/aksi pemilik:
 
 ## Verification evidence
 
-- T-35…T-41 (2026-09-30): setiap run `delivery-ledger` PASS dengan review independen; `npx astro check` 0 error, `npm test` PASS, `npm run build` PASS termasuk `check-owner-rules`; live agritani.com diverifikasi 200 per halaman utama setelah deploy. Rincian per task di `BUILD-LOG.md`.
+- T-35…T-45 (2026-09-30): setiap run `delivery-ledger` PASS dengan review independen; `npx astro check` 0 error, `npm test` PASS, `npm run build` PASS termasuk `check-owner-rules`; live agritani.com diverifikasi 200 per halaman utama setelah deploy. Rincian per task di `BUILD-LOG.md`.
 - T-01 fondasi Astro 7.3.5 + Tailwind 4.3.3 + sitemap 3.7.4 selesai dan ter-commit.
 - T-02 lokal: `src/lib/content-integrity.test.ts` (9 kasus uji PASS dalam 5.5ms), `npx astro check` PASS, `npm run build` PASS, `npm run check:contrast` PASS.
 - T-23 lokal: `.github/workflows/ci.yml` sintaks YAML valid (Python safe_load), build, check, test, kontras lulus. Workflow diperbarui dengan `PUBLIC_INCLUDE_DRAFTS: "true"` untuk CI lokal/remote, pin action ke mayor `@v4`, dan audit eksplisit `check:commodities` dan `check:csp`.

@@ -872,3 +872,13 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - Ditulis ulang: title & description 15 halaman statis/alat, 4 produk (title; 2 description meta), 6 hub topik (peta title SEO, H1 tetap), templat hub komoditas, paginasi ("Arsip Jurnal Tani Halaman n: Panduan Agronomi Terapan"), tag (varian kalimat, "Artikel …" untuk 1 artikel), 43 deskripsi artikel diringkas (byte-safe, fakta tetap), 1 `metaTitle` diperpanjang.
 - `check-seo.mjs`: rentang di atas dan larangan "|"/"—" kini **error**; entitas HTML didekode sebelum menghitung. Uji negatif: title "Produk | Agritani" → 2 error.
 - Hasil: 1.825 halaman — 0 di luar rentang; semua description berakhir titik. `npm test` 97/97.
+
+## 2026-09-30 — T-45: Cuaca Tani & meta author/publisher (PASS)
+
+- Sinkron BMKG diverifikasi di live dan dev: `api.bmkg.go.id/publik/prakiraan-cuaca?adm4=32.04.05.2001` 200, ikon `api-apps.bmkg.go.id` 200, 3 hari prakiraan tampil (Cileunyi Kulon, Bandung).
+- `RegionPicker`: lencana "Terpilih" jadi sr-only; setelah desa dipilih hanya satu baris lokasi + tombol "Ganti wilayah" (CSS `:has`, tanpa ubah logika); status "Prakiraan cuaca siap" & kotak "Lokasi terpilih" dihapus.
+- `ForecastTable`: satu kartu per hari dengan ringkasan suhu dan jam hujan dari slot BMKG; lebar maks 56rem; teks kecil 12px; baris angin/lembap di HP boleh membungkus → 0 px overflow tabel di 390 & 1440.
+- SEO: `meta author` (artikel "Arif Prabowo", lainnya "Agritani Official") dan `meta publisher` "Agritani Official" di semua halaman; `article:publisher`; `WebPage.publisher`; logo Organization `apple-touch-icon.png` (ImageObject 180×180). Tes baru; `npm test` 99/99.
+- Catatan review (APPROVE): fokus keyboard pindah ke "Ganti wilayah" setelah desa dipilih pengguna (bukan saat pemulihan otomatis); ringkasan hari diawali huruf kapital.
+- Dokumen lain diselaraskan: PRD (REQ-07 panjang title/description + author/publisher, G-1 300 naskah, OQ-3), ARCHITECTURE (aturan integritas DEC-020, `<title>` bersufiks), README (300 naskah, 296 terbit), STATUS, RELEASE v1.2.0.
+- Catatan dev: cache Vite usang ("Outdated Optimize Dep") membuat prakiraan tidak muncul di dev; hilang setelah `node_modules/.vite` dihapus dan dev dijalankan ulang (bukan masalah produksi).

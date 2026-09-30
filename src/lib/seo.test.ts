@@ -153,3 +153,14 @@ describe('SEO length helpers (owner rule 2026-09-30)', () => {
     assert.equal(clipWords('Panduan budidaya cabai merah', 20), 'Panduan budidaya');
   });
 });
+
+describe('author & publisher meta (owner 2026-09-30)', () => {
+  it('articles: author Arif Prabowo; other pages: Agritani Official; publisher always Agritani Official', () => {
+    const art = buildSeo({ title: 'Artikel uji panjang untuk judul SEO jurnal', description: 'x', canonicalPath: '/jurnal/x/', ogType: 'article', article: { pubDate: new Date('2026-09-29') } as any });
+    assert.equal(art.author, 'Arif Prabowo');
+    assert.equal(art.publisher, 'Agritani Official');
+    const page = buildSeo({ title: 'Halaman uji', description: 'x', canonicalPath: '/produk/' });
+    assert.equal(page.author, 'Agritani Official');
+    assert.equal(page.publisher, 'Agritani Official');
+  });
+});

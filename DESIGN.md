@@ -655,12 +655,12 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 4. H2 "Musim tanam nasional {komoditas}" (tabel MT1–MT3, statis, terbaca tanpa JS).
 5. H2 "Tentang data ini": sumber, ditinjau oleh Arif Prabowo + tanggal tinjau · Konsultasi berkonteks.
 
-**Cuaca Tani `/alat/cuaca-tani/`** (Lapangan) — perilaku §2.6.2
+**Cuaca Tani `/alat/cuaca-tani/`** (Lapangan) — perilaku §2.6.2; tampilan T-45 (2026-09-30)
 
-1. Breadcrumb · H1 "Cuaca Tani" · "Prakiraan BMKG untuk desa Anda, dengan waktu terbaik menyemprot."
-2. Pemilih lokasi 4 tingkat.
-3. Hasil: judul lokasi + waktu analisis BMKG · ringkasan waktu terbaik · tabel per hari.
-4. Atribusi BMKG · penjelasan indikator (ambang yang dipakai) · tautan Kalender Tanam & Kalkulator Dosis · Konsultasi berkonteks.
+1. Breadcrumb · H1 "Cuaca Tani" · satu kalimat.
+2. Kartu "Tentukan lokasi lahan": 4 combobox bertingkat (Provinsi › Kabupaten/Kota › Kecamatan › Desa). Setelah desa dipilih, keempat pilihan **disembunyikan** (CSS `:has`) dan diganti satu baris: ikon lokasi · "Desa, Kec., Kabupaten, Provinsi" · "Tersimpan di perangkat ini" · tombol bergaris "Ganti wilayah" (mengosongkan pilihan dan membuka Provinsi).
+3. Hasil (lebar maks 56rem): nama desa + kecamatan/kabupaten/provinsi · "Diperbarui BMKG" + koordinat · **satu kartu per hari** (Hari Ini/Besok/Lusa) berisi ringkasan dari data BMKG ("Suhu 19–29°C · hujan 1,8 mm pada jam 02.00, 11.00, 14.00." atau "tanpa hujan") lalu tabel per 3 jam (Jam · Cuaca+ikon BMKG · Suhu · Hujan; ≥768px juga Lembap · Angin; <768px angin & lembap di baris kecil di bawah cuaca). Tanpa scroll horizontal di 390px.
+4. Atribusi BMKG · ajakan konsultasi (hanya setelah hasil) · kartu tautan alat terkait. Indikator waktu semprot tetap tersembunyi sampai ambang ditinjau (OQ-11).
 
 **Kalkulator Dosis `/alat/kalkulator-dosis/`** (Lapangan) — perilaku §2.6.3
 
@@ -876,6 +876,7 @@ Satu sumber untuk semua metadata, canonical, Open Graph, breadcrumb, JSON-LD, si
 | `<html lang>` | `id` |
 | `<title>` | **55–70 karakter termasuk spasi dan sufiks** (aturan pemilik 2026-09-30, DEC-022). Beranda tanpa sufiks; semua halaman lain `{judul} - Agritani`, termasuk artikel (`metaTitle` + sufiks). Pemisah tanda hubung `-` (atau `:` di dalam judul), **tidak pernah** `|` atau `—`. Judul terlalu pendek dilengkapi kata kunci terkait, bukan kata klaim berlebihan. Judul hasil templat (tag, hub) memakai `fitText()` di `src/lib/seo.ts`. Unik per halaman; dijaga `check-seo` (error). |
 | `meta description` | **120–155 karakter termasuk spasi** (DEC-022), unik, sama dengan teks yang terlihat (dek/pengantar), berakhir dengan titik; kata kunci terkait boleh ditambahkan secara alami. Tanpa CTA "beli", tanpa daftar kata kunci. Dijaga `check-seo` (error). |
+| `meta author` / `meta publisher` | Semua halaman (T-45, 2026-09-30): artikel `author` = "Arif Prabowo"; halaman lain `author` = "Agritani Official"; `publisher` = "Agritani Official" di semua halaman. Artikel juga `article:author` (URL profil) dan `article:publisher` (`https://agritani.com/`). JSON-LD: `Article.author` → Person, `publisher` → Organization; `WebPage.publisher` → Organization; logo Organization `apple-touch-icon.png` 180×180. |
 | `link rel="canonical"` | URL absolut `https://agritani.com{path}` dengan trailing slash; self-referencing; **tanpa query string** (status alat `?k=`, `?t=` tidak punya canonical sendiri). |
 | `meta robots` | Default `index, follow, max-image-preview:large, max-snippet:-1`; `noindex, follow` untuk `/cari/`, 404, mode pratinjau draft. |
 | Open Graph | `og:site_name=Agritani`, `og:locale=id_ID`, `og:type` (`website` / `article` / `profile`), `og:title` (= `<title>` lengkap dengan sufiks), `og:description`, `og:url` (= canonical), `og:image` + `og:image:width/height/alt` (1200×630, absolut). Artikel: `article:published_time`, `article:modified_time`, `article:author` (URL profil), `article:section` (topik). |
