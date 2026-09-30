@@ -63,7 +63,7 @@ const prevHref = pageNumber === 2 ? '/jurnal/' : `/jurnal/halaman/${pageNumber -
 const nextHref = pageNumber < totalPages ? `/jurnal/halaman/${pageNumber + 1}/` : null;
 ---
 
-<BaseLayout seo={seo}>
+<BaseLayout seo={seo} noWhatsApp>
   <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
     <Breadcrumb items={breadcrumbItems} />
 

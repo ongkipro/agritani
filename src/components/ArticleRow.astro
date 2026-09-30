@@ -2,7 +2,7 @@
 import { Picture } from 'astro:assets';
 import { topicName } from '../lib/topics';
 import { getReadingTime } from '../lib/reading-time';
-import { getTopicImage } from '../lib/topic-images';
+import { getArticleImage, getTopicImage } from '../lib/topic-images';
 
 interface Props {
   article: {
@@ -18,9 +18,11 @@ interface Props {
       draft?: boolean;
     };
   };
+  /** Thumbnail source: 'commodity' (default) or 'topic' on commodity hubs, where every row shares one commodity. */
+  imageBy?: 'commodity' | 'topic';
 }
 
-const { article } = Astro.props;
+const { article, imageBy = 'commodity' } = Astro.props;
 const readingTime = getReadingTime(article.body || '');
 
 const formattedDate = new Intl.DateTimeFormat('id-ID', {
@@ -38,7 +40,7 @@ const formattedDate = new Intl.DateTimeFormat('id-ID', {
     aria-hidden="true"
   >
     <Picture
-      src={getTopicImage(article.data.topic)}
+      src={imageBy === 'topic' ? getTopicImage(article.data.topic) : getArticleImage(article.data)}
       formats={['webp']}
       widths={[240, 420]}
       sizes="(min-width: 640px) 13rem, 100vw"

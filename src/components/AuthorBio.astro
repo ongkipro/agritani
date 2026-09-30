@@ -1,30 +1,52 @@
 ---
+/**
+ * Tentang Penulis (DESIGN §4.3.1 blok 15). Facts only from DEC-016.
+ * Holds the article's single WhatsApp CTA (owner decision 2026-09-30, DESIGN §2.8).
+ */
 import AuthorAvatar from './AuthorAvatar.astro';
+import { waLink } from '../lib/whatsapp';
+import { externalLink } from '../lib/links';
+
+interface Props {
+  /** Article slug and title, carried in the WhatsApp message (G-6 source code). */
+  slug: string;
+  title: string;
+}
+
+const { slug, title } = Astro.props;
+const href = waLink({ source: `Web·Artikel:${slug}`, fields: [{ label: 'Artikel', value: title }] });
+const wa = externalLink('whatsapp');
 ---
 
-<section class="my-10 pt-8" aria-labelledby="tentang-penulis-heading">
-  <h2
-    id="tentang-penulis-heading"
-    class="text-xl font-bold font-serif mb-4 text-[var(--color-text)]"
-  >
+<section class="my-10" aria-labelledby="tentang-penulis-heading">
+  <h2 id="tentang-penulis-heading" class="font-serif text-xl font-semibold text-[var(--color-text)] mb-4">
     Tentang Penulis
   </h2>
-  <div class="flex flex-col sm:flex-row gap-4 items-start">
+  <div class="flex gap-4 items-start">
     <AuthorAvatar size={56} class="w-14 h-14" />
-    <div class="flex-1 text-sm leading-relaxed text-[var(--color-text)]">
-      <div class="font-bold text-base text-[var(--color-text)] mb-1">
-        Arif Prabowo
-      </div>
-      <p class="text-[var(--color-text-muted)] mb-2">
-        Konsultan Pertanian Senior · Pengelola Jurnal Tani
+    <div class="min-w-0">
+      <p class="font-semibold text-[var(--color-text)] leading-snug">
+        Arif Prabowo <span class="font-normal text-[var(--color-text-muted)]">· Konsultan Pertanian Senior</span>
       </p>
-      <a
-        href="/penulis/arif-prabowo/"
-        class="inline-flex items-center text-[var(--color-brand-strong)] font-semibold hover:underline"
-      >
-        Lihat profil & daftar artikel lengkap
-        <span class="ml-1" aria-hidden="true">→</span>
-      </a>
+      <p class="mt-1 text-sm leading-relaxed text-[var(--color-text-muted)]">
+        Lebih dari 8 tahun di bidang pertanian dan riset; kini sales dan konsultan produk Agritani.
+      </p>
+      <p class="mt-1 flex flex-wrap items-center gap-x-4 text-sm font-semibold" data-cta="whatsapp">
+        <a
+          href={href}
+          target={wa.target}
+          rel={wa.rel}
+          class="inline-flex items-center gap-1.5 min-h-[44px] text-[var(--color-brand-strong)] hover:underline underline-offset-4 active:text-[var(--color-text)]"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+          </svg>
+          WhatsApp Agritani<span class="sr-only"> {wa.tabNotice}</span>
+        </a>
+        <a href="/penulis/arif-prabowo/" class="inline-flex items-center min-h-[44px] text-[var(--color-text-muted)] hover:text-[var(--color-brand-strong)] hover:underline underline-offset-4">
+          Lihat profil
+        </a>
+      </p>
     </div>
   </div>
 </section>

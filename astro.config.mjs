@@ -60,7 +60,8 @@ export default defineConfig({
           const url = new URL(page);
           const p = url.pathname;
           // Filter out noindex pages: /cari/, /404, /spesimen/, and drafts (DESIGN §4.4.8)
-          if (p.includes('/cari') || p.includes('/404') || p.includes('/spesimen') || draftSet.has(p)) {
+          // Tag archives stay out of the sitemap; thin ones are noindex (<3 articles), the rest are found via links.
+          if (p.includes('/cari') || p.includes('/404') || p.includes('/spesimen') || p.startsWith('/jurnal/tag/') || draftSet.has(p)) {
             return false;
           }
           return true;

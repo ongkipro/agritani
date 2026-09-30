@@ -348,8 +348,9 @@ Jurnal Tani (keputusan Paduka Ongki 2026-09-29).
 | :--- | :--- | :--- |
 | Beranda | **Tidak ada** | Section Konsultasi menaut ke `/konsultasi/` |
 | Header, menu, footer | **Tidak ada** tombol | Nav "Konsultasi" → halaman; footer: nomor sebagai teks kontak |
-| Indeks Jurnal, hub, profil penulis, Tentang Kami, indeks Alat, indeks Produk, Kebijakan Privasi, Cari, 404 | **Tidak ada** | — |
-| Artikel | 1 | Blok "Kapan harus konsultasi" setelah isi, sebelum Daftar Pustaka |
+| Indeks Jurnal, hub, Tentang Kami, indeks Alat, indeks Produk, Kebijakan Privasi, Cari, 404 | **Tidak ada** | Di indeks Jurnal, halaman paginasi, hub topik/komoditas, dan arsip tag, nomor di footer juga tampil sebagai **teks biasa tanpa tautan WhatsApp** (`BaseLayout noWhatsApp`, keputusan pemilik 2026-09-30) |
+| Profil penulis `/penulis/arif-prabowo/` | 1 | "Konsultasi dengan Arif Prabowo" di bawah bio, sumber `Web·Penulis`; teks menyebut pesan dikirim ke WhatsApp resmi Agritani (keputusan pemilik 2026-09-30) |
+| Artikel | 1 | Tautan teks berikon "WhatsApp Agritani" di blok **Tentang Penulis** (sumber `Web·Artikel:{slug}`, pesan memuat judul artikel; keputusan pemilik 2026-09-30, kotak konsultasi terpisah dihapus) |
 | Diagnosa Gejala | 1 | Di bawah seluruh daftar hasil (atau di state kosong), setelah pengguna memilih |
 | Kalender Tanam, Cuaca Tani, Kalkulator Dosis | 1 | Di akhir hasil, hanya setelah hasil tampil |
 | Detail produk | 1 | Akhir halaman: "Tanya dosis untuk lahan Anda" |
@@ -447,6 +448,13 @@ Sumber tunggal slug → nama → warna: `src/lib/topics.ts`.
 - Jarak tetap label → judul 4px, judul → meta 8px; judul maksimal 2 baris (`line-clamp-2`).
 - Offset atas mengikuti ukuran teks label di dalam area sentuh 44px: label 14px/20px → `mt-3` (Beranda); label 12px/16px → `mt-3.5` (`ArticleRow` di Jurnal, hub, penulis, cari). Bila baris diakhiri `.link-more`, tepi bawah gambar = bilah `.link-more` (wrapper `-mb-0.5`). Di bawah 640px baris bertumpuk (gambar di atas, 16:10) dengan jarak gambar → teks label ±20px (`gap-1.5`).
 
+#### 3.3.2. Kolom sticky (aturan, 2026-09-30)
+
+- Header situs tidak sticky, jadi kolom samping (≥1024px) menempel **24px dari tepi atas layar** (`lg:sticky lg:top-6`). Jarak awal dari judul halaman memakai **margin** (`lg:mt-10`), bukan padding, agar tidak ikut terbawa saat menempel.
+- **Keadaan tertutup wajib muat di layar tanpa scroll** pada viewport 1280×700 ke atas (terukur: `TopicSidebar` 636px, tepi bawah 660px). Karena itu `TopicSidebar` hanya menampilkan 5 komoditas teratas; sisanya di balik `<details>` "Lihat N komoditas lain" (otomatis terbuka bila komoditas aktif ada di dalamnya).
+- Batas tinggi `calc(100vh - 3rem)` dan scroll internal **hanya aktif saat bagian dibuka** (`:has(details[open])`), tanpa JavaScript. Daftar isi artikel memakai batas tinggi yang sama.
+- Sticky berhenti di akhir wadah kontennya (perilaku normal); <1024px kolom samping tidak sticky dan pindah ke bawah konten.
+
 ### 3.4. Ikon & ilustrasi
 
 - Lucide, hanya ikon fungsional yang memperjelas aksi atau kategori: `MessageCircle` (WhatsApp), `Search`, `Printer`, `Droplets` (dosis), `Sprout` (komoditas), `ShieldCheck` (cek keaslian), `MapPin` (wilayah), `ChevronRight`.
@@ -480,6 +488,7 @@ Diminta Paduka Ongki 2026-09-29 agar situs tidak kosong sebelum foto asli (OQ-5)
 | `tentang-kami.webp` | 3:2 | Gambar utama `/tentang-kami/` |
 | `topik-{topik}.webp` ×6 | 16:9 | Header hub topik |
 
+- **Gambar artikel** (`komoditas-{padi,cabai,kelapa-sawit,jagung,sayuran-daun,tomat,mangga,bawang-merah,kakao,durian,jeruk,kopi}.webp`, 16:9, Pixabay, penulis diverifikasi dari JSON-LD, 2026-09-30): `getArticleImage()` di `src/lib/topic-images.ts` memilih komoditas pertama artikel yang punya foto, jika tidak gambar topik. Dipakai untuk gambar utama artikel (bila `heroImage` tidak diisi), thumbnail `ArticleRow`, dan kolom Jurnal di Beranda. Di hub komoditas dan "Bacaan terkait" thumbnail memakai gambar **topik** (`imageBy="topic"`) agar tidak kembar. Keterangan gambar utama: "Foto ilustrasi, bukan dokumentasi kasus di artikel ini."; `alt=""` karena dekoratif. Bukan foto gejala: foto gejala hanya asli/berlisensi (P-2), tidak pernah AI.
 - **Ilustrasi kemasan produk** (`produk-{aussie,bensu,kojien,saratoga}.webp`): buatan AI, **disetujui pemilik 2026-09-30** sebagai ilustrasi sementara sampai foto kemasan asli (OQ-5); alt "Kemasan {nama produk}"; dicatat di `CREDITS.md`. Teks kecil pada label ilustrasi tidak boleh dijadikan sumber klaim produk.
 - **Pengiriman**: selalu lewat `<Picture>`/`<Image>` `astro:assets` dengan `widths` + `sizes` dan `quality` 52–60; kelas grid diletakkan di `pictureAttributes`, bukan di `<img>`. Gambar pilar dekoratif memakai `alt=""`; gambar yang membawa isi memakai `alt` deskriptif.
 - **Placeholder Non-Foto**:
@@ -753,9 +762,9 @@ lebar di mobile.
 | 10 | Daftar Isi | `<nav aria-label="Daftar isi">` | Dari H2 (dan H3 bila > 6 H2). ≥1024px: sticky di kolom kiri dengan penanda bagian aktif. <1024px: `<details>` tertutup "Daftar Isi (6 bagian)". Anchor stabil berbahasa Indonesia (`#gejala-awal`). | heading isi |
 | 11 | Isi | `<div class="prose">` di dalam `<article>` | H2 berbentuk pertanyaan bila cocok. Artikel penyakit/hama memakai urutan: Gejala → Penyebab → Langkah pertama → Pengendalian hayati & kultur teknis → Pengendalian lain (bahan aktif generik, tanpa merek) → Pencegahan. | Markdown |
 | 12 | Pembeda Gejala | `<aside aria-labelledby>` + `<h3>` + `<table>` | Untuk penyakit yang mudah tertukar: tabel 2–3 kolom "Tanda | Patek | Busuk buah lain". Di dalam alur isi, dekat bagian Gejala. | Markdown (komponen) |
-| 13 | Kapan harus konsultasi | `<section>` + `<h2>` | 2–3 tanda bahwa masalah melebihi penanganan mandiri + "Tanya agronom via WhatsApp" dengan pesan terisi judul artikel. Satu-satunya CTA di dalam artikel. | tetap + `title` |
+| 13 | ~~Kapan harus konsultasi~~ (dihapus 2026-09-30, lihat §2.8 dan §4.3.8) | `<section>` + `<h2>` | 2–3 tanda bahwa masalah melebihi penanganan mandiri + "Tanya agronom via WhatsApp" dengan pesan terisi judul artikel. Satu-satunya CTA di dalam artikel. | tetap + `title` |
 | 14 | Daftar Pustaka | `<section>` + `<h2>` + `<ol>` di dalam `<details open>` | Terbuka secara bawaan (tetap bisa diciutkan). Penulis, tahun, judul, sumber; DOI → `https://doi.org/…`, `rel="noopener"`. Artikel tanpa referensi terverifikasi tidak terbit. | `references` |
-| 15 | Tentang Penulis | `<section>` + `<h2>` | Foto, nama, gelar lengkap & institusi (setelah OQ-4), 2 kalimat keahlian, tautan profil. Tanpa kotak kartu; dipisah dengan spasi. | data penulis |
+| 15 | Tentang Penulis (terbangun: lihat §4.3.8 — satu kalimat DEC-016, foto, tautan WhatsApp & profil) | `<section>` + `<h2>` | Foto, nama, gelar lengkap & institusi (setelah OQ-4), 2 kalimat keahlian, tautan profil. Tanpa kotak kartu; dipisah dengan spasi. | data penulis |
 | 16 | Pengungkapan | `<p>` kecil | "Artikel ini ditulis oleh Arif Prabowo, konsultan pertanian senior dan pengelola Jurnal Tani. Beliau juga bekerja sebagai sales dan konsultan produk Agritani (Aussie, BENSU, Kojien, Saratoga). Ikuti selalu petunjuk pada label kemasan." | tetap |
 | 17 | Lanjut membaca | `<nav aria-label="Artikel terkait">` | 3 artikel dengan topik atau komoditas yang sama (baris: judul + waktu baca) + tautan "Diagnosa gejala {komoditas}" ke `/alat/diagnosa-gejala/?k=` + tautan hub topik. Produk hanya bila komoditas cocok dan klaimnya diizinkan (§2.5). | koleksi |
 
@@ -812,6 +821,16 @@ Lihat **§4.4.5** (templat `Article`, `Person`, `BreadcrumbList`).
 #### 4.3.6. URL, hub, dan internal link
 
 Lihat **§4.4.4** (breadcrumb), **§4.4.7** (URL & canonical), dan **§4.4.10** (internal link).
+
+#### 4.3.8. Tata letak terbangun (T-35, 2026-09-30)
+
+Urutan di kolom artikel (7/12, measure 68ch): breadcrumb → H1 → dek → baris meta (Oleh Arif Prabowo · terbit · waktu baca · komoditas · Bagikan · Cetak; tampil di semua lebar) → **gambar utama** 16:9 + keterangan → **Jawaban singkat** (blok `tint`, judul serif huruf biasa, tanpa garis kiri/label kapital) → Ringkasan lapangan (bila ada data) → **Daftar isi** lipat (<1024px) → prosa (callout `[!NOTE]` dsb. = blok `tint` tanpa garis kiri, label serif; **FAQ**: paragraf yang diawali pertanyaan tebal + baris baru ditata sebagai subjudul lewat CSS `:has`, tanpa mengubah file artikel) → Tag (teks biasa, tanpa "#", area sentuh 44px) → **Langkah berikutnya di lahan** (baris alat sesuai topik: Cuaca Tani, Kalkulator Dosis; Diagnosa Gejala hanya bila tidak "Segera hadir") → Daftar Pustaka → Tentang Penulis → Pengungkapan → Bacaan terkait.
+
+Kolom kiri ≥1024px (3/12): **Daftar isi sticky** dengan progres baca dan penanda bagian aktif (garis 1px `brand-strong`, bukan bilah tebal), aturan §3.3.2. Kartu penulis sticky dihapus (info penulis sudah di byline, Tentang Penulis, dan Pengungkapan). Tidak ada data contoh di mode dev: ringkasan dan pustaka hanya dari frontmatter.
+
+Arsip tag `/jurnal/tag/{tag}/`: `noindex` bila < 3 artikel terbit; semua arsip tag dikeluarkan dari sitemap.
+
+**Tentang Penulis** (blok 15), sederhana: foto 56px · "Arif Prabowo · Konsultan Pertanian Senior" · satu kalimat dari DEC-016 · tautan "WhatsApp Agritani" (satu-satunya CTA WhatsApp artikel, §2.8) dan "Lihat profil"; tidak ada kotak konsultasi terpisah (keputusan pemilik 2026-09-30).
 
 #### 4.3.7. Pengukuran
 
@@ -880,6 +899,8 @@ Satu sumber untuk semua metadata, canonical, Open Graph, breadcrumb, JSON-LD, si
 
 - Elemen terakhir: teks biasa dengan `aria-current="page"`; di JSON-LD tanpa `item` (Google memakai URL halaman). Elemen lain: `position`, `name`, `item` absolut (wajib).
 - Judul artikel panjang dipotong visual (`text-overflow`) di layar sempit, tetapi `name` di JSON-LD tetap lengkap.
+
+**Tampilan (T-35, 2026-09-30):** ≥640px satu baris: ikon rumah (label `sr-only` "Beranda", area sentuh 44×44, tepi ikon sejajar tepi konten) · chevron SVG (bukan karakter `›`) · tautan induk 13px · halaman aktif **tidak tebal** dan dipotong elipsis (judul lengkap di `title`, H1 tepat di bawahnya). Jarak ikon/teks ↔ chevron seragam 4px. <640px: satu tautan "kembali" ke induk (14px, 44px) dan jejak lengkap tetap tersedia untuk pembaca layar (`sr-only`). JSON-LD tetap memakai nama "Beranda".
 
 #### 4.4.5. JSON-LD — satu `@graph` per halaman dengan `@id` stabil
 
@@ -954,6 +975,7 @@ Aturan:
   Sitemap: https://agritani.com/sitemap-index.xml
   ```
   Kebijakan crawler AI tidak dibedakan di v1 (semua diizinkan); bila ingin membatasi pelatihan model, keputusan baru via skill `ai-traffic-os`.
+- Arsip tag `/jurnal/tag/{tag}/` tidak masuk sitemap (yang < 3 artikel juga `noindex`); arsip tag yang lebih besar tetap bisa diindeks lewat tautan internal (T-35).
 
 #### 4.4.9. Indeksasi & verifikasi (setelah rilis — tindakan eksternal, butuh persetujuan)
 
@@ -1014,7 +1036,7 @@ Aturan:
 | `CommodityPicker` | Tombol komoditas di hero Beranda; tujuan dinamis: Diagnosa Gejala bila ada gejala tertinjau, jika tidak hub komoditas yang dibangun (§2.2) | Tidak ada (tautan) |
 | `TriageFilter` | Langkah 1–4 dari data `symptoms`, sinkron URL, state §2.2 | Script kecil |
 | `FieldSummaryBox` | Ringkasan Lapangan dari `fieldTakeaways` yang terisi | Tidak ada |
-| `ArticleToc` | Daftar Isi + penanda bagian aktif | Enhancement kecil |
+| `ArticleToc` | Daftar isi: `variant="sidebar"` (sticky, progres baca, bagian aktif) atau `variant="inline"` (`<details>` <1024px) | Enhancement kecil |
 | `References` | Daftar Pustaka dalam `<details>` | Tidak ada |
 | `ArticleRow` | Satu baris indeks artikel (jurnal, hub, penulis, cari, beranda) | Tidak ada |
 | `ProductRow` | Satu baris katalog produk terbuka (tanpa kartu/pill; komoditas sebagai teks) | Tidak ada |

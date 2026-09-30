@@ -7,9 +7,11 @@ export interface TocHeading {
 
 interface Props {
   headings: TocHeading[];
+  /** inline = collapsible list in the article column (<1024px); sidebar = sticky list (>=1024px). */
+  variant: 'inline' | 'sidebar';
 }
 
-const { headings = [] } = Astro.props;
+const { headings = [], variant } = Astro.props;
 
 // Filter only H2 (and H3 if H2 count is small, e.g. <= 6)
 const filteredHeadings = headings.filter(
@@ -18,19 +20,19 @@ const filteredHeadings = headings.filter(
 ---
 
 {filteredHeadings.length > 0 && (
-  <nav class="article-toc h-full" aria-label="Daftar isi artikel">
-    <!-- Mobile: Collapsible Accordion (DESIGN §4.3.2) -->
+  <nav class:list={['article-toc', variant === 'sidebar' && 'h-full']} aria-label="Daftar isi artikel">
+    <!-- inline: collapsible list in the article column (DESIGN §4.3.2) -->
+    {variant === 'inline' && (
     <details
-      class="lg:hidden my-6 rounded-[2px] bg-[var(--color-surface)] border border-[var(--color-border)] shadow-2xs group"
+      class="lg:hidden my-6 border-y border-[var(--color-border)] group"
       id="article-toc-mobile"
     >
-      <summary class="flex items-center justify-between p-4 cursor-pointer select-none min-h-[48px] hover:bg-[var(--color-tint)]/40 transition-colors list-none">
+      <summary class="flex items-center justify-between py-3 cursor-pointer select-none min-h-[48px] list-none">
         <div class="flex items-center gap-2.5">
-          <span class="w-1.5 h-4 bg-[var(--color-brand)] rounded-[1px]" aria-hidden="true"></span>
-          <span class="font-bold text-sm text-[var(--color-text)]">
-            Daftar Isi
+          <span class="font-serif font-semibold text-base text-[var(--color-text)]">
+            Daftar isi
           </span>
-          <span class="text-xs text-[var(--color-soil)] font-medium px-2 py-0.5 rounded-[2px] bg-[var(--color-tint)] border border-[var(--color-border)]/60">
+          <span class="text-xs text-[var(--color-text-muted)] tabular-nums">
             {filteredHeadings.length} bagian
           </span>
         </div>
@@ -47,7 +49,7 @@ const filteredHeadings = headings.filter(
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
       </summary>
-      <div class="px-4 pb-4 pt-1 border-t border-[var(--color-border)] divide-y divide-[var(--color-border)]/60">
+      <div class="pb-3 divide-y divide-[var(--color-border)]">
         {filteredHeadings.map((h) => {
           const isH3 = h.depth === 3;
           return (
@@ -59,13 +61,6 @@ const filteredHeadings = headings.filter(
               ]}
               data-mobile-toc-link
             >
-              <span
-                class:list={[
-                  'rounded-full shrink-0',
-                  isH3 ? 'w-1 h-1 bg-[var(--color-border-control)]' : 'w-1.5 h-1.5 bg-[var(--color-brand)]'
-                ]}
-                aria-hidden="true"
-              ></span>
               <span class="flex-1 leading-snug">{h.text}</span>
               <span class="text-xs text-[var(--color-text-muted)]" aria-hidden="true">→</span>
             </a>
@@ -73,24 +68,25 @@ const filteredHeadings = headings.filter(
         })}
       </div>
     </details>
+    )}
 
-    <!-- Desktop: Sticky Sidebar Navigation (DESIGN §4.3.2) -->
-    <div class="hidden lg:block sticky top-8 max-h-[calc(100vh-5rem)] overflow-y-auto pr-4 text-sm toc-scrollbar">
-      <!-- Section Header & Reading Progress -->
+    <!-- sidebar: sticky list with reading progress (DESIGN §4.3.2) -->
+    {variant === 'sidebar' && (
+    <div class="hidden lg:block sticky top-6 max-h-[calc(100vh-3rem)] overflow-y-auto pr-4 text-sm toc-scrollbar">
       <div class="mb-4 pb-2.5 border-b border-[var(--color-border)]">
         <div class="flex items-center justify-between">
-          <span class="font-extrabold text-xs uppercase tracking-wider text-[var(--color-soil)]">
-            Daftar Isi
+          <span class="font-serif font-semibold text-base text-[var(--color-text)]">
+            Daftar isi
           </span>
           <span
             id="toc-progress-text"
-            class="font-mono text-[11px] text-[var(--color-text-muted)] tabular-nums"
+            class="text-xs text-[var(--color-text-muted)] tabular-nums"
             aria-live="polite"
           >
             0% dibaca
           </span>
         </div>
-        <div class="w-full bg-[var(--color-border)] h-[2px] mt-2 rounded-full overflow-hidden">
+        <div class="w-full bg-[var(--color-border)] h-[2px] mt-2 overflow-hidden">
           <div
             id="toc-progress-fill"
             class="bg-[var(--color-brand)] h-full w-0 transition-all duration-150"
@@ -98,8 +94,6 @@ const filteredHeadings = headings.filter(
           ></div>
         </div>
       </div>
-
-      <!-- Navigation Headings List -->
       <ol class="space-y-0.5 border-l border-[var(--color-border)] relative text-[var(--color-text-muted)]" id="toc-nav-list">
         {filteredHeadings.map((h) => {
           const isH3 = h.depth === 3;
@@ -113,7 +107,7 @@ const filteredHeadings = headings.filter(
                   isH3
                     ? 'pl-5 pr-2 py-1 text-xs text-[var(--color-text-muted)] hover:text-[var(--color-brand-strong)]'
                     : 'pl-3 pr-2 py-1.5 text-[13px] font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text)]',
-                  'border-l-2 border-transparent -ml-px hover:border-[var(--color-border-control)]',
+                  'border-l border-transparent -ml-px hover:border-[var(--color-border-control)]',
                   'focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]'
                 ]}
               >
@@ -124,6 +118,7 @@ const filteredHeadings = headings.filter(
         })}
       </ol>
     </div>
+    )}
   </nav>
 )}
 
@@ -147,10 +142,7 @@ const filteredHeadings = headings.filter(
   :global(.toc-item.active-toc-link) {
     color: var(--color-brand-strong) !important;
     font-weight: 600 !important;
-    border-left-color: var(--color-brand) !important;
-    background-color: var(--color-tint);
-    border-top-right-radius: 2px;
-    border-bottom-right-radius: 2px;
+    border-left-color: var(--color-brand-strong) !important;
   }
 </style>
 

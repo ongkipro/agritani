@@ -36,7 +36,7 @@ const seo: SeoInput = {
 };
 ---
 
-<BaseLayout seo={seo}>
+<BaseLayout seo={seo} noWhatsApp>
   <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
     <Breadcrumb items={breadcrumbItems} />
 
@@ -52,7 +52,7 @@ const seo: SeoInput = {
       </p>
     </header>
 
-    <aside class="my-6 lg:my-0 lg:pt-10 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:row-span-2 lg:sticky lg:top-24 self-start">
+    <aside class="my-6 lg:my-0 lg:mt-10 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:row-span-2 lg:sticky lg:top-6 self-start">
       <TopicSidebar />
     </aside>
 

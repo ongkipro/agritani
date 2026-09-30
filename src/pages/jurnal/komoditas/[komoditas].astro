@@ -88,12 +88,12 @@ const seo: SeoInput = {
 };
 ---
 
-<BaseLayout seo={seo}>
+<BaseLayout seo={seo} noWhatsApp>
   <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
     <Breadcrumb items={breadcrumbItems} />
 
     <div class="flex flex-col lg:grid lg:grid-cols-12 lg:gap-x-12">
-    <aside class="order-last my-8 lg:my-0 lg:pt-10 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:sticky lg:top-24 self-start">
+    <aside class="order-last my-8 lg:my-0 lg:mt-10 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:sticky lg:top-6 self-start">
       <TopicSidebar currentCommodity={commodity.id} />
     </aside>
     <div class="lg:col-start-4 lg:col-span-9 lg:row-start-1">
@@ -145,7 +145,7 @@ const seo: SeoInput = {
               </h2>
               <div class="space-y-2">
                 {group.articles.map((article: any) => (
-                  <ArticleRow article={article} />
+                  <ArticleRow article={article} imageBy="topic" />
                 ))}
               </div>
             </div>

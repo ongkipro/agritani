@@ -453,7 +453,6 @@ button:disabled,
 /* Editorial Callout Panel (transformed from blockquote) */
 blockquote.callout {
   background-color: var(--color-tint);
-  border-left: 3px solid var(--color-brand);
   padding: 1.25rem 1.5rem;
   border-radius: 2px;
   margin: 2rem 0;
@@ -464,10 +463,9 @@ blockquote.callout .callout-badge {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-family: var(--font-editorial);
+  font-size: 1.0625rem;
+  font-weight: 600;
   color: var(--color-brand-strong);
   margin-bottom: 0.75rem;
 }
@@ -475,8 +473,6 @@ blockquote.callout .callout-badge {
 blockquote.callout .callout-dot {
   width: 0.375rem;
   height: 0.375rem;
-  border-radius: 9999px;
-  background-color: var(--color-brand);
-  display: inline-block;
+  display: none;
 }
 

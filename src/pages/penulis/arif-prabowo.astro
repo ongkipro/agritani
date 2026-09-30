@@ -74,13 +74,20 @@ const sortedArticles = visibleArticles.sort(
         </p>
       </div>
 
-      <!-- Independence & Disclosure Block (DESIGN §4.3 Blok 16) -->
-      <div class="py-4 text-xs sm:text-sm text-[var(--color-text-muted)] space-y-1">
-        <span class="font-bold text-[var(--color-soil)] block uppercase tracking-wider text-[11px]">
-          Pengungkapan Editorial
-        </span>
+      <!-- Kontak: satu-satunya CTA WhatsApp di halaman ini (DESIGN §2.8; dipindah dari artikel atas keputusan pemilik 2026-09-30) -->
+      <ConsultPrompt
+        source="Web·Penulis"
+        title="Konsultasi dengan Arif Prabowo"
+        description="Tanyakan budidaya, gejala tanaman, atau penggunaan produk Agritani. Siapkan foto tanaman, umur tanaman, dan lokasi kebun. Pesan dikirim ke WhatsApp resmi Agritani."
+        label="Chat via WhatsApp"
+        variant="secondary"
+      />
+
+      <!-- Pengungkapan (DESIGN §4.3.1 blok 16, DEC-016) -->
+      <div class="mt-6 text-xs sm:text-sm text-[var(--color-text-muted)] space-y-1">
+        <p class="font-semibold text-[var(--color-text)]">Pengungkapan</p>
         <p>
-          Artikel ini ditulis oleh Arif Prabowo, konsultan pertanian senior dan pengelola Jurnal Tani. Beliau juga bekerja sebagai sales dan konsultan produk Agritani (Aussie, BENSU, Kojien, Saratoga). Ikuti selalu petunjuk pada label kemasan.
+          Arif Prabowo juga bekerja sebagai sales dan konsultan produk Agritani (Aussie, BENSU, Kojien, Saratoga). Setiap artikel Jurnal Tani memuat pengungkapan ini. Ikuti selalu petunjuk pada label kemasan.
         </p>
       </div>
     </header>
@@ -104,7 +111,7 @@ const sortedArticles = visibleArticles.sort(
         emptyMessage="Belum ada artikel yang diterbitkan untuk saat ini."
       />
 
-      <!-- Bottom Navigation & Single WhatsApp CTA -->
+      <!-- Bottom navigation -->
       <div class="mt-12 space-y-6">
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 py-4">
           <div>
@@ -123,13 +130,6 @@ const sortedArticles = visibleArticles.sort(
           </a>
         </div>
 
-        <ConsultPrompt
-          source="penulis-arif-prabowo"
-          title="Butuh Bimbingan Teknis untuk Lahan Anda?"
-          description="Kirimkan pertanyaan seputar penerapan panduan agronomi atau konsultasi masalah tanaman langsung ke tim agronomi PT Agritani Internasional melalui WhatsApp."
-          label="Konsultasi Tim Agronomi"
-          variant="secondary"
-        />
       </div>
     </main>
   </div>

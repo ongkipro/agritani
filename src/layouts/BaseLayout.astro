@@ -8,9 +8,11 @@ import '../styles/global.css';
 interface Props {
   seo: SeoInput;
   currentPath?: string;
+  /** Listing pages (Jurnal index, topic, commodity, tag) show the footer number as plain text, no WhatsApp link (owner 2026-09-30). */
+  noWhatsApp?: boolean;
 }
 
-const { seo, currentPath } = Astro.props;
+const { seo, currentPath, noWhatsApp = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -35,6 +37,6 @@ const { seo, currentPath } = Astro.props;
       <slot />
     </main>
 
-    <Footer />
+    <Footer noWhatsApp={noWhatsApp} />
   </body>
 </html>
