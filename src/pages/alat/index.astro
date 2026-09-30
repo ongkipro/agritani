@@ -66,7 +66,7 @@ const tools = [
 
     <!-- Page Header (Lapangan Layout) -->
     <header class="my-6 sm:my-8 max-w-[68ch]">
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--color-text)] mb-3 leading-tight tracking-tight">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[var(--color-text)] mb-3 leading-tight">
         Alat Tani
       </h1>
       <p class="text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed">
@@ -79,14 +79,14 @@ const tools = [
     </p>
 
     <!-- Tools index: open rows, live tools first (DESIGN §4.2.3) -->
-    <ul class="mb-16 divide-y divide-[var(--color-border)] border-y border-[var(--color-border)]">
+    <ul class="mb-16 divide-y divide-[var(--color-border)]">
       {[...tools].sort((a, b) => Number(a.isUpcoming) - Number(b.isUpcoming)).map((tool) => (
         <li>
           <a
             href={tool.href}
             class="group grid grid-cols-1 sm:grid-cols-[14rem_1fr_auto] gap-x-8 gap-y-1.5 py-6 sm:py-7 sm:items-baseline"
           >
-            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] transition-colors">
+            <h2 class="font-serif text-xl sm:text-2xl font-semibold text-[var(--color-brand-strong)] group-hover:underline">
               {tool.title}
             </h2>
             <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed max-w-[60ch]">

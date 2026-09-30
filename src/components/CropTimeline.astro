@@ -40,18 +40,16 @@ const monthNames = [
 ];
 ---
 
-<div id="crop-calendar-root" class="space-y-8" data-calendars={JSON.stringify(serializedCalendars)}>
+<div id="crop-calendar-root" class="space-y-14" data-calendars={JSON.stringify(serializedCalendars)}>
 
-  <!-- Input Form Container (Shadcn-styled Card) -->
-  <div class="bg-[var(--color-surface)] p-6 sm:p-8 border border-[var(--color-border)] rounded-[2px] shadow-2xs space-y-7">
+  <!-- Input Form -->
+  <div class="space-y-10">
     
     <!-- Step 1: Pilih Komoditas -->
     <div class="space-y-3">
-      <div class="flex items-center justify-between">
-        <label for="select-crop-commodity" class="block text-xs font-bold text-[var(--color-soil)]">
-          Langkah 1: Pilih Komoditas Tanaman
-        </label>
-        <span class="text-[11px] text-[var(--color-text-muted)] tabular-nums">
+      <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+        <h2 class="section-title !mb-0"><label for="select-crop-commodity">Pilih komoditas tanaman</label></h2>
+        <span class="text-sm text-[var(--color-text-muted)] tabular-nums">
           {availableCommodities.length} komoditas terdaftar
         </span>
       </div>
@@ -65,9 +63,9 @@ const monthNames = [
             aria-checked="false"
             data-commodity={comm.id}
             data-crop-type={comm.type}
-            class="crop-comm-btn px-4 py-2.5 min-h-[44px] text-xs sm:text-sm font-bold border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] transition-all cursor-pointer shadow-2xs inline-flex items-center gap-2"
+            class="crop-comm-btn px-4 py-2.5 min-h-[44px] text-xs sm:text-sm font-bold border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] transition-all cursor-pointer inline-flex items-center gap-2"
           >
-            <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-border-control)] comm-dot transition-colors" aria-hidden="true"></span>
+            <span class="w-1.5 h-1.5 rounded-[2px] bg-[var(--color-border-control)] comm-dot transition-colors" aria-hidden="true"></span>
             <span>{comm.name}</span>
           </button>
         ))}
@@ -82,12 +80,10 @@ const monthNames = [
     </div>
 
     <!-- Step 2: Tanggal Tanam / Pindah Tanam (Shadcn Date Picker Pattern) -->
-    <div id="section-plant-date" class="space-y-3.5 pt-6 border-t border-[var(--color-border)]">
-      <div class="flex items-center justify-between">
-        <label for="input-plant-date" class="block text-xs font-bold text-[var(--color-soil)]">
-          Langkah 2: Tanggal Tanam / Pindah Tanam
-        </label>
-        <span id="label-date-mode" class="text-[11px] font-bold text-[var(--color-brand-strong)] tabular-nums">
+    <div id="section-plant-date" class="space-y-4">
+      <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+        <h2 class="section-title !mb-0"><label for="input-plant-date">Tanggal tanam atau pindah tanam</label></h2>
+        <span id="label-date-mode" class="text-sm font-semibold text-[var(--color-brand-strong)] tabular-nums">
           Hari Ini · 0 HST
         </span>
       </div>
@@ -106,7 +102,7 @@ const monthNames = [
           <input
             type="date"
             id="input-plant-date"
-            class="w-full appearance-none pl-10 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] font-semibold border border-[var(--color-border-control)] rounded-[2px] shadow-2xs hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-sm cursor-pointer transition-colors"
+            class="w-full appearance-none pl-10 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] font-semibold border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-sm cursor-pointer transition-colors"
           />
           <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-[var(--color-soil)]" aria-hidden="true">
             <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -118,7 +114,7 @@ const monthNames = [
         <button
           type="button"
           id="btn-set-today"
-          class="px-4 py-2.5 min-h-[44px] text-xs font-bold border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:bg-[var(--color-tint)] hover:border-[var(--color-brand)] text-[var(--color-brand-strong)] rounded-[2px] shadow-2xs transition-colors shrink-0 cursor-pointer inline-flex items-center justify-center gap-1.5"
+          class="px-4 py-2.5 min-h-[44px] text-xs font-bold border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:bg-[var(--color-tint)] hover:border-[var(--color-brand)] text-[var(--color-brand-strong)] rounded-[2px] transition-colors shrink-0 cursor-pointer inline-flex items-center justify-center gap-1.5"
         >
           <span>Set Hari Ini</span>
         </button>
@@ -126,49 +122,49 @@ const monthNames = [
 
       <!-- Quick Date Presets (Agricultural Shortcuts) -->
       <div class="space-y-1.5 pt-1">
-        <span class="text-[11px] font-bold text-[var(--color-soil)] block">
-          Pintasan Cepat Umur Tanam / Rencana:
+        <span class="text-sm font-semibold text-[var(--color-text-muted)] block">
+          Pintasan umur tanam atau rencana:
         </span>
         <div class="flex flex-wrap gap-2" id="date-presets-container">
           <button
             type="button"
             data-days="0"
-            class="date-preset-btn px-3.5 py-2 min-h-[40px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer shadow-2xs"
+            class="date-preset-btn px-3.5 py-2 min-h-[44px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer"
           >
             Hari Ini (0 HST)
           </button>
           <button
             type="button"
             data-days="-7"
-            class="date-preset-btn px-3.5 py-2 min-h-[40px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer shadow-2xs"
+            class="date-preset-btn px-3.5 py-2 min-h-[44px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer"
           >
             7 Hari Lalu (1 Mgg)
           </button>
           <button
             type="button"
             data-days="-14"
-            class="date-preset-btn px-3.5 py-2 min-h-[40px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer shadow-2xs"
+            class="date-preset-btn px-3.5 py-2 min-h-[44px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer"
           >
             14 Hari Lalu (2 Mgg)
           </button>
           <button
             type="button"
             data-days="-30"
-            class="date-preset-btn px-3.5 py-2 min-h-[40px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer shadow-2xs"
+            class="date-preset-btn px-3.5 py-2 min-h-[44px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer"
           >
             30 Hari Lalu (1 Bln)
           </button>
           <button
             type="button"
             data-days="-45"
-            class="date-preset-btn px-3.5 py-2 min-h-[40px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer shadow-2xs"
+            class="date-preset-btn px-3.5 py-2 min-h-[44px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer"
           >
             45 Hari Lalu
           </button>
           <button
             type="button"
             data-days="30"
-            class="date-preset-btn px-3.5 py-2 min-h-[40px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer shadow-2xs"
+            class="date-preset-btn px-3.5 py-2 min-h-[44px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer"
           >
             +30 Hari (Rencana)
           </button>
@@ -176,30 +172,27 @@ const monthNames = [
       </div>
 
       <!-- Humanized Context Status Banner -->
-      <div id="date-context-banner" class="p-3.5 bg-[var(--color-tint)] border border-[var(--color-border-control)] rounded-[2px] flex flex-wrap items-center justify-between gap-3 text-xs">
-        <div class="flex items-center gap-2.5">
-          <span class="w-2 h-2 rounded-full bg-[var(--color-brand)] shrink-0" aria-hidden="true"></span>
-          <span id="date-context-text" class="font-medium text-[var(--color-text)]">
-            Memuat tanggal acuan...
-          </span>
-        </div>
-        <span id="date-season-badge" class="font-bold text-[var(--color-soil)] text-[11px] tabular-nums px-2 py-0.5 rounded-[2px] bg-white/60 border border-[var(--color-border-control)]"></span>
+      <div id="date-context-banner" class="px-4 py-3 bg-[var(--color-tint)] rounded-[2px] flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-sm">
+        <span id="date-context-text" class="font-medium text-[var(--color-text)]">
+          Memuat tanggal acuan...
+        </span>
+        <span id="date-season-badge" class="font-semibold text-[var(--color-soil)] tabular-nums"></span>
       </div>
     </div>
 
   </div>
 
   <!-- Results Section (ARIA Live) -->
-  <section id="calendar-results" aria-live="polite" class="space-y-6 hidden">
-    
-    <!-- Summary Header Card (Rencana Tanam Saya) -->
-    <div class="p-6 bg-[var(--color-tint)] border border-[var(--color-brand)]/30 rounded-[2px] space-y-4">
-      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--color-brand)]/20 pb-3">
+  <section id="calendar-results" aria-live="polite" class="space-y-12 hidden">
+
+    <!-- The single results panel (Rencana Tanam Saya) -->
+    <div class="p-5 sm:p-7 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-6">
+      <div class="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h2 id="plan-title" class="text-xl sm:text-2xl font-extrabold text-[var(--color-text)]">
+          <h2 id="plan-title" class="section-title !mb-1">
             Rencana Tanam Saya
           </h2>
-          <p id="plan-subtitle" class="text-xs sm:text-sm text-[var(--color-text-muted)] mt-0.5"></p>
+          <p id="plan-subtitle" class="text-sm text-[var(--color-text-muted)]"></p>
         </div>
         <div id="plan-badge-container">
           <!-- Dynamic review/draft badge -->
@@ -207,103 +200,77 @@ const monthNames = [
       </div>
 
       <!-- Semusim Status Indicators -->
-      <div id="semusim-summary-box" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div class="p-3.5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-1">
-          <span class="block text-xs font-bold text-[var(--color-soil)]">Status Pertumbuhan</span>
-          <p id="summary-hst" class="text-base sm:text-lg font-extrabold text-[var(--color-brand)] tabular-nums"></p>
-          <p id="summary-phase-name" class="text-xs text-[var(--color-text-muted)]"></p>
+      <div id="semusim-summary-box" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div class="space-y-1">
+          <p class="text-sm font-semibold text-[var(--color-soil)]">Status pertumbuhan</p>
+          <p id="summary-hst" class="text-2xl font-extrabold text-[var(--color-brand)] tabular-nums"></p>
+          <p id="summary-phase-name" class="text-sm text-[var(--color-text-muted)]"></p>
         </div>
-        <div class="p-3.5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-1">
-          <span class="block text-xs font-bold text-[var(--color-soil)]">Perkiraan Panen</span>
-          <p id="summary-harvest-range" class="text-base sm:text-lg font-extrabold text-[var(--color-text)] tabular-nums"></p>
-          <p class="text-xs text-[var(--color-text-muted)]">Bergantung pada varietas dan cuaca lokal</p>
+        <div class="space-y-1">
+          <p class="text-sm font-semibold text-[var(--color-soil)]">Perkiraan panen</p>
+          <p id="summary-harvest-range" class="text-2xl font-extrabold text-[var(--color-text)] tabular-nums"></p>
+          <p class="text-sm text-[var(--color-text-muted)]">Bergantung pada varietas dan cuaca lokal</p>
         </div>
       </div>
 
       <!-- Action Buttons Row (DESIGN §2.6.1) -->
-      <div class="pt-2 flex flex-wrap items-center gap-2.5">
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
         <button
           type="button"
           id="btn-save-ics"
-          class="inline-flex items-center gap-2 px-4 py-2 min-h-[44px] text-xs font-bold rounded-[2px] bg-[var(--color-brand)] text-white hover:bg-[var(--color-brand-strong)] transition-colors cursor-pointer"
+          class="inline-flex items-center px-5 py-2 min-h-[44px] text-sm font-semibold rounded-[2px] bg-[var(--color-brand)] text-white hover:bg-[var(--color-brand-hover)] transition-colors cursor-pointer"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
-            <line x1="16" x2="16" y1="2" y2="6"/>
-            <line x1="8" x2="8" y1="2" y2="6"/>
-            <line x1="3" x2="21" y1="10" y2="10"/>
-          </svg>
-          <span>Simpan ke Kalender HP (.ics)</span>
+          Simpan ke kalender HP (.ics)
         </button>
 
         <button
           type="button"
           id="btn-print-schedule"
-          class="inline-flex items-center gap-2 px-3.5 py-2 min-h-[44px] text-xs font-bold rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)] transition-colors cursor-pointer"
+          class="inline-flex items-center px-4 py-2 min-h-[44px] text-sm font-semibold rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)] transition-colors cursor-pointer"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="6 9 6 2 18 2 18 9"/>
-            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
-            <rect width="12" height="8" x="6" y="14"/>
-          </svg>
-          <span>Cetak Jadwal</span>
+          Cetak jadwal
         </button>
 
         <button
           type="button"
           id="btn-share-schedule"
-          class="inline-flex items-center gap-2 px-3.5 py-2 min-h-[44px] text-xs font-bold rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)] transition-colors cursor-pointer"
+          class="inline-flex items-center px-4 py-2 min-h-[44px] text-sm font-semibold rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)] transition-colors cursor-pointer"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="18" cy="5" r="3"/>
-            <circle cx="6" cy="12" r="3"/>
-            <circle cx="18" cy="19" r="3"/>
-            <line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/>
-            <line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/>
-          </svg>
-          <span>Bagikan</span>
+          Bagikan
         </button>
 
-        <a
-          href="/alat/cuaca-tani/"
-          class="inline-flex items-center gap-2 px-3.5 py-2 min-h-[44px] text-xs font-bold rounded-[2px] border border-[var(--color-brand)]/40 bg-[var(--color-surface)] text-[var(--color-brand-strong)] hover:border-[var(--color-brand)] transition-colors"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
-          </svg>
-          <span>Cek Cuaca Tani</span>
-        </a>
+        <a href="/alat/cuaca-tani/" class="link-more min-h-[44px] sm:ml-3">Cek Cuaca Tani &rarr;</a>
       </div>
       <p id="share-feedback" class="text-xs text-[var(--color-brand-strong)] font-semibold hidden"></p>
     </div>
 
     <!-- Vertical Timeline Container (Semusim) -->
-    <div id="timeline-container" class="space-y-4">
-      <h3 class="text-lg font-bold text-[var(--color-text)]">
-        Tahapan Fase Tanam & Rencana Lapangan
+    <div id="timeline-container">
+      <h3 class="section-title">
+        Tahapan fase tanam dan rencana lapangan
       </h3>
-      <div id="phases-list" class="space-y-3.5">
+      <div id="phases-list" class="divide-y divide-[var(--color-border)]">
         <!-- Rendered by client script -->
       </div>
     </div>
 
     <!-- Annual Tasks Container (Kelapa Sawit) -->
-    <div id="annual-tasks-container" class="space-y-4 hidden">
-      <h3 class="text-lg font-bold text-[var(--color-text)]">
-        Pola Pemeliharaan & Rotasi Panen 12 Bulan
+    <div id="annual-tasks-container" class="hidden">
+      <h3 class="section-title">
+        Pola pemeliharaan dan rotasi panen 12 bulan
       </h3>
-      <div id="annual-tasks-list" class="space-y-3">
+      <div id="annual-tasks-list" class="divide-y divide-[var(--color-border)]">
         <!-- Rendered by client script -->
       </div>
     </div>
 
     <!-- Musim Tanam Nasional MT1 - MT3 (DESIGN §2.6.1) -->
-    <div id="national-seasons-container" class="bg-[var(--color-surface)] p-6 border border-[var(--color-border)] rounded-[2px] space-y-4">
-      <div class="border-b border-[var(--color-border)] pb-2.5">
-        <h3 id="seasons-heading" class="text-base font-extrabold text-[var(--color-text)]">
-          Musim Tanam Nasional
+    <div id="national-seasons-container" class="space-y-4">
+      <div class="max-w-[68ch]">
+        <h3 id="seasons-heading" class="section-title !mb-2">
+          Musim tanam nasional
         </h3>
-        <p class="text-xs text-[var(--color-text-muted)] mt-0.5">
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
           Jadwal rata-rata nasional — waktu pelaksanaan di lapangan dapat bervariasi sesuai curah hujan wilayah dan ketersediaan air irigasi setempat.
         </p>
       </div>
@@ -311,10 +278,10 @@ const monthNames = [
       <div class="overflow-x-auto">
         <table class="w-full text-xs sm:text-sm text-left border-collapse">
           <thead>
-            <tr class="border-b border-[var(--color-border)] bg-[var(--color-tint)] text-[var(--color-soil)] font-bold">
-              <th scope="col" class="py-2.5 px-3">Pola Musim</th>
-              <th scope="col" class="py-2.5 px-3">Bulan Tanam</th>
-              <th scope="col" class="py-2.5 px-3">Bulan Panen</th>
+            <tr class="border-b border-[var(--color-border-control)] text-[var(--color-text-muted)] font-semibold">
+              <th scope="col" class="py-2.5 pr-3">Pola musim</th>
+              <th scope="col" class="py-2.5 px-3">Bulan tanam</th>
+              <th scope="col" class="py-2.5 pl-3">Bulan panen</th>
             </tr>
           </thead>
           <tbody id="seasons-table-body" class="divide-y divide-[var(--color-border)]">
@@ -325,16 +292,16 @@ const monthNames = [
     </div>
 
     <!-- About this Data & Credibility -->
-    <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-2 text-xs sm:text-sm text-[var(--color-text-muted)]">
-      <p class="font-bold text-[var(--color-soil)] text-xs">
-        Tentang Sumber Data & Acuan Agronomi
-      </p>
+    <div class="max-w-[68ch] space-y-2 text-sm text-[var(--color-text-muted)]">
+      <h3 class="font-serif text-lg font-semibold text-[var(--color-brand-strong)]">
+        Tentang sumber data dan acuan agronomi
+      </h3>
       <p id="sources-info" class="leading-relaxed"></p>
-      <p id="reviewed-info" class="leading-relaxed tabular-nums text-xs sm:text-sm"></p>
+      <p id="reviewed-info" class="leading-relaxed tabular-nums"></p>
     </div>
 
     <!-- Single WhatsApp Consultation Prompt (DESIGN §2.6.1 & §2.8) -->
-    <div class="pt-4 border-t border-[var(--color-border)]">
+    <div>
       <ConsultPrompt
         source="[Web·Kalender]"
         title="Butuh penyesuaian jadwal tanam untuk kondisi cuaca daerah Anda?"
@@ -348,12 +315,12 @@ const monthNames = [
 
   <!-- Static No-JS Fallback: Full National Cropping Calendars (DESIGN §2.6.1) -->
   <noscript>
-    <div class="p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-6">
-      <div class="border-b border-[var(--color-border)] pb-3">
-        <h2 class="text-lg font-bold text-[var(--color-brand)]">
-          Musim Tanam Nasional Komoditas (Mode Tanpa JavaScript)
+    <div class="space-y-8">
+      <div class="max-w-[68ch]">
+        <h2 class="section-title !mb-2">
+          Musim tanam nasional komoditas (mode tanpa JavaScript)
         </h2>
-        <p class="text-xs text-[var(--color-text-muted)] mt-1">
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
           Peramban Anda menjalankan mode statis. Anda dapat langsung melihat pola musim tanam nasional dan siklus fase budidaya komoditas di bawah ini:
         </p>
       </div>
@@ -363,27 +330,26 @@ const monthNames = [
           const commName = commodityMap.get(cal.data.id) || cal.data.id;
           return (
             <div class="space-y-4">
-              <h3 class="text-base font-extrabold text-[var(--color-text)] flex items-center gap-2">
-                <span class="w-2.5 h-2.5 bg-[var(--color-brand)] rounded-[2px]"></span>
+              <h3 class="font-serif text-xl font-semibold text-[var(--color-brand-strong)]">
                 <span>{commName} ({cal.data.type === 'semusim' ? `Siklus ${cal.data.cycleDays?.min}–${cal.data.cycleDays?.max} hari` : 'Tanaman Tahunan'})</span>
               </h3>
 
               <!-- Seasons Table -->
               <div class="overflow-x-auto">
-                <table class="w-full text-xs text-left border-collapse border border-[var(--color-border)]">
+                <table class="w-full text-sm text-left border-collapse">
                   <thead>
-                    <tr class="bg-[var(--color-tint)] text-[var(--color-soil)] font-bold">
-                      <th class="p-2 border border-[var(--color-border)]">Musim</th>
-                      <th class="p-2 border border-[var(--color-border)]">Bulan Tanam</th>
-                      <th class="p-2 border border-[var(--color-border)]">Bulan Panen</th>
+                    <tr class="border-b border-[var(--color-border-control)] text-[var(--color-text-muted)] font-semibold">
+                      <th class="py-2 pr-3">Musim</th>
+                      <th class="py-2 px-3">Bulan tanam</th>
+                      <th class="py-2 pl-3">Bulan panen</th>
                     </tr>
                   </thead>
                   <tbody>
                     {cal.data.seasons.map((s) => (
                       <tr class="border-b border-[var(--color-border)]">
-                        <td class="p-2 font-semibold">{s.code} ({s.label})</td>
-                        <td class="p-2">{s.plantMonths.map((m) => monthNames[m - 1]).join(', ')}</td>
-                        <td class="p-2">{s.harvestMonths.map((m) => monthNames[m - 1]).join(', ')}</td>
+                        <td class="py-2 pr-3 font-semibold">{s.code} ({s.label})</td>
+                        <td class="py-2 px-3">{s.plantMonths.map((m) => monthNames[m - 1]).join(', ')}</td>
+                        <td class="py-2 pl-3">{s.harvestMonths.map((m) => monthNames[m - 1]).join(', ')}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -393,15 +359,15 @@ const monthNames = [
               <!-- Phases List (Semusim) -->
               {cal.data.type === 'semusim' && (
                 <div class="space-y-2">
-                  <h4 class="text-xs font-bold text-[var(--color-soil)]">Tahapan Fase Budidaya</h4>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                  <h4 class="text-sm font-semibold text-[var(--color-text)]">Tahapan fase budidaya</h4>
+                  <div class="divide-y divide-[var(--color-border)]">
                     {cal.data.phases.map((p) => (
-                      <div class="p-3 bg-[var(--color-tint)] border border-[var(--color-border)] rounded-[2px] space-y-1">
-                        <div class="flex items-center justify-between text-xs font-bold text-[var(--color-brand-strong)]">
+                      <div class="py-3 space-y-1">
+                        <div class="flex flex-wrap items-baseline justify-between gap-x-3 text-sm font-semibold text-[var(--color-brand-strong)]">
                           <span>{p.name}</span>
                           <span class="tabular-nums">HST {p.startDay}–{p.endDay}</span>
                         </div>
-                        <ul class="text-[11px] text-[var(--color-text)] list-disc pl-4 space-y-0.5">
+                        <ul class="text-sm text-[var(--color-text)] list-disc pl-5 space-y-0.5">
                           {p.activities.map((act) => (
                             <li>{act}</li>
                           ))}
@@ -712,10 +678,8 @@ const monthNames = [
           phasesList.innerHTML = '';
           plan.computedPhases.forEach((ph) => {
             const card = document.createElement('div');
-            card.className = `p-4 sm:p-5 border rounded-[2px] transition-all space-y-2.5 ${
-              ph.isCurrent
-                ? 'bg-[var(--color-tint)] border-[var(--color-brand)] ring-1 ring-[var(--color-brand)]/20 shadow-xs'
-                : 'bg-[var(--color-surface)] border-[var(--color-border)]'
+            card.className = `py-5 space-y-2.5 ${
+              ph.isCurrent ? 'bg-[var(--color-tint)] px-4 -mx-4 sm:px-5 sm:-mx-5 rounded-[2px]' : ''
             }`;
 
             // Top Header: Phase step & Dates
@@ -723,7 +687,7 @@ const monthNames = [
             headRow.className = 'flex flex-wrap items-center justify-between gap-2';
 
             const leftHead = document.createElement('div');
-            leftHead.className = 'flex items-center gap-2';
+            leftHead.className = 'flex flex-wrap items-center gap-x-3 gap-y-1';
 
             const stepBadge = document.createElement('span');
             stepBadge.className = `text-xs tabular-nums font-bold px-2 py-0.5 rounded-[2px] ${
@@ -734,7 +698,7 @@ const monthNames = [
             stepBadge.textContent = `HST ${ph.startDay} – ${ph.endDay}`;
 
             const title = document.createElement('h4');
-            title.className = 'text-sm sm:text-base font-extrabold text-[var(--color-text)]';
+            title.className = 'font-serif text-lg font-semibold text-[var(--color-brand-strong)]';
             title.textContent = ph.name;
 
             leftHead.appendChild(stepBadge);
@@ -746,7 +710,7 @@ const monthNames = [
             if (ph.isCurrent) {
               const activeTag = document.createElement('span');
               activeTag.className = 'px-2 py-0.5 rounded-[2px] bg-[var(--color-harvest)] text-[var(--color-text)] font-bold';
-              activeTag.textContent = 'Sedang Berjalan';
+              activeTag.textContent = 'Sedang berjalan';
               rightHead.appendChild(activeTag);
             }
 
@@ -763,12 +727,12 @@ const monthNames = [
             const actBox = document.createElement('div');
             actBox.className = 'space-y-1';
             const actTitle = document.createElement('span');
-            actTitle.className = 'block text-[11px] font-bold text-[var(--color-soil)]';
-            actTitle.textContent = 'Kegiatan Kunci Lapangan:';
+            actTitle.className = 'block text-sm font-semibold text-[var(--color-soil)]';
+            actTitle.textContent = 'Kegiatan kunci lapangan:';
             actBox.appendChild(actTitle);
 
             const ul = document.createElement('ul');
-            ul.className = 'list-disc pl-4 text-xs text-[var(--color-text)] space-y-0.5 leading-relaxed';
+            ul.className = 'list-disc pl-5 text-sm text-[var(--color-text)] space-y-0.5 leading-relaxed';
             ph.activities.forEach((act) => {
               const li = document.createElement('li');
               li.textContent = act;
@@ -780,7 +744,7 @@ const monthNames = [
             // Watch out pests/diseases
             if (ph.watch.length > 0) {
               const watchBox = document.createElement('div');
-              watchBox.className = 'p-2.5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] text-xs flex flex-wrap items-center gap-2';
+              watchBox.className = 'text-sm flex flex-wrap items-center gap-x-3 gap-y-1';
 
               const wLabel = document.createElement('span');
               wLabel.className = 'font-bold text-[var(--color-soil)]';
@@ -818,15 +782,15 @@ const monthNames = [
           annualTasksList.innerHTML = '';
           plan.annualTasks.forEach((task) => {
             const card = document.createElement('div');
-            card.className = 'p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-1.5';
+            card.className = 'py-4 space-y-1';
 
             const monthsLabel = task.months.map((m) => monthNamesId[m - 1]).join(', ');
             const mSpan = document.createElement('span');
-            mSpan.className = 'text-xs font-bold px-2 py-0.5 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-soil)]';
+            mSpan.className = 'block text-sm font-semibold text-[var(--color-soil)]';
             mSpan.textContent = `Bulan: ${monthsLabel}`;
 
             const taskP = document.createElement('p');
-            taskP.className = 'text-sm font-semibold text-[var(--color-text)] mt-1';
+            taskP.className = 'text-base text-[var(--color-text)]';
             taskP.textContent = task.task;
 
             card.appendChild(mSpan);
@@ -847,7 +811,7 @@ const monthNames = [
           tr.className = 'hover:bg-[var(--color-tint)]/40 transition-colors';
 
           const tdCode = document.createElement('td');
-          tdCode.className = 'py-2.5 px-3 font-bold text-[var(--color-text)]';
+          tdCode.className = 'py-2.5 pr-3 font-bold text-[var(--color-text)]';
           tdCode.textContent = `${season.code} (${season.label})`;
 
           const tdPlant = document.createElement('td');
@@ -855,7 +819,7 @@ const monthNames = [
           tdPlant.textContent = season.plantMonths.map((m) => monthNamesId[m - 1]).join(', ');
 
           const tdHarvest = document.createElement('td');
-          tdHarvest.className = 'py-2.5 px-3 text-[var(--color-text-muted)]';
+          tdHarvest.className = 'py-2.5 pl-3 text-[var(--color-text-muted)]';
           tdHarvest.textContent = season.harvestMonths.map((m) => monthNamesId[m - 1]).join(', ');
 
           tr.appendChild(tdCode);
