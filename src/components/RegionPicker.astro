@@ -2,6 +2,7 @@
 /**
  * src/components/RegionPicker.astro
  * 4-level cascading region picker for Cuaca Tani (REQ-10, ARCHITECTURE §5b).
+ * Styled with shadcn-ui inspired Combobox pattern & max-h-52 (~5 items) scrollable list.
  * Loads tiered Kemendagri JSON files: Provinsi -> Kabupaten -> Kecamatan -> Desa.
  */
 import fs from 'node:fs';
@@ -31,87 +32,296 @@ try {
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
     <!-- Level 1: Provinsi -->
-    <div class="space-y-1.5">
-      <label for="select-provinsi" class="block text-xs font-bold text-[var(--color-text)]">
+    <div class="space-y-1.5 relative region-level-container" data-level="provinsi">
+      <label id="label-provinsi" for="combobox-trigger-provinsi" class="block text-xs font-bold text-[var(--color-text)]">
         1. Provinsi
       </label>
       <div class="relative">
-        <select
-          id="select-provinsi"
-          class="w-full appearance-none pl-3.5 pr-10 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] shadow-2xs hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-xs sm:text-sm cursor-pointer transition-colors"
-        >
+        <!-- Native select preserved sr-only for form & automated checks compatibility -->
+        <select id="select-provinsi" class="sr-only" tabindex="-1" aria-hidden="true">
           <option value="">-- Pilih Provinsi --</option>
           {provinces.map((p) => (
             <option value={p.kode}>{p.nama}</option>
           ))}
         </select>
-        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-[var(--color-soil)]" aria-hidden="true">
-          <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m6 8 4 4 4-4"/>
-          </svg>
+
+        <!-- Trigger Button (shadcn SelectTrigger style) -->
+        <button
+          type="button"
+          id="combobox-trigger-provinsi"
+          role="combobox"
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-controls="combobox-popover-provinsi"
+          aria-labelledby="label-provinsi combobox-label-provinsi"
+          class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] shadow-2xs hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-xs sm:text-sm cursor-pointer transition-colors flex items-center justify-between text-left disabled:opacity-45 disabled:bg-[var(--color-canvas)] disabled:hover:border-[var(--color-border-control)] disabled:cursor-not-allowed"
+        >
+          <span id="combobox-label-provinsi" class="truncate text-[var(--color-text-muted)]">
+            -- Pilih Provinsi --
+          </span>
+          <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-[var(--color-soil)] transition-transform duration-200" aria-hidden="true">
+            <svg class="w-4 h-4 chevron-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 8 4 4 4-4"/>
+            </svg>
+          </span>
+        </button>
+
+        <!-- Dropdown Popover (shadcn SelectContent / Command style) -->
+        <div
+          id="combobox-popover-provinsi"
+          role="listbox"
+          aria-labelledby="label-provinsi"
+          class="hidden absolute top-full left-0 right-0 z-50 mt-1.5 bg-[var(--color-surface)] border border-[var(--color-border-control)] rounded-[2px] shadow-lg overflow-hidden"
+        >
+          <!-- Search Box (CommandInput style) -->
+          <div class="p-2 border-b border-[var(--color-border)] bg-[var(--color-surface)] flex items-center gap-2">
+            <svg class="w-3.5 h-3.5 text-[var(--color-soil)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </svg>
+            <input
+              type="text"
+              id="combobox-search-provinsi"
+              placeholder="Cari provinsi..."
+              autocomplete="off"
+              aria-label="Cari provinsi"
+              class="w-full bg-transparent text-xs sm:text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] outline-none border-none p-0 focus:ring-0"
+            />
+          </div>
+
+          <!-- Scrolling List (CommandList style, max-h-52 = 208px, shows ~5 items) -->
+          <div
+            id="combobox-list-provinsi"
+            class="combobox-scroll-list max-h-52 overflow-y-auto overscroll-contain p-1 space-y-0.5"
+          >
+            {provinces.map((p) => (
+              <div
+                role="option"
+                data-value={p.kode}
+                data-label={p.nama}
+                aria-selected="false"
+                tabindex="-1"
+                class="combobox-item px-3 py-2 text-xs sm:text-sm text-[var(--color-text)] rounded-[2px] cursor-pointer flex items-center justify-between hover:bg-[var(--color-tint)] hover:text-[var(--color-brand-strong)] transition-colors min-h-[38px]"
+              >
+                <span class="truncate">{p.nama}</span>
+                <svg class="w-4 h-4 text-[var(--color-brand)] shrink-0 hidden check-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="m4 10 4 4 8-8"/>
+                </svg>
+              </div>
+            ))}
+          </div>
+
+          <!-- Empty state -->
+          <div
+            id="combobox-empty-provinsi"
+            class="hidden py-4 px-3 text-center text-xs text-[var(--color-text-muted)]"
+          >
+            Tidak ada provinsi ditemukan
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Level 2: Kabupaten / Kota -->
-    <div class="space-y-1.5">
-      <label for="select-kabupaten" class="block text-xs font-bold text-[var(--color-text)]">
+    <div class="space-y-1.5 relative region-level-container" data-level="kabupaten">
+      <label id="label-kabupaten" for="combobox-trigger-kabupaten" class="block text-xs font-bold text-[var(--color-text)]">
         2. Kabupaten / Kota
       </label>
       <div class="relative">
-        <select
-          id="select-kabupaten"
-          disabled
-          class="w-full appearance-none pl-3.5 pr-10 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] shadow-2xs hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-xs sm:text-sm cursor-pointer transition-colors disabled:opacity-45 disabled:bg-[var(--color-canvas)] disabled:hover:border-[var(--color-border-control)] disabled:cursor-not-allowed"
-        >
+        <select id="select-kabupaten" disabled class="sr-only" tabindex="-1" aria-hidden="true">
           <option value="">-- Pilih Kabupaten --</option>
         </select>
-        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-[var(--color-soil)] opacity-50" aria-hidden="true">
-          <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m6 8 4 4 4-4"/>
-          </svg>
+
+        <button
+          type="button"
+          id="combobox-trigger-kabupaten"
+          disabled
+          role="combobox"
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-controls="combobox-popover-kabupaten"
+          aria-labelledby="label-kabupaten combobox-label-kabupaten"
+          class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] shadow-2xs hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-xs sm:text-sm cursor-pointer transition-colors flex items-center justify-between text-left disabled:opacity-45 disabled:bg-[var(--color-canvas)] disabled:hover:border-[var(--color-border-control)] disabled:cursor-not-allowed"
+        >
+          <span id="combobox-label-kabupaten" class="truncate text-[var(--color-text-muted)]">
+            -- Pilih Kabupaten --
+          </span>
+          <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-[var(--color-soil)] opacity-50 transition-transform duration-200" aria-hidden="true">
+            <svg class="w-4 h-4 chevron-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 8 4 4 4-4"/>
+            </svg>
+          </span>
+        </button>
+
+        <div
+          id="combobox-popover-kabupaten"
+          role="listbox"
+          aria-labelledby="label-kabupaten"
+          class="hidden absolute top-full left-0 right-0 z-50 mt-1.5 bg-[var(--color-surface)] border border-[var(--color-border-control)] rounded-[2px] shadow-lg overflow-hidden"
+        >
+          <div class="p-2 border-b border-[var(--color-border)] bg-[var(--color-surface)] flex items-center gap-2">
+            <svg class="w-3.5 h-3.5 text-[var(--color-soil)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </svg>
+            <input
+              type="text"
+              id="combobox-search-kabupaten"
+              placeholder="Cari kabupaten/kota..."
+              autocomplete="off"
+              aria-label="Cari kabupaten atau kota"
+              class="w-full bg-transparent text-xs sm:text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] outline-none border-none p-0 focus:ring-0"
+            />
+          </div>
+
+          <div
+            id="combobox-list-kabupaten"
+            class="combobox-scroll-list max-h-52 overflow-y-auto overscroll-contain p-1 space-y-0.5"
+          >
+          </div>
+
+          <div
+            id="combobox-empty-kabupaten"
+            class="hidden py-4 px-3 text-center text-xs text-[var(--color-text-muted)]"
+          >
+            Tidak ada kabupaten/kota ditemukan
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Level 3: Kecamatan -->
-    <div class="space-y-1.5">
-      <label for="select-kecamatan" class="block text-xs font-bold text-[var(--color-text)]">
+    <div class="space-y-1.5 relative region-level-container" data-level="kecamatan">
+      <label id="label-kecamatan" for="combobox-trigger-kecamatan" class="block text-xs font-bold text-[var(--color-text)]">
         3. Kecamatan
       </label>
       <div class="relative">
-        <select
-          id="select-kecamatan"
-          disabled
-          class="w-full appearance-none pl-3.5 pr-10 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] shadow-2xs hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-xs sm:text-sm cursor-pointer transition-colors disabled:opacity-45 disabled:bg-[var(--color-canvas)] disabled:hover:border-[var(--color-border-control)] disabled:cursor-not-allowed"
-        >
+        <select id="select-kecamatan" disabled class="sr-only" tabindex="-1" aria-hidden="true">
           <option value="">-- Pilih Kecamatan --</option>
         </select>
-        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-[var(--color-soil)] opacity-50" aria-hidden="true">
-          <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m6 8 4 4 4-4"/>
-          </svg>
+
+        <button
+          type="button"
+          id="combobox-trigger-kecamatan"
+          disabled
+          role="combobox"
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-controls="combobox-popover-kecamatan"
+          aria-labelledby="label-kecamatan combobox-label-kecamatan"
+          class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] shadow-2xs hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-xs sm:text-sm cursor-pointer transition-colors flex items-center justify-between text-left disabled:opacity-45 disabled:bg-[var(--color-canvas)] disabled:hover:border-[var(--color-border-control)] disabled:cursor-not-allowed"
+        >
+          <span id="combobox-label-kecamatan" class="truncate text-[var(--color-text-muted)]">
+            -- Pilih Kecamatan --
+          </span>
+          <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-[var(--color-soil)] opacity-50 transition-transform duration-200" aria-hidden="true">
+            <svg class="w-4 h-4 chevron-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 8 4 4 4-4"/>
+            </svg>
+          </span>
+        </button>
+
+        <div
+          id="combobox-popover-kecamatan"
+          role="listbox"
+          aria-labelledby="label-kecamatan"
+          class="hidden absolute top-full left-0 right-0 z-50 mt-1.5 bg-[var(--color-surface)] border border-[var(--color-border-control)] rounded-[2px] shadow-lg overflow-hidden"
+        >
+          <div class="p-2 border-b border-[var(--color-border)] bg-[var(--color-surface)] flex items-center gap-2">
+            <svg class="w-3.5 h-3.5 text-[var(--color-soil)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </svg>
+            <input
+              type="text"
+              id="combobox-search-kecamatan"
+              placeholder="Cari kecamatan..."
+              autocomplete="off"
+              aria-label="Cari kecamatan"
+              class="w-full bg-transparent text-xs sm:text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] outline-none border-none p-0 focus:ring-0"
+            />
+          </div>
+
+          <div
+            id="combobox-list-kecamatan"
+            class="combobox-scroll-list max-h-52 overflow-y-auto overscroll-contain p-1 space-y-0.5"
+          >
+          </div>
+
+          <div
+            id="combobox-empty-kecamatan"
+            class="hidden py-4 px-3 text-center text-xs text-[var(--color-text-muted)]"
+          >
+            Tidak ada kecamatan ditemukan
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Level 4: Desa / Kelurahan -->
-    <div class="space-y-1.5">
-      <label for="select-desa" class="block text-xs font-bold text-[var(--color-text)]">
+    <div class="space-y-1.5 relative region-level-container" data-level="desa">
+      <label id="label-desa" for="combobox-trigger-desa" class="block text-xs font-bold text-[var(--color-text)]">
         4. Desa / Kelurahan
       </label>
       <div class="relative">
-        <select
-          id="select-desa"
-          disabled
-          class="w-full appearance-none pl-3.5 pr-10 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] shadow-2xs hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-xs sm:text-sm cursor-pointer transition-colors disabled:opacity-45 disabled:bg-[var(--color-canvas)] disabled:hover:border-[var(--color-border-control)] disabled:cursor-not-allowed"
-        >
+        <select id="select-desa" disabled class="sr-only" tabindex="-1" aria-hidden="true">
           <option value="">-- Pilih Desa --</option>
         </select>
-        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-[var(--color-soil)] opacity-50" aria-hidden="true">
-          <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m6 8 4 4 4-4"/>
-          </svg>
+
+        <button
+          type="button"
+          id="combobox-trigger-desa"
+          disabled
+          role="combobox"
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-controls="combobox-popover-desa"
+          aria-labelledby="label-desa combobox-label-desa"
+          class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] shadow-2xs hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-xs sm:text-sm cursor-pointer transition-colors flex items-center justify-between text-left disabled:opacity-45 disabled:bg-[var(--color-canvas)] disabled:hover:border-[var(--color-border-control)] disabled:cursor-not-allowed"
+        >
+          <span id="combobox-label-desa" class="truncate text-[var(--color-text-muted)]">
+            -- Pilih Desa --
+          </span>
+          <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-[var(--color-soil)] opacity-50 transition-transform duration-200" aria-hidden="true">
+            <svg class="w-4 h-4 chevron-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 8 4 4 4-4"/>
+            </svg>
+          </span>
+        </button>
+
+        <div
+          id="combobox-popover-desa"
+          role="listbox"
+          aria-labelledby="label-desa"
+          class="hidden absolute top-full left-0 right-0 z-50 mt-1.5 bg-[var(--color-surface)] border border-[var(--color-border-control)] rounded-[2px] shadow-lg overflow-hidden"
+        >
+          <div class="p-2 border-b border-[var(--color-border)] bg-[var(--color-surface)] flex items-center gap-2">
+            <svg class="w-3.5 h-3.5 text-[var(--color-soil)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </svg>
+            <input
+              type="text"
+              id="combobox-search-desa"
+              placeholder="Cari desa/kelurahan..."
+              autocomplete="off"
+              aria-label="Cari desa atau kelurahan"
+              class="w-full bg-transparent text-xs sm:text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] outline-none border-none p-0 focus:ring-0"
+            />
+          </div>
+
+          <div
+            id="combobox-list-desa"
+            class="combobox-scroll-list max-h-52 overflow-y-auto overscroll-contain p-1 space-y-0.5"
+          >
+          </div>
+
+          <div
+            id="combobox-empty-desa"
+            class="hidden py-4 px-3 text-center text-xs text-[var(--color-text-muted)]"
+          >
+            Tidak ada desa/kelurahan ditemukan
+          </div>
         </div>
       </div>
     </div>
@@ -125,6 +335,24 @@ try {
     </span>
   </div>
 </div>
+
+<style>
+  /* Subtle scrollbar matching shadcn ScrollArea */
+  .combobox-scroll-list::-webkit-scrollbar {
+    width: 6px;
+  }
+  .combobox-scroll-list::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .combobox-scroll-list::-webkit-scrollbar-thumb {
+    background-color: var(--color-border-control);
+    border-radius: 2px;
+  }
+  .combobox-scroll-list {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border-control) transparent;
+  }
+</style>
 
 <script>
   interface RegencyItem {
@@ -149,20 +377,111 @@ try {
     kecamatan: DistrictItem[];
   }
 
+  type RegionLevel = 'provinsi' | 'kabupaten' | 'kecamatan' | 'desa';
+
   const STORAGE_KEY = 'agritani_last_region';
+
+  const PLACEHOLDERS: Record<RegionLevel, string> = {
+    provinsi: '-- Pilih Provinsi --',
+    kabupaten: '-- Pilih Kabupaten --',
+    kecamatan: '-- Pilih Kecamatan --',
+    desa: '-- Pilih Desa --',
+  };
 
   function initRegionPicker() {
     const root = document.getElementById('region-picker-root');
     if (!root) return;
 
+    // Elements
     const selectProv = document.getElementById('select-provinsi') as HTMLSelectElement | null;
     const selectKab = document.getElementById('select-kabupaten') as HTMLSelectElement | null;
     const selectKec = document.getElementById('select-kecamatan') as HTMLSelectElement | null;
     const selectDesa = document.getElementById('select-desa') as HTMLSelectElement | null;
+
+    const triggerProv = document.getElementById('combobox-trigger-provinsi') as HTMLButtonElement | null;
+    const triggerKab = document.getElementById('combobox-trigger-kabupaten') as HTMLButtonElement | null;
+    const triggerKec = document.getElementById('combobox-trigger-kecamatan') as HTMLButtonElement | null;
+    const triggerDesa = document.getElementById('combobox-trigger-desa') as HTMLButtonElement | null;
+
+    const labelProv = document.getElementById('combobox-label-provinsi');
+    const labelKab = document.getElementById('combobox-label-kabupaten');
+    const labelKec = document.getElementById('combobox-label-kecamatan');
+    const labelDesa = document.getElementById('combobox-label-desa');
+
+    const popoverProv = document.getElementById('combobox-popover-provinsi');
+    const popoverKab = document.getElementById('combobox-popover-kabupaten');
+    const popoverKec = document.getElementById('combobox-popover-kecamatan');
+    const popoverDesa = document.getElementById('combobox-popover-desa');
+
+    const listProv = document.getElementById('combobox-list-provinsi');
+    const listKab = document.getElementById('combobox-list-kabupaten');
+    const listKec = document.getElementById('combobox-list-kecamatan');
+    const listDesa = document.getElementById('combobox-list-desa');
+
+    const searchProv = document.getElementById('combobox-search-provinsi') as HTMLInputElement | null;
+    const searchKab = document.getElementById('combobox-search-kabupaten') as HTMLInputElement | null;
+    const searchKec = document.getElementById('combobox-search-kecamatan') as HTMLInputElement | null;
+    const searchDesa = document.getElementById('combobox-search-desa') as HTMLInputElement | null;
+
+    const emptyProv = document.getElementById('combobox-empty-provinsi');
+    const emptyKab = document.getElementById('combobox-empty-kabupaten');
+    const emptyKec = document.getElementById('combobox-empty-kecamatan');
+    const emptyDesa = document.getElementById('combobox-empty-desa');
+
     const statusText = document.getElementById('region-status-text');
     const rememberBadge = document.getElementById('region-remember-badge');
 
     if (!selectProv || !selectKab || !selectKec || !selectDesa) return;
+    if (!triggerProv || !triggerKab || !triggerKec || !triggerDesa) return;
+
+    const triggers: Record<RegionLevel, HTMLButtonElement> = {
+      provinsi: triggerProv,
+      kabupaten: triggerKab,
+      kecamatan: triggerKec,
+      desa: triggerDesa,
+    };
+
+    const labels: Record<RegionLevel, HTMLElement | null> = {
+      provinsi: labelProv,
+      kabupaten: labelKab,
+      kecamatan: labelKec,
+      desa: labelDesa,
+    };
+
+    const popovers: Record<RegionLevel, HTMLElement | null> = {
+      provinsi: popoverProv,
+      kabupaten: popoverKab,
+      kecamatan: popoverKec,
+      desa: popoverDesa,
+    };
+
+    const lists: Record<RegionLevel, HTMLElement | null> = {
+      provinsi: listProv,
+      kabupaten: listKab,
+      kecamatan: listKec,
+      desa: listDesa,
+    };
+
+    const searches: Record<RegionLevel, HTMLInputElement | null> = {
+      provinsi: searchProv,
+      kabupaten: searchKab,
+      kecamatan: searchKec,
+      desa: searchDesa,
+    };
+
+    const empties: Record<RegionLevel, HTMLElement | null> = {
+      provinsi: emptyProv,
+      kabupaten: emptyKab,
+      kecamatan: emptyKec,
+      desa: emptyDesa,
+    };
+
+    const selects: Record<RegionLevel, HTMLSelectElement> = {
+      provinsi: selectProv,
+      kabupaten: selectKab,
+      kecamatan: selectKec,
+      desa: selectDesa,
+    };
 
     let activeRegencyData: RegencyDetail | null = null;
 
@@ -207,124 +526,430 @@ try {
       window.history.replaceState({ adm4 }, '', url.toString());
     }
 
-    // 1. Province Change Handler
-    selectProv.addEventListener('change', async () => {
-      const provKode = selectProv.value;
-      selectKab.innerHTML = '<option value="">-- Pilih Kabupaten --</option>';
-      selectKec.innerHTML = '<option value="">-- Pilih Kecamatan --</option>';
-      selectDesa.innerHTML = '<option value="">-- Pilih Desa --</option>';
+    // Popover Open / Close Controls
+    function closePopover(lvl: RegionLevel) {
+      const popover = popovers[lvl];
+      const trigger = triggers[lvl];
+      const container = root ? root.querySelector(`.region-level-container[data-level="${lvl}"]`) : null;
 
-      selectKab.disabled = true;
-      selectKec.disabled = true;
-      selectDesa.disabled = true;
-      activeRegencyData = null;
+      if (popover) popover.classList.add('hidden');
+      if (trigger) {
+        trigger.setAttribute('aria-expanded', 'false');
+        const chevron = trigger.querySelector('.chevron-icon');
+        if (chevron) chevron.classList.remove('rotate-180');
+      }
+      if (container) {
+        container.classList.remove('z-30');
+      }
+    }
 
-      if (!provKode) {
-        if (statusText) statusText.textContent = 'Pilih provinsi untuk memulai.';
-        return;
+    function closeAllPopovers() {
+      const levels: RegionLevel[] = ['provinsi', 'kabupaten', 'kecamatan', 'desa'];
+      levels.forEach(closePopover);
+    }
+
+    function openPopover(lvl: RegionLevel) {
+      const popover = popovers[lvl];
+      const trigger = triggers[lvl];
+      const search = searches[lvl];
+      const list = lists[lvl];
+      const empty = empties[lvl];
+      const container = root ? root.querySelector(`.region-level-container[data-level="${lvl}"]`) : null;
+
+      if (!popover || !trigger || trigger.disabled) return;
+
+      closeAllPopovers();
+
+      popover.classList.remove('hidden');
+      trigger.setAttribute('aria-expanded', 'true');
+      const chevron = trigger.querySelector('.chevron-icon');
+      if (chevron) chevron.classList.add('rotate-180');
+      if (container) container.classList.add('z-30');
+
+      // Reset search filter
+      if (search) {
+        search.value = '';
+        search.focus();
+      }
+      if (list) {
+        const items = list.querySelectorAll<HTMLElement>('.combobox-item');
+        items.forEach((it) => it.classList.remove('hidden'));
+        const selected = list.querySelector<HTMLElement>('[aria-selected="true"]');
+        if (selected) {
+          selected.scrollIntoView({ block: 'nearest' });
+        }
+      }
+      if (empty) empty.classList.add('hidden');
+    }
+
+    function togglePopover(lvl: RegionLevel) {
+      const popover = popovers[lvl];
+      if (popover && !popover.classList.contains('hidden')) {
+        closePopover(lvl);
+      } else {
+        openPopover(lvl);
+      }
+    }
+
+    // Set Selection
+    function setTriggerSelected(lvl: RegionLevel, kode: string, nama: string) {
+      const select = selects[lvl];
+      const label = labels[lvl];
+      const list = lists[lvl];
+
+      if (select) select.value = kode;
+      if (label) {
+        label.textContent = nama || PLACEHOLDERS[lvl];
+        if (kode) {
+          label.classList.remove('text-[var(--color-text-muted)]');
+        } else {
+          label.classList.add('text-[var(--color-text-muted)]');
+        }
       }
 
-      if (statusText) statusText.textContent = 'Memuat daftar kabupaten/kota...';
-      try {
-        const regencies = await loadRegenciesForProvince(provKode);
-        regencies.forEach((r) => {
-          const opt = document.createElement('option');
-          opt.value = r.kode;
-          opt.textContent = r.nama;
-          selectKab.appendChild(opt);
+      if (list) {
+        const items = list.querySelectorAll<HTMLElement>('.combobox-item');
+        items.forEach((it) => {
+          const isSelected = it.dataset.value === kode;
+          it.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+          const checkIcon = it.querySelector('.check-icon');
+          if (isSelected) {
+            it.classList.add('bg-[var(--color-tint)]', 'font-semibold', 'text-[var(--color-brand-strong)]');
+            if (checkIcon) checkIcon.classList.remove('hidden');
+          } else {
+            it.classList.remove('bg-[var(--color-tint)]', 'font-semibold', 'text-[var(--color-brand-strong)]');
+            if (checkIcon) checkIcon.classList.add('hidden');
+          }
         });
-        selectKab.disabled = false;
-        if (statusText) statusText.textContent = 'Pilih kabupaten/kota.';
-      } catch (err: any) {
-        if (statusText) statusText.textContent = err.message || 'Gagal memuat kabupaten.';
       }
-    });
+    }
 
-    // 2. Regency Change Handler
-    selectKab.addEventListener('change', async () => {
-      const kabKode = selectKab.value;
-      selectKec.innerHTML = '<option value="">-- Pilih Kecamatan --</option>';
-      selectDesa.innerHTML = '<option value="">-- Pilih Desa --</option>';
-
-      selectKec.disabled = true;
-      selectDesa.disabled = true;
-      activeRegencyData = null;
-
-      if (!kabKode) {
-        if (statusText) statusText.textContent = 'Pilih kabupaten/kota.';
-        return;
+    function enableLevel(lvl: RegionLevel) {
+      const trigger = triggers[lvl];
+      const select = selects[lvl];
+      if (trigger) {
+        trigger.disabled = false;
+        const iconWrapper = trigger.querySelector('.opacity-50');
+        if (iconWrapper) iconWrapper.classList.remove('opacity-50');
       }
+      if (select) select.disabled = false;
+    }
 
-      if (statusText) statusText.textContent = 'Memuat daftar kecamatan & desa...';
-      try {
-        activeRegencyData = await loadRegencyDetail(kabKode);
-        activeRegencyData.kecamatan.forEach((k) => {
-          const opt = document.createElement('option');
-          opt.value = k.kode;
-          opt.textContent = k.nama;
-          selectKec.appendChild(opt);
-        });
-        selectKec.disabled = false;
-        if (statusText) statusText.textContent = 'Pilih kecamatan.';
-      } catch (err: any) {
-        if (statusText) statusText.textContent = err.message || 'Gagal memuat kecamatan.';
+    function disableLevel(lvl: RegionLevel) {
+      closePopover(lvl);
+      const trigger = triggers[lvl];
+      const select = selects[lvl];
+      const label = labels[lvl];
+      const list = lists[lvl];
+
+      if (trigger) {
+        trigger.disabled = true;
+        const chevronWrapper = trigger.querySelector('span.pointer-events-none');
+        if (chevronWrapper) chevronWrapper.classList.add('opacity-50');
       }
-    });
-
-    // 3. District Change Handler
-    selectKec.addEventListener('change', () => {
-      const kecKode = selectKec.value;
-      selectDesa.innerHTML = '<option value="">-- Pilih Desa --</option>';
-      selectDesa.disabled = true;
-
-      if (!kecKode || !activeRegencyData) {
-        if (statusText) statusText.textContent = 'Pilih kecamatan.';
-        return;
+      if (select) {
+        select.disabled = true;
+        select.value = '';
+        select.innerHTML = `<option value="">${PLACEHOLDERS[lvl]}</option>`;
       }
-
-      const dist = activeRegencyData.kecamatan.find((k) => k.kode === kecKode);
-      if (!dist || dist.desa.length === 0) {
-        if (statusText) statusText.textContent = 'Tidak ada desa terdaftar pada kecamatan ini.';
-        return;
+      if (label) {
+        label.textContent = PLACEHOLDERS[lvl];
+        label.classList.add('text-[var(--color-text-muted)]');
       }
+      if (list) {
+        list.innerHTML = '';
+      }
+    }
 
-      dist.desa.forEach((d) => {
+    function renderList(
+      lvl: RegionLevel,
+      items: Array<{ kode: string; nama: string }>,
+      selectedKode = ''
+    ) {
+      const list = lists[lvl];
+      const select = selects[lvl];
+      if (!list || !select) return;
+
+      list.innerHTML = '';
+      select.innerHTML = `<option value="">${PLACEHOLDERS[lvl]}</option>`;
+
+      items.forEach((item) => {
+        // Native option
         const opt = document.createElement('option');
-        opt.value = d.kode;
-        opt.textContent = d.nama;
-        selectDesa.appendChild(opt);
+        opt.value = item.kode;
+        opt.textContent = item.nama;
+        if (item.kode === selectedKode) opt.selected = true;
+        select.appendChild(opt);
+
+        // Combobox item
+        const itemEl = document.createElement('div');
+        itemEl.role = 'option';
+        itemEl.dataset.value = item.kode;
+        itemEl.dataset.label = item.nama;
+        itemEl.tabIndex = -1;
+        itemEl.className =
+          'combobox-item px-3 py-2 text-xs sm:text-sm text-[var(--color-text)] rounded-[2px] cursor-pointer flex items-center justify-between hover:bg-[var(--color-tint)] hover:text-[var(--color-brand-strong)] transition-colors min-h-[38px]';
+
+        const isSelected = item.kode === selectedKode;
+        itemEl.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+        if (isSelected) {
+          itemEl.classList.add('bg-[var(--color-tint)]', 'font-semibold', 'text-[var(--color-brand-strong)]');
+        }
+
+        const textSpan = document.createElement('span');
+        textSpan.className = 'truncate';
+        textSpan.textContent = item.nama;
+        itemEl.appendChild(textSpan);
+
+        const checkSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        checkSvg.setAttribute(
+          'class',
+          `w-4 h-4 text-[var(--color-brand)] shrink-0 check-icon ${isSelected ? '' : 'hidden'}`
+        );
+        checkSvg.setAttribute('viewBox', '0 0 20 20');
+        checkSvg.setAttribute('fill', 'none');
+        checkSvg.setAttribute('stroke', 'currentColor');
+        checkSvg.setAttribute('stroke-width', '2.5');
+        checkSvg.setAttribute('stroke-linecap', 'round');
+        checkSvg.setAttribute('stroke-linejoin', 'round');
+        checkSvg.setAttribute('aria-hidden', 'true');
+
+        const pathEl = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        pathEl.setAttribute('d', 'm4 10 4 4 8-8');
+        checkSvg.appendChild(pathEl);
+        itemEl.appendChild(checkSvg);
+
+        itemEl.addEventListener('click', () => {
+          handleSelectOption(lvl, item.kode, item.nama);
+        });
+
+        list.appendChild(itemEl);
       });
-      selectDesa.disabled = false;
-      if (statusText) statusText.textContent = 'Pilih desa/kelurahan untuk melihat cuaca BMKG.';
+    }
+
+    // Attach click listeners to SSR-rendered Provinsi items
+    if (listProv) {
+      const provItems = listProv.querySelectorAll<HTMLElement>('.combobox-item');
+      provItems.forEach((it) => {
+        it.addEventListener('click', () => {
+          const kode = it.dataset.value || '';
+          const nama = it.dataset.label || '';
+          handleSelectOption('provinsi', kode, nama);
+        });
+      });
+    }
+
+    // Handle Option Selection
+    async function handleSelectOption(lvl: RegionLevel, kode: string, nama: string) {
+      setTriggerSelected(lvl, kode, nama);
+      closePopover(lvl);
+
+      if (lvl === 'provinsi') {
+        disableLevel('kabupaten');
+        disableLevel('kecamatan');
+        disableLevel('desa');
+        activeRegencyData = null;
+
+        if (!kode) {
+          if (statusText) statusText.textContent = 'Pilih provinsi untuk memulai.';
+          return;
+        }
+
+        if (statusText) statusText.textContent = 'Memuat daftar kabupaten/kota...';
+        if (labels.kabupaten) labels.kabupaten.textContent = 'Memuat...';
+
+        try {
+          const regencies = await loadRegenciesForProvince(kode);
+          renderList('kabupaten', regencies);
+          enableLevel('kabupaten');
+          if (labels.kabupaten) labels.kabupaten.textContent = PLACEHOLDERS.kabupaten;
+          if (statusText) statusText.textContent = 'Pilih kabupaten/kota.';
+        } catch (err: any) {
+          if (statusText) statusText.textContent = err.message || 'Gagal memuat kabupaten.';
+          disableLevel('kabupaten');
+        }
+      } else if (lvl === 'kabupaten') {
+        disableLevel('kecamatan');
+        disableLevel('desa');
+        activeRegencyData = null;
+
+        if (!kode) {
+          if (statusText) statusText.textContent = 'Pilih kabupaten/kota.';
+          return;
+        }
+
+        if (statusText) statusText.textContent = 'Memuat daftar kecamatan & desa...';
+        if (labels.kecamatan) labels.kecamatan.textContent = 'Memuat...';
+
+        try {
+          activeRegencyData = await loadRegencyDetail(kode);
+          const districts = activeRegencyData.kecamatan.map((k) => ({ kode: k.kode, nama: k.nama }));
+          renderList('kecamatan', districts);
+          enableLevel('kecamatan');
+          if (labels.kecamatan) labels.kecamatan.textContent = PLACEHOLDERS.kecamatan;
+          if (statusText) statusText.textContent = 'Pilih kecamatan.';
+        } catch (err: any) {
+          if (statusText) statusText.textContent = err.message || 'Gagal memuat kecamatan.';
+          disableLevel('kecamatan');
+        }
+      } else if (lvl === 'kecamatan') {
+        disableLevel('desa');
+
+        if (!kode || !activeRegencyData) {
+          if (statusText) statusText.textContent = 'Pilih kecamatan.';
+          return;
+        }
+
+        const dist = activeRegencyData.kecamatan.find((k) => k.kode === kode);
+        if (!dist || dist.desa.length === 0) {
+          if (statusText) statusText.textContent = 'Tidak ada desa terdaftar pada kecamatan ini.';
+          return;
+        }
+
+        renderList('desa', dist.desa);
+        enableLevel('desa');
+        if (statusText) statusText.textContent = 'Pilih desa/kelurahan untuk melihat cuaca BMKG.';
+      } else if (lvl === 'desa') {
+        const adm4 = kode;
+        if (!adm4) return;
+
+        const provText = labels.provinsi?.textContent || '';
+        const kabText = labels.kabupaten?.textContent || '';
+        const kecText = labels.kecamatan?.textContent || '';
+        const desaText = nama;
+
+        const fullLabel = `${desaText}, Kec. ${kecText}, ${kabText}, ${provText}`;
+        if (statusText) statusText.textContent = `Lokasi aktif: ${desaText}, ${kecText}`;
+
+        saveLastLocation({
+          prov: selects.provinsi.value,
+          kab: selects.kabupaten.value,
+          kec: selects.kecamatan.value,
+          desa: adm4,
+        });
+
+        dispatchSelectedAdm4(adm4, fullLabel);
+      }
+    }
+
+    // Attach trigger buttons and search inputs listeners
+    const levels: RegionLevel[] = ['provinsi', 'kabupaten', 'kecamatan', 'desa'];
+    levels.forEach((lvl) => {
+      const trigger = triggers[lvl];
+      const search = searches[lvl];
+      const list = lists[lvl];
+      const empty = empties[lvl];
+
+      if (trigger) {
+        trigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          togglePopover(lvl);
+        });
+
+        trigger.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openPopover(lvl);
+          } else if (e.key === 'Escape') {
+            closePopover(lvl);
+          }
+        });
+      }
+
+      if (search && list && empty) {
+        search.addEventListener('input', () => {
+          const q = search.value.trim().toLowerCase();
+          const items = list.querySelectorAll<HTMLElement>('.combobox-item');
+          let visibleCount = 0;
+          items.forEach((it) => {
+            const labelText = (it.dataset.label || '').toLowerCase();
+            if (!q || labelText.includes(q)) {
+              it.classList.remove('hidden');
+              visibleCount++;
+            } else {
+              it.classList.add('hidden');
+            }
+          });
+
+          if (visibleCount === 0) {
+            empty.classList.remove('hidden');
+          } else {
+            empty.classList.add('hidden');
+          }
+        });
+
+        search.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            closePopover(lvl);
+            trigger?.focus();
+            return;
+          }
+
+          const visibleItems = Array.from(
+            list.querySelectorAll<HTMLElement>('.combobox-item:not(.hidden)')
+          );
+          if (visibleItems.length === 0) return;
+
+          let highlightedIndex = visibleItems.findIndex((it) =>
+            it.classList.contains('ring-1')
+          );
+
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            if (highlightedIndex >= 0) {
+              visibleItems[highlightedIndex].classList.remove(
+                'ring-1',
+                'ring-inset',
+                'ring-[var(--color-brand)]'
+              );
+            }
+            highlightedIndex = (highlightedIndex + 1) % visibleItems.length;
+            const target = visibleItems[highlightedIndex];
+            target.classList.add('ring-1', 'ring-inset', 'ring-[var(--color-brand)]');
+            target.scrollIntoView({ block: 'nearest' });
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (highlightedIndex >= 0) {
+              visibleItems[highlightedIndex].classList.remove(
+                'ring-1',
+                'ring-inset',
+                'ring-[var(--color-brand)]'
+              );
+            }
+            highlightedIndex =
+              highlightedIndex <= 0 ? visibleItems.length - 1 : highlightedIndex - 1;
+            const target = visibleItems[highlightedIndex];
+            target.classList.add('ring-1', 'ring-inset', 'ring-[var(--color-brand)]');
+            target.scrollIntoView({ block: 'nearest' });
+          } else if (e.key === 'Enter') {
+            e.preventDefault();
+            if (highlightedIndex >= 0) {
+              visibleItems[highlightedIndex].click();
+            } else if (visibleItems.length === 1) {
+              visibleItems[0].click();
+            }
+          }
+        });
+      }
     });
 
-    // 4. Village Change Handler
-    selectDesa.addEventListener('change', () => {
-      const adm4 = selectDesa.value;
-      if (!adm4) return;
-
-      const provText = selectProv.options[selectProv.selectedIndex]?.text || '';
-      const kabText = selectKab.options[selectKab.selectedIndex]?.text || '';
-      const kecText = selectKec.options[selectKec.selectedIndex]?.text || '';
-      const desaText = selectDesa.options[selectDesa.selectedIndex]?.text || '';
-
-      const fullLabel = `${desaText}, Kec. ${kecText}, ${kabText}, ${provText}`;
-      if (statusText) statusText.textContent = `Lokasi aktif: ${desaText}, ${kecText}`;
-
-      saveLastLocation({
-        prov: selectProv.value,
-        kab: selectKab.value,
-        kec: selectKec.value,
-        desa: adm4,
+    // Close on outside click
+    document.addEventListener('pointerdown', (e) => {
+      const target = e.target as Node | null;
+      if (!target) return;
+      levels.forEach((lvl) => {
+        const popover = popovers[lvl];
+        const trigger = triggers[lvl];
+        if (popover && !popover.classList.contains('hidden')) {
+          if (!popover.contains(target) && !trigger?.contains(target)) {
+            closePopover(lvl);
+          }
+        }
       });
-
-      dispatchSelectedAdm4(adm4, fullLabel);
     });
 
     // Restore either from URL or last location in localStorage
     async function restoreLocation() {
-      if (!selectProv || !selectKab || !selectKec || !selectDesa) return;
-
       let targetAdm4 = initialAdm4;
       let targetProv = '';
       let targetKab = '';
@@ -359,48 +984,41 @@ try {
 
       if (targetProv && targetKab && targetKec && targetDesa) {
         try {
-          selectProv.value = targetProv;
+          // 1. Set Province
+          const provItem = listProv?.querySelector<HTMLElement>(
+            `.combobox-item[data-value="${targetProv}"]`
+          );
+          const provName = provItem?.dataset.label || targetProv;
+          setTriggerSelected('provinsi', targetProv, provName);
+
+          // 2. Load and set Regencies
           const regencies = await loadRegenciesForProvince(targetProv);
-          selectKab.innerHTML = '<option value="">-- Pilih Kabupaten --</option>';
-          regencies.forEach((r) => {
-            const opt = document.createElement('option');
-            opt.value = r.kode;
-            opt.textContent = r.nama;
-            selectKab.appendChild(opt);
-          });
-          selectKab.value = targetKab;
-          selectKab.disabled = false;
+          renderList('kabupaten', regencies, targetKab);
+          const kabItem = regencies.find((r) => r.kode === targetKab);
+          const kabName = kabItem ? kabItem.nama : targetKab;
+          setTriggerSelected('kabupaten', targetKab, kabName);
+          enableLevel('kabupaten');
 
+          // 3. Load and set Districts
           activeRegencyData = await loadRegencyDetail(targetKab);
-          selectKec.innerHTML = '<option value="">-- Pilih Kecamatan --</option>';
-          activeRegencyData.kecamatan.forEach((k) => {
-            const opt = document.createElement('option');
-            opt.value = k.kode;
-            opt.textContent = k.nama;
-            selectKec.appendChild(opt);
-          });
-          selectKec.value = targetKec;
-          selectKec.disabled = false;
+          const districts = activeRegencyData.kecamatan.map((k) => ({ kode: k.kode, nama: k.nama }));
+          renderList('kecamatan', districts, targetKec);
+          const kecItem = districts.find((k) => k.kode === targetKec);
+          const kecName = kecItem ? kecItem.nama : targetKec;
+          setTriggerSelected('kecamatan', targetKec, kecName);
+          enableLevel('kecamatan');
 
-          const dist = activeRegencyData.kecamatan.find((k) => k.kode === targetKec);
-          if (dist) {
-            selectDesa.innerHTML = '<option value="">-- Pilih Desa --</option>';
-            dist.desa.forEach((d) => {
-              const opt = document.createElement('option');
-              opt.value = d.kode;
-              opt.textContent = d.nama;
-              selectDesa.appendChild(opt);
-            });
-            selectDesa.value = targetDesa;
-            selectDesa.disabled = false;
+          // 4. Load and set Villages
+          const activeDist = activeRegencyData.kecamatan.find((k) => k.kode === targetKec);
+          if (activeDist && activeDist.desa.length > 0) {
+            renderList('desa', activeDist.desa, targetDesa);
+            const desaItem = activeDist.desa.find((d) => d.kode === targetDesa);
+            const desaName = desaItem ? desaItem.nama : targetDesa;
+            setTriggerSelected('desa', targetDesa, desaName);
+            enableLevel('desa');
 
-            const provText = selectProv.options[selectProv.selectedIndex]?.text || '';
-            const kabText = selectKab.options[selectKab.selectedIndex]?.text || '';
-            const kecText = selectKec.options[selectKec.selectedIndex]?.text || '';
-            const desaText = selectDesa.options[selectDesa.selectedIndex]?.text || '';
-            const fullLabel = `${desaText}, Kec. ${kecText}, ${kabText}, ${provText}`;
-
-            if (statusText) statusText.textContent = `Lokasi aktif: ${desaText}, ${kecText}`;
+            const fullLabel = `${desaName}, Kec. ${kecName}, ${kabName}, ${provName}`;
+            if (statusText) statusText.textContent = `Lokasi aktif: ${desaName}, ${kecName}`;
             if (rememberBadge) rememberBadge.classList.remove('hidden');
 
             dispatchSelectedAdm4(targetDesa, fullLabel);

@@ -48,7 +48,7 @@ const monthNames = [
     <!-- Step 1: Pilih Komoditas -->
     <div class="space-y-3">
       <div class="flex items-center justify-between">
-        <label for="select-crop-commodity" class="block text-xs font-bold text-[var(--color-soil)] uppercase tracking-wider">
+        <label for="select-crop-commodity" class="block text-xs font-bold text-[var(--color-soil)]">
           Langkah 1: Pilih Komoditas Tanaman
         </label>
         <span class="text-[11px] text-[var(--color-text-muted)] tabular-nums">
@@ -65,7 +65,7 @@ const monthNames = [
             aria-checked="false"
             data-commodity={comm.id}
             data-crop-type={comm.type}
-            class="crop-comm-btn px-4 py-2 min-h-[42px] text-xs sm:text-sm font-bold border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] transition-all cursor-pointer shadow-2xs inline-flex items-center gap-2"
+            class="crop-comm-btn px-4 py-2.5 min-h-[44px] text-xs sm:text-sm font-bold border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] transition-all cursor-pointer shadow-2xs inline-flex items-center gap-2"
           >
             <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-border-control)] comm-dot transition-colors" aria-hidden="true"></span>
             <span>{comm.name}</span>
@@ -73,28 +73,18 @@ const monthNames = [
         ))}
       </div>
 
-      <!-- Synchronized Dropdown for Compact / Alternate Selection -->
-      <div class="max-w-xs relative sm:hidden">
-        <select
-          id="select-crop-commodity"
-          class="w-full appearance-none pl-3.5 pr-10 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] shadow-2xs hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-xs sm:text-sm cursor-pointer transition-colors"
-        >
-          {availableCommodities.map((comm) => (
-            <option value={comm.id}>{comm.name} ({comm.type === 'semusim' ? 'Semusim' : 'Tahunan'})</option>
-          ))}
-        </select>
-        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-[var(--color-soil)]" aria-hidden="true">
-          <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m6 8 4 4 4-4"/>
-          </svg>
-        </div>
-      </div>
+      <!-- Preserved for screen readers / automated tests -->
+      <select id="select-crop-commodity" class="sr-only" tabindex="-1" aria-hidden="true">
+        {availableCommodities.map((comm) => (
+          <option value={comm.id}>{comm.name} ({comm.type === 'semusim' ? 'Semusim' : 'Tahunan'})</option>
+        ))}
+      </select>
     </div>
 
     <!-- Step 2: Tanggal Tanam / Pindah Tanam (Shadcn Date Picker Pattern) -->
     <div id="section-plant-date" class="space-y-3.5 pt-6 border-t border-[var(--color-border)]">
       <div class="flex items-center justify-between">
-        <label for="input-plant-date" class="block text-xs font-bold text-[var(--color-soil)] uppercase tracking-wider">
+        <label for="input-plant-date" class="block text-xs font-bold text-[var(--color-soil)]">
           Langkah 2: Tanggal Tanam / Pindah Tanam
         </label>
         <span id="label-date-mode" class="text-[11px] font-bold text-[var(--color-brand-strong)] tabular-nums">
@@ -136,49 +126,49 @@ const monthNames = [
 
       <!-- Quick Date Presets (Agricultural Shortcuts) -->
       <div class="space-y-1.5 pt-1">
-        <span class="text-[11px] font-bold text-[var(--color-soil)] uppercase tracking-wider block">
+        <span class="text-[11px] font-bold text-[var(--color-soil)] block">
           Pintasan Cepat Umur Tanam / Rencana:
         </span>
         <div class="flex flex-wrap gap-2" id="date-presets-container">
           <button
             type="button"
             data-days="0"
-            class="date-preset-btn px-3 py-1.5 min-h-[36px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer shadow-2xs"
+            class="date-preset-btn px-3.5 py-2 min-h-[40px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer shadow-2xs"
           >
             Hari Ini (0 HST)
           </button>
           <button
             type="button"
             data-days="-7"
-            class="date-preset-btn px-3 py-1.5 min-h-[36px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer shadow-2xs"
+            class="date-preset-btn px-3.5 py-2 min-h-[40px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer shadow-2xs"
           >
             7 Hari Lalu (1 Mgg)
           </button>
           <button
             type="button"
             data-days="-14"
-            class="date-preset-btn px-3 py-1.5 min-h-[36px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer shadow-2xs"
+            class="date-preset-btn px-3.5 py-2 min-h-[40px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer shadow-2xs"
           >
             14 Hari Lalu (2 Mgg)
           </button>
           <button
             type="button"
             data-days="-30"
-            class="date-preset-btn px-3 py-1.5 min-h-[36px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer shadow-2xs"
+            class="date-preset-btn px-3.5 py-2 min-h-[40px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer shadow-2xs"
           >
             30 Hari Lalu (1 Bln)
           </button>
           <button
             type="button"
             data-days="-45"
-            class="date-preset-btn px-3 py-1.5 min-h-[36px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer shadow-2xs"
+            class="date-preset-btn px-3.5 py-2 min-h-[40px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer shadow-2xs"
           >
             45 Hari Lalu
           </button>
           <button
             type="button"
             data-days="30"
-            class="date-preset-btn px-3 py-1.5 min-h-[36px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer shadow-2xs"
+            class="date-preset-btn px-3.5 py-2 min-h-[40px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer shadow-2xs"
           >
             +30 Hari (Rencana)
           </button>
@@ -639,7 +629,7 @@ const monthNames = [
 
       // Sync active season badge
       if (dateSeasonBadge && activeCalendar?.seasons) {
-        const [y, m] = selectedPlantDate.split('-').map(Number);
+        const [, m] = selectedPlantDate.split('-').map(Number);
         const activeSeason = activeCalendar.seasons.find((s) => s.plantMonths.includes(m));
         if (activeSeason) {
           dateSeasonBadge.textContent = `${activeSeason.code} (${activeSeason.label})`;
