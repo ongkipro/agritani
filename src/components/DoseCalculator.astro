@@ -8,22 +8,23 @@
 import ConsultPrompt from './ConsultPrompt.astro';
 ---
 
-<div class="space-y-12" id="dose-calculator-root">
-  <!-- Input Form Card -->
-  <form id="dose-form" class="space-y-6">
-    <div class="max-w-[60ch]">
-      <h2 class="section-title !mb-2">Masukkan data label dan ukuran lahan</h2>
-      <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed">
+<div class="space-y-12 lg:space-y-16" id="dose-calculator-root">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+  <!-- Input card -->
+  <form id="dose-form" class="card p-6 lg:p-8 lg:col-span-7 space-y-6">
+    <div class="max-w-[60ch] space-y-1.5">
+      <h2 class="font-serif text-xl font-semibold text-[var(--color-brand-strong)]">Masukkan data label dan ukuran lahan</h2>
+      <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
         Masukkan angka anjuran dari kemasan resmi produk dan ukuran tangki Anda untuk menghitung takaran bersih di lapangan.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-x-6 gap-y-7">
       
       <!-- Field 1: Dosis Label -->
-      <div class="space-y-1.5">
-        <label for="input-dose" class="block text-xs font-bold text-[var(--color-text)]">
-          1. Dosis dari Label Kemasan <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+      <div class="space-y-2">
+        <label for="input-dose" class="block text-sm font-semibold text-[var(--color-text)]">
+          Dosis dari label kemasan <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
         </label>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <input
@@ -35,7 +36,7 @@ import ConsultPrompt from './ConsultPrompt.astro';
             step="any"
             min="0.001"
             required
-            class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-xs sm:text-sm tabular-nums"
+            class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-base sm:text-sm tabular-nums"
             aria-describedby="dose-unit-desc"
           />
 
@@ -56,7 +57,7 @@ import ConsultPrompt from './ConsultPrompt.astro';
               aria-haspopup="listbox"
               aria-controls="popover-dose-unit"
               aria-label="Pilih satuan dosis"
-              class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-xs sm:text-sm cursor-pointer transition-colors flex items-center justify-between text-left"
+              class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-base sm:text-sm cursor-pointer transition-colors flex items-center justify-between text-left"
             >
               <span id="label-dose-unit" class="truncate font-medium">ml / Liter (Cair)</span>
               <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-[var(--color-soil)] transition-transform duration-200" aria-hidden="true">
@@ -90,16 +91,16 @@ import ConsultPrompt from './ConsultPrompt.astro';
             </div>
           </div>
         </div>
-        <p id="dose-unit-desc" class="text-xs text-[var(--color-text-muted)]">
+        <p id="dose-unit-desc" class="text-[13px] leading-snug text-[var(--color-text-muted)]">
           Sesuai angka petunjuk anjuran di botol / kemasan produk resmi.
         </p>
-        <p id="err-dose" class="text-xs text-[var(--color-danger)] hidden"></p>
+        <p id="err-dose" class="text-[13px] font-medium text-[var(--color-danger)] hidden"></p>
       </div>
 
       <!-- Field 1b: Volume Tangki pada Label (khusus per tangki) -->
-      <div id="wrapper-label-tank" class="space-y-1.5 hidden">
-        <label for="input-label-tank-vol" class="block text-xs font-bold text-[var(--color-text)]">
-          Volume Tangki pada Label (Liter) <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+      <div id="wrapper-label-tank" class="space-y-2 hidden">
+        <label for="input-label-tank-vol" class="block text-sm font-semibold text-[var(--color-text)]">
+          Volume tangki pada label (liter) <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
         </label>
         <input
           type="number"
@@ -109,19 +110,19 @@ import ConsultPrompt from './ConsultPrompt.astro';
           step="any"
           min="1"
           max="1000"
-          class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-xs sm:text-sm tabular-nums"
+          class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-base sm:text-sm tabular-nums"
           aria-describedby="label-tank-desc"
         />
-        <p id="label-tank-desc" class="text-xs text-[var(--color-text-muted)]">
+        <p id="label-tank-desc" class="text-[13px] leading-snug text-[var(--color-text-muted)]">
           Ukuran tangki yang diasumsikan label produk (umumnya 16 Liter).
         </p>
-        <p id="err-label-tank-vol" class="text-xs text-[var(--color-danger)] hidden"></p>
+        <p id="err-label-tank-vol" class="text-[13px] font-medium text-[var(--color-danger)] hidden"></p>
       </div>
 
       <!-- Field 2: Volume Tangki Pengguna -->
-      <div class="space-y-1.5">
-        <label for="input-tank-vol" class="block text-xs font-bold text-[var(--color-text)]">
-          2. Kapasitas Tangki Semprot Anda (Liter) <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+      <div class="space-y-2">
+        <label for="input-tank-vol" class="block text-sm font-semibold text-[var(--color-text)]">
+          Kapasitas tangki semprot Anda (liter) <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
         </label>
         <input
           type="number"
@@ -132,26 +133,26 @@ import ConsultPrompt from './ConsultPrompt.astro';
           min="1"
           max="1000"
           required
-          class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-xs sm:text-sm tabular-nums"
+          class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-base sm:text-sm tabular-nums"
           aria-describedby="tank-vol-desc"
         />
-        <div class="flex flex-wrap items-center gap-1.5 pt-0.5">
-          <span class="text-[11px] font-semibold text-[var(--color-soil)] mr-1">Pintasan:</span>
-          <button type="button" data-tank-preset="14" class="tank-preset-btn px-2.5 py-1 min-h-[44px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">14 L (Solo)</button>
-          <button type="button" data-tank-preset="16" class="tank-preset-btn px-2.5 py-1 min-h-[44px] text-xs font-bold border border-[var(--color-brand)] bg-[var(--color-tint)] text-[var(--color-brand-strong)] rounded-[2px] transition-colors cursor-pointer">16 L (Standar)</button>
-          <button type="button" data-tank-preset="20" class="tank-preset-btn px-2.5 py-1 min-h-[44px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">20 L (Elektrik)</button>
-          <button type="button" data-tank-preset="200" class="tank-preset-btn px-2.5 py-1 min-h-[44px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">200 L (Drum)</button>
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-[13px] text-[var(--color-text-muted)] mr-1">Pintasan:</span>
+          <button type="button" aria-pressed="false" data-tank-preset="14" class="tank-preset-btn px-3 min-h-[44px] text-[13px] font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">14 L (Solo)</button>
+          <button type="button" aria-pressed="true" data-tank-preset="16" class="tank-preset-btn px-3 min-h-[44px] text-[13px] font-bold border border-[var(--color-brand)] bg-[var(--color-tint)] text-[var(--color-brand-strong)] rounded-[2px] transition-colors cursor-pointer">16 L (Standar)</button>
+          <button type="button" aria-pressed="false" data-tank-preset="20" class="tank-preset-btn px-3 min-h-[44px] text-[13px] font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">20 L (Elektrik)</button>
+          <button type="button" aria-pressed="false" data-tank-preset="200" class="tank-preset-btn px-3 min-h-[44px] text-[13px] font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">200 L (Drum)</button>
         </div>
-        <p id="tank-vol-desc" class="text-xs text-[var(--color-text-muted)]">
+        <p id="tank-vol-desc" class="text-[13px] leading-snug text-[var(--color-text-muted)]">
           Kapasitas tangki semprot punggung Anda (bawaan 16 Liter).
         </p>
-        <p id="err-tank-vol" class="text-xs text-[var(--color-danger)] hidden"></p>
+        <p id="err-tank-vol" class="text-[13px] font-medium text-[var(--color-danger)] hidden"></p>
       </div>
 
       <!-- Field 3: Luas Lahan -->
-      <div class="space-y-1.5">
-        <label for="input-area" class="block text-xs font-bold text-[var(--color-text)]">
-          3. Luas Lahan Semprot <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+      <div class="space-y-2">
+        <label for="input-area" class="block text-sm font-semibold text-[var(--color-text)]">
+          Luas lahan semprot <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
         </label>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <input
@@ -163,7 +164,7 @@ import ConsultPrompt from './ConsultPrompt.astro';
             step="any"
             min="0.001"
             required
-            class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-xs sm:text-sm tabular-nums"
+            class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-base sm:text-sm tabular-nums"
             aria-describedby="area-desc"
           />
 
@@ -182,7 +183,7 @@ import ConsultPrompt from './ConsultPrompt.astro';
               aria-haspopup="listbox"
               aria-controls="popover-area-unit"
               aria-label="Pilih satuan luas lahan"
-              class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-xs sm:text-sm cursor-pointer transition-colors flex items-center justify-between text-left"
+              class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-base sm:text-sm cursor-pointer transition-colors flex items-center justify-between text-left"
             >
               <span id="label-area-unit" class="truncate font-medium">Hektar (ha)</span>
               <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-[var(--color-soil)] transition-transform duration-200" aria-hidden="true">
@@ -209,23 +210,23 @@ import ConsultPrompt from './ConsultPrompt.astro';
           </div>
         </div>
 
-        <div class="flex flex-wrap items-center gap-1.5 pt-0.5">
-          <span class="text-[11px] font-semibold text-[var(--color-soil)] mr-1">Pintasan:</span>
-          <button type="button" data-area-val="1000" data-area-unit="m2" class="area-preset-btn px-2.5 py-1 min-h-[44px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">1.000 m²</button>
-          <button type="button" data-area-val="2500" data-area-unit="m2" class="area-preset-btn px-2.5 py-1 min-h-[44px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">2.500 m² (1/4 ha)</button>
-          <button type="button" data-area-val="0.5" data-area-unit="ha" class="area-preset-btn px-2.5 py-1 min-h-[44px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">0.5 ha</button>
-          <button type="button" data-area-val="1" data-area-unit="ha" class="area-preset-btn px-2.5 py-1 min-h-[44px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">1 ha</button>
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-[13px] text-[var(--color-text-muted)] mr-1">Pintasan:</span>
+          <button type="button" data-area-val="1000" data-area-unit="m2" class="area-preset-btn px-3 min-h-[44px] text-[13px] font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">1.000 m²</button>
+          <button type="button" data-area-val="2500" data-area-unit="m2" class="area-preset-btn px-3 min-h-[44px] text-[13px] font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">2.500 m² (1/4 ha)</button>
+          <button type="button" data-area-val="0.5" data-area-unit="ha" class="area-preset-btn px-3 min-h-[44px] text-[13px] font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">0.5 ha</button>
+          <button type="button" data-area-val="1" data-area-unit="ha" class="area-preset-btn px-3 min-h-[44px] text-[13px] font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">1 ha</button>
         </div>
-        <p id="area-desc" class="text-xs text-[var(--color-text-muted)]">
+        <p id="area-desc" class="text-[13px] leading-snug text-[var(--color-text-muted)]">
           Gunakan satuan baku m² atau ha. Satuan lokal tidak seragam antar daerah.
         </p>
-        <p id="err-area" class="text-xs text-[var(--color-danger)] hidden"></p>
+        <p id="err-area" class="text-[13px] font-medium text-[var(--color-danger)] hidden"></p>
       </div>
 
       <!-- Field 4: Volume Semprot per Ha -->
-      <div class="space-y-1.5">
-        <label for="input-spray-vol" class="block text-xs font-bold text-[var(--color-text)]">
-          4. Volume Semprot Larutan (L/ha) <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+      <div class="space-y-2">
+        <label for="input-spray-vol" class="block text-sm font-semibold text-[var(--color-text)]">
+          Volume semprot larutan (L/ha) <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
         </label>
         <input
           type="number"
@@ -237,26 +238,116 @@ import ConsultPrompt from './ConsultPrompt.astro';
           min="50"
           max="1000"
           required
-          class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-xs sm:text-sm tabular-nums"
+          class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-base sm:text-sm tabular-nums"
           aria-describedby="spray-vol-desc"
         />
-        <div class="flex flex-wrap items-center gap-1.5 pt-0.5">
-          <span class="text-[11px] font-semibold text-[var(--color-soil)] mr-1">Pintasan:</span>
-          <button type="button" data-spray-preset="200" class="spray-preset-btn px-2.5 py-1 min-h-[44px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">200 L/ha (Rendah)</button>
-          <button type="button" data-spray-preset="300" class="spray-preset-btn px-2.5 py-1 min-h-[44px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">300 L/ha (Standar)</button>
-          <button type="button" data-spray-preset="400" class="spray-preset-btn px-2.5 py-1 min-h-[44px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">400 L/ha (Lebat)</button>
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-[13px] text-[var(--color-text-muted)] mr-1">Pintasan:</span>
+          <button type="button" aria-pressed="false" data-spray-preset="200" class="spray-preset-btn px-3 min-h-[44px] text-[13px] font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">200 L/ha (Rendah)</button>
+          <button type="button" aria-pressed="false" data-spray-preset="300" class="spray-preset-btn px-3 min-h-[44px] text-[13px] font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">300 L/ha (Standar)</button>
+          <button type="button" aria-pressed="false" data-spray-preset="400" class="spray-preset-btn px-3 min-h-[44px] text-[13px] font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">400 L/ha (Lebat)</button>
         </div>
-        <p id="spray-vol-desc" class="text-xs text-[var(--color-text-muted)]">
+        <p id="spray-vol-desc" class="text-[13px] leading-snug text-[var(--color-text-muted)]">
           Volume semprot air per hektar sesuai anjuran label produk atau tanyakan agronom lapangan.
         </p>
-        <p id="err-spray-vol" class="text-xs text-[var(--color-danger)] hidden"></p>
+        <p id="err-spray-vol" class="text-[13px] font-medium text-[var(--color-danger)] hidden"></p>
       </div>
 
     </div>
   </form>
 
+  <!-- Result column: one card, sticky beside the inputs on desktop -->
+  <div class="lg:col-span-5 lg:sticky lg:top-6 self-start">
+    <div class="card p-6 lg:p-8">
+      <!-- Empty State (before valid input) -->
+      <div id="calc-empty-state" class="space-y-2">
+        <h2 class="font-serif text-xl font-semibold text-[var(--color-brand-strong)] text-balance">
+          Isi dosis dari label untuk melihat hasil
+        </h2>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+          Masukkan angka dosis dari label kemasan resmi, luas lahan, dan volume semprot anjuran untuk menghitung takaran per tangki serta kebutuhan produk.
+        </p>
+      </div>
+
+      <!-- Output Results (hidden until all inputs are valid) -->
+      <section id="calc-result-container" aria-labelledby="calc-result-heading" aria-live="polite" class="space-y-6 hidden">
+        <h2 id="calc-result-heading" class="font-serif text-xl font-semibold text-[var(--color-brand-strong)]">
+          Hasil perhitungan dosis
+        </h2>
+
+        <div class="divide-y divide-[var(--color-border)]">
+          <!-- 1. Per Tangki -->
+          <div class="pb-5">
+            <p class="font-serif text-4xl font-semibold leading-none text-[var(--color-brand-strong)] tabular-nums">
+              <span id="res-per-tank">0</span>
+              <span id="res-per-tank-unit" class="ml-1 font-sans text-base font-normal text-[var(--color-text-muted)]">ml</span>
+            </p>
+            <p class="mt-2 text-sm font-semibold text-[var(--color-text)]">Takaran per tangki Anda</p>
+            <p class="text-[13px] text-[var(--color-text-muted)] leading-snug" id="res-per-tank-desc">
+              Campurkan ke dalam satu tangki air penuh.
+            </p>
+          </div>
+
+          <!-- 2. Jumlah Tangki -->
+          <div class="py-5">
+            <p class="font-serif text-4xl font-semibold leading-none text-[var(--color-brand-strong)] tabular-nums">
+              <span id="res-total-tanks">0</span>
+              <span class="ml-1 font-sans text-base font-normal text-[var(--color-text-muted)]">tangki</span>
+            </p>
+            <p class="mt-2 text-sm font-semibold text-[var(--color-text)]">Jumlah tangki semprot</p>
+            <p class="text-[13px] text-[var(--color-text-muted)] leading-snug">
+              Dibulatkan ke atas dari <span id="res-exact-tanks" class="tabular-nums font-semibold">0</span> tangki (<span id="res-total-water" class="tabular-nums font-semibold">0</span> L air).
+            </p>
+          </div>
+
+          <!-- 3. Total Kebutuhan Produk -->
+          <div class="pt-5">
+            <p class="font-serif text-4xl font-semibold leading-none text-[var(--color-brand-strong)] tabular-nums">
+              <span id="res-exact-product-large">0</span>
+              <span id="res-exact-product-large-unit" class="ml-1 font-sans text-base font-normal text-[var(--color-text-muted)]">L</span>
+            </p>
+            <p class="mt-2 text-sm font-semibold text-[var(--color-text)]">Kebutuhan produk seluruh lahan</p>
+            <p class="text-[13px] text-[var(--color-text-muted)] leading-snug">
+              Setara <span id="res-exact-product-small" class="tabular-nums font-semibold">0</span> <span id="res-exact-product-small-unit">ml</span> bersih seluruh lahan.
+            </p>
+            <p class="mt-2 text-[13px] text-[var(--color-text)] leading-snug">
+              <span class="font-semibold">Jika menyiapkan tangki penuh:</span>
+              <span id="res-batch-product-large" class="ml-1 font-bold tabular-nums">0</span> <span id="res-batch-product-large-unit">L</span>
+              (<span id="res-batch-product-small" class="tabular-nums font-semibold">0</span> <span id="res-batch-product-small-unit">ml</span> untuk <span id="res-batch-tanks-count" class="font-bold">0</span> tangki penuh).
+            </p>
+          </div>
+        </div>
+
+        <!-- Rekomendasi Pengisian Tangki Terakhir -->
+        <div class="text-[13px] text-[var(--color-text)] leading-snug">
+          <p class="font-semibold">Tangki terakhir</p>
+          <p id="res-partial-tank"></p>
+        </div>
+
+        <!-- Rincian Cara Hitung (Collapsible) -->
+        <details class="group" id="calc-steps-details">
+          <summary class="inline-flex items-center gap-2 min-h-[44px] font-semibold text-sm cursor-pointer select-none text-[var(--color-brand-strong)] hover:underline">
+            <span>Cara hitung</span>
+            <svg class="w-4 h-4 transition-transform duration-200 group-open:rotate-180" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m6 8 4 4 4-4"/>
+            </svg>
+          </summary>
+          <ul id="res-steps" class="mt-1 space-y-2 text-[13px] text-[var(--color-text)] list-disc pl-5">
+          </ul>
+        </details>
+
+        <!-- Peringatan Label -->
+        <p class="text-[13px] text-[var(--color-text-muted)] leading-snug">
+          <span class="font-semibold text-[var(--color-text)]">Ikuti label kemasan.</span>
+          Selalu ikuti takaran dosis dan petunjuk keselamatan pada label kemasan resmi produk yang terdaftar di Kementerian Pertanian. Kalkulator ini hanya instrumen bantu hitungan matematis volume semprot di lahan.
+        </p>
+      </section>
+    </div>
+  </div>
+  </div>
+
   <noscript>
-    <div class="px-5 py-4 bg-[var(--color-tint)] rounded-[2px] text-sm text-[var(--color-text)] space-y-3">
+    <div class="card p-6 text-sm text-[var(--color-text)] space-y-3 max-w-[68ch]">
       <p class="font-semibold text-[var(--color-brand-strong)]">Panduan rumus kalkulasi mandiri (tanpa JavaScript):</p>
       <p>Kalkulator interaktif membutuhkan JavaScript aktif. Anda tetap dapat menghitung kebutuhan di lapangan menggunakan rumus baku berikut:</p>
       <ul class="list-disc pl-5 space-y-1">
@@ -268,118 +359,43 @@ import ConsultPrompt from './ConsultPrompt.astro';
     </div>
   </noscript>
 
-  <!-- Empty State Panel (Initial state before valid input) -->
-  <div id="calc-empty-state" class="max-w-[60ch] space-y-2">
-    <h2 class="font-serif text-xl font-semibold text-[var(--color-brand-strong)]">
-      Isi dosis dari label untuk melihat hasil
-    </h2>
-    <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
-      Masukkan angka dosis dari label kemasan resmi, luas lahan, dan volume semprot anjuran untuk menghitung takaran per tangki serta kebutuhan produk.
-    </p>
+  <!-- One WhatsApp Consult CTA (DESIGN §2.8), after the tool -->
+  <div id="dose-consult-wrapper" class="max-w-[60ch]">
+    <ConsultPrompt
+      source="[Web·Kalkulator]"
+      title="Butuh konsultasi kalibrasi semprot atau pencampuran produk?"
+      description="Hubungi tim agronomi Agritani bila Anda ragu mengenai pencampuran bahan aktif (kompatibilitas tangki) atau penyesuaian nozzle."
+      label="Tanya Tim Agronomi"
+      variant="secondary"
+    />
   </div>
 
-  <!-- Output Results Panel (Hidden until all inputs are valid) -->
-  <section id="calc-result-container" aria-labelledby="calc-result-heading" aria-live="polite" class="space-y-8 hidden">
-    <h2 id="calc-result-heading" class="section-title !mb-0">
-      Hasil perhitungan dosis
-    </h2>
-
-    <!-- The single results panel: three figures as open columns -->
-    <div class="p-5 sm:p-7 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-6">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-
-        <!-- 1. Per Tangki -->
-        <div class="space-y-1">
-          <p class="text-sm font-semibold text-[var(--color-soil)]">Takaran per tangki Anda</p>
-          <p class="text-3xl sm:text-4xl font-extrabold text-[var(--color-brand)] tabular-nums">
-            <span id="res-per-tank">0</span>
-            <span id="res-per-tank-unit" class="text-lg font-normal text-[var(--color-text-muted)]">ml</span>
-          </p>
-          <p class="text-sm text-[var(--color-text-muted)] leading-relaxed" id="res-per-tank-desc">
-            Campurkan ke dalam satu tangki air penuh.
-          </p>
-        </div>
-
-        <!-- 2. Jumlah Tangki -->
-        <div class="space-y-1">
-          <p class="text-sm font-semibold text-[var(--color-soil)]">Jumlah tangki semprot</p>
-          <p class="text-3xl sm:text-4xl font-extrabold text-[var(--color-brand)] tabular-nums">
-            <span id="res-total-tanks">0</span>
-            <span class="text-lg font-normal text-[var(--color-text-muted)]">tangki</span>
-          </p>
-          <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
-            Dibulatkan ke atas dari <span id="res-exact-tanks" class="tabular-nums font-semibold">0</span> tangki (<span id="res-total-water" class="tabular-nums font-semibold">0</span> L air).
-          </p>
-        </div>
-
-        <!-- 3. Total Kebutuhan Produk -->
-        <div class="space-y-1">
-          <p class="text-sm font-semibold text-[var(--color-soil)]">Kebutuhan tepat bersih</p>
-          <p class="text-3xl sm:text-4xl font-extrabold text-[var(--color-brand)] tabular-nums">
-            <span id="res-exact-product-large">0</span>
-            <span id="res-exact-product-large-unit" class="text-lg font-normal text-[var(--color-text-muted)]">L</span>
-          </p>
-          <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
-            Setara <span id="res-exact-product-small" class="tabular-nums font-semibold">0</span> <span id="res-exact-product-small-unit">ml</span> bersih seluruh lahan.
-          </p>
-          <p class="text-sm text-[var(--color-text)] leading-relaxed pt-2">
-            <span class="font-semibold">Jika menyiapkan tangki penuh:</span>
-            <span id="res-batch-product-large" class="font-bold tabular-nums">0</span> <span id="res-batch-product-large-unit">L</span>
-            (<span id="res-batch-product-small" class="tabular-nums font-semibold">0</span> <span id="res-batch-product-small-unit">ml</span> untuk <span id="res-batch-tanks-count" class="font-bold">0</span> tangki penuh).
-          </p>
-        </div>
-
-      </div>
-
-      <!-- Rekomendasi Pengisian Tangki Terakhir -->
-      <div class="text-sm text-[var(--color-text)] leading-relaxed max-w-[68ch]">
-        <p class="font-semibold text-[var(--color-brand-strong)]">Panduan pengisian tangki terakhir:</p>
-        <p id="res-partial-tank"></p>
-      </div>
-    </div>
-
-    <!-- Rincian Cara Hitung (Collapsible) -->
-    <details class="group max-w-[68ch]" id="calc-steps-details">
-      <summary class="inline-flex items-center gap-2 min-h-[44px] font-semibold text-sm cursor-pointer select-none text-[var(--color-brand-strong)] hover:underline">
-        <span>Lihat rincian langkah perhitungan & rumus</span>
-        <svg class="w-4 h-4 transition-transform duration-200 group-open:rotate-180" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="m6 8 4 4 4-4"/>
-        </svg>
-      </summary>
-      <ul id="res-steps" class="mt-2 space-y-2 text-sm text-[var(--color-text)] list-disc pl-5">
-      </ul>
-    </details>
-
-    <!-- Peringatan Keamanan Label -->
-    <div class="px-5 py-4 bg-[var(--color-harvest-tint)] rounded-[2px] text-sm text-[var(--color-text)] leading-relaxed space-y-1 max-w-[68ch]">
-      <p class="font-semibold text-[var(--color-soil)]">Peringatan penting label kemasan:</p>
-      <p>
-        Selalu ikuti takaran dosis dan petunjuk keselamatan pada label kemasan resmi produk yang terdaftar di Kementerian Pertanian. Kalkulator ini hanya instrumen bantu hitungan matematis volume semprot di lahan.
-      </p>
-    </div>
-
-    <!-- Tautan Kontekstual Cuaca Tani -->
-    <div class="max-w-[68ch] space-y-1">
-      <h3 class="font-serif text-lg font-semibold text-[var(--color-brand-strong)]">Sebelum mulai menyemprot</h3>
-      <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
-        Periksa prakiraan curah hujan dan kecepatan angin di desa Anda agar larutan tidak tercuci atau terbawa angin.
-      </p>
-      <a href="/alat/cuaca-tani/" class="link-more min-h-[44px]">Buka Cuaca Tani &rarr;</a>
-    </div>
-
-    <!-- One WhatsApp Consult CTA (DESIGN §2.8) -->
-    <div id="dose-consult-wrapper">
-      <ConsultPrompt
-        source="[Web·Kalkulator]"
-        title="Butuh konsultasi kalibrasi semprot atau pencampuran produk?"
-        description="Hubungi tim agronomi Agritani bila Anda ragu mengenai pencampuran bahan aktif (kompatibilitas tangki) atau penyesuaian nozzle."
-        label="Tanya Tim Agronomi"
-        variant="secondary"
-      />
-    </div>
-
+  <!-- Related tools and references -->
+  <section aria-labelledby="dose-related-heading">
+    <h2 id="dose-related-heading" class="font-serif text-xl font-semibold text-[var(--color-brand-strong)] mb-4">Sebelum mulai menyemprot</h2>
+    <ul class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <li>
+        <a href="/alat/cuaca-tani/" class="card card-link block h-full p-5">
+          <span class="block font-serif text-lg font-semibold text-[var(--color-brand-strong)]">Cuaca Tani</span>
+          <span class="mt-1 block text-sm text-[var(--color-text-muted)] leading-snug">Periksa hujan dan angin di desa Anda agar larutan tidak tercuci atau terbawa angin.</span>
+        </a>
+      </li>
+      <li>
+        <a href="/produk/" class="card card-link block h-full p-5">
+          <span class="block font-serif text-lg font-semibold text-[var(--color-brand-strong)]">Produk Agritani</span>
+          <span class="mt-1 block text-sm text-[var(--color-text-muted)] leading-snug">Dosis anjuran tiap produk sesuai label kemasan.</span>
+        </a>
+      </li>
+      <li>
+        <a href="/jurnal/" class="card card-link block h-full p-5">
+          <span class="block font-serif text-lg font-semibold text-[var(--color-brand-strong)]">Jurnal Tani</span>
+          <span class="mt-1 block text-sm text-[var(--color-text-muted)] leading-snug">Panduan penanganan hama dan penyakit per komoditas.</span>
+        </a>
+      </li>
+    </ul>
   </section>
 </div>
+
 
 <script>
   import { calculateDose, formatNumber, type DoseInput, type DoseUnit, type AreaUnit } from '../lib/dose';
@@ -583,9 +599,11 @@ import ConsultPrompt from './ConsultPrompt.astro';
             if (b === btn) {
               b.classList.add('border-[var(--color-brand)]', 'bg-[var(--color-tint)]', 'text-[var(--color-brand-strong)]', 'font-bold');
               b.classList.remove('font-medium');
+              b.setAttribute('aria-pressed', 'true');
             } else {
               b.classList.remove('border-[var(--color-brand)]', 'bg-[var(--color-tint)]', 'text-[var(--color-brand-strong)]', 'font-bold');
               b.classList.add('font-medium');
+              b.setAttribute('aria-pressed', 'false');
             }
           });
           recompute();
@@ -634,9 +652,11 @@ import ConsultPrompt from './ConsultPrompt.astro';
             if (b === btn) {
               b.classList.add('border-[var(--color-brand)]', 'bg-[var(--color-tint)]', 'text-[var(--color-brand-strong)]', 'font-bold');
               b.classList.remove('font-medium');
+              b.setAttribute('aria-pressed', 'true');
             } else {
               b.classList.remove('border-[var(--color-brand)]', 'bg-[var(--color-tint)]', 'text-[var(--color-brand-strong)]', 'font-bold');
               b.classList.add('font-medium');
+              b.setAttribute('aria-pressed', 'false');
             }
           });
           recompute();

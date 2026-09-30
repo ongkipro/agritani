@@ -61,11 +61,11 @@ const tools = [
 ---
 
 <BaseLayout seo={seo} currentPath="/alat/">
-  <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+  <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 pb-16 lg:pb-24">
     <Breadcrumb items={breadcrumbs} />
 
     <!-- Page Header (Lapangan Layout) -->
-    <header class="my-6 sm:my-8 max-w-[68ch]">
+    <header class="mt-6 mb-8 sm:mt-8 sm:mb-10 max-w-[60ch]">
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold text-[var(--color-text)] leading-tight tracking-[-0.015em] text-balance mb-3">
         Alat Tani
       </h1>
@@ -74,31 +74,28 @@ const tools = [
       </p>
     </header>
 
-    <p class="mb-8 max-w-[68ch] text-sm text-[var(--color-text-muted)]">
-      Semua alat gratis, tanpa registrasi atau akun, dan dirancang untuk layar ponsel di lahan.
-    </p>
-
-    <!-- Tools index: open rows, live tools first (DESIGN §4.2.3) -->
-    <ul class="mb-16 divide-y divide-[var(--color-border)]">
+    <!-- Tools index: 2×2 card grid, live tools first (DESIGN §4.2.3) -->
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
       {[...tools].sort((a, b) => Number(a.isUpcoming) - Number(b.isUpcoming)).map((tool) => (
         <li>
-          <a
-            href={tool.href}
-            class="group grid grid-cols-1 sm:grid-cols-[14rem_1fr_auto] gap-x-8 gap-y-1.5 py-6 sm:py-7 sm:items-baseline"
-          >
-            <h2 class="font-serif text-xl sm:text-2xl font-semibold text-[var(--color-brand-strong)] group-hover:underline">
+          <a href={tool.href} class="card card-link flex flex-col h-full p-6">
+            <h2 class="font-serif text-[22px] leading-snug font-semibold text-[var(--color-brand-strong)]">
               {tool.title}
             </h2>
-            <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed max-w-[60ch]">
+            <p class="mt-2 text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed max-w-[52ch]">
               {tool.description}
-              <span class="block mt-1 text-xs font-semibold text-[var(--color-soil)]">{tool.badge}</span>
             </p>
-            <span class="link-more text-sm mt-2 sm:mt-0 whitespace-nowrap">
-              {tool.isUpcoming ? 'Lihat status' : 'Buka instrumen'} &rarr;
+            {tool.isUpcoming && <p class="mt-2 text-[13px] font-semibold text-[var(--color-soil)]">{tool.badge}</p>}
+            <span class="link-more text-sm mt-auto pt-4 self-start">
+              {tool.isUpcoming ? 'Lihat status' : 'Buka alat'} &rarr;
             </span>
           </a>
         </li>
       ))}
     </ul>
+
+    <p class="mt-8 max-w-[68ch] text-sm text-[var(--color-text-muted)]">
+      Semua alat gratis, tanpa registrasi atau akun, dan dirancang untuk layar ponsel di lahan.
+    </p>
   </div>
 </BaseLayout>
