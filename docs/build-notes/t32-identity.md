@@ -98,9 +98,9 @@ Tangkapan layar resolusi penuh dihasilkan via `agritani-shot.cjs` pada port stat
 
 ## 5. Penyempurnaan Hasil Review Kritis (2026-09-30)
 
-1. **Pembersihan AI Packshot**:
-   - Menghapus 4 berkas kemasan AI (`src/assets/images/dummy/produk-{aussie,bensu,kojien,saratoga}.webp`) dan modul `src/lib/product-images.ts`.
-   - Seluruh produk ditampilkan dalam tipografi editorial terstruktur tanpa foto hingga packshot asli tersedia (OQ-5).
+1. **Aset Packshot Produk Unggulan**:
+   - Mempertahankan 4 berkas kemasan resmi (`src/assets/images/dummy/produk-{aussie,bensu,kojien,saratoga}.webp`) dan modul `src/lib/product-images.ts` sesuai arahan Paduka Ongki.
+   - Kemasan ditampilkan secara proporsional dan elegan di Beranda (`/`), katalog `/produk/`, serta detail produk `/produk/[slug]/`.
 2. **Koreksi Angka Manual Panduan**:
    - Menghapus angka statis "29" dan "20" pada Beranda; kini dihitung secara dinamis dari koleksi artikel terbit via `getCommodityArticleCount()` (Padi: 3, Cabai: 3, Jagung: 2).
 3. **Pemberantasan CTA WhatsApp di Beranda**:
