@@ -894,3 +894,8 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - agy (Gemini 3.8 Flash): `/penulis/arif-prabowo/` dirombak gaya profil Medium (feed + filter topik + kartu penulis sticky + load more), `/404` jadi halaman pemulihan, `AuthorAvatar` disesuaikan, skrip tangkapan UI + bukti di `proof/ui/author/` dan `proof/ui/404/`.
 - Review Claude: bio dikembalikan ke kalimat DEC-016 (tambahan "di berbagai wilayah Indonesia" dan "bermitra dengan pelaku industri pertanian nasional" dihapus); statistik "Riset Lapangan" → "Tahun pengalaman". 404 dirapikan sesuai DESIGN §3.3/§3.4: kicker "Galat 404", ikon dekoratif, lencana ("Interaktif", "Presisi"), garis antar-section, dan klaim "secara akurat" dihapus; chip 32px → tautan teks 44px.
 - Verifikasi: astro check 0 error, npm test, npm run build PASS (SEO, CSP 0/0/0, owner-rules); WhatsApp: profil 1, 404 0; render 390 & 1440 diperiksa.
+
+## 2026-09-30 — T-48: Halaman 404 resmi di produksi (PASS)
+
+- Temuan saat verifikasi live T-47: URL tak dikenal mengembalikan `HTTP 404` dengan `content-length: 0` — halaman 404 Agritani tidak pernah tampil di produksi (Workers static assets tanpa `not_found_handling`).
+- Perbaikan: `wrangler.jsonc` → `assets.not_found_handling: "404-page"` (nilai diverifikasi di `node_modules/wrangler/config-schema.json`: `single-page-application` | `404-page` | `none`).

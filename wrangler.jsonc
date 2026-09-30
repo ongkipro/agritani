@@ -3,7 +3,9 @@
   "name": "agritani",
   "compatibility_date": "2026-09-29",
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist",
+    // Serve dist/404.html with status 404 for unknown paths (T-48); without this the body was empty.
+    "not_found_handling": "404-page"
   },
   "routes": [
     {
