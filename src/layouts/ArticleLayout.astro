@@ -269,19 +269,20 @@ const nextTools = [
             <slot />
           </div>
 
-          <!-- Tags: hashtag chips (owner 2026-09-30); visual chip ~28px inside a 44px target -->
+          <!-- Tags: "Tag:" label + inline #links, no chip/card/border (owner 2026-09-30); py-2.5 widens the hit area without loosening the lines -->
           {data.tags && data.tags.length > 0 && (
-            <ul class="mt-6 flex flex-wrap gap-x-1.5" aria-label="Tag artikel">
-              {data.tags.map((tag) => (
-                <li>
-                  <a href={`/jurnal/tag/${slugifyTag(tag)}/`} class="group/tag inline-flex items-center min-h-[44px]">
-                    <span class="inline-flex items-center h-9 px-3 rounded-[2px] bg-[var(--color-tint)] text-[13px] font-medium text-[var(--color-text)] group-hover/tag:bg-[var(--color-brand)] group-hover/tag:text-white group-active/tag:bg-[var(--color-brand-hover)] group-active/tag:text-white transition-colors">
-                      <span class="text-[var(--color-soil)] group-hover/tag:text-white font-semibold mr-0.5" aria-hidden="true">#</span>{tag}
-                    </span>
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <div class="mt-6 text-sm leading-7">
+              <span class="font-semibold text-[var(--color-text)] mr-2">Tag:</span>
+              <ul class="inline" aria-label="Tag artikel">
+                {data.tags.map((tag) => (
+                  <li class="inline-block mr-3">
+                    <a href={`/jurnal/tag/${slugifyTag(tag)}/`} class="py-2.5 text-[var(--color-brand-strong)] hover:underline underline-offset-4 active:text-[var(--color-text)]">
+                      <span class="text-[var(--color-soil)]" aria-hidden="true">#</span>{tag}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
 
         </article>

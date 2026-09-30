@@ -3,7 +3,7 @@
  * src/pages/produk/index.astro
  * Product catalog & comparison index (T-11, DESIGN §2.5, §4.2.3)
  * Invariants: no WhatsApp CTA, 2px radius, one card per product (DESIGN §3.3.3), no kickers/section dividers, 0/0/0 CSP, tabular numbers.
- * Prices come from src/data/products.json (petanisejahtera.com, checked 2026-09-30).
+ * Prices come from src/data/products.json (checked 2026-09-30).
  */
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -56,7 +56,7 @@ const seo: SeoInput = {
     </section>
 
     <p class="mt-4 mb-16 max-w-2xl text-xs text-[var(--color-text-muted)] leading-relaxed">
-      Harga dari <a href="https://petanisejahtera.com/" target="_blank" rel="noopener" class="underline underline-offset-2">petanisejahtera.com<span class="sr-only"> (membuka tab baru)</span></a> per 30 September 2026 dan dapat berubah sewaktu-waktu; cek harga terbaru sebelum membeli.
+      Harga per 30 September 2026 dan dapat berubah sewaktu-waktu.
     </p>
 
     <section class="mb-16" aria-labelledby="heading-keaslian">
