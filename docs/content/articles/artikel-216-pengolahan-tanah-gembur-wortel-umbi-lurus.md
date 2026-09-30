@@ -1,6 +1,6 @@
 ---
 title: "Pengolahan Tanah Bedengan Gembur Wortel Oranye Tanpa Cabang"
-metaTitle: "Pengolahan Tanah Wortel: Rahasia Umbi Mulus Lurus"
+metaTitle: "Pengolahan Tanah Wortel: Kunci Umbi Mulus Lurus"
 description: "Teknik olah tanah gembur budidaya wortel: pembersihan batu kerikil penyebab umbi bercabang, pemupukan kalium untuk warna oranye cerah, dan penjarangan bibit."
 slug: "pengolahan-tanah-gembur-wortel-umbi-lurus"
 pubDate: "2026-09-30"
@@ -14,7 +14,7 @@ tags:
   - "penyaringan batu kerikil lahan wortel"
   - "pemupukan kalium pembesaran umbi oranye"
   - "penjarangan jarak bibit tanaman wortel"
-draft: true
+draft: false
 ---
 
 Wortel (*Daucus carota*) merupakan komoditas sayuran umbi dataran tinggi bernilai ekonomi menggiurkan yang menuntut standar visual sempurna di tingkat pasar modern dan restoran: umbi harus berbentuk kerucut silinder panjang lurus, berdiameter mulus seragam, tidak retak, dan memiliki warna jingga oranye kemerahan yang pekat menyala. Kekecewaan terbesar yang paling sering dialami petani wortel saat panen adalah mendapati persentase umbi cacat yang sangat tinggi: umbi wortel tumbuh bercabang dua hingga tiga menyerupai jari tangan (*forking / fanging*), umbi bengkok meliuk, atau berujung tumpul pendek menyerupai gasing (*stunted roots*).

@@ -13,7 +13,7 @@ tags:
   - "lahan kering"
   - "panel surya"
   - "pompa submersible"
-draft: true
+draft: false
 ---
 
 Tingginya biaya bahan bakar minyak (solar/bensin) untuk mengoperasikan pompa genset diesel sering menjadi beban operasional terbesar petani di lahan kering dan tadah hujan. Di saat yang sama, jaringan listrik PLN belum menjangkau kawasan hamparan persawahan pelosok. Aplikasi Pompa Air Tenaga Surya (PATS) memanfaatkan radiasi sinar matahari tropis yang melimpah menjadi energi kinetik pemompaan air tanah dalam (sumur bor dalam atau embung) tanpa emisi karbon dan bebas biaya bahan bakar bulanan.

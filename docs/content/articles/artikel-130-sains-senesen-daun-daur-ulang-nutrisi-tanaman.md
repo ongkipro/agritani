@@ -14,7 +14,7 @@ tags:
   - "translokasi hara daun ke biji gabah"
   - "perombakan klorofil dan protein"
   - "tanda kematangan panen fisiologis"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

@@ -1,6 +1,6 @@
 ---
 title: "Fisiologi Gas Etilen dalam Pematangan Buah Pisang dan Mangga"
-metaTitle: "Gas Etilen Pematangan Buah Pisang: Rahasia Manis Kuning"
+metaTitle: "Gas Etilen dan Pematangan Buah Pisang"
 description: "Peran hormon gas etilen dalam proses pematangan buah klimakterik pisang: lonjakan laju respirasi, konversi pati menjadi gula sukrosa, dan degradasi klorofil."
 slug: "fisiologi-gas-etilen-pematangan-pisang"
 pubDate: "2026-09-30"
@@ -14,7 +14,7 @@ tags:
   - "perombakan pati menjadi gula sederhana"
   - "pelunakan pektin dinding sel buah"
   - "manajemen etilen ruang pemeraman pisang"
-draft: true
+draft: false
 ---
 
 Dalam rantai pasok agribisnis buah tropis komersial seperti pisang (*Musa spp.*) varietas Cavendish dan mangga (*Mangifera indica*), buah segar hampir selalu dipanen saat masih dalam kondisi mentah keras berwarna hijau pekat di kebun. Buah mentah yang keras ini dapat diangkut menempuh perjalanan darat dan laut ribuan kilometer selama berminggu-minggu tanpa risiko membusuk lembek atau rusak memar di atas truk kontainer. Namun, begitu buah tiba di gudang distributor kota tujuan, buah pisang mentah tersebut dapat diubah secara serempak menjadi buah kuning keemasan yang manis legit, harum semerbak, dan lembut kenyal dalam waktu 24 hingga 48 jam saja.

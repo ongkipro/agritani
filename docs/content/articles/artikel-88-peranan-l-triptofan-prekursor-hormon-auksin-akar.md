@@ -13,7 +13,7 @@ tags:
   - "cara melebatkan akar bibit tanaman"
   - "biostimulan asam amino murni"
   - "perangsang akar alami triptofan"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

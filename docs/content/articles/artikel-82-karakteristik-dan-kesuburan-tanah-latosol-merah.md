@@ -13,7 +13,7 @@ tags:
   - "cara mengolah tanah merah latosol"
   - "kapasitas tukar kation tanah masam"
   - "pemupukan efisien lahan tegalan"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

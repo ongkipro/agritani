@@ -14,7 +14,7 @@ tags:
   - "aplikasi ethephon pemacu bunga nanas"
   - "penyebab nanas rasa gatal di lidah"
   - "pupuk kalium pembesar buah nanas"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

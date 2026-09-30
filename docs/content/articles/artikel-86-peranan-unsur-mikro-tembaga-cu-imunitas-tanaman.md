@@ -13,7 +13,7 @@ tags:
   - "gejala defisiensi tembaga daun menguning"
   - "peran tembaga sintesis lignin"
   - "pupuk mikro tembaga sulfat cuso4"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

@@ -14,7 +14,7 @@ tags:
   - "gejala pucuk ranting cengkeh meranggas"
   - "injeksi batang antibiotik pohon cengkeh"
   - "sanitasi perakaran tanah kebun cengkeh"
-draft: true
+draft: false
 ---
 
 Bagi petani cengkeh (*Syzygium aromaticum*) di sentra perkebunan lereng pegunungan Maluku, Sulawesi, Jawa, dan Sumatera, penyakit Bakteri Pembuluh Kayu Cengkeh atau **BPKC**—yang dikenal secara turun-temurun dengan sebutan penyakit **Mati Bujang**—adalah momok kehancuran yang paling ditakuti. Pohon cengkeh produktif yang sudah berumur puluhan tahun dan berkanopi rimbun lebat dapat meranggas kering dan mati total hanya dalam waktu beberapa bulan setelah gejala awal terlihat. Ranting-ranting pucuk mengering gundul dari atas ke bawah, daun layu kecokelatan tetap menggantung kaku di dahan, dan produksi bunga cengkeh amblas seratus persen.

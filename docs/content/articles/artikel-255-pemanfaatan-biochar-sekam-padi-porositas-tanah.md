@@ -13,7 +13,7 @@ tags:
   - "peningkatan luas permukaan pori mikro"
   - "retensi air dan kation hara pupuk tanah"
   - "daya tahan karbon stabil ratusan tahun"
-draft: true
+draft: false
 ---
 
 Dalam manajemen kesuburan tanah pertanian tropis, penambahan bahan organik konvensional seperti pupuk kandang atau kompos daun sering kali menghadapi kendala dekomposisi yang terlampau cepat: suhu panas dan kelembapan tropis membuat bahan organik lapuk terurai habis menjadi gas karbondioksida hanya dalam waktu 3 hingga 6 bulan, memaksa petani menaburkan tonase kompos baru setiap musim tanam. Sementara itu, tanah pertanian yang didominasi partikel liat berat kerap mengalami masalah pemadatan keras (*soil compaction*), miskin pori aerasi oksigen, dan mudah tergenang air banjir.

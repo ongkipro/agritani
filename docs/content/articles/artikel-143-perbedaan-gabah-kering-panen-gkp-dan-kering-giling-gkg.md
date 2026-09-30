@@ -14,7 +14,7 @@ tags:
   - "harga gabah kering panen gkp per kg"
   - "rumus penyusutan gabah saat dijemur"
   - "standar mutu gabah sni badan pangan"
-draft: true
+draft: false
 ---
 
 Di dunia niaga padi dan perberasan nasional, istilah **Gabah Kering Panen (GKP)** dan **Gabah Kering Giling (GKG)** selalu menjadi acuan utama dalam penentuan harga jual di tingkat petani maupun penggilingan padi. Perbedaan mendasar di antara keduanya terletak pada persentase kadar air (*moisture content*) dan tingkat kebersihan butir dari kotoran jerami maupun butir hampa.

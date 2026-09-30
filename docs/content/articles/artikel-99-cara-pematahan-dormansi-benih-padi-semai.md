@@ -1,5 +1,5 @@
 ---
-title: "Cara Pematahan Dormansi Benih Padi: Trik Berkecambah Serempak 100%"
+title: "Cara Pematahan Dormansi Benih Padi: Agar Berkecambah Serempak"
 metaTitle: "Pematahan Dormansi Benih Padi: Kecambah Serempak"
 description: "Cara efektif mematahkan dormansi benih padi baru panen: perlakuan perendaman air hangat 50C, larutan kalium nitrat KNO3, dan seleksi air garam."
 slug: "cara-pematahan-dormansi-benih-padi-semai"
@@ -14,7 +14,7 @@ tags:
   - "perendaman air hangat kuku benih"
   - "larutan kno3 pemecah dormansi biji"
   - "seleksi benih padi bernas air garam"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

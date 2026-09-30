@@ -1,5 +1,5 @@
 ---
-title: "Fungsi Adjuvant dan Surfaktan Pertanian: Rahasia Semprot Hemat Sasaran"
+title: "Fungsi Adjuvant dan Surfaktan Pertanian: Semprot Hemat dan Tepat Sasaran"
 metaTitle: "Fungsi Adjuvant & Surfaktan: Semprot Pestisida Hemat"
 description: "Pelajari fungsi penting zat adjuvant surfaktan perata, perekat, dan penembus untuk memaksimalkan efisiensi semprot fungisida serta pestisida di kebun."
 slug: "fungsi-adjuvant-surfaktan-pertanian-efisiensi-semprot"
@@ -14,7 +14,7 @@ tags:
   - "mengatasi daun berlilin talas bawang"
   - "tegangan permukaan droplet semprot"
   - "efisiensi semprot fungisida musim hujan"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

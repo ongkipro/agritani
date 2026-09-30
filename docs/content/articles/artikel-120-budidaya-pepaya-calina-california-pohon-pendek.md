@@ -14,7 +14,7 @@ tags:
   - "cara menanam pepaya berbuah lebat"
   - "pengendalian tungau dan kutu putih pepaya"
   - "panen pepaya california pasar induk"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

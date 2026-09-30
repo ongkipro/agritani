@@ -13,7 +13,7 @@ tags:
   - "cara hitung volume semprot hektar"
   - "takaran tepat pestisida per tangki"
   - "efisiensi biaya semprot pestisida"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

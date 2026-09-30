@@ -14,7 +14,7 @@ tags:
   - "spektrum warna kuning pemikat serangga"
   - "resep lem perekat tikus oli motor"
   - "ketinggian pasang perangkap kanopi sayur"
-draft: true
+draft: false
 ---
 
 Dalam budidaya komoditas sayuran daun komersial—seperti sawi pakcoy (*Brassica rapa*), selada krop, bayam cabut, kailan, dan seledri—hama-hama pengisap berukuran renik seperti kutu daun afid (*Aphis gossypii*), kutu kebul (*Bemisia tabaci*), thrips, dan lalat pengorok daun (*Liriomyza spp.*) adalah musuh harian yang merusak estetika visual panen. Daun sayuran yang dipenuhi bercak putih meliuk korokan larva atau mengkerut kaku bernoda kotoran jelaga hitam akan ditolak mentah-mentah oleh konsumen pasar swalayan.

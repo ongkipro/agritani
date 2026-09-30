@@ -14,7 +14,7 @@ tags:
   - "antibiotik gliovirin penekan patogen"
   - "kolonisasi rizosfer pelindung perakaran"
   - "aplikasi kompos gliocladium persemaian"
-draft: true
+draft: false
 ---
 
 Bagi petani hortikultura pembudidaya tanaman tomat (*Solanum lycopersicum*), penyakit **Layu Fusarium** yang dipicu oleh jamur tular tanah *Fusarium oxysporum f.sp. lycopersici* adalah bencana laten yang sering memusnahkan investasi modal kebun. Gejala serangan penyakit ini sangat menyakitkan: tanaman tomat yang sedang sarat berbuah mendadak layu daunnya secara sepihak (hanya dahan sebelah kiri atau kanan saja), menguning pucat, dan dalam tempo 3 sampai 5 hari seluruh tanaman mati kering kaku. Ketika pangkal batang bawah dibelah, berkas pembuluh xilem di dalam kayu telah membusuk berubah warna menjadi cokelat kemerahan gelap.

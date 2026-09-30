@@ -13,7 +13,7 @@ tags:
   - "cara pasang selang drip bawah tanah"
   - "mencegah intrusi akar lubang emiter"
   - "efisiensi irigasi lahan sangat kering"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

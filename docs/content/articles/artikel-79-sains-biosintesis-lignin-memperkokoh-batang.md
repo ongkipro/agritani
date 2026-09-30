@@ -1,5 +1,5 @@
 ---
-title: "Sains Biosintesis Lignin: Rahasia Dinding Sel Tanaman Kokoh Antihama"
+title: "Sains Biosintesis Lignin: Dinding Sel Tanaman yang Kokoh"
 metaTitle: "Sains Biosintesis Lignin: Batang Kokoh Tahan Penyakit"
 description: "Pahami proses lignifikasi dinding sel tanaman melalui jalur fenilpropanoid, enzim PAL, dan cara memperkuat batang dengan pupuk silika serta boron."
 slug: "sains-biosintesis-lignin-memperkokoh-batang"
@@ -13,7 +13,7 @@ tags:
   - "enzim phenylalanine ammonia lyase pal"
   - "batang tanaman kokoh tahan rebah"
   - "peran silika dan boron selulosa"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

@@ -14,7 +14,7 @@ tags:
   - "gejala penyakit jamur putih white muscardine"
   - "aplikasi semprot spora sore hari"
   - "perbanyakan biakan isolat media beras"
-draft: true
+draft: false
 ---
 
 Bagi petani padi (*Oryza sativa*), ledakan populasi hama wereng batang coklat (WBC / *Nilaparvata lugens*) adalah mimpi buruk yang mampu mengubah hamparan sawah hijau royo-royo menjadi hangus kering terbakar (*hopperburn*) hanya dalam hitungan hari. Penggunaan insektisida kimia sintetis berspektrum luas secara membabi buta seminggu dua kali justru sering memicu ledakan wereng yang jauh lebih dahsyat (*resurgensi*), karena insektisida membunuh predator alami wereng (seperti kepik mirid dan laba-laba) sementara wereng coklat menjadi kebal berlipat ganda.

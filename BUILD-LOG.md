@@ -847,3 +847,14 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - `AGENTS.md`: ringkasan keputusan pemilik 2026-09-30 dan aturan pagar build; model konten diperbarui (8 artikel terbit).
 - `STATUS.md`: header, pekerjaan aktif, dan blocker disesuaikan dengan kondisi nyata (blocker lama "menunggu review" dari 2026-09-29 dihapus; tersisa data/aksi pemilik).
 - Tidak ada perubahan keluaran situs; deploy tidak diperlukan.
+
+## 2026-09-30 — T-42: Terbit massal Jurnal Tani & SEO (PASS)
+
+- 288 naskah `draft: true` → `false` (total terbit 296/300; 4 ditahan). Berkas dirakit ulang byte-exact dari HEAD setelah skrip awal sempat mengubah karakter CR di rumus LaTeX; diff akhir hanya `draft` + 47 kolom judul/meta.
+- 47 kolom `title`/`metaTitle`/`description` di 40 naskah tanpa kata klaim berlebihan (termasuk "Selangit", "Cuan", "Sukses", "Super" setelah review); slug tetap. `DESIGN.md` §4.2.3 Beranda butir 2: kalimat pustaka disesuaikan.
+- `content-integrity.ts`: rujukan, Jawaban Singkat, komoditas opsional (DEC-020); 3 tes diganti menjadi tes "diizinkan"; cek 40–60 kata tetap bila diisi.
+- Artikel tanpa rujukan: "Rujukan ilmiah untuk artikel ini sedang dilengkapi."; kalimat Beranda disesuaikan ("rujukan ilmiah dicantumkan di akhir artikel bila tersedia").
+- Deskripsi arsip tag 120–160 karakter; `check-seo` 0 error 0 peringatan (sebelumnya 47 peringatan).
+- Sitemap: 296 artikel, 24 hub komoditas, 6 hub topik, paginasi Jurnal 2–10; 1.471 arsip tag semuanya `noindex` (< 3 artikel) dan di luar sitemap.
+- Build: check-commodities, SEO, CSP 0/0/0, placeholders, links, owner-rules (1.825 halaman) PASS; npm test 93/93.
+- Kata absolut di badan 111 artikel terbit ditandai untuk T-25 (`docs/build-notes/t42-publish.md`), tidak ditulis ulang.

@@ -14,7 +14,7 @@ tags:
   - "bobot rata-rata tandan sawit"
   - "rendemen minyak kelapa sawit"
   - "pupuk generatif sawit"
-draft: true
+draft: false
 ---
 
 > **Key Takeaways**:

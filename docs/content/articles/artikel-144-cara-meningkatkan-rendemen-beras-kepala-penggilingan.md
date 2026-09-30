@@ -14,7 +14,7 @@ tags:
   - "setelan mesin huller rubber roll"
   - "kadar air gabah ideal penggilingan"
   - "peningkatan kualitas mutu beras sni"
-draft: true
+draft: false
 ---
 
 Beras kepala (*head rice*) adalah butir beras giling yang memiliki ukuran utuh atau minimal tujuh per delapan bagian dari ukuran butir aslinya. Semakin tinggi persentase beras kepala yang dihasilkan dari satu ton gabah, semakin tinggi pula kelas mutu beras (premium vs medium) serta nilai rupiah yang masuk ke kantong pengusaha penggilingan padi maupun kelompok tani.

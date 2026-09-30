@@ -14,7 +14,7 @@ tags:
   - "mencegah pencucian pupuk amonium kalium"
   - "struktur kristal saringan molekuler"
   - "dosis tabur zeolit bedengan bawang merah"
-draft: true
+draft: false
 ---
 
 Budidaya bawang merah (*Allium cepa var. aggregatum*) di lahan pasir pantai marjinal—seperti di pesisir Kulon Progo Yogyakarta, Kebumen, dan pesisir Madura—menghadapi tantangan fisik dan kimia tanah yang sangat ekstrem. Tanah pasir pantai memiliki fraksi pasir kasar hingga di atas 90 persen, sama sekali tidak memiliki partikel liat atau humus, dan nilai Kapasitas Tukar Kation (KTK) tanahnya sangat rendah, berkisar kurang dari **2 hingga 5 cmol/kg**.

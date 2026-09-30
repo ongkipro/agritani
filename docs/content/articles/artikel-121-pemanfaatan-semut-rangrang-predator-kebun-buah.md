@@ -15,7 +15,7 @@ tags:
   - "musuh alami lalat buah kepik"
   - "cara memelihara semut rangrang pohon"
   - "pengendalian hayati kebun jeruk mangga"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

@@ -1,5 +1,5 @@
 ---
-title: "Teknik Penyerbukan Buatan Vanili dan Durian: Kunci Buah Menempel 100%"
+title: "Teknik Penyerbukan Buatan Vanili dan Durian: Kunci Meningkatkan Buah Jadi"
 metaTitle: "Penyerbukan Buatan Vanili & Durian: Panen Berhasil"
 description: "Panduan teknik penyerbukan manual bunga vanili tusuk bilah bambu dan bunga durian kuas malam hari untuk meningkatkan fruit-set panen lebat."
 slug: "teknik-penyerbukan-buatan-vanili-dan-durian"
@@ -15,7 +15,7 @@ tags:
   - "penyerbukan manual bunga durian malam"
   - "anatomi rostellum bunga vanili"
   - "meningkatkan fruit set buah durian"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

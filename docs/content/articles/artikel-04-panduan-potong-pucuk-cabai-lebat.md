@@ -1,5 +1,5 @@
 ---
-title: "Rahasia Potong Pucuk Cabai: Trik Agronomi Melipatgandakan Cabang Produktif dan Hasil Panen"
+title: "Potong Pucuk Cabai: Teknik Agronomi Memperbanyak Cabang Produktif dan Hasil Panen"
 metaTitle: "Cara Potong Pucuk Cabai Biar Berbuah Lebat dan Rimbun"
 description: "Panduan teknis potong pucuk (topping) tanaman cabai pada 20-30 HST untuk melipatgandakan cabang produktif dan mendongkrak tonase panen."
 slug: "panduan-potong-pucuk-cabai-lebat"
@@ -14,7 +14,7 @@ tags:
   - "merawat cabai berbuah lebat"
   - "cabang produktif cabai"
   - "budidaya cabai rawit"
-draft: true
+draft: false
 ---
 
 > **Key Takeaways**:

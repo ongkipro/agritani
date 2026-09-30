@@ -14,7 +14,7 @@ tags:
   - "sekat kanal canal blocking gambut"
   - "mencegah subsidensi tanah ambles"
   - "bahaya kering tak balik hidrofobik"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

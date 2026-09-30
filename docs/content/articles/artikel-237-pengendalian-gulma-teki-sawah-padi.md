@@ -14,7 +14,7 @@ tags:
   - "herbisida selektif penumpas teki padi"
   - "penggenangan air sawah hambat teki"
   - "penyiangan mekanis matun teki sawah"
-draft: true
+draft: false
 ---
 
 Di lahan persawahan padi (*Oryza sativa*), terutama di sawah tadah hujan atau sawah irigasi yang pasokan airnya sering macet mengering, keberadaan gulma golongan teki-tekian—terutama **Teki Ladang (*Cyperus rotundus*)** dan teki rawa (*Cyperus difformis*)—adalah salah satu kompetitor paling ganas yang mencuri hara pupuk dan air dari perakaran padi. Batang teki yang segitiga pejal dengan helai daun mengilap berlilin tumbuh melesat jauh lebih cepat dibanding anakan padi muda.

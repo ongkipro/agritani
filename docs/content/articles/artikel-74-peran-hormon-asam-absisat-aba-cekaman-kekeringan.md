@@ -13,7 +13,7 @@ tags:
   - "fisiologi adaptasi kekeringan tanaman"
   - "sinyal stres air rizosfer"
   - "biostimulan asam amino prolin"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

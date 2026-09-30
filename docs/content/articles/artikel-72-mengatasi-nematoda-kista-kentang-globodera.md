@@ -14,7 +14,7 @@ tags:
   - "cara basmi kista kentang"
   - "rotasi tanaman lahan kentang"
   - "gejala nematoda umbi kerdil"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

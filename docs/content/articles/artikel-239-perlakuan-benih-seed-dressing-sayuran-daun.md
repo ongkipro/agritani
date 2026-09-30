@@ -14,7 +14,7 @@ tags:
   - "zpt perangsang perkecambahan benih sayur"
   - "mencegah rebah semai damping off bibit"
   - "perendaman benih air hangat kuku sayur"
-draft: true
+draft: false
 ---
 
 Dalam usaha tani sayuran daun intensif seperti sawi pakcoy (*Brassica rapa*), selada romaine (*Lactuca sativa*), kailan, kubis krop, dan bayam, fase persemaian bibit pada umur 1 hingga 14 hari pertama adalah masa-masa paling kritis yang menentukan keberhasilan panen seratus persen. Petani kerap mengalami musibah di rumah semai: benih yang ditabur di tray semai berkecambah dengan daya tumbuh rendah di bawah 60 persen, kecambah tumbuh kurus tinggi tak kokoh (*etiolasi*), atau kecambah muda mendadak roboh lemas membusuk pada pangkal batangnya seperti tersiram air panas akibat serangan jamur rebah semai (*damping-off*).

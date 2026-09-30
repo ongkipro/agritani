@@ -14,7 +14,7 @@ tags:
   - "peran kalium pembuka stomata daun"
   - "laju transpirasi pendinginan tajuk"
   - "waktu optimal penyerapan pupuk foliar"
-draft: true
+draft: false
 ---
 
 Bagi petani hortikultura pembudidaya cabai (*Capsicum annuum*), dedaunan tanaman cabai bukan sekadar hamparan warna hijau penghias kebun, melainkan organ vital yang dipenuhi jutaan mulut mikroskopis yang bernapas dan memompa nutrisi: **Stomata Daun**. Setiap sentimeter persegi permukaan daun cabai dihuni oleh puluhan ribu pasang sel penjaga stomata yang membuka dan menutup secara ritmis merespons cahaya matahari, kelembapan udara, ketersediaan air tanah, dan kadar unsur hara kalium.

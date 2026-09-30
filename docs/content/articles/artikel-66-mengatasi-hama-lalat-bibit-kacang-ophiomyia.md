@@ -15,7 +15,7 @@ tags:
   - "batang bibit kacang panjang pecah"
   - "perlakuan benih kacang tanah"
   - "hama tanaman palawija"
-draft: true
+draft: false
 ---
 
 Bagi petani tanaman palawija dan sayuran kacang-kacangan—seperti kedelai, kacang hijau, kacang panjang, dan buncis—fase paling kritis yang menentukan kelangsungan hidup populasi tanaman di lahan adalah pada **umur 1 sampai 14 Hari Setelah Tanam (HST)**.

@@ -316,6 +316,9 @@ const nextTools = [
         <!-- 14. Daftar Pustaka -->
         <div data-pagefind-ignore>
           <References references={activeReferences} />
+          {(!activeReferences || activeReferences.length === 0) && (
+            <p class="my-10 text-sm text-[var(--color-text-muted)]">Rujukan ilmiah untuk artikel ini sedang dilengkapi.</p>
+          )}
         </div>
 
         <!-- 15. Tentang Penulis -->

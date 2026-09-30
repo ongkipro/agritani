@@ -13,7 +13,7 @@ tags:
   - "insektisida hayati tanaman"
   - "pengendalian ulat grayak"
   - "pestisida ramah lingkungan"
-draft: true
+draft: false
 ---
 
 > **Key Takeaways**:

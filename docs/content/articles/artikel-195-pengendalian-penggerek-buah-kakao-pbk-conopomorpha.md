@@ -14,7 +14,7 @@ tags:
   - "teknik pembrongsongan buah kakao muda"
   - "panen sering memutus siklus pupa pbk"
   - "parasitoid telur trichogrammatoidea kakao"
-draft: true
+draft: false
 ---
 
 Hama Penggerek Buah Kakao atau PBK (*Conopomorpha cramerella*) adalah musuh nomor satu budidaya kakao di seluruh wilayah Asia Tenggara. Kehadiran hama ini sering kali menipu petani: dari kejauhan buah kakao tampak menguning matang sebelum waktunya dengan belang-belang oranye belang hijau yang tampak segar. Namun, ketika buah dibelah menggunakan parang, petani mendapati kepingan biji kakao saling melekat kaku membentuk gumpalan keras (*biji lengket / padat*), berukuran kerdil gepeng, dan dipenuhi kotoran larva kecokelatan. Biji yang rusak ini tidak dapat difermentasi dengan baik, beraroma apek, dan ditolak mentah-mentah oleh industri pengolahan cokelat.

@@ -13,7 +13,7 @@ tags:
   - "kalibrasi sensor kadar air tanah"
   - "sensor tanah tahan korosi karat"
   - "smart farming irigasi presisi hortikultura"
-draft: true
+draft: false
 ---
 
 Di era pertanian presisi (*smart farming*), otomatisasi penyiraman lahan tidak lagi mengandalkan jadwal sakelar waktu (*timer*) yang kaku. Menggunakan pengatur waktu biasa sering memicu penyiraman berlebih saat tanah masih basah kuyup sehabis diguyur hujan lebat malam hari, atau terlambat menyiram saat angin kering kemarau membuat tanah gersang lebih cepat.

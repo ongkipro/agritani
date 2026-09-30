@@ -14,7 +14,7 @@ tags:
   - "pembuatan jembatan tali antar pohon buah"
   - "pemberian pakan protein tambahan semut"
   - "sarang daun rajutan larva sutra kebun"
-draft: true
+draft: false
 ---
 
 Di pedesaan nusantara, keberadaan koloni semut merah besar pembuat sarang daun—yaitu **Semut Rangrang (*Oecophylla smaragdina*)** atau semut kerangga—sering kali dianggap mengganggu oleh pemetik buah karena gigitan capitnya yang menyengat pedas di kulit. Namun, dalam ilmu perlindungan tanaman buah tropis, terutama pada kebun mangga (*Mangifera indica*) dan jeruk, semut rangrang adalah salah satu serangga predator sosial paling tangguh, agresif, dan setia yang mampu membersihkan kebun dari puluhan jenis hama perusak tanpa biaya operasional pestisida kimia sama sekali.

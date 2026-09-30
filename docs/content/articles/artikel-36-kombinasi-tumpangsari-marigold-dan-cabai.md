@@ -14,7 +14,7 @@ tags:
   - "mengatasi nematoda puru akar"
   - "tanaman penolak hama kebun"
   - "tumpangsari ramah lingkungan"
-draft: true
+draft: false
 ---
 
 Di berbagai perkebunan hortikultura modern di dunia, pemandangan kebun cabai yang diselingi oleh deretan bunga kuning-oranye cerah bukanlah sekadar hiasan estetika taman semata.

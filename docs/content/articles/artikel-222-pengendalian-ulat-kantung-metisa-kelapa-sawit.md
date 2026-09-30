@@ -14,7 +14,7 @@ tags:
   - "injeksi batang insektisida acephate"
   - "tanaman inang bermanfaat cassia cobanensis"
   - "sensus ulat kantung ambang ekonomi sawit"
-draft: true
+draft: false
 ---
 
 Bagi pengelola perkebunan kelapa sawit (*Elaeis guineensis*), serangan hama pemakan daun pembuat kantung—terutama spesies **Ulat Kantung Metisa plana** (famili Psychidae)—adalah bencana defoliasi yang sangat mematikan. Ulat kecil yang hidup di balik kantung anyaman serpihan daun kering ini memakan helai anak daun sawit secara rakus dari permukaan bawah. Pada tingkat serangan berat, ribuan ulat kantung mengerubungi pelepah sawit, mengikis habis lapisan epidermis daun hingga helai daun menjadi berlubang-lubang tembus pandang, mengering abu-abu terbakar, dan menyisakan tulang lidi gundul (*skeletonizing*).

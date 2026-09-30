@@ -13,7 +13,7 @@ tags:
   - "teknik pemusnahan lalat jantan male annihilation"
   - "modifikasi botol perangkap cairan alkohol"
   - "jarak penempatan perangkap per hektar"
-draft: true
+draft: false
 ---
 
 Di berbagai sentra perkebunan buah komersial di Indonesia—mulai dari kebun mangga, jambu air, belimbing, jeruk, hingga cabai—hama lalat buah (*Bactrocera spp.*) adalah perusak hasil panen paling merugikan yang menusuk kulit buah muda dan menanam belatung pembusuk di dalam daging buah. Menyemprotkan insektisida kimia kontak ke tajuk kanopi pohon sering kali tidak efektif karena lalat buah dewasa terbang lincah melarikan diri saat mendengar deru mesin semprot, sementara racun kimia membunuh lebah polinator yang sedang membantu penyerbukan bunga.

@@ -13,7 +13,7 @@ tags:
   - "label benih"
   - "qr terenkripsi"
   - "sertifikasi benih"
-draft: true
+draft: false
 ---
 
 Peredaran benih pertanian palsu atau benih asalan tak bersertifikat di kios-kios sarana produksi merupakan kejahatan agribisnis paling merugikan yang merongrong kesejahteraan petani. Petani yang tertipu membeli benih palsu (seperti benih jagung hibrida atau benih padi unggul tiruan) harus menanggung kerugian berganda: biaya modal pupuk dan olah tanah yang terbuang sia-sia, daya kecambah benih di bawah 40%, serta kegagalan panen total. Produsen benih resmi bersama Balai Pengawasan dan Sertifikasi Benih (BPSB) kini mengintegrasikan teknologi anti-pemalsuan mutakhir berbasis kode QR terenkripsi dinamis dan segel hologram perusak diri (*tamper-evident*) untuk menjamin autentisitas produk benih bersertifikat.

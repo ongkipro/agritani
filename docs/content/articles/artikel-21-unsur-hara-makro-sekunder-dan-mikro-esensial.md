@@ -13,7 +13,7 @@ tags:
   - "peran boron pada bunga"
   - "hukum minimum liebig"
   - "gejala defisiensi unsur mikro"
-draft: true
+draft: false
 ---
 
 > **Key Takeaways**:

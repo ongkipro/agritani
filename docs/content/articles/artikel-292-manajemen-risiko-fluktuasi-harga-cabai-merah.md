@@ -14,7 +14,7 @@ tags:
   - "kontrak tanam"
   - "kalender tanam"
   - "manajemen risiko"
-draft: true
+draft: false
 ---
 
 Cabai merah (*Capsicum annuum*) terkenal sebagai komoditas hortikultura strategis dengan tingkat volatilitas harga paling ekstrem di Indonesia. Sifat komoditas yang sangat mudah rusak (*highly perishable*), waktu panen serentak yang memicu banjir pasokan (*glat*), dan ketergantungan pada rantai distribusi tengkulak berlapis sering membuat harga cabai anjlok drastis hingga di bawah biaya petik saat panen raya, lalu melonjak tinggi saat pasokan langka. Petani cabai profesional memerlukan instrumen manajemen risiko operasional dan pemasaran modern agar terhindar dari siklus bangkrut musiman.

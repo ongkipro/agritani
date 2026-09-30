@@ -14,7 +14,7 @@ tags:
   - "metode kerok kulit kayu pohon durian"
   - "aplikasi pasta fungisida tembaga mankozeb"
   - "infus batang fosfit pohon durian sakit"
-draft: true
+draft: false
 ---
 
 Di kalangan pekebun durian (*Durio zibethinus*), tidak ada penyakit yang lebih ditakuti dan menghancurkan selain **Kanker Batang** atau yang populer di Jawa disebut sebagai penyakit **Blendok**. Tanaman durian unggul yang dibeli dengan harga bibit mahal dan telah dirawat bertahun-tahun hingga mulai belajar berbuah lebat mendadak mengeluarkan cairan lendir kental berbau karat kemerahan dari celah kulit batang bawahnya. Kulit kayu yang terinfeksi berubah warna menjadi basah kehitaman, membusuk lunak, dan jika luka melingkari seluruh lingkar batang (*girdling*), seluruh tajuk pohon durian akan layu mendadak, daun rontok gundul, dan pohon mati kaku dalam tempo beberapa minggu.

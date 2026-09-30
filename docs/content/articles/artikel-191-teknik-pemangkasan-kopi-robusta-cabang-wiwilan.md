@@ -14,7 +14,7 @@ tags:
   - "meningkatkan sirkulasi cahaya pohon kopi"
   - "pemilihan cabang primer sekunder kopi"
   - "waktu ideal pemangkasan kopi robusta"
-draft: true
+draft: false
 ---
 
 Pohon kopi robusta (*Coffea canephora*) yang dibiarkan tumbuh liar tanpa pemangkasan teratur akan segera berubah menjadi rimbun semak tak beraturan. Daun-daun tua saling menaungi, kelembapan mikro di sekitar batang membubung tinggi, dan energi fotosintesis terbuang percuma untuk menghidupi tunas air liar yang tidak produktif. Akibatnya, cabang primer cepat mengering (*dieback*), pembungaan jarang terjadi, dan buah kopi yang dihasilkan berukuran kerdil dengan persentase biji hampa (*peaberry*) yang tinggi.

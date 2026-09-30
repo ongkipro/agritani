@@ -14,7 +14,7 @@ tags:
   - "tahap penguningan yellowing daun"
   - "menjaga aroma nikotin tembakau pipa"
   - "standar mutu daun tembakau kering"
-draft: true
+draft: false
 ---
 
 Dalam agribisnis tembakau (*Nicotiana tabacum*), keberhasilan panen di kebun hanyalah separuh dari perjuangan. Kualitas akhir daun tembakau—mulai dari warna kuning keemasan yang cerah, kelenturan elastisitas helai daun, kadar nikotin seimbang, hingga aroma khas rasa hisapan yang gurih—sepenuhnya ditentukan oleh keahlian petani dan pengolah dalam mengendalikan proses pengeringan dan pemeraman daun pascapanen (*tobacco curing*). Kesalahan kecil dalam mengatur temperatur pengeringan atau sirkulasi ventilasi gudang dapat menyebabkan daun tembakau busuk berlendir, menghitam gosong, atau terserang jamur gudang yang memusnahkan nilai jual daun hingga puluhan juta rupiah.

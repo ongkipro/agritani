@@ -14,7 +14,7 @@ tags:
   - "pengendalian ulat tanah uret gayas"
   - "agens hayati jamur hijau green muscardine"
   - "dosis isolat metarhizium media jagung"
-draft: true
+draft: false
 ---
 
 Pengendalian hama serangga yang bersembunyi di dalam tanah atau di balik tumpukan bahan organik membusuk—seperti larva kumbang tanduk (*Oryctes rhinoceros*) di kebun sawit dan ulat uret tanah (*Phyllophaga spp.*) di bedengan palawija—selalu menjadi tantangan berat bagi petani. Menyiramkan insektisida kimia kontak ke dalam tanah sering kali tidak membuahkan hasil karena molekul racun terikat oleh partikel liat tanah atau terurai sebelum menyentuh tubuh hama, sekaligus membunuh cacing tanah yang menyuburkan lahan.

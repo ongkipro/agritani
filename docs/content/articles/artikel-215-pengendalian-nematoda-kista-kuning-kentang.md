@@ -14,7 +14,7 @@ tags:
   - "rotasi tanaman bukan famili solanaceae"
   - "nematisida hayati pasteuria penetrans"
   - "penggunaan benih kentang g0 g2 bebas kista"
-draft: true
+draft: false
 ---
 
 Bagi petani agribisnis kentang (*Solanum tuberosum*) di sentra dataran tinggi Indonesia—seperti Dataran Tinggi Dieng, Pangalengan, Bromo, dan Danau Alahan Panjang—kehadiran **Nematoda Kista Kuning (NKK / *Globodera rostochiensis*)** merupakan ancaman kepunahan lahan pertanian yang paling mengerikan. Sekali suatu petak lahan terpapar oleh kista cacing mikroskopis ini, kista tersebut mampu bertahan hidup dorman di dalam lapisan tanah dingin selama lebih dari 10 hingga 20 tahun meskipun tidak ada tanaman kentang yang ditanam di atasnya.

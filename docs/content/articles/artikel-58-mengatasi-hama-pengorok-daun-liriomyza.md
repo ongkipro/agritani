@@ -15,7 +15,7 @@ tags:
   - "ulat pengorok daun tomat"
   - "perangkap kuning pengorok daun"
   - "insektisida daun bergaris putih"
-draft: true
+draft: false
 ---
 
 Bagi petani bawang merah, tomat, kentang, cabai, dan kacang merah, salah satu pemandangan daun yang paling sering dijumpai adalah munculnya alur garis-garis putih keperakan yang meliuk-liuk tak beraturan di atas permukaan helai daun menyerupai motif kain batik atau peta labirin.

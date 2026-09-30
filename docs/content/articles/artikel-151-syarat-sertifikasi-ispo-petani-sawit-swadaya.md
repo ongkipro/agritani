@@ -14,7 +14,7 @@ tags:
   - "legalitas lahan stdb shm sawit"
   - "audit prinsip kriteria ispo sawit"
   - "surat tanda daftar budidaya stdb"
-draft: true
+draft: false
 ---
 
 Pemerintah Indonesia melalui Peraturan Presiden Nomor 44 Tahun 2020 menetapkan bahwa seluruh perkebunan kelapa sawit di Indonesia, termasuk kebun rakyat milik pekebun swadaya, wajib mengantongi sertifikat **Indonesian Sustainable Palm Oil (ISPO)**. Sertifikasi mandatori ini bertujuan membuktikan kepada pasar dunia bahwa minyak sawit Indonesia diproduksi secara legal, bebas dari deforestasi hutan lindung, dan dikelola dengan kaidah konservasi lingkungan hidup.

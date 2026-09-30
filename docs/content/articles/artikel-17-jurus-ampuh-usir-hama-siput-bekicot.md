@@ -1,5 +1,5 @@
 ---
-title: "Jurus Ampuh Membasmi Hama Siput dan Bekicot Tanpa Racun Moluskisida Kimia"
+title: "Cara Mengendalikan Hama Siput dan Bekicot Tanpa Racun Moluskisida Kimia"
 metaTitle: "Cara Mengusir Siput dan Bekicot Tanpa Racun Kimia"
 description: "Trik mengendalikan hama siput dan bekicot pemakan semai malam hari dengan barier fisik abu sekam serta perangkap ragi organik aman."
 slug: "jurus-ampuh-usir-hama-siput-bekicot"
@@ -13,7 +13,7 @@ tags:
   - "perangkap siput alami"
   - "barier abu sekam tanaman"
   - "moluskisida alami tanaman"
-draft: true
+draft: false
 ---
 
 > **Key Takeaways**:

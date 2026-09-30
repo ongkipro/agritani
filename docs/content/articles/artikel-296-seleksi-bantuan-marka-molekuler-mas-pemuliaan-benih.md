@@ -14,7 +14,7 @@ tags:
   - "padi"
   - "gen ketahanan"
   - "bioteknologi tanaman"
-draft: true
+draft: false
 ---
 
 Metode pemuliaan tanaman konvensional melalui persilangan hibridisasi dan seleksi fenotipe visual memerlukan siklus evaluasi lapangan yang sangat panjang, memakan waktu antara 8 hingga 12 generasi tanam (setara 5–7 tahun) sebelum galur murni homozigot yang stabil dapat dirilis ke petani. Selain durasi waktu yang lama, seleksi fenotipe di lapangan sering terkendala oleh fluktuasi cuaca ekstrem atau variabilitas intensitas serangan hama patogen alami yang bias. Teknologi Seleksi Berbantuan Marka Molekuler atau *Marker-Assisted Selection* (MAS) mengakselerasi perakitan varietas benih padi unggul dengan melacak keberadaan fragmen DNA gen target secara langsung pada fase bibit muda di laboratorium biologi molekuler.

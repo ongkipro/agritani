@@ -13,7 +13,7 @@ tags:
   - "jadwal irigasi tetes centibar"
   - "mencegah stres air tanaman hortikultura"
   - "manajemen pengairan berbasis sensor"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

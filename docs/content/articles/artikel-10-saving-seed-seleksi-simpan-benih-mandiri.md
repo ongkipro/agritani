@@ -14,7 +14,7 @@ tags:
   - "seleksi benih cabai unggul"
   - "kadar air simpan benih"
   - "kemandirian benih petani"
-draft: true
+draft: false
 ---
 
 > **Key Takeaways**:

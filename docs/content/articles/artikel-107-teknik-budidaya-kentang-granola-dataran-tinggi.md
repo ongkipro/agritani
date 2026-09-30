@@ -1,7 +1,7 @@
 ---
-title: "Teknik Budidaya Kentang Granola: Umbi Super Rendemen Tinggi"
+title: "Teknik Budidaya Kentang Granola: Umbi Berkualitas dan Rendemen Tinggi"
 metaTitle: "Budidaya Kentang Granola Dataran Tinggi: Umbi Melimpah"
-description: "Panduan sukses bertanam kentang varietas Granola di dataran tinggi: seleksi benih G2 bersertifikat, teknik pembumbunan guludan, dan pencegahan busuk daun."
+description: "Panduan bertanam kentang varietas Granola di dataran tinggi: seleksi benih G2 bersertifikat, teknik pembumbunan guludan, dan pencegahan busuk daun."
 slug: "teknik-budidaya-kentang-granola-dataran-tinggi"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
@@ -14,7 +14,7 @@ tags:
   - "teknik pembumbunan guludan kentang"
   - "pengendalian hawar daun phytophthora"
   - "pupuk kcl kalium pembesar umbi"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

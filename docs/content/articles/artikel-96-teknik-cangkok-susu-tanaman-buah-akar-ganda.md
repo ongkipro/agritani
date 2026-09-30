@@ -1,5 +1,5 @@
 ---
-title: "Teknik Cangkok Susu Tanaman Buah: Rahasia Akar Ganda Super Lebat"
+title: "Teknik Cangkok Susu Tanaman Buah: Membentuk Akar Ganda"
 metaTitle: "Teknik Cangkok Susu Tanaman Buah: Akar Ganda Cepat"
 description: "Pelajari teknik cangkok susu tanaman buah durian, mangga, dan nangka: menyatukan batang bawah penopang akar untuk menghasilkan bibit besar siap berbuah."
 slug: "teknik-cangkok-susu-tanaman-buah-akar-ganda"
@@ -15,7 +15,7 @@ tags:
   - "cara mencangkok dahan besar berhasil"
   - "media cocopeat cangkok susu"
   - "keunggulan bibit cangkok susu"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

@@ -14,7 +14,7 @@ tags:
   - "teknik klentek daun tebu kering"
   - "pemupukan kalium tanaman tebu"
   - "jadwal tebang muat angkut tma tebu"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

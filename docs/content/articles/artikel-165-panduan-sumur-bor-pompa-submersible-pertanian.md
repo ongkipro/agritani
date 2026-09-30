@@ -14,7 +14,7 @@ tags:
   - "debit air irigasi liter per detik"
   - "kedalaman akuifer air tanah sawah"
   - "mengatasi sawah tadah hujan kemarau"
-draft: true
+draft: false
 ---
 
 Di daerah persawahan tadah hujan, ketiadaan pasokan air dari bendungan irigasi teknis kerap memaksa petani membiarkan lahan sawah mereka menganggur bero selama 4 hingga 5 bulan di musim kemarau. Ketergantungan pada pompa diesel permukaan (*alkon*) sering kali menemui jalan buntu saat permukaan air sungai mengering atau kedalaman muka air tanah turun melampaui batas hisap maksimal pompa hisap darat (yang hanya sanggup menyedot air dari kedalaman maksimal 7 sampai 8 meter).

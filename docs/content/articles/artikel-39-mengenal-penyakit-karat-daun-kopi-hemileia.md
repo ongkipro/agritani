@@ -14,7 +14,7 @@ tags:
   - "gejala bercak oranye daun kopi"
   - "pengendalian penyakit kebun kopi"
   - "fungisida karat daun kopi"
-draft: true
+draft: false
 ---
 
 Dalam sejarah perkebunan dunia, penyakit **Karat Daun Kopi (*Coffee Leaf Rust*)** adalah salah satu penyakit paling legendaris yang pernah memusnahkan ratusan ribu hektar perkebunan kopi Arabika di Sri Lanka dan Indonesia pada akhir abad ke-19.

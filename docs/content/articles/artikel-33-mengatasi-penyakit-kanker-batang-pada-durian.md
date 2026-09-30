@@ -14,7 +14,7 @@ tags:
   - "batang durian keluar getah merah"
   - "obat kanker batang pohon durian"
   - "perawatan pohon durian sakit"
-draft: true
+draft: false
 ---
 
 Bagi para pekebun durian, baik komoditas Musang King, Bawor, maupun Duri Hitam, penyakit paling mematikan yang kerap merenggut pohon dewasa produktif adalah **Penyakit Kanker Batang**.

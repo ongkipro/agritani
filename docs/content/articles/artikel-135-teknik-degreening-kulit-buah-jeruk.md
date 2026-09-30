@@ -14,7 +14,7 @@ tags:
   - "aplikasi gas etilen ruang degreening"
   - "perombakan klorofil kulit jeruk tropis"
   - "standar mutu jeruk pasar modern"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

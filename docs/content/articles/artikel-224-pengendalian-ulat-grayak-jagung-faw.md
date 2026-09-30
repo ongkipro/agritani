@@ -1,6 +1,6 @@
 ---
 title: "Pengendalian Ulat Grayak Jagung Spodoptera frugiperda FAW"
-metaTitle: "Ulat Grayak Jagung FAW: Gejala & Pengendalian Tuntas"
+metaTitle: "Ulat Grayak Jagung FAW: Gejala & Cara Pengendalian"
 description: "Panduan mengendalikan ulat grayak jagung Fall Armyworm (FAW): identifikasi kotoran serbuk gergaji di pucuk, rotasi insektisida, dan jamur hayati."
 slug: "pengendalian-ulat-grayak-jagung-faw"
 pubDate: "2026-09-30"
@@ -14,7 +14,7 @@ tags:
   - "insektisida emamektin klorantraniliprol"
   - "aplikasi bioinsektisida jamur beauveria"
   - "monitoring serangan faw pucuk jagung muda"
-draft: true
+draft: false
 ---
 
 Sejak kemunculan perdananya di Indonesia pada awal tahun 2019, ulat grayak jagung invasif asal benua Amerika, yaitu **Fall Armyworm (FAW / *Spodoptera frugiperda*)**, telah mengubah peta perlindungan tanaman jagung (*Zea mays*) secara drastis. Berbeda dengan ulat grayak lokal (*Spodoptera litura*) yang umumnya hanya memakan helai daun luar di malam hari, ulat FAW memiliki naluri destruktif yang jauh lebih ganas: larva ulat langsung mengebor masuk dan bersembunyi menetap di bagian terdalam titik tumbuh corong daun muda (*whorl*) tanaman jagung.

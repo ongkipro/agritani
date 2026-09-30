@@ -14,7 +14,7 @@ tags:
   - "padi"
   - "beras premium"
   - "derajat sosoh"
-draft: true
+draft: false
 ---
 
 Beras merupakan komoditas pangan pokok strategis di Indonesia yang diatur ketat regulasi peredarannya, mencakup penetapan Harga Eceran Tertinggi (HET) berdasarkan zonasi wilayah geografis. Ketidaktahuan mengenai parameter mutu beras giling sering memicu sengketa antara pelaku usaha penggilingan padi, pedagang grosir, dan konsumen, atau memicu praktik curang pengoplosan beras medium menjadi beras premium. Standar Nasional Indonesia (SNI 6128: Beras Giling) menetapkan parameter fisik dan kimia kuantitatif terukur untuk membedakan secara tegas klasifikasi beras kelas mutu Premium, Medium I, Medium II, dan Medium III.

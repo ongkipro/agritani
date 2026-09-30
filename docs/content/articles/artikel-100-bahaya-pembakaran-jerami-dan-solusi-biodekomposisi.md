@@ -14,7 +14,7 @@ tags:
   - "pupuk organik jerami kaya kalium"
   - "mikroba pengurai trichoderma laccase"
   - "mengembalikan kesuburan tanah sawah"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

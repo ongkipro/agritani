@@ -14,7 +14,7 @@ tags:
   - "kutu kebul cabai"
   - "perangkap kuning kutu kebul"
   - "pencegahan penyakit bule"
-draft: true
+draft: false
 ---
 
 > **Key Takeaways**:

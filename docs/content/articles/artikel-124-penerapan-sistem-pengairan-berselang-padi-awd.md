@@ -14,7 +14,7 @@ tags:
   - "cara hemat air irigasi padi"
   - "pipa kontrol air sawah paralon"
   - "mencegah rebah dan busuk akar padi"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

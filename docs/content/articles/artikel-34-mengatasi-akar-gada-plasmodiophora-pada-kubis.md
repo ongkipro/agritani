@@ -14,7 +14,7 @@ tags:
   - "cara mengatasi akar bengkak brokoli"
   - "pengapuran dolomit tanah asam"
   - "penyakit tanaman brassicaceae"
-draft: true
+draft: false
 ---
 
 Bagi petani sayuran dataran tinggi di sentra sayur seperti Lembang, Dieng, Malang, dan Brastagi, penyakit **Akar Gada (*Clubroot*)** adalah momok yang mampu melumpuhkan lahan pertanian selama bertahun-tahun.

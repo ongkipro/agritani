@@ -13,7 +13,7 @@ tags:
   - "hormon etilen c2h4 tumbuhan"
   - "mekanisme absisi gugur daun"
   - "pengawetan buah pasca panen"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

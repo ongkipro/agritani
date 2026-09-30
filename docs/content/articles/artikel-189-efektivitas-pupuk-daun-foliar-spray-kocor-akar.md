@@ -13,7 +13,7 @@ tags:
   - "penyerapan nutrisi lewat stomata daun"
   - "waktu terbaik semprot pupuk daun"
   - "faktor kelembapan dan surfaktan foliar"
-draft: true
+draft: false
 ---
 
 Di kalangan praktisi dan petani hortikultura maupun tanaman pangan, perdebatan mengenai metode pemupukan yang paling menguntungkan—antara menyemprotkan larutan nutrisi langsung ke tajuk daun (*foliar feeding / spray*) atau menyiramkannya ke media perakaran (*kocor akar / drenching*)—selalu menjadi topik hangat. Ada petani yang mengandalkan pupuk daun secara eksklusif karena menganggap serapannya instan, sementara petani lain bersikukuh bahwa tanaman diciptakan untuk makan lewat akar di tanah.

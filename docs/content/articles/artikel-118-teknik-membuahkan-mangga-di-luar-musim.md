@@ -1,6 +1,6 @@
 ---
-title: "Teknik Membuahkan Mangga di Luar Musim: Panen Raya Harga Selangit"
-metaTitle: "Membuahkan Mangga di Luar Musim: Trik Panen Cuan Selangit"
+title: "Teknik Membuahkan Mangga di Luar Musim"
+metaTitle: "Membuahkan Mangga di Luar Musim: Teknik dan Waktunya"
 description: "Teknik membuahkan mangga Arum Manis dan Gedong Gincu di luar musim (off-season): aplikasi zat pengatur tumbuh paklobutrazol dan pupuk KNO3 pemicu bunga."
 slug: "teknik-membuahkan-mangga-di-luar-musim"
 pubDate: "2026-09-29"
@@ -14,7 +14,7 @@ tags:
   - "cara paksa mangga berbunga lebat"
   - "mangga gedong gincu arum manis"
   - "panen mangga off season harga mahal"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

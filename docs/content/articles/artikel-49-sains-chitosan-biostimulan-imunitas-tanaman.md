@@ -13,7 +13,7 @@ tags:
   - "vaksin alami kekebalan tanaman"
   - "pengendalian jamur dengan kitosan"
   - "pupuk organik kulit udang"
-draft: true
+draft: false
 ---
 
 Tuntutan menghasilkan panen sehat tanpa residu racun kimia mendorong riset agronomi melirik salah satu senyawa pelindung alami terbaik: **Chitosan (Kitosan)**.

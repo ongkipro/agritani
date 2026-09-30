@@ -14,7 +14,7 @@ tags:
   - "umbi ubi jalar pahit berlubang"
   - "kumbang moncong boleng"
   - "pengendalian hama ubi cilembu"
-draft: true
+draft: false
 ---
 
 Bagi petani ubi jalar di berbagai sentra produksi—seperti ubi Cilembu Sumedang, ubi ungu Malang, dan ubi oranye Karanganyar—musuh utama yang paling sering merusak umbi di dalam tanah adalah **Hama Boleng (*Sweet Potato Weevil / Cylas formicarius*)**.

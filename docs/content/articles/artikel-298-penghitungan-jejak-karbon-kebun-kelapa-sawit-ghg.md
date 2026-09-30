@@ -14,7 +14,7 @@ tags:
   - "emisi grk"
   - "palmghg"
   - "sawit berkelanjutan"
-draft: true
+draft: false
 ---
 
 Tuntutan pasar global terhadap keberlanjutan rantai pasok minyak kelapa sawit mentah (*Crude Palm Oil* / CPO), seperti European Union Deforestation Regulation (EUDR) dan skema sertifikasi RSPO/ISPO, menempatkan pelaporan emisi Gas Rumah Kaca (GRK) sebagai salah satu indikator audit utama. Perkebunan kelapa sawit (*Elaeis guineensis*) berperan ganda di atmosfer: di satu sisi bertindak sebagai rosot karbon (*carbon sink*) yang menyerap karbondioksida ($CO_2$) masif melalui fotosintesis biomassa pelepah dan batang, namun di sisi lain melepaskan emisi karbon melalui penggunaan bahan bakar fosil, aplikasi pupuk nitrogen, pengolahan limbah cair pabrik kelapa sawit (POME), serta oksidasi drainase lahan gambut.

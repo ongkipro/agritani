@@ -14,7 +14,7 @@ tags:
   - "umpan bangkai kepiting keong mas busuk"
   - "insektisida deltametrin semprot pagi sawah"
   - "pembersihan gulma rumput pakan walang"
-draft: true
+draft: false
 ---
 
 Ketika hamparan sawah padi (*Oryza sativa*) mulai memasuki fase berbunga mekar dan pengisian bulir gabah masak susu (*milky stage*), petani sering kali mencium aroma langu menyengat yang khas saat berjalan di pematang sawah. Bau sangit yang menusuk hidung tersebut menandakan kehadiran koloni hama **Walang Sangit (*Leptocorisa oratorius*)**. Serangga ramping berkaki panjang ini memiliki stilet penusuk yang mengisap habis cairan putih susu karbohidrat di dalam bulir gabah muda yang sedang berkembang.

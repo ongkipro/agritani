@@ -14,7 +14,7 @@ tags:
   - "vektor kutu loncat jeruk diaphorina citri"
   - "gejala daun klorosis belang asimetris"
   - "aplikasi insektisida sistemik diaphorina"
-draft: true
+draft: false
 ---
 
 Bagi petani kebun jeruk (*Citrus spp.*) di Indonesia, penyakit **CVPD (*Citrus Vein Phloem Degeneration*)**—yang di kancah internasional dikenal sebagai **Huanglongbing (HLB)** atau *Citrus Greening*—adalah bencana fitopatologi paling mematikan dalam sejarah perkebunan jeruk nusantara. Pada era 1980-an hingga 1990-an, penyakit ini pernah menyapu bersih jutaan pohon jeruk produktif di sentra Garut, Batu Malang, dan Pontianak hingga punah tak tersisa. Pohon jeruk yang terinfeksi bakteri CVPD mengalami kehancuran sistem transportasi makanan secara permanen: helai daun menguning kaku tegak meranggas, buah yang dihasilkan berukuran kerdil asimetris dengan rasa asam pahit mengeras, dan pohon mati perlahan dalam kurun waktu 1 hingga 2 tahun.

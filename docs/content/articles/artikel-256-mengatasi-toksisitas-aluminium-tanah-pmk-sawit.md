@@ -14,7 +14,7 @@ tags:
   - "aplikasi kapur dolomit netralisir al"
   - "peran pupuk rock phosphate alam sawit"
   - "pemulihan perakaran pokok kelapa sawit"
-draft: true
+draft: false
 ---
 
 Sebagian besar ekspansi areal perkebunan kelapa sawit (*Elaeis guineensis*) di Pulau Sumatera dan Kalimantan berada di atas hamparan tanah **Podsolik Merah Kuning (PMK / Ultisol)**. Tanah PMK dicirikan oleh tingkat keasaman tanah yang sangat ekstrem (pH tanah berkisar 4,0 hingga 4,8), miskin bahan organik, dan memiliki tingkat kejenuhan kation logam beracun yang sangat tinggi: **Aluminium Bebas ($Al^{3+}$)**.

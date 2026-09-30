@@ -14,7 +14,7 @@ tags:
   - "pemupukan sawit berbuah lebat"
   - "perawatan kebun sawit"
   - "penyebab sawit trek"
-draft: true
+draft: false
 ---
 
 > **Key Takeaways**:

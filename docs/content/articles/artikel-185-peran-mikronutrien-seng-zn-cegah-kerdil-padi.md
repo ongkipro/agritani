@@ -14,7 +14,7 @@ tags:
   - "dosis pupuk seng sulfat znso4 sawah"
   - "peran zink pembentukan hormon auksin"
   - "perlakuan benih zink padi rendaman"
-draft: true
+draft: false
 ---
 
 Di berbagai kawasan persawahan irigasi teknis yang lahannya terus-menerus tergenang air sepanjang tahun, petani sering menjumpai anomali pertumbuhan pada tanaman padi umur 2 hingga 4 minggu setelah tanam: bibit padi tidak mau bertambah tinggi, anakan baru tidak kunjung tumbuh, dan helai daun bagian bawah dipenuhi bercak-bercak kecil berwarna cokelat kemerahan atau karat tembaga. Sebagian petani menduga gejala ini disebabkan oleh serangan penyakit jamur atau racun herbisida, lalu menyemprotkan fungisida mahal yang tidak menyelesaikan masalah sama sekali.

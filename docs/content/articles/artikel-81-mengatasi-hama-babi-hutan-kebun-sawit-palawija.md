@@ -1,7 +1,7 @@
 ---
 title: "Mengatasi Hama Babi Hutan pada Kebun: Lindungi Sawit dan Umbi"
 metaTitle: "Atasi Hama Babi Hutan Kebun Sawit: Pagar Kejut"
-description: "Strategi ampuh menghalau hama babi hutan Sus scrofa di kebun sawit dan palawija: pagar listrik tenaga surya, aroma pengusir belerang, dan parit batas."
+description: "Strategi menghalau hama babi hutan Sus scrofa di kebun sawit dan palawija: pagar listrik tenaga surya, aroma pengusir belerang, dan parit batas."
 slug: "mengatasi-hama-babi-hutan-kebun-sawit-palawija"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
@@ -14,7 +14,7 @@ tags:
   - "pagar listrik kejut tenaga surya"
   - "aroma belerang pengusir babi"
   - "perlindungan bibit sawit tbm"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

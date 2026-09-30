@@ -14,7 +14,7 @@ tags:
   - "urban farming lahan sempit"
   - "budidaya lele rumahan"
   - "panen kangkung di ember"
-draft: true
+draft: false
 ---
 
 > **Key Takeaways**:

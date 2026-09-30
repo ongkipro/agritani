@@ -13,7 +13,7 @@ tags:
   - "masalah fiksasi fosfat alofan"
   - "kesuburan tanah dataran tinggi"
   - "budidaya hortikultura tanah andosol"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

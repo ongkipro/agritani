@@ -13,7 +13,7 @@ tags:
   - "kandungan hormon sitokinin auksin alami"
   - "meningkatkan toleransi cekaman panas dingin"
   - "dosis aplikasi biostimulan algae semprot"
-draft: true
+draft: false
 ---
 
 Di era pertanian modern berkelanjutan yang menuntut produktivitas tinggi dengan pengurangan input bahan kimia sintetis berbahaya, produk biostimulan berbahan alami semakin diminati oleh petani maju. Salah satu bahan biostimulan paling fenomenal di dunia adalah ekstrak rumput laut cokelat laut dingin, terutama spesies **Ascophyllum nodosum**. Tumbuh di zona intertidal Samudra Atlantik Utara yang ganas—di mana tumbuhan laut ini terpapar siklus hantaman ombak membeku saat air surut dan terendam laut es saat air pasang setiap hari—spesies rumput laut ini berevolusi memproduksi senyawa bioaktif pelindung stres yang sangat kaya.

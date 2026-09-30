@@ -13,7 +13,7 @@ tags:
   - "cara mengatasi sclerotium rolfsii"
   - "antibiotik gliovirin pembasmi jamur"
   - "pengendalian hayati layu fusarium"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

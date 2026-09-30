@@ -14,7 +14,7 @@ tags:
   - "peningkatan populasi rumpun padi per hektar"
   - "kemudahan pemupukan dan penyiangan gulma"
   - "jarak tanam jajar legowo sawah irigasi"
-draft: true
+draft: false
 ---
 
 Dalam budidaya padi sawah (*Oryza sativa*) irigasi teknis di Indonesia, sistem tanam konvensional tegel bujur sangkar (seperti jarak 20 x 20 cm atau 25 x 25 cm) yang telah diterapkan turun-temurun sering kali memiliki keterbatasan biologis: kanopi daun di tengah hamparan petak menjadi teramat rimbun dan saling menaungi (*shading*), sirkulasi angin macet, dan kelembapan di pangkal batang menjadi sangat tinggi yang memicu ledakan penyakit hawar pelepah (*Rhizoctonia solani*) serta persembunyian nyaman bagi hama wereng batang coklat.

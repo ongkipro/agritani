@@ -13,7 +13,7 @@ tags:
   - "tanaman penangkal hama"
   - "rekayasa agroekologi kebun"
   - "meningkatkan hasil panen"
-draft: true
+draft: false
 ---
 
 > **Key Takeaways**:

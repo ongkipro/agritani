@@ -1,6 +1,6 @@
 ---
 title: "Pengolahan Pascapanen Kopi Sistem Honey Process dan Natural"
-metaTitle: "Kopi Honey & Natural Process: Rahasia Manis Buah Kopi"
+metaTitle: "Kopi Honey & Natural Process: Asal Rasa Manis Buah Kopi"
 description: "Perbedaan metode pascapanen kopi honey process dan natural dry: pemanfaatan lapisan mucilage manis, penjemuran di raised bed, dan profil cita rasa seduhan."
 slug: "pengolahan-pascapanen-kopi-honey-natural"
 pubDate: "2026-09-30"
@@ -14,7 +14,7 @@ tags:
   - "karakteristik rasa manis buah kopi arabika"
   - "penjemuran di atas raised bed para-para"
   - "yellow honey red honey black honey kopi"
-draft: true
+draft: false
 ---
 
 Di era industri kopi spesialti (*specialty coffee*) gelombang ketiga (*third wave*), nilai jual biji kopi hijau (*green beans*) tidak lagi ditentukan semata oleh varietas klon pohon di kebun, melainkan oleh seni keahlian pengolah kopi dalam memanipulasi proses pascapanen. Metode pengolahan basah konvensional (*fully washed*) yang mencuci habis seluruh lapisan lendir buah sering kali menghasilkan seduhan kopi dengan tingkat keasaman (*acidity*) yang tajam bersih namun miskin rasa manis alami (*sweetness*).

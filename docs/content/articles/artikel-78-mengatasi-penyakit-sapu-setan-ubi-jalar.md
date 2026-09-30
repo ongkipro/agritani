@@ -14,7 +14,7 @@ tags:
   - "daun ubi jalar mengecil rimbun"
   - "vektor wereng daun orosius ubi"
   - "cara seleksi bibit stek ubi jalar"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

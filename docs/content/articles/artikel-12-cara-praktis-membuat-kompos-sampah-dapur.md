@@ -13,7 +13,7 @@ tags:
   - "rasio karbon nitrogen kompos"
   - "pupuk kompos rumah tangga"
   - "pengolahan sampah organik"
-draft: true
+draft: false
 ---
 
 > **Key Takeaways**:

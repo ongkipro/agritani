@@ -14,7 +14,7 @@ tags:
   - "kombinasi gas oksigen dan karbon dioksida"
   - "plastik polipropilena mikroperforasi"
   - "mencegah pembusukan jamur pascapanen cabai"
-draft: true
+draft: false
 ---
 
 Komoditas cabai merah keriting dan cabai rawit (*Capsicum annuum*) terkenal memiliki fluktuasi harga pasar yang sangat liar di Indonesia: harga dapat melonjak ratusan ribu rupiah per kilogram saat pasokan langka, namun dapat jatuh bebas hingga di bawah biaya panen saat panen raya serentak tiba. Salah satu penyebab utama mengapa petani tidak mampu menahan stok cabai saat harga anjlok adalah daya tahan simpan buah cabai segar yang sangat singkat: bila disimpan dalam karung plastik biasa pada suhu ruang, buah cabai akan membusuk lembek berair terserang jamur antraknosa dan kehilangan bobot susut timbangan hingga 20 persen hanya dalam waktu 4 hingga 5 hari.

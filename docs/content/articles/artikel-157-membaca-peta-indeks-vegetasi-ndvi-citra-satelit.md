@@ -14,7 +14,7 @@ tags:
   - "interpretasi warna indeks vegetasi hijau"
   - "deteksi serangan hama skala luas satelit"
   - "pemantauan kekeringan lahan sentra padi"
-draft: true
+draft: false
 ---
 
 Pemantauan kondisi lahan pertanian kini tidak lagi terbatas pada pandangan mata di batas pematang sawah. Menggunakan data citra satelit penginderaan jauh (*remote sensing*) terbuka seperti satelit Sentinel-2 milik Badan Antariksa Eropa (ESA) atau Landsat-9 milik NASA, pengelola agribisnis dan dinas pertanian dapat memantau ribuan hektare hamparan tanaman secara berkala dari layar komputer.

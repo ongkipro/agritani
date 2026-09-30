@@ -14,7 +14,7 @@ tags:
   - "larutan kalium nitrat kno3 pemacu benih"
   - "uji viabilitas daya berkecambah benih"
   - "percepatan perkecambahan benih padi baru"
-draft: true
+draft: false
 ---
 
 Petani penangkar benih maupun petani padi sawah (*Oryza sativa*) sering kali menghadapi situasi mendesak saat musim tanam baru tiba: gabah hasil panen musim lalu yang berkualitas unggul ingin segera ditabur kembali ke persemaian karena stok benih bersertifikat di kios pertanian sedang langka. Namun, ketika gabah yang baru dipanen 1 hingga 3 minggu tersebut direndam air dan diperam, gabah tidak mau berkecambah sama sekali atau hanya berkecambah kurang dari 30 persen dengan waktu yang sangat lambat tidak serempak.

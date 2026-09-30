@@ -13,7 +13,7 @@ tags:
   - "aplikasi dekomposer jamur trichoderma"
   - "pengembalian bahan organik silika tanah"
   - "pembuatan kompos jerami in situ sawah"
-draft: true
+draft: false
 ---
 
 Seusai panen raya padi di berbagai sentra persawahan Indonesia, pemandangan asap tebal membubung tinggi yang menyelimuti langit perdesaan dan jalan raya sering kali menjadi rutinitas yang dianggap wajar. Banyak petani mengambil jalan pintas tercepat untuk membersihkan sisa panen dengan cara membakar tumpukan jerami padi (*open burning*). Petani beranggapan bahwa abu bakaran jerami menyuburkan tanah dan membakar mati sarang hama penyakit secara instan.

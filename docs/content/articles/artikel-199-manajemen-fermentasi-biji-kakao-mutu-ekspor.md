@@ -1,6 +1,6 @@
 ---
 title: "Manajemen Fermentasi Biji Kakao Kering Standar Mutu Ekspor"
-metaTitle: "Fermentasi Biji Kakao: Rahasia Mutu Cokelat Ekspor"
+metaTitle: "Fermentasi Biji Kakao: Kunci Mutu Cokelat Ekspor"
 description: "Panduan fermentasi biji kakao dalam kotak kayu bertingkat: dinamika suhu mikroba, pembalikan hari ke-3, uji belah cut test, dan standar kadar air kering 7%."
 slug: "manajemen-fermentasi-biji-kakao-mutu-ekspor"
 pubDate: "2026-09-30"
@@ -14,7 +14,7 @@ tags:
   - "uji belah biji kakao cut test sni"
   - "pengeringan biji kakao jemur sinar surya"
   - "standar mutu biji kakao kering ekspor"
-draft: true
+draft: false
 ---
 
 Indonesia merupakan salah satu produsen biji kakao (*Theobroma cacao*) terbesar di dunia. Namun, ironisnya, sebagian besar biji kakao yang dihasilkan petani rakyat dihargai dengan diskon harga yang sangat rendah di pasar komoditas internasional. Masalah utamanya bukan pada kualitas varietas tanaman, melainkan kebiasaan mayoritas petani yang langsung menjemur biji kakao basah segera setelah buah dibelah tanpa melalui proses fermentasi (*biji kakao asalan / unfermented beans*). Biji kakao tanpa fermentasi menghasilkan bubuk cokelat yang terasa sangat pahit kelat (*astringent*), berwarna keabu-abuan pucat seperti batu tulis (*slaty*), dan sama sekali miskin aroma khas cokelat premium.

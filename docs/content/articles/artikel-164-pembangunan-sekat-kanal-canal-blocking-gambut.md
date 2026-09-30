@@ -14,7 +14,7 @@ tags:
   - "menjaga tinggi muka air tanah 40 cm"
   - "mencegah kebakaran lahan gambut kemarau"
   - "restorasi hidrologi ekosistem gambut"
-draft: true
+draft: false
 ---
 
 Di masa lalu, pembukaan perkebunan kelapa sawit di lahan rawa gambut di Sumatra dan Kalimantan dilakukan dengan menggali kanal-kanal drainase berukuran raksasa sedalam 3 hingga 5 meter untuk membuang air rawa secepat mungkin ke sungai. Pengeringan berlebih (*over-drainage*) ini terbukti membawa malapetaka ekologis dan agronomis: kubah gambut mengering kerontang seperti spons kering yang sangat mudah terbakar di musim kemarau, memicu amblasnya permukaan tanah (*subsidensi*), serta merusak perakaran tanaman sawit akibat kekeringan parah.

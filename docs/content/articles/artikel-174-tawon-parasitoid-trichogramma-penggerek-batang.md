@@ -14,7 +14,7 @@ tags:
   - "pengendalian sundep beluk ramah lingkungan"
   - "pelepasan pias kartu trichogramma sawah"
   - "agens bioproteksi tanaman tebu padi"
-draft: true
+draft: false
 ---
 
 Serangan hama penggerek batang padi kuning (*Scirpophaga incertulas*) yang memicu gejala kematian pucuk daun muda (*sundep*) pada fase vegetatif dan malai hampa keputihan (*beluk*) pada fase generatif adalah salah satu penyebab utama gagal panen di persawahan Indonesia. Larva penggerek hidup terlindung di dalam rongga batang tanaman padi, membuat aplikasi insektisida semprot kimia dari luar menjadi tidak efektif karena racun tidak mampu menembus jaringan batang yang tebal.

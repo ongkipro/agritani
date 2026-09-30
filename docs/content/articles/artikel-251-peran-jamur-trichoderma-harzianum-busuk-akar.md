@@ -13,7 +13,7 @@ tags:
   - "biofungisida hayati busuk akar pythium"
   - "cara perbanyakan trichoderma media beras"
   - "dosis aplikasi kompos trichoderma lahan"
-draft: true
+draft: false
 ---
 
 Di dalam ekosistem tanah pertanian yang intensif dibubuhi pupuk kimia dan pestisida sintetis, keseimbangan mikrobioma tanah sering kali rusak parah. Jamur-jamur patogen tular tanah (*soil-borne pathogens*) yang merugikan—seperti *Fusarium oxysporum*, *Rhizoctonia solani*, *Pythium ultimum*, dan *Phytophthora spp.*—dapat berkembang biak bebas tanpa musuh alami penyeimbang, memicu penyakit busuk akar, rebah semai, dan layu pembuluh yang mematikan tanaman budidaya.

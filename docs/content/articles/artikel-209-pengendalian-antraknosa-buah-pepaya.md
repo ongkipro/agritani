@@ -14,7 +14,7 @@ tags:
   - "pemberian fungisida protektif tembaga"
   - "perlakuan air panas hot water dip pepaya"
   - "sanitasi daun kering kebun pepaya calina"
-draft: true
+draft: false
 ---
 
 Pepaya varietas Calina (Pepaya California) merupakan salah satu komoditas buah hortikultura paling favorit karena rasanya yang manis, daging buahnya yang merah jingga tebal, dan permintaannya yang stabil sepanjang tahun. Namun, di musim penghujan, pekebun pepaya sering menghadapi ancaman penyakit jamur paling merusak: **Penyakit Antraknosa Buah** yang dipicu oleh cendawan patogen **Colletotrichum gloeosporioides**.

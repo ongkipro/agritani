@@ -14,7 +14,7 @@ tags:
   - "peningkatan ketahanan cekaman kekeringan"
   - "pembentukan struktur arbuskula sel akar"
   - "inokulasi spora mikoriza lubang tanam"
-draft: true
+draft: false
 ---
 
 Unsur hara fosfor ($P_2O_5$) merupakan bahan bakar energi mutlak bagi tanaman jagung (*Zea mays*) untuk membelah sel titik tumbuh, memicu keluarnya bunga tongkol, dan memadatkan butir biji. Namun, fosfat memiliki sifat kimiawi tanah yang sangat menyulitkan: ion fosfat memiliki mobilitas difusi yang sangat lamban di dalam larutan tanah (hanya bergerak beberapa milimeter per tahun) dan sangat mudah terikat mati oleh mineral liat tanah, besi, atau aluminium. Akibatnya, tanaman jagung hanya mampu menyerap kurang dari 20 persen pupuk fosfat yang ditebarkan petani ke dalam tanah.

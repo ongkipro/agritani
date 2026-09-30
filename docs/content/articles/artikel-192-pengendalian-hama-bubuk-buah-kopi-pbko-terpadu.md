@@ -14,7 +14,7 @@ tags:
   - "perangkap senyawa atraktan etanol kopi"
   - "panen bubuk petik merah sanitasi kebun"
   - "agens hayati jamur beauveria kopi"
-draft: true
+draft: false
 ---
 
 Hama bubuk buah kopi atau PBKo (*Hypothenemus hampei*) merupakan ancaman paling menghancurkan bagi petani kopi rakyat di seluruh sentra perkebunan Indonesia. Kumbang kecil berwarna hitam kelam berukuran kurang dari 2 milimeter ini menyerang langsung bagian paling berharga: biji kopi di dalam buah. Kumbang betina mengebor lubang bundar tepat di ujung kubah buah kopi (*diskus*), masuk ke dalam rongga biji, dan meletakkan puluhan butir telur. Larva yang menetas memakan habis keping biji kopi dari dalam, menyebabkan buah rontok prematur, biji berlubang busuk hitam, dan nilai jual kopi di pasar jatuh bebas.

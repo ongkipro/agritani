@@ -1,6 +1,6 @@
 ---
 title: "Biosintesis Lignin dan Suberin Penguat Batang Jagung"
-metaTitle: "Lignin & Suberin Jagung: Rahasia Batang Kokoh Tegak"
+metaTitle: "Lignin & Suberin Jagung: Peran bagi Batang Kokoh Tegak"
 description: "Proses pembentukan polimer alami lignin dan suberin pada dinding sel batang jagung: memperkuat tegakan batang, menolak penetrasi hama, dan mencegah rebah."
 slug: "biosintesis-lignin-suberin-batang-jagung"
 pubDate: "2026-09-30"
@@ -14,7 +14,7 @@ tags:
   - "aktivitas enzim phenylalanine ammonia lyase"
   - "mencegah batang jagung rebah angin"
   - "kandungan serat silika lignin daun"
-draft: true
+draft: false
 ---
 
 Salah satu ancaman mekanis terbesar dalam budidaya jagung (*Zea mays*) menjelang masa panen adalah bencana tanaman rebah roboh (*lodging*). Ketika tanaman jagung sedang sarat memikul bobot tongkol-tongkol besar yang terisi penuh butir biji pada umur 75 hingga 90 hari setelah tanam, hembusan angin kencang dan hujan lebat dapat mematahkan batang jagung bagian bawah (*stalk lodging*) atau merobohkan perakarannya (*root lodging*). Batang jagung yang patah tergeletak di atas tanah basah menyebabkan tongkol membusuk dimakan tikus dan jamur, memicu kerugian hasil panen gabah jagung mencapai puluhan juta rupiah per hektare.

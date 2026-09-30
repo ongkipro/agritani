@@ -14,7 +14,7 @@ tags:
   - "insektisida kontak organik tungau merah"
   - "cara melarutkan membran kutu tanaman"
   - "insektisida lembut bebas residu kimia"
-draft: true
+draft: false
 ---
 
 Kutu kebul (*Bemisia tabaci*), tungau merah (*Tetranychus urticae*), dan kutu daun persik (*Myzus persicae*) pada tanaman cabai dan tomat terkenal sebagai hama yang sangat cepat kebal (*resisten*) terhadap berbagai golongan insektisida kimia sintetis. Dalam tempo 3 hingga 4 generasi semprotan racun kimia keras, populasi kutu kebul mampu bermutasi menghasilkan enzim pengurai racun, memaksa petani menaikkan dosis semprot gila-gilaan yang berujung pada daun terbakar fitotoksik dan buah tercemar residu beracun.

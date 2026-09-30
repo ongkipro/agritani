@@ -14,7 +14,7 @@ tags:
   - "siklus hidup larva kumbang koksi"
   - "pengendalian hayati hama sayuran daun"
   - "menjaga populasi musuh alami kebun"
-draft: true
+draft: false
 ---
 
 Di hamparan tanaman sayuran daun seperti kubis, sawi manis, kailan, dan cabai, petani sering melihat kumbang kecil berbentuk kubah bundar dengan sayap luar mengilap bercorak bintik-bintik merah, oranye, atau hitam yang merayap lincah di pucuk tanaman. Serangga mungil yang dikenal luas sebagai **Kumbang Kubah (*Ladybird Beetle / Coccinellidae*)** atau kumbang koksi ini adalah salah satu sahabat paling berjasa bagi petani di ekosistem pertanian.

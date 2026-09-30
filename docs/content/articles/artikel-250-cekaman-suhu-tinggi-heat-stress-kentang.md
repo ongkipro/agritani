@@ -14,7 +14,7 @@ tags:
   - "produksi heat shock protein hsp sel"
   - "aplikasi biostimulan asam amino prolin"
   - "manajemen mulsa dingin dataran medium"
-draft: true
+draft: false
 ---
 
 Kentang (*Solanum tuberosum*) secara evolusioner merupakan tanaman asli dataran tinggi beriklim dingin pegunungan Andes di Amerika Selatan yang menuntut kondisi lingkungan sejuk dengan temperatur malam hari berkisar **15 hingga 18 derajat Celsius** untuk menginduksi pembentukan umbi. Namun, seiring fenomena pemanasan iklim global dan ekspansi budidaya kentang ke daerah dataran medium (ketinggian 600 hingga 900 meter di atas permukaan laut), petani kentang semakin sering berhadapan dengan bahaya **Cekaman Suhu Tinggi (*Heat Stress*)**.

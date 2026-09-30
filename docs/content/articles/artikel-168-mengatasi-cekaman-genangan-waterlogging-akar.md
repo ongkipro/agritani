@@ -13,7 +13,7 @@ tags:
   - "mengatasi busuk akar pasca banjir sawah"
   - "pembuatan parit drainase cepat kebun"
   - "kalsium nitrat pemulih akar tergenang"
-draft: true
+draft: false
 ---
 
 Hujan lebat semalaman yang mengakibatkan luapan air parit menggenangi bedengan tanaman hortikultura (seperti cabai, tomat, pepaya, atau melon) sering kali memicu kepanikan besar bagi petani. Banyak petani mengira genangan air bersih selama 24 jam tidak berbahaya karena air adalah sumber kehidupan tanaman. Namun kenyataannya, tanaman cabai yang terendam air setinggi pergelangan kaki selama lebih dari 36 jam dapat layu serempak dan mati mendadak beberapa hari kemudian meskipun genangan air sudah surut total.

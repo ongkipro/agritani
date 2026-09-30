@@ -14,7 +14,7 @@ tags:
   - "perakitan varietas benih padi unggul"
   - "deteksi gen tahan hama penyakit tanaman"
   - "bioteknologi benih non transgenik"
-draft: true
+draft: false
 ---
 
 Metode pemuliaan tanaman konvensional membutuhkan waktu 8 hingga 12 generasi persilangan (setara 6 sampai 10 tahun) untuk menghasilkan satu galur varietas benih unggul baru. Pemulia harus menanam ribuan anakan padi atau jagung di lahan sawah, menunggu tanaman terserang penyakit secara alami, lalu mengamati satu per satu tanaman mana yang tetap berdiri sehat. Proses seleksi visual berbasis penampakan luar (*fenotipe*) ini selain memakan waktu panjang dan biaya lahan besar, juga sangat rentan terkecoh oleh fluktuasi cuaca musiman.

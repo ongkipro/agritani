@@ -14,7 +14,7 @@ tags:
   - "kemiringan parit alir air sawah"
   - "infiltrasi air tanah lempung berpasir"
   - "efisiensi penggunaan air palawija"
-draft: true
+draft: false
 ---
 
 Di sentra produksi palawija yang mengandalkan lahan sawah tadah hujan pasca panen padi musim rendeng, petani sering menghadapi defisit air tanah yang parah saat menanam jagung hibrida di musim kemarau (*musim gadu*). Menggenangi seluruh petakan sawah seperti saat menanam padi adalah pemborosan sumber daya air sumur bor, memadatkan struktur aerasi tanah, serta memicu busuk leher batang pada rumpun jagung.

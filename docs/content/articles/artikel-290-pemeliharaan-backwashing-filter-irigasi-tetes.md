@@ -13,7 +13,7 @@ tags:
   - "backwashing filter"
   - "irigasi tetes"
   - "pemeliharaan irigasi"
-draft: true
+draft: false
 ---
 
 Penyumbatan emitter tetes (*dripper clogging*) merupakan momok paling merusak dalam operasional sistem irigasi tetes dan fertigasi modern. Lubang labirin emitter yang sangat mikro (berkisar antara 0,5 hingga 1,2 mm) amat rentan tersumbat oleh partikel sedimen pasir, koloid lumpur, alga mikroskopis, serta endapan presipitasi garam mineral pupuk. Unit filtrasi kepala (*head filtration unit*) yang dilengkapi filter disk (*disc filter*) atau media pasir (*sand media filter*) bertindak sebagai barisan pertahanan utama jaringan perpipaan, di mana pemeliharaan dan prosedur pencucian balik (*backwashing*) berkala menjadi penentu umur pakai sistem irigasi.

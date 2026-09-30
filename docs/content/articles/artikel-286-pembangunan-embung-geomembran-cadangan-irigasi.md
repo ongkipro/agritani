@@ -13,7 +13,7 @@ tags:
   - "tandon air"
   - "irigasi kemarau"
   - "cadangan air"
-draft: true
+draft: false
 ---
 
 Keterbatasan pasokan air baku saat kemarau panjang menjadi ancaman serius bagi kelangsungan usaha tani tanaman pangan dan hortikultura bernilai tinggi. Pembangunan embung tanah sederhana sering mengalami kegagalan akibat tingginya laju rembesan (*seepage loss*) pada formasi tanah berpasir atau berbatu poros. Pemanfaatan lapisan geomembran berbasis *High-Density Polyethylene* (HDPE) memberikan solusi kedap air permanen dengan koefisien permeabilitas mendekati nol, mengamankan cadangan air hujan dan limpasan permukaan secara efektif untuk irigasi hemat air.

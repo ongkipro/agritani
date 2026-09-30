@@ -1,6 +1,6 @@
 ---
 title: "Pemanfaatan Kompos Kascing Bekas Cacing Nutrisi Sayuran Daun"
-metaTitle: "Pupuk Kascing Bekas Cacing: Nutrisi Sayuran Daun Super"
+metaTitle: "Pupuk Kascing Bekas Cacing: Nutrisi Sayuran Daun"
 description: "Keunggulan pupuk organik kascing (vermikompos) bagi sayuran daun: kaya hara makro instan, enzim biologis cacing tanah, dan bebas dari spora jamur patogen."
 slug: "pemanfaatan-kompos-kascing-sayuran-daun"
 pubDate: "2026-09-30"
@@ -14,7 +14,7 @@ tags:
   - "enzim protease amilase kotoran cacing"
   - "peningkatan bobot segar sayuran daun"
   - "dosis campuran media polibag sayur kascing"
-draft: true
+draft: false
 ---
 
 Dalam budidaya sayuran daun organik maupun konvensional—seperti sawi pakcoy, selada, kangkung, bayam, dan kubis—penggunaan pupuk kandang mentah sering kali menjadi sumber masalah pelik: bau kotoran yang menyengat, keberadaan biji gulma liar yang tumbuh mengotori bedengan, serta risiko kontaminasi bakteri patogen manusia (*E. coli*) dan jamur rebah semai tular tanah. Petani membutuhkan bahan pembenah organik bermutu super yang telah terfermentasi sempurna, bertekstur lembut remah, kaya nutrisi instan, dan higienis.

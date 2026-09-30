@@ -14,7 +14,7 @@ tags:
   - "radiasi matahari"
   - "efisiensi hara"
   - "sensor fertigasi"
-draft: true
+draft: false
 ---
 
 Efisiensi serapan air dan nutrisi pada budidaya tomat (*Solanum lycopersicum*), baik di dalam greenhouse maupun lahan terbuka, sangat bergantung pada laju transpirasi tajuk tanaman. Pemberian larutan hara berdasarkan jadwal timer kaku sering memicu over-watering saat kondisi cuaca mendung atau memicu defisit air parah ketika terik matahari ekstrem. Perancangan sistem fertigasi tetes presisi berbasis akumulasi radiasi matahari (*solar radiation sum*) menyelaraskan injeksi larutan hara dengan dinamika fisiologis stomata tanaman tomat secara riil.

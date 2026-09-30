@@ -13,7 +13,7 @@ tags:
   - "enzim nitrat reduktase tanaman"
   - "bahaya penumpukan nitrat berlebih"
   - "peran molibdenum dan magnesium n"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

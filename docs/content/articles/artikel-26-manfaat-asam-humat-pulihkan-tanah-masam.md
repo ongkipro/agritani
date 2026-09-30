@@ -13,7 +13,7 @@ tags:
   - "pembenah tanah alami"
   - "manfaat asam humat untuk tanaman"
   - "mengatasi tanah keras dan bantat"
-draft: true
+draft: false
 ---
 
 Kondisi tanah sawah atau tegalan yang mengeras seperti batu bata saat terik kemarau dan berubah becek lengket saat hujan lebat adalah keluhan klasik di berbagai sentra pertanian. Ironisnya, jatah pupuk kimia yang ditebar tiap musim tanam tidak pernah berkurang—bahkan dosisnya cenderung ditambah karena tanaman tampak lambat tumbuh dan daunnya gampang menguning.

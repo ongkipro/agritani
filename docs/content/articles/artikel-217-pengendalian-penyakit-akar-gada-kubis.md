@@ -14,7 +14,7 @@ tags:
   - "aplikasi kapur pertanian dolomit ph tanah"
   - "perlakuan fungisida flusulfamid persemaian"
   - "rotasi tanaman lahan kubis dataran tinggi"
-draft: true
+draft: false
 ---
 
 Bagi petani sayuran famili kubis-kubisan (*Brassicaceae*) di daerah pegunungan dingin—seperti kubis kol bulat (*Brassica oleracea*), kembang kol, brokoli, dan sawi putih—penyakit **Akar Gada** atau **Clubroot** yang dipicu oleh patogen protista tanah obligat **Plasmodiophora brassicae** adalah momok yang melumpuhkan lahan budidaya. Tanaman kubis yang terjangkit menunjukkan gejala kelayuan yang sangat khas: pada siang hari saat terik matahari memancar panas, seluruh daun kubis terkulai layu lemas layaknya tanaman kekeringan air, namun saat fajar pagi tiba helai daun tampak kembali segar tegak (*layu semu / flagging*).

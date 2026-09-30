@@ -14,7 +14,7 @@ tags:
   - "pengaturan ec nutrisi pembesaran buah"
   - "peningkatan derajat brix manis melon"
   - "pemangkasan daun kanopi melon green house"
-draft: true
+draft: false
 ---
 
 Budidaya melon (*Cucumis melo*) dalam instalasi greenhouse dengan sistem fertigasi tetes substrat polibag (cocopeat dan arang sekam) kini menjadi primadona agribisnis bernilai tinggi. Pasar buah modern dan supermarket premium menuntut spesifikasi buah melon yang sangat ketat: jaring net kulit buah harus terbentuk rapat merata (*full net*), bobot buah seragam antara 1,5 hingga 2,0 kilogram, tekstur daging renyah (*crispy*), dan yang terpenting adalah tingkat kemanisan yang tinggi dengan derajat **Brix minimal 13 hingga 15 persen**.

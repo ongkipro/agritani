@@ -1,5 +1,5 @@
 ---
-title: "Peranan Pupuk Silika: Rahasia Batang Padi Tegak Kokoh dan Anti Rebah Badai"
+title: "Peranan Pupuk Silika: Batang Padi Lebih Kokoh dan Tahan Rebah"
 metaTitle: "Manfaat Pupuk Silika untuk Padi: Batang Kokoh Anti Rebah"
 description: "Pahami peranan pupuk silika Si dalam memperkuat dinding sel batang padi, mencegah roboh diterpa angin badai, dan menolak gigitan hama wereng."
 slug: "peranan-pupuk-silika-mencegah-padi-rebah"
@@ -14,7 +14,7 @@ tags:
   - "silika pengeras batang tanaman"
   - "pupuk silika cair terbaik"
   - "ketahanan tanaman padi musim hujan"
-draft: true
+draft: false
 ---
 
 Bagi petani padi, tidak ada pemandangan yang lebih menyayat hati dibanding melihat hamparan tanaman padi yang sedang bunting tua sarat bulir gabah mendadak roboh rata dengan tanah setelah dihantam angin kencang dan hujan lebat semalam.

@@ -14,7 +14,7 @@ tags:
   - "kecepatan serapan akar serabut cabai"
   - "mencegah garam pupuk membakar akar"
   - "interval pemupukan kocor fase generatif"
-draft: true
+draft: false
 ---
 
 Dalam budidaya intensif tanaman cabai merah keriting maupun cabai rawit (*Capsicum annuum*), metode aplikasi pupuk susulan menjadi faktor penentu utama bagi kestabilan pembungaan dan bobot tonase buah panen. Menaburkan pupuk kimia butiran kering (seperti urea atau NPK) langsung ke permukaan tanah di samping pangkal batang sering kali berujung pada kegagalan: butiran pupuk lambat larut jika tanah kering, mudah tercuci hanyut oleh aliran air hujan di atas mulsa plastik, dan konsentrasi garam lokal yang terlalu pekat berisiko membakar jaringan akar serabut (*salt injury / akar hangus*).

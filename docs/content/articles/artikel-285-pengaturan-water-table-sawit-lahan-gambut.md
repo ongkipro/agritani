@@ -14,7 +14,7 @@ tags:
   - "water table"
   - "subsiden gambut"
   - "sekat kanal"
-draft: true
+draft: false
 ---
 
 Budidaya kelapa sawit (*Elaeis guineensis*) di ekosistem lahan gambut memerlukan manajemen tata kelola air yang sangat presisi guna menjaga stabilitas hidrologis kawasan. Penurunan muka air tanah yang terlampau dalam memicu dekomposisi organik cepat melalui oksidasi mikrobial aerobik, mempercepat laju amblesan tanah (*peat subsidence*), dan meningkatkan kerentanan kebakaran bawah permukaan (*peat fire*). Sebaliknya, muka air yang terlampau tinggi menyebabkan perakaran sawit tercekik kekurangan oksigen, menghambat serapan hara makro, dan memicu klorosis pelepah bawah.

@@ -14,7 +14,7 @@ tags:
   - "kadar air butir patah beras derajat sosoh"
   - "batas butir kapur menir beras kepala"
   - "uji mutu beras laboratorium kementan"
-draft: true
+draft: false
 ---
 
 Di pasar perberasan nasional, label kata "Beras Premium" dan "Beras Medium" sering kali disematkan secara sepihak oleh pedagang atau pemilik penggilingan beras tanpa merujuk pada tolok ukur pengujian laboratorium yang sah. Menanggapi potensi kecurangan mutu dan demi melindungi hak konsumen, Badan Standardisasi Nasional (BSN) bersama Kementerian Pertanian memperbarui regulasi mutu melalui **Standar Nasional Indonesia (SNI 6128:2020 Beras Giling)**.

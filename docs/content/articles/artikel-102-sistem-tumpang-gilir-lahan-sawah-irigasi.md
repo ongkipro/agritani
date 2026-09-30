@@ -1,6 +1,6 @@
 ---
-title: "Sistem Tumpang Gilir Lahan Sawah: Putus Hama Lipatgandakan Cuan"
-metaTitle: "Sistem Tumpang Gilir Sawah: Putus Hama Cuan Berlipat"
+title: "Sistem Tumpang Gilir Lahan Sawah: Memutus Siklus Hama dan Menambah Pendapatan"
+metaTitle: "Sistem Tumpang Gilir Sawah: Putus Siklus Hama"
 description: "Pahami pola rotasi tumpang gilir padi-palawija-sayuran di sawah irigasi untuk memutus siklus wereng, memperbaiki aerasi tanah, dan menaikkan pendapatan."
 slug: "sistem-tumpang-gilir-lahan-sawah-irigasi"
 pubDate: "2026-09-29"
@@ -14,7 +14,7 @@ tags:
   - "pola tanam sawah irigasi teknis"
   - "cara memutus siklus hama wereng"
   - "manajemen kesuburan tanah sawah"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

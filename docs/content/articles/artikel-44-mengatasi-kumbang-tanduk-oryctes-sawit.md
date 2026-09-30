@@ -14,7 +14,7 @@ tags:
   - "perangkap feromon sawit"
   - "jamur metarhizium anisopliae"
   - "pengendalian hama sawit muda"
-draft: true
+draft: false
 ---
 
 Pada fase Tanaman Belum Menghasilkan (TBM) di perkebunan kelapa sawit, musuh utama yang paling sering merusak pelepah muda dan menunda masa panen perdana adalah **Kumbang Tanduk (*Oryctes rhinoceros*)**.

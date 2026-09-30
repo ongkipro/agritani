@@ -14,7 +14,7 @@ tags:
   - "alat lidi penyerbukan rostellum vanili"
   - "proses pemeraman polong vanili ekspor"
   - "kadar vanilin polong kering hitam"
-draft: true
+draft: false
 ---
 
 Vanili (*Vanilla planifolia*) dikenal sebagai komoditas rempah perkebunan paling bernilai tinggi di dunia yang dijuluki sebagai 'emas hijau'. Namun, di luar habitat aslinya di hutan Meksiko—di mana terdapat lebah *Melipona* dan burung kolibri pemegang kunci penyerbukan alami—bunga anggrek vanili memiliki struktur morfologi tertutup yang mustahil menyerbuki dirinya sendiri. Bunga vanili hanya mekar selama beberapa jam dalam satu hari saja. Tanpa campur tangan tangan manusia yang telaten mengawinkan satu per satu kuntum bunga di pagi buta, tandan bunga vanili akan layu menguning dan gugur ke tanah tanpa meninggalkan sebutir pun polong berharga.

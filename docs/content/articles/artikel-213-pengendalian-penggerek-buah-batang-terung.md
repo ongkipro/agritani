@@ -14,7 +14,7 @@ tags:
   - "perangkap feromon seksual ngengat terung"
   - "sanitasi pucuk layu kebun terung ungu"
   - "insektisida emamektin benzoat terung"
-draft: true
+draft: false
 ---
 
 Bagi petani hortikultura pembudidaya terung ungu (*Solanum melongena*), terung hijau, maupun terung bulat, hama **Penggerek Buah dan Batang Terung (EFSB / *Eggplant Fruit and Shoot Borer*)** yang disebabkan oleh ulat ngengat **Leucinodes orbonalis** adalah momok perusak yang paling menguras tenaga dan modal. Kehadiran hama ini sering kali diawali dengan pemandangan pucuk-pucuk tunas muda terung yang mendadak layu terkulai lemas di siang hari (*wilting shoots*). Beberapa minggu kemudian saat tanaman mulai berbuah lebat, buah terung yang dipanen dipenuhi lubang-lubang kecil melingkar yang mengeluarkan kotoran basah kehitaman. Saat buah dibelah, bagian dalam daging buah telah berongga busuk dipenuhi ulat merah jambu yang menjijikkan, membuat buah terung diafkir total dari pasar.

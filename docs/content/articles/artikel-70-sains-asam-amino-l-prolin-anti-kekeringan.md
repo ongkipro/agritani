@@ -13,7 +13,7 @@ tags:
   - "osmoregulator sel tanaman"
   - "cara mengatasi tanaman kekeringan"
   - "biostimulan antistres tanaman"
-draft: true
+draft: false
 ---
 
 Di tengah anomali cuaca El Nino yang memicu musim kemarau panjang tanpa hujan berbulan-bulan, tantangan terbesar bagi petani hortikultura dan perkebunan adalah menjaga tanaman tetap hidup segar dan tidak mati layu kekeringan.

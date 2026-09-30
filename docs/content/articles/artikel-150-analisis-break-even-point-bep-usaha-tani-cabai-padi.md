@@ -15,7 +15,7 @@ tags:
   - "biaya tetap dan variabel bertani padi"
   - "rumus bep unit dan harga panen"
   - "analisis kelayakan usaha tani rc ratio"
-draft: true
+draft: false
 ---
 
 Banyak petani bekerja keras bermandi lumpur sepanjang musim tanam, namun ketika musim panen usai dan seluruh hasil terjual, uang di dalam dompet habis tanpa sisa tabungan yang jelas. Kesalahan fatal yang kerap terjadi adalah mengelola usaha tani hanya mengandalkan intuisi perasaan, tanpa pernah menghitung struktur biaya produksi secara matematis.

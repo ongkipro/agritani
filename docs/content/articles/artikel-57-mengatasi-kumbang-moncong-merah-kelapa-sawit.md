@@ -14,7 +14,7 @@ tags:
   - "ulat sagu pemakan umbut sawit"
   - "perangkap feromon kumbang moncong"
   - "penyakit pucuk kelapa patah"
-draft: true
+draft: false
 ---
 
 Bagi petani kelapa sawit, kelapa dalam, maupun kurma, hama perusak batang dalam yang paling mematikan dan bekerja laksana pembunuh senyap di dalam kegelapan jaringan kayu adalah **Kumbang Moncong Merah (*Red Palm Weevil / Rhynchophorus ferrugineus*)**.

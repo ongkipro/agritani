@@ -14,7 +14,7 @@ tags:
   - "fiksasi nitrogen bebas udara tanah"
   - "aplikasi pupuk hayati legin kacang tanah"
   - "peningkatan bobot polong isi kacang tanah"
-draft: true
+draft: false
 ---
 
 Kacang tanah (*Arachis hypogaea*) merupakan tanaman pangan legum semusim yang memiliki keajaiban biologi tanah luar biasa: tanaman ini mampu memproduksi sendiri seluruh kebutuhan pupuk nitrogennya dari udara bebas melalui kemitraan simbiosis mutualisme dengan bakteri tanah penambat nitrogen, yaitu **Rhizobium leguminosarum** atau **Bradyrhizobium sp.** Namun, banyak petani yang baru membuka lahan atau menanam kacang tanah di lahan bekas sawah mendapati tanaman kacang mereka tumbuh kerdil kekuningan, pembentukan bintil akar sangat minim, dan polong yang dihasilkan banyak yang kopong tanpa biji (*popcorn pods*).

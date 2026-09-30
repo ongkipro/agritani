@@ -15,7 +15,7 @@ tags:
   - "model ajir segitiga huruf a"
   - "mencegah buah busuk menyentuh tanah"
   - "pengikatan batang tali rafia simpul 8"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

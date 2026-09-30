@@ -14,7 +14,7 @@ tags:
   - "standar kemanisan buah melon supermarket"
   - "faktor pupuk kalium pembentuk brix"
   - "waktu sampling uji kemanisan buah"
-draft: true
+draft: false
 ---
 
 Di pasar modern, ritel buah premium, dan supermarket terkemuka, harga jual buah melon (*Cucumis melo*) dan semangka (*Citrullus lanatus*) tidak lagi hanya dinilai dari tampilan fisik kulit luar yang mulus atau bobot timbangan kilogram semata. Parameter penentu kelas mutu tertinggi (*Grade Super A*) adalah angka pembacaan refraktometer: **Derajat Brix (°Brix)**. Supermarket menuntut buah melon premium memiliki nilai kemanisan **minimal 12 hingga 15 derajat Brix**. Buah yang hanya mencapai 9 atau 10 °Brix akan dikategorikan sebagai buah tawar kelas bawah yang mengalami pemotongan harga jual hingga 50 persen.

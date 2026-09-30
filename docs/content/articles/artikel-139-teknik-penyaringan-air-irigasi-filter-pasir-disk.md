@@ -13,7 +13,7 @@ tags:
   - "filter disk cincin irigasi tetes"
   - "mencegah emiter drip sprayer tersumbat"
   - "teknik backwash pembersihan filter"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

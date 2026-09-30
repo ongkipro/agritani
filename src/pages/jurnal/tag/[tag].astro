@@ -68,10 +68,10 @@ const clip = (text: string, max: number) =>
 const safeTitle = clip(displayName, 50);
 
 const count = articles.length;
-const safeDesc = clip(
-  `${count} artikel Jurnal Tani tentang ${tagName} oleh Arif Prabowo, konsultan pertanian senior Agritani.`,
-  160,
-);
+// 120–160 characters (check-seo window): long form first, shorter form for long tags, then clip at a word.
+const descLong = `Kumpulan ${count} artikel Jurnal Tani tentang ${tagName}: panduan budidaya dan penanganan di lahan oleh Arif Prabowo, konsultan pertanian senior Agritani.`;
+const descShort = `${count} artikel Jurnal Tani tentang ${tagName}: panduan budidaya dan penanganan di lahan oleh Arif Prabowo, konsultan pertanian Agritani.`;
+const safeDesc = clip(descLong.length <= 160 ? descLong : descShort, 160);
 
 const seo: SeoInput = {
   title: safeTitle,

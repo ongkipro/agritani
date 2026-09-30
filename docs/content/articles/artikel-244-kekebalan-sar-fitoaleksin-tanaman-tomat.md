@@ -14,7 +14,7 @@ tags:
   - "asam salisilat pemicu kekebalan tanaman"
   - "pertahanan dinding sel terhadap jamur"
   - "elisi biostimulan penguat imun tomat"
-draft: true
+draft: false
 ---
 
 Banyak petani memandang tanaman tomat (*Solanum lycopersicum*) sebagai organisme pasif yang sama sekali tidak berdaya saat diserang oleh spora jamur bercak daun (*Alternaria solani*) atau bakteri layu (*Ralstonia solanacearum*). Petani kerap menganggap bahwa satu-satunya cara menyelamatkan tanaman adalah dengan membanjiri kanopi daun dengan fungisida kimia racun buatan manusia. Namun, dalam sains imunologi tumbuhan modern, tanaman tomat sesungguhnya memiliki sistem pertahanan kekebalan internal yang luar biasa cerdas dan canggih yang disebut **Systemic Acquired Resistance (SAR)** serta senjata antibiotik pembunuh mikroba alami yang diproduksi mandiri, yaitu **Fitoaleksin**.

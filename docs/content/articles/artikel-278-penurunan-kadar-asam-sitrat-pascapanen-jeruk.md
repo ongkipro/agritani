@@ -14,7 +14,7 @@ tags:
   - "pemeraman sejuk curing pascapanen jeruk"
   - "respirasi asam organik vakuola buah jeruk"
   - "peningkatan rasa manis segar buah jeruk"
-draft: true
+draft: false
 ---
 
 Keluhan yang sering dijumpai pada konsumen buah jeruk manis (*Citrus sinensis* dan *Citrus reticulata*) segar di Indonesia adalah rasa buah yang terasa masam getir menusuk lidah sesaat setelah dipetik dari pohon di kebun, meskipun kulit buahnya sudah berwarna kuning oranye cerah. Kekecewaan ini sering membuat petani tergesa-gesa menjual buah jeruk mereka dengan harga murah. Namun, setelah buah jeruk yang sama disimpan atau diperam selama 5 hingga 7 hari di ruang berventilasi sejuk, keajaiban cita rasa terjadi: rasa asam tajam tersebut lenyap dan berubah menjadi rasa manis segar yang seimbang dan disukai konsumen.

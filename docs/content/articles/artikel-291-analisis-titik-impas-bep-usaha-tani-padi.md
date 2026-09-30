@@ -14,7 +14,7 @@ tags:
   - "biaya produksi padi"
   - "padi sawah"
   - "kelayakan finansial"
-draft: true
+draft: false
 ---
 
 Pengelolaan usaha tani padi sawah (*Oryza sativa*) sering mengalami kendala finansial akibat ketiadaan pembukuan biaya produksi yang terstruktur. Petani kerap merasa merugi saat panen raya meskipun produktivitas tonase gabah terlihat tinggi, atau sebaliknya merasa untung padahal belum memperhitungkan biaya tenaga kerja keluarga dan penyusutan alat mesin pertanian. Analisis Titik Impas atau *Break-Even Point* (BEP) menjadi instrumen evaluasi finansial fundamental untuk menetapkan batas volume panen gabah minimal dan harga jual terendah agar modal usaha tani kembali utuh tanpa kerugian.

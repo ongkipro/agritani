@@ -13,7 +13,7 @@ tags:
   - "metode pre cooling buang panas lapang"
   - "suhu kelembapan cold storage sayur"
   - "mengurangi susut bobot pasca panen"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

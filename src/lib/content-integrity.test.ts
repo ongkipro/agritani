@@ -35,18 +35,9 @@ describe('Content Integrity Assertions', () => {
     });
   });
 
-  it('fails when published article has no commodities (REQ-03)', () => {
-    const invalid = { ...validArticle, slug: 'artikel-tanpa-komoditas', commodities: [] };
-    assert.throws(
-      () => {
-        assertContentIntegrity({ articles: [invalid] });
-      },
-      (err: Error) => {
-        assert.match(err.message, /artikel-tanpa-komoditas/);
-        assert.match(err.message, /minimal 1 komoditas/);
-        return true;
-      }
-    );
+  it('allows a published general article without commodities (DEC-020)', () => {
+    const general = { ...validArticle, slug: 'artikel-umum', commodities: [] };
+    assert.doesNotThrow(() => assertContentIntegrity({ articles: [general] }));
   });
 
   it('ensures articles without commodities do not get secretly defaulted to kelapa-sawit', () => {
@@ -66,32 +57,14 @@ describe('Content Integrity Assertions', () => {
     });
   });
 
-  it('fails when published article has no references (REQ-05)', () => {
-    const invalid = { ...validArticle, slug: 'artikel-tanpa-ref', references: [] };
-    assert.throws(
-      () => {
-        assertContentIntegrity({ articles: [invalid] });
-      },
-      (err: Error) => {
-        assert.match(err.message, /artikel-tanpa-ref/);
-        assert.match(err.message, /referensi ilmiah/);
-        return true;
-      }
-    );
+  it('allows a published article without references; none are invented (DEC-020)', () => {
+    const noRef = { ...validArticle, slug: 'artikel-tanpa-ref', references: [] };
+    assert.doesNotThrow(() => assertContentIntegrity({ articles: [noRef] }));
   });
 
-  it('fails when published article has no answer', () => {
-    const invalid = { ...validArticle, slug: 'artikel-tanpa-answer', answer: '' };
-    assert.throws(
-      () => {
-        assertContentIntegrity({ articles: [invalid] });
-      },
-      (err: Error) => {
-        assert.match(err.message, /artikel-tanpa-answer/);
-        assert.match(err.message, /Jawaban Singkat/);
-        return true;
-      }
-    );
+  it('allows a published article without a short answer (DEC-020)', () => {
+    const noAnswer = { ...validArticle, slug: 'artikel-tanpa-answer', answer: '' };
+    assert.doesNotThrow(() => assertContentIntegrity({ articles: [noAnswer] }));
   });
 
   it('fails when published article answer word count is outside 40-60 words', () => {

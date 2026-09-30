@@ -14,7 +14,7 @@ tags:
   - "cara mengatasi kanker batang jeruk"
   - "fungisida bakterisida tembaga jeruk"
   - "pengendalian pengorok daun phyllocnistis"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

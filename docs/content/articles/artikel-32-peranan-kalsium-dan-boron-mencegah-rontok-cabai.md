@@ -14,7 +14,7 @@ tags:
   - "pupuk kalsium boron terbaik"
   - "mengatasi buah cabai busuk pantat"
   - "nutrisi fase pembungaan cabai"
-draft: true
+draft: false
 ---
 
 Melihat tanaman cabai berbunga lebat tentu membahagiakan hati setiap petani. Namun, kebahagiaan itu sering kali sirna seketika saat memasuki musim penghujan: ribuan kuntum bunga yang baru mekar mendadak menguning dan rontok berserakan di atas mulsa plastik.

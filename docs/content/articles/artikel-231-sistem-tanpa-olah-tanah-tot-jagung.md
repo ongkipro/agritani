@@ -14,7 +14,7 @@ tags:
   - "menjaga struktur bahan organik tanah"
   - "penanaman benih jagung tugal langsung"
   - "penghematan biaya olah tanah traktor"
-draft: true
+draft: false
 ---
 
 Dalam budidaya jagung hibrida (*Zea mays*) komersial skala luas, pos pengeluaran terbesar yang sering menguras modal tunai petani sebelum benih ditanam adalah biaya pengolahan tanah: sewa traktor bajak singkal, sewa bajak rotari piringan, dan upah tenaga kerja pencangkulan guludan. Selain memakan waktu hingga dua minggu, pembajakan tanah secara intensif setiap musim tanam di daerah tropis justru memicu degradasi struktur tanah yang berbahaya: lapisan humus permukaan cepat teroksidasi hilang ke atmosfer, memicu erosi lapisan olah saat hujan lebat, dan mempercepat pembentukan lapisan padas keras (*hardpan*) di bawah lintasan roda traktor.

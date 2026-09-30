@@ -14,7 +14,7 @@ tags:
   - "kristal protein endotoksin racun lambung"
   - "dosis semprot bioinsektisida daun cabai"
   - "waktu semprot larva instar awal sore"
-draft: true
+draft: false
 ---
 
 Ulat grayak (*Spodoptera litura*) merupakan salah satu hama pemakan daun dan buah paling rakus yang mampu menggunduli ratusan bedengan tanaman cabai (*Capsicum annuum*) hanya dalam beberapa malam. Petani sering mendapati helai daun cabai habis berlubang compang-camping dan buah cabai muda bolong membusuk digerek ulat. Menggunakan insektisida kimia sintetis terus-menerus sering kali gagal karena ulat grayak cepat mengembangkan kekebalan resistensi terhadap racun golongan organofosfat dan piretroid.

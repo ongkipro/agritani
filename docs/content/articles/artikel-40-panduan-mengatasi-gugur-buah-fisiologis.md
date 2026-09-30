@@ -1,5 +1,5 @@
 ---
-title: "Panduan Mengatasi Gugur Buah Fisiologis: Rahasia Mempertahankan Pentil Buah Lebat"
+title: "Panduan Mengatasi Gugur Buah Fisiologis: Cara Mempertahankan Pentil Buah"
 metaTitle: "Cara Mengatasi Gugur Buah Fisiologis pada Tanaman"
 description: "Pahami penyebab kerontokan pentil buah fisiologis pada tanaman buah dan hortikultura serta manajemen nutrisi kalium boron untuk mengunci hasil panen."
 slug: "panduan-mengatasi-gugur-buah-fisiologis"
@@ -13,7 +13,7 @@ tags:
   - "pupuk pencegah rontok buah"
   - "nutrisi fase generatif tanaman"
   - "kalsium boron kalium buah"
-draft: true
+draft: false
 ---
 
 Bagi petani tanaman buah—seperti mangga, durian, alpukat, jeruk, cabai, maupun kelapa sawit—momen ketika ribuan pentil buah muda mulai terbentuk adalah saat yang paling mendebarkan.

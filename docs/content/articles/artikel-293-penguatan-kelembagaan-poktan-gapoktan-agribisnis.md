@@ -13,7 +13,7 @@ tags:
   - "korporasi petani"
   - "kelembagaan tani"
   - "koperasi pertanian"
-draft: true
+draft: false
 ---
 
 Sebagian besar usaha pertanian di Indonesia masih dikelola secara individual oleh petani gurem dengan kepemilikan lahan sempit rata-rata di bawah 0,5 hektare. Kondisi kepemilikan yang terfragmentasi ini memperlemah posisi tawar (*bargaining power*) petani di hadapan pedagang perantara, memicu inefisiensi pengadaan input saprodi, dan mempersulit mekanisasi pertanian berskala luas. Transformasi kelembagaan Kelompok Tani (Poktan) dan Gabungan Kelompok Tani (Gapoktan) menuju entitas korporasi petani berbadan hukum formal (Koperasi Produsen atau PT Pertanian) menjadi prasyarat mutlak untuk membangun kedaulatan agribisnis hulu-hilir modern.

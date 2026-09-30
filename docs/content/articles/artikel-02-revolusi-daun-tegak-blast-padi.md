@@ -14,7 +14,7 @@ tags:
   - "daun padi tegak"
   - "hawar pelepah padi"
   - "pupuk silika padi"
-draft: true
+draft: false
 ---
 
 > **Key Takeaways**:

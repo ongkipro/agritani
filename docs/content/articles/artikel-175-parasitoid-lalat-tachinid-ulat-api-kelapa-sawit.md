@@ -14,7 +14,7 @@ tags:
   - "parasitisasi larva ulat grayak jagung"
   - "tanaman inang bunga turnera subulata"
   - "bioproteksi kebun sawit ramah lingkungan"
-draft: true
+draft: false
 ---
 
 Ledakan populasi hama ulat api (*Setothosea asigna*, *Darna trima*) dan ulat kantung di perkebunan kelapa sawit mampu melahap habis helaian daun pelepah hingga hanya menyisakan lidi gundul (*defoliasi*). Pohon sawit yang daunnya habis meranggas akan mengalami stres fotosintesis berat, memicu kegagalan pembentukan bunga betina dan penurunan produksi Tandan Buah Segar (TBS) hingga lebih dari 40 persen pada musim panen berikutnya.

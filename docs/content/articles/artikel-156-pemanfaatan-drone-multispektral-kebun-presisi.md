@@ -14,7 +14,7 @@ tags:
   - "deteksi dini defisiensi hara daun"
   - "kamera multispektral red edge nir"
   - "efisiensi survei kebun kelapa sawit"
-draft: true
+draft: false
 ---
 
 Di perkebunan kelapa sawit, karet, tebu, maupun hortikultura skala luas, metode pemantauan kesehatan tanaman secara konvensional mengandalkan mandor kebun yang berjalan kaki menyusuri lorong petak tanam. Pengamatan manual ini lambat, menguras stamina pekerja, dan sangat terlambat karena mata telanjang manusia baru mampu mendeteksi gejala kekurangan hara atau serangan jamur patogen saat daun tanaman sudah berubah kuning kusam atau mengering mati.

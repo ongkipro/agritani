@@ -14,7 +14,7 @@ tags:
   - "translokasi gula pembentukan biji"
   - "gejala pucuk mati akibat defisiensi boron"
   - "dosis borat kocor dan foliar cabai"
-draft: true
+draft: false
 ---
 
 Fase pembungaan dan pembentukan buah awal pada budidaya tanaman cabai merupakan momen penentu keuntungan petani. Sering kali petani menghadapi mimpi buruk ketika ratusan kuntum bunga mekar yang siap menjadi bakal buah mendadak menguning pada pangkal tangkainya lalu gugur massal ke atas mulsa plastik (*flower drop*). Banyak petani langsung menyemprotkan hormon pemacu tumbuh atau pestisida kimia karena menduga bunga cabai rontok akibat sengatan thrips, padahal penyebab utamanya adalah kelaparan mikronutrien penting, yaitu unsur **Boron (B)**.

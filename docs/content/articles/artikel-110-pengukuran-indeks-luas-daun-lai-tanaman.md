@@ -13,7 +13,7 @@ tags:
   - "efisiensi intersepsi cahaya fotosintesis"
   - "kerapatan jarak tanam optimal"
   - "pencegahan kanopi saling menaungi"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

@@ -14,7 +14,7 @@ tags:
   - "tekanan pompa sprinkler bar psi"
   - "radius semprot nozel sprinkler"
   - "efisiensi penyiraman sayuran daun"
-draft: true
+draft: false
 ---
 
 Menyiram hamparan bedengan sayuran daun seperti sawi manis, kangkung darat, bayam cabut, atau selada di lahan seluas satu hektare menggunakan selang manual membutuhkan setidaknya dua hingga tiga tenaga kerja setiap pagi dan sore hari. Beban fisik yang berat ini sering kali menghasilkan sebaran air yang tidak merata: bagian bedengan yang dekat dengan tandon air tergenang becek, sementara bedengan di sudut jauh lahan masih kering kerontang.

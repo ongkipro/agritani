@@ -1,7 +1,7 @@
 ---
-title: "Teknik Penjarangan Buah Semangka Non Biji Hasil Super"
-metaTitle: "Penjarangan Buah Semangka Non Biji: Kunci Bobot Super"
-description: "Panduan seleksi penjarangan buah semangka non biji: pemilihan ruas daun ke-14 sampai 18, pangkas cabang liar, dan teknik raih bobot buah super di atas 8 kg."
+title: "Teknik Penjarangan Buah Semangka Non Biji"
+metaTitle: "Penjarangan Buah Semangka Non Biji: Kunci Bobot Buah"
+description: "Panduan seleksi penjarangan buah semangka non biji: pemilihan ruas daun ke-14 sampai 18, pangkas cabang liar, dan teknik meraih bobot buah di atas 8 kg."
 slug: "penjarangan-buah-semangka-non-biji-bobot-super"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"
@@ -14,7 +14,7 @@ tags:
   - "menjaga satu buah satu tanaman semangka"
   - "memaksimalkan bobot buah semangka super"
   - "pencegahan buah semangka retak berongga"
-draft: true
+draft: false
 ---
 
 Dalam budidaya semangka non-biji (*Citrullus lanatus*) komersial bervarietas triploid unggul, keberhasilan panen diukur bukan dari banyaknya jumlah butir buah yang menggantung di hamparan mulsa, melainkan dari tonase bobot rata-rata buah per butir dan keseragaman kelas mutu (*grade A*). Petani pemula kerap merasa sayang dan enggan membuang bakal buah yang bermunculan lebat di sulur tanaman semangka. Membiarkan tiga hingga empat butir buah membesar bersamaan pada satu tanaman semangka non-biji adalah kesalahan fatal: tanaman akan kehabisan energi fotosintesis, menghasilkan buah-buah berukuran mini (*grade C / BS*), berbobot kurang dari 3 kilogram, dengan daging buah berongga pucat dan kadar kemanisan gula yang rendah.

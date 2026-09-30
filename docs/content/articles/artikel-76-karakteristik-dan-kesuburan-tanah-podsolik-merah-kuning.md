@@ -13,7 +13,7 @@ tags:
   - "reklamasi tanah masam tropika"
   - "masalah kejenuhan aluminium tanah"
   - "pemupukan efisien tanah merah liat"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

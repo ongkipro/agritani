@@ -14,7 +14,7 @@ tags:
   - "pengendalian jamur aspergillus busuk umbi"
   - "suhu dan kelembapan ruang simpan bawang"
   - "pencegahan susut bobot susut bobot umbi"
-draft: true
+draft: false
 ---
 
 Bawang merah (*Allium cepa var. aggregatum*) merupakan komoditas hortikultura yang sangat rentan mengalami kerusakan pascapanen: kadar air umbi segar yang tinggi (di atas 80 hingga 85 persen) dan kulit umbi yang tipis menjadikannya sasaran empuk serangan jamur pembusuk gudang seperti kapang jelaga hitam (*Aspergillus niger*), busuk leher batang (*Botrytis allii*), dan busuk bakteri basah (*Pectobacterium carotovorum*). Ketika pasokan melimpah di musim panen raya, petani sering terpaksa menjual umbi dengan harga murah karena ketiadaan teknologi penyimpanan yang memadai. Menyimpan bawang merah di gudang konvensional yang pengap tanpa sirkulasi udara sering kali memicu kerugian susut bobot timbangan hingga di atas 30 persen dan pembusukan massal dalam tempo kurang dari satu bulan.

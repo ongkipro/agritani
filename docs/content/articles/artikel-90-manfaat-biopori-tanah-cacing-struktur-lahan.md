@@ -13,7 +13,7 @@ tags:
   - "struktur tanah gembur aerasi"
   - "kesuburan kascing worm casting"
   - "cara meningkatkan populasi cacing lahan"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

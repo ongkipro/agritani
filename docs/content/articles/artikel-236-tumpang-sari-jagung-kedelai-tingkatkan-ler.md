@@ -14,7 +14,7 @@ tags:
   - "pengaturan jarak tanam baris ganda jagung"
   - "efisiensi pemanfaatan cahaya dan hara"
   - "keuntungan ganda panen pangan semusim"
-draft: true
+draft: false
 ---
 
 Di tengah semakin menyusutnya luas kepemilikan lahan pertanian per keluarga petani di Indonesia yang rata-rata kurang dari 0,5 hektare, menanam tanaman semusim secara monokultur (hanya satu jenis tanaman saja dalam satu hamparan petak) sering kali tidak mampu mencukupi kebutuhan ekonomi rumah tangga petani. Mengandalkan jagung saja atau kedelai saja membuat pendapatan petani rentan terhadap fluktuasi harga pasar dan risiko kegagalan panen akibat anomali cuaca ekstrim.

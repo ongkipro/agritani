@@ -14,7 +14,7 @@ tags:
   - "gejala defisiensi kalsium buah tomat"
   - "translokasi kalsium lewat transpirasi"
   - "dosis kalsium nitrat fertigasi tomat"
-draft: true
+draft: false
 ---
 
 Salah satu momok paling merugikan dalam usaha tani tomat dataran rendah maupun dataran tinggi adalah munculnya bercak hitam cekung bertekstur kering seperti kulit gosong pada bagian ujung pantat buah tomat muda. Kelainan fisiologis yang dikenal sebagai **Busuk Pantat Buah (*Blossom End Rot / BER*)** ini kerap disalahartikan oleh petani pemula sebagai serangan jamur antraknosa atau busuk buah phytophthora. Petani lantas membuang biaya besar membeli berbagai fungisida kontak dan sistemik, padahal buah tomat tetap membusuk hitam.

@@ -1,5 +1,5 @@
 ---
-title: "Panduan Sukses Menyemai Benih Hortikultura: Bebas Penyakit Rebah Semai (Damping-Off)"
+title: "Panduan Menyemai Benih Hortikultura: Mencegah Penyakit Rebah Semai (Damping-Off)"
 metaTitle: "Panduan Persemaian Benih Bebas Rebah Semai Damping-Off"
 description: "Cegah kematian bibit muda akibat rebah semai (damping-off) dengan komposisi media semai steril dan penjemuran matahari pagi sejak hari ke-3."
 slug: "panduan-persemaian-benih-anti-rebah-semai"
@@ -14,7 +14,7 @@ tags:
   - "cara menyemai benih hortikultura"
   - "mencegah bibit etiolasi"
   - "sterilisasi media semai"
-draft: true
+draft: false
 ---
 
 > **Key Takeaways**:

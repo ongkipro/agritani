@@ -13,7 +13,7 @@ tags:
   - "penjadwalan irigasi"
   - "matriks suction"
   - "kapasitas lapang"
-draft: true
+draft: false
 ---
 
 Penentuan jadwal pemberian air irigasi yang hanya mengandalkan pengamatan visual permukaan tanah atau kalender harian kerap menghasilkan galat fatal: tanah bagian atas terlihat kering padahal rizosfer masih basah, atau sebaliknya perakaran mengalami stres air tanpa menunjukkan gejala layu luar. Tensiometer tanah mengukur tegangan matrik (*soil water suction*) secara langsung dalam satuan centibar (cb) atau kilopascal (kPa), mencerminkan besarnya energi fisik yang harus dikeluarkan akar tanaman hortikultura untuk menarik air dari matriks partikel tanah.

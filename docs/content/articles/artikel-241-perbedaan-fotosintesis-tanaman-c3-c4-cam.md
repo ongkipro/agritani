@@ -13,7 +13,7 @@ tags:
   - "efisiensi penggunaan air wue tanaman"
   - "adaptasi suhu tinggi dan kekeringan"
   - "fotorespirasi dan produktivitas biomassa"
-draft: true
+draft: false
 ---
 
 Di dunia agrikultur, setiap komoditas tanaman budidaya memiliki mesin biokimiawi penangkap energi matahari yang berbeda-beda dalam mengubah karbondioksida ($CO_2$) dan air menjadi karbohidrat glukosa. Memahami klasifikasi fisiologis tanaman berdasarkan tipe fotosintesisnya—apakah tergolong tanaman **C3**, tanaman **C4**, atau tanaman **CAM (Crassulacean Acid Metabolism)**—merupakan kunci penting dalam merancang tata letak tumpang sari, penentuan jarak tanam, pemupukan karbon, dan manajemen irigasi presisi di daerah tropis.

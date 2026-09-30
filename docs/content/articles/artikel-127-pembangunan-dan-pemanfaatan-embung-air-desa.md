@@ -13,7 +13,7 @@ tags:
   - "geomembrane hdpe kolam embung"
   - "solusi kekeringan lahan tegalan kering"
   - "manajemen air irigasi musim kemarau"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

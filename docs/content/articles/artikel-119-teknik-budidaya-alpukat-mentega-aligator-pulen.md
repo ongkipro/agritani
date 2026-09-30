@@ -1,7 +1,7 @@
 ---
 title: "Teknik Budidaya Alpukat Mentega dan Aligator: Buah Jumbo Daging Pulen"
 metaTitle: "Budidaya Alpukat Mentega Aligator: Daging Tebal Pulen"
-description: "Panduan sukses budidaya pohon alpukat mentega dan aligator: pembuatan lubang tanam gembur, pencegahan busuk akar phytophthora, dan tanda panen buah tua."
+description: "Panduan budidaya pohon alpukat mentega dan aligator: pembuatan lubang tanam gembur, pencegahan busuk akar phytophthora, dan tanda panen buah tua."
 slug: "teknik-budidaya-alpukat-mentega-aligator-pulen"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
@@ -14,7 +14,7 @@ tags:
   - "pencegahan busuk akar phytophthora alpukat"
   - "pemupukan pembesar buah alpukat"
   - "ciri buah alpukat tua siap panen"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

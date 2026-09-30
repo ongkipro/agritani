@@ -14,7 +14,7 @@ tags:
   - "mekanisme kekebalan sar induksi"
   - "biofungisida kitosan cegah fusarium"
   - "dosis semprot daun larutan kitosan"
-draft: true
+draft: false
 ---
 
 Budidaya tanaman tomat di daerah tropis selalu dibayangi oleh ancaman infeksi penyakit jamur dan bakteri mematikan, seperti layu Fusarium (*Fusarium oxysporum*), hawar daun busuk kering (*Alternaria solani*), busuk buah phytophthora (*Phytophthora infestans*), dan layu bakteri (*Ralstonia solanacearum*). Petani konvensional umumnya mengandalkan penyemprotan fungisida kimia sintetis secara intensif seminggu dua kali, yang menguras biaya operasional, memicu resistensi patogen berbahaya, sekaligus meninggalkan residu kimia berlebih pada buah tomat konsumsi.

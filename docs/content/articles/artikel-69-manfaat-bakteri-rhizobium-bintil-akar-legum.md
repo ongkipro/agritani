@@ -14,7 +14,7 @@ tags:
   - "pupuk hayati tanaman legum"
   - "fiksasi nitrogen biologis"
   - "rotasi tanaman kacang tanah"
-draft: true
+draft: false
 ---
 
 Saat mencabut tanaman kacang tanah, kedelai, atau kacang hijau yang sedang bertumbuh subur, kita kerap menjumpai butiran bintil bulat kecil menyerupai kutil menempel rapat di sekeliling anyaman akarnya. Bagi sebagian orang, bentuk ini sering disalahartikan sebagai serangan penyakit puru akar akibat cacing nematoda.

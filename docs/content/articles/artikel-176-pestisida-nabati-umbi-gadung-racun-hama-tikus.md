@@ -13,7 +13,7 @@ tags:
   - "cara fermentasi ekstrak umbi gadung"
   - "umpan alami pengusir tikus sawah"
   - "racun nabati pembasmi ulat tanah"
-draft: true
+draft: false
 ---
 
 Tanaman gadung (*Dioscorea hispida*) dikenal luas di perdesaan sebagai jenis umbi-umbian hutan yang sangat beracun dan memabukkan jika dikonsumsi manusia tanpa proses pengolahan abu gosok yang tepat. Racun alami yang terkandung di dalam umbi gadung adalah senjata pertahanan kimiawi tumbuhan yang sangat mematikan bagi berbagai jenis hama pertanian, mulai dari ulat pemakan daun, penggerek polong, ulat tanah, hingga hama tikus sawah.

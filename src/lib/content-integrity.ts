@@ -150,31 +150,15 @@ export function assertContentIntegrity(input: ContentIntegrityInput): void {
         throw new Error(`Artikel terbit "${art.slug}" wajib memiliki author terisi`);
       }
 
-      // Commodities required (>= 1, REQ-03)
-      if (!art.commodities || art.commodities.length === 0) {
-        throw new Error(
-          `Artikel terbit "${art.slug}" wajib memiliki minimal 1 komoditas (REQ-03)`
-        );
-      }
-
-      // References required (>= 1, REQ-05)
-      if (!art.references || art.references.length === 0) {
-        throw new Error(
-          `Artikel terbit "${art.slug}" wajib memiliki minimal 1 referensi ilmiah (REQ-05)`
-        );
-      }
-
-      // Answer required (40-60 words)
-      if (!art.answer || art.answer.trim() === '') {
-        throw new Error(
-          `Artikel terbit "${art.slug}" wajib memiliki Jawaban Singkat (answer) 40–60 kata`
-        );
-      }
-      const words = countWords(art.answer);
-      if (words < 40 || words > 60) {
-        throw new Error(
-          `Artikel terbit "${art.slug}" memiliki Jawaban Singkat dengan ${words} kata (wajib 40–60 kata)`
-        );
+      // DEC-020 (owner 2026-09-30): commodities, references, and the short answer are optional for
+      // published articles; each block renders only when present. Never invent them to pass a check.
+      if (art.answer && art.answer.trim() !== '') {
+        const words = countWords(art.answer);
+        if (words < 40 || words > 60) {
+          throw new Error(
+            `Artikel terbit "${art.slug}" memiliki Jawaban Singkat ${words} kata; harus 40–60 kata bila diisi`
+          );
+        }
       }
 
       // Unique metaTitle among published

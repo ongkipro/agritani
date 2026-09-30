@@ -13,7 +13,7 @@ tags:
   - "pertanian organik"
   - "lembaga sertifikasi"
   - "masa konversi lahan"
-draft: true
+draft: false
 ---
 
 Meningkatnya kesadaran konsumen urban terhadap residu pestisida kimia sintetis dan logam berat mendorong lonjakan permintaan produk pertanian organik bernilai jual premium. Namun, klaim produk organik di pasar tidak dapat dilakukan sepihak tanpa legitimasi sertifikasi formal. Di Indonesia, seluruh produk pangan organik wajib memenuhi regulasi Standar Nasional Indonesia (SNI 6729: Sistem Pertanian Organik) dan diaudit oleh Lembaga Sertifikasi Organik (LSO) terakreditasi Komite Akreditasi Nasional (KAN) serta terdaftar di Otoritas Kompeten Pangan Organik (OKPO) Kementerian Pertanian.

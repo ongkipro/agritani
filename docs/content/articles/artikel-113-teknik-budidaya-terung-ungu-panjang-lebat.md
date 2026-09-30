@@ -14,7 +14,7 @@ tags:
   - "pengendalian penggerek buah terung leucinodes"
   - "pupuk kalium kulit terung mengkilap"
   - "panen terong ungu mingguan"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

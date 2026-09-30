@@ -1,6 +1,6 @@
 ---
-title: "Teknik Sambung Pucuk (Grafting): Sukses 100% Bibit Buah Cepat Berbuah"
-metaTitle: "Teknik Sambung Pucuk Grafting: Sukses Bibit Buah Unggul"
+title: "Teknik Sambung Pucuk (Grafting): Bibit Buah Lebih Cepat Berbuah"
+metaTitle: "Teknik Sambung Pucuk Grafting: Bibit Buah Unggul"
 description: "Pelajari teknik sambung pucuk cleft grafting bibit durian, mangga, dan alpukat: pertautan kambium, seleksi entres dorman, dan sungkup plastik anti-gagal."
 slug: "teknik-sambung-pucuk-grafting-bibit-buah"
 pubDate: "2026-09-29"
@@ -15,7 +15,7 @@ tags:
   - "pertautan kambium batang bibit"
   - "kriteria entres mata tunas unggul"
   - "sungkup plastik sambung pucuk"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

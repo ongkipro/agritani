@@ -14,7 +14,7 @@ tags:
   - "merangsang pembungaan serentak mangga"
   - "pemberantasan jamur jelaga daun mangga"
   - "waktu pangkas mangga arum manis"
-draft: true
+draft: false
 ---
 
 Banyak pemilik kebun mangga (*Mangifera indica*) membiarkan pohon mangga mereka tumbuh menjulang tinggi menyerupai pohon hutan belantara dengan dedaunan yang rimbun pekat bertingkat-tingkat. Dari luar pohon tampak sangat hijau dan subur, tetapi ketika musim berbuah tiba, pohon mangga raksasa tersebut hanya menghasilkan segelintir buah di pucuk-pucuk paling atas. Sementara itu, dahan bagian dalam dan bawah sama sekali tidak berbunga karena terhalang sinar matahari, lembap, dan daun-daunnya dipenuhi jelaga hitam berdebu (*jamur jelaga / Capnodium*) akibat kotoran kutu putih yang bersarang di kerimbunan daun.

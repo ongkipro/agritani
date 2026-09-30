@@ -14,7 +14,7 @@ tags:
   - "penyebab kenaikan kadar alb tbs"
   - "menghindari potongan harga pabrik pks"
   - "manajemen buah restan kebun sawit"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

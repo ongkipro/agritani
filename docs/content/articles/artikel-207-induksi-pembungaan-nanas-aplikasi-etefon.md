@@ -14,7 +14,7 @@ tags:
   - "konsentrasi larutan perangsang bunga nanas"
   - "waktu aplikasi malam hari pucuk nanas"
   - "menjadwalkan panen raya nanas komersial"
-draft: true
+draft: false
 ---
 
 Dalam perkebunan nanas (*Ananas comosus*) komersial skala luas—seperti perkebunan Nanas Madu Subang, Nanas Pemalang, dan Nanas Queen—masalah terbesar yang dihadapi petani jika tanaman dibiarkan tumbuh alami adalah waktu pembungaan yang sangat liar dan tidak serempak. Tanpa perlakuan induksi bunga, pohon-pohon nanas dalam satu hamparan petak kebun yang sama akan berbunga secara sporadis mencicil selama berbulan-bulan. Hal ini melipatgandakan ongkos panen, menyulitkan pengaturan tenaga kerja petik, dan membuat pasokan buah ke pasar industri pengalengan atau pasar grosir menjadi terputus-putus.

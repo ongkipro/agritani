@@ -14,7 +14,7 @@ tags:
   - "scirpophaga incertulas"
   - "parasitoid telur trichogramma"
   - "insektisida penggerek batang"
-draft: true
+draft: false
 ---
 
 Di sawah-sawah seluruh Indonesia, hama yang paling konsisten mencuri bulir padi sejak fase persemaian hingga menjelang panen raya adalah **Hama Penggerek Batang Padi**, khususnya spesies **Penggerek Batang Padi Kuning (*Scirpophaga incertulas*)**.

@@ -14,7 +14,7 @@ tags:
   - "lahan kering"
   - "evaporasi tanah"
   - "efisiensi irigasi"
-draft: true
+draft: false
 ---
 
 Ekspansi perkebunan tebu (*Saccharum officinarum*) ke wilayah agroklimat kering sering terbentur oleh keterbatasan suplai air irigasi gravitasi konvensional. Sistem irigasi alur (*furrow*) menghasilkan kehilangan air evaporatif lebih dari 40% dan rentan memicu erosi parit. Irigasi tetes bawah permukaan atau *Subsurface Drip Irrigation* (SDI) menempatkan pipa lateral berpencar langsung di bawah permukaan tanah pada kedalaman rizosfer, menyalurkan air serta hara terlarut langsung ke perakaran tebu tanpa membasahi permukaan guludan.

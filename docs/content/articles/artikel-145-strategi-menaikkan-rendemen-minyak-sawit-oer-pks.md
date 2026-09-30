@@ -14,7 +14,7 @@ tags:
   - "kriteria kematangan tbs fraksi buah"
   - "panen sawit gagang mepet v cut"
   - "menekan losses cpo tandan sawit"
-draft: true
+draft: false
 ---
 
 Rendemen minyak kelapa sawit mentah atau **Oil Extraction Rate (OER)** adalah persentase bobot CPO murni yang berhasil diekstraksi oleh Pabrik Kelapa Sawit (PKS) dari setiap ton Tandan Buah Segar (TBS) yang masuk ke timbangan. Rata-rata nasional OER sawit di Indonesia berkisar antara 20 hingga 23 persen. Kenaikan rendemen sekecil 0,5 persen saja pada kebun skala 1.000 hektare setara dengan tambahan pendapatan miliaran rupiah per tahun tanpa perlu menambah luas lahan.

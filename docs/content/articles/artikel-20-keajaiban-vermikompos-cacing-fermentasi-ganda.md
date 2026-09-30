@@ -1,5 +1,5 @@
 ---
-title: "Keajaiban Vermikompos: Mengapa Kompos Kascing Cacing Jauh Lebih Unggul dari Kompos Biasa?"
+title: "Vermikompos: Mengapa Kompos Kascing Cacing Berbeda dari Kompos Biasa?"
 metaTitle: "Manfaat Kascing Vermikompos: Pupuk Cacing Organik"
 description: "Keunggulan pupuk kascing cacing tanah yang mengandung jutaan mikroba rizosfer aktif serta hormon alami pemacu tumbuh perakaran tanaman."
 slug: "keajaiban-vermikompos-cacing-fermentasi-ganda"
@@ -13,7 +13,7 @@ tags:
   - "pupuk kotoran cacing tanah"
   - "keunggulan kompos kascing"
   - "asam humat kascing cacing"
-draft: true
+draft: false
 ---
 
 > **Key Takeaways**:

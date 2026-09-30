@@ -15,7 +15,7 @@ tags:
   - "gejala virus mosaik tanaman"
   - "cara mengatasi virus daun timun"
   - "vektor virus kutu daun afid"
-draft: true
+draft: false
 ---
 
 Bagi petani tanaman hortikultura—termasuk cabai rawit, cabai keriting, mentimun, semangka, melon, dan tomat—penyakit belang daun yang paling luas sebarannya di seluruh dunia adalah **Cucumber Mosaic Virus (CMV)** atau **Virus Mosaik Mentimun**.

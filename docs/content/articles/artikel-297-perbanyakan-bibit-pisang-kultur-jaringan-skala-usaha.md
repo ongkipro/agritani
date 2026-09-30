@@ -14,7 +14,7 @@ tags:
   - "bibit pisang"
   - "aklimatisasi bibit"
   - "mikropropagasi"
-draft: true
+draft: false
 ---
 
 Perbanyakan konvensional tanaman pisang (*Musa acuminata*) menggunakan anakan bonggol alami memiliki kelemahan fatal: laju multiplikasi bibit sangat lambat (hanya 5–10 anakan per rumpun per tahun), ukuran bibit tidak seragam, dan yang paling berbahaya adalah tingginya risiko transmisi penyakit vaskular sistemik seperti layu panama (*Fusarium oxysporum* f. sp. *cubense* Tropical Race 4), penyakit darah bakteri (*Ralstonia solanacearum*), serta virus kerdil pisang (*Banana Bunchy Top Virus* / BBTV). Teknologi kultur jaringan melalui teknik mikropropagasi meristem pucuk steril mampu menghasilkan puluhan ribu bibit pisang klonal seragam, vigor tinggi, dan 100% bebas patogen bawaan dalam skala industri komersial.

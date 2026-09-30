@@ -14,7 +14,7 @@ tags:
   - "pengaturan suhu blower pemanas tungku"
   - "mencegah butir beras patah penggilingan"
   - "penurunan kadar air gabah kering giling"
-draft: true
+draft: false
 ---
 
 Di sentra produksi padi sawah (*Oryza sativa*) di Indonesia, panen raya padi musim hujan (Musim Tanam Rendeng) sering kali berubah menjadi bencana pascapanen bagi petani dan pemilik penggilingan padi (*Rice Milling Unit / RMU*): curah hujan yang turun terus-menerus dan tiadanya sinar matahari membuat lantai jemur semen tradisional tidak dapat digunakan. Gabah Kering Panen (GKP) berkadar air tinggi (24 hingga 28 persen) yang menumpuk basah di dalam karung goni selama lebih dari 48 jam akan mengalami fermentasi anaerobik alami: tumpukan gabah memanas panas membara, butir beras di dalam sekam berubah warna menjadi kuning kecokelatan kusam (*yellow rice / beras kuning*), berkecambah prematur di dalam karung, dan berbau apek busuk yang menjatuhkan harga jual gabah ke titik terendah.

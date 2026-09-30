@@ -1,7 +1,7 @@
 ---
 title: "Teknik Budidaya Mentimun Hibrida: Panen Melimpah Buah Lurus Sempurna"
 metaTitle: "Budidaya Mentimun Hibrida: Buah Lurus Bebas Bengkok"
-description: "Trik sukses budidaya mentimun hibrida lebat: penyebab mentimun bengkok dan pahit, manajemen air siraman, serta pemupukan kalsium boron terpadu."
+description: "Cara budidaya mentimun hibrida lebat: penyebab mentimun bengkok dan pahit, manajemen air siraman, serta pemupukan kalsium boron terpadu."
 slug: "teknik-budidaya-mentimun-hibrida-lebat-lurus"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
@@ -14,7 +14,7 @@ tags:
   - "penyebab mentimun rasa pahit"
   - "pemupukan kalsium boron mentimun"
   - "panen mentimun harian hortikultura"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

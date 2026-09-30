@@ -14,7 +14,7 @@ tags:
   - "aplikasi pupuk gipsum kalsium sulfat"
   - "budidaya semangka tahan salinitas sedang"
   - "pengaturan sistem drainase buang garam"
-draft: true
+draft: false
 ---
 
 Lahan pesisir pantai di sepanjang garis pantai selatan dan utara Indonesia menyimpan potensi areal pertanian yang sangat luas untuk pengembangan komoditas bernilai ekonomi tinggi seperti semangka (*Citrullus lanatus*). Karakteristik iklim pesisir yang cerah dengan limpahan radiasi sinar matahari penuh sangat disukai oleh tanaman famili Cucurbitaceae untuk fotosintesis pengisian gula. Namun, budidaya semangka di kawasan pesisir dibayangi oleh momok fitokimia yang sangat merusak: **Salinitas Tanah yang Tinggi**.

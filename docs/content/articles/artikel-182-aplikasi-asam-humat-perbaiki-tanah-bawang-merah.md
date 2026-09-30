@@ -14,7 +14,7 @@ tags:
   - "dosis kocor asam humat bedengan"
   - "pengurangan pupuk kimia dengan humat"
   - "asam fulvat perangsang akar bawang"
-draft: true
+draft: false
 ---
 
 Lahan pertanian sentra bawang merah—seperti di dataran rendah Brebes, Nganjuk, dan Bima—kerap mengalami degradasi fisik dan biokimia tanah yang sangat parah. Pola budidaya intensif yang menerapkan dosis pupuk kimia sintetis berkadar garam tinggi secara terus-menerus tanpa diimbangi penambahan bahan organik matang menyebabkan tanah menjadi padat membatu (*hardpan*), kapasitas tukar kation merosot drastis, dan populasi mikroba tanah menguntungkan musnah. Akibatnya, tanaman bawang merah menjadi kerdil, perakaran mudah membusuk akibat jamur patogen, dan hasil umbi menyusut drastis.

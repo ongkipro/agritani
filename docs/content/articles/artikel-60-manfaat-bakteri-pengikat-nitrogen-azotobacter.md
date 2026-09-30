@@ -13,7 +13,7 @@ tags:
   - "pupuk hayati penambat nitrogen"
   - "menghemat pupuk urea kimia"
   - "mikroba penyubur tanah alami"
-draft: true
+draft: false
 ---
 
 Hampir 78% dari seluruh udara atmosfer yang melingkupi bumi tersusun atas gas **Nitrogen ($N_2$)**. Di atas hamparan satu hektar lahan pertanian, melayang ribuan ton gas Nitrogen murni yang potensinya setara dengan ratusan juta rupiah pupuk Urea.

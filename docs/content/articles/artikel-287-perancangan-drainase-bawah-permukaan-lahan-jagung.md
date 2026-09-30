@@ -14,7 +14,7 @@ tags:
   - "jagung"
   - "waterlogging"
   - "porositas tanah"
-draft: true
+draft: false
 ---
 
 Tanaman jagung (*Zea mays*) merupakan salah satu komoditas serealia yang sangat rentan terhadap genangan air (*waterlogging*). Genangan air di zona rizosfer selama lebih dari 24 hingga 48 jam menyebabkan pori makro tanah kehabisan oksigen bebas (kondisi anoksik), memicu akumulasi senyawa etilen endogen, menghambat pembentukan energi ATP di rambut akar, dan mempercepat klorosis daun yang berujung pada gagal panen. Pada lahan dataran rendah dengan tanah bertekstur lempung berat, perancangan sistem drainase bawah permukaan (*subsurface tile drainage*) menjadi solusi rekayasa untuk mempercepat pembuangan air gravitasi tanpa memotong luasan lahan produktif.

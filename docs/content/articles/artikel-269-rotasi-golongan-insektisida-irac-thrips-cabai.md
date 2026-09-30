@@ -14,7 +14,7 @@ tags:
   - "mencegah resistensi silang hama kutu"
   - "jadwal rotasi bahan aktif insektisida"
   - "prinsip jendela generasi serangga cabai"
-draft: true
+draft: false
 ---
 
 Keluhan paling umum yang terdengar di kalangan petani cabai (*Capsicum annuum*) saat musim kemarau adalah: *'Hama thrips dan kutu kebul di kebun saya sudah kebal, disemprot racun kimia apa pun tidak mempan lagi!'* Banyak petani merespons kegagalan tersebut dengan cara yang keliru: melipatgandakan dosis racun menjadi dua kali lipat, mengoplos tiga merek pestisida sekaligus dalam satu tangki, atau menyemprot setiap dua hari sekali. Tindakan putus asa ini justru mempercepat kiamat pertanian: hama thrips menjadi super-kebal (*multiresisten*), musuh alami musnah total, dan modal petani terkuras habis untuk membeli racun yang sia-sia.

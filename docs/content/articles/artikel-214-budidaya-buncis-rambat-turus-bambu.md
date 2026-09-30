@@ -14,7 +14,7 @@ tags:
   - "pemupukan fosfat kalsium polong lurus"
   - "pencegahan penyakit karat daun buncis"
   - "jadwal petik polong buncis muda renyah"
-draft: true
+draft: false
 ---
 
 Buncis (*Phaseolus vulgaris*) merupakan komoditas sayuran polong bernilai ekonomi tinggi yang memiliki siklus budidaya relatif singkat, sekitar 45 hingga 50 hari dari tanam benih hingga panen perdana. Di pasaran, terdapat dua tipe pertumbuhan tanaman buncis: tipe tegak (*bush bean*) yang berperawakan perdu pendek tanpa rambatan, dan tipe rambat (*pole bean*) yang batangnya menjalar memanjat sulur hingga ketinggian lebih dari 2 meter. Meskipun tipe tegak lebih hemat tenaga kerja lanjaran, para petani sayur komersial umumnya lebih memilih membudidayakan **Buncis Tipe Rambat** karena masa panennya yang jauh lebih panjang (bisa dipetik 15 hingga 20 kali petik) dengan total tonase hasil panen yang mencapai 2 hingga 3 kali lipat lebih tinggi.

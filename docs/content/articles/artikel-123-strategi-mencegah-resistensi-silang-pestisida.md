@@ -1,7 +1,7 @@
 ---
 title: "Strategi Mencegah Resistensi Silang Pestisida: Lawan Hama Kebal"
 metaTitle: "Cegah Resistensi Silang Pestisida: Basmi Hama Kebal"
-description: "Pelajari bahaya resistensi silang pestisida sintetis pada ulat grayak dan wereng: cara rotasi kode cara kerja IRAC dan FRAC agar semprotan tetap ampuh."
+description: "Pelajari bahaya resistensi silang pestisida sintetis pada ulat grayak dan wereng: cara rotasi kode cara kerja IRAC dan FRAC agar semprotan tetap efektif."
 slug: "strategi-mencegah-resistensi-silang-pestisida"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
@@ -13,7 +13,7 @@ tags:
   - "cara mengatasi hama ulat kebal"
   - "bahaya mencampur pestisida sembarangan"
   - "manajemen resistensi insektisida fungisida"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

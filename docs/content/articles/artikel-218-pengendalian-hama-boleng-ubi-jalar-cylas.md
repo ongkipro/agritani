@@ -14,7 +14,7 @@ tags:
   - "pembumbunan tanah guludan rapat ubi"
   - "perangkap feromon sintetik kumbang cylas"
   - "rotasi varietas ubi jalar tahan boleng"
-draft: true
+draft: false
 ---
 
 Ubi jalar (*Ipomoea batatas*), terutama varietas bernilai ekonomi tinggi seperti Ubi Madu Cilembu, Ubi Ungu, dan Ubi Jepang, merupakan komoditas pangan dan ekspor yang sangat menjanjikan. Namun, di musim kemarau panjang, petani ubi jalar kerap menghadapi bencana panen yang disebabkan oleh hama **Boleng** atau kumbang moncong ubi jalar **Cylas formicarius**. Sering kali tanaman ubi di atas guludan tampak tumbuh subur dengan hamparan sulur dedaunan hijau lebat. Namun, saat guludan tanah dibongkar pada hari panen, petani mendapati umbi-umbi ubi jalar dipenuhi lubang-lubang gerekan kecil berwarna kehitaman dengan liang terowongan berliku-liku di dalam daging umbi.

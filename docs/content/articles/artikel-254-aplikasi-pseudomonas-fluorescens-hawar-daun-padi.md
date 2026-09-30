@@ -14,7 +14,7 @@ tags:
   - "antagonis bakteri xanthomonas hawar daun"
   - "perlakuan rendaman benih gabah padi"
   - "pengendalian hayati penyakit kresek sawah"
-draft: true
+draft: false
 ---
 
 Penyakit **Hawar Daun Bakteri (HDB)** atau penyakit **Kresek** yang dipicu oleh bakteri patogen vaskular **Xanthomonas oryzae pv. oryzae** merupakan ancaman epidemiologis terbesar bagi petani padi sawah (*Oryza sativa*) di musim penghujan. Di bawah guyuran hujan lebat dan angin kencang, bakteri *Xanthomonas* menular sangat cepat melalui gesekan helai daun dan luka pori hidatoda, menyumbat pembuluh xilem dan membuat tepi helai daun padi mengering bergelombang berwarna abu-abu keputihan menyerupai daun terbakar.

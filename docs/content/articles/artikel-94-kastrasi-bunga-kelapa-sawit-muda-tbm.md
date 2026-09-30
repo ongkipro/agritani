@@ -14,7 +14,7 @@ tags:
   - "tujuan kastrasi buah pasir sawit"
   - "alat dodos kastrasi pohon sawit"
   - "meningkatkan bobot tbs panen perdana"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

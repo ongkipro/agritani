@@ -13,7 +13,7 @@ tags:
   - "batas maksimum residu pestisida bmr"
   - "keamanan pangan rantai pasok hortikultura"
   - "audit sertifikasi mutu ekspor produk tani"
-draft: true
+draft: false
 ---
 
 Persaingan pasar ekspor buah tropis dan sayuran segar dunia menuntut jaminan mutu yang jauh melampaui sekadar tampilan buah yang mulus dan berukuran seragam. Pasar internasional (seperti Singapura, Jepang, Timur Tengah, dan Eropa) mewajibkan sertifikasi sistem budidaya ramah lingkungan dan aman pangan. Di Indonesia, standar baku resmi yang diakui pemerintah adalah **Indonesian Good Agricultural Practices (IndoGAP)**.

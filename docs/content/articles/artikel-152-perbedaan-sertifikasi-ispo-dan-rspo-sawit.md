@@ -14,7 +14,7 @@ tags:
   - "premi harga tbs rspo kelapa sawit"
   - "audit rspo pekebun kelapa sawit"
   - "pasar ekspor cpo eropa bersertifikat"
-draft: true
+draft: false
 ---
 
 Di ranah industri kelapa sawit nasional dan internasional, dua akronim standar keberlanjutan paling sering disebut adalah **ISPO (Indonesian Sustainable Palm Oil)** dan **RSPO (Roundtable on Sustainable Palm Oil)**. Meskipun keduanya sama-sama mengusung tema kelestarian lingkungan dan tata kelola perkebunan yang baik, terdapat perbedaan mendasar pada aspek yurisdiksi hukum, lembaga penerbit, standar kriteria hutan, serta insentif finansial yang diterima oleh petani di lapangan.

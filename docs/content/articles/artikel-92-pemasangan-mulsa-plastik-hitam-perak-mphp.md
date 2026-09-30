@@ -13,7 +13,7 @@ tags:
   - "trik mulsa kencang rapi bedengan"
   - "pantulan perak pengusir hama thrips"
   - "keuntungan mulsa pertanian hortikultura"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

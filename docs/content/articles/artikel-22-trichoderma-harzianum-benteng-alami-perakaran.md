@@ -13,7 +13,7 @@ tags:
   - "mengatasi jamur tular tanah"
   - "agens hayati trichoderma"
   - "bioproteksi akar tanaman"
-draft: true
+draft: false
 ---
 
 > **Key Takeaways**:

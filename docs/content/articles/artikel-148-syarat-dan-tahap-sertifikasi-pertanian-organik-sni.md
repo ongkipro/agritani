@@ -13,7 +13,7 @@ tags:
   - "masa konversi lahan pertanian organik"
   - "zona penyangga buffer zone kebun organik"
   - "audit lembaga sertifikasi organik lso kan"
-draft: true
+draft: false
 ---
 
 Beras organik, sayuran organik, dan kopi organik memiliki selisih harga jual 30 hingga 100 persen lebih mahal di pasar modern jika dibandingkan dengan komoditas pertanian konvensional. Namun, petani tidak boleh sembarangan menempelkan label kata "Organik" pada kemasan produk tanpa mengantongi sertifikat resmi berlogo Organik Indonesia dari Kementerian Pertanian Republik Indonesia.

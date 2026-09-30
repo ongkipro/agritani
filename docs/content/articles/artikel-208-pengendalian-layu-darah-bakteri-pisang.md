@@ -14,7 +14,7 @@ tags:
   - "gejala jantung pisang mengering layu"
   - "pencegahan sanitasi alat parang panen"
   - "pembungkusan jantung pisang kantong plastik"
-draft: true
+draft: false
 ---
 
 Bagi petani pisang (*Musa spp.*) di Indonesia, terutama yang membudidayakan varietas bernilai ekonomi tinggi seperti Pisang Kepok, Ambon Kuning, dan Barangan, penyakit **Layu Darah** atau **Blood Disease Bacterium (BDB)** adalah bencana pertanian yang sangat mengerikan. Rumpun pisang yang sebelumnya berdiri subur dengan tandan buah montok mendadak mengalami kelayuan aneh: daun-daun tua patah menggantung di sekeliling batang semu seperti payung terkoyak, tangkai tandan buah mengeriput kering, dan ujung jantung pisang (*ontong*) membusuk hitam. Ketika batang semu atau buah pisang ditebas menggunakan parang, dari dalam pembuluh vaskularnya meleleh keluar cairan lendir kental berwarna merah kecokelatan menyerupai darah busuk.

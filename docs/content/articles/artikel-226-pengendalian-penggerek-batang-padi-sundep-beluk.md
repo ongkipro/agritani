@@ -14,7 +14,7 @@ tags:
   - "aplikasi insektisida sistemik fipronil"
   - "pelepasan tawon parasitoid trichogramma"
   - "pemotongan ujung daun bibit persemaian"
-draft: true
+draft: false
 ---
 
 Bagi petani padi sawah (*Oryza sativa*), hama penggerek batang padi—terutama **Penggerek Batang Padi Kuning (PBPK / *Scirpophaga incertulas*)**—adalah musuh tersembunyi yang serangannya melintasi dua fase pertumbuhan utama tanaman padi dengan nama gejala yang berbeda: **Sundep** pada fase vegetatif dan **Beluk** pada fase generatif. Pada fase anakan aktif, larva ulat mengebor masuk ke dalam pangkal batang padi dan memotong pembuluh vaskular titik tumbuh, menyebabkan pucuk daun tengah menggulung layu mengering kecokelatan dan mudah dicabut lepas (*sundep*).

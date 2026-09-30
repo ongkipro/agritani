@@ -14,7 +14,7 @@ tags:
   - "pemilihan entres mata tunas kakao prima"
   - "tingkat keberhasilan sambungan grafting"
   - "perawatan bibit kakao pasca sambung"
-draft: true
+draft: false
 ---
 
 Sebagian besar perkebunan kakao (*Theobroma cacao*) rakyat di Indonesia masih didominasi oleh tanaman tua yang ditanam dari biji asalan (*seedling*). Tanaman kakao asal biji memiliki variasi genetik yang sangat luas: pohon tumbuh terlampau tinggi, rentan terserang hama penggerek buah kakao (PBK), dan produktivitas rata-ratanya hanya berkisar 400 hingga 500 kilogram biji kering per hektare per tahun. Upaya meremajakan kebun kakao dengan menebang seluruh pohon tua dan menanam bibit baru dari nol sering kali ditolak petani karena membutuhkan modal besar dan hilangnya pendapatan selama 3 tahun masa tunggu vegetatif.

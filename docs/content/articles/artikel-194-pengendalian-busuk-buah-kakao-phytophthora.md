@@ -14,7 +14,7 @@ tags:
   - "sanitasi kebun pemotongan buah busuk"
   - "sarungisasi kantong plastik buah kakao"
   - "fungisida tembaga proteksi buah kakao"
-draft: true
+draft: false
 ---
 
 Di musim penghujan dengan curah hujan tinggi dan kabut lembap berkepanjangan, petani kakao (*Theobroma cacao*) sering kali menyaksikan pemandangan memilukan di kebun mereka: buah kakao yang sudah hampir matang mendadak ditumbuhi bercak cokelat kebasahan di bagian ujung atau pangkalnya. Hanya dalam tempo 3 hingga 5 hari, bercak kecil tersebut meluas menyelimuti seluruh kulit buah, berubah menjadi cokelat tua kehitaman, dan dilapisi lapisan serbuk putih berbau asam busuk. Biji di dalamnya membusuk hancur melekat pada dinding buah, mengakibatkan kerugian hasil panen mencapai 40 hingga 80 persen.

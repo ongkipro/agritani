@@ -14,7 +14,7 @@ tags:
   - "efisiensi air"
   - "emisi metana"
   - "manajemen air sawah"
-draft: true
+draft: false
 ---
 
 Praktik penggenangan air secara terus-menerus (continuous flooding) pada budidaya padi sawah memerlukan volume air tawar yang sangat masif, rata-rata mencapai 3.000 hingga 5.000 liter air untuk menghasilkan 1 kilogram gabah kering panen. Selain pemborosan sumber daya hidrologi di tengah ancaman anomali iklim El Nino, kondisi anaerobik konstan pada tanah tergenang memicu aktivitas bakteri metanogenik yang melepaskan gas metana ($CH_4$) ke atmosfer. Teknik irigasi berselang atau *Alternate Wetting and Drying* (AWD) hadir sebagai metode pengelolaan air presisi yang memadukan siklus penggenangan dangkal berkala dengan fase pengeringan terkendali tanpa menurunkan performa hasil panen.

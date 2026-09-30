@@ -1,7 +1,7 @@
 ---
 title: "Membasmi Kutu Kebul dan Jamur Jelaga: Solusi Daun Hitam Berkerak pada Tanaman"
 metaTitle: "Cara Membasmi Kutu Kebul dan Jamur Jelaga Daun"
-description: "Panduan tuntas membasmi hama kutu kebul Bemisia tabaci dan jamur jelaga hitam yang menutup stomata daun dengan insektisida nabati aman."
+description: "Panduan mengendalikan hama kutu kebul Bemisia tabaci dan jamur jelaga hitam yang menutup stomata daun dengan insektisida nabati."
 slug: "mengatasi-hama-kutu-kebul-dan-jamur-jelaga"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
@@ -14,7 +14,7 @@ tags:
   - "bemisia tabaci cabai"
   - "insektisida nabati kutu kebul"
   - "mengatasi daun berkerak hitam"
-draft: true
+draft: false
 ---
 
 Helai daun cabai, jeruk, atau terong yang mendadak dipenuhi kerak hitam arang disertai kabut serangga putih kecil yang berhamburan saat ranting digoyang adalah tanda serangan persekutuan hama di kebun: **Hama Kutu Kebul (*Bemisia tabaci*)** dan **Jamur Jelaga (*Capnodium spp.*)**.

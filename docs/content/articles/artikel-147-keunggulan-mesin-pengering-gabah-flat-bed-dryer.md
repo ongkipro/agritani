@@ -14,7 +14,7 @@ tags:
   - "suhu pengeringan gabah ideal 42 derajat"
   - "pemanas sekam biomassa flat bed dryer"
   - "mengatasi gabah kecambah musim hujan"
-draft: true
+draft: false
 ---
 
 Panen raya padi yang jatuh tepat di puncak musim hujan selalu menjadi mimpi buruk bagi kelompok tani dan pemilik penggilingan beras. Ketiadaan sinar matahari selama berhari-hari membuat gabah basah bertumpuk di teras rumah dan halaman pabrik, memicu kenaikan suhu internal tumpukan yang mengakibatkan gabah berkecambah, berjamur hitam, dan bulir beras berubah warna menjadi kuning busuk.

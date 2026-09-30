@@ -14,7 +14,7 @@ tags:
   - "mencegah umbi wortel bercabang"
   - "penjarangan bibit wortel bedengan"
   - "panen wortel kualitas ekspor"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

@@ -13,7 +13,7 @@ tags:
   - "perbedaan vegetatif generatif"
   - "cara mencegah bunga rontok"
   - "dosis npk yang benar"
-draft: true
+draft: false
 ---
 
 > **Key Takeaways**:

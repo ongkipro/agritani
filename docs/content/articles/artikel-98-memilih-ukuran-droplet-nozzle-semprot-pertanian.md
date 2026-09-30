@@ -13,7 +13,7 @@ tags:
   - "nozzle kerucut hollow cone insektisida"
   - "mencegah spray drift terbawa angin"
   - "spektrum droplet vmd mikron"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

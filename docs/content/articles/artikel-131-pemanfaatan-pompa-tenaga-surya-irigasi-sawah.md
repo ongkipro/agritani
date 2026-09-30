@@ -14,7 +14,7 @@ tags:
   - "pompa celup submersible sumur bor"
   - "solusi irigasi sawah tadah hujan"
   - "efisiensi biaya operasional bbm solar"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

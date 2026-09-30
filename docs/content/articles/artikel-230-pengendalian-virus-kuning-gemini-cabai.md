@@ -14,7 +14,7 @@ tags:
   - "gejala daun mengkerut cekung kuning emas"
   - "pemasangan barier jagung pinggir bedengan"
   - "insektisida pengendali kutu kebul cabai"
-draft: true
+draft: false
 ---
 
 Bagi petani hortikultura pembudidaya cabai rawit merah maupun cabai merah keriting (*Capsicum annuum*), penyakit **Virus Kuning** atau **Pepper Yellow Leaf Curl Virus (PepYLCV / Gemini Virus)**—yang di kalangan petani Jawa populer dengan julukan penyakit **Bule**—adalah bencana fitopatologi nomor satu yang paling ditakuti. Di musim kemarau terik, penyakit ini dapat menyebar secara kilat menyapu bersih ratusan bedengan cabai: helai daun yang awalnya hijau segar mendadak berubah menjadi kuning emas menyala, helai daun mengecil melengkung cekung ke atas menyerupai mangkok (*cupping*), urat daun menebal kaku, dan ruas pucuk tanaman memendek membantat.

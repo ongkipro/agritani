@@ -14,7 +14,7 @@ tags:
   - "penurunan bobot biji polong kedelai"
   - "aplikasi fungisida triazol tebukonazol"
   - "penggunaan varietas kedelai tahan karat"
-draft: true
+draft: false
 ---
 
 Bagi petani tanaman pangan pembudidaya kedelai (*Glycine max*), penyakit **Karat Daun** yang disebabkan oleh jamur obligat biotrof **Phakopsora pachyrhizi** adalah ancaman epidemiologis terbesar yang dapat merenggut separuh dari potensi hasil panen dalam hitungan hari. Jamur ini menyerang organ paling vital pabrik energi tanaman: helai-helai daun kedelai. Bila infeksi meledak pada fase pembentukan polong dan pengisian biji (umur 45 hingga 65 hari setelah tanam), daun-daun kedelai akan mengering kecokelatan dan gugur massal secara prematur (*defoliasi dini*).

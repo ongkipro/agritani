@@ -14,7 +14,7 @@ tags:
   - "aliran fotosintat pengisian bulir gabah"
   - "tekanan akar dan tarikan transpirasi"
   - "mencegah penyumbatan vaskular batang padi"
-draft: true
+draft: false
 ---
 
 Di dalam batang tanaman padi sawah (*Oryza sativa*), tersusun sistem jaringan transportasi internal yang bekerja tanpa henti layaknya jalan tol berkecepatan tinggi: **Berkas Pengangkut Vaskular (*Vascular Bundles*)**, yang terdiri atas **Pembuluh Kayu (Xilem)** dan **Pembuluh Tapis (Floem)**. Kelancaran aliran cairan di dalam kedua pembuluh mikroskopis ini adalah penentu mutlak apakah pupuk yang ditabur petani di dalam lumpur sawah dapat sampai ke daun, dan apakah gula hasil fotosintesis di daun bendera dapat dipompa turun mengisi ratusan butir gabah di malai padi hingga padat bernas.

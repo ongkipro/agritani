@@ -14,7 +14,7 @@ tags:
   - "perbanyakan vegetatif alpukat aligator"
   - "memilih batang bawah biji alpukat lokal"
   - "perawatan bibit alpukat pasca potong"
-draft: true
+draft: false
 ---
 
 Menanam pohon alpukat (*Persea americana*) langsung dari biji (*generatif*) merupakan perjudian waktu yang sangat merugikan bagi petani agribisnis: pohon membutuhkan waktu tunggu 6 hingga 10 tahun baru mulai belajar berbuah, tajuk pohon tumbuh membumbung tinggi hingga di atas 15 meter menyulitkan pemetikan buah, dan sifat genetik buah sering kali menyimpang jauh dari induknya—daging buah tipis berserat kasar dengan rasa hambar berair.

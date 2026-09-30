@@ -13,7 +13,7 @@ tags:
   - "totipotensi seluler kultur jaringan"
   - "pembentukan kalus akar stek batang"
   - "kambium vaskular pertumbuhan sekunder"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

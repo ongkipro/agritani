@@ -15,7 +15,7 @@ tags:
   - "cara mengatasi daun putih berkapur"
   - "fungisida embun tepung alami"
   - "baking soda untuk tanaman"
-draft: true
+draft: false
 ---
 
 Bagi petani hortikultura pembudidaya tanaman merambat—seperti melon, semangka, mentimun, labu madu (*butternut squash*), dan anggur—pemandangan daun tanaman yang mendadak diselimuti bercak putih seperti bedak tabur atau tepung terigu adalah pertanda bahaya besar.

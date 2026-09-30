@@ -13,7 +13,7 @@ tags:
   - "kebutuhan air tanaman milimeter per hari"
   - "penguapan evaporasi transpirasi daun"
   - "koefisien tanaman kc jadwal siram"
-draft: true
+draft: false
 ---
 
 Berapa liter air sebenarnya yang diminum oleh tanaman cabai, melon, atau padi setiap harinya? Pertanyaan mendasar ini jarang diketahui secara presisi oleh sebagian besar petani di lapangan. Kebiasaan menyiram tanaman hanya berdasarkan kira-kira intuisi sering kali berujung pada pemborosan energi BBM pompa irigasi, pencucian hara pupuk keluar dari jangkauan akar (*leaching*), atau justru tanaman meranggas layu karena kekurangan asupan air saat cuaca terik.

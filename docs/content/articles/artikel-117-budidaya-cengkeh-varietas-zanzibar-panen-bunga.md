@@ -14,7 +14,7 @@ tags:
   - "pencegahan penyakit bpkc cengkeh"
   - "pemupukan pohon cengkeh setelah panen"
   - "rendemen minyak eugenol cengkeh"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

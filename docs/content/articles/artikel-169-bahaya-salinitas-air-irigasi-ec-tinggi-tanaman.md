@@ -13,7 +13,7 @@ tags:
   - "batas toleransi ec air siraman tanaman"
   - "keracunan garam natrium klorida akar"
   - "teknik pencucian pelindian garam tanah"
-draft: true
+draft: false
 ---
 
 Di daerah sentra pertanian pesisir pantai atau lahan persawahan yang bersinggungan dengan muara pasang surut air laut, petani sering mendapati tanaman mereka tumbuh kerdil, ujung helai daun mengering seperti terbakar (*leaf tip burn*), dan buah rontok massal. Sering kali petani mengira gejala tersebut akibat serangan penyakit jamur atau kekurangan pupuk, lalu menambah dosis kocor pupuk kimia yang justru membuat tanaman semakin cepat mati meranggas.

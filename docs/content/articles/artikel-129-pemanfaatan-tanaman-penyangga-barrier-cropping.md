@@ -15,7 +15,7 @@ tags:
   - "menghadang hama kutu kebul afid"
   - "penahan angin alami windbreak kebun"
   - "strategi pht ramah lingkungan"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

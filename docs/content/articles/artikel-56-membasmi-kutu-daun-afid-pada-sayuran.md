@@ -14,7 +14,7 @@ tags:
   - "hama kutu daun sayuran"
   - "insektisida nabati kutu daun"
   - "mengatasi pucuk cabai keriting"
-draft: true
+draft: false
 ---
 
 Pucuk muda tanaman cabai, terong, kacang panjang, atau sawi yang mendadak berkerut melinting dan macet bertumbuh adalah pemandangan yang mengkhawatirkan di bedengan sayur. Saat helai daun dibalik, tampak ribuan serangga kecil bertubuh lunak berwarna hijau pucat, kuning, atau hitam legam berdesak-desakan menutupi tulang daun.

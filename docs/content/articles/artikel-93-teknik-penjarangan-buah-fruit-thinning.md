@@ -1,5 +1,5 @@
 ---
-title: "Teknik Penjarangan Buah: Rahasia Panen Buah Jumbo Grade A"
+title: "Teknik Penjarangan Buah: Cara Mendapat Ukuran Buah Lebih Besar"
 metaTitle: "Teknik Penjarangan Buah: Hasilkan Panen Jumbo Grade A"
 description: "Pelajari teknik penjarangan buah fruit thinning pada semangka, melon, durian, dan jeruk untuk meningkatkan ukuran, kadar gula brix, dan harga jual."
 slug: "teknik-penjarangan-buah-fruit-thinning"
@@ -15,7 +15,7 @@ tags:
   - "cara seleksi buah durian jumbo"
   - "meningkatkan kadar gula brix buah"
   - "mencegah patah dahan buah lebat"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

@@ -15,7 +15,7 @@ tags:
   - "penyebab kubis busuk berbau"
   - "bakterisida busuk lunak alami"
   - "pencegahan busuk basah sawi"
-draft: true
+draft: false
 ---
 
 Bagi petani dan pedagang sayuran dataran tinggi, tidak ada pemandangan yang lebih menjijikkan dan merugikan dibanding melihat krop kubis, sawi putih, brokoli, atau umbi wortel yang semula padat segar mendadak berubah menjadi bubur lembek berair yang mengeluarkan bau busuk amis menyengat hidung.

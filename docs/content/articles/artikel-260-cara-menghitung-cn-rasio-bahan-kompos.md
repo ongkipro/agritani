@@ -13,7 +13,7 @@ tags:
   - "aktivitas bakteri termofilik pengurai"
   - "mencegah bau busuk amonia tumpukan kompos"
   - "standar c n rasio kompos matang sni"
-draft: true
+draft: false
 ---
 
 Banyak petani dan pegiat pertanian organik mengalami kegagalan saat membuat pupuk kompos mandiri di kebun: tumpukan serasah dan kotoran ternak yang diperam berbulan-bulan tidak kunjung matang dan tetap berwujud sampah mentah, atau sebaliknya, tumpukan kompos mendadak mengeluarkan bau busuk amonia yang menyengat menusuk hidung dan becek berlendir air. Kegagalan tersebut hampir selalu berakar pada satu kesalahan ilmiah mendasar: ketidakseimbangan perbandingan antara unsur Karbon ($C$) dan unsur Nitrogen ($N$), yang dikenal sebagai **Rasio C/N (*Carbon-to-Nitrogen Ratio*)**.

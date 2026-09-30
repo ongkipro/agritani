@@ -14,7 +14,7 @@ tags:
   - "pemotongan ujung umbi pemacu tunas"
   - "perangsangan akar serabut bibit bawang"
   - "keseimbangan rasio hormon vegetatif"
-draft: true
+draft: false
 ---
 
 Dalam budidaya bawang merah (*Allium cepa var. aggregatum*), salah satu tradisi agronomis yang telah diwariskan turun-temurun oleh petani di Brebes dan Nganjuk sebelum menancapkan umbi bibit ke bedengan tanah adalah melakukan pemotongan atau perompesan ujung umbi bibit (*roges*). Sebagian petani pemula menganggap pemotongan sepertiga ujung umbi bibit hanyalah kebiasaan lama tanpa dasar ilmiah. Padahal, tindakan fisik tersebut merupakan rekayasa fisiologi hormonal yang sangat cerdas untuk memanipulasi rasio keseimbangan dua hormon pertumbuhan utama: **Auksin** dan **Sitokinin**.

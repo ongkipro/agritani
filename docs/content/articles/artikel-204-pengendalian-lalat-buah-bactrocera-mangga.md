@@ -14,7 +14,7 @@ tags:
   - "perangkap atraktan metil eugenol petrogenol"
   - "pembrongsongan buah mangga kertas semen"
   - "umpan protein hidrolisat lalat betina"
-draft: true
+draft: false
 ---
 
 Bagi petani mangga (*Mangifera indica*), terutama varietas unggul seperti Gedong Gincu, Arum Manis, dan Manalagi, kehadiran lalat buah (*Bactrocera dorsalis*) adalah momok kehancuran pascapanen nomor satu. Sering kali buah mangga di pohon tampak mulus, besar, dan matang ranum dari luar. Namun, saat buah dipetik dan dipotong, daging buah di sekitar biji telah hancur membusuk berlendir cair, berwarna cokelat menjijikkan, dan dipenuhi puluhan ekor belatung putih yang menggeliat aktif. Buah yang tersengat lalat buah akan rontok prematur sebelum masak komersial, menimbulkan kerugian panen mencapai 50 hingga 80 persen dan mengakibatkan penolakan total pada pasar ekspor buah segar.

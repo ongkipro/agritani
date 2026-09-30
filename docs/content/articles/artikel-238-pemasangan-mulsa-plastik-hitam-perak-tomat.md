@@ -14,7 +14,7 @@ tags:
   - "menjaga kelembapan tanah bedengan tomat"
   - "penekanan pertumbuhan gulma parit bedeng"
   - "teknik melubangi mulsa kaleng panas"
-draft: true
+draft: false
 ---
 
 Budidaya tanaman tomat (*Solanum lycopersicum*) intensif di daerah tropis menghadapi dua ancaman lingkungan yang sangat ekstrem: guyuran hujan lebat yang mencuci pupuk dasar dan memicu kelembapan tanah berlebih pemicu jamur layu, serta sengatan sinar matahari kemarau yang memicu penguapan air kilat dan serangan hama kutu thrips penular virus. Membiarkan bedengan tanah terbuka tanpa penutup adalah resep pasti pembengkakan biaya tenaga kerja penyiangan rumput liar dan penurunan mutu visual buah tomat akibat percikan lumpur kotor.

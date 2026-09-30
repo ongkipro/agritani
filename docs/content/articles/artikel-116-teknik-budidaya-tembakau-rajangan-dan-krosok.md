@@ -14,7 +14,7 @@ tags:
   - "cara wiwit tunas air tembakau suckering"
   - "pupuk bebas klorin tembakau zk"
   - "kualitas daun tembakau kelas ekspor"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

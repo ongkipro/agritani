@@ -14,7 +14,7 @@ tags:
   - "mencegah padi rebah saat bunting"
   - "silika penahan serangan wereng coklat"
   - "waktu semprot pupuk silika sawah"
-draft: true
+draft: false
 ---
 
 Padi sawah modern varietas unggul baru dengan potensi hasil tinggi sering kali memiliki kelemahan struktural yang rentan: batang tanaman yang lemas dan mudah roboh (*rebah*) ketika diterpa angin kencang dan hujan lebat, terutama jika dipupuk nitrogen urea berlebihan. Selain masalah fisik roboh, daun padi yang lunak dan basah menjadi sasaran empuk serangan jamur blast (*Pyricularia oryzae*) serta penusukan stilet hama wereng batang coklat (*Nilaparvata lugens*). Petani kerap tidak menyadari bahwa tanaman padi adalah tanaman akumulator silika sejati yang membutuhkan unsur silikon dalam jumlah yang setara atau bahkan melampaui kebutuhan nitrogen.

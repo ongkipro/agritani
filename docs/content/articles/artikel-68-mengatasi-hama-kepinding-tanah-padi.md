@@ -14,7 +14,7 @@ tags:
   - "hama kepinding sawah berbau sangit"
   - "hama padi pasang surut"
   - "jamur metarhizium untuk kepinding"
-draft: true
+draft: false
 ---
 
 Bagi petani padi di lahan rawa pasang surut, lahan lebak, dan sawah dataran rendah—terutama di Sumatra, Kalimantan, dan pesisir Jawa—hama pengisap pangkal batang yang sering luput dari perhatian namun berdampak fatal adalah **Kepinding Tanah (*Black Bug / Scotinophara coarctata*)**.

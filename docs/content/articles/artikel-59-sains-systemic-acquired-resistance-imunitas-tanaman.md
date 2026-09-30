@@ -13,7 +13,7 @@ tags:
   - "asam salisilat untuk tanaman"
   - "fitoaleksin penangkal penyakit"
   - "bioteknologi kekebalan tanaman"
-draft: true
+draft: false
 ---
 
 Selama puluhan tahun, paradigma pertanian konvensional memandang tanaman sebagai makhluk pasif tak berdaya yang sepenuhnya bergantung pada guyuran racun pestisida kimia petani setiap kali diserang penyakit.

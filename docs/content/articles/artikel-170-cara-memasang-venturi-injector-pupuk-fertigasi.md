@@ -13,7 +13,7 @@ tags:
   - "injeksi pupuk cair sistem fertigasi"
   - "pengaturan katup bypass venturi pipa"
   - "mencegah kerak endapan pupuk fertigasi"
-draft: true
+draft: false
 ---
 
 Mengocorkan pupuk cair susulan ke ribuan lubang tanam tanaman hortikultura (seperti cabai, semangka, tomat, atau melon) menggunakan ember gembor secara manual adalah pekerjaan melelahkan yang menyedot banyak waktu dan biaya upah buruh kebun. Dalam sistem fertigasi (*fertilisasi + irigasi*), pemberian pupuk dialirkan bersamaan dengan air siraman langsung menuju perakaran tanaman melalui selang tetes (*drip line*).

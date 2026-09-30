@@ -13,7 +13,7 @@ tags:
   - "pemisahan ampas serat onggok singkong"
   - "kadar pati ubi kayu umur panen optimal"
   - "pengendalian kadar asam sianida hcn tapioka"
-draft: true
+draft: false
 ---
 
 Ubi kayu atau singkong (*Manihot esculenta*) merupakan salah satu komoditas tanaman pangan berkarbohidrat tinggi paling strategis di Indonesia yang menjadi bahan baku utama industri pengolahan tepung tapioka nasional. Di sentra produksi singkong seperti Lampung, Jawa Tengah, dan Jawa Timur, efisiensi dan keuntungan ekonomi pabrik pengolahan tapioka skala rakyat maupun industri besar sepenuhnya ditentukan oleh satu angka persentase: **Rendemen Ekstraksi Pati**. Rendemen tapioka yang ideal berada pada kisaran **25 hingga 30 persen** (artinya dari 1 ton singkong segar mampu diekstrak 250 hingga 300 kilogram tepung tapioka kering).

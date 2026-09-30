@@ -14,7 +14,7 @@ tags:
   - "musuh alami wereng coklat padi sawah"
   - "pengendalian hayati wereng ramah lingkungan"
   - "dampak pestisida kimia pada kepik mirid"
-draft: true
+draft: false
 ---
 
 Ledakan populasi hama wereng batang coklat (*Nilaparvata lugens*) yang memicu puso kekeringan pada tanaman padi (*hopperburn*) di berbagai sentra persawahan nasional sering kali berakar dari kesalahan fatal perlakuan manusia: memusnahkan populasi musuh alami sawah melalui penyemprotan pestisida kimia yang membabi buta. Di antara jajaran predator alami wereng di sawah, serangga kecil berukuran 3 milimeter bernama **Kepik Mirid (*Cyrtorhinus lividipennis*)** memegang rekor sebagai predator spesialis telur wereng paling efektif.

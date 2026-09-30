@@ -14,7 +14,7 @@ tags:
   - "biostimulan asam amino semprot daun"
   - "aplikasi asam amino setelah kekeringan"
   - "dosis pupuk daun asam amino"
-draft: true
+draft: false
 ---
 
 Ketika tanaman cabai mengalami cekaman lingkungan yang ekstrem—seperti kekeringan berkepanjangan, genangan air mendadak, sengatan suhu panas terik di atas 35 derajat Celsius, atau keracunan pestisida kimia (*fitotoksisitas*)—proses metabolisme internal tanaman terhenti seketika. Tanaman menghentikan fotosintesis, menutup stomata daun rapat-rapat, dan membongkar cadangan protein selulernya untuk bertahan hidup. Pada kondisi krisis energi ini, pemberian pupuk kimia makro standar seperti urea atau NPK sering kali justru memperparah stres karena akar tanaman tidak memiliki energi untuk menyerap dan mengubah ion nitrat menjadi senyawa organik.

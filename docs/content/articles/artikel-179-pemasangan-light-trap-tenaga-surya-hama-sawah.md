@@ -14,7 +14,7 @@ tags:
   - "menangkap ngengat kaper penggerek batang"
   - "pengendalian wereng coklat fototaksis positif"
   - "monitoring populasi hama pht padi"
-draft: true
+draft: false
 ---
 
 Sebagian besar serangga hama perusak tanaman padi di lahan persawahan—termasuk ngengat kaper penggerek batang padi (*Scirpophaga incertulas*), wereng batang coklat migran (*Nilaparvata lugens*), kepinding tanah (*Scotinophara coarctata*), dan ulat grayak—bersifat nokturnal atau aktif terbang mencari pasangan dan bertelur pada malam hari. Menyemprotkan insektisida kimia di siang hari sering kali meleset karena serangga dewasa bersembunyi di sela-sela pangkal rumpun padi yang rimbun.

@@ -1,6 +1,6 @@
 ---
 title: "Pengendalian Hama Keong Mas Pomacea canaliculata Sawah Padi"
-metaTitle: "Keong Mas Sawah Padi: Gejala & Pengendalian Tuntas"
+metaTitle: "Keong Mas Sawah Padi: Gejala & Cara Pengendalian"
 description: "Strategi kendalikan hama siput keong mas pada padi sawah: umpan daun pepaya, parit keliling cacingan, dan molusisida nabati lerak ramah lingkungan."
 slug: "pengendalian-hama-keong-mas-sawah-padi"
 pubDate: "2026-09-30"
@@ -14,7 +14,7 @@ tags:
   - "perangkap daun pepaya batang talas parit"
   - "pengeringan petak sawah hambat siput"
   - "molusisida nabati biji teh lerak sawah"
-draft: true
+draft: false
 ---
 
 Pada awal musim tanam padi sawah (*Oryza sativa*), tepat pada fase bibit muda berumur 1 hingga 14 hari setelah pindah tanam, ancaman perusak paling agresif yang mampu menggunduli satu petak sawah dalam semalam adalah hama siput air tawar invasif: **Keong Mas (*Pomacea canaliculata*)**. Siput bercangkang bulat kuning kecokelatan ini memiliki nafsu makan luar biasa terhadap jaringan tanaman muda yang lunak berair. Keong mas memotong habis pangkal batang bibit padi muda tepat di batas permukaan air lumpur, menyisakan petakan sawah yang ompong gundul dan memaksa petani melakukan penyulaman ulang berkali-kali yang menguras biaya bibit dan tenaga kerja.

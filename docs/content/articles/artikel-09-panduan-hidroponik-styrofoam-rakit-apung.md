@@ -14,7 +14,7 @@ tags:
   - "cara menanam pakcoy hidroponik"
   - "nutrisi hidroponik sayur"
   - "urban farming hemat biaya"
-draft: true
+draft: false
 ---
 
 > **Key Takeaways**:

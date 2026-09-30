@@ -15,7 +15,7 @@ tags:
   - "standar brix melon semangka jeruk"
   - "uji laboratorium rasa manis buah"
   - "mutu buah segar pasar supermarket"
-draft: true
+draft: false
 ---
 
 Di pasar hortikultura modern dan jejaring supermarket premium, klaim bahwa buah "pasti manis" tidak lagi cukup diucapkan dengan kata-kata manis dari pedagang. Pembeli grosir (*offtaker*) dan jaringan ritel kini menggunakan parameter ilmiah kuantitatif bernama **Derajat Brix (°Brix)** untuk menentukan harga beli dan penerimaan komoditas buah segar dari petani.

@@ -14,7 +14,7 @@ tags:
   - "standar mutu gabah giling sni 14 persen"
   - "mencegah pertumbuhan jamur beras kuning"
   - "penyusutan bobot gabah pascapengeringan"
-draft: true
+draft: false
 ---
 
 Dalam tata niaga perdagangan gabah dan perberasan nasional di Indonesia, istilah **Gabah Kering Panen (GKP)** dan **Gabah Kering Giling (GKG)** merupakan dua klasifikasi mutu paling mendasar yang menentukan harga transaksi antara petani, tengkulak, dan pengelola penggilingan padi (*Rice Milling Unit*). Sering kali terjadi perselisihan sengit saat penimbangan gabah karena petani dan pedagang hanya mengira-ngira tingkat kekeringan gabah secara tradisional: menggigit butir gabah dengan gigi depan atau meremas segenggam gabah dengan telapak tangan (*cara manual kuno*).

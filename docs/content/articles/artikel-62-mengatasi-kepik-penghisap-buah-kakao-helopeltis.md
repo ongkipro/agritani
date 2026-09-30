@@ -14,7 +14,7 @@ tags:
   - "buah kakao bercak cekung hitam"
   - "pengendalian helopeltis alami"
   - "semut hitam predator kakao"
-draft: true
+draft: false
 ---
 
 Bagi pekebun kakao, teh, jambu mete, dan lada, salah satu hama pengisap getah yang paling merusak kualitas buah muda dan tunas ranting adalah **Kepik Penghisap Buah (*Helopeltis antonii*)**.

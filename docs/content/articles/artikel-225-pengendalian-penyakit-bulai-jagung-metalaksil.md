@@ -14,7 +14,7 @@ tags:
   - "perlakuan benih fungisida metalaksil"
   - "penggunaan varietas jagung hibrida tahan"
   - "sanitasi cabut tanaman jagung bulai puso"
-draft: true
+draft: false
 ---
 
 Bagi petani jagung (*Zea mays*) di seluruh Indonesia, penyakit **Bulai** yang disebabkan oleh jamur mikroskopis Oomycota **Peronosclerospora maydis** (dan *P. philippinensis*) adalah momok kehancuran nomor satu yang dapat meratakan satu petak kebun jagung menjadi puso seratus persen dalam waktu singkat. Tanaman jagung muda umur 2 hingga 4 minggu yang terinfeksi bulai menunjukkan pemandangan tragis: helai daun yang seharusnya hijau segar mendadak berubah menjadi kuning pucat bergaris-garis putih sejajar tulang daun (*klorosis bergaris*).

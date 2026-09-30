@@ -13,7 +13,7 @@ tags:
   - "buku kas administrasi kelompok tani"
   - "pengusulan erdkk pupuk bersubsidi"
   - "syarat legalitas poktan dinas pertanian"
-draft: true
+draft: false
 ---
 
 Kelompok Tani (Poktan) adalah kelembagaan sosial-ekonomi paling mendasar di tingkat perdesaan yang menjadi jembatan resmi antara petani dengan program pembangunan pemerintah. Banyak kelompok tani di lapangan hanya berstatus "kelompok papan nama" yang aktif saat ada pembagian bantuan alat mesin pertanian (alsintan) atau benih gratis, lalu mati suri ketika program proyek selesai.

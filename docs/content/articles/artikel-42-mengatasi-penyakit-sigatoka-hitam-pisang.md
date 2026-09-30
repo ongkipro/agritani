@@ -14,7 +14,7 @@ tags:
   - "mycosphaerella fijiensis"
   - "cara merawat kebun pisang"
   - "obat jamur pohon pisang"
-draft: true
+draft: false
 ---
 
 Bagi petani pisang komersial—baik jenis Cavendish, Barangan, Raja Bulu, maupun Pisang Kepok—penyakit bercak daun yang paling merugikan di seluruh dunia adalah **Sigatoka Hitam (*Black Sigatoka*)**.

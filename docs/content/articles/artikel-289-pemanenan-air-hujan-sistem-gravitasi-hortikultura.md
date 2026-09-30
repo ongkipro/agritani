@@ -13,7 +13,7 @@ tags:
   - "irigasi gravitasi"
   - "konservasi air"
   - "hortikultura"
-draft: true
+draft: false
 ---
 
 Air hujan merupakan sumber air baku murni dengan salinitas sangat rendah, nilai electrical conductivity (EC) mendekati nol, dan bebas dari kontaminasi klorin atau ion bikarbonat tinggi yang sering merusak formula larutan fertigasi hidroponik dan hortikultura presisi. Pemanenan air hujan (*Rainwater Harvesting*) yang diintegrasikan bersama struktur naungan greenhouse atau atap gudang pertanian mampu menangkap ribuan meter kubik air berkualitas tinggi setiap musim hujan. Dengan memanfaatkan beda elevasi topografi alami, distribusi air irigasi dapat digerakkan murni oleh energi potensial gravitasi tanpa ketergantungan pompa listrik.

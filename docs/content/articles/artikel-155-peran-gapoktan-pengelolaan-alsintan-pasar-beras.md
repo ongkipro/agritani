@@ -14,7 +14,7 @@ tags:
   - "usaha penggilingan beras gapoktan"
   - "akses permodalan kur pertanian bri mandiri"
   - "rantai pasok gabah beras gapoktan"
-draft: true
+draft: false
 ---
 
 Jika Kelompok Tani (Poktan) bergerak di tingkat hamparan petak sawah dusun, maka **Gabungan Kelompok Tani (Gapoktan)** berfungsi sebagai entitas korporasi bisnis tani di tingkat desa. Gapoktan mengintegrasikan 5 hingga 15 Poktan dalam satu wilayah administrasi desa untuk mencapai skala ekonomi yang layak (*economy of scale*).

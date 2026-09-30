@@ -1,7 +1,7 @@
 ---
 title: "Mengatasi Hama Burung Pipit pada Padi: Amankan Bulir Menjelang Panen"
 metaTitle: "Atasi Hama Burung Pipit Padi: Bulir Utuh Panen"
-description: "Trik ampuh menghalau hama burung pipit bondol pada padi bunting dan masak susu: teknik jaring perangkap, tali kresek, dan tanaman pagar pengalih."
+description: "Cara menghalau hama burung pipit bondol pada padi bunting dan masak susu: teknik jaring perangkap, tali kresek, dan tanaman pagar pengalih."
 slug: "mengatasi-hama-burung-pipit-padi-sawah"
 pubDate: "2026-09-29"
 author: "Arif Prabowo"
@@ -14,7 +14,7 @@ tags:
   - "jaring pengaman burung sawah"
   - "padi masak susu diserang burung"
   - "tanaman pagar refugia pengalih burung"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

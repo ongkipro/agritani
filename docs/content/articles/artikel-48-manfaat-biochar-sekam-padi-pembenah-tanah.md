@@ -14,7 +14,7 @@ tags:
   - "pembenah tanah liat keras"
   - "karbon organik tanah abadi"
   - "meningkatkan ktk tanah"
-draft: true
+draft: false
 ---
 
 Di banyak sentra penggilingan padi di pedesaan, gunungan sekam padi limbah panen sering kali dibiarkan menumpuk membusuk atau dibakar begitu saja hingga menimbulkan asap polusi yang mengganggu warga.

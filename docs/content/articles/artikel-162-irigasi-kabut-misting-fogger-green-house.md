@@ -13,7 +13,7 @@ tags:
   - "ukuran droplet kabut mikron"
   - "kelembapan pembibitan tanaman sayur"
   - "nozel fogger tekanan tinggi anti sumbat"
-draft: true
+draft: false
 ---
 
 Suhu udara di dalam bangunan rumah kaca (*green house*) beratap plastik polietilen (UV sheet) di daerah dataran rendah tropis Indonesia sering kali melonjak menembus 38 hingga 42 derajat Celsius pada siang hari terik. Panas ekstrem yang terperangkap ini memicu cekaman respirasi tinggi pada tanaman, menyebabkan serbuk sari bunga layu mati mandul (*flower abortion*), serta menghentikan proses fotosintesis sel daun secara total.

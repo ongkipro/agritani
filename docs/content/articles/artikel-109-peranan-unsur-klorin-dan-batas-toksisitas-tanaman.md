@@ -15,7 +15,7 @@ tags:
   - "perbedaan pupuk kcl dan zk kalium"
   - "tanaman sensitif klorin tembakau kentang"
   - "gejala daun terbakar keracunan klor"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

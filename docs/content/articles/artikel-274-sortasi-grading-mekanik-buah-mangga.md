@@ -14,7 +14,7 @@ tags:
   - "mesin sortasi berat timbangan konveyor"
   - "pembersihan noda getah kulit mangga"
   - "standar kemasan kardus ekspor mangga"
-draft: true
+draft: false
 ---
 
 Di pasar ekspor hortikultura dan jaringan ritel modern internasional, komoditas mangga tropis Indonesia—terutama varietas unggulan seperti Gedong Gincu, Arum Manis (Gadung 210), dan Garifta Merah—menghadapi persaingan mutu yang sangat ketat. Pembeli luar negeri menuntut standar visual dan keseragaman fisik yang tanpa kompromi: kulit buah harus mulus bersih bebas noda getah hitam, tidak ada bekas luka mekanis atau sengatan serangga sekecil apa pun, serta ukuran bobot buah per butir dalam satu kardus kemasan harus seragam sempurna dengan deviasi berat kurang dari 10 gram.

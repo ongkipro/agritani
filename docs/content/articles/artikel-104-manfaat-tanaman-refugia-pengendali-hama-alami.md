@@ -14,7 +14,7 @@ tags:
   - "musuh alami wereng dan ulat"
   - "konservasi parasitoid predator lahan"
   - "pengendalian hama terpadu pht alami"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

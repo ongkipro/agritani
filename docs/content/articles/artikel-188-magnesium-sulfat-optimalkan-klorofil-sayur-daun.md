@@ -14,7 +14,7 @@ tags:
   - "optimalkan fotosintesis sayuran daun"
   - "dosis semprot magnesium sulfat daun"
   - "kombinasi sulfur pembentuk protein sayur"
-draft: true
+draft: false
 ---
 
 Dalam budidaya komoditas sayuran daun komersial seperti sawi sendok (pakcoy), bayam hijau, kangkung darat, selada romaine, dan kubis, warna hijau segar yang pekat dan tekstur helai daun yang tebal renyah adalah indikator utama penentu harga jual di pasar grosir maupun supermarket. Namun, petani kerap mengeluhkan warna daun sayuran yang memudar pucat kekuningan pada ruang di antara tulang daun, sementara tulang daunnya tetap berwarna hijau tua (*klorosis interveinal*). Menambahkan pupuk urea sering kali tidak berhasil mengatasi masalah ini karena kekurangan nutrisi tersebut bukan disebabkan oleh nitrogen, melainkan defisiensi unsur **Magnesium ($Mg^{2+}$)** dan **Sulfur ($S$)**.

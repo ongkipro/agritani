@@ -13,7 +13,7 @@ tags:
   - "manfaat asam amino tanaman"
   - "biostimulan tanaman"
   - "cara aplikasi asam amino"
-draft: true
+draft: false
 ---
 
 > **Key Takeaways**:

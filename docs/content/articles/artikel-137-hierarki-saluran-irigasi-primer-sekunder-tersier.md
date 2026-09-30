@@ -14,7 +14,7 @@ tags:
   - "organisasi pemakai air p3a sawah"
   - "manajemen pembagian air irigasi adil"
   - "pemeliharaan saluran irigasi pertanian"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

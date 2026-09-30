@@ -14,7 +14,7 @@ tags:
   - "cara mengatasi busuk buah kakao"
   - "pemangkasan pohon kakao"
   - "sanitasi kebun kakao"
-draft: true
+draft: false
 ---
 
 Bagi petani kakao di Sulawesi, Sumatra, dan Flores, penyakit Busuk Buah Kakao (BBK) yang disebabkan oleh jamur *Phytophthora palmivora* adalah pencuri hasil panen nomor satu yang paling merusak.

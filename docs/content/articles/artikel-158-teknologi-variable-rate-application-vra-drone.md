@@ -13,7 +13,7 @@ tags:
   - "peta resep pemupukan pupuk cair drone"
   - "hemat pupuk semprot sprayer drone"
   - "aplikasi pertanian presisi 4 0"
-draft: true
+draft: false
 ---
 
 Metode pemupukan konvensional di persawahan maupun perkebunan selalu menggunakan dosis semprot seragam (*blanket application*) di seluruh hamparan lahan. Ketika rekomendasi menganjurkan dosis pupuk cair 2 liter per hektare, maka operator semprot akan menyemprotkan volume kabut yang sama persis di setiap meter persegi tanah, tanpa peduli apakah tanaman di titik tersebut sudah subur makmur atau sedang merana kekurangan nutrisi.

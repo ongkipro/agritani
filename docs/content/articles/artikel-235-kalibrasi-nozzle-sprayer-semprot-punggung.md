@@ -13,7 +13,7 @@ tags:
   - "penentuan volume semprot per hektar"
   - "pemilihan tipe nozzle kipas kabut kerucut"
   - "efisiensi herbisida fungisida tangki"
-draft: true
+draft: false
 ---
 
 Bagi praktisi pertanian dan kelompok tani, kegagalan pengendalian hama penyakit tanaman atau pemborosan anggaran pestisida yang membengkak jutaan rupiah sering kali bukan disebabkan oleh mutu racun kimia yang buruk, melainkan akibat kesalahan fatal pada saat pengaplikasian di lapangan: petani tidak pernah melakukan **Kalibrasi Sprayer**. Mayoritas petani hanya mengandalkan takaran tutup botol secara kira-kira dan menyemprot dengan kecepatan langkah kaki sembarangan.

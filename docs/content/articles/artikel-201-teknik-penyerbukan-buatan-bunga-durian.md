@@ -14,7 +14,7 @@ tags:
   - "alat kuas penyerbukan polen durian"
   - "penjarangan buah durian montong bawor"
   - "teknik pemupukan kalsium buah durian"
-draft: true
+draft: false
 ---
 
 Pohon durian (*Durio zibethinus*) yang sedang berbunga lebat sering kali menyajikan kekecewaan besar bagi pemilik kebun: dari ribuan kuntum bunga putih krem yang bermekaran harum di dahan-dahan kokoh, hanya segelintir yang berhasil menjadi buah dan bertahan hingga matang. Sisanya menguning pada tangkai lalu rontok massal ke tanah (*flower drop*), atau jikapun menjadi buah, bentuknya bengkok asimetris menyerupai bulan sabit dengan sebagian juring kosong melompong tanpa daging (*buah kempes*).

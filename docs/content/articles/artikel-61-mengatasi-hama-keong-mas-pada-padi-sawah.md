@@ -14,7 +14,7 @@ tags:
   - "perangkap keong mas alami"
   - "moluskisida nabati keong sawah"
   - "mencegah bibit padi dimakan keong"
-draft: true
+draft: false
 ---
 
 Bagi petani padi di seluruh Indonesia, fase awal tanam sejak hari pertama hingga umur 15 Hari Setelah Tanam (HST) adalah masa paling rawan dari serbuan **Hama Keong Mas (*Pomacea canaliculata*)**.

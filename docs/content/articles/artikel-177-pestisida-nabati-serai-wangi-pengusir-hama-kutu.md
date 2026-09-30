@@ -14,7 +14,7 @@ tags:
   - "mengusir kutu kebul thrips cabai"
   - "cara membuat ekstrak rebusan serai"
   - "bioinsektisida ramah lingkungan hortikultura"
-draft: true
+draft: false
 ---
 
 Di sentra budidaya hortikultura komersial seperti cabai merah, tomat, dan semangka, hama pengisap cairan daun berukuran mikro—terutama kutu kebul (*Bemisia tabaci*), trips (*Thrips parvispinus*), dan kutu daun afid—selalu menjadi biang keladi kerugian petani. Selain menghisap nutrisi asimilat daun hingga tanaman kerdil, kutu-kutu ini berperan sebagai vektor penular virus kuning Gemini dan virus mosaik yang dapat menggagalkan panen total.

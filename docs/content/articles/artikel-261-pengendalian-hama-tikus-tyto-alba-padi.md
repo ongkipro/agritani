@@ -14,7 +14,7 @@ tags:
   - "pembuatan rumah burung hantu rubuha"
   - "daya mangsa tikus per malam sawah"
   - "konservasi musuh alami tikus desa"
-draft: true
+draft: false
 ---
 
 Di lahan persawahan padi (*Oryza sativa*), hama tikus sawah (*Rattus argentiventer*) adalah musuh paling licik dan merusak yang serangannya sering kali tidak terduga. Dalam tempo satu malam saja, sekelompok tikus mampu membabat habis ratusan rumpun padi bunting, memotong batang padi miring 45 derajat di bagian tengah petak hingga menyisakan lingkaran ompong melompong (*pola serangan mangkok*). Petani kerap putus asa dan memasang kawat jebakan beraliran listrik PLN yang sangat berbahaya dan mematikan nyawa sesama petani, padahal alam sesungguhnya telah menyediakan musuh alami nomor satu yang diciptakan khusus untuk memburu tikus di kegelapan malam: **Burung Hantu Serak Jawa (*Tyto alba*)**.

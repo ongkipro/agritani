@@ -14,7 +14,7 @@ tags:
   - "cara menanam buncis polong renyah"
   - "pengendalian ulat polong maruca buncis"
   - "pupuk fosfat bintil akar legum"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

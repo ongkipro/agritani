@@ -13,7 +13,7 @@ tags:
   - "media tanam aklimatisasi cocopeat sekam"
   - "sungkup plastik kelembapan bibit"
   - "adaptasi stomata kutikula daun bibit"
-draft: true
+draft: false
 ---
 
 Proses pemindahan bibit tanaman mini (*planlet*) dari botol laboratorium steril ke lingkungan kebun terbuka merupakan fase paling kritis dalam perbanyakan kultur jaringan. Kegagalan pada fase aklimatisasi sering kali membuat petani atau penangkar kehilangan 50 hingga 80 persen bibit hanya dalam tempo tiga hari. Tanaman mini yang terbiasa hidup mewah di dalam botol kaca dengan nutrisi agar-agar instan, kelembapan udara 100 persen, dan suasana bebas kuman tiba-tiba dipaksa bertarung di udara luar yang panas, kering, dan penuh spora jamur patogen.

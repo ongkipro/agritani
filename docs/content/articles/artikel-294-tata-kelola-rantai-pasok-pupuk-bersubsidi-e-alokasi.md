@@ -13,7 +13,7 @@ tags:
   - "kartu tani"
   - "distribusi pupuk"
   - "rantai pasok pupuk"
-draft: true
+draft: false
 ---
 
 Kebijakan pupuk bersubsidi merupakan instrumen fiskal krusial pemerintah untuk menjaga keterjangkauan biaya produksi dan produktivitas tanaman pangan strategis nasional. Namun, permasalahan klasik seperti kelangkaan semu di kios pengecer, disparitas harga di atas Harga Eceran Tertinggi (HET), dan perembesan stok subsidi ke sektor perkebunan swasta non-hak sering merugikan petani sasaran. Transformasi digital rantai pasok pupuk bersubsidi melalui platform e-Alokasi dan integrasi penebusan digital via KTP/Kartu Tani memperketat pengawasan distribusi dari produsen hingga titik serah kelompok tani.

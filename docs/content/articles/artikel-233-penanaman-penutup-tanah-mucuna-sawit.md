@@ -14,7 +14,7 @@ tags:
   - "fiksasi nitrogen lcc kebun kelapa sawit"
   - "pengendalian erosi lahan gawangan sawit"
   - "penekanan gulma ilalang rumput piringan"
-draft: true
+draft: false
 ---
 
 Pada pembukaan lahan perkebunan kelapa sawit (*Elaeis guineensis*) baru maupun peremajaan kebun sawit tua (*replanting*), hamparan tanah terbuka yang gundul tanpa tutupan vegetasi menghadapi bahaya degradasi lahan yang sangat serius. Sinar matahari tropis yang memanggang terik membakar bahan organik tanah, sementara guyuran hujan lebat menghanyutkan lapisan tanah atas (*topsoil*) yang subur ke sungai melalui erosi lembar (*sheet erosion*). Selain itu, lahan gundul akan segera diserbu oleh gulma ganas seperti alang-alang (*Imperata cylindrica*) dan mikania yang sulit dibasmi dan menjadi pesaing berat bagi bibit sawit muda.

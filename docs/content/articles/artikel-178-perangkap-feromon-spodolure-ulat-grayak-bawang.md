@@ -14,7 +14,7 @@ tags:
   - "pemikat ngengat jantan spodoptera litura"
   - "pemutusan siklus kawin hama ulat"
   - "perangkap corong feromon hemat pestisida"
-draft: true
+draft: false
 ---
 
 Di sentra budidaya bawang merah (seperti Brebes, Nganjuk, dan Bima), ulat grayak (*Spodoptera exigua* dan *Spodoptera litura*) adalah musuh utama yang paling menguras modal petani. Larva ulat masuk melubangi rongga daun bawang merah dan memakan jaringan hijau daun dari dalam, meninggalkan daun terkulai putih transparan seperti pipa kosong (*daun menerawang*).

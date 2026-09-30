@@ -13,7 +13,7 @@ tags:
   - "meningkatkan ktk tanah pasir"
   - "mineral klinoptilolit pembenah tanah"
   - "cara aplikasi zeolit dosis hektar"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

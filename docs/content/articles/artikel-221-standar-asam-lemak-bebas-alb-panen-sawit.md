@@ -14,7 +14,7 @@ tags:
   - "brondolan lepas piringan pokok sawit"
   - "penyebab kenaikan kadar ffa pabrik cpo"
   - "jadwal angkut buah tbs ke pabrik sawit"
-draft: true
+draft: false
 ---
 
 Dalam industri pengolahan minyak sawit mentah (*Crude Palm Oil / CPO*), parameter mutu paling kritis yang menentukan harga beli Tandan Buah Segar (TBS) di Pabrik Kelapa Sawit (PKS) adalah persentase **Asam Lemak Bebas (ALB)** atau **Free Fatty Acid (FFA)**. Standar internasional CPO premium menuntut kadar ALB di bawah **3 hingga 5 persen**. Bila kadar ALB melonjak di atas 5 persen, minyak kelapa sawit dikategorikan berkualitas rendah (*off-grade*) yang menyebabkan pemotongan harga drastis (*klaim penalti*) terhadap petani sawit mandiri dan memicu pemborosan energi saat proses pemurnian minyak goreng di pabrik rafinasi.

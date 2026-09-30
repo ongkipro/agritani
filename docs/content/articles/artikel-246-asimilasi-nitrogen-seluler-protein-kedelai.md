@@ -14,7 +14,7 @@ tags:
   - "enzim glutamin sintetase gogat daun"
   - "peningkatan kadar protein biji kedelai"
   - "pengisian hara polong kedelai aktif"
-draft: true
+draft: false
 ---
 
 Kedelai (*Glycine max*) dijuluki sebagai 'raja legum nabati' karena kemampuannya memproduksi biji dengan konsentrasi protein nabati tertinggi di antara seluruh tanaman pangan utama di dunia, mencapai **38 hingga 42 persen dari bobot kering biji**. Di industri pangan nusantara—mulai dari pengrajin tempe, tahu, kecap, hingga produsen susu kedelai—kadar protein dan kepadatan keping biji kedelai adalah indikator mutu paling utama yang menentukan rendemen olahan.

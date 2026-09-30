@@ -14,7 +14,7 @@ tags:
   - "pelepasan fosfat terikat aluminium besi"
   - "penghematan pupuk sp36 tsp sawah"
   - "aplikasi pupuk hayati pelarut fosfat"
-draft: true
+draft: false
 ---
 
 Berdasarkan hasil uji laboratorium tanah pertanian di berbagai sentra persawahan intensif di Pulau Jawa dan Sumatera, lebih dari 70 persen lahan sawah padi (*Oryza sativa*) sesungguhnya memiliki kandungan cadangan total fosfor ($P$) yang sangat tinggi akibat penaburan pupuk SP-36 dan TSP secara masif selama puluhan tahun. Namun, ironisnya, tanaman padi di lahan tersebut sering kali tetap menunjukkan gejala defisiensi fosfat: anakan kerdil sedikit, daun tua berwarna hijau gelap keunguan kaku, dan pembungaan lambat.

@@ -14,7 +14,7 @@ tags:
   - "vitamin b1 untuk tanaman"
   - "bakteri rizosfer tanah"
   - "pupuk organik cair gratis"
-draft: true
+draft: false
 ---
 
 > **Key Takeaways**:

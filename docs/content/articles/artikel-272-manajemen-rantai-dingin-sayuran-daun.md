@@ -14,7 +14,7 @@ tags:
   - "suhu cold storage simpan sayur segar"
   - "penekanan laju respirasi dan etilen"
   - "transportasi truk berpendingin reefer"
-draft: true
+draft: false
 ---
 
 Komoditas sayuran daun segar—seperti selada (*Lactuca sativa*), sawi pakcoy, kangkung, kailan, dan bayam—merupakan produk pertanian yang paling rapuh dan memiliki masa simpan sangat pendek (*highly perishable*). Ketika helai sayuran daun dipotong lepas dari perakarannya di kebun, sayuran tersebut sesungguhnya masih merupakan jaringan hidup yang terus bernapas aktif (*respirasi pascapanen*). Di bawah suhu udara tropis yang panas (28 hingga 34 derajat Celsius), laju respirasi sayuran daun melonjak sangat liar: air seluler menguap cepat memicu kelayuan lemas, cadangan gula habis terbakar, helai daun menguning kusam, dan bakteri pembusuk berkembang biak cepat melumatkan jaringan sayuran.

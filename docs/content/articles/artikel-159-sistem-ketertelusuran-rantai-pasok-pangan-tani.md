@@ -13,7 +13,7 @@ tags:
   - "pelacakan lot panen sayur buah ekspor"
   - "standar keamanan pangan rantai dingin"
   - "sistem penarikan produk recall hortikultura"
-draft: true
+draft: false
 ---
 
 Di era perdagangan modern dan keamanan pangan global, konsumen menuntut transparansi total terhadap makanan yang tersaji di meja makan mereka. Pembeli di jaringan supermarket premium maupun importir mancanegara tidak lagi puas hanya melihat fisik buah melon atau sayuran selada yang tampak segar; mereka ingin mengetahui di mana buah tersebut ditanam, pupuk apa yang diserap akar, serta tanggal berapa buah tersebut dipetik dari tangkainya.

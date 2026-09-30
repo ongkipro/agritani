@@ -15,7 +15,7 @@ tags:
   - "pemangkasan cabang liar hortikultura"
   - "optimasi nutrisi buah lebat"
   - "mencegah kelembapan kanopi cabai"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

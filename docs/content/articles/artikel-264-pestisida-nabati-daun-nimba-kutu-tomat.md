@@ -14,7 +14,7 @@ tags:
   - "efek penghambat makan antifeedant"
   - "gangguan hormon ganti kulit ecdysone"
   - "resep ekstrak daun mimba dingin semprot"
-draft: true
+draft: false
 ---
 
 Tanaman pohon nimba atau mimba (*Azadirachta indica*) telah diakui secara global sebagai pohon pestisida alami paling dahsyat di dunia. Di perkebunan tomat (*Solanum lycopersicum*), hama kutu kebul (*Bemisia tabaci*) dan kutu daun afid merupakan vektor utama penular virus yang sangat sulit dikendalikan karena cepat kebal terhadap insektisida kimia sintetis. Mengandalkan pestisida kimia berlebih juga meninggalkan residu kimia berbahaya pada buah tomat segar yang langsung dikonsumsi masyarakat.

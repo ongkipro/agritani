@@ -14,7 +14,7 @@ tags:
   - "fase pematangan batang tebu manis"
   - "pemupukan kalium peningkatan brix tebu"
   - "penanganan tebu tebang muat angkut pabrik"
-draft: true
+draft: false
 ---
 
 Sebagian besar perluasan areal tanaman tebu (*Saccharum officinarum*) di Indonesia kini bergeser dari lahan sawah irigasi subur ke lahan kering tegalan bertekstur liat atau berpasir dengan ketergantungan penuh pada curah hujan. Bertanam tebu di lahan tadah hujan menyajikan tantangan agronomis yang sangat kompleks: defisit air berkepanjangan pada fase pertumbuhan vegetatif dapat memicu kematian anakan (*tillers*), sedangkan hujan yang turun mendadak di masa panen dapat melarutkan kembali cadangan sukrosa di dalam batang tebu, menjatuhkan nilai rendemen gula di bawah ambang batas ekonomis 7 persen.

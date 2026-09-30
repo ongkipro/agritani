@@ -13,7 +13,7 @@ tags:
   - "cekaman panas pada tanaman"
   - "pemulihan tanaman layu"
   - "pupuk antistres tanaman"
-draft: true
+draft: false
 ---
 
 > **Key Takeaways**:

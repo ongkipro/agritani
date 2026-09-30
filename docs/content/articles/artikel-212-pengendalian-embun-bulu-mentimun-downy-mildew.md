@@ -1,6 +1,6 @@
 ---
 title: "Pengendalian Penyakit Embun Bulu Downy Mildew pada Mentimun"
-metaTitle: "Embun Bulu Mentimun: Gejala & Pengendalian Tuntas"
+metaTitle: "Embun Bulu Mentimun: Gejala & Cara Pengendalian"
 description: "Cara mendiagnosis dan membasmi penyakit embun bulu (Pseudoperonospora cubensis) pada mentimun: tanda bercak bersudut dan rotasi fungisida sistemik kontak."
 slug: "pengendalian-embun-bulu-mentimun-downy-mildew"
 pubDate: "2026-09-30"
@@ -14,7 +14,7 @@ tags:
   - "bercak kuning bersudut pembuluh daun"
   - "aplikasi fungisida simoksanil dimetomorf"
   - "ventilasi mulsa kebun mentimun intensif"
-draft: true
+draft: false
 ---
 
 Dalam budidaya mentimun (*Cucumis sativus*), baik varietas timun lalap, timun jepang (*kyuri*), maupun timun suri, penyakit **Embun Bulu** atau **Downy Mildew** yang dipicu oleh pseudojamur Oomycota **Pseudoperonospora cubensis** adalah musuh laten paling ganas di musim hujan. Sering kali petani pemula mengira bercak-bercak kuning di daun timun mereka disebabkan oleh kekurangan pupuk atau sengatan sinar matahari. Hanya dalam tempo 4 sampai 6 hari setelah infeksi awal, bercak kuning tersebut meluas menyatu, mengering terbakar kecokelatan, dan seluruh hamparan daun tanaman mentimun mendadak hangus kerontang seperti habis disembur api (*wildfire effect*).

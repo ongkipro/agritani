@@ -14,7 +14,7 @@ tags:
   - "defoliasi daun kopi akibat jamur karat"
   - "aplikasi fungisida tembaga kebun kopi"
   - "penanaman klon kopi tahan hdk robusta"
-draft: true
+draft: false
 ---
 
 Dalam sejarah perkebunan kopi nusantara dan dunia, tidak ada patogen yang memiliki jejak kehancuran sedahsyat jamur **Karat Daun Kopi (HDK / *Coffee Leaf Rust*)** yang dipicu oleh cendawan obligat **Hemileia vastatrix**. Pada akhir abad ke-19, penyakit ini menyapu bersih seluruh perkebunan kopi Arabika dataran rendah di Pulau Jawa dan Sri Lanka hingga musnah, memaksa pemerintah kolonial Hindia Belanda beralih membudidayakan kopi Robusta (*Coffea canephora*) yang lebih kebal. Namun, akibat perubahan iklim mikro dan kelembapan ekstrem, serangan karat daun kini turut merambah dataran tinggi serta merusak perkebunan kopi Robusta yang ternaungi lebat.

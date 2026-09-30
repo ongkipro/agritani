@@ -14,7 +14,7 @@ tags:
   - "penguatan lingkar batang pokok sawit"
   - "alat dodos kecil kastrasi bunga sawit"
   - "kriteria tbs perdana pasca kastrasi"
-draft: true
+draft: false
 ---
 
 Bagi petani kelapa sawit (*Elaeis guineensis*) pemula, melihat tanaman sawit muda umur 12 hingga 18 bulan di kebun mulai mengeluarkan kuntum bunga dan dompolan buah mini sering kali menimbulkan rasa senang dan kebanggaan tersendiri. Banyak petani membiarkan buah-buah pasir perdana tersebut membesar di pohon karena ingin mencicipi hasil panen secepatnya. Namun, dalam ilmu agronomi perkebunan kelapa sawit modern, membiarkan buah sawit membesar pada tanaman fase Tanaman Belum Menghasilkan (TBM) adalah kesalahan fatal yang merusak masa depan pohon.

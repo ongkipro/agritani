@@ -14,7 +14,7 @@ tags:
   - "cara basmi ulat pemakan daun sawit"
   - "teknik infus batang trunk injection"
   - "insektisida asetat acephate sawit"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

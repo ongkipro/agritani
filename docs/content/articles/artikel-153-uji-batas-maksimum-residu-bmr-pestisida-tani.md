@@ -13,7 +13,7 @@ tags:
   - "kromatografi gas spektrometri massa gcms"
   - "pra panen waktu tunggu pestisida phi"
   - "standar keamanan pangan ekspor hortikultura"
-draft: true
+draft: false
 ---
 
 Penolakan kontainer ekspor buah manggis, cabai kering, buncis, dan sayuran daun di pelabuhan negara tujuan (seperti Singapura, Jepang, atau Uni Eropa) hampir selalu disebabkan oleh satu batu sandungan utama: kandungan residu racun kimia pertanian melampaui **Batas Maksimum Residu (BMR)** atau *Maximum Residue Limit (MRL)*. Kasus penolakan ini tidak hanya menghancurkan modal usaha eksportir hingga miliaran rupiah, tetapi juga merusak reputasi kelompok tani pemasok di pasar global.

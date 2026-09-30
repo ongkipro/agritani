@@ -1,6 +1,6 @@
 ---
 title: "Tekanan Turgor Sel dan Mekanisme Kelayuan Daun Sayuran"
-metaTitle: "Tekanan Turgor Sel: Rahasia Sayuran Daun Segar Renyah"
+metaTitle: "Tekanan Turgor Sel: Kunci Sayuran Daun Segar Renyah"
 description: "Pentingnya tekanan turgor sel dalam menjaga kesegaran renyah sayuran daun: dinamika vakuola air, proses kelayuan sementara di siang hari, dan titik layu tanah."
 slug: "tekanan-turgor-sel-kelayuan-sayuran-daun"
 pubDate: "2026-09-30"
@@ -14,7 +14,7 @@ tags:
   - "peran vakuola sel penyimpan air cairan"
   - "titik layu sementara dan permanen tanah"
   - "pemulihan turgiditas sel pasca siram"
-draft: true
+draft: false
 ---
 
 Bagi petani sayuran daun komersial seperti selada (*Lactuca sativa*), sawi pakcoy, kailan, dan bayam, nilai jual sayuran di mata pedagang pasar dan konsumen supermarket ditentukan oleh satu sensasi fisik visual: kesegaran helai daun yang tegak merekah dan kerenyahan tekstur saat dipatahkan (*crispiness*). Sebaliknya, sayuran yang tampak layu terkulai lemas, berkerut lunglai, dan lembek saat dipegang akan langsung mengalami diskon harga atau bahkan dibuang ke tempat sampah.

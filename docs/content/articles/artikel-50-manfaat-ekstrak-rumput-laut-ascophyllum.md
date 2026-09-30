@@ -1,5 +1,5 @@
 ---
-title: "Keajaiban Ekstrak Rumput Laut: Biostimulan Alami Penakluk Cuaca Ekstrem"
+title: "Ekstrak Rumput Laut: Biostimulan Alami saat Cuaca Ekstrem"
 metaTitle: "Manfaat Ekstrak Rumput Laut Ascophyllum untuk Tanaman"
 description: "Pahami hormon alami sitokinin dan auksin dalam ekstrak rumput laut Ascophyllum nodosum untuk mendongkrak anakan dan mengatasi cekaman."
 slug: "manfaat-ekstrak-rumput-laut-ascophyllum"
@@ -13,7 +13,7 @@ tags:
   - "hormon sitokinin alami"
   - "pupuk peredam cekaman cuaca"
   - "pelebat akar dan bunga"
-draft: true
+draft: false
 ---
 
 Di tengah ancaman perubahan iklim global yang tak menentu—di mana musim kemarau berlangsung sangat terik memanggang lahan, disusul hujan badai ekstrem yang merendam perakaran—petani membutuhkan solusi nutrisi yang mampu melindungi tanaman dari stres lingkungan.

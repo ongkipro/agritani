@@ -14,7 +14,7 @@ tags:
   - "cara tanam padi tegalan tugal"
   - "pemupukan efisien padi gogo"
   - "manajemen gulma padi darat"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

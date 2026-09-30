@@ -13,7 +13,7 @@ tags:
   - "teknik memperpanjang masa simpan hortikultura"
   - "plastik permeabel mikro-perforasi"
   - "ekspor komoditas buah segar indonesia"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

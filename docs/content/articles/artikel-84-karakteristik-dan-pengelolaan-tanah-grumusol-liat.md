@@ -14,7 +14,7 @@ tags:
   - "pengolahan tanah liat mengembang merekah"
   - "mineral montmorilonit smektit"
   - "budidaya padi tegalan grumusol"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

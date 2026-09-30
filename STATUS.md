@@ -65,7 +65,7 @@ Tidak ada blocker teknis. Menunggu data/aksi pemilik:
 - OQ-2 nomor izin edar produk, OQ-4 bio final Arif Prabowo, OQ-5 foto asli (produk, lahan, penulis), OQ-11 tinjauan Arif untuk data Diagnosa Gejala dan Kalender Tanam (keduanya "Segera hadir" di produksi).
 - Secret `CLOUDFLARE_API_TOKEN` di GitHub untuk job deploy CI (sampai itu ada, deploy dijalankan manual dari worktree bersih).
 - Matikan Cloudflare Web Analytics di dashboard zona (beacon diblokir CSP, tidak mengirim data).
-- Publikasi artikel batch berikutnya (292 dari 300 naskah masih draft) menunggu tinjauan konten T-25.
+- Tinjauan konten T-25: 296 artikel terbit (DEC-020), sebagian besar tanpa rujukan; daftar kata absolut di badan artikel untuk ditinjau penulis ada di `docs/build-notes/t42-publish.md`; 4 naskah masih ditahan.
 
 ## Verification evidence
 

@@ -13,7 +13,7 @@ tags:
   - "cara pasang venturi injector pupuk"
   - "monitoring nilai ec dan ph fertigasi"
   - "efisiensi pupuk hidroponik greenhouse"
-draft: true
+draft: false
 ---
 
 > [!NOTE] Inti Sari Pembahasan (Key Takeaways)

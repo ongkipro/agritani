@@ -14,7 +14,7 @@ tags:
   - "cara mengatasi kulit jeruk berkerak kutil"
   - "fungisida kudis jeruk alami"
   - "perawatan kebun jeruk siam"
-draft: true
+draft: false
 ---
 
 Bagi petani jeruk—baik jeruk siam madu, keprok, nipis, maupun jeruk purut—penyakit kulit yang paling sering menjatuhkan kelas mutu panen dari kualitas super menjadi kualitas afkir adalah **Penyakit Kudis Jeruk (*Citrus Scab*)**.

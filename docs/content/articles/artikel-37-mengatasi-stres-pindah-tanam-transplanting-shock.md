@@ -14,7 +14,7 @@ tags:
   - "merawat bibit baru ditanam"
   - "vitamin b1 untuk tanaman stres"
   - "penyebab bibit cabai layu mati"
-draft: true
+draft: false
 ---
 
 Bagi petani hortikultura, momen pemindahan bibit dari baki semai (*tray*) ke hamparan bedengan lahan terbuka adalah fase paling menegangkan. 
