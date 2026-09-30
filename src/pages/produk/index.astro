@@ -42,12 +42,28 @@ const seo: SeoInput = {
   <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
     <Breadcrumb items={breadcrumbs} />
 
-    <header class="mt-6 mb-8 sm:mt-8 sm:mb-10 max-w-3xl">
+    <header class="mt-6 mb-6 sm:mt-8 sm:mb-8 max-w-3xl">
       <h1 class="pillar-title">Produk Agritani</h1>
       <p class="pillar-lede">
         Empat produk unggulan Agritani untuk ketahanan dan pemulihan tanaman, dengan teknologi asal Thailand dan Jepang. Pilih sesuai komoditas Anda, lalu buka rincian untuk dosis dan cara aplikasi.
       </p>
     </header>
+
+    <nav class="mb-6 text-sm leading-7" aria-label="Pilih produk sesuai tanaman">
+      <span class="font-semibold text-[var(--color-text)] mr-2">Pilih sesuai tanaman:</span>
+      <ul class="inline">
+        {[
+          { id: 'aussie', label: 'Sawit & tanaman keras' },
+          { id: 'kojien', label: 'Padi' },
+          { id: 'bensu', label: 'Palawija & sayuran' },
+          { id: 'saratoga', label: 'Pembungaan & pembuahan' },
+        ].map((l) => (
+          <li class="inline-block mr-4">
+            <a href={`#${l.id}`} class="py-2.5 text-[var(--color-brand-strong)] underline underline-offset-4 decoration-[var(--color-border-control)] hover:decoration-[var(--color-brand)]">{l.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
 
     <section class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6" aria-label="Empat produk Agritani">
       {sortedProducts.map((product) => (

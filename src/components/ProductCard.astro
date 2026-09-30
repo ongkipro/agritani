@@ -48,7 +48,10 @@ const fromPrice = variants.length ? Math.min(...variants.map((v) => v.price)) : 
       </a>
     </h2>
     <p class="mt-1.5 text-sm leading-snug text-[var(--color-text)] line-clamp-3">{p.role}</p>
-    <p class="mt-2 text-[13px] leading-snug text-[var(--color-text-muted)]">Untuk {shown}</p>
+    <dl class="mt-3 space-y-1 text-[13px] leading-snug">
+      <div><dt class="inline text-[var(--color-text-muted)]">Untuk </dt><dd class="inline text-[var(--color-text)]">{shown}</dd></div>
+      <div><dt class="inline text-[var(--color-text-muted)]">Aplikasi </dt><dd class="inline text-[var(--color-text)]">{p.applicationMethods.join(' · ')}</dd></div>
+    </dl>
 
     {fromPrice !== null && (
       <div class="mt-auto pt-4 flex items-end justify-between gap-3">
