@@ -1,0 +1,107 @@
+---
+/**
+ * src/pages/jurnal/tag/[tag].astro
+ * Dynamic tag archive listing page for Jurnal Tani articles.
+ */
+
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import ArticleRow from '../../../components/ArticleRow.astro';
+import TopicSidebar from '../../../components/TopicSidebar.astro';
+import { slugifyTag } from '../../../lib/tags';
+import type { SeoInput } from '../../../lib/seo';
+
+export async function getStaticPaths() {
+  const includeDrafts =
+    import.meta.env.PUBLIC_INCLUDE_DRAFTS === 'true' || import.meta.env.DEV;
+
+  const allArticles = await getCollection('articles');
+  const visibleArticles = includeDrafts
+    ? allArticles
+    : allArticles.filter((a) => !a.data.draft);
+
+  const tagMap = new Map<string, { rawTag: string; articles: any[] }>();
+
+  for (const article of visibleArticles) {
+    const tags = article.data.tags || [];
+    for (const tag of tags) {
+      const slug = slugifyTag(tag);
+      if (!slug) continue;
+      if (!tagMap.has(slug)) {
+        tagMap.set(slug, { rawTag: tag, articles: [] });
+      }
+      tagMap.get(slug)!.articles.push(article);
+    }
+  }
+
+  return Array.from(tagMap.entries()).map(([slug, { rawTag, articles }]) => {
+    const sorted = articles.sort(
+      (a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+    );
+
+    return {
+      params: { tag: slug },
+      props: {
+        tagSlug: slug,
+        tagName: rawTag,
+        articles: sorted,
+      },
+    };
+  });
+}
+
+const { tagSlug, tagName, articles } = Astro.props;
+
+const breadcrumbItems = [
+  { name: 'Beranda', url: '/' },
+  { name: 'Jurnal Tani', url: '/jurnal/' },
+  { name: `#${tagName}`, url: `/jurnal/tag/${tagSlug}/` },
+];
+
+const rawTitle = `Tag: #${tagName}`;
+const safeTitle = rawTitle.length > 45 ? rawTitle.slice(0, 45).trim() : rawTitle;
+
+const rawDesc = `Kumpulan panduan teknis dan artikel agronomi dengan kata kunci #${tagName} oleh Arif Prabowo di Jurnal Tani Agritani.`;
+const safeDesc = rawDesc.length > 165 ? `${rawDesc.slice(0, 162)}...` : rawDesc;
+
+const seo: SeoInput = {
+  title: safeTitle,
+  description: safeDesc,
+  canonicalPath: `/jurnal/tag/${tagSlug}/`,
+  breadcrumbs: breadcrumbItems,
+  pageType: 'collection',
+};
+---
+
+<BaseLayout seo={seo} currentPath={`/jurnal/tag/${tagSlug}/`}>
+  <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+    <Breadcrumb items={breadcrumbItems} />
+
+    <header class="my-6 sm:my-8 max-w-[68ch]">
+      <span class="text-xs uppercase tracking-wider font-extrabold text-[var(--color-soil)] block mb-1">
+        Arsip Kata Kunci
+      </span>
+      <h1 class="text-3xl sm:text-4xl lg:text-[2.5rem] font-serif font-semibold text-[var(--color-text)] leading-tight mb-3">
+        #{tagName}
+      </h1>
+      <p class="text-base sm:text-lg text-[var(--color-soil)] font-sans leading-relaxed">
+        {articles.length} panduan teknis dan ulasan ilmiah lapangan yang berkaitan dengan kata kunci ini.
+      </p>
+    </header>
+
+    <div class="lg:grid lg:grid-cols-12 lg:gap-8 items-start">
+      <main class="lg:col-span-8">
+        <div class="divide-y divide-[var(--color-border)]">
+          {articles.map((art) => (
+            <ArticleRow article={art} />
+          ))}
+        </div>
+      </main>
+
+      <aside class="hidden lg:block lg:col-span-4 sticky top-8">
+        <TopicSidebar />
+      </aside>
+    </div>
+  </div>
+</BaseLayout>

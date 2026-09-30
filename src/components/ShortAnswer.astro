@@ -8,16 +8,19 @@ const { answer } = Astro.props;
 
 {answer && (
   <section
-    class="my-8 px-5 py-5 sm:px-6 bg-[var(--color-tint)] rounded-[2px]"
+    class="my-8 p-5 sm:p-6 bg-[var(--color-tint)]/60 border-l-4 border-[var(--color-brand)] rounded-[2px]"
     aria-labelledby="jawaban-singkat-heading"
   >
-    <h2
-      id="jawaban-singkat-heading"
-      class="text-sm font-bold mb-2 text-[var(--color-brand-strong)]"
-    >
-      Jawaban Singkat
-    </h2>
-    <p class="text-base sm:text-lg leading-relaxed text-[var(--color-text)] font-serif">
+    <div class="flex items-center gap-2 mb-2">
+      <span class="w-2 h-2 rounded-full bg-[var(--color-brand)] shrink-0" aria-hidden="true"></span>
+      <h2
+        id="jawaban-singkat-heading"
+        class="text-xs font-bold uppercase tracking-wider text-[var(--color-brand-strong)]"
+      >
+        Jawaban Singkat
+      </h2>
+    </div>
+    <p class="text-[1.0625rem] sm:text-[1.125rem] leading-[1.75] text-[var(--color-text)] font-sans text-pretty">
       {answer}
     </p>
   </section>
