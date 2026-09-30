@@ -918,3 +918,9 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - Laporan pemilik: `/jurnal/analisis-titik-impas-bep-usaha-tani-padi/` bisa digeser kiri-kanan di HP. Penyebab: rumus BEP (MathML `span.katex`) selebar 572px di layar 390px; ditemukan juga 16 artikel dengan tag panjang (`li.inline-block`) yang melebar 2–20px di 360px dan lebih banyak di 320px.
 - Perbaikan: `.prose .katex` `max-width:100%` + `overflow-x:auto` (rumus panjang digeser di kotaknya sendiri), rumus tunggal sebagai blok di tengah, `0.92em` di <640px; kolom artikel `min-w-0`; tag menjadi `li` inline + spasi + `overflow-wrap:anywhere`.
 - Verifikasi: 296 artikel × 320/360/390px → 0 overflow horizontal (Playwright); 22 halaman non-artikel × 320/360 → 0; astro check 0 error; build PASS.
+
+## 2026-10-01 — T-52: Cuaca Tani dengan lokasi tersimpan (PASS)
+
+- Laporan pemilik: saat lokasi sudah tersimpan, cuaca tidak aktif. Penyebab: `RegionPicker` memulihkan lokasi tersimpan lalu mengirim event `agritani:region-selected`; bila pemulihan selesai sebelum skrip `ForecastTable` memasang pendengarnya (kunjungan ulang, data wilayah dari cache), event terlewat → ringkasan lokasi tampil tetapi prakiraan kosong.
+- Perbaikan: pilihan terakhir juga disimpan di `window.__agritaniRegion`; `ForecastTable` membacanya setelah memasang pendengar dan memuat prakiraan bila belum dimuat.
+- Bukti (Playwright, skrip `ForecastTable` diperlambat 2,5 s, lokasi tersimpan): live versi lama → ringkasan tampil, 0 tabel; build baru → 3 tabel. Regresi: pilih pertama 3 tabel, muat ulang 3 tabel, 1 permintaan BMKG (tanpa ganda), "Ganti wilayah" membuka pilihan lagi.

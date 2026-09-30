@@ -610,6 +610,9 @@ try {
     }
 
     function dispatchSelectedAdm4(adm4: string, label: string) {
+      // Keep the last selection on window too: on a repeat visit the saved location can be restored before
+      // ForecastTable has attached its listener, and a missed event left the forecast empty (T-52).
+      (window as unknown as { __agritaniRegion?: { adm4: string; label: string } }).__agritaniRegion = { adm4, label };
       // Dispatch custom event for ForecastTable component
       window.dispatchEvent(
         new CustomEvent('agritani:region-selected', {

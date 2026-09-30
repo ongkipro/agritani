@@ -397,6 +397,12 @@ try {
       }
     }) as EventListener);
 
+    // A selection restored before this listener existed (saved location, fast repeat visit) is picked up here (T-52).
+    const pending = (window as unknown as { __agritaniRegion?: { adm4: string; label: string } }).__agritaniRegion;
+    if (pending?.adm4 && pending.adm4 !== currentAdm4) {
+      loadForecast(pending.adm4, pending.label || pending.adm4);
+    }
+
     // Retry Button Handler
     btnRetry?.addEventListener('click', () => {
       if (currentAdm4) {
