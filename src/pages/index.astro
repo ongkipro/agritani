@@ -90,7 +90,7 @@ const seoProps: SeoInput = {
           />
           <!-- Atmospheric Bottom-Weighted Vignette: Bagian Atas Gambar Jernih, Bawah Bergradasi Halus -->
           <div
-            class="absolute inset-0 bg-gradient-to-t from-[var(--color-brand-strong)]/95 via-[var(--color-brand-strong)]/95 via-60% to-transparent"
+            class="absolute inset-0 bg-gradient-to-t from-[var(--color-brand-strong)]/95 via-[var(--color-brand-strong)]/85 via-45% to-transparent to-80%"
             aria-hidden="true"
           ></div>
 
@@ -293,7 +293,7 @@ const seoProps: SeoInput = {
         
         <!-- Lead Feature Story with Rich Topic Image -->
         {featuredArticle && (
-          <article class="lg:col-span-7 flex flex-col justify-between group">
+          <article class="lg:col-span-7 lg:mt-3 flex flex-col justify-between group">
             <div>
               <a
                 href={`/jurnal/${featuredArticle.data.slug}/`}

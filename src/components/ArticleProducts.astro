@@ -1,0 +1,85 @@
+---
+/**
+ * Produk Agritani di halaman artikel (DESIGN §4.3.8, §2.5). Four flagship products as references;
+ * products whose target commodities match the article come first, labelled from product data only.
+ * Packshots are owner-approved AI illustrations (DESIGN §3.5.1).
+ */
+import { getCollection } from 'astro:content';
+import { Picture } from 'astro:assets';
+import { getProductImage } from '../lib/product-images';
+
+interface Props {
+  /** Commodity ids of the article. */
+  commodities: string[];
+  /** Article topic slug; picks which existing product sentence fits the article (DESIGN §4.3.8). */
+  topic: string;
+}
+
+const { commodities, topic } = Astro.props;
+
+// Context line comes only from existing product data (no new claims):
+// pest/disease articles show `summary` (it speaks to pathogen resilience); other topics show `role`.
+const isProtection = topic === 'proteksi-tanaman';
+const contextLine = (d: { summary: string; role: string; tagline?: string }) => (isProtection ? d.summary : d.role) || d.tagline || '';
+// In protection articles, products whose own summary mentions pathogens/immunity come first.
+const protectionRank = (d: { summary: string }) => (/patogen|imun|kekebalan|blas|hawar|infeksi/i.test(d.summary) ? 0 : 1);
+const idOf = (c: string | { id: string }) => (typeof c === 'string' ? c : c.id);
+const names = new Map((await getCollection('commodities')).map((c) => [c.id, c.data.name]));
+const order = ['aussie', 'kojien', 'bensu', 'saratoga'];
+
+const all = (await getCollection('products'))
+  .map((p) => ({ p, match: p.data.commodities.map(idOf).filter((c) => commodities.includes(c)) }))
+  .sort((a, b) => order.indexOf(a.p.id) - order.indexOf(b.p.id));
+const hasMatch = all.some((x) => x.match.length > 0);
+// Show matching products as rows; when none match, show all four as rows.
+const matched = (hasMatch ? all.filter((x) => x.match.length > 0) : all)
+  .slice()
+  .sort((a, b) => (isProtection ? protectionRank(a.p.data) - protectionRank(b.p.data) : 0));
+const others = hasMatch ? all.filter((x) => x.match.length === 0) : [];
+const heading = hasMatch
+  ? `Produk untuk ${[...new Set(matched.flatMap((x) => x.match))].map((c) => (names.get(c) ?? c).toLowerCase()).join(', ')}`
+  : 'Produk Agritani';
+---
+
+<section class="my-10" aria-labelledby="produk-artikel-heading" data-pagefind-ignore>
+  <h2 id="produk-artikel-heading" class="font-serif text-xl font-semibold text-[var(--color-text)] pb-2 border-b border-[var(--color-border)]">{heading}</h2>
+  {matched.length > 0 && (
+    <ul class="divide-y divide-[var(--color-border)] border-b border-[var(--color-border)]">
+      {matched.map(({ p, match }) => (
+        <li>
+          <a href={`/produk/${p.id}/`} class="group grid grid-cols-[4rem_1fr] sm:grid-cols-[4rem_1fr_auto] items-center gap-x-4 gap-y-1 py-3">
+            <span class="row-span-2 sm:row-span-1 w-16 h-16 overflow-hidden rounded-[2px] bg-[var(--color-surface)]">
+              <Picture
+                src={getProductImage(p.id)}
+                formats={['webp']}
+                widths={[64, 128]}
+                sizes="64px"
+                quality={70}
+                alt={`Kemasan ${p.data.name}`}
+                class="w-full h-full object-contain"
+                loading="lazy"
+              />
+            </span>
+            <span class="min-w-0">
+              <span class="block font-serif text-base font-semibold text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] group-hover:underline underline-offset-4">{p.data.name}</span>
+              <span class="block text-sm text-[var(--color-text-muted)] leading-snug line-clamp-2">{contextLine(p.data)}</span>
+              {match.length > 0 && <span class="block text-xs font-semibold text-[var(--color-soil)] mt-0.5">Sasaran: {match.map((c) => names.get(c) ?? c).join(', ')}</span>}
+            </span>
+            <span class="col-start-2 sm:col-start-auto text-sm font-semibold text-[var(--color-brand-strong)] whitespace-nowrap" aria-hidden="true">Lihat spesifikasi &rarr;</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+  {others.length > 0 && (
+    <p class="mt-2 text-sm text-[var(--color-text-muted)]">
+      Produk lain:{' '}
+      {others.map(({ p }, i) => (
+        <>
+          <a href={`/produk/${p.id}/`} class="inline-flex items-center min-h-[44px] font-semibold text-[var(--color-brand-strong)] hover:underline underline-offset-4">{p.data.name}</a>{i < others.length - 1 && <span aria-hidden="true"> · </span>}
+        </>
+      ))}
+    </p>
+  )}
+  <p class="mt-1 text-xs text-[var(--color-text-muted)]">Ikuti selalu dosis pada label kemasan.</p>
+</section>

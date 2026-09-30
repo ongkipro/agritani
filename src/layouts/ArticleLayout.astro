@@ -8,6 +8,7 @@ import AuthorBio from '../components/AuthorBio.astro';
 import ShortAnswer from '../components/ShortAnswer.astro';
 import FieldSummaryBox, { type FieldTakeaways } from '../components/FieldSummaryBox.astro';
 import References from '../components/References.astro';
+import ArticleProducts from '../components/ArticleProducts.astro';
 import ArticleToc from '../components/ArticleToc.astro';
 import { getReadingTime } from '../lib/reading-time';
 import { getArticleImage, getTopicImage } from '../lib/topic-images';
@@ -268,23 +269,32 @@ const nextTools = [
             <slot />
           </div>
 
-          <!-- Tags / Kata Kunci Artikel (Frameless, Clean Typography) -->
+          <!-- Tags: hashtag chips (owner 2026-09-30); visual chip ~28px inside a 44px target -->
           {data.tags && data.tags.length > 0 && (
-            <div class="mt-5 mb-5 flex flex-wrap items-center gap-x-3 text-xs sm:text-[13px]" aria-label="Tag artikel">
-              <span class="font-semibold text-[var(--color-text)] mr-0.5">
-                Tag:
-              </span>
+            <ul class="mt-8 flex flex-wrap gap-x-2" aria-label="Tag artikel">
               {data.tags.map((tag) => (
-                <a
-                  href={`/jurnal/tag/${slugifyTag(tag)}/`}
-                  class="text-[var(--color-text-muted)] hover:text-[var(--color-brand-strong)] hover:underline underline-offset-2 font-medium transition-colors inline-flex items-center min-h-[44px]"
-                >
-                  {tag}
-                </a>
+                <li>
+                  <a href={`/jurnal/tag/${slugifyTag(tag)}/`} class="group/tag inline-flex items-center min-h-[44px]">
+                    <span class="inline-flex items-center px-2.5 py-1 rounded-[2px] bg-[var(--color-tint)] text-xs sm:text-[13px] font-medium text-[var(--color-text)] group-hover/tag:bg-[var(--color-brand)] group-hover/tag:text-white group-active/tag:bg-[var(--color-brand-hover)] group-active/tag:text-white transition-colors">
+                      <span class="text-[var(--color-soil)] group-hover/tag:text-white font-semibold mr-0.5" aria-hidden="true">#</span>{tag}
+                    </span>
+                  </a>
+                </li>
               ))}
-            </div>
+            </ul>
           )}
 
+        </article>
+      </div>
+
+      <!-- 2/12 spacer on desktop -->
+      <div class="lg:col-span-2 hidden lg:block" aria-hidden="true"></div>
+    </div>
+
+    <!-- Closing blocks: separate grid row so the sticky TOC stops after the tags (DESIGN §3.3.2) -->
+    <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+      <div class="lg:col-span-3 hidden lg:block" aria-hidden="true"></div>
+      <div class="lg:col-span-7 max-w-[68ch]">
         <!-- 12. Langkah berikutnya di lahan (alat terkait topik) -->
         {nextTools.length > 0 && (
           <section class="my-10" aria-labelledby="alat-lanjut-heading" data-pagefind-ignore>
@@ -317,12 +327,8 @@ const nextTools = [
           <AuthorBio slug={data.slug} title={data.title} />
         </div>
 
-        <!-- 16. Pengungkapan (DESIGN §4.3.1 blok 16, DEC-016) -->
-        <div class="my-8 py-3 px-4 rounded-[2px] bg-[var(--color-tint)] text-xs text-[var(--color-text-muted)] leading-relaxed" data-pagefind-ignore>
-          <p>
-            <strong>Pengungkapan:</strong> Artikel ini ditulis oleh Arif Prabowo, konsultan pertanian senior dan pengelola Jurnal Tani. Beliau juga bekerja sebagai sales dan konsultan produk Agritani (Aussie, BENSU, Kojien, Saratoga). Ikuti selalu petunjuk pada label kemasan.
-          </p>
-        </div>
+        <!-- 16. Produk Agritani (rujukan; setelah Tentang Penulis) -->
+        <ArticleProducts topic={data.topic} commodities={(data.commodities ?? []).map((c: any) => (typeof c === "string" ? c : c.id))} />
 
         <!-- 17. Lanjut Membaca -->
         {relatedArticles.length > 0 && (
@@ -376,10 +382,8 @@ const nextTools = [
             </div>
           </nav>
         )}
-      </article>
       </div>
 
-      <!-- 2/12 spacer on desktop -->
       <div class="lg:col-span-2 hidden lg:block" aria-hidden="true"></div>
     </div>
   </div>

@@ -53,17 +53,25 @@ export async function getStaticPaths() {
 
 const { tagSlug, tagName, articles } = Astro.props;
 
+// Display name: the tag itself, first letter capitalised, no "Tag:" or "#" (owner 2026-09-30).
+const displayName = tagName.charAt(0).toUpperCase() + tagName.slice(1);
+
 const breadcrumbItems = [
   { name: 'Beranda', url: '/' },
   { name: 'Jurnal Tani', url: '/jurnal/' },
-  { name: `#${tagName}`, url: `/jurnal/tag/${tagSlug}/` },
+  { name: displayName, url: `/jurnal/tag/${tagSlug}/` },
 ];
 
-const rawTitle = `Tag: #${tagName}`;
-const safeTitle = rawTitle.length > 45 ? rawTitle.slice(0, 45).trim() : rawTitle;
+// Title: trim at a word boundary so it never ends mid-word (the SEO helper appends " | Agritani").
+const clip = (text: string, max: number) =>
+  text.length <= max ? text : text.slice(0, text.lastIndexOf(' ', max)).replace(/[\s,.;:–-]+$/, '');
+const safeTitle = clip(displayName, 50);
 
-const rawDesc = `Kumpulan panduan teknis dan artikel agronomi dengan kata kunci #${tagName} oleh Arif Prabowo di Jurnal Tani Agritani.`;
-const safeDesc = rawDesc.length > 165 ? `${rawDesc.slice(0, 162)}...` : rawDesc;
+const count = articles.length;
+const safeDesc = clip(
+  `${count} artikel Jurnal Tani tentang ${tagName} oleh Arif Prabowo, konsultan pertanian senior Agritani.`,
+  160,
+);
 
 const seo: SeoInput = {
   title: safeTitle,
@@ -80,30 +88,29 @@ const seo: SeoInput = {
   <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
     <Breadcrumb items={breadcrumbItems} />
 
-    <header class="my-6 sm:my-8 max-w-[68ch]">
-      <span class="text-xs uppercase tracking-wider font-extrabold text-[var(--color-soil)] block mb-1">
-        Arsip Kata Kunci
-      </span>
-      <h1 class="text-3xl sm:text-4xl lg:text-[2.5rem] font-serif font-semibold text-[var(--color-text)] leading-tight mb-3">
-        #{tagName}
-      </h1>
-      <p class="text-base sm:text-lg text-[var(--color-soil)] font-sans leading-relaxed">
-        {articles.length} panduan teknis dan ulasan ilmiah lapangan yang berkaitan dengan kata kunci ini.
-      </p>
-    </header>
-
-    <div class="lg:grid lg:grid-cols-12 lg:gap-8 items-start">
-      <main class="lg:col-span-8">
-        <div class="divide-y divide-[var(--color-border)]">
-          {articles.map((art) => (
-            <ArticleRow article={art} />
-          ))}
-        </div>
-      </main>
-
-      <aside class="hidden lg:block lg:col-span-4 sticky top-6 self-start">
+    <!-- Same frame as topic/commodity hubs (DESIGN §4.1 C10, §3.3.2) -->
+    <div class="flex flex-col lg:grid lg:grid-cols-12 lg:gap-x-12">
+      <aside class="order-last my-8 lg:my-0 lg:mt-10 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:sticky lg:top-6 self-start">
         <TopicSidebar />
       </aside>
+      <div class="lg:col-start-4 lg:col-span-9 lg:row-start-1">
+        <header class="my-6 sm:my-10 pt-5 border-t border-[var(--color-border)] max-w-[68ch]">
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[var(--color-text)] mb-3 leading-tight text-balance">
+            {displayName}
+          </h1>
+          <p class="text-base sm:text-lg text-[var(--color-text-muted)] font-serif leading-relaxed">
+            {articles.length} artikel Jurnal Tani dengan tag ini.
+          </p>
+        </header>
+
+        <section class="mt-8" aria-label={`Artikel dengan tag ${tagName}`}>
+          <div class="divide-y divide-[var(--color-border)]">
+            {articles.map((art) => (
+              <ArticleRow article={art} />
+            ))}
+          </div>
+        </section>
+      </div>
     </div>
   </div>
 </BaseLayout>

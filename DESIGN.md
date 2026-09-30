@@ -398,7 +398,7 @@ Aturan pemakaian:
 - Kuning Panen adalah **fill dengan teks gelap**, tidak pernah teks kuning di latar terang.
 - Hijau dan kuning tidak pernah menjadi satu-satunya pembawa makna; selalu ada label atau ikon.
 - **Anti-klise kategori** (§4.0): hijau jenuh + kuning adalah bahasa visual umum situs pupuk Indonesia. Agritani membedakan diri lewat takaran: latar selalu `canvas`/`tint` yang terang; fill `brand` hanya untuk header, tombol primer, dan footer; `harvest` maksimal satu elemen per viewport; tanpa kolase CGI daun/pabrik.
-- Tanpa gradien, tanpa hijau neon, tanpa latar foto di balik teks panjang. **Pengecualian pemilik (2026-09-30):** hero Beranda boleh teks pendek (H1 + satu kalimat + tombol) di atas foto dengan gradien `brand-strong` dari bawah, asalkan latar teks terukur ≥ 7:1 di 390 & 1440.
+- Tanpa gradien, tanpa hijau neon, tanpa latar foto di balik teks panjang. **Pengecualian pemilik (2026-09-30):** hero Beranda boleh teks pendek (H1 + satu kalimat + tombol) di atas foto dengan gradien `brand-strong` dari bawah; latar teks median ±7:1 dan titik terang ≥ 4,5:1 (AA) di 390 & 1440 — pemilik memilih foto lebih jelas daripada 7:1 penuh.
 
 ### 3.1.1. Warna topik Jurnal (diadaptasi dari kode sektor teagasc.ie)
 
@@ -612,7 +612,7 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 
 0. Header: logo + tagline "Portal Pertanian Sains & Lapangan" · navigasi · pencarian di tempat · "Ajukan Kemitraan". Di bawahnya **strip 6 topik** berpenanda warna (§3.1.1), tautan ke hub topik.
 1. **Hero** (≥1024px 7/12 + 5/12):
-   - Kiri: foto lapangan penuh kotak dengan **teks di atas foto** — H1 serif "Standar Agronomi Presisi & Sains Lapangan Tropis", satu kalimat (portal dikelola Arif Prabowo, DEC-016), tombol aksen "Buka Instrumen Tani" + tombol sekunder "Jelajahi Jurnal Ilmiah". Gradien `brand-strong` dari bawah (95% → 95% di 60% tinggi → transparan) agar latar teks ≥ 7:1 (terukur median 7,6–7,9 di 390 & 1440, 2026-09-30).
+   - Kiri: foto lapangan penuh kotak dengan **teks di atas foto** — H1 serif "Standar Agronomi Presisi & Sains Lapangan Tropis", satu kalimat (portal dikelola Arif Prabowo, DEC-016), tombol aksen "Buka Instrumen Tani" + tombol sekunder "Jelajahi Jurnal Ilmiah". Gradien `brand-strong` dari bawah (95% → 85% di 45% tinggi → transparan di 80%; 20% atas foto bening, diminta pemilik agar foto lebih jelas). Terukur 2026-09-30: median kontras latar teks 6,8–7,4, titik terang ≥ 4,8 (≥ AA 4,5) di 390 & 1440.
    - Kanan: "Instrumen Cepat Lapangan" · 4 baris alat (nama · kegunaan) · tautan teks "Butuh telaah kebun langsung? Pelajari alur konsultasi" → `/konsultasi/` (bukan WhatsApp).
 2. **Pengelola**: foto `AuthorAvatar` · nama "Arif Prabowo" · "Konsultan Pertanian Senior · Pengelola Jurnal Tani" · pengalaman > 8 tahun · pernyataan fakta (artikel terbit ditulis/dimoderasi beliau dan wajib berpustaka) · tautan profil.
 3. **Jurnal Tani & Riset Lapangan**: judul + pengantar + tautan "Lihat seluruh arsip jurnal"; artikel utama 7/12 (gambar topik 16:9, label topik, judul serif besar, dek, penulis · tanggal · waktu baca); 3 baris artikel 5/12 dengan thumbnail (aturan presisi §3.3.1); lalu "Panduan Berdasarkan Komoditas Unggulan" (3 kolom, jumlah artikel **dihitung dari koleksi terbit**, tautan ke hub yang dibangun). Pemilih komoditas tap-first dari hero lama pindah ke baris ini.
@@ -688,7 +688,7 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 
 1. Breadcrumb · foto (`AuthorAvatar`, tidak dekoratif) · H1 "Arif Prabowo" · peran "Konsultan Pertanian Senior · Pengelola Jurnal Tani".
 2. Biografi singkat dari data pemilik (DEC-016): lebih dari 8 tahun di bidang pertanian dan riset; mempelajari beragam komoditas dan praktik budidaya; kini sales & konsultan produk unggulan Agritani (Aussie, BENSU, Saratoga, Kojien); mengelola portal Agritani yang bekerja sama dengan brand pupuk dan perusahaan pertanian. Pendidikan/institusi tidak ditampilkan sampai diberikan (OQ-4). Tanpa gelar "Prof."
-3. Hubungan dengan Agritani (sama dengan teks Pengungkapan).
+3. Hubungan dengan Agritani (sama dengan kalimat bio di Tentang Penulis setiap artikel).
 4. H2 "Artikel oleh Arif Prabowo": daftar baris semua artikel.
 
 **Produk `/produk/`** (Lapangan) — isi & aturan klaim di §2.5
@@ -765,7 +765,7 @@ lebar di mobile.
 | 13 | ~~Kapan harus konsultasi~~ (dihapus 2026-09-30, lihat §2.8 dan §4.3.8) | `<section>` + `<h2>` | 2–3 tanda bahwa masalah melebihi penanganan mandiri + "Tanya agronom via WhatsApp" dengan pesan terisi judul artikel. Satu-satunya CTA di dalam artikel. | tetap + `title` |
 | 14 | Daftar Pustaka | `<section>` + `<h2>` + `<ol>` di dalam `<details open>` | Terbuka secara bawaan (tetap bisa diciutkan). Penulis, tahun, judul, sumber; DOI → `https://doi.org/…`, `rel="noopener"`. Artikel tanpa referensi terverifikasi tidak terbit. | `references` |
 | 15 | Tentang Penulis (terbangun: lihat §4.3.8 — satu kalimat DEC-016, foto, tautan WhatsApp & profil) | `<section>` + `<h2>` | Foto, nama, gelar lengkap & institusi (setelah OQ-4), 2 kalimat keahlian, tautan profil. Tanpa kotak kartu; dipisah dengan spasi. | data penulis |
-| 16 | Pengungkapan | `<p>` kecil | "Artikel ini ditulis oleh Arif Prabowo, konsultan pertanian senior dan pengelola Jurnal Tani. Beliau juga bekerja sebagai sales dan konsultan produk Agritani (Aussie, BENSU, Kojien, Saratoga). Ikuti selalu petunjuk pada label kemasan." | tetap |
+| 16 | ~~Pengungkapan~~ (dilebur ke bio Tentang Penulis 2026-09-30, §4.3.8) | `<p>` kecil | "Artikel ini ditulis oleh Arif Prabowo, konsultan pertanian senior dan pengelola Jurnal Tani. Beliau juga bekerja sebagai sales dan konsultan produk Agritani (Aussie, BENSU, Kojien, Saratoga). Ikuti selalu petunjuk pada label kemasan." | tetap |
 | 17 | Lanjut membaca | `<nav aria-label="Artikel terkait">` | 3 artikel dengan topik atau komoditas yang sama (baris: judul + waktu baca) + tautan "Diagnosa gejala {komoditas}" ke `/alat/diagnosa-gejala/?k=` + tautan hub topik. Produk hanya bila komoditas cocok dan klaimnya diizinkan (§2.5). | koleksi |
 
 Frontmatter tambahan untuk T-02/T-03: `answer` (string 40–60 kata, wajib untuk artikel terbit) dan `heroImage` (opsional, dengan `alt` dan `credit`).
@@ -782,9 +782,10 @@ Frontmatter tambahan untuk T-02/T-03: `answer` (string 40–60 kata, wajib untuk
 │            [ Ringkasan Lapangan — panel tint ]                   │
 │ ┌────────┐ Isi 68ch                                              │
 │ │Daftar  │ H2 …  paragraf  tabel  Pembeda Gejala  …              │
-│ │Isi     │ Kapan harus konsultasi                                │
-│ │sticky  │ Daftar Pustaka · Tentang Penulis · Pengungkapan       │
-│ └────────┘ Lanjut membaca                                        │
+│ │Isi     │ Tag (#chip) ← daftar isi berhenti menempel di sini    │
+│ │sticky  │                                                       │
+│ └────────┘ Langkah berikutnya · Daftar Pustaka · Tentang Penulis │
+│            (bio + WhatsApp) · Produk · Bacaan terkait            │
 │  3/12      7/12                                      2/12 kosong │
 └──────────────────────────────────────────────────────────────────┘
 
@@ -824,13 +825,15 @@ Lihat **§4.4.4** (breadcrumb), **§4.4.7** (URL & canonical), dan **§4.4.10** 
 
 #### 4.3.8. Tata letak terbangun (T-35, 2026-09-30)
 
-Urutan di kolom artikel (7/12, measure 68ch): breadcrumb → H1 → dek → baris meta (Oleh Arif Prabowo · terbit · waktu baca · komoditas · Bagikan · Cetak; tampil di semua lebar) → **gambar utama** 16:9 + keterangan → **Jawaban singkat** (blok `tint`, judul serif huruf biasa, tanpa garis kiri/label kapital) → Ringkasan lapangan (bila ada data) → **Daftar isi** lipat (<1024px) → prosa (callout `[!NOTE]` dsb. = blok `tint` tanpa garis kiri, label serif; **FAQ**: paragraf yang diawali pertanyaan tebal + baris baru ditata sebagai subjudul lewat CSS `:has`, tanpa mengubah file artikel) → Tag (teks biasa, tanpa "#", area sentuh 44px) → **Langkah berikutnya di lahan** (baris alat sesuai topik: Cuaca Tani, Kalkulator Dosis; Diagnosa Gejala hanya bila tidak "Segera hadir") → Daftar Pustaka → Tentang Penulis → Pengungkapan → Bacaan terkait.
+Urutan di kolom artikel (7/12, measure 68ch): breadcrumb → H1 → dek → baris meta (Oleh Arif Prabowo · terbit · waktu baca · komoditas · Bagikan · Cetak; tampil di semua lebar) → **gambar utama** 16:9 + keterangan → **Jawaban singkat** (blok `tint`, judul serif huruf biasa, tanpa garis kiri/label kapital) → Ringkasan lapangan (bila ada data) → **Daftar isi** lipat (<1024px) → prosa (callout `[!NOTE]` dsb. = blok `tint` tanpa garis kiri, label serif; **FAQ**: paragraf yang diawali pertanyaan tebal + baris baru ditata sebagai subjudul lewat CSS `:has`, tanpa mengubah file artikel) → Tag (chip `#tag` berlatar `tint`, "#" warna `soil`, hover isi `brand`; chip ±28px di dalam area sentuh 44px; tanpa label "Tag:") → **Langkah berikutnya di lahan** (baris alat sesuai topik: Cuaca Tani, Kalkulator Dosis; Diagnosa Gejala hanya bila tidak "Segera hadir") → Daftar Pustaka → Tentang Penulis → Pengungkapan → Bacaan terkait.
 
-Kolom kiri ≥1024px (3/12): **Daftar isi sticky** dengan progres baca dan penanda bagian aktif (garis 1px `brand-strong`, bukan bilah tebal), aturan §3.3.2. Kartu penulis sticky dihapus (info penulis sudah di byline, Tentang Penulis, dan Pengungkapan). Tidak ada data contoh di mode dev: ringkasan dan pustaka hanya dari frontmatter.
+Kolom kiri ≥1024px (3/12): **Daftar isi sticky yang berhenti setelah Tag** (blok penutup — alat, pustaka, penulis, produk, bacaan terkait — ada di baris grid terpisah tanpa kolom kiri), dengan progres baca dan penanda bagian aktif (garis 1px `brand-strong`, bukan bilah tebal), aturan §3.3.2. Kartu penulis sticky dihapus (info penulis sudah di byline, Tentang Penulis, dan Pengungkapan). Tidak ada data contoh di mode dev: ringkasan dan pustaka hanya dari frontmatter.
 
-Arsip tag `/jurnal/tag/{tag}/`: `noindex` bila < 3 artikel terbit; semua arsip tag dikeluarkan dari sitemap.
+Arsip tag `/jurnal/tag/{tag}/`: `noindex` bila < 3 artikel terbit; semua arsip tag dikeluarkan dari sitemap. Kerangka sama dengan hub topik/komoditas: `TopicSidebar` kiri 3/12 (sticky §3.3.2; <1024px di bawah daftar), konten 9/12, H1 = nama tag tanpa "#" dan tanpa label kapital, satu kalimat jumlah artikel, daftar `ArticleRow`. SEO: `<title>` = nama tag (huruf awal kapital, dipotong di batas kata ≤ 50 karakter) + " | Agritani", tanpa "Tag:" dan "#"; deskripsi netral "{n} artikel Jurnal Tani tentang {tag} oleh Arif Prabowo, konsultan pertanian senior Agritani."; breadcrumb memakai nama yang sama.
 
-**Tentang Penulis** (blok 15), sederhana: foto 56px · "Arif Prabowo · Konsultan Pertanian Senior" · satu kalimat dari DEC-016 · tautan "WhatsApp Agritani" (satu-satunya CTA WhatsApp artikel, §2.8) dan "Lihat profil"; tidak ada kotak konsultasi terpisah (keputusan pemilik 2026-09-30).
+**Produk di artikel** (setelah Tentang Penulis): hanya produk yang komoditas sasarannya cocok dengan artikel, sebagai baris ringkas (kemasan 64px · nama · kalimat konteks dari data produk — artikel Proteksi Tanaman memakai `summary` dan mengurutkan produk yang ringkasannya menyebut patogen/imun lebih dulu; topik lain memakai `role`; tanpa klaim baru · "Sasaran: {komoditas}" dari data produk · "Lihat spesifikasi"); produk lain satu baris teks; catatan "Ikuti selalu dosis pada label kemasan." Tanpa artikel yang cocok: keempat produk tampil sebagai baris yang sama (keputusan pemilik 2026-09-30).
+
+**Pengungkapan terpisah dihapus** (keputusan pemilik 2026-09-30); hubungan komersial tetap tertulis di bio Tentang Penulis ("kini sales dan konsultan produk Agritani"). **Tentang Penulis** (blok 15), sederhana: foto 56px · "Arif Prabowo · Konsultan Pertanian Senior" · satu kalimat dari DEC-016 · tautan "WhatsApp Agritani" (satu-satunya CTA WhatsApp artikel, §2.8) dan "Lihat profil"; tidak ada kotak konsultasi terpisah (keputusan pemilik 2026-09-30).
 
 #### 4.3.7. Pengukuran
 
