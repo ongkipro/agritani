@@ -1,6 +1,6 @@
 # Design Contract: Agritani — Portal Tani & Profil Distributor
 
-> **Entitas**: Agritani ([agritani.com](https://agritani.com)) — portal pertanian yang dikelola resmi oleh Arif Prabowo untuk PT Agritani Internasional; 4 produk unggulan; kerja sama dengan brand pupuk & perusahaan pertanian ([DEC-016](DECISIONS.md))
+> **Entitas**: Agritani ([agritani.com](https://agritani.com)) — portal pertanian yang dikelola resmi oleh Arif Prabowo dengan nama **Agritani Official** (belum berbadan hukum, DEC-017); 4 produk unggulan; kerja sama dengan brand pupuk & perusahaan pertanian ([DEC-016](DECISIONS.md))
 > **Status**: Brand direction & behavior ACCEPTED (2026-09-29) · Composition **PROPOSED, reference-backed** (T-00 selesai) · Rendered UI **UNVERIFIED** (belum ada kode)
 > **Stack**: Astro 7 static + Tailwind CSS 4 `@theme` ([DEC-004](DECISIONS.md)) · satu tema terang ([DEC-008](DECISIONS.md))
 > **Owner skill**: `design-taste` → `impeccable` → `ui-validation`. Bukan admin UI.
@@ -595,7 +595,7 @@ menyusun ulang kerangka sendiri.
 | 3 | Isi | `<main id="isi">` | Satu `<h1>` per halaman; heading tidak melompat level |
 | 4 | Footer | `<footer>` berlatar `brand`, teks putih | Tanpa garis di atas footer; transisi dari band sebelumnya lewat warna latar |
 | 4a | Kolom footer | Alat Tani (4 alat) · Jurnal Tani (6 topik) · Produk (4 produk) · Perusahaan (Tentang Kami, Penulis, Kemitraan, Kebijakan Privasi) · Kontak (nomor WhatsApp resmi, alamat — OQ-1/OQ-7) | <1024px: kolom menjadi daftar bertumpuk, bukan akordeon. Nomor WhatsApp ditulis sebagai teks + tautan biasa, tanpa ikon/tombol berwarna (§2.8) |
-| 4b | Baris legal | "© {tahun} PT Agritani Internasional · Portal pertanian dikelola Arif Prabowo" | Tahun dari waktu build |
+| 4b | Baris legal | "© {tahun} Agritani Official · Portal pertanian dikelola Arif Prabowo" | Tahun dari waktu build |
 
 Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol WhatsApp melayang, widget chat, pengumuman berjalan.
 
@@ -709,7 +709,7 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 
 **Tentang Kami `/tentang-kami/`** (Sains)
 
-1. H1 "Tentang Agritani" · portal pertanian yang dikelola resmi Arif Prabowo untuk PT Agritani Internasional · kerja sama dengan brand pupuk & perusahaan pertanian (tanpa nama) · asal teknologi produk (Thailand, Jepang).
+1. H1 "Tentang Agritani" · portal pertanian yang dikelola resmi Arif Prabowo (Agritani Official) · kerja sama dengan brand pupuk & perusahaan pertanian (tanpa nama) · asal teknologi produk (Thailand, Jepang).
 2. Pendekatan: aktivasi imun tanaman — prosa, bukan kartu.
 3. Alur distribusi `01–03` (urutan nyata) · legalitas & identitas perusahaan (OQ-7).
 4. Pengelola Jurnal Tani (Arif Prabowo, foto) → profil penulis.
@@ -948,7 +948,7 @@ Aturan:
 
 - `author.name` hanya nama ("Arif Prabowo"); tanpa `honorificPrefix` (bukan profesor, DEC-016); jabatan di `jobTitle` (sesuai panduan Google). `affiliation` hanya bila institusi diberikan (OQ-4).
 - `image` artikel: 3 turunan `heroImage` (16:9, 4:3, 1:1, ≥ 50.000 piksel) dibuat `astro:assets` saat build; tanpa `heroImage` → properti `image` dihilangkan (tidak memakai logo sebagai gambar artikel).
-- `Organization`: `name` "PT Agritani Internasional", `alternateName` "Agritani", `url`, `logo` (PNG 512×512 dari `agritani-mark.svg`), `contactPoint` (WhatsApp, bila OQ-1 terjawab), `address` (bila OQ-7). Tanpa `sameAs` sampai akun media sosial resmi diberikan.
+- `Organization`: `name` "Agritani", `alternateName` "Agritani Official", tanpa `legalName` (DEC-017), `url`, `logo` (PNG 512×512 dari `agritani-mark.svg`), `contactPoint` (WhatsApp, bila OQ-1 terjawab), `address` (bila OQ-7). Tanpa `sameAs` sampai akun media sosial resmi diberikan.
 - `WebSite` di Beranda saja: `name`, `url`, `inLanguage`, `publisher` → organisasi. **Tanpa** `SearchAction` (sitelinks search box dihentikan Google sejak 21-11-2024 — Search Central Blog "Farewell, Sitelinks Search Box").
 - Hanya menandai konten yang terlihat; tanpa `FAQPage`, `HowTo`, `Product`, `Review`/`AggregateRating` (DEC-007).
 - Validasi: Schema Markup Validator + Rich Results Test untuk satu contoh per tipe (T-13).

@@ -1,6 +1,6 @@
 # PRD: Agritani — Profil Perusahaan, Jurnal Tani, Alat Tani & Konsultasi
 
-> **Entitas**: PT Agritani Internasional ([agritani.com](https://agritani.com))  
+> **Entitas**: Agritani Official ([agritani.com](https://agritani.com)), belum berbadan hukum (DEC-017)  
 > **Status**: Accepted (revisi 2026-09-29: empat pilar situs, Alat Tani REQ-09…REQ-12, Konsultasi) · development belum diotorisasi  
 > **Owner**: Business System Architect & Full-Stack Developer  
 > **Target Release**: Q4 2026 / Version 1.0.0  
@@ -12,7 +12,7 @@
 Sektor pertanian Indonesia menghadapi jurang informasi kritis:
 1. **Disinformasi & Ketergantungan Kimia Berlebih**: Petani kesulitan membedakan gejala penyakit tanaman di lahan (seperti membedakan thrips vs virus gemini, atau layu fusarium vs layu bakteri), sehingga sering melakukan penyemprotan pestisida kimia secara salah dosis dan tidak efektif.
 2. **Ketiadaan Portal Sains Terbuka yang Kredibel**: Mayoritas media pertanian daring di Indonesia dipenuhi oleh berita seremonial politik atau artikel clickbait tanpa validasi ilmiah dan tanpa protokol penanganan yang teruji.
-3. **Kebutuhan Identitas Korporasi Bioteknologi Berkelanjutan**: PT Agritani Internasional membutuhkan saluran representasi digital yang menggabungkan kredibilitas produk unggulan aktivator imun tanaman dan kerja sama dengan brand serta perusahaan pertanian (DEC-016) dengan media publikasi sains agronomi terbuka bergaya *Medium/Substack* untuk mengedukasi pasar dan memperluas jaringan distributor B2B nasional.
+3. **Kebutuhan Identitas Korporasi Bioteknologi Berkelanjutan**: Agritani membutuhkan saluran representasi digital yang menggabungkan kredibilitas produk unggulan aktivator imun tanaman dan kerja sama dengan brand serta perusahaan pertanian (DEC-016) dengan media publikasi sains agronomi terbuka bergaya *Medium/Substack* untuk mengedukasi pasar dan memperluas jaringan distributor B2B nasional.
 
 ---
 
@@ -23,7 +23,7 @@ Sektor pertanian Indonesia menghadapi jurang informasi kritis:
 | **Jurnal Tani** | Artikel agronomi oleh Arif Prabowo (Konsultan Pertanian Senior, pengelola portal), dengan pengungkapan hubungan komersial; sumber trafik organik & kepercayaan | `/jurnal/…`, `/penulis/…` |
 | **Alat Tani** | Tools praktis yang dipakai berulang di lahan: Diagnosa Gejala, Kalender Tanam, Cuaca Tani, Kalkulator Dosis | `/alat/…` |
 | **Konsultasi** | Jalur tanya langsung ke tim agronomi via WhatsApp, dengan pesan terstruktur | `/konsultasi/` + tombol berkonteks di seluruh situs |
-| **Profil perusahaan** | Agritani sebagai portal pertanian yang dikelola resmi Arif Prabowo untuk PT Agritani Internasional; produk unggulan & kerja sama brand/perusahaan pertanian (DEC-016) | `/tentang-kami/` |
+| **Profil perusahaan** | Agritani sebagai portal pertanian yang dikelola resmi Arif Prabowo sebagai Agritani Official (DEC-017); produk unggulan & kerja sama brand/perusahaan pertanian (DEC-016) | `/tentang-kami/` |
 
 **Produk** (4) tampil sebagai **referensi** yang relevan dengan komoditas, bukan etalase jualan. **B2B/kemitraan** adalah sasaran kedua: tersedia dan mudah ditemukan, tetapi tidak mendominasi pengalaman petani.
 
@@ -70,7 +70,7 @@ Sektor pertanian Indonesia menghadapi jurang informasi kritis:
 ## 5. Requirements (EARS Format)
 
 ### 5.1. Core System & Corporate Profile
-* **REQ-01 (Corporate Authority)**: The system shall present Agritani as an agriculture portal officially managed by Arif Prabowo for PT Agritani Internasional, partnering with fertilizer brands and agricultural companies that are not named (DEC-016), its immune-cell-activator approach, its technology origins (Thailand, Japan), and its catalogue of exactly four flagship products — Aussie, BENSU, Kojien, and Saratoga — each with target commodities, function, composition, application method, and registration number when provided.
+* **REQ-01 (Corporate Authority)**: The system shall present Agritani as an agriculture portal officially managed by Arif Prabowo as Agritani Official (not a registered company, DEC-017), partnering with fertilizer brands and agricultural companies that are not named (DEC-016), its immune-cell-activator approach, its technology origins (Thailand, Japan), and its catalogue of exactly four flagship products — Aussie, BENSU, Kojien, and Saratoga — each with target commodities, function, composition, application method, and registration number when provided.
 * **REQ-02 (B2B Distributor Ingestion)**: When a potential partner submits the partnership form with all required fields valid (name, business name, business type, province/regency, area or capacity, WhatsApp number), the system shall open a WhatsApp conversation to the official Agritani partnership number with a prefilled structured message, without storing the submission on any server. If a required field is invalid, the system shall identify the field, explain the correction, and keep all entered values.
 
 ### 5.2. Editorial Publication & Agriculture Journal
@@ -114,7 +114,7 @@ Anatomi setiap tipe halaman: [DESIGN.md](DESIGN.md) §4.2. Semua URL memakai tra
 /penulis/arif-prabowo/       -> Profil penulis & pengelola (ProfilePage)
 /produk/                     -> 4 produk sebagai referensi: Aussie, BENSU, Kojien, Saratoga (per komoditas)
 /produk/[slug]/              -> Detail produk: fungsi, kandungan, cara pakai, legalitas
-/tentang-kami/               -> Profil PT Agritani Internasional
+/tentang-kami/               -> Profil Agritani
 /kemitraan-distributor/      -> Alur & formulir kemitraan B2B
 /kebijakan-privasi/          -> Kebijakan Privasi & Legalitas
 /cari/                       -> Pencarian Pagefind (noindex)
@@ -135,7 +135,7 @@ Anatomi setiap tipe halaman: [DESIGN.md](DESIGN.md) §4.2. Semua URL memakai tra
 
 ## 8. Open Questions — Checklist Data dari Pemilik
 
-Data yang hanya bisa diberikan PT Agritani Internasional / Paduka Ongki.
+Data yang hanya bisa diberikan pemilik Agritani / Paduka Ongki.
 Tidak ada item yang boleh diisi dengan tebakan. Kolom "Format" adalah yang
 dibutuhkan implementasi; kolom "Status" diperbarui saat data diterima.
 

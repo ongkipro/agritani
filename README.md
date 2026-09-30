@@ -1,7 +1,7 @@
 # Agritani — Hybrid Corporate Profile & Agriculture Science Portal
 
 > **Status:** Active | **Repo:** [ongkipro/agritani](https://github.com/ongkipro/agritani)  
-> **Entitas Resmi:** PT Agritani Internasional ([agritani.com](https://agritani.com))  
+> **Nama resmi:** Agritani Official ([agritani.com](https://agritani.com)); belum berbadan hukum (DEC-017)  
 > **Stack:** Astro 7 / Tailwind CSS 4 / Content Layer / Pagefind / Schema.org JSON-LD  
 > **Updated:** 2026-09-29  
 
@@ -9,7 +9,7 @@
 
 ## 🌾 Ikhtisar Proyek
 
-**Agritani** adalah portal pertanian yang dikelola resmi oleh Arif Prabowo (Konsultan Pertanian Senior) untuk PT Agritani Internasional, dengan empat pilar (DEC-016):
+**Agritani** adalah portal pertanian yang dikelola resmi oleh Arif Prabowo (Konsultan Pertanian Senior) sebagai Agritani Official, dengan empat pilar (DEC-016):
 1. **Jurnal Tani** — artikel agronomi berbasis pustaka oleh Arif Prabowo, dengan pengungkapan hubungan komersialnya.
 2. **Alat Tani** — Diagnosa Gejala, Kalender Tanam, Cuaca Tani (data BMKG), Kalkulator Dosis; gratis, tanpa akun.
 3. **Konsultasi** — tanya langsung ke tim agronomi via WhatsApp dengan pesan terstruktur.
@@ -39,7 +39,7 @@ Setiap dokumen di bawah ini memiliki fungsi spesifik dan merupakan sumber kebena
 - 📄 [`docs/content/articles/`](./docs/content/articles/) — Bank 150 naskah artikel agronomi (6 topik); terbit bertahap setelah pustaka & Jawaban Singkat lengkap.
 - 🌿 [`docs/content/perkebunan-sawit-content-vault.md`](./docs/content/perkebunan-sawit-content-vault.md) — Bank pengetahuan agronomi perkebunan kelapa sawit & Ganoderma.
 - 🍅 [`docs/content/hortikultura-urban-farming-content-vault.md`](./docs/content/hortikultura-urban-farming-content-vault.md) — Bank pengetahuan hortikultura & urban farming.
-- 🏢 [`docs/content/company-profile.md`](./docs/content/company-profile.md) — Naskah resmi profil korporasi PT Agritani Internasional.
+- 🏢 [`docs/content/company-profile.md`](./docs/content/company-profile.md) — Naskah profil awal (historis; menyebut nama PT yang tidak dipakai lagi, DEC-017).
 - 🔍 [`docs/research/seo-keyword-research-report.md`](./docs/research/seo-keyword-research-report.md) — Laporan riset kata kunci SEO, search intent, dan pemetaan PAA.
 - 📑 [`docs/research/keywords-masterlist.md`](./docs/research/keywords-masterlist.md) — Masterlist taksonomi 370 kata kunci pertanian Indonesia.
 - 🔬 [`docs/research/scientific-validation.md`](./docs/research/scientific-validation.md) — Validasi literatur ilmiah (IRRI, MPOB, Frontiers, MDPI, J. Econ. Entomol).

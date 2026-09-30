@@ -1,6 +1,6 @@
 # System Architecture: Agritani Hybrid Corporate & Portal
 
-> **Entitas**: PT Agritani Internasional ([agritani.com](https://agritani.com))
+> **Entitas**: Agritani Official ([agritani.com](https://agritani.com)), belum berbadan hukum (DEC-017)
 > **Status**: Accepted architecture (pre-implementation) · revisi 2026-09-29
 > **Updated**: 2026-09-29
 

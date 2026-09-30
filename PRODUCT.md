@@ -32,7 +32,7 @@ apply without friction.
 
 Agritani is an agriculture portal officially managed by **Arif Prabowo**
 (Senior Agricultural Consultant; more than 8 years in agriculture and research,
-per the owner) for PT Agritani Internasional (DEC-016, owner decision
+per the owner) as **Agritani Official** (not a registered company; DEC-016, DEC-017, owner decision
 2026-09-30). Aussie, BENSU, Kojien, and Saratoga are Agritani's flagship
 products; Agritani also partners with several fertilizer brands and
 agricultural companies, which the site does not name (NG-3). Arif also works in
