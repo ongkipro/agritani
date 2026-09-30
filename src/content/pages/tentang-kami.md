@@ -1,7 +1,7 @@
 ---
-title: "Tentang PT Agritani Internasional"
-description: "Profil PT Agritani Internasional, distributor resmi sarana pertanian dan bioteknologi tanaman presisi hasil aliansi teknologi teruji dari Thailand dan Jepang."
-updatedDate: 2026-09-29
+title: "Tentang Agritani"
+description: "Agritani adalah portal pertanian yang dikelola resmi oleh Arif Prabowo untuk PT Agritani Internasional, menyajikan panduan agronomi dan empat produk unggulan."
+updatedDate: 2026-09-30
 ---
 
-PT Agritani Internasional adalah distributor resmi sarana produksi pertanian dan bioteknologi tanaman modern di Indonesia.
+Agritani adalah portal pertanian yang dikelola resmi oleh Arif Prabowo untuk PT Agritani Internasional, menghadirkan produk unggulan nutrisi tanaman serta rujukan ilmiah lapangan di Indonesia.

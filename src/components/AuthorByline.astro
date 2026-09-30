@@ -1,19 +1,16 @@
 ---
+import AuthorAvatar from './AuthorAvatar.astro';
+
 interface Props {
   author?: string;
   role?: string;
 }
 
-const { author = 'Prof. Arif Prabowo', role = 'Profesor Pertanian · Moderator Jurnal Tani' } = Astro.props;
+const { author = 'Arif Prabowo', role = 'Konsultan Pertanian Senior · Pengelola Jurnal Tani' } = Astro.props;
 ---
 
 <div class="flex items-center gap-3.5 my-4">
-  <div
-    class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-white text-sm shrink-0 bg-[var(--color-brand)]"
-    aria-hidden="true"
-  >
-    AP
-  </div>
+  <AuthorAvatar size={40} class="w-10 h-10" />
   <address class="not-italic text-sm leading-snug">
     <div>
       <span class="text-[var(--color-text-muted)]">Oleh</span>

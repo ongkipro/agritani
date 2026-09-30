@@ -171,7 +171,7 @@ describe('Content Integrity Assertions', () => {
             {
               id: 'gejala-busuk',
               article: 'artikel-draf',
-              reviewedBy: 'Prof. Arif Prabowo',
+              reviewedBy: 'Arif Prabowo',
             },
           ],
           isDraftPreview: false,

@@ -1,0 +1,27 @@
+---
+/**
+ * src/components/AuthorAvatar.astro
+ * Arif Prabowo portrait (owner-approved edit of a real photo, 2026-09-30, OQ-4).
+ * Square crop, 2px radius (DESIGN §3.3). Decorative (alt="") when the name is printed beside it.
+ */
+import { Image } from 'astro:assets';
+import portrait from '../assets/images/authors/arif-prabowo.webp';
+
+interface Props {
+  /** Rendered edge in CSS px; drives the generated widths. */
+  size: number;
+  class?: string;
+  decorative?: boolean;
+}
+
+const { size, class: className = '', decorative = true } = Astro.props;
+---
+
+<Image
+  src={portrait}
+  widths={[size, size * 2]}
+  sizes={`${size}px`}
+  quality={70}
+  alt={decorative ? '' : 'Foto Arif Prabowo'}
+  class={`aspect-square object-cover object-[50%_22%] rounded-[2px] shrink-0 ${className}`}
+/>

@@ -159,7 +159,7 @@ export function buildSeo(input: SeoInput): SeoOutput {
       alternateName: 'Agritani',
       url: `${SITE_URL}/`,
       logo: `${SITE_URL}/favicon.svg`,
-      description: 'Distributor resmi sarana produksi dan biostimulan pertanian presisi.',
+      description: 'Portal pertanian resmi PT Agritani Internasional yang dikelola Arif Prabowo, menghadirkan empat produk unggulan dan panduan agronomi lapangan.',
     },
     {
       '@type': 'WebSite',
@@ -311,13 +311,15 @@ export function buildSeo(input: SeoInput): SeoOutput {
 
     graph.push(articleNode);
 
-    // Person schema node for author
+    // Person schema node for author (DEC-016, DESIGN §4.4.5)
     graph.push({
       '@type': 'Person',
       '@id': `${SITE_URL}/penulis/arif-prabowo/#person`,
       name: authorName,
-      honorificPrefix: 'Prof.',
-      jobTitle: 'Profesor Pertanian',
+      jobTitle: 'Konsultan Pertanian Senior',
+      worksFor: {
+        '@id': `${SITE_URL}/#organization`,
+      },
       url: authorUrl,
     });
   }
@@ -327,7 +329,7 @@ export function buildSeo(input: SeoInput): SeoOutput {
     description,
     canonical,
     robots,
-    author: article?.author || (ogType === 'article' ? 'Prof. Arif Prabowo' : undefined),
+    author: article?.author || (ogType === 'article' ? 'Arif Prabowo' : undefined),
     og: {
       title: resolvedTitle,
       description,

@@ -1,7 +1,7 @@
 ---
-title: "Prof. Arif Prabowo, Penulis"
-description: "Halaman profil Prof. Arif Prabowo, Profesor Pertanian dan moderator Jurnal Tani PT Agritani Internasional yang memuat daftar artikel publikasi terbit."
-updatedDate: 2026-09-29
+title: "Arif Prabowo, Konsultan Pertanian Senior | Agritani"
+description: "Profil Arif Prabowo, Konsultan Pertanian Senior dan Pengelola Jurnal Tani Agritani. Pengalaman lebih dari 8 tahun riset lapangan dan budidaya tanaman."
+updatedDate: 2026-09-30
 ---
 
-Prof. Arif Prabowo adalah Profesor Pertanian dan moderator Jurnal Tani PT Agritani Internasional.
+Arif Prabowo adalah Konsultan Pertanian Senior dan Pengelola Jurnal Tani Agritani. Beliau memiliki pengalaman lebih dari 8 tahun di bidang pertanian dan riset, mempelajari beragam komoditas dan praktik budidaya, serta kini bertindak sebagai sales dan konsultan produk unggulan Agritani (Aussie, BENSU, Saratoga, dan Kojien).

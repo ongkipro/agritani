@@ -167,7 +167,7 @@ describe('Crop Calendar Date & Calculation Engine (REQ-09)', () => {
   it('filters unreviewed calendars in production while allowing them in draft preview (ARCHITECTURE §3.1)', () => {
     const list = [
       { id: 'padi', reviewedBy: undefined },
-      { id: 'cabai', reviewedBy: 'Prof. Arif Prabowo' },
+      { id: 'cabai', reviewedBy: 'Arif Prabowo' },
       { id: 'tomat', reviewedBy: '' },
     ];
 

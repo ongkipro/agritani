@@ -3,7 +3,9 @@ import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../../components/Breadcrumb.astro';
 import ArticleList from '../../../components/ArticleList.astro';
+import ArticleRow from '../../../components/ArticleRow.astro';
 import TopicSidebar from '../../../components/TopicSidebar.astro';
+import { TOPICS, topicName } from '../../../lib/topics';
 import type { SeoInput } from '../../../lib/seo';
 
 export async function getStaticPaths() {
@@ -46,6 +48,28 @@ const { commodity, articles } = Astro.props;
 
 // Fetch optional introductory text
 const pageEntry = await getEntry('pages', `komoditas-${commodity.id}`);
+
+// Group articles by topic if multiple topics exist (T-31 Butir 2a)
+const distinctTopics = Array.from(new Set(articles.map((a: any) => a.data.topic)));
+const hasMultipleTopics = distinctTopics.length >= 2;
+
+const groupedArticles = hasMultipleTopics
+  ? TOPICS.map((t) => ({
+      topic: t,
+      articles: articles.filter((a: any) => a.data.topic === t.slug),
+    })).filter((g) => g.articles.length > 0)
+  : [];
+
+// Relevant products for this commodity (max 2, order: aussie, kojien, bensu, saratoga) (T-31 Butir 2b)
+const allProducts = await getCollection('products');
+const productOrder = ['aussie', 'kojien', 'bensu', 'saratoga'];
+const relevantProducts = productOrder
+  .map((id) => allProducts.find((p) => p.id === id))
+  .filter((p): p is NonNullable<typeof p> => {
+    if (!p) return false;
+    return p.data.commodities.some((c: any) => (typeof c === 'string' ? c : c.id) === commodity.id);
+  })
+  .slice(0, 2);
 
 const breadcrumbItems = [
   { name: 'Beranda', url: '/' },
@@ -101,20 +125,75 @@ const seo: SeoInput = {
 
     <!-- Article Listing -->
     <section class="mt-8" aria-labelledby="daftar-artikel-komoditas-heading">
-      <div class="flex items-center justify-between mb-4">
+      <div class="flex items-center justify-between mb-6">
         <h2 id="daftar-artikel-komoditas-heading" class="text-sm font-bold text-[var(--color-soil)]">
           Daftar Artikel ({articles.length} pembahasan)
         </h2>
       </div>
 
-      <ArticleList
-        articles={articles}
-        initialCount={6}
-        batchSize={6}
-        listId={`komoditas-${commodity.id}`}
-        emptyMessage="Belum ada artikel yang diterbitkan untuk komoditas ini."
-      />
+      {hasMultipleTopics ? (
+        <div class="space-y-10">
+          {groupedArticles.map((group) => (
+            <div class="space-y-4" aria-labelledby={`topic-group-${group.topic.slug}`}>
+              <h2
+                id={`topic-group-${group.topic.slug}`}
+                class={`topic-${group.topic.slug} flex items-center gap-2 text-base sm:text-lg font-bold text-[var(--color-soil)]`}
+              >
+                <span class="w-2.5 h-2.5 rounded-full bg-[var(--topic)]" aria-hidden="true"></span>
+                <span>{topicName(group.topic.slug)}</span>
+                <span class="text-xs font-normal text-[var(--color-text-muted)]">({group.articles.length})</span>
+              </h2>
+              <div class="space-y-2">
+                {group.articles.map((article: any) => (
+                  <ArticleRow article={article} />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <ArticleList
+          articles={articles}
+          initialCount={6}
+          batchSize={6}
+          listId={`komoditas-${commodity.id}`}
+          emptyMessage="Belum ada artikel yang diterbitkan untuk komoditas ini."
+        />
+      )}
     </section>
+
+    <!-- Relevant Products (T-31 Butir 2b) -->
+    {relevantProducts.length > 0 && (
+      <section class="mt-12 pt-8 border-t border-[var(--color-border)]" aria-labelledby="produk-relevan-heading">
+        <h2 id="produk-relevan-heading" class="font-serif text-2xl font-bold text-[var(--color-text)] mb-6">
+          Produk yang relevan
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          {relevantProducts.map((prod) => (
+            <div class="flex flex-col justify-between group">
+              <div>
+                <h3 class="font-serif text-xl font-bold text-[var(--color-brand-strong)] group-hover:text-[var(--color-brand)] transition-colors">
+                  <a href={`/produk/${prod.id}/`}>{prod.data.name}</a>
+                </h3>
+                <p class="text-xs font-semibold text-[var(--color-soil)] mt-1">
+                  {prod.data.tagline || prod.data.role}
+                </p>
+                <p class="text-sm text-[var(--color-text-muted)] mt-2 leading-relaxed">
+                  {prod.data.role}
+                </p>
+              </div>
+              <div class="mt-3">
+                <a href={`/produk/${prod.id}/`} class="text-xs font-bold text-[var(--color-brand-strong)] hover:underline inline-flex items-center gap-1">
+                  <span>Lihat spesifikasi & dosis</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
     </div>
     </div>
   </div>

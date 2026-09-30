@@ -10,7 +10,7 @@ import { filterVisibleSymptoms, getActiveCommodities } from './triage.ts';
 describe('Triage Review Gating (ARCHITECTURE §3.1, DEC-015)', () => {
   const sampleSymptoms = [
     { id: 'sym-1', commodity: 'cabai', diagnosis: 'Antraknosa', reviewedBy: undefined },
-    { id: 'sym-2', commodity: 'padi', diagnosis: 'Blas Daun', reviewedBy: 'Prof. Arif Prabowo' },
+    { id: 'sym-2', commodity: 'padi', diagnosis: 'Blas Daun', reviewedBy: 'Arif Prabowo' },
     { id: 'sym-3', commodity: 'jagung', diagnosis: 'Bulai Jagung', reviewedBy: '' },
     { id: 'sym-4', commodity: 'kelapa-sawit', diagnosis: 'Ganoderma', reviewedBy: '   ' },
   ];
@@ -28,7 +28,7 @@ describe('Triage Review Gating (ARCHITECTURE §3.1, DEC-015)', () => {
     assert.equal(visible.length, 1);
     assert.equal(visible[0].id, 'sym-2');
     assert.equal(visible[0].diagnosis, 'Blas Daun');
-    assert.equal(visible[0].reviewedBy, 'Prof. Arif Prabowo');
+    assert.equal(visible[0].reviewedBy, 'Arif Prabowo');
   });
 
   it('includes unreviewed symptoms in draft preview mode (isDraftPreview: true)', () => {

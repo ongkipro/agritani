@@ -1,29 +1,28 @@
 ---
 /**
  * src/pages/penulis/arif-prabowo.astro
- * Author profile page for Prof. Arif Prabowo (DESIGN §4.2.3, §4.4.3, §4.4.5)
- * Bio strictly constrained: "Profesor Pertanian · Moderator Jurnal Tani" (agritani-launch-plan A.4, OQ-4).
+ * Author profile page for Arif Prabowo (DEC-016, DESIGN §4.2.3, §4.4.3, §4.4.5)
+ * Bio strictly constrained per DEC-016.
  * Invariants: Single WhatsApp CTA, 0/0/0 CSP, 2px radius, no divider lines, text contrast >= 7:1.
  */
 import { getCollection } from 'astro:content';
-import { Picture } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import ArticleList from '../../components/ArticleList.astro';
 import ConsultPrompt from '../../components/ConsultPrompt.astro';
-import profArifImage from '../../assets/images/dummy/prof-arif-prabowo.webp';
+import AuthorAvatar from '../../components/AuthorAvatar.astro';
 import type { SeoInput } from '../../lib/seo';
 
 const breadcrumbs = [
   { name: 'Beranda', url: '/' },
   { name: 'Jurnal Tani', url: '/jurnal/' },
-  { name: 'Prof. Arif Prabowo', url: '/penulis/arif-prabowo/' },
+  { name: 'Arif Prabowo', url: '/penulis/arif-prabowo/' },
 ];
 
 const seo: SeoInput = {
-  title: 'Prof. Arif Prabowo, Penulis',
+  title: 'Arif Prabowo, Konsultan Pertanian Senior | Agritani',
   description:
-    'Halaman profil Prof. Arif Prabowo, Profesor Pertanian dan moderator Jurnal Tani PT Agritani Internasional yang memuat daftar artikel publikasi terbit.',
+    'Profil Arif Prabowo, Konsultan Pertanian Senior dan Pengelola Jurnal Tani Agritani. Pengalaman lebih dari 8 tahun riset lapangan dan budidaya tanaman.',
   canonicalPath: '/penulis/arif-prabowo/',
   breadcrumbs,
   pageType: 'profile',
@@ -35,7 +34,7 @@ const includeDrafts =
 
 const allArticles = await getCollection('articles');
 
-// Filter articles authored or moderated by Prof. Arif Prabowo
+// Filter articles authored or moderated by Arif Prabowo
 const authorArticles = allArticles.filter(
   (a) => !a.data.author || a.data.author === 'Arif Prabowo' || a.data.author.includes('Arif')
 );
@@ -56,36 +55,22 @@ const sortedArticles = visibleArticles.sort(
     <!-- Profile Header (Sains Editorial Canvas) -->
     <header class="max-w-[68ch] mx-auto my-8 sm:my-12">
       <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-6">
-        <!-- Official Profile Portrait -->
-        <div
-          class="w-24 h-24 sm:w-28 sm:h-28 rounded-[2px] overflow-hidden shrink-0 bg-[var(--color-canvas)]"
-        >
-          <Picture
-            src={profArifImage}
-            formats={['webp']}
-            widths={[160, 320]}
-            sizes="7rem"
-            quality={85}
-            alt="Foto resmi Prof. Arif Prabowo, Dewan Pakar & Moderator Jurnal Tani"
-            class="w-full h-full object-cover"
-            loading="eager"
-          />
-        </div>
+        <AuthorAvatar size={96} class="w-20 h-20 sm:w-24 sm:h-24" decorative={false} />
 
         <div class="space-y-1">
           <h1 class="font-serif text-3xl sm:text-4xl font-bold text-[var(--color-text)] tracking-tight">
-            Prof. Arif Prabowo
+            Arif Prabowo
           </h1>
           <p class="text-base sm:text-lg font-semibold text-[var(--color-brand)]">
-            Profesor Pertanian · Moderator Jurnal Tani
+            Konsultan Pertanian Senior · Pengelola Jurnal Tani
           </p>
         </div>
       </div>
 
-      <!-- Bio Prose: Strictly limited to authorized fact -->
+      <!-- Bio Prose: Strictly limited to authorized fact (DEC-016) -->
       <div class="space-y-4 text-base sm:text-lg text-[var(--color-text)] leading-relaxed font-sans mb-8">
         <p>
-          Prof. Arif Prabowo adalah Profesor Pertanian dan moderator Jurnal Tani PT Agritani Internasional.
+          Arif Prabowo memiliki pengalaman lebih dari 8 tahun di bidang pertanian dan riset, mempelajari beragam komoditas serta praktik budidaya di berbagai wilayah Indonesia. Saat ini beliau bertindak sebagai sales dan konsultan produk unggulan Agritani (Aussie, BENSU, Saratoga, dan Kojien), serta mengelola resmi portal pertanian Agritani yang bekerja sama dengan beberapa brand pupuk dan perusahaan pertanian.
         </p>
       </div>
 
@@ -95,7 +80,7 @@ const sortedArticles = visibleArticles.sort(
           Pengungkapan Editorial
         </span>
         <p>
-          Artikel di Jurnal Tani ditulis oleh Prof. Arif Prabowo sebagai moderator Jurnal Tani, portal edukasi PT Agritani Internasional, distributor produk nutrisi dan aktivator tanaman.
+          Artikel ini ditulis oleh Arif Prabowo, konsultan pertanian senior dan pengelola Jurnal Tani. Beliau juga bekerja sebagai sales dan konsultan produk Agritani (Aussie, BENSU, Kojien, Saratoga). Ikuti selalu petunjuk pada label kemasan.
         </p>
       </div>
     </header>

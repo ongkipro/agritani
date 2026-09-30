@@ -1,4 +1,5 @@
 ---
+import AuthorAvatar from './AuthorAvatar.astro';
 ---
 
 <section class="my-10 pt-8" aria-labelledby="tentang-penulis-heading">
@@ -9,18 +10,13 @@
     Tentang Penulis
   </h2>
   <div class="flex flex-col sm:flex-row gap-4 items-start">
-    <div
-      class="w-14 h-14 rounded-full flex items-center justify-center font-bold text-white text-lg shrink-0 bg-[var(--color-brand)]"
-      aria-hidden="true"
-    >
-      AP
-    </div>
+    <AuthorAvatar size={56} class="w-14 h-14" />
     <div class="flex-1 text-sm leading-relaxed text-[var(--color-text)]">
       <div class="font-bold text-base text-[var(--color-text)] mb-1">
-        Prof. Arif Prabowo
+        Arif Prabowo
       </div>
       <p class="text-[var(--color-text-muted)] mb-2">
-        Profesor Pertanian · Moderator Jurnal Tani
+        Konsultan Pertanian Senior · Pengelola Jurnal Tani
       </p>
       <a
         href="/penulis/arif-prabowo/"

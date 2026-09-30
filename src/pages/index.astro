@@ -20,12 +20,8 @@ import type { SeoInput } from '../lib/seo';
 
 // Media assets
 import heroImage from '../assets/images/dummy/hero-beranda.webp';
-import alatImage from '../assets/images/dummy/alat-tani.webp';
 import konsultasiImage from '../assets/images/dummy/konsultasi.webp';
-import kemitraanImage from '../assets/images/dummy/kemitraan.webp';
-import tentangKamiImage from '../assets/images/dummy/tentang-kami.webp';
-import topikBudidayaImage from '../assets/images/dummy/topik-budidaya.webp';
-import profArifImage from '../assets/images/dummy/prof-arif-prabowo.webp';
+import AuthorAvatar from '../components/AuthorAvatar.astro';
 
 // 1. Fetch articles (respecting draft preview environment)
 const isDraftPreview = import.meta.env.PUBLIC_INCLUDE_DRAFTS === 'true';
@@ -53,10 +49,10 @@ const sortedProducts = [...allProducts].sort((a, b) => {
 
 // SEO configuration
 const seoProps: SeoInput = {
-  title: 'Distributor Resmi Sarana Pertanian Modern | Agritani',
-  metaTitle: 'Distributor Resmi Sarana Pertanian Modern | Agritani',
+  title: 'Agritani: Portal Pertanian & Produk Unggulan Presisi',
+  metaTitle: 'Agritani: Portal Pertanian & Produk Unggulan Presisi',
   description:
-    'Distributor resmi saprotan dan biostimulan aktivator sel tanaman. Dilengkapi Jurnal Tani karya Prof. Arif Prabowo dan alat diagnosis hama, kalender tanam, serta cuaca BMKG.',
+    'Portal pertanian resmi yang dikelola Arif Prabowo untuk PT Agritani Internasional. Menyajikan panduan Jurnal Tani teruji, instrumen lapangan, dan empat produk unggulan.',
   canonicalPath: '/',
   pageType: 'website',
   ogType: 'website',
@@ -67,7 +63,7 @@ const seoProps: SeoInput = {
 <BaseLayout seo={seoProps}>
 
   <!-- 1. Hero Masthead & Precision Tools Deck -->
-  <section class="relative bg-white pt-6 pb-12 sm:pt-10 sm:pb-20">
+  <section class="relative bg-[var(--color-canvas)] pt-6 pb-12 sm:pt-10 sm:pb-20">
     <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Asymmetric Editorial Grid (7/12 Landscape Visual + 5/12 Field Utility Deck) -->
@@ -93,11 +89,11 @@ const seoProps: SeoInput = {
 
           <!-- Hero Content -->
           <div class="relative z-10 max-w-[38ch]">
-            <h1 class="display-editorial text-white drop-shadow-sm">
+            <h1 class="display-editorial text-white">
               Standar Agronomi Presisi & Sains Lapangan Tropis
             </h1>
             <p class="mt-4 text-base sm:text-lg text-white/95 leading-relaxed">
-              Pusat rujukan resmi budidaya tanaman dan distribusi saprotan PT Agritani Internasional. Dipandu telaah ilmiah independen oleh Prof. Arif Prabowo.
+              Portal pertanian resmi dan panduan budidaya tanaman PT Agritani Internasional. Dikelola langsung oleh Arif Prabowo bersama tim agronomi lapangan.
             </p>
             <div class="mt-8 flex flex-wrap items-center gap-4">
               <a
@@ -223,77 +219,42 @@ const seoProps: SeoInput = {
     </div>
   </section>
 
-  <!-- 2. Personal Compro & Otoritas Ilmiah: Prof. Arif Prabowo & PT Agritani Internasional -->
-  <section class="py-16 sm:py-24 bg-[#FAF9F5]" aria-labelledby="authority-heading">
+  <!-- 2. Profil Pengelola: Arif Prabowo & PT Agritani Internasional -->
+  <section class="py-16 sm:py-24 bg-[var(--color-surface)]" aria-labelledby="authority-heading">
     <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
         
-        <!-- Left: Academic Credential Identity (WebP Portrait) -->
+        <!-- Left: Profile Identity -->
         <div class="lg:col-span-4 flex flex-col items-start">
           <div class="flex items-center gap-4 sm:gap-5 mb-4">
-            <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-[2px] overflow-hidden shrink-0 bg-[var(--color-canvas)]">
-              <Picture
-                src={profArifImage}
-                formats={['webp']}
-                widths={[160, 320]}
-                sizes="6rem"
-                quality={85}
-                alt="Foto resmi Prof. Arif Prabowo, Dewan Pakar & Moderator Jurnal Tani"
-                class="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
+            <AuthorAvatar size={112} class="w-20 h-20 sm:w-24 sm:h-24" decorative={false} />
             <div>
               <h2 id="authority-heading" class="font-serif text-2xl sm:text-3xl font-bold text-[var(--color-text)] tracking-tight leading-tight">
-                Prof. Arif Prabowo
+                Arif Prabowo
               </h2>
               <span class="text-xs text-[var(--color-soil)] font-semibold mt-0.5 block">
-                Dewan Pakar & Moderator Jurnal Tani
+                Konsultan Pertanian Senior · Pengelola Jurnal Tani
               </span>
             </div>
           </div>
           <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed mt-1">
-            Penelaah Ilmiah Jurnal Tani & Penasihat Teknis Budidaya Tanaman Tropis PT Agritani Internasional.
+            Pengalaman lebih dari 8 tahun riset pertanian dan budidaya lapangan; sales dan konsultan produk unggulan Agritani.
           </p>
           <div class="mt-4">
             <a href="/penulis/arif-prabowo/" class="link-more text-sm">
-              Profil lengkap & publikasi dewan pakar &rarr;
+              Profil lengkap & panduan agronomi &rarr;
             </a>
           </div>
         </div>
 
-        <!-- Right: Academic Charter & Verifiable Standards (Pure Typography) -->
-        <div class="lg:col-span-8 space-y-8">
-          <blockquote class="font-serif text-xl sm:text-2xl text-[var(--color-text)] italic leading-relaxed">
-            &ldquo;Pertanian modern tidak dapat disandarkan pada klaim instan. Keberhasilan panen lahir dari diagnosa gejala yang cermat, kalibrasi dosis yang akurat, dan rujukan ilmiah terbuka yang dapat diuji kebenarannya di lapangan.&rdquo;
-          </blockquote>
-
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4">
-            <div>
-              <span class="block text-sm font-bold text-[var(--color-brand-strong)]">
-                150 Naskah Terkurasi
-              </span>
-              <span class="block text-xs text-[var(--color-text-muted)] mt-1.5 leading-relaxed">
-                Seluruh artikel dimoderasi langsung dengan daftar pustaka ilmiah yang dapat dilacak.
-              </span>
-            </div>
-            <div>
-              <span class="block text-sm font-bold text-[var(--color-brand-strong)]">
-                Verifikasi Ambang Dosis
-              </span>
-              <span class="block text-xs text-[var(--color-text-muted)] mt-1.5 leading-relaxed">
-                Kalibrasi rumus semprot knapsack 16L dan ambang cuaca BMKG teruji di lapangan.
-              </span>
-            </div>
-            <div>
-              <span class="block text-sm font-bold text-[var(--color-brand-strong)]">
-                Tanpa Klaim Absolut
-              </span>
-              <span class="block text-xs text-[var(--color-text-muted)] mt-1.5 leading-relaxed">
-                Prinsip transparansi distributor resmi tanpa janji panen berlebihan tanpa data.
-              </span>
-            </div>
-          </div>
+        <!-- Right: Integritas Artikel Jurnal Tani (Kalimat Biasa, Tanpa Kutipan) -->
+        <div class="lg:col-span-8 flex flex-col justify-center space-y-6 pt-2">
+          <p class="font-serif text-xl sm:text-2xl text-[var(--color-text)] leading-relaxed">
+            Artikel Jurnal Tani yang terbit ditulis dan dimoderasi oleh Arif Prabowo, dan wajib memuat daftar pustaka yang dapat ditelusuri.
+          </p>
+          <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed">
+            Setiap pembahasan disusun berdasarkan observasi riil di lapangan tropis Indonesia, telaah fisiologi tanaman teruji, dan kalibrasi rekomendasi dosis yang bertanggung jawab untuk melindungi tanaman petani dari risiko kerusakan.
+          </p>
         </div>
 
       </div>
@@ -301,7 +262,7 @@ const seoProps: SeoInput = {
   </section>
 
   <!-- 3. Portal Artikel: Jurnal Tani & Riset Lapangan -->
-  <section class="py-16 sm:py-24 bg-white" aria-labelledby="journal-heading">
+  <section class="py-16 sm:py-24 bg-[var(--color-canvas)]" aria-labelledby="journal-heading">
     <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Section Header -->
@@ -365,7 +326,7 @@ const seoProps: SeoInput = {
               </p>
             </div>
             <div class="mt-4 flex items-center gap-3 text-xs text-[var(--color-text-muted)] tabular-nums font-medium">
-              <span>Prof. Arif Prabowo</span>
+              <span>Arif Prabowo</span>
               <span aria-hidden="true">&middot;</span>
               <time datetime={featuredArticle.data.pubDate.toISOString()}>{dateFmt.format(featuredArticle.data.pubDate)}</time>
               <span aria-hidden="true">&middot;</span>
@@ -481,7 +442,7 @@ const seoProps: SeoInput = {
   </section>
 
   <!-- 4. Tools Pertanian Presisi (Interactive Utility Deck) -->
-  <section class="py-16 sm:py-24 bg-[#F7F8F5]" aria-labelledby="tools-heading">
+  <section class="py-16 sm:py-24 bg-[var(--color-surface)]" aria-labelledby="tools-heading">
     <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="max-w-[50ch] mb-12">
@@ -577,7 +538,7 @@ const seoProps: SeoInput = {
   </section>
 
   <!-- 5. Pendampingan Lapangan & Konsultasi Kebun (WhatsApp Desk) -->
-  <section class="py-16 sm:py-24 bg-white" aria-labelledby="consult-heading">
+  <section class="py-16 sm:py-24 bg-[var(--color-canvas)]" aria-labelledby="consult-heading">
     <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-16 items-center">
         
@@ -634,22 +595,22 @@ const seoProps: SeoInput = {
     </div>
   </section>
 
-  <!-- 6. Inisiatif Distribusi & Jaminan Keaslian (4 Produk Resmi & ShieldedTag™) -->
-  <section class="py-16 sm:py-24 bg-[#FAF9F5]" aria-labelledby="initiatives-heading">
+  <!-- 6. Produk Unggulan & Integritas Saprotan (4 Produk Unggulan & ShieldedTag™) -->
+  <section class="py-16 sm:py-24 bg-[var(--color-surface)]" aria-labelledby="initiatives-heading">
     <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
         <div>
           <h2 id="initiatives-heading" class="section-headline">
-            Distribusi Resmi & Jaminan Integritas Saprotan
+            Empat Produk Unggulan & Integritas Saprotan
           </h2>
           <p class="section-subheading">
-            Sarana produksi terdaftar Kementerian Pertanian RI dengan jaminan perlindungan keaslian ShieldedTag™.
+            Sarana produksi terdaftar Kementerian Pertanian RI dengan perlindungan keaslian kemasan ShieldedTag™.
           </p>
         </div>
         <div class="shrink-0">
           <a href="/produk/" class="link-more text-sm">
-            Katalog 4 produk resmi
+            Katalog 4 produk unggulan
           </a>
         </div>
       </div>
@@ -680,7 +641,7 @@ const seoProps: SeoInput = {
                 <a href={`/produk/${prod.id}/`}>{prod.data.name}</a>
               </h3>
               <p class="text-xs font-semibold text-[var(--color-brand-strong)] mt-1">
-                {prod.data.targetCrop}
+                {prod.data.tagline || prod.data.role}
               </p>
               <p class="text-xs text-[var(--color-text-muted)] mt-2 leading-relaxed line-clamp-3">
                 {prod.data.role}
@@ -699,7 +660,7 @@ const seoProps: SeoInput = {
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mt-16">
         <div>
           <h3 class="font-serif text-xl font-bold text-[var(--color-text)]">
-            Proteksi Keaslian Produk ShieldedTag™
+            Keaslian Kemasan ShieldedTag™
           </h3>
           <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">
             Setiap kemasan resmi yang didistribusikan PT Agritani Internasional dilindungi segel tamper-evident berhologram untuk memastikan petani terlindungi dari pemalsuan saprotan.
@@ -715,7 +676,7 @@ const seoProps: SeoInput = {
             Kemitraan Kios Saprotan & Gapoktan
           </h3>
           <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">
-            Penyaluran resmi bagi jaringan kios saprotan dan kelompok tani daerah dengan jaminan kontinuitas pasokan dan pendampingan materi agronomi langsung dari distributor.
+            Penyaluran resmi bagi jaringan kios saprotan dan kelompok tani daerah dengan kepastian kontinuitas pasokan dan pendampingan materi agronomi langsung dari pengelola.
           </p>
           <div class="mt-3">
             <a href="/kemitraan-distributor/" class="link-more text-xs">

@@ -1,13 +1,14 @@
 ---
 /**
  * src/pages/tentang-kami.astro
- * Company profile page for PT Agritani Internasional (DEC-010, DESIGN §4.2.3)
- * Position: Official distributor of biotechnology agricultural inputs (not a manufacturer or research institute).
+ * Company profile page for Agritani & PT Agritani Internasional (DEC-016, DESIGN §4.2.3)
+ * Position: Portal pertanian yang dikelola resmi oleh Arif Prabowo untuk PT Agritani Internasional.
  * Invariants: Single WhatsApp CTA, 0/0/0 CSP, 2px radius, no divider lines, text contrast >= 7:1.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 import ConsultPrompt from '../components/ConsultPrompt.astro';
+import AuthorAvatar from '../components/AuthorAvatar.astro';
 import { Image } from 'astro:assets';
 import type { SeoInput } from '../lib/seo';
 import tentangKamiImg from '../assets/images/dummy/tentang-kami.webp';
@@ -18,9 +19,9 @@ const breadcrumbs = [
 ];
 
 const seo: SeoInput = {
-  title: 'Tentang PT Agritani Internasional',
+  title: 'Tentang Agritani',
   description:
-    'Profil PT Agritani Internasional, distributor resmi sarana pertanian dan bioteknologi tanaman presisi hasil aliansi teknologi teruji dari Thailand dan Jepang.',
+    'Profil Agritani, portal pertanian yang dikelola resmi oleh Arif Prabowo untuk PT Agritani Internasional dengan empat produk unggulan nutrisi tanaman presisi.',
   canonicalPath: '/tentang-kami/',
   breadcrumbs,
   pageType: 'about',
@@ -36,10 +37,10 @@ const seo: SeoInput = {
       <!-- Header -->
       <header class="mb-8 sm:mb-10">
         <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--color-text)] leading-tight tracking-tight mb-4">
-          Tentang PT Agritani Internasional
+          Tentang Agritani
         </h1>
         <p class="text-lg sm:text-xl text-[var(--color-text-muted)] leading-relaxed font-sans">
-          Distributor resmi sarana produksi pertanian dan bioteknologi tanaman modern, berdedikasi menjembatani teknologi hayati mutakhir dengan kebutuhan nyata petani Indonesia.
+          Portal pertanian yang dikelola resmi oleh Arif Prabowo untuk PT Agritani Internasional, berdedikasi menjembatani inovasi hayati mutakhir dengan kebutuhan nyata petani Indonesia.
         </p>
       </header>
 
@@ -62,13 +63,13 @@ const seo: SeoInput = {
       <!-- Main Prose Content -->
       <div class="space-y-8 text-base sm:text-lg text-[var(--color-text)] leading-relaxed font-sans">
         
-        <!-- Section 1: Posisi Distributor Resmi & Asal Teknologi -->
+        <!-- Section 1: Posisi Agritani & Asal Teknologi -->
         <section class="space-y-4">
           <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
             Menjembatani Inovasi Hayati dengan Lahan Pertanian
           </h2>
           <p>
-            <strong>PT Agritani Internasional</strong> beroperasi sebagai <strong>distributor resmi</strong> sarana produksi pertanian berbasis bioteknologi. Kami bukan pabrik manufaktur kimia maupun lembaga riset mandiri, melainkan mitra distribusi resmi yang mengkurasi, menguji coba secara komparatif, dan menyalurkan teknologi hayati unggulan ke jaringan pertanian di seluruh nusantara.
+            <strong>Agritani</strong> adalah portal pertanian yang dikelola resmi oleh <strong>Arif Prabowo</strong> untuk <strong>PT Agritani Internasional</strong> sebagai entitas legal pengelola. Agritani menghadirkan empat produk unggulan (Aussie, BENSU, Kojien, dan Saratoga) serta bekerja sama dengan beberapa brand pupuk dan perusahaan pertanian terkemuka untuk menyalurkan teknologi hayati teruji ke jaringan pertanian di seluruh Indonesia.
           </p>
           <p>
             Langkah ini berawal dari kenyataan di lapangan: penurunan kesuburan tanah akibat pemakaian pupuk kimia sintetis berkepanjangan, resistensi patogen tanaman yang kian sulit dikendalikan, dan lonjakan biaya input yang memberatkan petani. Agritani hadir menjembatani aliansi teknologi teruji dari dua sentra agrikultur terkemuka di Asia:
@@ -113,10 +114,10 @@ const seo: SeoInput = {
             Integritas Rantai Pasok dan Kemitraan Lapangan
           </h2>
           <p>
-            Sebagai distributor resmi, kepatuhan regulasi dan perlindungan terhadap petani dari produk palsu merupakan komitmen mutlak. Seluruh produk terdaftar di Kementerian Pertanian Republik Indonesia; nomor izin edar tertera pada label tiap kemasan.
+            Kepatuhan regulasi dan perlindungan terhadap petani dari produk palsu merupakan komitmen mutlak. Seluruh produk unggulan terdaftar di Kementerian Pertanian Republik Indonesia; nomor izin edar tertera pada label tiap kemasan resmi.
           </p>
           <p>
-            Distribusi dijalankan melalui tiga tahapan berurutan:
+            Penyaluran dijalankan melalui tiga tahapan berurutan:
           </p>
           <ol class="list-decimal pl-6 space-y-4 marker:font-bold marker:text-[var(--color-soil)]">
             <li>
@@ -128,49 +129,47 @@ const seo: SeoInput = {
             <li>
               <strong class="block text-base text-[var(--color-text)] mb-1">Rantai Pasok Terlindungi</strong>
               <p class="text-sm sm:text-base text-[var(--color-text)]">
-                Menyalurkan produk langsung melalui distributor kabupaten, kios saprotan resmi, dan kemitraan kelompok tani guna menjamin kepastian keaslian formula serta stabilitas ketersediaan saat musim tanam.
+                Menyalurkan produk langsung melalui mitra distributor kabupaten, kios saprotan terpercaya, dan kelompok tani guna menjaga kepastian keaslian formula serta stabilitas ketersediaan saat musim tanam.
               </p>
             </li>
             <li>
               <strong class="block text-base text-[var(--color-text)] mb-1">Edukasi & Pendampingan Agronomi</strong>
               <p class="text-sm sm:text-base text-[var(--color-text)]">
-                Mendampingi petani dan agronom perkebunan dengan panduan aplikasi takaran yang tepat, demonstrasi plot (demplot), serta konsultasi penanganan kendala spesifik di lahan.
+                Mendampingi petani dan praktisi perkebunan dengan panduan aplikasi takaran yang tepat, demonstrasi plot (demplot), serta konsultasi penanganan kendala spesifik di lahan.
               </p>
             </li>
           </ol>
         </section>
 
-        <!-- Section 4: Penulis & Moderator Jurnal Tani -->
+        <!-- Section 4: Penulis & Pengelola Jurnal Tani -->
         <section class="pt-6 space-y-4">
           <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-brand)] tracking-tight">
             Edukasi Mandiri Bersama Jurnal Tani
           </h2>
           <p>
-            Sebagai bentuk dedikasi keilmuan kepada masyarakat tani, PT Agritani Internasional mengelola <strong>Jurnal Tani</strong>, portal rujukan agronomi terbuka yang diasuh oleh <strong>Prof. Arif Prabowo</strong>.
+            Sebagai bentuk dedikasi keilmuan kepada masyarakat tani, portal Agritani menghadirkan <strong>Jurnal Tani</strong>, ruang belajar dan rujukan agronomi terbuka yang dikelola resmi oleh <strong>Arif Prabowo</strong>.
           </p>
           <div class="p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-4">
             <div class="flex items-center gap-4">
-              <div class="w-14 h-14 bg-[var(--color-brand-soft)] border border-[var(--color-border)] rounded-[2px] flex items-center justify-center text-lg font-bold text-[var(--color-brand)]">
-                AP
-              </div>
+              <AuthorAvatar size={56} class="w-14 h-14" />
               <div>
                 <h3 class="text-lg font-bold text-[var(--color-text)]">
-                  Prof. Arif Prabowo
+                  Arif Prabowo
                 </h3>
                 <p class="text-xs sm:text-sm text-[var(--color-text-muted)]">
-                  Profesor Pertanian · Moderator Jurnal Tani
+                  Konsultan Pertanian Senior · Pengelola Jurnal Tani
                 </p>
               </div>
             </div>
             <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed">
-              Prof. Arif Prabowo adalah Profesor Pertanian dan moderator Jurnal Tani PT Agritani Internasional.
+              Arif Prabowo memiliki pengalaman lebih dari 8 tahun di bidang pertanian dan riset, mempelajari beragam komoditas dan praktik budidaya, serta kini bertindak sebagai sales dan konsultan produk unggulan Agritani.
             </p>
             <div>
               <a
                 href="/penulis/arif-prabowo/"
                 class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-brand)] hover:underline min-h-[44px]"
               >
-                <span>Lihat Profil dan Karya Tulis Penulis</span>
+                <span>Lihat Profil dan Panduan Agronomi</span>
                 <span aria-hidden="true">&rarr;</span>
               </a>
             </div>
@@ -183,15 +182,15 @@ const seo: SeoInput = {
             Pusat Informasi & Kerja Sama
           </h2>
           <p>
-            Kami menyambut kolaborasi bersama kios saprotan, kelompok tani, pengelola perkebunan, dan calon distributor daerah yang ingin memperluas penyediaan teknologi pertanian ramah lingkungan di wilayah masing-masing.
+            Kami menyambut kolaborasi bersama kios saprotan, kelompok tani, pengelola perkebunan, dan calon mitra distributor daerah yang ingin memperluas penyediaan teknologi pertanian ramah lingkungan di wilayah masing-masing.
           </p>
           
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] flex flex-col justify-between">
               <div>
-                <h3 class="font-bold text-[var(--color-text)] mb-2">Program Kemitraan Agen</h3>
+                <h3 class="font-bold text-[var(--color-text)] mb-2">Program Kemitraan Distributor</h3>
                 <p class="text-sm text-[var(--color-text-muted)] mb-4">
-                  Ajukan kerja sama distribusi resmi di tingkat kabupaten atau kios saprotan dengan proteksi area pasokan.
+                  Ajukan kerja sama penyaluran produk di tingkat kabupaten atau kios saprotan dengan proteksi area pasokan.
                 </p>
               </div>
               <a
@@ -223,7 +222,7 @@ const seo: SeoInput = {
             <ConsultPrompt
               source="tentang-kami"
               title="Hubungi Sekretariat PT Agritani Internasional"
-              description="Pertanyaan umum seputar profil perusahaan, sertifikasi produk, atau informasi keagenan dapat disampaikan langsung ke nomor WhatsApp resmi kami."
+              description="Pertanyaan umum seputar portal agritani, produk unggulan, atau informasi kemitraan dapat disampaikan langsung ke nomor WhatsApp resmi kami."
               label="Hubungi WhatsApp Agritani"
             />
           </div>

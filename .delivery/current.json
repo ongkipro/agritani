@@ -1,14 +1,23 @@
 {
-  "activeRun": null,
+  "activeRun": "RUN-20260930T011952Z-55ecb8c9",
+  "activeTask": "T-32",
+  "capability": "unattributed",
+  "job": "implementation",
   "lastRun": {
     "finishedAt": "2026-09-30T01:17:42Z",
     "result": "PASS",
     "runId": "RUN-20260930T011337Z-246838e3"
   },
-  "observedHead": "0888c134d4d2c4d77d31650b88e2c69e09232f8c",
+  "model": "inherit",
+  "observedHead": "cccf5e8768a2d0c8ff1813e979cada81275958a2",
   "observedState": "VERIFIED",
   "project": "agritani",
+  "provider": "google",
+  "reasoningEffort": "high",
+  "requirement": "DEC-016",
+  "risk": "R2",
   "schemaVersion": 1,
   "statusAuthority": "STATUS.md",
-  "updatedAt": "2026-09-30T01:17:42Z"
+  "updatedAt": "2026-09-30T01:34:35Z",
+  "worker": "agy"
 }

@@ -287,6 +287,7 @@ Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 → T-23 → T-04
 - **Done when:** tes `node --test` untuk validasi dan handler; `wrangler dev` + bukti browser formulir (sukses, gagal validasi, gagal Turnstile); tidak ada secret di repo; review independen (R3) PASS; deploy hanya dengan persetujuan.
 
 ### T-31 — Celah anatomi & kebutuhan UI/UX lanjutan
+- **Status:** Butir 1–3 selesai 2026-09-30; butir 4–5 menunggu OQ-2/OQ-4/OQ-5
 - **Primary:** REQ-01 · **Constraints:** DESIGN §4.2.3, §3.5.1, §6 · **Risk:** R1
 - **Owner skill:** `design-taste`, `impeccable`, `ui-validation`, `astro-development`
 - **Allowed paths:** `src/**`, `DESIGN.md`, `TASKS.md`
@@ -299,6 +300,7 @@ Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 → T-23 → T-04
 - **Done when:** butir 1–3 terbangun dan dirender di 390 & 1440 px; build produksi lulus seluruh pemeriksaan; butir 4–5 tetap terbuka sampai data pemilik ada.
 
 ### T-32 — Identitas baru (DEC-016), foto Arif Prabowo, integritas Beranda, gambar OG
+- **Status:** Selesai A–E 2026-09-30, siap review independen (R2)
 - **Primary:** REQ-01 · **Constraints:** DEC-016, OQ-4, DESIGN §1.1, §3.5.1, §4.2.3, §4.3.1 (blok 4 & 16), §4.4 · **Risk:** R2
 - **Owner skill:** `astro-development`, `seo-website-builder`, `copywriting`, `impeccable`, `ui-validation`
 - **Allowed paths:** `src/**`, `public/og/**`, `scripts/**`, `DESIGN.md`, `TASKS.md`

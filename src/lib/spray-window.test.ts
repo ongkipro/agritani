@@ -13,7 +13,7 @@ describe('Spray Suitability Window (REQ-10, ARCHITECTURE §5b)', () => {
     windHatiKmh: 10.0,
     tempHatiC: 30.0,
     humidityHatiPct: 60.0,
-    reviewedBy: 'Prof. Arif Prabowo',
+    reviewedBy: 'Arif Prabowo',
     sources: ['Standar GAP Kementan RI', 'Pedoman Kalibrasi Sprayer'],
   };
 

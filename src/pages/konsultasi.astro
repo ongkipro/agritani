@@ -62,7 +62,7 @@ const seo: SeoInput = {
               Konsultasi dijawab langsung oleh <strong>tim agronomi PT Agritani Internasional</strong>.
             </p>
             <p class="text-xs text-[var(--color-text-muted)]">
-              Prof. Arif Prabowo adalah penulis dan moderator Jurnal Tani.
+              Arif Prabowo adalah penulis dan pengelola Jurnal Tani.
             </p>
           </div>
         </section>
@@ -80,6 +80,7 @@ const seo: SeoInput = {
             <li><strong>Komoditas & Varietas:</strong> jenis tanaman yang dibudidayakan.</li>
             <li><strong>Umur Tanaman:</strong> Hari Setelah Tanam (HST) atau umur pohon.</li>
             <li><strong>Lokasi Kebun:</strong> nama Kabupaten dan Provinsi lahan Anda.</li>
+            <li><strong>Luas Lahan:</strong> perkiraan luas petak (m² atau hektar).</li>
             <li><strong>Riwayat Perlakuan:</strong> aplikasi pupuk atau semprotan terakhir dalam 2 minggu.</li>
           </ol>
         </section>
@@ -206,6 +207,48 @@ const seo: SeoInput = {
       </div>
 
     </div>
+
+    <!-- Sambil Menunggu Jawaban (T-31 Butir 1b) -->
+    <section class="my-10 pt-6 max-w-[72ch]" aria-labelledby="menunggu-jawaban-heading">
+      <h2 id="menunggu-jawaban-heading" class="text-xl font-serif font-bold text-[var(--color-text)] mb-4">
+        Sambil menunggu jawaban
+      </h2>
+      <div class="divide-y divide-[var(--color-border)] border-y border-[var(--color-border)]">
+        <a
+          href="/jurnal/"
+          class="py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-1 group hover:text-[var(--color-brand-strong)]"
+        >
+          <span class="font-semibold text-sm sm:text-base text-[var(--color-brand-strong)] group-hover:underline">
+            Baca Jurnal Tani &rarr;
+          </span>
+          <span class="text-xs sm:text-sm text-[var(--color-text-muted)]">
+            Panduan penanganan hama dan penyakit per komoditas.
+          </span>
+        </a>
+        <a
+          href="/alat/cuaca-tani/"
+          class="py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-1 group hover:text-[var(--color-brand-strong)]"
+        >
+          <span class="font-semibold text-sm sm:text-base text-[var(--color-brand-strong)] group-hover:underline">
+            Cek Cuaca Tani &rarr;
+          </span>
+          <span class="text-xs sm:text-sm text-[var(--color-text-muted)]">
+            Prakiraan BMKG per 3 jam untuk memilih waktu semprot.
+          </span>
+        </a>
+        <a
+          href="/alat/kalkulator-dosis/"
+          class="py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-1 group hover:text-[var(--color-brand-strong)]"
+        >
+          <span class="font-semibold text-sm sm:text-base text-[var(--color-brand-strong)] group-hover:underline">
+            Hitung dosis semprot &rarr;
+          </span>
+          <span class="text-xs sm:text-sm text-[var(--color-text-muted)]">
+            Takaran per tangki sesuai label kemasan.
+          </span>
+        </a>
+      </div>
+    </section>
 
     <!-- Fixed Agronomic Disclaimer (DESIGN §2.7) -->
     <footer class="mb-12 max-w-[72ch] text-xs md:text-sm text-[var(--color-text-muted)] space-y-1">

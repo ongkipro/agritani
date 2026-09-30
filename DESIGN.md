@@ -476,7 +476,7 @@ Diminta Paduka Ongki 2026-09-29 agar situs tidak kosong sebelum foto asli (OQ-5)
 - **Pengiriman**: selalu lewat `<Picture>`/`<Image>` `astro:assets` dengan `widths` + `sizes` dan `quality` 52–60; kelas grid diletakkan di `pictureAttributes`, bukan di `<img>`. Gambar pilar dekoratif memakai `alt=""`; gambar yang membawa isi memakai `alt` deskriptif.
 - **Placeholder Non-Foto**:
   - Kemasan produk: kotak `tint` bertuliskan "Foto kemasan menyusul" (OQ-5).
-  - Foto Arif Prabowo: **diterima 2026-09-30** (edit foto asli, disetujui pemilik), disiapkan sebagai `src/assets/images/authors/arif-prabowo.webp` + komponen `AuthorAvatar` (persegi, radius 2px, crop wajah) untuk byline, Tentang Penulis, profil, Tentang Kami, Beranda (T-32). Sampai terpasang: inisial "AP" persegi.
+  - Foto Arif Prabowo: **terpasang 2026-09-30** (edit foto asli, disetujui pemilik), sebagai `src/assets/images/authors/arif-prabowo.webp` + komponen `AuthorAvatar` (persegi, radius 2px, crop wajah) sama di Beranda, byline, dan profil (T-31/T-32).
   - Pembuatan gambar AI (Higgsfield) dicoba 2026-09-29 dan ditolak paket akun; bila dipakai kelak, hanya untuk ilustrasi konteks tanpa orang, teks, logo, atau produk, dan diberi label di `CREDITS.md`.
 
 ### 3.6. Permukaan bawaan browser
@@ -614,9 +614,9 @@ Tidak ada kotak/kartu di Beranda selain tombol komoditas; tidak ada band yang ha
 **Konsultasi `/konsultasi/`** (Lapangan) — perilaku §2.7
 
 1. Breadcrumb · H1 "Konsultasi Agronomi Langsung" · satu kalimat. Jam layanan hanya bila OQ-1 terisi (tidak ditampilkan sebagai placeholder).
-2. ≥1024px dua kolom: kiri 5/12 = foto (dummy) · H2 "Siapa yang menjawab?" · H2 "Yang perlu disiapkan" (daftar bernomor); kanan 7/12 = panel form penyusun pesan → satu tombol "Lanjutkan ke WhatsApp" (satu-satunya CTA WhatsApp) · panel sukses teks biasa + nomor tertulis · `<noscript>` nomor resmi.
-3. "Batasan layanan" (teks kecil, tanpa kotak): panduan, bukan jaminan; hubungi PPL/BPTPH untuk wabah.
-4. **Belum dibangun (T-31):** H2 "Sambil menunggu jawaban" → tautan artikel Jurnal per komoditas yang diketik dan Cuaca Tani; Diagnosa Gejala setelah OQ-11.
+2. ≥1024px dua kolom: kiri 5/12 = foto (dummy) · H2 "Siapa yang menjawab?" · H2 "Yang perlu disiapkan" (daftar bernomor mencakup Masalah, Komoditas, Lokasi, dan Luas Lahan); kanan 7/12 = panel form penyusun pesan → satu tombol "Lanjutkan ke WhatsApp" (satu-satunya CTA WhatsApp) · panel sukses teks biasa + nomor tertulis · `<noscript>` nomor resmi.
+3. "Sambil menunggu jawaban": H2 + 3 tautan teks baris terbuka (Jurnal Tani, Cuaca Tani, Kalkulator Dosis) tanpa tombol WhatsApp kedua (T-31).
+4. "Batasan layanan" (teks kecil, tanpa kotak): panduan, bukan jaminan; hubungi PPL/BPTPH untuk wabah.
 
 **Indeks Jurnal `/jurnal/`** (Sains)
 
@@ -638,8 +638,8 @@ Tidak ada kotak/kartu di Beranda selain tombol komoditas; tidak ada band yang ha
 1. Breadcrumb · H1 "{Komoditas}: Panduan Budidaya & Penanganan".
 2. Pengantar (opsional, `src/content/pages/komoditas-{komoditas}.md`).
 3. Tautan "Diagnosa gejala {komoditas}" (bila ada data gejala tertinjau) dan "Kalender tanam {komoditas}" (bila ada kalender tertinjau).
-4. Artikel komoditas: sekarang satu daftar urut tanggal; **pengelompokan per topik belum dibangun (T-31)**, cukup setelah hub punya ≥ 2 topik.
-5. Produk relevan (hanya yang komoditasnya cocok, maksimal 2 baris, referensi) — **belum dibangun (T-31)**.
+4. Artikel komoditas: dikelompokkan per topik (urutan TOPICS dengan penanda warna topik) bila mencakup ≥ 2 topik berbeda; tetap satu daftar urut tanggal bila hanya 1 topik (T-31).
+5. Produk yang relevan: maksimal 2 produk unggulan yang komoditasnya cocok (urutan: Aussie, Kojien, BENSU, Saratoga), ditampilkan sebagai baris terbuka tanpa kartu/CTA WhatsApp (T-31).
 6. `TopicSidebar` dengan komoditas aktif ditandai.
 
 **Artikel `/jurnal/{slug}/`** (Sains) — anatomi lengkap §4.3.

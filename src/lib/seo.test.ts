@@ -80,7 +80,7 @@ describe('SEO & Metadata Builder (DESIGN §4.4)', () => {
       ogType: 'article',
       article: {
         pubDate,
-        author: 'Prof. Arif Prabowo',
+        author: 'Arif Prabowo',
         tags: ['sawit', 'ganoderma'],
       },
     });
@@ -90,9 +90,15 @@ describe('SEO & Metadata Builder (DESIGN §4.4)', () => {
     assert.ok(articleNode);
     assert.equal(articleNode.headline, 'Inovasi Proteksi Sawit');
     assert.equal(articleNode.author['@type'], 'Person');
-    assert.equal(articleNode.author.name, 'Prof. Arif Prabowo');
+    assert.equal(articleNode.author.name, 'Arif Prabowo');
     assert.equal(articleNode.datePublished, pubDate.toISOString());
     assert.equal(articleNode.image, undefined, 'Image property must be omitted when heroImage is absent (DESIGN §4.4.5)');
+
+    const personNode = graph.find((n: any) => n['@type'] === 'Person');
+    assert.ok(personNode);
+    assert.equal(personNode.jobTitle, 'Konsultan Pertanian Senior');
+    assert.equal(personNode.honorificPrefix, undefined);
+    assert.deepEqual(personNode.worksFor, { '@id': 'https://agritani.com/#organization' });
   });
 
   it('includes image property on Article schema only when heroImage is present (DESIGN §4.4.5)', () => {
@@ -104,7 +110,7 @@ describe('SEO & Metadata Builder (DESIGN §4.4)', () => {
       ogType: 'article',
       article: {
         pubDate,
-        author: 'Prof. Arif Prabowo',
+        author: 'Arif Prabowo',
         tags: ['sawit', 'ganoderma'],
         heroImage: '/images/hero-sawit.webp',
       },
