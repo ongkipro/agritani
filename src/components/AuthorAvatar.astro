@@ -12,9 +12,10 @@ interface Props {
   size: number;
   class?: string;
   decorative?: boolean;
+  loading?: 'lazy' | 'eager';
 }
 
-const { size, class: className = '', decorative = true } = Astro.props;
+const { size, class: className = '', decorative = true, loading = 'eager' } = Astro.props;
 ---
 
 <Image
@@ -23,5 +24,6 @@ const { size, class: className = '', decorative = true } = Astro.props;
   sizes={`${size}px`}
   quality={70}
   alt={decorative ? '' : 'Foto Arif Prabowo'}
+  loading={loading}
   class={`aspect-square object-cover object-[50%_22%] rounded-[2px] shrink-0 ${className}`}
 />

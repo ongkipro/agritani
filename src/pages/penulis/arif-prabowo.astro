@@ -2,15 +2,23 @@
 /**
  * src/pages/penulis/arif-prabowo.astro
  * Author profile page for Arif Prabowo (DEC-016, DESIGN §4.2.3, §4.4.3, §4.4.5)
- * Bio strictly constrained per DEC-016.
- * Invariants: Single WhatsApp CTA, 0/0/0 CSP, 2px radius, no divider lines, text contrast >= 7:1.
+ * Revamped with Medium-style editorial profile UI/UX:
+ * - 2-column layout (Feed on left, author card on the right on desktop (not sticky; H1 first in DOM))
+ * - Author card first in the DOM (H1 first); top on mobile, right column on desktop via grid placement
+ * - Medium-style story cards: byline (avatar + Arif Prabowo + date + read time), bold serif headline, 2-line excerpt, topic text link, and right-aligned thumbnail
+ * - Interactive topic filter tabs with instant filtering and progressive enhancement
+ * - Strict DEC-016 bio and single WhatsApp CTA (DESIGN §2.8)
  */
 import { getCollection } from 'astro:content';
+import { Picture } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
-import ArticleList from '../../components/ArticleList.astro';
-import ConsultPrompt from '../../components/ConsultPrompt.astro';
 import AuthorAvatar from '../../components/AuthorAvatar.astro';
+import { TOPICS, topicName } from '../../lib/topics';
+import { getArticleImage } from '../../lib/topic-images';
+import { getReadingTime } from '../../lib/reading-time';
+import { waLink } from '../../lib/whatsapp';
+import { externalLink } from '../../lib/links';
 import type { SeoInput } from '../../lib/seo';
 
 const breadcrumbs = [
@@ -33,6 +41,7 @@ const includeDrafts =
   import.meta.env.PUBLIC_INCLUDE_DRAFTS === 'true' || import.meta.env.DEV;
 
 const allArticles = await getCollection('articles');
+const commodities = await getCollection('commodities');
 
 // Filter articles authored or moderated by Arif Prabowo
 const authorArticles = allArticles.filter(
@@ -46,80 +55,449 @@ const visibleArticles = includeDrafts
 const sortedArticles = visibleArticles.sort(
   (a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
 );
+
+// Commodity hubs are ONLY created when commodity has >= 3 published articles (DESIGN §4.2.3)
+const commCounts = new Map<string, number>();
+for (const a of visibleArticles) {
+  for (const c of a.data.commodities ?? []) {
+    const cid = typeof c === 'string' ? c : c.id;
+    commCounts.set(cid, (commCounts.get(cid) || 0) + 1);
+  }
+}
+const validCommoditySet = new Set(
+  commodities.filter((c) => (commCounts.get(c.id) || 0) >= 3).map((c) => c.id)
+);
+
+// Calculate counts per topic
+const topicCounts = new Map<string, number>();
+for (const art of sortedArticles) {
+  const t = art.data.topic;
+  topicCounts.set(t, (topicCounts.get(t) || 0) + 1);
+}
+
+const topicsWithCounts = TOPICS.map((t) => ({
+  ...t,
+  count: topicCounts.get(t.slug) || 0,
+})).filter((t) => t.count > 0);
+
+// Single official WhatsApp link (DESIGN §2.8)
+const waHref = waLink({
+  source: 'Web·Penulis',
+  note: 'Konsultasi agronomi bersama Arif Prabowo (Konsultan Pertanian Senior Agritani)',
+});
+const waAttrs = externalLink('whatsapp');
+
+function formatDate(d: Date | string) {
+  return new Intl.DateTimeFormat('id-ID', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  }).format(new Date(d));
+}
 ---
 
 <BaseLayout seo={seo} currentPath="/penulis/arif-prabowo/">
-  <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+  <div class="max-w-[76rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
     <Breadcrumb items={breadcrumbs} />
 
-    <!-- Profile Header (Sains Editorial Canvas) -->
-    <header class="max-w-[52rem] mt-6 sm:mt-8 mb-12 lg:mb-16 grid grid-cols-1 sm:grid-cols-[6rem_1fr] gap-x-8 gap-y-5">
-      <AuthorAvatar size={96} class="w-20 h-20 sm:w-24 sm:h-24" decorative={false} />
+    <!-- Main Grid: Medium-style 2-column layout (Desktop: 8 cols feed + 4 cols author card) -->
+    <div class="mt-6 lg:mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      
+      <!-- Feed (desktop 8 cols, left) -->
+      <aside class="lg:col-span-4 lg:col-start-9 lg:row-start-1 self-start space-y-6" aria-label="Profil Arif Prabowo">
+        
+        <!-- Author Profile Card (DEC-019 .card style) -->
+        <div class="card p-6 sm:p-7 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-5">
+          
+          <!-- Avatar + Name + Title -->
+          <div class="flex sm:flex-col items-center sm:items-start gap-4 sm:gap-0">
+            <AuthorAvatar size={96} class="w-20 h-20 sm:w-24 sm:h-24 rounded-[2px] border border-[var(--color-border)]" decorative={false} />
+            <div class="sm:mt-4 min-w-0">
+              <h1 class="text-2xl sm:text-[1.65rem] font-serif font-bold text-[var(--color-text)] tracking-tight leading-tight">
+                Arif Prabowo
+              </h1>
+              <p class="text-xs sm:text-sm text-[var(--color-soil)] font-medium mt-1 leading-snug">
+                Konsultan Pertanian Senior · Pengelola Jurnal Tani
+              </p>
+            </div>
+          </div>
 
-      <div>
-        <div class="space-y-1.5 mb-5">
-          <h1 class="text-3xl sm:text-4xl font-serif font-semibold text-[var(--color-text)] leading-tight tracking-[-0.015em] text-balance">
-            Arif Prabowo
-          </h1>
-          <p class="text-base sm:text-lg text-[var(--color-soil)]">
-            Konsultan Pertanian Senior · Pengelola Jurnal Tani
-          </p>
+          <!-- Stats Row -->
+          <div class="flex items-center justify-between text-xs text-[var(--color-soil)] tabular-nums font-medium">
+            <div>
+              <span class="block text-base font-bold font-serif text-[var(--color-text)]">{sortedArticles.length}</span>
+              <span class="text-xs text-[var(--color-text-muted)]">Panduan Terbit</span>
+            </div>
+            <div>
+              <span class="block text-base font-bold font-serif text-[var(--color-text)]">&gt;8</span>
+              <span class="text-xs text-[var(--color-text-muted)]">Tahun pengalaman</span>
+            </div>
+            <div>
+              <span class="block text-base font-bold font-serif text-[var(--color-text)]">{topicsWithCounts.length}</span>
+              <span class="text-xs text-[var(--color-text-muted)]">Fokus Topik</span>
+            </div>
+          </div>
+
+          <!-- Bio Narrative: Strictly limited to authorized facts (DEC-016) -->
+          <div class="text-xs sm:text-sm leading-relaxed text-[var(--color-text)] space-y-2">
+            <p>
+              Arif Prabowo memiliki pengalaman lebih dari 8 tahun di bidang pertanian dan riset, mempelajari beragam komoditas dan praktik budidaya. Kini beliau adalah sales dan konsultan produk unggulan Agritani (Aussie, BENSU, Saratoga, Kojien) serta mengelola resmi portal Agritani yang bekerja sama dengan beberapa brand pupuk dan perusahaan pertanian.
+            </p>
+          </div>
+
+          <!-- Primary Direct Action: Single WhatsApp Consultation Button (DESIGN §2.8) -->
+          <div data-cta="whatsapp" class="pt-1">
+            <a
+              href={waHref}
+              target={waAttrs.target}
+              rel={waAttrs.rel}
+              class="w-full inline-flex items-center justify-center gap-2.5 px-5 py-3 min-h-[44px] text-sm font-semibold rounded-[2px] transition-colors border border-[var(--color-border-control)] bg-[var(--color-surface)] text-[var(--color-brand-strong)] hover:border-[var(--color-brand-strong)] hover:bg-[var(--color-tint)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-strong)]"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+              </svg>
+              <span>Konsultasi via WhatsApp</span>
+              <span class="sr-only"> {waAttrs.tabNotice}</span>
+            </a>
+            <p class="text-xs text-[var(--color-text-muted)] text-center mt-2 leading-tight">
+              Tanyakan budidaya, kendala OPT tanaman, atau rekomendasi pemupukan.
+            </p>
+          </div>
+
+          <!-- Topik Keahlian (Topics of Expertise Pills) -->
+          <div class="space-y-2">
+            <span class="block text-xs font-semibold text-[var(--color-soil)]">
+              Bidang & Topik Keahlian
+            </span>
+            <div class="flex flex-wrap gap-x-4">
+              {topicsWithCounts.map((t) => (
+                <a
+                  href={`/jurnal/topik/${t.slug}/`}
+                  class="inline-flex items-center gap-1 text-[var(--color-brand-strong)] hover:underline underline-offset-4 text-sm font-medium min-h-[44px]"
+                >
+                  <span>{t.name}</span>
+                  <span class="text-xs opacity-75 tabular-nums">({t.count})</span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <!-- Pengungkapan Komersial (DEC-016) -->
+          <div class="text-xs text-[var(--color-text-muted)] leading-relaxed space-y-1">
+            <span class="font-semibold text-[var(--color-text)] block">Pengungkapan</span>
+            <p>
+              Arif Prabowo bertindak sebagai konsultan & sales produk resmi Agritani (Aussie, BENSU, Kojien, Saratoga). Keterikatan komersial ini diungkapkan secara transparan di setiap publikasi. Seluruh rekomendasi teknis tetap bersandar pada data lapangan dan label resmi.
+            </p>
+          </div>
+
         </div>
 
-      <!-- Bio Prose: Strictly limited to authorized fact (DEC-016) -->
-      <div class="text-base sm:text-[17px] leading-[1.7] text-[var(--color-text)] max-w-[65ch] mb-8">
-        <p>
-          Arif Prabowo memiliki pengalaman lebih dari 8 tahun di bidang pertanian dan riset, mempelajari beragam komoditas serta praktik budidaya di berbagai wilayah Indonesia. Saat ini beliau bertindak sebagai sales dan konsultan produk unggulan Agritani (Aussie, BENSU, Saratoga, dan Kojien), serta mengelola resmi portal pertanian Agritani yang bekerja sama dengan beberapa brand pupuk dan perusahaan pertanian.
-        </p>
-      </div>
+      </aside>
 
-      <!-- Kontak: satu-satunya CTA WhatsApp di halaman ini (DESIGN §2.8; dipindah dari artikel atas keputusan pemilik 2026-09-30) -->
-      <ConsultPrompt
-        source="Web·Penulis"
-        headingLevel={2}
-        title="Konsultasi dengan Arif Prabowo"
-        description="Tanyakan budidaya, gejala tanaman, atau penggunaan produk Agritani. Siapkan foto tanaman, umur tanaman, dan lokasi kebun. Pesan dikirim ke WhatsApp resmi Agritani."
-        label="Chat via WhatsApp"
-        variant="secondary"
-      />
+      <section class="lg:col-span-8 lg:col-start-1 lg:row-start-1" aria-labelledby="heading-panduan">
+        
+        <!-- Stream Masthead & Topic Filter Tabs -->
+        <div class="mb-6 sm:mb-8">
+          <div class="flex flex-wrap items-baseline justify-between gap-3">
+            <h2 id="heading-panduan" class="font-serif text-2xl sm:text-3xl font-bold text-[var(--color-text)] tracking-tight">
+              Panduan & Telaah Agronomi
+            </h2>
+            <span class="text-xs sm:text-sm text-[var(--color-text-muted)] font-medium tabular-nums">
+              {sortedArticles.length} panduan diterbitkan
+            </span>
+          </div>
+          <p class="text-sm sm:text-base text-[var(--color-soil)] mt-1.5 max-w-[62ch] leading-relaxed">
+            Kumpulan telaah budidaya, penanganan hama penyakit tanaman, dan rekomendasi pemupukan berbasis pengamatan lapangan.
+          </p>
 
-      <!-- Pengungkapan (DESIGN §4.3.1 blok 16, DEC-016) -->
-      <div class="mt-8 max-w-[65ch] text-xs sm:text-sm text-[var(--color-text-muted)] space-y-1">
-        <p class="font-semibold text-[var(--color-text)]">Pengungkapan</p>
-        <p>
-          Arif Prabowo juga bekerja sebagai sales dan konsultan produk Agritani (Aussie, BENSU, Kojien, Saratoga). Hubungan ini juga dicantumkan di bio penulis pada setiap artikel Jurnal Tani. Ikuti selalu petunjuk pada label kemasan.
-        </p>
-      </div>
-      </div>
-    </header>
+          <!-- Medium-style Interactive Tabs / Filter Bar -->
+          <div
+            class="mt-6 flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1.5 text-xs sm:text-sm font-medium -mx-4 px-4 sm:mx-0 sm:px-0"
+            id="topic-filter-tabs"
+            role="group"
+            aria-label="Filter topik panduan"
+          >
+            <button
+              type="button"
+              class="topic-tab-btn active px-3.5 py-2 rounded-[2px] transition-colors border-b-2 border-[var(--color-brand)] font-bold text-[var(--color-brand-strong)] bg-[var(--color-tint)] min-h-[44px] shrink-0 cursor-pointer"
+              data-filter="all"
+              aria-pressed="true"
+            >
+              Semua ({sortedArticles.length})
+            </button>
+            {topicsWithCounts.map((t) => (
+              <button
+                type="button"
+                class="topic-tab-btn px-3 py-2 rounded-[2px] transition-colors border-b-2 border-transparent text-[var(--color-soil)] hover:text-[var(--color-text)] hover:bg-[var(--color-canvas)] min-h-[44px] shrink-0 cursor-pointer"
+                data-filter={t.slug}
+                aria-pressed="false"
+              >
+                {t.name} ({t.count})
+              </button>
+            ))}
+          </div>
+        </div>
 
-    <!-- Articles Section -->
-    <section class="max-w-[52rem] mb-12 lg:mb-16" aria-labelledby="karya-tulis">
-      <div class="flex items-baseline justify-between gap-4 mb-6">
-        <h2 id="karya-tulis" class="section-title !mb-0">
-          Panduan dan karya tulis
-        </h2>
-        <span class="text-xs sm:text-sm text-[var(--color-text-muted)] tabular-nums">
-          {sortedArticles.length} artikel {includeDrafts ? '(termasuk draf)' : 'terbit'}
-        </span>
-      </div>
+        <!-- Medium-Style Story Feed -->
+        <div id="author-story-feed" class="space-y-6 sm:space-y-8" role="feed" aria-label="Karya tulis Arif Prabowo">
+          {sortedArticles.map((article, index) => {
+            const isInitiallyHidden = index >= 8;
+            const rTime = getReadingTime(article.body || '');
+            const comm = article.data.commodities?.[0];
+            const commName = comm ? (typeof comm === 'string' ? comm : comm.id) : null;
+            const hasCommodityHub = commName ? validCommoditySet.has(commName) : false;
 
-      <ArticleList
-        articles={sortedArticles}
-        initialCount={6}
-        batchSize={6}
-        listId="penulis-arif"
-        emptyMessage="Belum ada artikel yang diterbitkan untuk saat ini."
-      />
+            return (
+              <article
+                class={`author-story-card pb-7 sm:pb-8 border-b border-[var(--color-border)]/70 transition-opacity ${isInitiallyHidden ? 'hidden' : ''}`}
+                data-topic={article.data.topic}
+                data-index={index}
+              >
+                <!-- Story Byline: Mini Avatar, Author, Date, Reading Time -->
+                <div class="flex items-center gap-2 text-xs text-[var(--color-soil)] font-medium mb-2.5">
+                  <AuthorAvatar size={24} class="w-5 h-5 rounded-[2px] border border-[var(--color-border)] shrink-0" decorative={true} />
+                  <span class="font-semibold text-[var(--color-text)]">Arif Prabowo</span>
+                  <span aria-hidden="true" class="text-[var(--color-text-muted)]">&middot;</span>
+                  <time datetime={new Date(article.data.pubDate).toISOString()}>
+                    {formatDate(article.data.pubDate)}
+                  </time>
+                  <span aria-hidden="true" class="text-[var(--color-text-muted)]">&middot;</span>
+                  <span>{rTime.text}</span>
+                  {article.data.draft && (
+                    <span class="ml-1 px-1.5 py-0.5 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-soil)] text-xs font-semibold">
+                      Draf
+                    </span>
+                  )}
+                </div>
 
-      <!-- Bottom navigation -->
-      <div class="mt-12 space-y-1">
-        <h3 class="font-serif text-lg font-semibold text-[var(--color-brand-strong)]">Jelajahi berdasarkan topik</h3>
-        <p class="text-sm sm:text-base text-[var(--color-text-muted)]">
-          Kunjungi indeks lengkap Jurnal Tani untuk menyaring artikel per komoditas dan bidang keilmuan.
-        </p>
-        <a href="/jurnal/" class="link-more text-sm">Buka indeks Jurnal Tani &rarr;</a>
-      </div>
-    </section>
+                <!-- Story Main Row: Left Text + Right Thumbnail -->
+                <div class="flex items-start justify-between gap-4 sm:gap-6">
+                  <div class="flex-1 min-w-0">
+                    <h3 class="text-lg sm:text-[1.28rem] font-serif font-bold text-[var(--color-text)] leading-snug tracking-[-0.01em]">
+                      <a
+                        href={`/jurnal/${article.data.slug}/`}
+                        class="hover:text-[var(--color-brand-strong)] hover:underline decoration-1 underline-offset-4 transition-colors inline-block"
+                      >
+                        {article.data.title}
+                      </a>
+                    </h3>
+
+                    <p class="mt-2 text-sm sm:text-[15px] text-[var(--color-text-muted)] line-clamp-2 sm:line-clamp-3 leading-relaxed">
+                      {article.data.description}
+                    </p>
+
+                    <!-- Story Footer: Topic Pill + Commodity + Read Link -->
+                    <div class="mt-4 flex flex-wrap items-center gap-2.5 text-xs">
+                      <a
+                        href={`/jurnal/topik/${article.data.topic}/`}
+                        class="inline-flex items-center text-[var(--color-brand-strong)] font-semibold hover:underline underline-offset-4 min-h-[44px]"
+                      >
+                        {topicName(article.data.topic)}
+                      </a>
+                      {commName && (
+                        hasCommodityHub ? (
+                          <a
+                            href={`/jurnal/komoditas/${commName}/`}
+                            class="text-[var(--color-soil)] hover:text-[var(--color-brand-strong)] hover:underline capitalize font-medium min-h-[44px] inline-flex items-center"
+                          >
+                            #{commName.replace(/-/g, ' ')}
+                          </a>
+                        ) : (
+                          <span class="text-[var(--color-soil)] capitalize font-medium min-h-[44px] inline-flex items-center">
+                            #{commName.replace(/-/g, ' ')}
+                          </span>
+                        )
+                      )}
+                      <a
+                        href={`/jurnal/${article.data.slug}/`}
+                        class="ml-auto text-xs font-semibold text-[var(--color-brand-strong)] hover:underline inline-flex items-center gap-1 min-h-[44px] py-1"
+                        aria-label={`Baca panduan lengkap ${article.data.title}`}
+                      >
+                        <span>Baca Panduan</span>
+                        <span aria-hidden="true">&rarr;</span>
+                      </a>
+                    </div>
+                  </div>
+
+                  <!-- Right Thumbnail (Medium signature layout) -->
+                  <a
+                    href={`/jurnal/${article.data.slug}/`}
+                    class="w-24 h-20 sm:w-36 sm:h-26 md:w-44 md:h-28 aspect-[16/11] rounded-[2px] overflow-hidden shrink-0 bg-[var(--color-canvas)] block self-start group"
+                    tabindex="-1"
+                    aria-hidden="true"
+                  >
+                    <Picture
+                      src={getArticleImage(article.data)}
+                      formats={['webp']}
+                      widths={[180, 360]}
+                      sizes="(min-width: 640px) 11rem, 6rem"
+                      quality={70}
+                      alt=""
+                      class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                      loading={index < 3 ? "eager" : "lazy"}
+                      decoding={index < 3 ? "sync" : "async"}
+                    />
+                  </a>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        <!-- Load More Section -->
+        <div id="author-load-more" class="mt-10 pt-4 flex flex-col items-center gap-3">
+          <p class="text-xs text-[var(--color-soil)] font-medium">
+            Menampilkan <span id="author-shown-count">8</span> dari <span id="author-total-count">{sortedArticles.length}</span> panduan agronomi
+          </p>
+          <button
+            type="button"
+            id="author-btn-load-more"
+            class="px-6 py-3 rounded-[2px] font-sans font-semibold text-sm text-[var(--color-brand-strong)] bg-[var(--color-surface)] border border-[var(--color-border-control)] hover:bg-[var(--color-tint)] hover:border-[var(--color-brand)] transition-colors min-h-[44px] inline-flex items-center justify-center gap-2 cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--color-brand)]"
+          >
+            <span>Muat Panduan Lainnya</span>
+            <span id="author-batch-badge" class="text-xs px-2 py-0.5 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-soil)] tabular-nums">
+              +8
+            </span>
+          </button>
+          <p id="author-all-loaded" class="text-xs text-[var(--color-text-muted)] italic hidden">
+            Semua panduan agronomi telah ditampilkan.
+          </p>
+          <div id="author-filter-empty" class="text-center py-12 text-[var(--color-text-muted)] hidden">
+            <p>Tidak ada panduan yang cocok untuk topik ini.</p>
+          </div>
+          <div id="author-announcer" class="sr-only" aria-live="polite"></div>
+        </div>
+
+        <!-- Explore Topics Fallback Footer -->
+        <div class="mt-14 space-y-2">
+          <h3 class="font-serif text-lg font-semibold text-[var(--color-brand-strong)]">
+            Jelajahi Arsip Lengkap Jurnal Tani
+          </h3>
+          <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+            Temukan indeks terlengkap panduan pertanian yang tersaring berdasarkan komoditas perkebunan, tanaman pangan, dan hortikultura.
+          </p>
+          <a href="/jurnal/" class="link-more text-sm inline-flex items-center gap-1 font-semibold text-[var(--color-brand)] hover:underline">
+            <span>Buka Indeks Jurnal Tani</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- 2. Right Rail: Medium Author Profile Sidebar (Desktop: right 4 cols | Mobile: top card) -->
+
+    </div>
   </div>
 </BaseLayout>
+
+<script>
+  function initAuthorProfile() {
+    const tabsContainer = document.getElementById('topic-filter-tabs');
+    const feed = document.getElementById('author-story-feed');
+    const loadMoreBtn = document.getElementById('author-btn-load-more') as HTMLButtonElement | null;
+    const shownCountEl = document.getElementById('author-shown-count');
+    const totalCountEl = document.getElementById('author-total-count');
+    const batchBadge = document.getElementById('author-batch-badge');
+    const allLoadedMsg = document.getElementById('author-all-loaded');
+    const emptyMsg = document.getElementById('author-filter-empty');
+    const announcer = document.getElementById('author-announcer');
+
+    if (!feed || !tabsContainer) return;
+
+    const cards = Array.from(feed.querySelectorAll<HTMLElement>('.author-story-card'));
+    const BATCH_SIZE = 8;
+    let currentFilter = 'all';
+    let currentLimit = BATCH_SIZE;
+
+    function applyFilterAndLimit() {
+      const matchingCards = cards.filter((card) => {
+        if (currentFilter === 'all') return true;
+        return card.dataset.topic === currentFilter;
+      });
+
+      const totalMatching = matchingCards.length;
+
+      // Hide all first
+      cards.forEach((card) => card.classList.add('hidden'));
+
+      // Show matching within limit
+      matchingCards.slice(0, currentLimit).forEach((card) => {
+        card.classList.remove('hidden');
+      });
+
+      // Update counters
+      const currentlyShown = Math.min(currentLimit, totalMatching);
+      if (shownCountEl) shownCountEl.textContent = String(currentlyShown);
+      if (totalCountEl) totalCountEl.textContent = String(totalMatching);
+
+      // Remaining badge
+      const remaining = totalMatching - currentlyShown;
+      if (batchBadge) {
+        batchBadge.textContent = `+${Math.min(BATCH_SIZE, remaining)}`;
+      }
+
+      // Button and messages state
+      if (totalMatching === 0) {
+        if (loadMoreBtn) loadMoreBtn.classList.add('hidden');
+        if (allLoadedMsg) allLoadedMsg.classList.add('hidden');
+        if (emptyMsg) emptyMsg.classList.remove('hidden');
+      } else if (currentlyShown >= totalMatching) {
+        if (loadMoreBtn) loadMoreBtn.classList.add('hidden');
+        if (allLoadedMsg) allLoadedMsg.classList.remove('hidden');
+        if (emptyMsg) emptyMsg.classList.add('hidden');
+      } else {
+        if (loadMoreBtn) loadMoreBtn.classList.remove('hidden');
+        if (allLoadedMsg) allLoadedMsg.classList.add('hidden');
+        if (emptyMsg) emptyMsg.classList.add('hidden');
+      }
+    }
+
+    // Tab buttons event
+    tabsContainer.querySelectorAll<HTMLButtonElement>('.topic-tab-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter || 'all';
+        if (filter === currentFilter) return;
+
+        currentFilter = filter;
+        currentLimit = BATCH_SIZE;
+
+        // Active class update
+        tabsContainer.querySelectorAll<HTMLButtonElement>('.topic-tab-btn').forEach((b) => {
+          b.classList.remove('active', 'border-[var(--color-brand)]', 'font-bold', 'text-[var(--color-brand-strong)]', 'bg-[var(--color-tint)]');
+          b.classList.add('border-transparent', 'text-[var(--color-soil)]');
+          b.setAttribute('aria-pressed', 'false');
+        });
+
+        btn.classList.add('active', 'border-[var(--color-brand)]', 'font-bold', 'text-[var(--color-brand-strong)]', 'bg-[var(--color-tint)]');
+        btn.classList.remove('border-transparent', 'text-[var(--color-soil)]');
+        btn.setAttribute('aria-pressed', 'true');
+
+        applyFilterAndLimit();
+
+        if (announcer) {
+          const filterName = btn.textContent?.trim() || '';
+          announcer.textContent = `Menampilkan panduan topik ${filterName}.`;
+        }
+      });
+    });
+
+    // Load more button event
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', () => {
+        currentLimit += BATCH_SIZE;
+        applyFilterAndLimit();
+
+        if (announcer) {
+          const shown = shownCountEl?.textContent || '';
+          const total = totalCountEl?.textContent || '';
+          announcer.textContent = `Memuat panduan berikutnya. Menampilkan ${shown} dari ${total} panduan.`;
+        }
+      });
+    }
+
+    // Initialize state
+    applyFilterAndLimit();
+  }
+
+  initAuthorProfile();
+  document.addEventListener('astro:page-load', initAuthorProfile);
+</script>

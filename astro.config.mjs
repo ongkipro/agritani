@@ -183,12 +183,58 @@ export default defineConfig({
             }
           }
           walkAndConvert(distDir);
+
+          // Ensure /404/ directory index also exists alongside 404.html
+          const html404 = path.join(distDir, '404.html');
+          if (fs.existsSync(html404)) {
+            const dir404 = path.join(distDir, '404');
+            if (!fs.existsSync(dir404)) fs.mkdirSync(dir404, { recursive: true });
+            fs.copyFileSync(html404, path.join(dir404, 'index.html'));
+          }
         },
       },
     },
   ],
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [
+      tailwindcss(),
+      {
+        name: 'vite-trailing-slash-redirect',
+        /** @param {any} server */
+        configureServer(server) {
+          return () => {
+            server.middlewares.stack.unshift({
+              route: '',
+              /**
+               * @param {any} req
+               * @param {any} res
+               * @param {any} next
+               */
+              handle: (req, res, next) => {
+                if (!req.url) return next();
+                const [pathname, search] = req.url.split('?');
+                if (
+                  pathname.startsWith('/@') ||
+                  pathname.startsWith('/_astro') ||
+                  pathname.startsWith('/node_modules') ||
+                  pathname.startsWith('/favicon') ||
+                  pathname.includes('.')
+                ) {
+                  return next();
+                }
+                if (!pathname.endsWith('/')) {
+                  const target = `${pathname}/${search ? '?' + search : ''}`;
+                  res.writeHead(302, { Location: target });
+                  res.end();
+                  return;
+                }
+                next();
+              },
+            });
+          };
+        },
+      },
+    ],
     server: {
       host: true,
       allowedHosts: true,

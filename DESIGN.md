@@ -701,12 +701,10 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 
 **Artikel `/jurnal/{slug}/`** (Sains) — anatomi lengkap §4.3.
 
-**Profil Penulis `/penulis/arif-prabowo/`** (Sains)
+**Profil Penulis `/penulis/arif-prabowo/`** (Sains) — gaya profil Medium, T-47 (2026-09-30)
 
-1. Breadcrumb · foto (`AuthorAvatar`, tidak dekoratif) · H1 "Arif Prabowo" · peran "Konsultan Pertanian Senior · Pengelola Jurnal Tani".
-2. Biografi singkat dari data pemilik (DEC-016): lebih dari 8 tahun di bidang pertanian dan riset; mempelajari beragam komoditas dan praktik budidaya; kini sales & konsultan produk unggulan Agritani (Aussie, BENSU, Saratoga, Kojien); mengelola portal Agritani yang bekerja sama dengan brand pupuk dan perusahaan pertanian. Pendidikan/institusi tidak ditampilkan sampai diberikan (OQ-4). Tanpa gelar "Prof."
-3. Hubungan dengan Agritani (sama dengan kalimat bio di Tentang Penulis setiap artikel).
-4. H2 "Artikel oleh Arif Prabowo": daftar baris semua artikel.
+1. ≥1024px dua kolom: kiri feed "Panduan & Telaah Agronomi" (jumlah artikel terbit, tab filter topik dengan jumlah, kartu cerita: byline kecil · judul serif · kutipan 2 baris · topik + #komoditas · gambar kanan; 8 artikel lalu "Muat Panduan Lainnya" +8); kanan kartu penulis sticky: foto · nama · "Konsultan Pertanian Senior · Pengelola Jurnal Tani" · angka (artikel terbit, >8 tahun pengalaman, jumlah topik) · bio DEC-016 · satu CTA WhatsApp · bidang & topik · pengungkapan hubungan komersial. <1024px kartu penulis di atas feed.
+2. Bio hanya dari DEC-016 (tanpa pendidikan/institusi, tanpa "Prof."); angka dihitung dari koleksi terbit.
 
 **Produk `/produk/`** (Lapangan) — isi & aturan klaim di §2.5; dibangun 2026-09-30 (T-38)
 
@@ -744,7 +742,7 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 
 **Cari `/cari/`** (Lapangan, `noindex`) — H1 "Pencarian Jurnal Tani" · kotak cari (label terlihat) · hasil Pagefind berupa baris artikel · kosong: saran "coba nama tanaman + gejala" + tautan Diagnosa Gejala.
 
-**404** (Lapangan, `noindex`) — H1 "Halaman tidak ditemukan" · tautan Diagnosa Gejala, Jurnal Tani, Beranda · kotak cari.
+**404** (Lapangan, `noindex`) — T-47: H1 "Halaman yang Anda cari tidak tersedia" · satu kalimat · kartu pencarian (label terlihat, "Sering dicari" sebagai tautan teks 44px) · "Jalur utama Agritani" 6 kartu tautan (judul serif · satu kalimat · tautan lanjut; tanpa ikon/lencana) · "Panduan per komoditas" tautan `#komoditas` · tombol "Kembali ke Beranda". Tanpa kicker, tanpa garis antar-section, tanpa WhatsApp.
 
 #### 4.2.4. SEO per tipe halaman
 

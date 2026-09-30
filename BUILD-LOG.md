@@ -888,3 +888,9 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - `/kemitraan-distributor/`: bagian "Alur kemitraan distributor" (3 kartu langkah) dihapus atas permintaan pemilik; halaman langsung ke formulir. DESIGN §4.2.3 dicatat.
 - Aturan intake artikel (AI maupun berkas `.md`): `docs/content/ARTICLE-INTAKE.md` (templat frontmatter, aturan isi, verifikasi, terbit). `scripts/check-articles.mjs` menjadi langkah pertama `npm run build` (+ `npm run check:articles`): slug, field wajib, topik valid, `pubDate`, tags, `metaTitle` 44–59, `description` 120–155, kata hiperbola, pemisah "|"/"—", rujukan ber-DOI/URL, nama terlarang, placeholder, slug ganda. 300 naskah (296 terbit) lolos; 5 tes baru.
 - AGENTS.md menunjuk ke panduan intake.
+
+## 2026-09-30 — T-47: Profil penulis & 404 (agy, direview Claude) (PASS)
+
+- agy (Gemini 3.8 Flash): `/penulis/arif-prabowo/` dirombak gaya profil Medium (feed + filter topik + kartu penulis sticky + load more), `/404` jadi halaman pemulihan, `AuthorAvatar` disesuaikan, skrip tangkapan UI + bukti di `proof/ui/author/` dan `proof/ui/404/`.
+- Review Claude: bio dikembalikan ke kalimat DEC-016 (tambahan "di berbagai wilayah Indonesia" dan "bermitra dengan pelaku industri pertanian nasional" dihapus); statistik "Riset Lapangan" → "Tahun pengalaman". 404 dirapikan sesuai DESIGN §3.3/§3.4: kicker "Galat 404", ikon dekoratif, lencana ("Interaktif", "Presisi"), garis antar-section, dan klaim "secara akurat" dihapus; chip 32px → tautan teks 44px.
+- Verifikasi: astro check 0 error, npm test, npm run build PASS (SEO, CSP 0/0/0, owner-rules); WhatsApp: profil 1, 404 0; render 390 & 1440 diperiksa.
