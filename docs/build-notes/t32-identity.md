@@ -116,6 +116,13 @@ Tangkapan layar resolusi penuh dihasilkan via `agritani-shot.cjs` pada port stat
 7. **Pembersihan Token Warna**:
    - Menghapus seluruh hardcoded hex `#B3261E` dan sejenisnya; beralih 100% ke token CSS `var(--color-topic-...)` dan `var(--color-brand-strong)`.
 
+8. **Penyempurnaan Header & Interaksi Tautan (`.link-more`):**
+   - Menghapus frame outline/ring kotak saat tautan/tombol diklik dengan aturan CSS `:focus:not(:focus-visible) { outline: none !important; box-shadow: none !important; }` tanpa mengorbankan aksesibilitas keyboard (`focus-visible`).
+   - Memperhalus active dan hover state navbar: mengganti blok abu-abu kaku dengan indikator garis bawah mulus (`scale-x` animation) yang selaras dengan estetika editorial brand.
+   - Mengadopsi kelas `.link-more` dengan animasi garis bawah bertransisi halus di berbagai penjuru situs (Alat Tani, Konsultasi, Hub Komoditas, Profil Penulis, dan Baris Artikel Jurnal).
+   - Memperkuat ketegasan headline section (`.section-headline`) menggunakan warna teks kaya berbobot 700 dan letter-spacing rapat editorial (`-0.02em`).
+
 ---
 
 T-32 SIAP REVIEW ULANG
+

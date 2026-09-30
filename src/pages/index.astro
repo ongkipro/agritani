@@ -214,10 +214,9 @@ const seoProps: SeoInput = {
           <div class="mt-4 pt-2">
             <a
               href="/konsultasi/"
-              class="inline-flex items-center gap-2 text-xs font-bold text-[var(--color-brand-strong)] hover:underline py-1.5"
+              class="link-more text-xs sm:text-sm"
             >
-              <span>Butuh telaah kebun langsung? Pelajari alur konsultasi agronomi</span>
-              <span aria-hidden="true">&rarr;</span>
+              Butuh telaah kebun langsung? Pelajari alur konsultasi &rarr;
             </a>
           </div>
         </div>
@@ -323,7 +322,7 @@ const seoProps: SeoInput = {
               <h3 class="font-serif text-2xl sm:text-3xl lg:text-[28px] xl:text-[32px] font-bold text-[var(--color-text)] tracking-tight leading-[1.25]">
                 <a
                   href={`/jurnal/${featuredArticle.data.slug}/`}
-                  class="group-hover:text-[var(--color-brand-strong)] transition-colors"
+                  class="group-hover:text-[var(--color-brand-strong)] group-hover:underline group-hover:decoration-[var(--color-brand)]/40 group-hover:decoration-2 group-hover:underline-offset-4 transition-all duration-200"
                 >
                   {featuredArticle.data.title}
                 </a>
@@ -374,7 +373,7 @@ const seoProps: SeoInput = {
                 <h3 class="font-serif text-base sm:text-[17px] font-bold text-[var(--color-text)] leading-snug">
                   <a
                     href={`/jurnal/${article.data.slug}/`}
-                    class="group-hover:text-[var(--color-brand-strong)] transition-colors line-clamp-2"
+                    class="group-hover:text-[var(--color-brand-strong)] group-hover:underline group-hover:decoration-[var(--color-brand)]/40 group-hover:decoration-2 group-hover:underline-offset-4 transition-all duration-200 line-clamp-2"
                   >
                     {article.data.title}
                   </a>
@@ -395,20 +394,22 @@ const seoProps: SeoInput = {
           <h3 class="text-sm font-bold text-[var(--color-text)]">
             Panduan Berdasarkan Komoditas Unggulan
           </h3>
-          <a href="/jurnal/" class="text-xs font-bold text-[var(--color-brand-strong)] hover:underline">
-            Semua Komoditas &rarr;
+          <a href="/jurnal/" class="link-more text-xs">
+            Semua komoditas &rarr;
           </a>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
           <a
             href="/jurnal/komoditas/padi/"
-            class="group block"
+            class="group block p-3 -mx-3 rounded-[2px] hover:bg-[var(--color-tint)]/60 transition-colors"
           >
             <div class="flex items-baseline justify-between mb-1">
               <span class="font-serif text-lg font-bold text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] transition-colors">
                 Padi Sawah
               </span>
-              <span class="text-xs font-bold text-[var(--color-brand-strong)] tabular-nums">{getCommodityArticleCount('padi')} Panduan &rarr;</span>
+              <span class="text-xs font-bold text-[var(--color-brand-strong)] tabular-nums group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                {getCommodityArticleCount('padi')} Panduan <span aria-hidden="true">&rarr;</span>
+              </span>
             </div>
             <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
               Mitigasi hawar daun bakteri, blas, dan pengendalian wereng batang coklat.
@@ -416,13 +417,15 @@ const seoProps: SeoInput = {
           </a>
           <a
             href="/jurnal/komoditas/cabai/"
-            class="group block"
+            class="group block p-3 -mx-3 rounded-[2px] hover:bg-[var(--color-tint)]/60 transition-colors"
           >
             <div class="flex items-baseline justify-between mb-1">
               <span class="font-serif text-lg font-bold text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] transition-colors">
                 Cabai
               </span>
-              <span class="text-xs font-bold text-[var(--color-brand-strong)] tabular-nums">{getCommodityArticleCount('cabai')} Panduan &rarr;</span>
+              <span class="text-xs font-bold text-[var(--color-brand-strong)] tabular-nums group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                {getCommodityArticleCount('cabai')} Panduan <span aria-hidden="true">&rarr;</span>
+              </span>
             </div>
             <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
               Protokol patek antraknosa, pencegahan layu fusarium, dan thrips keriting.
@@ -430,13 +433,15 @@ const seoProps: SeoInput = {
           </a>
           <a
             href="/jurnal/membasmi-ulat-grayak-jagung-faw-spodoptera/"
-            class="group block"
+            class="group block p-3 -mx-3 rounded-[2px] hover:bg-[var(--color-tint)]/60 transition-colors"
           >
             <div class="flex items-baseline justify-between mb-1">
               <span class="font-serif text-lg font-bold text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] transition-colors">
                 Jagung
               </span>
-              <span class="text-xs font-bold text-[var(--color-soil)] tabular-nums">{getCommodityArticleCount('jagung')} Panduan &rarr;</span>
+              <span class="text-xs font-bold text-[var(--color-soil)] tabular-nums group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                {getCommodityArticleCount('jagung')} Panduan <span aria-hidden="true">&rarr;</span>
+              </span>
             </div>
             <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
               Perlindungan titik tumbuh dari ulat grayak jagung (FAW) dan penyakit bulai.

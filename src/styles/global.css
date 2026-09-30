@@ -96,6 +96,12 @@
   accent-color: var(--color-brand);
 }
 
+/* Suppress browser frame box on mouse click while preserving keyboard accessibility */
+:focus:not(:focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 :focus-visible {
   outline: 2px solid var(--color-brand-strong);
   outline-offset: 2px;
@@ -160,11 +166,11 @@ footer :focus-visible {
 
 .section-headline {
   font-family: var(--font-serif);
-  font-weight: 600;
+  font-weight: 700;
   font-size: clamp(1.875rem, 1.4rem + 1.5vw, 2.75rem);
   line-height: 1.15;
-  letter-spacing: -0.015em;
-  color: var(--color-brand-strong);
+  letter-spacing: -0.02em;
+  color: var(--color-text);
   text-wrap: balance;
 }
 
@@ -228,24 +234,27 @@ footer :focus-visible {
 }
 .link-more {
   position: relative;
-  display: inline-block;
-  padding: 0.625rem 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.375rem 0;
   font-family: var(--font-editorial);
   font-style: italic;
   font-weight: 600;
   font-size: 1.0625rem;
   color: var(--color-brand-strong);
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 .link-more::after {
   content: '';
   position: absolute;
   left: 0;
-  bottom: 0.25rem;
+  bottom: 0.125rem;
   width: 2rem;
   height: 2px;
   background: var(--color-brand);
-  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .link-more:hover::after,
 .link-more:focus-visible::after {

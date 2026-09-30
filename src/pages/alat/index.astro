@@ -93,9 +93,8 @@ const tools = [
               {tool.description}
               <span class="block mt-1 text-xs font-semibold text-[var(--color-soil)]">{tool.badge}</span>
             </p>
-            <span class="mt-2 sm:mt-0 inline-flex items-center gap-1.5 text-sm font-bold text-[var(--color-brand-strong)] group-hover:underline underline-offset-4 whitespace-nowrap">
-              {tool.isUpcoming ? 'Lihat status' : 'Buka alat'}
-              <span aria-hidden="true">&rarr;</span>
+            <span class="link-more text-sm mt-2 sm:mt-0 whitespace-nowrap">
+              {tool.isUpcoming ? 'Lihat status' : 'Buka instrumen'} &rarr;
             </span>
           </a>
         </li>

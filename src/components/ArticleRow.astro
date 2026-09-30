@@ -70,10 +70,10 @@ const formattedDate = new Intl.DateTimeFormat('id-ID', {
       )}
     </div>
 
-    <h2 class="text-lg sm:text-xl font-serif font-semibold text-[var(--color-text)] mb-2 leading-snug">
+    <h2 class="text-lg sm:text-xl font-serif font-bold text-[var(--color-text)] mb-2 leading-snug">
       <a
         href={`/jurnal/${article.data.slug}/`}
-        class="hover:text-[var(--color-brand-strong)] hover:underline inline-block py-0.5"
+        class="group-hover:text-[var(--color-brand-strong)] group-hover:underline group-hover:decoration-[var(--color-brand)]/40 group-hover:decoration-2 group-hover:underline-offset-4 transition-all duration-200 inline-block py-0.5"
       >
         {article.data.title}
       </a>
@@ -82,5 +82,16 @@ const formattedDate = new Intl.DateTimeFormat('id-ID', {
     <p class="text-sm sm:text-base text-[var(--color-text-muted)] line-clamp-2 leading-relaxed">
       {article.data.description}
     </p>
+
+    <div class="mt-2">
+      <a
+        href={`/jurnal/${article.data.slug}/`}
+        class="link-more text-xs"
+        tabindex="-1"
+        aria-hidden="true"
+      >
+        Baca telaah agronomi &rarr;
+      </a>
+    </div>
   </div>
 </article>
