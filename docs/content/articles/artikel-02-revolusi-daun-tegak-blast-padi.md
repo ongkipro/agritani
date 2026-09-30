@@ -55,8 +55,11 @@ Kondisi Tahan Imunitas:
 Aktivator Imun ───► Dinding Sel Tebal ───► Daun Tegak Kaku ───► Air Meluncur Cepat ───► Jamur Gagal Berkecambah
 ```
 
-## 3. Menuju Panen Bebas Residu
+## 3. Menuju Panen Bebas Residu dan Gabah Bernas
 
-Dengan menyemprotkan booster nutrisi imunitas sejak fase persemaian umur 10–14 HSS (Hari Setelah Sebar) dan mengulanginya pada fase anakan aktif (umur 20–25 HST) serta fase primordial (umur 45 HST), petani padi dapat memangkas penggunaan fungisida sintetis hingga lebih dari 60%.
+Dengan mengaplikasikan aktivator imunitas sejak fase persemaian umur 10–14 HSS (Hari Setelah Sebar) dan mengulanginya pada fase anakan aktif (umur 20–25 HST) serta fase primordial bunting muda (umur 45 HST), petani padi dapat memangkas penggunaan fungisida sintetis hingga lebih dari 60%.
+
+Gunakan dosis 2 mililiter per liter air (sekitar 30 sampai 35 mililiter untuk tangki semprot punggung kapasitas 16 liter) dengan nosel kabut halus di pagi hari sebelum pukul 09.00 saat stomata daun terbuka sempurna. Malai padi akan keluar serempak, bulir terisi penuh bernas hingga ke pangkal tangkai, serta terbebas dari ancaman busuk patah leher saat memasuki fase pematangan gabah menjelang panen raya.
+
 
 Hasilnya bukan hanya gabah yang lebih bersih dan bernas hingga ke pangkal malai, melainkan juga beras yang bebas dari residu racun kimia—sebuah nilai tambah yang kini semakin dicari konsumen perkotaan.
