@@ -1,6 +1,6 @@
 # Design Contract: Agritani — Portal Tani & Profil Distributor
 
-> **Entitas**: PT Agritani Internasional ([agritani.com](https://agritani.com)) — distributor resmi sarana produksi pertanian ([DEC-010](DECISIONS.md))
+> **Entitas**: Agritani ([agritani.com](https://agritani.com)) — portal pertanian yang dikelola resmi oleh Arif Prabowo untuk PT Agritani Internasional; 4 produk unggulan; kerja sama dengan brand pupuk & perusahaan pertanian ([DEC-016](DECISIONS.md))
 > **Status**: Brand direction & behavior ACCEPTED (2026-09-29) · Composition **PROPOSED, reference-backed** (T-00 selesai) · Rendered UI **UNVERIFIED** (belum ada kode)
 > **Stack**: Astro 7 static + Tailwind CSS 4 `@theme` ([DEC-004](DECISIONS.md)) · satu tema terang ([DEC-008](DECISIONS.md))
 > **Owner skill**: `design-taste` → `impeccable` → `ui-validation`. Bukan admin UI.
@@ -22,7 +22,7 @@ tandingan; perluas dokumen ini.
 | Spesimen token (render) | **Observed** | Dua render headless 390px & 1440px: palet lama dan palet baru (§9) |
 | Referensi pasar Indonesia & pola global | **Observed** | 9 halaman diinspeksi di 390px & 1440px pada 2026-09-29; 3 gagal dibuka (§4.0) |
 | API cuaca BMKG | **Verified** | Endpoint, field, CORS `*`, batas 60/menit, atribusi wajib — diuji 2026-09-29 (DEC-014) |
-| Data agrimarket (kalender, gejala) | **Seed, unverified** | Wajib ditinjau Prof. Arif sebelum tampil (DEC-015, OQ-11) |
+| Data agrimarket (kalender, gejala) | **Seed, unverified** | Wajib ditinjau Arif Prabowo sebelum tampil (DEC-015, OQ-11) |
 | Persona | **Assumption** | Proto-persona PRD §4 |
 
 ---
@@ -33,20 +33,22 @@ tandingan; perluas dokumen ini.
 
 **Pernyataan positioning:** Untuk petani sawit, padi, dan hortikultura serta
 kios saprotan di Indonesia yang lelah dengan janji panen berlipat, Agritani
-adalah **distributor resmi nutrisi dan aktivator imun tanaman** yang bisa
-dipercaya karena **edukasinya bisa diperiksa**: jurnal yang ditulis profesor
-pertanian dengan daftar pustaka, produk asli dengan nomor izin edar, dan
-konsultasi langsung lewat WhatsApp.
+adalah **portal pertanian yang dikelola praktisi**: Arif Prabowo, konsultan
+pertanian senior dengan lebih dari 8 tahun pengalaman di pertanian dan riset.
+Portal ini bisa dipercaya karena **edukasinya bisa diperiksa**: jurnal berdaftar
+pustaka dengan pengungkapan hubungan komersial yang jujur, empat produk
+unggulan Agritani dengan nomor izin edar, kerja sama dengan brand pupuk dan
+perusahaan pertanian, dan konsultasi langsung lewat WhatsApp (DEC-016).
 
 | Pilar kepercayaan | Wujud di situs |
 | :--- | :--- |
-| Sains terbuka | Jurnal Tani oleh Prof. Arif Prabowo, Daftar Pustaka, Pengungkapan |
+| Sains terbuka | Jurnal Tani oleh Arif Prabowo, Daftar Pustaka, Pengungkapan (beliau juga sales & konsultan produk Agritani) |
 | Produk asli & legal | Nomor izin edar, cara cek keaslian kemasan (OQ-2, OQ-8) |
 | Didampingi | Diagnosa Gejala + konsultasi WhatsApp berkonteks |
 
 Pembeda dari kategori (§4.0): bukan kolase korporat hijau-kuning, bukan janji
 angka panen, bukan marketplace. Situs tidak memposisikan Agritani sebagai
-produsen atau lembaga riset (DEC-010).
+produsen atau lembaga riset (DEC-016, menggantikan DEC-010). Nama brand mitra tidak ditampilkan (NG-3); kerja sama disebut umum saja.
 
 ### 1.2. Karakter: Hybrid sains + lapangan
 
@@ -213,7 +215,7 @@ State wajib:
 
 Anatomi lengkap, perilaku, dan struktur SEO halaman artikel ada di **§4.3**.
 Ringkasnya: jawaban dulu, bacaan panjang kemudian; tanpa JS wajib; penulis
-Prof. Arif Prabowo dengan pengungkapan hubungan ke PT Agritani Internasional.
+Arif Prabowo dengan pengungkapan hubungan komersialnya dengan produk Agritani.
 
 ### 2.5. Produk (REQ-01) — 4 produk
 
@@ -289,7 +291,7 @@ Tampilan hasil:
 
 - Judul: nama desa, kecamatan, kabupaten + "Diperbarui BMKG {analysis_date}".
 - Per hari: baris slot 3 jam (jam lokal · ikon cuaca + deskripsi · suhu °C · kelembapan % · hujan mm · angin km/jam + arah) dalam tabel dengan `tabular-nums`; di mobile tabel bergulir di dalam wrapper, kolom jam tetap.
-- **Indikator aplikasi lapangan** per slot: **Layak** / **Hati-hati** / **Tunda** — selalu teks + ikon, bukan warna saja, dengan alasan singkat ("hujan 2 mm", "angin 18 km/jam"). Ambang = parameter awal yang **wajib divalidasi Prof. Arif (OQ-11)** sebelum rilis; sampai divalidasi, indikator disembunyikan dan hanya data BMKG yang tampil.
+- **Indikator aplikasi lapangan** per slot: **Layak** / **Hati-hati** / **Tunda** — selalu teks + ikon, bukan warna saja, dengan alasan singkat ("hujan 2 mm", "angin 18 km/jam"). Ambang = parameter awal yang **wajib divalidasi Arif Prabowo (OQ-11)** sebelum rilis; sampai divalidasi, indikator disembunyikan dan hanya data BMKG yang tampil.
 - Ringkasan atas: "Waktu terbaik menyemprot hari ini: 06.00–09.00" (slot Layak pertama), bila indikator aktif.
 - Atribusi wajib: "Sumber data: BMKG (Badan Meteorologi, Klimatologi, dan Geofisika)" + tautan ke situs BMKG, di bawah hasil.
 
@@ -312,7 +314,7 @@ H1 "Alat Tani" · satu kalimat · catatan "Semua alat gratis, tanpa registrasi a
 
 ### 2.7. Konsultasi (REQ-12)
 
-- Halaman `/konsultasi/`: siapa yang menjawab (tim agronomi Agritani; peran Prof. Arif sesuai OQ-4), jam layanan (OQ-1), apa yang disiapkan (foto gejala dekat & seluruh tanaman, komoditas, umur tanaman/HST, luas lahan, kabupaten, riwayat semprot/pupuk 2 minggu terakhir), lalu **form penyusun pesan**: Komoditas · Umur tanaman · Kabupaten · Masalah (textarea) → "Lanjutkan di WhatsApp".
+- Halaman `/konsultasi/`: siapa yang menjawab (tim agronomi Agritani; peran Arif Prabowo sesuai OQ-4), jam layanan (OQ-1), apa yang disiapkan (foto gejala dekat & seluruh tanaman, komoditas, umur tanaman/HST, luas lahan, kabupaten, riwayat semprot/pupuk 2 minggu terakhir), lalu **form penyusun pesan**: Komoditas · Umur tanaman · Kabupaten · Masalah (textarea) → "Lanjutkan di WhatsApp".
 - Pesan WhatsApp berformat tetap, baris pertama kode sumber (G-6):
   ```
   [Web·Konsultasi]
@@ -474,7 +476,7 @@ Diminta Paduka Ongki 2026-09-29 agar situs tidak kosong sebelum foto asli (OQ-5)
 - **Pengiriman**: selalu lewat `<Picture>`/`<Image>` `astro:assets` dengan `widths` + `sizes` dan `quality` 52–60; kelas grid diletakkan di `pictureAttributes`, bukan di `<img>`. Gambar pilar dekoratif memakai `alt=""`; gambar yang membawa isi memakai `alt` deskriptif.
 - **Placeholder Non-Foto**:
   - Kemasan produk: kotak `tint` bertuliskan "Foto kemasan menyusul" (OQ-5).
-  - Foto Prof. Arif: kotak persegi radius 2px berlatar `brand` dengan inisial "AP" (OQ-4); sudah di Beranda; byline dan profil masih lingkaran sampai T-31.
+  - Foto Arif Prabowo: **diterima 2026-09-30** (edit foto asli, disetujui pemilik), disiapkan sebagai `src/assets/images/authors/arif-prabowo.webp` + komponen `AuthorAvatar` (persegi, radius 2px, crop wajah) untuk byline, Tentang Penulis, profil, Tentang Kami, Beranda (T-32). Sampai terpasang: inisial "AP" persegi.
   - Pembuatan gambar AI (Higgsfield) dicoba 2026-09-29 dan ditolak paket akun; bila dipakai kelak, hanya untuk ilustrasi konteks tanpa orang, teks, logo, atau produk, dan diberi label di `CREDITS.md`.
 
 ### 3.6. Permukaan bawaan browser
@@ -521,7 +523,7 @@ Sintesis (terinferensi dari observasi di atas):
 ### 4.1. Composition contract — PROPOSED
 
 - **C1 Skeleton homepage per breakpoint**
-  - ≥1024px (revisi 2026-09-29, teagasc.ie): header → hero dua kolom (teks + pemilih komoditas 7/12, foto 5/12) → baris editorial "Jurnal Tani terbaru" (3 kolom teks 8/12 + daftar topik/komoditas 4/12) → pilar bergambar Alat Tani (foto kiri) → pilar bergambar Konsultasi di band `tint` (foto kanan) → produk (judul 4/12 + 4 baris 8/12) → moderator → band `harvest-tint` pilar Kemitraan bergambar → footer (urutan & isi: §4.2.3 Beranda).
+  - ≥1024px (revisi 2026-09-29, teagasc.ie): header → hero dua kolom (teks + pemilih komoditas 7/12, foto 5/12) → baris editorial "Jurnal Tani terbaru" (3 kolom teks 8/12 + daftar topik/komoditas 4/12) → pilar bergambar Alat Tani (foto kiri) → pilar bergambar Konsultasi di band `tint` (foto kanan) → produk (judul 4/12 + 4 baris 8/12) → pengelola (Arif Prabowo) → band `harvest-tint` pilar Kemitraan bergambar → footer (urutan & isi: §4.2.3 Beranda).
   - <1024px: satu kolom dengan urutan sama; media hero pindah **di bawah** pemilih komoditas atau dihilangkan; pemilih komoditas terlihat tanpa scroll di 390×740.
 - **C2 Frame**: rata kiri di seluruh halaman; judul hero maks `16ch`; paragraf pendamping maks `52ch`; prosa artikel `68ch`.
 - **C3 Hero**: fokus utama = pertanyaan "Tanaman apa yang bermasalah?" + tombol komoditas dari data (min 48px tinggi, grid 2 kolom mobile / 3 kolom desktop); kedua = tautan teks "atau cari gejala" (Pagefind); ketiga = tautan ke Jurnal Tani. Tanpa pola badge → headline tengah → dua tombol. Bila foto belum ada, kolom media diganti **Ringkasan Lapangan contoh dari artikel nyata** (bukan kosong, bukan ilustrasi generik).
@@ -553,7 +555,7 @@ menyusun ulang kerangka sendiri.
 | 3 | Isi | `<main id="isi">` | Satu `<h1>` per halaman; heading tidak melompat level |
 | 4 | Footer | `<footer>` berlatar `brand`, teks putih | Tanpa garis di atas footer; transisi dari band sebelumnya lewat warna latar |
 | 4a | Kolom footer | Alat Tani (4 alat) · Jurnal Tani (6 topik) · Produk (4 produk) · Perusahaan (Tentang Kami, Penulis, Kemitraan, Kebijakan Privasi) · Kontak (nomor WhatsApp resmi, alamat — OQ-1/OQ-7) | <1024px: kolom menjadi daftar bertumpuk, bukan akordeon. Nomor WhatsApp ditulis sebagai teks + tautan biasa, tanpa ikon/tombol berwarna (§2.8) |
-| 4b | Baris legal | "© {tahun} PT Agritani Internasional · Distributor resmi" | Tahun dari waktu build |
+| 4b | Baris legal | "© {tahun} PT Agritani Internasional · Portal pertanian dikelola Arif Prabowo" | Tahun dari waktu build |
 
 Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol WhatsApp melayang, widget chat, pengumuman berjalan.
 
@@ -574,7 +576,7 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
    - **Alat Tani**: 4 baris alat (nama · kegunaan · status "Segera hadir" bila disembunyikan) → `/alat/…`.
    - **Konsultasi**: 2 kalimat + daftar singkat yang perlu disiapkan + tautan "Cara konsultasi" → `/konsultasi/` (bukan WhatsApp; Beranda tanpa tombol WhatsApp).
 4. "Produk untuk lahan Anda": judul + pengantar 4/12 kiri, 4 baris produk 8/12 kanan (nama · tagline · ringkasan) → `/produk/{id}/`. Tanpa foto sampai packshot asli tersedia.
-5. Moderator: inisial persegi (foto menyusul) · H2 nama "Prof. Arif Prabowo" · peran · satu kalimat fakta (artikel terbit ditulis/dimoderasi beliau dan wajib berpustaka, REQ-05) · tautan profil. Tanpa bio karangan.
+5. Pengelola: foto `AuthorAvatar` · H2 nama "Arif Prabowo" · peran "Konsultan Pertanian Senior · Pengelola Jurnal Tani" · satu kalimat pengalaman (>8 tahun pertanian & riset) · satu kalimat fakta (artikel terbit ditulis/dimoderasi beliau dan wajib berpustaka, REQ-05) · tautan profil. Tanpa bio karangan.
 6. Band `harvest-tint` — pilar Kemitraan bergambar: foto gudang 5/12 · H2 · pengantar · langkah 1–3 (urutan nyata) · tombol aksen "Ajukan Kemitraan Distributor".
 
 Tidak ada kotak/kartu di Beranda selain tombol komoditas; tidak ada band yang hanya berisi daftar pendek.
@@ -594,7 +596,7 @@ Tidak ada kotak/kartu di Beranda selain tombol komoditas; tidak ada band yang ha
 2. Form: komoditas (tombol besar) · tanggal tanam · "Buat Jadwal".
 3. Hasil: ringkasan HST & perkiraan panen · timeline fase · aksi (Simpan ke kalender HP, Cetak, Bagikan, Cek cuaca).
 4. H2 "Musim tanam nasional {komoditas}" (tabel MT1–MT3, statis, terbaca tanpa JS).
-5. H2 "Tentang data ini": sumber, ditinjau oleh Prof. Arif Prabowo + tanggal tinjau · Konsultasi berkonteks.
+5. H2 "Tentang data ini": sumber, ditinjau oleh Arif Prabowo + tanggal tinjau · Konsultasi berkonteks.
 
 **Cuaca Tani `/alat/cuaca-tani/`** (Lapangan) — perilaku §2.6.2
 
@@ -644,14 +646,14 @@ Tidak ada kotak/kartu di Beranda selain tombol komoditas; tidak ada band yang ha
 
 **Profil Penulis `/penulis/arif-prabowo/`** (Sains)
 
-1. Breadcrumb · foto (setelah diterima) · H1 "Prof. Arif Prabowo" · peran "Profesor Pertanian · Moderator Jurnal Tani".
-2. Biografi singkat: pendidikan, institusi, bidang keahlian (hanya data dari beliau, OQ-4).
+1. Breadcrumb · foto (`AuthorAvatar`, tidak dekoratif) · H1 "Arif Prabowo" · peran "Konsultan Pertanian Senior · Pengelola Jurnal Tani".
+2. Biografi singkat dari data pemilik (DEC-016): lebih dari 8 tahun di bidang pertanian dan riset; mempelajari beragam komoditas dan praktik budidaya; kini sales & konsultan produk unggulan Agritani (Aussie, BENSU, Saratoga, Kojien); mengelola portal Agritani yang bekerja sama dengan brand pupuk dan perusahaan pertanian. Pendidikan/institusi tidak ditampilkan sampai diberikan (OQ-4). Tanpa gelar "Prof."
 3. Hubungan dengan Agritani (sama dengan teks Pengungkapan).
-4. H2 "Artikel oleh Prof. Arif Prabowo": daftar baris semua artikel.
+4. H2 "Artikel oleh Arif Prabowo": daftar baris semua artikel.
 
 **Produk `/produk/`** (Lapangan) — isi & aturan klaim di §2.5
 
-1. H1 "Produk Agritani" + satu kalimat posisi distributor resmi.
+1. H1 "Produk Agritani" + satu kalimat: empat produk unggulan Agritani (DEC-016).
 2. Tautan anchor per komoditas: Untuk sawit & tanaman keras · Untuk padi · Untuk palawija & sayur · Untuk semua tanaman.
 3. 4 baris produk (≥1024px boleh tabel perbandingan): nama · komoditas · peran · bentuk & cara aplikasi · nomor izin edar (bila ada) → detail.
 4. H2 "Cara memastikan produk asli" (OQ-8) · tautan ke detail produk (tanpa ajakan WhatsApp di indeks produk).
@@ -667,10 +669,10 @@ Tidak ada kotak/kartu di Beranda selain tombol komoditas; tidak ada band yang ha
 
 **Tentang Kami `/tentang-kami/`** (Sains)
 
-1. H1 "Tentang PT Agritani Internasional" · posisi distributor resmi & asal teknologi (Thailand, Jepang).
+1. H1 "Tentang Agritani" · portal pertanian yang dikelola resmi Arif Prabowo untuk PT Agritani Internasional · kerja sama dengan brand pupuk & perusahaan pertanian (tanpa nama) · asal teknologi produk (Thailand, Jepang).
 2. Pendekatan: aktivasi imun tanaman — prosa, bukan kartu.
 3. Alur distribusi `01–03` (urutan nyata) · legalitas & identitas perusahaan (OQ-7).
-4. Moderator Jurnal Tani → profil penulis.
+4. Pengelola Jurnal Tani (Arif Prabowo, foto) → profil penulis.
 5. Kontak.
 
 **Kemitraan `/kemitraan-distributor/`** (Lapangan) — perilaku form di §2.3
@@ -711,7 +713,7 @@ lebar di mobile.
 | 1 | Breadcrumb | `<nav aria-label="Breadcrumb"><ol>` | Beranda › Jurnal Tani › {Topik}. Topik tertaut ke hub. Menggantikan kicker. | `cluster` |
 | 2 | Judul | `<h1>` (satu-satunya) | 20–110 karakter (naskah saat ini 55–103; `<title>` memakai `metaTitle`), Newsreader 600, `text-wrap: balance`, maks `24ch` desktop | `title` |
 | 3 | Dek | `<p class="dek">` | Satu kalimat 120–160 karakter = teks yang sama dengan meta description, jadi deskripsi selalu terlihat di halaman | `description` |
-| 4 | Byline | `<div>` + `<address>` untuk penulis | Foto 40×40 (setelah diterima) · "Oleh **Prof. Arif Prabowo**" (tautan `/penulis/arif-prabowo/`) · "Profesor Pertanian · Moderator Jurnal Tani" | `author` |
+| 4 | Byline | `<div>` + `<address>` untuk penulis | Foto 40×40 (`AuthorAvatar`) · "Oleh **Arif Prabowo**" (tautan `/penulis/arif-prabowo/`) · "Konsultan Pertanian Senior · Pengelola Jurnal Tani" | `author` |
 | 5 | Baris metadata | `<p>` + `<time datetime>` | "Terbit 12 Okt 2026 · Diperbarui 3 Jan 2027 · 7 menit baca · {Komoditas}" — "Diperbarui" hanya bila `updatedDate` ada; format `id-ID`, tanpa jam | `pubDate`, `updatedDate`, dihitung |
 | 6 | Aksi artikel | tombol teks | "Bagikan" (`navigator.share` → lembar bagi perangkat, yang sudah memuat WhatsApp; cadangan: salin tautan) · "Cetak Panduan" (`window.print()`). Keduanya disembunyikan tanpa JS; tanpa ikon/warna WhatsApp. | — |
 | 7 | **Jawaban Singkat** | `<section aria-labelledby>` + `<h2>` | 40–60 kata yang langsung menjawab pertanyaan utama artikel (penyebab + tindakan pertama). Prosa biasa di latar `canvas`, tanpa kotak. Kandidat featured snippet & kutipan AI. | `answer` (baru) |
@@ -723,7 +725,7 @@ lebar di mobile.
 | 13 | Kapan harus konsultasi | `<section>` + `<h2>` | 2–3 tanda bahwa masalah melebihi penanganan mandiri + "Tanya agronom via WhatsApp" dengan pesan terisi judul artikel. Satu-satunya CTA di dalam artikel. | tetap + `title` |
 | 14 | Daftar Pustaka | `<section>` + `<h2>` + `<ol>` di dalam `<details open>` | Terbuka secara bawaan (tetap bisa diciutkan). Penulis, tahun, judul, sumber; DOI → `https://doi.org/…`, `rel="noopener"`. Artikel tanpa referensi terverifikasi tidak terbit. | `references` |
 | 15 | Tentang Penulis | `<section>` + `<h2>` | Foto, nama, gelar lengkap & institusi (setelah OQ-4), 2 kalimat keahlian, tautan profil. Tanpa kotak kartu; dipisah dengan spasi. | data penulis |
-| 16 | Pengungkapan | `<p>` kecil | "Artikel ini ditulis oleh Prof. Arif Prabowo sebagai moderator Jurnal Tani, portal edukasi PT Agritani Internasional, distributor produk nutrisi dan aktivator tanaman." | tetap |
+| 16 | Pengungkapan | `<p>` kecil | "Artikel ini ditulis oleh Arif Prabowo, konsultan pertanian senior dan pengelola Jurnal Tani. Beliau juga bekerja sebagai sales dan konsultan produk Agritani (Aussie, BENSU, Kojien, Saratoga). Ikuti selalu petunjuk pada label kemasan." | tetap |
 | 17 | Lanjut membaca | `<nav aria-label="Artikel terkait">` | 3 artikel dengan topik atau komoditas yang sama (baris: judul + waktu baca) + tautan "Diagnosa gejala {komoditas}" ke `/alat/diagnosa-gejala/?k=` + tautan hub topik. Produk hanya bila komoditas cocok dan klaimnya diizinkan (§2.5). | koleksi |
 
 Frontmatter tambahan untuk T-02/T-03: `answer` (string 40–60 kata, wajib untuk artikel terbit) dan `heroImage` (opsional, dengan `alt` dan `credit`).
@@ -825,7 +827,7 @@ Satu sumber untuk semua metadata, canonical, Open Graph, breadcrumb, JSON-LD, si
 | Hub komoditas | `{Komoditas}: Panduan Budidaya \| Agritani` | `pages/komoditas-{komoditas}.md` → fallback dari data (120–160) | website / `komoditas.png` | index (bila ≥ 3 artikel terbit) | `CollectionPage` (+`ItemList`), `BreadcrumbList` |
 | Indeks jurnal hal. 2+ | `Jurnal Tani — Halaman {n} \| Agritani` | pengantar + nomor halaman | website / default jurnal | index | `CollectionPage`, `BreadcrumbList` |
 | Artikel | `{metaTitle}` | `description` | article / `heroImage` → gambar topik | index | `Article`, `BreadcrumbList` |
-| Profil penulis | `Prof. Arif Prabowo, Penulis \| Agritani` | `pages/penulis-arif-prabowo.md` | profile / foto beliau → default | index | `ProfilePage` (`mainEntity` → `Person`), `BreadcrumbList` |
+| Profil penulis | `Arif Prabowo, Konsultan Pertanian Senior \| Agritani` | `pages/penulis-arif-prabowo.md` | profile / foto beliau → default | index | `ProfilePage` (`mainEntity` → `Person`), `BreadcrumbList` |
 | Indeks produk | `Produk Agritani untuk Sawit, Padi & Sayur` | pengantar | website / default produk | index | `CollectionPage`, `BreadcrumbList` |
 | Detail produk | `{Nama}: {peran singkat} \| Agritani` | `summary` (dipangkas ke 160 di batas kata) | website / `packshot` → default produk | index | `WebPage`, `BreadcrumbList` (tanpa `Product`: tidak ada harga/penawaran) |
 | Tentang Kami | `Tentang PT Agritani Internasional` | `pages/tentang-kami.md` | website / default | index | `AboutPage`, `Organization`, `BreadcrumbList` |
@@ -841,7 +843,7 @@ Satu sumber untuk semua metadata, canonical, Open Graph, breadcrumb, JSON-LD, si
 | `/jurnal/topik/{topik}/` | Beranda › Jurnal Tani › {Topik} |
 | `/jurnal/komoditas/{komoditas}/` | Beranda › Jurnal Tani › {Komoditas} |
 | `/jurnal/{slug}/` | Beranda › Jurnal Tani › {Topik} › {Judul artikel} |
-| `/penulis/arif-prabowo/` | Beranda › Jurnal Tani › Prof. Arif Prabowo |
+| `/penulis/arif-prabowo/` | Beranda › Jurnal Tani › Arif Prabowo |
 | `/produk/{slug}/` | Beranda › Produk › {Nama produk} |
 | halaman tingkat satu (`/alat/`, `/jurnal/`, `/produk/`, `/konsultasi/`, `/tentang-kami/`, `/kemitraan-distributor/`, `/kebijakan-privasi/`) | Beranda › {Nama halaman} |
 
@@ -877,8 +879,8 @@ Artikel (contoh bentuk, nilai dari data):
       "@type": "Person",
       "@id": "https://agritani.com/penulis/arif-prabowo/#person",
       "name": "Arif Prabowo",
-      "honorificPrefix": "Prof.",
-      "jobTitle": "Profesor Pertanian",
+      "jobTitle": "Konsultan Pertanian Senior",
+      "worksFor": { "@id": "https://agritani.com/#organization" },
       "url": "https://agritani.com/penulis/arif-prabowo/",
       "image": "…/arif-prabowo.webp"
     },
@@ -889,7 +891,7 @@ Artikel (contoh bentuk, nilai dari data):
 
 Aturan:
 
-- `author.name` hanya nama ("Arif Prabowo"); gelar di `honorificPrefix`, jabatan di `jobTitle` (sesuai panduan Google). `affiliation` hanya bila institusi diberikan (OQ-4).
+- `author.name` hanya nama ("Arif Prabowo"); tanpa `honorificPrefix` (bukan profesor, DEC-016); jabatan di `jobTitle` (sesuai panduan Google). `affiliation` hanya bila institusi diberikan (OQ-4).
 - `image` artikel: 3 turunan `heroImage` (16:9, 4:3, 1:1, ≥ 50.000 piksel) dibuat `astro:assets` saat build; tanpa `heroImage` → properti `image` dihilangkan (tidak memakai logo sebagai gambar artikel).
 - `Organization`: `name` "PT Agritani Internasional", `alternateName` "Agritani", `url`, `logo` (PNG 512×512 dari `agritani-mark.svg`), `contactPoint` (WhatsApp, bila OQ-1 terjawab), `address` (bila OQ-7). Tanpa `sameAs` sampai akun media sosial resmi diberikan.
 - `WebSite` di Beranda saja: `name`, `url`, `inLanguage`, `publisher` → organisasi. **Tanpa** `SearchAction` (sitelinks search box dihentikan Google sejak 21-11-2024 — Search Central Blog "Farewell, Sitelinks Search Box").
@@ -998,7 +1000,7 @@ Situs boleh menampilkan sinyal kepercayaan **hanya bila datanya resmi**:
 | WhatsApp resmi | Nomor dikonfirmasi pemilik | OQ-1 (kandidat ada di `docs/research/web-scan.md`, belum dikonfirmasi) |
 | Identitas legal (alamat, NIB) | Data resmi tersedia | OQ-7 |
 | Daftar Pustaka | Referensi tingkat paper terverifikasi | OQ-3 / T-16 |
-| Penulis & moderator | Prof. Arif Prabowo, profesor pertanian; foto disetujui (file menyusul); institusi & gelar lengkap menunggu | OQ-4 |
+| Penulis & pengelola | Arif Prabowo, Konsultan Pertanian Senior (bukan profesor); >8 tahun pertanian & riset; sales & konsultan produk Agritani; foto diterima 2026-09-30; teks bio final dikonfirmasi Arif | OQ-4, DEC-016 |
 
 Ditahan sampai ada bukti uji: klaim kenaikan hasil ("hingga 50%"), "100% keaslian", "menjamin tidak ada serangga", testimoni, jumlah petani/mitra, logo mitra/lembaga. Klaim produk sebagai pengendali penyakit harus sesuai kategori izin edarnya (pupuk/pembenah tanah vs pestisida); diperiksa pemilik sebelum terbit (OQ-9).
 
