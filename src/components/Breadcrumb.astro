@@ -6,12 +6,41 @@ interface Props {
 }
 
 const { items } = Astro.props;
+const parentItem = items && items.length >= 2 ? items[items.length - 2] : (items && items[0] ? items[0] : null);
 ---
 
 {
   items && items.length > 0 && (
-    <nav aria-label="Breadcrumb" class="py-3">
-      <ol class="flex flex-wrap items-center gap-1.5 text-xs text-[var(--color-text-muted)]">
+    <nav aria-label="Breadcrumb" class="py-2.5">
+      <!-- Mobile: Compact Single-Line Parent Navigation (<sm) -->
+      {parentItem && (
+        <div class="sm:hidden flex items-center text-xs">
+          <a
+            href={parentItem.url}
+            class="inline-flex items-center gap-1.5 font-medium text-[var(--color-soil)] hover:text-[var(--color-brand-strong)] transition-colors py-1 min-h-[36px]"
+          >
+            <svg
+              class="w-3.5 h-3.5 text-[var(--color-brand-strong)] shrink-0"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            <span class="truncate max-w-[280px]">{parentItem.name}</span>
+          </a>
+        </div>
+      )}
+
+      <!-- Desktop & Tablet + Accessibility: Full Hierarchical Trail (>=sm) -->
+      <ol class:list={[
+        'items-center gap-1.5 text-xs text-[var(--color-text-muted)]',
+        parentItem ? 'sr-only sm:not-sr-only sm:flex sm:flex-wrap' : 'flex flex-wrap'
+      ]}>
         {items.map((item, idx) => {
           const isLast = idx === items.length - 1;
           return (

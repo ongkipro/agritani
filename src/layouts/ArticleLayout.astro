@@ -4,15 +4,14 @@ import { getCollection } from 'astro:content';
 import { Picture } from 'astro:assets';
 import BaseLayout from './BaseLayout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
-import AuthorByline from '../components/AuthorByline.astro';
 import AuthorBio from '../components/AuthorBio.astro';
 import ShortAnswer from '../components/ShortAnswer.astro';
 import FieldSummaryBox, { type FieldTakeaways } from '../components/FieldSummaryBox.astro';
 import References from '../components/References.astro';
-import ArticleToc, { type TocHeading } from '../components/ArticleToc.astro';
-import ConsultPrompt from '../components/ConsultPrompt.astro';
+import AuthorStickyCard from '../components/AuthorStickyCard.astro';
 import { getReadingTime } from '../lib/reading-time';
 import { getTopicImage } from '../lib/topic-images';
+import { slugifyTag } from '../lib/tags';
 import type { SeoInput } from '../lib/seo';
 import type { ImageMetadata } from 'astro';
 
@@ -50,7 +49,7 @@ interface Props {
     body?: string;
     data: ArticleData;
   };
-  headings?: TocHeading[];
+  headings?: any[];
   relatedArticles?: Array<{
     data: {
       title: string;
@@ -62,7 +61,7 @@ interface Props {
   }>;
 }
 
-const { article, headings = [], relatedArticles = [] } = Astro.props;
+const { article, relatedArticles = [] } = Astro.props;
 const { data } = article;
 
 const readingTime = getReadingTime(article.body || '');
@@ -171,137 +170,156 @@ if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV)
 
 <BaseLayout seo={seo}>
   <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
-    <!-- 1. Breadcrumb -->
-    <Breadcrumb items={breadcrumbItems} />
+    <!-- 1. Breadcrumb: Aligned with Column 4-10 matching header and article prose (DESIGN §4.3.2) -->
+    <div class="lg:grid lg:grid-cols-12 lg:gap-8 mb-4">
+      <div class="lg:col-span-3 hidden lg:block" aria-hidden="true"></div>
+      <div class="lg:col-span-7 max-w-[68ch]">
+        <Breadcrumb items={breadcrumbItems} />
+      </div>
+      <div class="lg:col-span-2 hidden lg:block" aria-hidden="true"></div>
+    </div>
 
     {data.draft && (
-      <div
-        role="status"
-        class="my-4 p-3 rounded-[2px] bg-[var(--color-tint)] border border-[var(--color-border-control)] text-xs font-semibold text-[var(--color-soil)] flex items-center justify-between"
-      >
-        <span>DRAF — Naskah belum diterbitkan untuk publikasi resmi</span>
-        <span class="text-[11px] font-normal">Pratinjau Redaksi</span>
+      <div class="lg:grid lg:grid-cols-12 lg:gap-8 mb-4">
+        <div class="lg:col-span-3 hidden lg:block" aria-hidden="true"></div>
+        <div class="lg:col-span-7 max-w-[68ch]">
+          <div
+            role="status"
+            class="p-3 rounded-[2px] bg-[var(--color-tint)] border border-[var(--color-border-control)] text-xs font-semibold text-[var(--color-soil)] flex items-center justify-between"
+          >
+            <span>DRAF — Naskah belum diterbitkan untuk publikasi resmi</span>
+            <span class="text-[11px] font-normal">Pratinjau Redaksi</span>
+          </div>
+        </div>
+        <div class="lg:col-span-2 hidden lg:block" aria-hidden="true"></div>
       </div>
     )}
 
-    <!-- Article Header -->
-    <header class="mt-4 mb-8 lg:grid lg:grid-cols-12 lg:gap-8">
-      <div class="lg:col-span-3 hidden lg:block" aria-hidden="true"></div>
-      <div class="lg:col-span-9 max-w-[68ch]">
-        <!-- 2. H1 Title -->
-        <h1 class="text-3xl sm:text-4xl lg:text-[2.75rem] font-serif font-bold text-[var(--color-text)] leading-tight mb-4 text-balance" data-pagefind-meta="title">
-          {data.title}
-        </h1>
-
-        <!-- 3. Dek -->
-        <p class="text-lg sm:text-xl text-[var(--color-text-muted)] font-serif leading-relaxed mb-6">
-          {data.description}
-        </p>
-
-        <!-- 4. Byline -->
-        <AuthorByline author={data.author} />
-
-        <!-- 5. Metadata Bar -->
-        <div class="flex flex-wrap items-center gap-2 text-xs text-[var(--color-text-muted)] pt-2 border-t border-[var(--color-border)]">
-          <span>Terbit <time datetime={new Date(data.pubDate).toISOString()}>{formattedPubDate}</time></span>
-          {formattedUpdatedDate && (
-            <>
-              <span aria-hidden="true">·</span>
-              <span>Diperbarui <time datetime={new Date(data.updatedDate!).toISOString()}>{formattedUpdatedDate}</time></span>
-            </>
-          )}
-          <span aria-hidden="true">·</span>
-          <span>{readingTime.text}</span>
-          {primaryCommodity && (
-            <>
-              <span aria-hidden="true">·</span>
-              {commodityHubExists ? (
-                <a
-                  href={`/jurnal/komoditas/${primaryCommodity}/`}
-                  class="hover:underline capitalize font-medium text-[var(--color-soil)]"
-                >
-                  {primaryCommodity.replace(/-/g, ' ')}
-                </a>
-              ) : (
-                <span class="capitalize">{primaryCommodity.replace(/-/g, ' ')}</span>
-              )}
-            </>
-          )}
-        </div>
-
-        <!-- 6. Article Actions -->
-        <div class="flex items-center gap-4 mt-4 pt-3 border-t border-[var(--color-border)] print:hidden text-xs font-semibold">
-          <button
-            type="button"
-            id="share-btn"
-            class="text-[var(--color-brand-strong)] hover:underline inline-flex items-center gap-1.5 py-1 min-h-[44px]"
-          >
-            Bagikan
-          </button>
-          <button
-            type="button"
-            id="print-btn"
-            data-action="print"
-            class="text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:underline inline-flex items-center gap-1.5 py-1 min-h-[44px]"
-          >
-            Cetak Panduan
-          </button>
-        </div>
-
-        <!-- 7. Short Answer -->
-        {data.answer && <ShortAnswer answer={data.answer} />}
-
-        <!-- 8. Ringkasan Lapangan (FieldSummaryBox) -->
-        {activeTakeaways && <FieldSummaryBox takeaways={activeTakeaways} />}
-
-        <!-- 9. Lead Contextual Image / Gambar Utama -->
-        <figure class="mt-8 mb-4 rounded-[2px] overflow-hidden bg-[var(--color-canvas)] print:hidden shadow-2xs">
-          <Picture
-            src={data.heroImage ? data.heroImage.src : getTopicImage(data.topic)}
-            formats={['webp']}
-            widths={[480, 720, 960]}
-            sizes="(min-width: 1024px) 68ch, 100vw"
-            quality={75}
-            alt={data.heroImage ? data.heroImage.alt : `Dokumentasi lapangan topik ${topicLabel}: ${data.title}`}
-            class="w-full aspect-[16/9] object-cover"
-            loading="eager"
-            fetchpriority="high"
-          />
-          <figcaption class="mt-2 text-xs text-[var(--color-text-muted)] italic">
-            {data.heroImage ? data.heroImage.credit : `Foto dokumentasi agronomis topik ${topicLabel} · Arsip edukasi Agritani Internasional`}
-          </figcaption>
-        </figure>
-      </div>
-    </header>
-
-    <!-- Main Content Area with Sticky TOC -->
-    <div class="lg:grid lg:grid-cols-12 lg:gap-8 items-start">
-      <!-- 10. TOC (Sidebar on Desktop, Details on Mobile) -->
-      <aside class="lg:col-span-3">
-        <ArticleToc headings={headings} />
+    <!-- Main Article Layout: Unified 12-column grid starting at the very top (DESIGN §4.3.2) -->
+    <div class="mt-2 lg:grid lg:grid-cols-12 lg:gap-8 items-start">
+      <!-- 1. Sticky Author Profile Sidebar (Desktop Columns 1-3) -->
+      <aside class="hidden lg:block lg:col-span-3 lg:self-stretch print:hidden">
+        <AuthorStickyCard author={data.author} />
       </aside>
 
-      <!-- 11. Article Prose -->
-      <article class="lg:col-span-7 prose-container max-w-[68ch]" data-pagefind-body>
-        <div class="prose text-[var(--color-text)] text-[1.0625rem] sm:text-[1.125rem] leading-[1.75]">
-          <slot />
-        </div>
+      <!-- 2. Main Article Content Container (Columns 4-10) -->
+      <div class="lg:col-span-7 prose-container max-w-[68ch]">
+        <!-- Article Header -->
+        <header class="mb-8">
+          <!-- 2. H1 Title -->
+          <h1 class="text-3xl sm:text-4xl lg:text-[2.625rem] font-serif font-semibold text-[var(--color-text)] leading-[1.18] tracking-[-0.015em] mb-4 text-balance" data-pagefind-meta="title">
+            {data.title}
+          </h1>
 
-        <!-- 13. Kapan Harus Konsultasi -->
-        <section class="my-10 pt-8" aria-labelledby="konsultasi-heading" data-pagefind-ignore>
-          <h2 id="konsultasi-heading" class="text-xl font-bold font-serif text-[var(--color-text)] mb-3">
-            Kapan Harus Berkonsultasi?
-          </h2>
-          <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed mb-4">
-            Bila gejala terus meluas atau respon tanaman tidak membaik setelah tindakan pertama, segera tanyakan langsung ke tim agronomi untuk konfirmasi diagnosis lapangan.
+          <!-- 3. Dek -->
+          <p class="text-base sm:text-lg text-[var(--color-soil)] font-sans leading-[1.65] mb-6 text-pretty">
+            {data.description}
           </p>
-          <ConsultPrompt
-            source="artikel"
-            title={data.title}
-            label="Tanya Tim Agronomi via WhatsApp"
-            note="Konsultasi langsung ditangani tim agronomi Agritani · Bebas biaya"
-          />
-        </section>
+
+          <!-- 4. Metadata & Actions (Unified Editorial Meta Bar) -->
+          <div class="py-3 border-y border-[var(--color-border)] my-6 flex flex-wrap items-center justify-between gap-y-2 gap-x-4 text-xs text-[var(--color-text-muted)]">
+            <div class="flex flex-wrap items-center gap-x-2.5 gap-y-1">
+              <span class="lg:hidden inline-flex items-center gap-1 font-medium text-[var(--color-text)]">
+                Oleh <a href="/penulis/arif-prabowo/" class="hover:underline hover:text-[var(--color-brand-strong)] font-semibold text-[var(--color-text)]">{data.author}</a>
+                <span aria-hidden="true" class="text-[var(--color-text-muted)]">·</span>
+              </span>
+              <span>Terbit <time datetime={new Date(data.pubDate).toISOString()}>{formattedPubDate}</time></span>
+              {formattedUpdatedDate && (
+                <>
+                  <span aria-hidden="true">·</span>
+                  <span>Diperbarui <time datetime={new Date(data.updatedDate!).toISOString()}>{formattedUpdatedDate}</time></span>
+                </>
+              )}
+              <span aria-hidden="true">·</span>
+              <span>{readingTime.text}</span>
+              {primaryCommodity && (
+                <>
+                  <span aria-hidden="true">·</span>
+                  {commodityHubExists ? (
+                    <a
+                      href={`/jurnal/komoditas/${primaryCommodity}/`}
+                      class="hover:underline capitalize font-semibold text-[var(--color-soil)]"
+                    >
+                      {primaryCommodity.replace(/-/g, ' ')}
+                    </a>
+                  ) : (
+                    <span class="capitalize font-medium">{primaryCommodity.replace(/-/g, ' ')}</span>
+                  )}
+                </>
+              )}
+            </div>
+
+            <!-- 6. Article Actions -->
+            <div class="flex items-center gap-4 print:hidden font-semibold">
+              <button
+                type="button"
+                id="share-btn"
+                class="text-[var(--color-brand-strong)] hover:text-[var(--color-brand-hover)] hover:underline inline-flex items-center gap-1.5 py-1 min-h-[36px] cursor-pointer"
+              >
+                <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                <span id="share-btn-text">Bagikan</span>
+              </button>
+              <button
+                type="button"
+                id="print-btn"
+                data-action="print"
+                class="text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:underline inline-flex items-center gap-1.5 py-1 min-h-[36px] cursor-pointer"
+              >
+                <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                <span>Cetak</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 7. Short Answer (DESIGN §4.3.1: canvas prose without heavy box) -->
+          {data.answer && <ShortAnswer answer={data.answer} />}
+
+          <!-- 8. Ringkasan Lapangan (FieldSummaryBox) -->
+          {activeTakeaways && <FieldSummaryBox takeaways={activeTakeaways} />}
+
+          <!-- 9. Lead Contextual Image / Gambar Utama (Rendered ONLY when specific heroImage exists, DESIGN §4.3.1, §4.3.3) -->
+          {data.heroImage && (
+            <figure class="mt-8 mb-4 rounded-[2px] overflow-hidden bg-[var(--color-canvas)] print:hidden shadow-2xs">
+              <Picture
+                src={data.heroImage.src}
+                formats={['webp']}
+                widths={[480, 720, 960]}
+                sizes="(min-width: 1024px) 68ch, 100vw"
+                quality={75}
+                alt={data.heroImage.alt}
+                class="w-full aspect-[16/9] object-cover"
+                loading="eager"
+                fetchpriority="high"
+              />
+              <figcaption class="mt-2 text-xs text-[var(--color-text-muted)] italic">
+                {data.heroImage.credit}
+              </figcaption>
+            </figure>
+          )}
+        </header>
+
+        <!-- 11. Article Prose -->
+        <article data-pagefind-body>
+          <div class="prose text-[var(--color-text)] text-[1.0625rem] sm:text-[1.125rem] leading-[1.75]">
+            <slot />
+          </div>
+
+          <!-- Tags / Kata Kunci Artikel (Clean, Frameless Editorial Typography) -->
+          {data.tags && data.tags.length > 0 && (
+            <div class="my-8 pt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm" aria-label="Tag artikel">
+              <span class="text-xs font-bold text-[var(--color-soil)] uppercase tracking-wider">
+                Tag:
+              </span>
+              {data.tags.map((tag) => (
+                <a
+                  href={`/jurnal/tag/${slugifyTag(tag)}/`}
+                  class="text-[var(--color-text)] hover:text-[var(--color-brand-strong)] hover:underline underline-offset-4 font-medium transition-colors inline-flex items-center min-h-[36px]"
+                >
+                  <span class="text-[var(--color-soil)] mr-0.5">#</span>{tag}
+                </a>
+              ))}
+            </div>
+          )}
 
         <!-- 14. Daftar Pustaka -->
         <div data-pagefind-ignore>
@@ -322,7 +340,7 @@ if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV)
 
         <!-- 17. Lanjut Membaca -->
         {relatedArticles.length > 0 && (
-          <nav class="my-10 pt-8 border-t border-[var(--color-border)]" aria-label="Artikel terkait" data-pagefind-ignore>
+          <nav class="my-10 pt-8" aria-label="Artikel terkait" data-pagefind-ignore>
             <h2 class="text-xl font-bold font-serif text-[var(--color-text)] mb-4">
               Bacaan Terkait
             </h2>
@@ -373,6 +391,7 @@ if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV)
           </nav>
         )}
       </article>
+      </div>
 
       <!-- 2/12 spacer on desktop -->
       <div class="lg:col-span-2 hidden lg:block" aria-hidden="true"></div>
@@ -380,81 +399,49 @@ if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV)
   </div>
 </BaseLayout>
 
-<script>
-  // Native share with fallback to clipboard
-  const shareBtn = document.getElementById('share-btn');
-  if (shareBtn) {
-    shareBtn.addEventListener('click', async () => {
-      const shareData = {
-        title: document.title,
-        text: document.querySelector('meta[name="description"]')?.getAttribute('content') || document.title,
-        url: window.location.href,
-      };
-
-      if (navigator.share) {
-        try {
-          await navigator.share(shareData);
-        } catch {
-          // Share was dismissed or cancelled
-        }
-      } else {
-        try {
-          await navigator.clipboard.writeText(window.location.href);
-          const orig = shareBtn.textContent;
-          shareBtn.textContent = 'Tautan Tersalin!';
-          setTimeout(() => {
-            shareBtn.textContent = orig;
-          }, 2000);
-        } catch {
-          // Fallback failed
-        }
-      }
-    });
-  }
-
-  // Keyboard accessibility for pre and scrollable containers
-  document.querySelectorAll<HTMLElement>('.prose pre, .prose table').forEach((el) => {
-    el.setAttribute('tabindex', '0');
-    el.setAttribute('role', 'region');
-    el.setAttribute('aria-label', el.tagName === 'PRE' ? 'Diagram / Kode' : 'Tabel data');
-  });
-</script>
-
 <style>
-  /* Ensure article body measure is between 65ch and 72ch */
+  /* Ensure article body measure is between 65ch and 72ch (DESIGN §4.3.2) */
   .prose-container {
     max-width: 68ch;
   }
 
-  /* Prose typography styling */
+  /* Headings scroll margin so jumps from TOC have generous breathing space */
+  .prose :global(h2),
+  .prose :global(h3) {
+    scroll-margin-top: 5rem;
+  }
+
+  /* Prose typography styling - Editorial Scale (DESIGN §4.3.2) */
   .prose :global(h2) {
     font-family: var(--font-editorial, 'Newsreader', Georgia, serif);
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 1.3;
-    margin-top: 2.25rem;
-    margin-bottom: 1rem;
+    font-size: 1.75rem;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-top: 3rem;
+    margin-bottom: 1.125rem;
     color: var(--color-text);
   }
 
   .prose :global(h3) {
     font-family: var(--font-editorial, 'Newsreader', Georgia, serif);
-    font-size: 1.25rem;
+    font-size: 1.3125rem;
     font-weight: 600;
     line-height: 1.35;
-    margin-top: 1.75rem;
-    margin-bottom: 0.75rem;
+    margin-top: 2.25rem;
+    margin-bottom: 0.875rem;
     color: var(--color-text);
   }
 
   .prose :global(p) {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
     text-wrap: pretty;
   }
 
   .prose :global(ul),
   .prose :global(ol) {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.75rem;
     padding-left: 1.5rem;
   }
 
@@ -467,7 +454,13 @@ if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV)
   }
 
   .prose :global(li) {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.75;
+  }
+
+  /* Suppress divider lines (DESIGN §3, §8: no divider lines between sections or paragraphs) */
+  .prose :global(hr) {
+    display: none;
   }
 
   .prose :global(blockquote) {
@@ -476,6 +469,36 @@ if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV)
     border-radius: 2px;
     color: var(--color-text);
     margin: 2rem 0;
+  }
+
+  /* Editorial Callout Panel (transformed from blockquote) */
+  .prose :global(blockquote.callout) {
+    background-color: var(--color-tint);
+    border-left: 3px solid var(--color-brand);
+    padding: 1.25rem 1.5rem;
+    border-radius: 2px;
+    margin: 2rem 0;
+    color: var(--color-text);
+  }
+
+  .prose :global(blockquote.callout .callout-badge) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-brand-strong);
+    margin-bottom: 0.75rem;
+  }
+
+  .prose :global(blockquote.callout .callout-dot) {
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: 9999px;
+    background-color: var(--color-brand);
+    display: inline-block;
   }
 
   .prose :global(table) {
@@ -490,13 +513,15 @@ if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV)
   .prose :global(th),
   .prose :global(td) {
     border: 1px solid var(--color-border);
-    padding: 0.5rem 0.75rem;
+    padding: 0.625rem 0.875rem;
     text-align: left;
   }
 
   .prose :global(th) {
     background-color: var(--color-tint);
     font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--color-soil);
   }
 
   /* Code & ASCII Diagram styling (light tint, readable, scrollable) */
@@ -529,6 +554,7 @@ if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV)
 
 <script>
   function initArticleActions() {
+    // 1. Print handler
     const printButtons = document.querySelectorAll('[data-action="print"]');
     printButtons.forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -536,28 +562,79 @@ if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV)
       });
     });
 
+    // 2. Native Web Share API with clipboard copy fallback
     const shareBtn = document.getElementById('share-btn');
+    const shareBtnText = document.getElementById('share-btn-text');
     if (shareBtn) {
       shareBtn.addEventListener('click', async () => {
+        const shareData = {
+          title: document.title,
+          text: document.querySelector('meta[name="description"]')?.getAttribute('content') || document.title,
+          url: window.location.href,
+        };
+
         if (navigator.share) {
           try {
-            await navigator.share({
-              title: document.title,
-              url: window.location.href,
-            });
+            await navigator.share(shareData);
           } catch {
-            // User cancelled share
+            // User dismissed share
           }
         } else {
           try {
             await navigator.clipboard.writeText(window.location.href);
-            alert('Tautan artikel berhasil disalin!');
+            if (shareBtnText) {
+              const orig = shareBtnText.textContent;
+              shareBtnText.textContent = 'Tautan Tersalin!';
+              setTimeout(() => {
+                shareBtnText.textContent = orig;
+              }, 2000);
+            }
           } catch {
-            // Clipboard fallback
+            // Clipboard copy failed
           }
         }
       });
     }
+
+    // 3. Keyboard accessibility for pre and scrollable containers (WCAG 2.1.1)
+    document.querySelectorAll<HTMLElement>('.prose pre, .prose table').forEach((el) => {
+      el.setAttribute('tabindex', '0');
+      el.setAttribute('role', 'region');
+      el.setAttribute('aria-label', el.tagName === 'PRE' ? 'Diagram / Kode' : 'Tabel data');
+    });
+
+    // 4. Enhance blockquote callouts in dev mode / client navigation
+    document.querySelectorAll<HTMLQuoteElement>('.prose blockquote').forEach((bq) => {
+      if (bq.classList.contains('callout-enhanced')) return;
+      const firstP = bq.querySelector('p');
+      if (!firstP) return;
+      const text = firstP.textContent || '';
+      const match = text.match(/^\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*(.*)/i);
+      if (match) {
+        const kind = match[1].toLowerCase();
+        const rest = match[2];
+        bq.classList.add('callout', `callout-${kind}`, 'callout-enhanced');
+        const labelMap: Record<string, string> = {
+          note: 'Catatan Lapangan',
+          tip: 'Tips Agronomi',
+          important: 'Penting Diperhatikan',
+          warning: 'Peringatan Hama',
+          caution: 'Perhatian Khusus',
+        };
+        const label = labelMap[kind] || 'Catatan Lapangan';
+        
+        const badge = document.createElement('div');
+        badge.className = 'callout-badge';
+        badge.innerHTML = `<span class="callout-dot"></span><span>${label}</span>`;
+        
+        if (rest.trim()) {
+          firstP.innerHTML = `<span class="callout-title font-semibold text-[var(--color-text)]">${rest.trim()}</span>`;
+        } else {
+          firstP.remove();
+        }
+        bq.insertBefore(badge, bq.firstChild);
+      }
+    });
   }
 
   initArticleActions();

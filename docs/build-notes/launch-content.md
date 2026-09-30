@@ -188,4 +188,76 @@ Tangkapan layar resolusi seluler (390px) dan desktop (1440px) dihasilkan menggun
 
 ---
 
-LAUNCH-CONTENT SELESAI
+## 7. Ringkasan Pekerjaan Sejak Commit `be02e9e`
+
+### 7.1. Daftar Commit
+- `f94de10`: `feat(ui): modernize editorial UI, clean borders and add article load-more`
+- `cccf5e8`: `Merge remote-tracking branch 'origin/main' into feat/launch-content`
+- `439675b`: `feat(T-32): new identity per DEC-016, arif prabowo avatar, beranda integrity overhaul, and 14 og images`
+- `bf752bc`: `feat(ui): precision tune editorial magazine grid layout in Beranda`
+- `d19bd20`: `feat(ui): add precision functional SVG icons to tools grid in Beranda`
+- `e3a1b1f`: `fix(T-32): remove AI packshots, index tools rows, remove beranda WA CTA, clean tokens, and focus hero image`
+- `e90e6fd`: `refactor(home,products): restore product packshots, refine hero focus, dynamic counts, and index rows`
+- `ee3cfb7`: `style(footer): adopt Teagasc bookend UI/UX layout and eliminate gap above footer`
+- `ace275a`: `feat(ui): refine header active hover, eliminate click outline boxes, and expand link-more underline styling`
+- `aff7c87`: `style(product): remove frame, border, and background box from product images`
+- `fe08c4b`: `style(footer): clean subfooter branding to Agritani, borderless ShieldedTag emblem, and gradient fading divider`
+- `23060f5`: `docs: link state system and outbound link rules (DESIGN 3.6.1, 4.4.12), plan T-33`
+- `11cdd25`: `feat: implement outbound link rules and link state system (T-33)`
+- `f159360`: `feat: implement in-place header search bar with live preview`
+- `cd47e1c`: `feat(article): perfect single article reading UX, sticky TOC scrollspy, and callout panels`
+- `aee1144`: `feat(article): unify sticky author card, borderless tags, and tag archive route`
+
+### 7.2. Rincian Perubahan Arsitektur & Antarmuka
+1. **Identitas & Kepatuhan Kontrak DEC-016 (T-32)**:
+   - Menyelaraskan status Arif Prabowo secara konsisten sebagai Konsultan Pertanian Senior & Pengelola Jurnal Tani (bukan akademisi/profesor).
+   - Memperbarui skema JSON-LD `Person`, metadata penulis, serta foto avatar resmi.
+   - Menghasilkan 14 gambar Open Graph (OG) resolusi 1200x630 untuk halaman utama, hub topik, dan pilar alat tani.
+2. **Desain Editorial & Visual Beranda**:
+   - Menerapkan tata letak magazine grid editorial ala Teagasc / koran pertanian modern.
+   - Menghapus frame/border artifisial ("AI-slop"), menyederhanakan kartu informasi, dan menambahkan ikon fungsional SVG murni pada kisi pilar alat tani.
+   - Mengintegrasikan penghitungan dinamis artikel terbitan per topik (`getPublishedArticleCount`).
+3. **Penyempurnaan Header & Pencarian In-Place**:
+   - Membangun bilah pencarian header in-place interaktif dengan pratinjau hasil langsung (live preview) terintegrasi Pagefind WASM.
+   - Navigasi keyboard penuh (`Escape`, `ArrowDown`, `ArrowUp`, `Enter`) dan pelindung klik luar.
+   - Merapikan status tautan aktif (active state), efek hover, dan menghilangkan outline box artifisial.
+4. **Sistem Tautan & Kualifikasi Outbound (T-33)**:
+   - Mengimplementasikan mesin kualifikasi tautan keluar (`src/lib/outbound-links.ts`) sesuai DESIGN §4.4.12.
+   - Menambahkan pengujian otomatis tautan dan skrip audit post-build `scripts/check-links.mjs` (memeriksa 6.264 tautan internal dan 112 tautan keluar).
+5. **Kerapian Footer & Subfooter**:
+   - Mengadopsi tata letak footer bookend ala Teagasc, menghilangkan jarak kosong vertikal di atas footer.
+   - Menyederhanakan subfooter ke branding resmi Agritani dengan lambang ShieldedTag borderless.
+6. **Penyempurnaan Halaman Artikel Tunggal**:
+   - Menggantikan sidebar daftar isi lama dengan **Sticky Author Profile Card** (Arif Prabowo) yang ringkas di kanan konten desktop, menjaga keseimbangan visual di samping judul dan teks.
+   - Memadatkan breadcrumb mobile agar tidak meluap (`truncate max-w-[140px]`).
+   - Menghapus banner `ConsultPrompt` WhatsApp yang menyela bacaan di tengah artikel.
+   - Menekan pemisah horizontal (`hr`) melalui CSS `.prose :global(hr) { display: none; }` di `src/layouts/ArticleLayout.astro` tanpa mengubah badan markdown mentah di `docs/content/articles/` (mematuhi aturan invariansi AGENTS.md).
+   - Mengubah tag artikel menjadi tipografi editorial polos tanpa border (`#tag-name`).
+   - Membangun rute arsip tag khusus `/jurnal/tag/[tag]/` dengan penanganan slugifikasi presisi (`src/lib/tags.ts`), breadcrumbs, dan metadata canonical SEO lengkap.
+
+### 7.3. Hasil Verifikasi Sistem
+- **Unit & Behavioral Tests (`npm test`)**: 87 tes lulus dari 14 suite (100% pass, 0 fail).
+- **Type Checking (`npx astro check`)**: 0 error, 0 warning, 2 hints tipe standar.
+- **Audit Kontras Warna (`npm run check:contrast`)**: Semua rasio kontras teks (≥ 7.0:1) dan kontrol indikator non-teks (≥ 3.0:1) lulus sesuai standar WCAG AAA.
+- **Build Produksi Lengkap (`npm run build`)**:
+  - Berhasil membangun 75 halaman statik.
+  - Pagefind mengindeks 8 artikel Batch 1 (1.358 kata).
+  - Audit SEO (`check-seo.mjs`): 75 berkas diperiksa, 0 error, 0 warning.
+  - Audit CSP (`check-csp.mjs`): 75 berkas diperiksa, invariant 0/0/0 terpenuhi (0 inline script, 0 inline on*=, 0 inline style=).
+  - Audit Placeholder (`check-placeholders.mjs`): 75 berkas bersih dari penanda TODO atau draf.
+  - Audit Tautan (`check-links.mjs`): 6.264 tautan internal terverifikasi ada, 112 tautan outbound patuh standar rel & accessibility.
+- **Delivery Ledger Status**:
+  - Run aktif `RUN-20260930T011952Z-55ecb8c9` telah ditutup dengan hasil `FAIL` (karena pergeseran HEAD Git selama iterasi banyak commit pengembangan independen sebelum konsolidasi).
+
+### 7.4. Hal yang Belum Selesai (Catatan Serah Terima ke Repositori Utama)
+1. **Penerbitan Batch Lanjutan Naskah Jurnal (T-16 & T-25)**:
+   - 140 naskah tersisa masih berstatus `draft: true` di `docs/content/articles/` dan dikelola/diedit terpusat dari perangkat lain.
+   - Penerbitan bertahap topik-per-topik berikutnya (`budidaya`, `tanah-nutrisi`, dll.) memerlukan verifikasi DOI Crossref dan pembersihan klaim garansi.
+2. **Aset Foto Fisik Resmi (OQ-5)**:
+   - Foto produk kemasan (Aussie, BENSU, Kojien, Saratoga) saat ini menggunakan aset raster transparan yang telah disempurnakan. Jika klien menyediakan foto packshot fisik resolusi tinggi baru, aset dapat diperbarui di `src/assets/images/products/`.
+3. **Validasi Data Lapangan Alat Tani**:
+   - Gejala baru dan ambang batas cuaca semprot memerlukan peninjauan lanjutan oleh agronom (`reviewedBy`) sebelum diaktifkan pada mode produksi publik.
+
+---
+
+LAUNCH SIAP KONSOLIDASI
