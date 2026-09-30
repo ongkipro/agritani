@@ -31,7 +31,7 @@ try {
   <!-- Initial Placeholder State -->
   <div id="forecast-initial" class="max-w-[60ch] space-y-2">
     <h2 class="font-serif text-xl font-semibold text-[var(--color-brand-strong)]">Pilih lokasi untuk menampilkan cuaca BMKG</h2>
-    <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed">
+    <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
       Gunakan pilihan wilayah di atas untuk melihat suhu udara, kelembapan, curah hujan, arah serta kecepatan angin hingga 3 hari ke depan.
     </p>
   </div>
@@ -82,12 +82,12 @@ try {
     <div class="space-y-4">
       <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
         <div>
-          <h2 id="result-location-title" class="section-title !mb-1">
+          <h2 id="result-location-title" class="font-serif text-2xl font-semibold text-[var(--color-brand-strong)] mb-1">
             Desa / Kelurahan
           </h2>
           <p id="result-location-sub" class="text-sm text-[var(--color-text-muted)]"></p>
         </div>
-        <div class="text-left sm:text-right font-mono text-xs text-[var(--color-text-muted)]">
+        <div class="text-left sm:text-right tabular-nums text-[13px] text-[var(--color-text-muted)]">
           <div id="result-analysis-time">Diperbarui BMKG: -</div>
           <div id="result-coords" class="mt-0.5"></div>
         </div>
@@ -343,7 +343,7 @@ try {
                 ${slot.image ? `<img src="${slot.image}" alt="" class="w-5 h-5 inline-block shrink-0" aria-hidden="true" />` : ''}
                 <span class="whitespace-nowrap">${slot.weather_desc}</span>
               </div>
-              <div class="block md:hidden text-[11px] text-[var(--color-text-muted)] font-mono mt-0.5 whitespace-nowrap">
+              <div class="block md:hidden text-[11px] text-[var(--color-text-muted)] tabular-nums mt-0.5 whitespace-nowrap">
                 <span>Angin ${slot.ws} km/j (${slot.wd})</span> · <span>Lembap ${slot.hu}%</span>
               </div>
             </td>
@@ -358,7 +358,7 @@ try {
             </td>
             <td class="py-3 px-2 sm:px-3 first:pl-0 last:pr-0 text-[var(--color-text-muted)] whitespace-nowrap hidden md:table-cell">
               <span>${slot.ws} km/j</span>
-              <span class="text-[11px] block sm:inline sm:ml-1 font-mono">${slot.wd} (${windDir})</span>
+              <span class="text-[11px] block sm:inline sm:ml-1 tabular-nums">${slot.wd} (${windDir})</span>
             </td>
             ${sprayCellHtml}
           `;

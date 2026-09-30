@@ -40,21 +40,26 @@ const monthNames = [
 ];
 ---
 
-<div id="crop-calendar-root" class="space-y-14" data-calendars={JSON.stringify(serializedCalendars)}>
+<div id="crop-calendar-root" class="space-y-12 lg:space-y-16" data-calendars={JSON.stringify(serializedCalendars)}>
 
-  <!-- Input Form -->
-  <div class="space-y-10">
+  <!-- Input card -->
+  <div class="card p-6 lg:p-8 space-y-10">
     
     <!-- Step 1: Pilih Komoditas -->
     <div class="space-y-3">
       <div class="flex flex-wrap items-baseline justify-between gap-x-4">
-        <h2 class="section-title !mb-0"><label for="select-crop-commodity">Pilih komoditas tanaman</label></h2>
+        <h2 class="font-serif text-xl font-semibold text-[var(--color-brand-strong)]"><label for="select-crop-commodity">Pilih komoditas tanaman</label></h2>
         <span class="text-sm text-[var(--color-text-muted)] tabular-nums">
           {availableCommodities.length} komoditas terdaftar
         </span>
       </div>
 
       <!-- Quick Button Chips (Tap-first) -->
+      {availableCommodities.length === 0 && (
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed max-w-[60ch]">
+          Data kalender komoditas sedang ditinjau dan akan tampil di sini setelah terbit.
+        </p>
+      )}
       <div class="flex flex-wrap gap-2" id="group-crop-commodity" role="radiogroup" aria-label="Pilih Komoditas">
         {availableCommodities.map((comm) => (
           <button
@@ -63,7 +68,7 @@ const monthNames = [
             aria-checked="false"
             data-commodity={comm.id}
             data-crop-type={comm.type}
-            class="crop-comm-btn px-4 py-2.5 min-h-[44px] text-xs sm:text-sm font-bold border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] transition-all cursor-pointer inline-flex items-center gap-2"
+            class="crop-comm-btn px-4 py-2.5 min-h-[44px] text-sm font-semibold border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] transition-all cursor-pointer inline-flex items-center gap-2"
           >
             <span class="w-1.5 h-1.5 rounded-[2px] bg-[var(--color-border-control)] comm-dot transition-colors" aria-hidden="true"></span>
             <span>{comm.name}</span>
@@ -82,7 +87,7 @@ const monthNames = [
     <!-- Step 2: Tanggal Tanam / Pindah Tanam (Shadcn Date Picker Pattern) -->
     <div id="section-plant-date" class="space-y-4">
       <div class="flex flex-wrap items-baseline justify-between gap-x-4">
-        <h2 class="section-title !mb-0"><label for="input-plant-date">Tanggal tanam atau pindah tanam</label></h2>
+        <h2 class="font-serif text-xl font-semibold text-[var(--color-brand-strong)]"><label for="input-plant-date">Tanggal tanam atau pindah tanam</label></h2>
         <span id="label-date-mode" class="text-sm font-semibold text-[var(--color-brand-strong)] tabular-nums">
           Hari Ini · 0 HST
         </span>
@@ -114,59 +119,59 @@ const monthNames = [
         <button
           type="button"
           id="btn-set-today"
-          class="px-4 py-2.5 min-h-[44px] text-xs font-bold border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:bg-[var(--color-tint)] hover:border-[var(--color-brand)] text-[var(--color-brand-strong)] rounded-[2px] transition-colors shrink-0 cursor-pointer inline-flex items-center justify-center gap-1.5"
+          class="px-4 py-2.5 min-h-[44px] text-sm font-semibold border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:bg-[var(--color-tint)] hover:border-[var(--color-brand)] text-[var(--color-brand-strong)] rounded-[2px] transition-colors shrink-0 cursor-pointer inline-flex items-center justify-center gap-1.5"
         >
-          <span>Set Hari Ini</span>
+          <span>Pakai hari ini</span>
         </button>
       </div>
 
       <!-- Quick Date Presets (Agricultural Shortcuts) -->
       <div class="space-y-1.5 pt-1">
-        <span class="text-sm font-semibold text-[var(--color-text-muted)] block">
+        <span class="text-[13px] text-[var(--color-text-muted)] block">
           Pintasan umur tanam atau rencana:
         </span>
         <div class="flex flex-wrap gap-2" id="date-presets-container">
           <button
             type="button"
             data-days="0"
-            class="date-preset-btn px-3.5 py-2 min-h-[44px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer"
+            class="date-preset-btn px-3.5 min-h-[44px] text-[13px] font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer"
           >
-            Hari Ini (0 HST)
+            Hari ini (0 HST)
           </button>
           <button
             type="button"
             data-days="-7"
-            class="date-preset-btn px-3.5 py-2 min-h-[44px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer"
+            class="date-preset-btn px-3.5 min-h-[44px] text-[13px] font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer"
           >
-            7 Hari Lalu (1 Mgg)
+            7 hari lalu
           </button>
           <button
             type="button"
             data-days="-14"
-            class="date-preset-btn px-3.5 py-2 min-h-[44px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer"
+            class="date-preset-btn px-3.5 min-h-[44px] text-[13px] font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer"
           >
-            14 Hari Lalu (2 Mgg)
+            14 hari lalu
           </button>
           <button
             type="button"
             data-days="-30"
-            class="date-preset-btn px-3.5 py-2 min-h-[44px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer"
+            class="date-preset-btn px-3.5 min-h-[44px] text-[13px] font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer"
           >
-            30 Hari Lalu (1 Bln)
+            30 hari lalu
           </button>
           <button
             type="button"
             data-days="-45"
-            class="date-preset-btn px-3.5 py-2 min-h-[44px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer"
+            class="date-preset-btn px-3.5 min-h-[44px] text-[13px] font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer"
           >
-            45 Hari Lalu
+            45 hari lalu
           </button>
           <button
             type="button"
             data-days="30"
-            class="date-preset-btn px-3.5 py-2 min-h-[44px] text-xs font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer"
+            class="date-preset-btn px-3.5 min-h-[44px] text-[13px] font-medium rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-all cursor-pointer"
           >
-            +30 Hari (Rencana)
+            Rencana +30 hari
           </button>
         </div>
       </div>
@@ -186,10 +191,10 @@ const monthNames = [
   <section id="calendar-results" aria-live="polite" class="space-y-12 hidden">
 
     <!-- The single results panel (Rencana Tanam Saya) -->
-    <div class="p-5 sm:p-7 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-6">
+    <div class="card p-6 lg:p-8 space-y-6">
       <div class="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h2 id="plan-title" class="section-title !mb-1">
+          <h2 id="plan-title" class="font-serif text-2xl font-semibold text-[var(--color-brand-strong)] mb-1">
             Rencana Tanam Saya
           </h2>
           <p id="plan-subtitle" class="text-sm text-[var(--color-text-muted)]"></p>
@@ -202,13 +207,13 @@ const monthNames = [
       <!-- Semusim Status Indicators -->
       <div id="semusim-summary-box" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div class="space-y-1">
-          <p class="text-sm font-semibold text-[var(--color-soil)]">Status pertumbuhan</p>
-          <p id="summary-hst" class="text-2xl font-extrabold text-[var(--color-brand)] tabular-nums"></p>
+          <p class="text-sm font-semibold text-[var(--color-text)]">Status pertumbuhan</p>
+          <p id="summary-hst" class="font-serif text-4xl font-semibold leading-none text-[var(--color-brand-strong)] tabular-nums"></p>
           <p id="summary-phase-name" class="text-sm text-[var(--color-text-muted)]"></p>
         </div>
         <div class="space-y-1">
-          <p class="text-sm font-semibold text-[var(--color-soil)]">Perkiraan panen</p>
-          <p id="summary-harvest-range" class="text-2xl font-extrabold text-[var(--color-text)] tabular-nums"></p>
+          <p class="text-sm font-semibold text-[var(--color-text)]">Perkiraan panen</p>
+          <p id="summary-harvest-range" class="font-serif text-2xl sm:text-3xl font-semibold leading-tight text-[var(--color-text)] tabular-nums"></p>
           <p class="text-sm text-[var(--color-text-muted)]">Bergantung pada varietas dan cuaca lokal</p>
         </div>
       </div>
@@ -241,7 +246,7 @@ const monthNames = [
 
         <a href="/alat/cuaca-tani/" class="link-more min-h-[44px] sm:ml-3">Cek Cuaca Tani &rarr;</a>
       </div>
-      <p id="share-feedback" class="text-xs text-[var(--color-brand-strong)] font-semibold hidden"></p>
+      <p id="share-feedback" class="text-[13px] text-[var(--color-brand-strong)] font-semibold hidden"></p>
     </div>
 
     <!-- Vertical Timeline Container (Semusim) -->
@@ -948,7 +953,7 @@ const monthNames = [
       try {
         await navigator.clipboard.writeText(shareUrl);
         if (shareFeedback) {
-          shareFeedback.textContent = '✓ Tautan jadwal tanam berhasil disalin ke papan klip!';
+          shareFeedback.textContent = 'Tautan jadwal tanam disalin ke papan klip.';
           shareFeedback.classList.remove('hidden');
           setTimeout(() => shareFeedback.classList.add('hidden'), 3500);
         }

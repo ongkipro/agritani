@@ -49,8 +49,8 @@ const partLabels: Record<string, string> = {
 ---
 
 {visibleSymptoms.length === 0 ? (
-  <div class="max-w-[60ch] space-y-3">
-    <h2 class="section-title !mb-0">
+  <div class="card p-6 lg:p-8 max-w-[44rem] space-y-3">
+    <h2 class="font-serif text-xl font-semibold text-[var(--color-brand-strong)]">
       Diagnosa gejala sedang disiapkan
     </h2>
     <p class="text-base text-[var(--color-text-muted)] leading-relaxed">
@@ -59,14 +59,14 @@ const partLabels: Record<string, string> = {
     <a href="/jurnal/" class="link-more min-h-[44px]">Telusuri artikel Jurnal Tani &rarr;</a>
   </div>
 ) : (
-<div id="triage-engine-root" class="space-y-14" data-symptoms={JSON.stringify(serializedSymptoms)}>
+<div id="triage-engine-root" class="space-y-12 lg:space-y-16" data-symptoms={JSON.stringify(serializedSymptoms)}>
   
-  <!-- Interactive Form Area -->
-  <div class="space-y-10">
+  <!-- Input card -->
+  <div class="card p-6 lg:p-8 space-y-10">
     
     <!-- Step 1: Komoditas (Big Button Radio Group) -->
     <div>
-      <h2 class="section-title !mb-3">Pilih komoditas tanaman</h2>
+      <h2 class="font-serif text-xl font-semibold text-[var(--color-brand-strong)] mb-3">Pilih komoditas tanaman</h2>
       <div class="flex flex-wrap gap-2.5" id="group-commodity" role="radiogroup" aria-label="Pilih Komoditas">
         {activeCommodities.map((comm) => (
           <button
@@ -74,7 +74,7 @@ const partLabels: Record<string, string> = {
             role="radio"
             aria-checked="false"
             data-commodity={comm.id}
-            class="triage-commodity-btn px-4 py-2.5 min-h-[44px] text-sm font-bold border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] transition-all cursor-pointer"
+            class="triage-commodity-btn px-4 py-2.5 min-h-[44px] text-sm font-semibold border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] transition-all cursor-pointer"
           >
             {comm.name}
           </button>
@@ -84,7 +84,7 @@ const partLabels: Record<string, string> = {
 
     <!-- Step 2: Bagian Tanaman -->
     <div id="section-part" class="opacity-50 pointer-events-none transition-opacity">
-      <h2 class="section-title !mb-3">Pilih bagian yang bergejala</h2>
+      <h2 class="font-serif text-xl font-semibold text-[var(--color-brand-strong)] mb-3">Pilih bagian yang bergejala</h2>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="group-part" role="radiogroup" aria-label="Pilih Bagian Tanaman">
         {Object.entries(partLabels).map(([partKey, partName]) => (
           <button
@@ -93,19 +93,19 @@ const partLabels: Record<string, string> = {
             aria-checked="false"
             disabled
             data-part={partKey}
-            class="triage-part-btn px-3 py-2.5 min-h-[44px] text-xs sm:text-sm font-semibold border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] transition-all disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer text-center"
+            class="triage-part-btn px-3 py-2.5 min-h-[44px] text-sm font-semibold border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] transition-all disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer text-center"
           >
             <span>{partName}</span>
           </button>
         ))}
       </div>
-      <p id="part-helper" class="text-xs text-[var(--color-text-muted)] mt-1.5 hidden"></p>
+      <p id="part-helper" class="text-[13px] text-[var(--color-text-muted)] mt-2 hidden"></p>
     </div>
 
     <!-- Step 3: Gejala Visual Lapangan -->
     <div id="section-symptom" class="opacity-50 pointer-events-none transition-opacity space-y-3">
       <div class="flex flex-wrap items-baseline justify-between gap-x-4">
-        <h2 class="section-title !mb-0">Pilih tanda visual yang tampak</h2>
+        <h2 class="font-serif text-xl font-semibold text-[var(--color-brand-strong)]">Pilih tanda visual yang tampak</h2>
         <span id="symptom-count" class="text-sm text-[var(--color-text-muted)] tabular-nums"></span>
       </div>
 
@@ -115,13 +115,13 @@ const partLabels: Record<string, string> = {
           type="text"
           id="symptom-search"
           placeholder="Saring kata kunci (misal: kuning, busuk, rontok, layu)..."
-          class="w-full px-3.5 py-2 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-0 focus:border-[var(--color-brand-strong)] transition-colors text-xs sm:text-sm"
+          class="w-full px-3.5 py-2 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-0 focus:border-[var(--color-brand-strong)] transition-colors text-base sm:text-sm"
         />
       </div>
 
       <!-- Symptoms List -->
       <div id="symptoms-list" class="divide-y divide-[var(--color-border)] max-h-[360px] overflow-y-auto pr-1">
-        <p class="py-3 text-sm text-[var(--color-text-muted)] italic">
+        <p class="py-3 text-sm text-[var(--color-text-muted)]">
           Pilih komoditas dan bagian tanaman terlebih dahulu.
         </p>
       </div>
@@ -130,11 +130,11 @@ const partLabels: Record<string, string> = {
   </div>
 
   <!-- Step 4: Hasil Diagnosa Area (ARIA Live) -->
-  <section id="triage-result-area" aria-live="polite" class="space-y-6 hidden">
+  <section id="triage-result-area" aria-live="polite" class="card p-6 lg:p-8 space-y-6 hidden">
     
     <!-- Result Header Breadcrumb Trail -->
     <div class="max-w-[68ch]">
-      <h2 id="result-path-heading" class="section-title !mb-2">
+      <h2 id="result-path-heading" class="font-serif text-2xl font-semibold text-[var(--color-brand-strong)] mb-2">
         Hasil Diagnosa Lapangan
       </h2>
       <p class="text-sm text-[var(--color-text-muted)] leading-relaxed" id="result-disclaimer">
