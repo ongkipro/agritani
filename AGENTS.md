@@ -39,19 +39,28 @@ Do not start implementation while `STATUS.md` says development authorization is 
 - **Allowed paths**: only touch the files a task allows. Start each task with `delivery-ledger --repo . start … --allow <pattern>` and close it with `check-boundary` and `finish` (TASKS protocol).
 - **Articles folder**: `docs/content/articles/` is also edited on another device. Editing article bodies is **allowed** (owner decision 2026-09-30) under these guards: `git pull --ff-only` immediately before editing; commit in small batches and push promptly so the other device can pull; never change facts, figures, dosages, citations/references, product claims, `draft` status, or `slug` unless the task says so; formatting and readability fixes (for example LaTeX to readable formulas, headings, lists) are fine. Prefer a build-time fix when the same problem affects many articles (it also covers future articles).
 - **Content integrity**: never invent citations, DOIs, dosages, registration numbers, reviewers, credentials, statistics, prices, or testimonials. Unknown owner data stays a placeholder marked `TODO(OQ-n)` and tracked in `PRD.md` §8. Product claims marked "Ditahan" in DESIGN §2.5 never render.
-- **Journal content model**: there are 150 manuscripts, all `draft: true` until T-16 and T-25. Topic taxonomy is 6 fixed topics plus commodity hubs (built at ≥ 3 published articles). Map frontmatter exactly as in ARCHITECTURE §3.0: `meta_title` becomes `metaTitle` (used verbatim as `<title>`), `meta_description` becomes `description`, `category` becomes `topic`. Publish topic by topic, starting with `proteksi-tanaman`.
+- **Journal content model**: there are 300 manuscripts; 8 are published (batch 1, 2026-09-29) and the other 292 stay `draft: true` until reviewed in T-25. Topic taxonomy is 6 fixed topics plus commodity hubs (built at ≥ 3 published articles). Map frontmatter exactly as in ARCHITECTURE §3.0: `meta_title` becomes `metaTitle` (used verbatim as `<title>`), `meta_description` becomes `description`, `category` becomes `topic`. Publish topic by topic, starting with `proteksi-tanaman`.
 - **Voice**: no absolute or guarantee claims ("100%", "ampuh", "tuntas", "pasti", "menjamin") in titles, copy, or UI (DESIGN §1.3). Flag them for T-25 instead of silently rewriting an article.
 - **No third-party brands** outside article reference lists (NG-3, DEC-005). No personal data from `agrimarket` or anywhere else (DEC-015).
 - **Reviewed data only**: crop calendars, symptoms, and spray thresholds render in production only when `reviewedBy` is set. Draft or unreviewed content appears only in draft-preview mode (ARCHITECTURE §3.2).
 - **WhatsApp**: at most one WhatsApp CTA per page, placed after the task. Never in the header, menu, hero, a sticky or floating element, or per list item. All links go through `waLink()` (DESIGN §2.8).
-- **UI invariants**: no kickers/eyebrows, no divider lines between sections, 2px max radius, no decorative icons, text contrast ≥ 7:1, touch targets ≥ 44px (DESIGN §3, §8).
+- **UI invariants**: no kickers/eyebrows, no divider lines between sections, 2px max radius, no shadows, no decorative icons, text contrast ≥ 7:1, touch targets ≥ 44px (DESIGN §3, §3.3.4, §8).
+- **Owner decisions 2026-09-30 (DEC-016, DEC-017, DEC-019, T-37)** — do not undo without a new decision:
+  - Name: "Agritani" / "Agritani Official"; never "PT Agritani Internasional". Arif Prabowo is "Konsultan Pertanian Senior", never "Prof.".
+  - Cards are allowed only as the single `.card` style for a whole unit (product, price, tool input/result, author, related item, form); never around sections or prose; no card inside a card (DESIGN §3.3.3). Homepage stays open (approved).
+  - Footer is locked to the owner version (`src/components/Footer.astro`); do not restyle it.
+  - WhatsApp: none on the homepage, product pages, Tentang Kami, Jurnal index/hubs/tags, Alat index, Privasi, Cari, 404. Article: only the link in the author block. Tools: only after a result. Profile: one prompt under the bio. Konsultasi/Kemitraan: the form submit.
+  - Prices: from `src/data/products.json` only, with the check date; never name or link the source site.
+  - Commodity hub: one article list with "Muat Panduan Lainnya", not split by topic. Article tags: "Tag:" + plain `#tag` links, no chips.
+  - Page titles use " - " as the separator, never "|" (T-37).
+- **Build guard**: `npm run build` ends with `scripts/check-owner-rules.mjs`, which fails on the forbidden names, WhatsApp placement, and `shadow-*`/`uppercase` inside `<main>`. Fix the page, do not weaken the guard; changing a rule needs a `DECISIONS.md` entry first.
 - **No new dependencies or runtime services** without a `DECISIONS.md` entry. Prefer platform features (native form validation, `<dialog>`, `<details>`, `Intl`, `navigator.share`).
 - **CSP-safe code**: no inline executed scripts, `on*=` attributes, or `style=` attributes (ARCHITECTURE §5).
 - **Approval gates**: production deploy, DNS/redirect changes, search-engine submissions, and pushing to `main` each need Paduka Ongki's explicit approval.
 
 ## Commands (available after T-01)
 
-`npm run dev` · `npm run build` (includes Pagefind + `check-seo.mjs`) · `npx astro check` · `npm test` · `npm run check:contrast` · draft preview: `PUBLIC_INCLUDE_DRAFTS=true npm run dev`
+`npm run dev` · `npm run build` (includes Pagefind, `check-seo`, `check-csp`, `check-placeholders`, `check-links`, `check-owner-rules`) · `npx astro check` · `npm test` · `npm run check:contrast` · draft preview: `PUBLIC_INCLUDE_DRAFTS=true npm run dev`
 
 ## Sources of truth
 

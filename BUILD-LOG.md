@@ -838,3 +838,12 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - Padding kartu `p-4` di HP (sebelumnya 24px) di 13 berkas: formulir Konsultasi/Kemitraan, alat, Tentang Kami, Privasi, Cari, 404, detail produk.
 - Sidebar hub topik/komoditas/tag dipindah setelah konten di DOM: H1 kini judul pertama (temuan review T-39); tampilan desktop tetap.
 - Verifikasi: astro check 0 error, npm test 87/87, build PASS; render 390 Beranda, artikel, detail produk, Kalkulator, Cuaca, Konsultasi, Tentang Kami, dan hub padi 1440 diperiksa.
+
+## 2026-09-30 — T-41: Pagar aturan pemilik & dokumen kerja agent (PASS)
+
+- `scripts/check-owner-rules.mjs` (langkah terakhir `npm run build`, juga `npm run check:owner-rules`): gagal bila halaman memuat nama PT/"Prof." /situs sumber harga, bila ada WhatsApp di `<main>` pada halaman tanpa CTA (Beranda, produk, Tentang Kami, Jurnal/hub/tag, indeks Alat, Privasi, Cari, 404) atau > 1 blok CTA di halaman lain, dan bila ada kelas `shadow-*`/`uppercase` di `<main>`.
+- `src/lib/owner-rules.test.ts`: 5 kasus (halaman bersih, nama terlarang, WhatsApp per rute, batas 1 CTA, kelas terlarang termasuk varian `hover:`); `npm test` 92/92.
+- Dijalankan pada build produksi (75 halaman) dan build draf (1848 halaman): 0 pelanggaran.
+- `AGENTS.md`: ringkasan keputusan pemilik 2026-09-30 dan aturan pagar build; model konten diperbarui (8 artikel terbit).
+- `STATUS.md`: header, pekerjaan aktif, dan blocker disesuaikan dengan kondisi nyata (blocker lama "menunggu review" dari 2026-09-29 dihapus; tersisa data/aksi pemilik).
+- Tidak ada perubahan keluaran situs; deploy tidak diperlukan.

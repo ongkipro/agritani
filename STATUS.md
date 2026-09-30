@@ -1,13 +1,13 @@
 # Status — agritani
 
-Updated: 2026-09-29
+Updated: 2026-09-30
 Status: Active
 State: VERIFIED
 Review-Risk: R3
 Independent-Review: PASS
-Primary-Worker: Antigravity
-Independent-Reviewer: Claude (Opus 5.5), lead reviewer, distinct from Primary-Worker
-Independent-Review-Head: 8f6c30a
+Primary-Worker: Claude (Opus 5.5) for T-35…T-41; Antigravity for T-01…T-34
+Independent-Reviewer: Claude Sonnet 5.5 subagent per run (see `.delivery/runs/`), distinct from Primary-Worker
+Independent-Review-Head: bdcdc6b
 
 ## Delivery state machine
 
@@ -25,8 +25,8 @@ Use `BLOCKED` only as an interruption state. Record the blocker and exact state 
 
 ### Rilis v1 — 2026-09-29 (live)
 
-- **Live**: https://agritani.com dan https://www.agritani.com (Cloudflare Workers static assets, custom domain). Version ID aktif `830924c1-4cae-4baa-8488-1d8e265bf8f8`; rollback: `npx wrangler rollback aec03f37-ec82-4423-bbd4-3c54f90f6d8e`.
-- **Isi rilis**: 35 halaman produksi; 8 artikel batch 1 terbit dengan referensi DOI terverifikasi Crossref (antraknosa, thrips, layu fusarium, wereng batang coklat, kresek, tungro, ulat grayak, bulai); 142 artikel tetap draft (4 ditahan karena masalah klaim inti, lihat `docs/build-notes/launch-content.md`). Cuaca Tani (BMKG), Kalkulator Dosis, Konsultasi, Produk (4), Kemitraan, Tentang Kami, profil penulis, Kebijakan Privasi, pencarian Pagefind.
+- **Live**: https://agritani.com dan https://www.agritani.com (Cloudflare Workers static assets, custom domain). Version ID aktif dicatat di `RELEASE.md` / `wrangler deployments list`; rollback sesuai `RELEASE.md`.
+- **Isi rilis**: 35 halaman produksi; 8 artikel batch 1 terbit dengan referensi DOI terverifikasi Crossref (antraknosa, thrips, layu fusarium, wereng batang coklat, kresek, tungro, ulat grayak, bulai); (saat rilis) sisa naskah tetap draft (4 ditahan karena masalah klaim inti, lihat `docs/build-notes/launch-content.md`). Cuaca Tani (BMKG), Kalkulator Dosis, Konsultasi, Produk (4), Kemitraan, Tentang Kami, profil penulis, Kebijakan Privasi, pencarian Pagefind.
 - **Disembunyikan sampai ditinjau Arif Prabowo (OQ-11)**: Diagnosa Gejala dan Kalender Tanam (label "Segera hadir"); indikator waktu semprot.
 - **Verifikasi live** (via IP Cloudflare karena cache DNS lokal): semua halaman utama 200, 404 benar, `www` 200, header CSP/nosniff/Referrer/Permissions aktif; di browser headless: prakiraan BMKG tampil (Jawa Barat › Bandung › Cileunyi › Cileunyi Kulon), pencarian "wereng" menemukan artikel yang benar, menu mobile terbuka, ikon cuaca tampil setelah perbaikan CSP `img-src`.
 - **Review independen**: setiap task T-01…T-26 direview Claude dari kode, data, dan render nyata (bukan dari laporan agent); temuan dan koreksi tercatat di riwayat commit dan BUILD-LOG.
@@ -54,90 +54,22 @@ Kontrak pra-pengembangan diaudit ulang pada 2026-09-29 dengan skill dotfiles ter
 
 ### Active work
 
-T-19 Revisi (Kalender Tanam: Sanitasi Sumber Data & Keselarasan Siklus Panen) selesai diimplementasikan dan diverifikasi:
-- Sanitasi Sumber Data (`src/data/crop-calendars.json`): Menghapus seluruh nama institusi/lembaga yang tidak boleh dikarang (BSIP, Balitsa, PPKS, Kementan) per NG-3 dan DEC-005. Mengganti semua 6 entri dengan atribusi jujur: `["Bahan awal internal: agrimarket docs/spec/KALENDER-TANAM-NASIONAL.md (belum diverifikasi ke sumber primer)"]`.
-- Komponen `CropTimeline.astro`: Label diubah menjadi "Sumber Data Awal" dan status telaah agronomi jujur berstatus "Status telaah agronomi: Belum ditinjau [Draf — validasi OQ-11b]".
-- Keselarasan Siklus Panen: `endDay` fase terakhir seluruh 5 tanaman semusim disamakan dengan `cycleDays.max` (Padi: 125, Jagung: 110, Cabai: 150, Tomat: 110, Bawang Merah: 75).
-- Audit Tipografi (DESIGN §3.2): Ukuran font status draf di `CropTimeline.astro` dan `TriageFilter.astro` dinaikkan menjadi `text-xs sm:text-sm` (≥ 14px pada body surface).
-- CI Workflow: Komentar action pinning di `.github/workflows/ci.yml` diperjelas secara faktual.
-- Verifikasi: 72/72 unit test PASS, `astro check` 0 error, build 182 halaman PASS (check-seo PASS, check-csp 0/0/0).
+Tidak ada task yang sedang berjalan. Pekerjaan terakhir (2026-09-30): T-35…T-41 — identitas (DEC-017), tata letak kartu (DEC-019), tampilan HP (T-40), dan pagar aturan pemilik di build (T-41). Riwayat lengkap ada di `BUILD-LOG.md`; antrean di `TASKS.md`.
 
-T-26 (Gambar Dummy WebP 10 Slot) selesai diimplementasikan dan diverifikasi (RUN-20260929T145254Z-076e455a):
-- 10 Berkas WebP (`src/assets/images/dummy/**`): Dibuat sesuai spesifikasi `DESIGN.md` §3.5.1 dan catatan T-26: `hero-beranda.webp` (5:4), `topik-*.webp` (6 berkas, 16:9), `kemitraan.webp` (3:2), `tentang-kami.webp` (3:2), `konsultasi.webp` (3:2).
-- Kepatuhan Format & Ukuran: Seluruh berkas bertipe `.webp` (tanpa format lain), masing-masing berukuran <= 250 KB (terkecil 35.3 KB, terbesar 241.9 KB).
-- Atribusi Lengkap: `src/assets/images/dummy/CREDITS.md` mendokumentasikan nama berkas, fotografer, lisensi Unsplash, tanggal unduh, dan status wajib "DUMMY — ganti (OQ-5)".
-
-T-08 (Homepage Hibrida) selesai diimplementasikan dan diverifikasi (RUN-20260929T145637Z-f73f7b8f):
-- Komponen `CommodityPicker.astro`: tap-first min 48px, 6 komoditas utama menaut ke diagnosa gejala.
-- Halaman `index.astro`: 8 bagian DESIGN §4.1 (Hero dengan hero-beranda.webp, Band tint topik, Bacaan Pilihan, Alat Tani terbuka, Tanya Agronomi tanpa link WA langsung, Tentang Penulis AP, Produk tanpa klaim tertahan, Band Kemitraan alur 01-03).
-- Kepatuhan Desain: 0 kickers, 0 garis pemisah, radius 2px, kontras teks >= 7:1, CSP 0/0/0, og:image menunjuk /og/default.png valid.
-- Bukti UI Browser: `proof/ui/t08/beranda-390.png` dan `proof/ui/t08/beranda-1440.png` di port 4330.
-- Verifikasi: 76/76 unit tests PASS, `astro check` 0 error, build 183 halaman PASS, check-seo PASS, check-csp PASS.
-
-T-10 (Tentang Kami & Profil Penulis) selesai diimplementasikan dan diverifikasi (RUN-20260929T151900Z-fc507dc5):
-- Halaman `tentang-kami.astro`: Posisi distributor resmi (DEC-010), asal teknologi Thailand & Jepang, aktivasi imun (SAR), alur distribusi 01–03, media `tentang-kami.webp`, tepat 1 ajakan WhatsApp via ConsultPrompt.
-- Halaman `penulis/arif-prabowo.astro`: Inisial AP, bio minimalis (A.4: Profesor Pertanian · Moderator Jurnal Tani), pengungkapan independensi, daftar panduan teknis, 1 ajakan konsultasi.
-- Koleksi `pages`: Menambahkan `tentang-kami.md` dan `penulis-arif-prabowo.md`.
-- Verifikasi: 76/76 unit tests PASS, `astro check` 0 error, build 185 halaman PASS (check-seo PASS, check-csp 0/0/0 PASS), bukti UI browser di `proof/ui/t10/`.
-
-T-17 (Kebijakan Privasi) selesai diimplementasikan dan diverifikasi (RUN-20260929T152357Z-0090aa33):
-- Halaman `kebijakan-privasi.astro`: Transparansi data tanpa cookies/pelacak pihak ketiga (NG-4), form hanya via WhatsApp, akses langsung peramban ke API BMKG (DEC-014), penyimpanan preferensi lokal `localStorage`.
-- Koleksi `pages`: Menambahkan `kebijakan-privasi.md`.
-- Verifikasi: 76/76 unit tests PASS, `astro check` 0 error, build 186 halaman PASS (check-seo PASS, check-csp 0/0/0 PASS), bukti UI browser di `proof/ui/t17/`.
-
-T-17 REVISE & Metadata Pages Cleanup selesai diimplementasikan dan diverifikasi (RUN-20260929T153603Z-1d7bab27):
-- Halaman `kebijakan-privasi.astro`: Menghapus email karangan info@agritani.com, menyajikan nomor kontak resmi WhatsApp sebagai teks biasa (+62 877-7045-7256), menghapus komponen ConsultPrompt (0 ajakan WhatsApp sesuai DESIGN §2.8), mengubah merek iklan menjadi istilah generik "piksel pelacak iklan pihak ketiga", dan menambahkan klausul ketentuan privasi WhatsApp.
-- Koleksi `pages`: Menghapus field `reviewedBy` dari semua file di `src/content/pages/` (termasuk 6 topik dan halaman statis) untuk mencegah atestasi palsu. Menetralkan seluruh pengantar hub topik.
-- Bukti UI WebP kualitas 70 tersimpan di `proof/ui/t17/kebijakan-privasi-390.webp` dan `proof/ui/t17/kebijakan-privasi-1440.webp`.
-- Verifikasi: 79/79 unit tests PASS, `npx astro check` 0 error, build 186 halaman PASS (check-seo PASS, check-csp 0/0/0 PASS).
-
-T-08 REVISE (Homepage Hibrida) selesai diimplementasikan dan diverifikasi (RUN-20260929T153010Z-5ebb5dd4):
-- Produk dirender dinamis dari koleksi `products` (`src/data/products.json`), menghapus teks manual.
-- Bio Prof. Arif Prabowo di beranda distandarkan menjadi: "Profesor Pertanian · Moderator Jurnal Tani PT Agritani Internasional".
-- Pemilih komoditas hero secara dinamis menaut ke `/jurnal/komoditas/{slug}/` di mode produksi jika gejala belum ditinjau (`hasReviewedSymptoms: false`), dengan unit test di `src/components/CommodityPicker.test.ts`.
-- Keterangan teks hero dihapus (hanya alt image deskriptif) dan kicker "Artikel Utama" dihapus.
-- Band Jurnal per Komoditas diubah menjadi baris indeks teks bersih tanpa kotak/kartu latar.
-- Label "Segera hadir" ditambahkan pada Diagnosa Gejala dan Kalender Tanam di indeks Alat Tani (`/alat/`) untuk mode produksi murni.
-- Bukti UI WebP kualitas 70 tersimpan di `proof/ui/t08/beranda-390.webp` dan `proof/ui/t08/beranda-1440.webp`.
-- Verifikasi: 79/79 unit tests PASS, `npx astro check` 0 error, build 186 halaman PASS (check-seo PASS, check-csp 0/0/0 PASS).
-
-T-11 (Katalog & Detail Produk) selesai diimplementasikan dan diverifikasi (RUN-20260929T154148Z-820d40cc):
-- Katalog `/produk/`: Posisi distributor resmi tertera jelas (DEC-010), shortcut anchor per komoditas, tabel perbandingan desktop (>=1024px), kartu modular perbandingan (ProductRow.astro), penjelasan keaslian ShieldedTag (OQ-8), dan 0 ajakan WhatsApp sesuai DESIGN §2.8.
-- Detail `/produk/[slug]`: 4 rute dinamis (Aussie, Kojien, BENSU, Saratoga), sub-navigasi anchor lengket (#fungsi, #komposisi, #cara-pakai, #keaslian), data resmi tanpa klaim tertahan ("obat", "membasmi", "naik 50%", dll), tanpa blok gambar kemasan dummy/placeholder, rekomendasi panduan budidaya terkait, dan tepat 1 ajakan WhatsApp via ConsultPrompt untuk tanya dosis lapangan.
-- Bukti UI WebP kualitas 70: `proof/ui/t11/produk-katalog-*.webp` dan `proof/ui/t11/produk-detail-aussie-*.webp`.
-- Verifikasi: 79/79 unit tests PASS, `npx astro check` 0 error, build 191 halaman PASS (check-seo PASS, check-csp 0/0/0 PASS).
-
-T-12 (Formulir Kemitraan Distributor) selesai diimplementasikan dan diverifikasi (RUN-20260929T154439Z-dae3ff13):
-- Halaman `/kemitraan-distributor.astro`: Alur kemitraan 01-03, posisi distributor resmi (DEC-010), dan formulir pendaftaran kemitraan.
-- Komponen `PartnerForm.astro`: Semua field wajib DESIGN §2.3 (Nama, Usaha, Jenis, Provinsi, Kota, Kapasitas/Luas, WA, Catatan). Validasi interaktif + aria role alert tanpa menghilangkan nilai isian saat error.
-- Pengujian browser Playwright terverifikasi: submit kosong menandai field tidak valid, navigasi keyboard mengisi seluruh input, submit valid membuka URL wa.me ber-prefix [Web·Kemitraan] ke nomor resmi +62 877-7045-7256, dan memunculkan panel konfirmasi dengan nomor cadangan.
-- Bukti UI WebP kualitas 70: `proof/ui/t12/kemitraan-distributor-390.webp` (101 KB) dan `proof/ui/t12/kemitraan-distributor-1440.webp` (106 KB).
-- Verifikasi: 79/79 unit tests PASS, `npx astro check` 0 error, build 192 halaman PASS (check-seo PASS, check-csp 0/0/0 PASS).
-
-Selanjutnya:
-**IMPLEMENT-TASKS SELESAI**
-Seluruh task implementasi dalam scope branch `feat/implement-tasks` (T-08, T-17, T-11, T-12, perbaikan data & CSP) telah selesai dikerjakan, diverifikasi, dan dibuktikan dengan tangkapan layar browser WebP di port 4330.
-Berhenti dan menunggu koordinasi branch `feat/launch-content` dari agent kedua, penggabungan branch, audit akhir T-15, dan prosedur deploy ke Cloudflare Workers.
+Aturan pemilik yang berlaku untuk semua agent diringkas di `AGENTS.md` ("Owner decisions 2026-09-30") dan dijaga otomatis oleh `scripts/check-owner-rules.mjs` di `npm run build`.
 
 ## Blockers
 
-- T-02 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
-- T-23 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
-- T-04 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
-- T-03 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
-- FIX-CSP menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
-- T-21 (termasuk revisi) menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
-- T-22 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
-- T-19 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
-- T-20 (termasuk revisi) menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
-- T-26 menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
-- T-08 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
-- T-17 (termasuk revisi) menunggu review independen (boundary review R3) dari Claude/Paduka Ongki.
-- T-11 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
-- T-12 menunggu review independen (boundary review R2) dari Claude/Paduka Ongki.
+Tidak ada blocker teknis. Menunggu data/aksi pemilik:
+
+- OQ-2 nomor izin edar produk, OQ-4 bio final Arif Prabowo, OQ-5 foto asli (produk, lahan, penulis), OQ-11 tinjauan Arif untuk data Diagnosa Gejala dan Kalender Tanam (keduanya "Segera hadir" di produksi).
+- Secret `CLOUDFLARE_API_TOKEN` di GitHub untuk job deploy CI (sampai itu ada, deploy dijalankan manual dari worktree bersih).
+- Matikan Cloudflare Web Analytics di dashboard zona (beacon diblokir CSP, tidak mengirim data).
+- Publikasi artikel batch berikutnya (292 dari 300 naskah masih draft) menunggu tinjauan konten T-25.
 
 ## Verification evidence
 
+- T-35…T-41 (2026-09-30): setiap run `delivery-ledger` PASS dengan review independen; `npx astro check` 0 error, `npm test` PASS, `npm run build` PASS termasuk `check-owner-rules`; live agritani.com diverifikasi 200 per halaman utama setelah deploy. Rincian per task di `BUILD-LOG.md`.
 - T-01 fondasi Astro 7.3.5 + Tailwind 4.3.3 + sitemap 3.7.4 selesai dan ter-commit.
 - T-02 lokal: `src/lib/content-integrity.test.ts` (9 kasus uji PASS dalam 5.5ms), `npx astro check` PASS, `npm run build` PASS, `npm run check:contrast` PASS.
 - T-23 lokal: `.github/workflows/ci.yml` sintaks YAML valid (Python safe_load), build, check, test, kontras lulus. Workflow diperbarui dengan `PUBLIC_INCLUDE_DRAFTS: "true"` untuk CI lokal/remote, pin action ke mayor `@v4`, dan audit eksplisit `check:commodities` dan `check:csp`.
