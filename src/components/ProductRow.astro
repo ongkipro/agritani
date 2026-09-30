@@ -1,8 +1,8 @@
 ---
 /**
  * src/components/ProductRow.astro
- * Comparison row / card for product index (T-11, DESIGN §2.5, §4.2.3)
- * Invariants: Touch target >= 44px, 2px radius, text contrast >= 7:1, no divider lines, tabular numbers.
+ * Open product row for the catalog index (T-11, DESIGN §2.5, §4.2.3)
+ * Invariants: no cards/pills/kickers, touch target >= 44px, 2px radius, tabular numbers.
  */
 import type { CollectionEntry } from 'astro:content';
 import { Picture } from 'astro:assets';
@@ -16,148 +16,72 @@ interface Props {
 const { product, commoditiesMap } = Astro.props;
 const p = product.data;
 
-const categoryBadges: Record<string, string> = {
-  aussie: 'Perkebunan & Tanaman Keras',
-  kojien: 'Teknologi Thailand · Spesialis Padi',
-  bensu: 'Teknologi Thailand · Pangan & Hortikultura',
-  saratoga: 'Japanese Pro-Plant Complex · Asam Amino',
-};
-const categoryBadge = categoryBadges[product.id] || 'Nutrisi & Biostimulan';
-
 const formatRupiah = (val: number) =>
   new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(val);
-
-const minPrice = p.variants && p.variants.length > 0
-  ? Math.min(...p.variants.map((v) => v.price))
-  : null;
 ---
 
-<article
-  id={product.id}
-  class="scroll-mt-24 py-8 sm:py-10 first:pt-4 last:pb-4 group"
->
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-start">
-    <!-- Visual: Product Packshot -->
-    <div class="md:col-span-4 lg:col-span-3">
-      <a
-        href={`/produk/${product.id}/`}
-        class="block aspect-square w-full max-w-[240px] mx-auto md:max-w-none p-4 bg-[var(--color-surface)] border border-[var(--color-border-control)]/30 hover:border-[var(--color-brand)] rounded-[2px] overflow-hidden transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)] shadow-2xs"
-        aria-label={`Lihat panduan dan dosis ${p.name}`}
-      >
-        <Picture
-          src={getProductImage(product.id)}
-          formats={['webp']}
-          widths={[200, 400]}
-          sizes="(min-width: 1024px) 16rem, (min-width: 768px) 14rem, 100vw"
-          quality={85}
-          alt={`Kemasan resmi ${p.name}`}
-          class="w-full h-full object-contain transition-transform duration-300 ease-out group-hover:scale-105"
-          loading="eager"
-        />
-      </a>
-      <div class="mt-2 text-center md:text-left text-xs text-[var(--color-text-muted)] flex items-center justify-center md:justify-start gap-1.5">
-        <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand)] shrink-0" aria-hidden="true"></span>
-        <span>Segel ShieldedTag™ Anti-Palsu</span>
-      </div>
-    </div>
+<article id={product.id} class="scroll-mt-24 py-10 first:pt-0">
+  <div class="grid grid-cols-[6rem_1fr] sm:grid-cols-[10rem_1fr] lg:grid-cols-[12rem_1fr_14rem] gap-x-5 sm:gap-x-8 gap-y-5 items-start">
+    <a
+      href={`/produk/${product.id}/`}
+      class="block aspect-square rounded-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <Picture
+        src={getProductImage(product.id)}
+        formats={['webp']}
+        widths={[200, 400]}
+        sizes="(min-width: 1024px) 12rem, (min-width: 640px) 10rem, 6rem"
+        quality={85}
+        alt={`Kemasan ${p.name}`}
+        class="w-full h-full object-contain"
+        loading="lazy"
+      />
+    </a>
 
-    <!-- Main Content & Agronomic Description -->
-    <div class="md:col-span-8 lg:col-span-6 space-y-3.5">
-      <div>
-        <div class="flex flex-wrap items-center gap-2 mb-1.5">
-          <span class="inline-flex items-center px-2 py-0.5 text-xs font-semibold text-[var(--color-brand-strong)] bg-[var(--color-tint)] border border-[var(--color-brand-strong)]/20 rounded-[2px]">
-            {categoryBadge}
-          </span>
-          {p.tagline && (
-            <span class="text-xs font-semibold text-[var(--color-soil)]">
-              {p.tagline}
-            </span>
-          )}
-        </div>
-        
-        <h2 class="text-2xl sm:text-3xl font-bold font-serif text-[var(--color-brand)] tracking-tight">
-          <a
-            href={`/produk/${product.id}/`}
-            class="hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
-          >
-            {p.name}
-          </a>
-        </h2>
-        
-        <p class="mt-1 text-sm sm:text-base font-medium text-[var(--color-text)]">
-          {p.role}
-        </p>
-      </div>
+    <div class="space-y-3 min-w-0">
+      <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-[var(--color-text)] leading-tight">
+        <a
+          href={`/produk/${product.id}/`}
+          class="hover:text-[var(--color-brand-strong)] rounded-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
+        >
+          {p.name}
+        </a>
+      </h2>
+      {p.tagline && <p class="text-sm font-semibold text-[var(--color-soil)]">{p.tagline}</p>}
+      <p class="text-base text-[var(--color-text)] leading-relaxed">{p.role}</p>
+      <p class="hidden sm:block text-sm text-[var(--color-text-muted)] leading-relaxed">{p.summary}</p>
 
-      <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
-        {p.summary}
-      </p>
-
-      <!-- Agronomic Specs as Clean Definition List (No nested cards) -->
-      <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-xs sm:text-sm pt-1">
+      <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-sm pt-1">
         <div>
-          <dt class="font-bold text-[var(--color-text-muted)] uppercase tracking-wider text-[11px]">
-            Sasaran Komoditas
-          </dt>
-          <dd class="text-[var(--color-text)] font-medium mt-0.5">
+          <dt class="text-[var(--color-text-muted)]">Komoditas sasaran</dt>
+          <dd class="mt-0.5 text-[var(--color-text)]">
             {p.commodities.slice(0, 5).map((c) => commoditiesMap.get(typeof c === 'string' ? c : c.id) || c).join(', ')}
             {p.commodities.length > 5 && ` (+${p.commodities.length - 5} lainnya)`}
           </dd>
         </div>
-
         <div>
-          <dt class="font-bold text-[var(--color-text-muted)] uppercase tracking-wider text-[11px]">
-            Metode Aplikasi
-          </dt>
-          <dd class="text-[var(--color-text)] font-medium mt-0.5">
-            {p.applicationMethods.join(' & ')}
-          </dd>
+          <dt class="text-[var(--color-text-muted)]">Cara aplikasi</dt>
+          <dd class="mt-0.5 text-[var(--color-text)]">{p.applicationMethods.join(' & ')}</dd>
         </div>
       </dl>
     </div>
 
-    <!-- Pricing, Variants, & Action Column -->
-    <div class="md:col-span-12 lg:col-span-3 flex flex-col justify-between self-stretch bg-[var(--color-tint)]/40 p-4 sm:p-5 rounded-[2px] border border-[var(--color-border-control)]/30 space-y-4">
-      <div>
-        <span class="block text-[11px] font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-1">
-          Harga Resmi Mitra
-        </span>
-        {minPrice ? (
-          <div>
-            <div class="text-xl sm:text-2xl font-bold font-serif text-[var(--color-brand-strong)] tabular-nums">
-              {formatRupiah(minPrice)}
+    <div class="col-span-2 lg:col-span-1 space-y-3">
+      {p.variants && p.variants.length > 0 && (
+        <dl class="text-sm tabular-nums divide-y divide-[var(--color-border)]">
+          {p.variants.map((v) => (
+            <div class="flex items-baseline justify-between gap-4 py-2 first:pt-0">
+              <dt class="text-[var(--color-text-muted)]">Kemasan {v.size}</dt>
+              <dd class="font-semibold text-[var(--color-text)]">{formatRupiah(v.price)}</dd>
             </div>
-            <p class="text-xs text-[var(--color-text-muted)] mt-0.5">
-              Tersedia kemasan 500 ml & 1 Liter
-            </p>
-          </div>
-        ) : (
-          <div class="text-sm font-medium text-[var(--color-text)]">
-            Konsultasi Kios Resmi
-          </div>
-        )}
-
-        {p.variants && p.variants.length > 0 && (
-          <div class="mt-3 pt-3 border-t border-[var(--color-border-control)]/20 space-y-1 text-xs">
-            {p.variants.map((v) => (
-              <div class="flex items-center justify-between text-[var(--color-text-muted)]">
-                <span>Kemasan {v.size}</span>
-                <span class="font-bold text-[var(--color-text)] tabular-nums">{formatRupiah(v.price)}</span>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
-      <div>
-        <a
-          href={`/produk/${product.id}/`}
-          class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 min-h-[44px] text-xs sm:text-sm font-semibold bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)] text-white rounded-[2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-strong)] shadow-2xs text-center"
-        >
-          <span>Panduan Dosis & Rincian</span>
-          <span aria-hidden="true">→</span>
-        </a>
-      </div>
+          ))}
+        </dl>
+      )}
+      <a href={`/produk/${product.id}/`} class="link-more text-sm">
+        Dosis & rincian<span class="sr-only"> {p.name}</span> &rarr;
+      </a>
     </div>
   </div>
 </article>
