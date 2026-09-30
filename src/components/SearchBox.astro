@@ -10,6 +10,8 @@ interface Props {
   autofocus?: boolean;
   placeholder?: string;
   size?: 'default' | 'large';
+  /** Show the label above the field instead of screen-reader only. */
+  visibleLabel?: string;
   class?: string;
 }
 
@@ -19,6 +21,7 @@ const {
   autofocus = false,
   placeholder = 'Cari nama penyakit, hama, komoditas, atau topik...',
   size = 'default',
+  visibleLabel,
   class: className = '',
 } = Astro.props;
 
@@ -29,13 +32,13 @@ const isLarge = size === 'large';
   role="search"
   action="/cari/"
   method="get"
-  class={`relative w-full flex items-stretch gap-2 ${className}`}
+  class={`relative w-full flex flex-wrap items-stretch gap-2 ${className}`}
   id="search-form"
 >
-  <div class="relative flex-1 flex items-center">
-    <label for={id} class="sr-only">
-      Cari artikel agronomi dan panduan Jurnal Tani
-    </label>
+  <label for={id} class={visibleLabel ? 'w-full block text-sm font-semibold text-[var(--color-text)] mb-0.5' : 'sr-only'}>
+    {visibleLabel ?? 'Cari artikel agronomi dan panduan Jurnal Tani'}
+  </label>
+  <div class="relative flex-1 min-w-0 flex items-center">
 
     <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[var(--color-border-control)]">
       <svg

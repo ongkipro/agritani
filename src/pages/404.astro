@@ -1,5 +1,10 @@
 ---
+/**
+ * src/pages/404.astro
+ * Not-found page (DESIGN §4.2.3): header, search card, three recovery links as equal cards.
+ */
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SearchBox from '../components/SearchBox.astro';
 import type { SeoInput } from '../lib/seo';
 
 const seo: SeoInput = {
@@ -9,45 +14,41 @@ const seo: SeoInput = {
   noindex: true,
   canonicalPath: '/404/',
 };
+
+const links = [
+  { href: '/alat/diagnosa-gejala/', title: 'Diagnosa Gejala', body: 'Cocokkan ciri fisik tanaman untuk menemukan kemungkinan penyebabnya.' },
+  { href: '/jurnal/', title: 'Jurnal Tani', body: 'Panduan budidaya dan penanganan hama penyakit per komoditas.' },
+  { href: '/', title: 'Beranda', body: 'Kembali ke halaman utama Agritani.' },
+];
 ---
 
 <BaseLayout seo={seo}>
-  <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 text-center">
-    <div class="max-w-xl mx-auto space-y-6">
-      <h1 class="text-3xl sm:text-4xl font-serif font-semibold text-[var(--color-text)] leading-tight tracking-[-0.015em] text-balance">
+  <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 pb-12 lg:pb-16">
+    <header class="mb-10 max-w-[68ch]">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold text-[var(--color-text)] leading-tight tracking-[-0.015em] text-balance mb-4">
         Halaman tidak ditemukan
       </h1>
-
-      <p class="text-base text-[var(--color-text-muted)] leading-relaxed">
+      <p class="text-lg sm:text-xl text-[var(--color-text-muted)] leading-relaxed max-w-[60ch]">
         Halaman yang Anda cari tidak tersedia di server kami. Tautan mungkin telah kedaluwarsa atau alamat yang dimasukkan kurang tepat.
       </p>
+    </header>
 
-      <div class="pt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-        <a
-          href="/"
-          class="btn-primary px-5 py-2.5 min-h-[44px] flex items-center justify-center bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)] text-white text-sm font-semibold rounded-[2px] transition-colors"
-        >
-          Kembali ke Beranda
-        </a>
-        <a
-          href="/alat/diagnosa-gejala/"
-          class="link-more min-h-[44px] text-sm"
-        >
-          Diagnosa Gejala
-        </a>
-        <a
-          href="/jurnal/"
-          class="link-more min-h-[44px] text-sm"
-        >
-          Jelajahi Jurnal Tani
-        </a>
-      </div>
+    <div class="card p-6 max-w-[48rem] mb-12">
+      <SearchBox visibleLabel="Cari di Jurnal Tani" />
     </div>
-  </div>
 
-  <style>
-    .btn-primary {
-      color: #ffffff !important;
-    }
-  </style>
+    <section aria-labelledby="tautan-404">
+      <h2 id="tautan-404" class="section-title">Atau buka salah satu halaman ini</h2>
+      <ul class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {links.map((link) => (
+          <li>
+            <a href={link.href} class="card card-link flex flex-col h-full p-5 min-h-[44px]">
+              <span class="font-serif text-lg font-semibold text-[var(--color-brand-strong)]">{link.title}</span>
+              <span class="mt-1 text-sm leading-relaxed text-[var(--color-text-muted)]">{link.body}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
 </BaseLayout>

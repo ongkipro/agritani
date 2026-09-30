@@ -33,16 +33,16 @@ const seo: SeoInput = {
     <Breadcrumb items={breadcrumbs} />
 
     <!-- Page Header (Lapangan Layout) -->
-    <header class="my-6 sm:my-8 max-w-[68ch]">
+    <header class="mt-6 sm:mt-8 mb-10 max-w-[68ch]">
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold text-[var(--color-text)] leading-tight tracking-[-0.015em] text-balance mb-3">
         Konsultasi Agronomi Langsung
       </h1>
-      <p class="text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed">
+      <p class="text-lg sm:text-xl text-[var(--color-text-muted)] leading-relaxed max-w-[60ch]">
         Layanan konsultasi teknis budidaya dan penanganan masalah tanaman langsung bersama tim agronomi Agritani melalui WhatsApp.
       </p>
     </header>
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 mb-12 lg:mb-16">
       
       <!-- Left Column: Service Details & Preparation Checklist -->
       <div class="lg:col-span-5 space-y-8">
@@ -53,10 +53,10 @@ const seo: SeoInput = {
           widths={[480, 800]}
           sizes="(min-width: 1024px) 26rem, calc(100vw - 2rem)"
           alt="Buah cabai hijau menggantung di tanaman"
-          class="w-full aspect-[3/2] object-cover rounded-[2px]"
+          class="w-full aspect-[3/2] object-cover"
         />
 
-        <section class="mt-8 space-y-2">
+        <section class="!mt-8 space-y-2">
           <h2 class="font-serif text-xl font-semibold text-[var(--color-brand-strong)]">
             Siapa yang menjawab?
           </h2>
@@ -78,13 +78,13 @@ const seo: SeoInput = {
           <p class="text-sm text-[var(--color-text-muted)]">
             Untuk mempercepat analisa dan akurasi rekomendasi agronom kami, siapkan informasi berikut:
           </p>
-          <ol class="list-decimal pl-5 space-y-2 text-sm text-[var(--color-text)] marker:font-bold marker:text-[var(--color-soil)]">
+          <ol class="list-decimal pl-5 space-y-2 text-sm text-[var(--color-text)] marker:font-serif marker:font-semibold marker:text-[var(--color-brand-strong)]">
             <li><strong>Foto jelas tanaman:</strong> ambil 1 foto jarak dekat bagian yang sakit (daun/buah/batang) dan 1 foto keseluruhan pohon.</li>
-            <li><strong>Komoditas & Varietas:</strong> jenis tanaman yang dibudidayakan.</li>
-            <li><strong>Umur Tanaman:</strong> Hari Setelah Tanam (HST) atau umur pohon.</li>
-            <li><strong>Lokasi Kebun:</strong> nama Kabupaten dan Provinsi lahan Anda.</li>
-            <li><strong>Luas Lahan:</strong> perkiraan luas petak (m² atau hektar).</li>
-            <li><strong>Riwayat Perlakuan:</strong> aplikasi pupuk atau semprotan terakhir dalam 2 minggu.</li>
+            <li><strong>Komoditas dan varietas:</strong> jenis tanaman yang dibudidayakan.</li>
+            <li><strong>Umur tanaman:</strong> Hari Setelah Tanam (HST) atau umur pohon.</li>
+            <li><strong>Lokasi kebun:</strong> nama Kabupaten dan Provinsi lahan Anda.</li>
+            <li><strong>Luas lahan:</strong> perkiraan luas petak (m² atau hektar).</li>
+            <li><strong>Riwayat perlakuan:</strong> aplikasi pupuk atau semprotan terakhir dalam 2 minggu.</li>
           </ol>
         </section>
 
@@ -92,12 +92,12 @@ const seo: SeoInput = {
 
       <!-- Right Column: WhatsApp Message Composer Form -->
       <div class="lg:col-span-7">
-        <section class="p-6 sm:p-8 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-6">
+        <section class="card p-6 lg:p-8 space-y-6">
           <div>
             <h2 class="section-title !mb-0">
               Formulir konsultasi WhatsApp
             </h2>
-            <p class="text-xs sm:text-sm text-[var(--color-text-muted)] mt-1">
+            <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mt-2 max-w-[60ch]">
               Isi data kebun Anda di bawah. Sistem akan otomatis menyusun format pesan rapi sebelum dialihkan ke WhatsApp resmi.
             </p>
           </div>
@@ -106,7 +106,7 @@ const seo: SeoInput = {
             <!-- Field 1: Komoditas -->
             <div>
               <label for="consult-commodity" class="block text-sm font-semibold text-[var(--color-text)] mb-1.5">
-                Komoditas Tanaman <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+                Komoditas tanaman <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
               </label>
               <input
                 type="text"
@@ -114,15 +114,15 @@ const seo: SeoInput = {
                 name="commodity"
                 required
                 placeholder="Contoh: Cabai merah keriting, Padi sawah, Kelapa sawit"
-                class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-0 focus:border-[var(--color-brand-strong)] transition-colors text-sm"
+                class="w-full px-3.5 py-3 min-h-[48px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-0 focus:border-[var(--color-brand-strong)] transition-colors text-base"
               />
-              <p id="err-commodity" class="text-xs text-[var(--color-danger)] mt-1 hidden"></p>
+              <p id="err-commodity" class="text-[13px] text-[var(--color-danger)] mt-1.5 hidden"></p>
             </div>
 
             <!-- Field 2: Umur Tanaman -->
             <div>
               <label for="consult-age" class="block text-sm font-semibold text-[var(--color-text)] mb-1.5">
-                Umur Tanaman Saat Ini <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+                Umur tanaman saat ini <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
               </label>
               <input
                 type="text"
@@ -130,15 +130,15 @@ const seo: SeoInput = {
                 name="age"
                 required
                 placeholder="Contoh: 45 HST, 2 bulan setelah semai, atau 3 tahun"
-                class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-0 focus:border-[var(--color-brand-strong)] transition-colors text-sm"
+                class="w-full px-3.5 py-3 min-h-[48px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-0 focus:border-[var(--color-brand-strong)] transition-colors text-base"
               />
-              <p id="err-age" class="text-xs text-[var(--color-danger)] mt-1 hidden"></p>
+              <p id="err-age" class="text-[13px] text-[var(--color-danger)] mt-1.5 hidden"></p>
             </div>
 
             <!-- Field 3: Lokasi Kebun -->
             <div>
               <label for="consult-location" class="block text-sm font-semibold text-[var(--color-text)] mb-1.5">
-                Lokasi Kebun (Kabupaten & Provinsi) <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+                Lokasi kebun (kabupaten dan provinsi) <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
               </label>
               <input
                 type="text"
@@ -146,15 +146,15 @@ const seo: SeoInput = {
                 name="location"
                 required
                 placeholder="Contoh: Kab. Garut, Jawa Barat atau Kab. Asahan, Sumut"
-                class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-0 focus:border-[var(--color-brand-strong)] transition-colors text-sm"
+                class="w-full px-3.5 py-3 min-h-[48px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-0 focus:border-[var(--color-brand-strong)] transition-colors text-base"
               />
-              <p id="err-location" class="text-xs text-[var(--color-danger)] mt-1 hidden"></p>
+              <p id="err-location" class="text-[13px] text-[var(--color-danger)] mt-1.5 hidden"></p>
             </div>
 
             <!-- Field 4: Masalah -->
             <div>
               <label for="consult-problem" class="block text-sm font-semibold text-[var(--color-text)] mb-1.5">
-                Gejala Masalah atau Pertanyaan Agronomi <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+                Gejala masalah atau pertanyaan agronomi <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
               </label>
               <textarea
                 id="consult-problem"
@@ -162,10 +162,10 @@ const seo: SeoInput = {
                 rows="4"
                 required
                 placeholder="Jelaskan perubahan fisik tanaman (daun kuning/keriting, batang busuk, buah rontok), riwayat penyemprotan, atau pertanyaan yang ingin dikonsultasikan..."
-                class="w-full px-3.5 py-2.5 bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-0 focus:border-[var(--color-brand-strong)] transition-colors text-sm leading-relaxed"
+                class="w-full px-3.5 py-3 bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-0 focus:border-[var(--color-brand-strong)] transition-colors text-base leading-relaxed"
               ></textarea>
-              <p id="err-problem" class="text-xs text-[var(--color-danger)] mt-1 hidden"></p>
-              <p class="text-xs text-[var(--color-text-muted)] mt-1.5">
+              <p id="err-problem" class="text-[13px] text-[var(--color-danger)] mt-1.5 hidden"></p>
+              <p class="text-[13px] text-[var(--color-text-muted)] mt-1.5">
                 <em>Foto tanaman dapat langsung Anda kirimkan di chat WhatsApp setelah pesan terkirim.</em>
               </p>
             </div>
@@ -176,7 +176,7 @@ const seo: SeoInput = {
                 type="submit"
                 id="btn-submit-consult"
                 data-cta="whatsapp"
-                class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3 min-h-[44px] text-base font-bold rounded-[2px] bg-[var(--color-brand)] text-white hover:bg-[var(--color-brand-strong)] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-brand-strong)] cursor-pointer"
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3 min-h-[48px] text-base font-semibold rounded-[2px] bg-[var(--color-brand)] text-white hover:bg-[var(--color-brand-strong)] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-brand-strong)] cursor-pointer"
               >
                 <!-- Monochrome MessageCircle Icon -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -212,43 +212,22 @@ const seo: SeoInput = {
     </div>
 
     <!-- Sambil Menunggu Jawaban (T-31 Butir 1b) -->
-    <section class="my-12 max-w-[72ch]" aria-labelledby="menunggu-jawaban-heading">
-      <h2 id="menunggu-jawaban-heading" class="section-title !mb-2">
+    <section class="mb-12 lg:mb-16" aria-labelledby="menunggu-jawaban-heading">
+      <h2 id="menunggu-jawaban-heading" class="section-title">
         Sambil menunggu jawaban
       </h2>
-      <div class="divide-y divide-[var(--color-border)]">
-        <a
-          href="/jurnal/"
-          class="py-3 min-h-[44px] flex flex-col sm:flex-row sm:items-center justify-between gap-1 group hover:text-[var(--color-brand-strong)]"
-        >
-          <span class="link-more text-sm sm:text-base">
-            Baca Jurnal Tani &rarr;
-          </span>
-          <span class="text-xs sm:text-sm text-[var(--color-text-muted)]">
-            Panduan penanganan hama dan penyakit per komoditas.
-          </span>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <a href="/jurnal/" class="card card-link flex flex-col p-5 min-h-[44px]">
+          <span class="font-serif text-lg font-semibold text-[var(--color-brand-strong)]">Baca Jurnal Tani</span>
+          <span class="mt-1 text-sm leading-relaxed text-[var(--color-text-muted)]">Panduan penanganan hama dan penyakit per komoditas.</span>
         </a>
-        <a
-          href="/alat/cuaca-tani/"
-          class="py-3 min-h-[44px] flex flex-col sm:flex-row sm:items-center justify-between gap-1 group hover:text-[var(--color-brand-strong)]"
-        >
-          <span class="link-more text-sm sm:text-base">
-            Cek Cuaca Tani &rarr;
-          </span>
-          <span class="text-xs sm:text-sm text-[var(--color-text-muted)]">
-            Prakiraan BMKG per 3 jam untuk memilih waktu semprot.
-          </span>
+        <a href="/alat/cuaca-tani/" class="card card-link flex flex-col p-5 min-h-[44px]">
+          <span class="font-serif text-lg font-semibold text-[var(--color-brand-strong)]">Cek Cuaca Tani</span>
+          <span class="mt-1 text-sm leading-relaxed text-[var(--color-text-muted)]">Prakiraan BMKG per 3 jam untuk memilih waktu semprot.</span>
         </a>
-        <a
-          href="/alat/kalkulator-dosis/"
-          class="py-3 min-h-[44px] flex flex-col sm:flex-row sm:items-center justify-between gap-1 group hover:text-[var(--color-brand-strong)]"
-        >
-          <span class="link-more text-sm sm:text-base">
-            Hitung dosis semprot &rarr;
-          </span>
-          <span class="text-xs sm:text-sm text-[var(--color-text-muted)]">
-            Takaran per tangki sesuai label kemasan.
-          </span>
+        <a href="/alat/kalkulator-dosis/" class="card card-link flex flex-col p-5 min-h-[44px]">
+          <span class="font-serif text-lg font-semibold text-[var(--color-brand-strong)]">Hitung dosis semprot</span>
+          <span class="mt-1 text-sm leading-relaxed text-[var(--color-text-muted)]">Takaran per tangki sesuai label kemasan.</span>
         </a>
       </div>
     </section>
