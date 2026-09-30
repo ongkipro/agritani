@@ -115,9 +115,10 @@ export default defineConfig({
                 walkAndConvert(full);
               } else if (full.endsWith('.html')) {
                 let html = fs.readFileSync(full, 'utf8');
+                let changed = false;
                 if (html.includes('style=')) {
                   // Convert text-align inline styles on th/td from markdown tables to Tailwind classes (AGENTS.md, ARCHITECTURE §5)
-                  html = html.replace(/<(th|td)\b([^>]*?)style=["']([^"']*?)["']([^>]*?)>/gi, (match, tag, before, styleVal, after) => {
+                  html = html.replace(/<(th|td)\b([^>]*?)style=["']([^"']*?)["']([^>]*?)>/gi, (_match, tag, before, styleVal, after) => {
                     let alignClass = '';
                     if (/text-align:\s*left/i.test(styleVal)) alignClass = 'text-left';
                     else if (/text-align:\s*center/i.test(styleVal)) alignClass = 'text-center';
@@ -134,7 +135,7 @@ export default defineConfig({
 
                     if (alignClass) {
                       if (/class=["']([^"']*)["']/i.test(combinedAttrs)) {
-                        combinedAttrs = combinedAttrs.replace(/class=["']([^"']*)["']/i, (m, existing) => `class="${existing} ${alignClass}"`);
+                        combinedAttrs = combinedAttrs.replace(/class=["']([^"']*)["']/i, (_m, existing) => `class="${existing} ${alignClass}"`);
                       } else {
                         combinedAttrs = `class="${alignClass}" ${combinedAttrs}`.trim();
                       }
@@ -142,7 +143,29 @@ export default defineConfig({
 
                     return `<${tag} ${combinedAttrs}>`.replace(/\s+/g, ' ').replace(' >', '>');
                   });
+                  changed = true;
+                }
 
+                // Convert markdown blockquote admonitions (> [!NOTE]) into editorial callout panels
+                if (/\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/i.test(html)) {
+                  html = html.replace(/<blockquote>\s*<p>\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*([\s\S]*?)<\/p>/gi, (_match, kind, title) => {
+                    const k = kind.toLowerCase();
+                    /** @type {Record<string, string>} */
+                    const labelMap = {
+                      note: 'Catatan Lapangan',
+                      tip: 'Tips Agronomi',
+                      important: 'Penting Diperhatikan',
+                      warning: 'Peringatan Hama',
+                      caution: 'Perhatian Khusus',
+                    };
+                    const label = labelMap[k] || 'Catatan Lapangan';
+                    const titleHtml = title.trim() ? `<p class="callout-title font-semibold text-[var(--color-text)] mb-2">${title.trim()}</p>` : '';
+                    return `<blockquote class="callout callout-${k}"><div class="callout-badge"><span class="callout-dot"></span><span>${label}</span></div>${titleHtml}`;
+                  });
+                  changed = true;
+                }
+
+                if (changed) {
                   fs.writeFileSync(full, html, 'utf8');
                 }
               }

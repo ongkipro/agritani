@@ -1,6 +1,8 @@
 /**
  * src/lib/rehype-external-links.mjs
- * Lightweight native rehype plugin for qualifying Markdown outbound links (DESIGN §4.4.12)
+ * Native rehype plugin for:
+ * 1. Qualifying Markdown outbound links with target="_blank", rel="noopener" (DESIGN §4.4.12)
+ * 2. Enhancing GitHub-style blockquote callouts ([!NOTE], [!TIP], etc.) into clean editorial panels
  * Zero external dependencies.
  */
 
@@ -10,7 +12,13 @@ function isExternal(url) {
   if (!/^https?:\/\//i.test(trimmed)) return false;
   try {
     const host = new URL(trimmed).hostname.toLowerCase();
-    return host !== 'agritani.com' && host !== 'www.agritani.com' && !host.endsWith('.agritani.com') && host !== 'localhost' && host !== '127.0.0.1';
+    return (
+      host !== 'agritani.com' &&
+      host !== 'www.agritani.com' &&
+      !host.endsWith('.agritani.com') &&
+      host !== 'localhost' &&
+      host !== '127.0.0.1'
+    );
   } catch {
     return false;
   }
@@ -21,17 +29,14 @@ export function rehypeExternalLinks() {
     function visit(node) {
       if (!node || typeof node !== 'object') return;
 
+      // 1. Transform outbound links
       if (node.type === 'element' && node.tagName === 'a') {
         const href = node.properties?.href;
         if (href && isExternal(href)) {
-          // 1. Force target="_blank"
           node.properties.target = '_blank';
-
-          // 2. Qualify rel (noopener always, nofollow if WhatsApp, never noreferrer)
           const isWa = /wa\.me|api\.whatsapp\.com/i.test(href);
           node.properties.rel = isWa ? 'noopener nofollow' : 'noopener';
 
-          // 3. Append ArrowUpRight 12px SVG icon and sr-only notice
           if (!Array.isArray(node.children)) {
             node.children = [];
           }
@@ -83,6 +88,67 @@ export function rehypeExternalLinks() {
           };
 
           node.children.push(iconSvg, srNotice);
+        }
+      }
+
+      // 2. Transform GitHub-style blockquote callouts ([!NOTE], [!TIP], etc.)
+      if (node.type === 'element' && node.tagName === 'blockquote') {
+        const children = Array.isArray(node.children) ? node.children : [];
+        const firstP = children.find((c) => c.type === 'element' && c.tagName === 'p');
+        if (firstP && Array.isArray(firstP.children) && firstP.children[0]?.type === 'text') {
+          const textVal = firstP.children[0].value || '';
+          const match = textVal.match(/^\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*(.*)/i);
+          if (match) {
+            const kind = match[1].toLowerCase();
+            const rest = match[2];
+
+            if (!node.properties) node.properties = {};
+            const existingClasses = Array.isArray(node.properties.className)
+              ? node.properties.className
+              : node.properties.className
+              ? [node.properties.className]
+              : [];
+            node.properties.className = [...existingClasses, 'callout', `callout-${kind}`];
+
+            if (rest.trim()) {
+              firstP.children[0].value = rest;
+            } else {
+              firstP.children.shift();
+            }
+
+            const labelMap = {
+              note: 'Catatan Lapangan',
+              tip: 'Tips Agronomi',
+              important: 'Penting Diperhatikan',
+              warning: 'Peringatan Hama',
+              caution: 'Perhatian Khusus',
+            };
+            const labelText = labelMap[kind] || 'Catatan Lapangan';
+
+            const badgeNode = {
+              type: 'element',
+              tagName: 'div',
+              properties: {
+                className: ['callout-badge'],
+              },
+              children: [
+                {
+                  type: 'element',
+                  tagName: 'span',
+                  properties: { className: ['callout-dot'] },
+                  children: [],
+                },
+                {
+                  type: 'element',
+                  tagName: 'span',
+                  properties: { className: ['callout-label'] },
+                  children: [{ type: 'text', value: labelText }],
+                },
+              ],
+            };
+
+            node.children.unshift(badgeNode);
+          }
         }
       }
 
