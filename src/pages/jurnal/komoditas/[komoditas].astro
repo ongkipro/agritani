@@ -5,7 +5,7 @@ import Breadcrumb from '../../../components/Breadcrumb.astro';
 import ArticleList from '../../../components/ArticleList.astro';
 import TopicSidebar from '../../../components/TopicSidebar.astro';
 import ArticleProducts from '../../../components/ArticleProducts.astro';
-import type { SeoInput } from '../../../lib/seo';
+import { fitText, TITLE_RANGE, DESC_RANGE, type SeoInput } from '../../../lib/seo';
 
 export async function getStaticPaths() {
   const includeDrafts =
@@ -55,10 +55,14 @@ const breadcrumbItems = [
 ];
 
 const seo: SeoInput = {
-  title: `${commodity.name}: Panduan Budidaya & Penanganan Hama`,
-  description:
-    pageEntry?.data.description ||
-    `Kumpulan panduan budidaya, pengendalian penyakit, dan rekomendasi perawatan tanaman ${commodity.name} teruji di lahan tropis Indonesia.`,
+  title: fitText([`${commodity.name}: Panduan Budidaya, Hama & Penyakit Tanaman`, `${commodity.name}: Panduan Budidaya & Hama`], TITLE_RANGE, 11),
+  description: fitText(
+    [
+      pageEntry?.data.description ?? '',
+      `Kumpulan panduan budidaya, pengendalian penyakit, dan rekomendasi perawatan tanaman ${commodity.name} teruji di lahan tropis Indonesia.`,
+    ].filter(Boolean),
+    DESC_RANGE,
+  ),
   canonicalPath: `/jurnal/komoditas/${commodity.id}/`,
   breadcrumbs: breadcrumbItems,
   pageType: 'collection',

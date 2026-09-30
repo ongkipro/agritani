@@ -137,9 +137,11 @@ export function buildSeo(input: SeoInput): SeoOutput {
     breadcrumbs,
   } = input;
 
-  // Title: metaTitle takes precedence verbatim (DESIGN §4.4.2); otherwise append site suffix unless already home
-  const isHomePage = canonicalPath === '/' || title.startsWith('Agritani');
-  const resolvedTitle = metaTitle ? metaTitle : (isHomePage ? title : `${title} - ${SITE_NAME}`);
+  // Title (DESIGN §4.4.2): metaTitle wins over title; every page except home ends with " - Agritani".
+  // Final <title> must be 55–70 characters (owner rule 2026-09-30, enforced by scripts/check-seo.mjs).
+  const base = metaTitle || title;
+  const suffix = ` - ${SITE_NAME}`;
+  const resolvedTitle = canonicalPath === '/' || base.endsWith(suffix) ? base : `${base}${suffix}`;
 
   const canonical = formatCanonicalUrl(canonicalPath);
   const fallbackOg = getDefaultOgImage(canonicalPath, article?.topic);
@@ -355,4 +357,33 @@ export function buildSeo(input: SeoInput): SeoOutput {
       '@graph': graph,
     },
   };
+}
+
+/** Owner SEO lengths (2026-09-30): final <title> 55–70 chars incl. " - Agritani"; meta description 120–155 chars. */
+export const TITLE_RANGE = { min: 55, max: 70 } as const;
+export const DESC_RANGE = { min: 120, max: 155 } as const;
+
+/** Trim at a word boundary to `max` characters without a dangling separator. */
+export function clipWords(text: string, max: number): string {
+  if (text.length <= max) return text;
+  const space = text.lastIndexOf(' ', max);
+  const cut = space > 0 ? text.slice(0, space) : text.slice(0, max);
+  return cut.replace(/[\s,.;:–-]+$/, '');
+}
+
+/**
+ * First candidate whose length (plus `extra`, e.g. the 11-char " - Agritani" suffix) lands in [min, max];
+ * otherwise the longest candidate clipped at a word boundary. Used for generated titles and descriptions.
+ */
+export function fitText(candidates: string[], range: { min: number; max: number }, extra = 0): string {
+  const hit = candidates.find((c) => c.length + extra >= range.min && c.length + extra <= range.max);
+  if (hit) return hit;
+  if (candidates.length === 0) return '';
+  const longest = [...candidates].sort((a, b) => b.length - a.length)[0];
+  const clipped = clipWords(longest, range.max - extra);
+  // Prefer ending at a clause boundary with a full stop over a mid-phrase cut.
+  const boundary = Math.max(clipped.lastIndexOf(','), clipped.lastIndexOf(':'));
+  if (boundary < 0) return clipped;
+  const clause = clipped.slice(0, boundary);
+  return clause.length + extra + 1 >= range.min ? `${clause}.` : clipped;
 }

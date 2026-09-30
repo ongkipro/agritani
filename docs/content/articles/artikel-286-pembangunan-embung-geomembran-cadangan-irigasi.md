@@ -1,7 +1,7 @@
 ---
 title: "Pembangunan Embung Geomembran untuk Cadangan Air Irigasi Kemarau"
 metaTitle: "Pembangunan Embung Geomembran Irigasi Lahan Pertanian"
-description: "Spesifikasi konstruksi embung penampung air lapis geomembran HDPE guna mengamankan pasokan irigasi tanaman pangan dan hortikultura saat puncak musim kemarau."
+description: "Spesifikasi konstruksi embung penampung air berlapis geomembran HDPE untuk mengamankan pasokan irigasi tanaman pangan dan hortikultura saat kemarau."
 slug: "pembangunan-embung-geomembran-cadangan-irigasi"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

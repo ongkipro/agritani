@@ -1,7 +1,7 @@
 ---
 title: "Penyerbukan Buatan Bunga Vanili dan Pengeringan Polong"
 metaTitle: "Penyerbukan Bunga Vanili & Pengeringan Polong Ekspor"
-description: "Teknik penyerbukan manual bunga vanili dengan tusuk bambu, waktu terbaik kawin bunga, serta tahapan pemeraman polong hingga terbentuk kristal vanilin harum."
+description: "Teknik penyerbukan manual bunga vanili dengan tusuk bambu, waktu terbaik kawin bunga, serta pemeraman polong hingga terbentuk kristal vanilin harum."
 slug: "penyerbukan-bunga-vanili-pengeringan-polong-ekspor"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

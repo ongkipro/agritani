@@ -1,7 +1,7 @@
 ---
 title: "Pengendalian Kanker Batang Durian Phytophthora palmivora"
 metaTitle: "Kanker Batang Durian Phytophthora: Cara Obati Cepat"
-description: "Cara mendiagnosis dan mengobati kanker batang durian (blendok): teknik kerok luka kulit kayu, sapuan pasta fungisida tembaga, dan infus asam fosfit sistemik."
+description: "Cara mendiagnosis dan mengatasi kanker batang durian (blendok): teknik kerok luka kulit kayu, sapuan pasta fungisida tembaga, dan infus asam fosfit."
 slug: "pengendalian-kanker-batang-durian-phytophthora"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

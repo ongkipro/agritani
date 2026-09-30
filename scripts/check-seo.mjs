@@ -13,6 +13,10 @@
  */
 
 import fs from 'node:fs';
+
+/** Decode the HTML entities Astro emits in <title> and meta content so lengths count visible characters. */
+const decodeEntities = (t) =>
+  t.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;|&#x27;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 import path from 'node:path';
 
 const DIST_DIR = path.resolve('dist');
@@ -157,11 +161,17 @@ for (const filePath of htmlFiles) {
   } else if (titleMatches.length > 1) {
     errors.push(`[${relPath}] Multiple (${titleMatches.length}) <title> tags found.`);
   } else {
-    const titleText = titleMatches[0].replace(/<[^>]+>/g, '').trim();
+    const titleText = decodeEntities(titleMatches[0].replace(/<[^>]+>/g, '').trim());
     if (!titleText) {
       errors.push(`[${relPath}] <title> is empty.`);
-    } else if (titleText.length > 65) {
-      warnings.push(`[${relPath}] <title> exceeds 60 chars recommended (${titleText.length} chars): "${titleText}"`);
+    } else {
+      // Owner rule 2026-09-30: <title> 55–70 characters incl. spaces and " - Agritani"; separator "-", never "|" or "—".
+      if (titleText.length < 55 || titleText.length > 70) {
+        errors.push(`[${relPath}] <title> must be 55–70 chars (${titleText.length}): "${titleText}"`);
+      }
+      if (/[|—]/.test(titleText)) {
+        errors.push(`[${relPath}] <title> must use " - " as separator, not "|" or "—": "${titleText}"`);
+      }
     }
 
     // Check exactly one <h1> (except 404 can be evaluated normally)
@@ -205,11 +215,12 @@ for (const filePath of htmlFiles) {
       errors.push(`[${relPath}] Multiple (${descMatches.length}) meta descriptions found.`);
     } else {
       const contentMatch = descMatches[0].match(/content=["'](.*?)["']/is);
-      descContent = contentMatch ? contentMatch[1].trim() : '';
+      descContent = contentMatch ? decodeEntities(contentMatch[1].trim()) : '';
       if (!descContent) {
         errors.push(`[${relPath}] <meta name="description"> content is empty.`);
-      } else if (!is404 && (descContent.length < 100 || descContent.length > 175)) {
-        warnings.push(`[${relPath}] Meta description length (${descContent.length} chars) is outside standard 120-160 window.`);
+      } else if (descContent.length < 120 || descContent.length > 155) {
+        // Owner rule 2026-09-30: meta description 120–155 characters incl. spaces.
+        errors.push(`[${relPath}] Meta description must be 120–155 chars (${descContent.length}).`);
       }
     }
 

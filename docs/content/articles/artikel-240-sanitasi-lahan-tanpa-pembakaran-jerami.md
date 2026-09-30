@@ -1,7 +1,7 @@
 ---
 title: "Sanitasi Lahan Pertanian Tanpa Pembakaran Jerami Terlarang"
 metaTitle: "Sanitasi Lahan Tanpa Bakar Jerami: Solusi Hayati Hijau"
-description: "Bahaya membakar jerami sisa panen terhadap mikroba tanah dan panduan sanitasi lahan ramah lingkungan: fermentasi in-situ menggunakan dekomposer Trichoderma."
+description: "Bahaya membakar jerami sisa panen bagi mikroba tanah dan panduan sanitasi lahan ramah lingkungan: fermentasi in-situ dengan dekomposer Trichoderma."
 slug: "sanitasi-lahan-tanpa-pembakaran-jerami"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

@@ -1,7 +1,7 @@
 ---
 title: "Perbedaan Fotosintesis Tanaman C3 C4 dan CAM di Pertanian"
 metaTitle: "Fotosintesis C3 C4 CAM: Perbedaan & Efisiensi Tani"
-description: "Perbandingan jalur fotosintesis C3, C4, dan CAM pada tanaman pertanian: efisiensi enzim RuBisCO, toleransi panas, laju fotorespirasi, dan adaptasi kekeringan."
+description: "Perbandingan jalur fotosintesis C3, C4, dan CAM pada tanaman pertanian: efisiensi enzim RuBisCO, toleransi panas, fotorespirasi, dan adaptasi kekeringan."
 slug: "perbedaan-fotosintesis-tanaman-c3-c4-cam"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

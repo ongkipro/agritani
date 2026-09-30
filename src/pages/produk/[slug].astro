@@ -11,7 +11,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import ArticleRow from '../../components/ArticleRow.astro';
 import { getProductImage, getProductFieldPhotos } from '../../lib/product-images';
-import type { SeoInput } from '../../lib/seo';
+import { fitText, TITLE_RANGE, type SeoInput } from '../../lib/seo';
 
 export async function getStaticPaths() {
   const products = await getCollection('products');
@@ -56,12 +56,18 @@ const breadcrumbs = [
 ];
 
 const shortTitles: Record<string, string> = {
-  aussie: 'Aussie — Aktivator Imun Batang & Akar',
-  kojien: 'Kojien — Aktivator Imun Padi Spesialis',
-  bensu: 'BENSU — Aktivator Regenerasi Sel',
-  saratoga: 'Saratoga — Serum Asam Amino Bebas Amis',
+  aussie: 'Aussie: Aktivator Imun Tanaman Sawit & Busuk Pangkal Batang',
+  kojien: 'Kojien: Aktivator Imun & Booster Nutrisi Tanaman Padi',
+  bensu: 'BENSU: Aktivator Imun & Regenerasi Sel Tanaman Hortikultura',
+  saratoga: 'Saratoga: Serum Asam Amino untuk Pembungaan & Pembuahan',
 };
-const seoTitle = shortTitles[product.id] || `${p.name} — Formula Biostimulan Resmi`;
+const seoTitle = shortTitles[product.id] || fitText([`${p.name}: Formula Biostimulan dan Nutrisi Tanaman`], TITLE_RANGE, 11);
+
+// Meta descriptions within 120–155 chars where the product summary is longer (same facts, shorter wording).
+const metaDescriptions: Record<string, string> = {
+  aussie: 'Formula biostimulan aktivator kekebalan sel tanaman untuk memperkuat ketahanan tanaman perkebunan dan tanaman keras dari infeksi patogen batang dan akar.',
+  saratoga: 'Serum asam amino berdaya serap tinggi berteknologi Japanese Pro-Plant Complex, tanpa bau amis menyengat, untuk mencegah kerontokan bunga dan bakal buah.',
+};
 
 const functionDetails: Record<
   string,
@@ -150,7 +156,7 @@ const jump =
 
 const seo: SeoInput = {
   title: seoTitle,
-  description: p.summary,
+  description: metaDescriptions[product.id] ?? p.summary,
   canonicalPath: `/produk/${product.id}/`,
   breadcrumbs,
   pageType: 'website',

@@ -1,7 +1,7 @@
 ---
 title: "Pengendalian Penyakit Layu Darah Bakteri Blood Disease Pisang"
 metaTitle: "Penyakit Layu Darah Pisang: Gejala & Penyelamatan"
-description: "Mengenal bahaya penyakit layu darah bakteri pada pisang: gejala buah mengeluarkan cairan merah darah, teknik pemotongan ontong bunga, dan pencegahan penularan."
+description: "Mengenal penyakit layu darah bakteri pada pisang: gejala buah mengeluarkan cairan merah darah, teknik pemotongan ontong bunga, dan pencegahan penularan."
 slug: "pengendalian-layu-darah-bakteri-pisang"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

@@ -1,7 +1,7 @@
 ---
 title: "Aplikasi Pompa Air Tenaga Surya untuk Irigasi Pertanian Lahan Kering"
 metaTitle: "Aplikasi Pompa Tenaga Surya Irigasi Pertanian Kering"
-description: "Analisis teknis pemasangan panel fotovoltaik dan pompa submersible tanpa aki untuk memompa air tanah dalam irigasi hemat biaya operasional di lahan tadah hujan."
+description: "Analisis teknis pemasangan panel surya dan pompa submersible tanpa aki untuk memompa air tanah dalam irigasi hemat biaya di lahan tadah hujan."
 slug: "aplikasi-pompa-air-tenaga-surya-irigasi-pertanian"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

@@ -1,7 +1,7 @@
 ---
 title: "Pemanfaatan Tensiometer Tanah untuk Penjadwalan Irigasi Hortikultura"
 metaTitle: "Pemanfaatan Tensiometer Tanah Irigasi Hortikultura"
-description: "Panduan kalibrasi dan instalasi tensiometer tanah berdasar matriks suction centibar guna menentukan jadwal irigasi presisi pada budidaya komoditas hortikultura."
+description: "Panduan kalibrasi dan instalasi tensiometer tanah berdasar matriks suction centibar untuk menentukan jadwal irigasi presisi tanaman hortikultura."
 slug: "pemanfaatan-tensiometer-tanah-irigasi-hortikultura"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

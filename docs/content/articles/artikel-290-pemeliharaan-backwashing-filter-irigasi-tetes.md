@@ -1,7 +1,7 @@
 ---
 title: "Pemeliharaan dan Backwashing Filter Disk pada Jaringan Irigasi Tetes"
 metaTitle: "Pemeliharaan Backwashing Filter Irigasi Tetes"
-description: "Prosedur pembersihan berkala media filter disk dan sand media filter guna mencegah penyumbatan emitter akibat partikel lumpur serta endapan mineral fertigasi."
+description: "Prosedur pembersihan berkala filter disk dan sand media filter untuk mencegah penyumbatan emitter akibat partikel lumpur dan endapan mineral fertigasi."
 slug: "pemeliharaan-backwashing-filter-irigasi-tetes"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

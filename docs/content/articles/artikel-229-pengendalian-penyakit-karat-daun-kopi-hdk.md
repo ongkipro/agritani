@@ -1,7 +1,7 @@
 ---
 title: "Pengendalian Penyakit Karat Daun Kopi Hemileia vastatrix"
 metaTitle: "Penyakit Karat Daun Kopi: Gejala & Pengendalian HDK"
-description: "Bahaya penyakit karat daun kopi (Hemileia vastatrix): tanda tepung oranye di bawah daun, cara pemangkasan naungan, dan proteksi fungisida tembaga preventif."
+description: "Penyakit karat daun kopi (Hemileia vastatrix): tanda tepung oranye di bawah daun, cara pemangkasan naungan, dan proteksi fungisida tembaga preventif."
 slug: "pengendalian-penyakit-karat-daun-kopi-hdk"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

@@ -1,7 +1,7 @@
 ---
 title: "Pengendalian Hama Tikus Sawah Tyto alba Burung Hantu"
 metaTitle: "Burung Hantu Tyto alba: Predator Alami Tikus Sawah Padi"
-description: "Strategi konservasi burung hantu Tyto alba mengendalikan hama tikus sawah: rancang bangun pagupon Rubuha, daya mangsa nokturnal, dan larangan senapan angin."
+description: "Strategi konservasi burung hantu Tyto alba untuk mengendalikan tikus sawah: rancang bangun pagupon Rubuha, daya mangsa nokturnal, dan larangan senapan."
 slug: "pengendalian-hama-tikus-tyto-alba-padi"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

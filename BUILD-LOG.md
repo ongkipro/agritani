@@ -864,3 +864,11 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - Halaman ditulis ulang: pembuka "distributor resmi dan utama untuk penjualan online", 4 `ProductCard`, bagian "Menjadi agen atau distributor" dengan satu CTA WhatsApp primer ke tim penjualan (`[Web·TentangKami]`, keperluan konsultasi/penawaran), satu baris pengelola Arif Prabowo.
 - Dihapus: bagian keilmuan (aliansi Thailand/Jepang, pendekatan SAR), alur rantai pasok 3 tahap, kartu Alat Tani, kartu bio & kolom kanan. Footer tidak berubah.
 - `check-owner-rules`: Tentang Kami keluar dari daftar halaman tanpa WhatsApp; tes ditambah. DECISIONS DEC-021; DESIGN §2.8 & §4.2.3; AGENTS; PRODUCT; `src/content/pages/tentang-kami.md`.
+
+## 2026-09-30 — T-44: Panjang title & meta description seluruh halaman (PASS)
+
+- Aturan pemilik (DEC-022): `<title>` 55–70 karakter termasuk spasi dan " - Agritani"; description 120–155; pemisah " - ", tanpa "|" atau "—".
+- `buildSeo`: semua halaman kecuali Beranda kini bersufiks " - Agritani" (artikel: `metaTitle` 44–59 → 55–70). Helper `fitText()`/`clipWords()` + konstanta `TITLE_RANGE`/`DESC_RANGE` untuk templat tag, hub, dan produk.
+- Ditulis ulang: title & description 15 halaman statis/alat, 4 produk (title; 2 description meta), 6 hub topik (peta title SEO, H1 tetap), templat hub komoditas, paginasi ("Arsip Jurnal Tani Halaman n: Panduan Agronomi Terapan"), tag (varian kalimat, "Artikel …" untuk 1 artikel), 43 deskripsi artikel diringkas (byte-safe, fakta tetap), 1 `metaTitle` diperpanjang.
+- `check-seo.mjs`: rentang di atas dan larangan "|"/"—" kini **error**; entitas HTML didekode sebelum menghitung. Uji negatif: title "Produk | Agritani" → 2 error.
+- Hasil: 1.825 halaman — 0 di luar rentang; semua description berakhir titik. `npm test` 97/97.

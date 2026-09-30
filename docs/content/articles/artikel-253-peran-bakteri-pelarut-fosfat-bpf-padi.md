@@ -1,7 +1,7 @@
 ---
 title: "Peran Bakteri Pelarut Fosfat BPF Melarutkan Fosfat Terikat Padi"
 metaTitle: "Bakteri Pelarut Fosfat BPF Padi: Lepas Fosfat Terikat"
-description: "Peran konsorsium bakteri pelarut fosfat (BPF) di lahan sawah padi: sekresi asam organik pelarut ikatan aluminium-besi dan penghematan pupuk fosfat sintetis."
+description: "Peran konsorsium bakteri pelarut fosfat (BPF) di sawah padi: sekresi asam organik pelarut ikatan aluminium-besi dan penghematan pupuk fosfat sintetis."
 slug: "peran-bakteri-pelarut-fosfat-bpf-padi"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

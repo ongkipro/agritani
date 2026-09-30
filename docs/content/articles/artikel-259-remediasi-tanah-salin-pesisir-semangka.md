@@ -1,7 +1,7 @@
 ---
 title: "Manajemen Remediasi Tanah Salin Pesisir Pantai Budidaya Semangka"
 metaTitle: "Remediasi Tanah Salin Pesisir: Budidaya Semangka Manis"
-description: "Teknik reklamasi tanah salin pesisir pantai untuk budidaya semangka: aplikasi gipsum kalsium sulfat penukar natrium, pencucian garam, dan irigasi air tawar."
+description: "Teknik reklamasi tanah salin pesisir untuk budidaya semangka: aplikasi gipsum kalsium sulfat penukar natrium, pencucian garam, dan irigasi air tawar."
 slug: "remediasi-tanah-salin-pesisir-semangka"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

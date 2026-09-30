@@ -1,7 +1,7 @@
 ---
 title: "Fisiologi Gas Etilen dalam Pematangan Buah Pisang dan Mangga"
-metaTitle: "Gas Etilen dan Pematangan Buah Pisang"
-description: "Peran hormon gas etilen dalam proses pematangan buah klimakterik pisang: lonjakan laju respirasi, konversi pati menjadi gula sukrosa, dan degradasi klorofil."
+metaTitle: "Gas Etilen dan Pematangan Buah Pisang Secara Alami"
+description: "Peran hormon gas etilen dalam pematangan buah klimakterik pisang: lonjakan laju respirasi, konversi pati menjadi gula sukrosa, dan degradasi klorofil."
 slug: "fisiologi-gas-etilen-pematangan-pisang"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

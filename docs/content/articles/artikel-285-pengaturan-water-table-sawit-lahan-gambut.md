@@ -1,7 +1,7 @@
 ---
 title: "Pengaturan Muka Air Saluran Water Table Kebun Sawit Lahan Gambut"
 metaTitle: "Pengaturan Water Table Sawit Lahan Gambut Berkelanjutan"
-description: "Standar pengelolaan water table kebun kelapa sawit lahan gambut dengan sekat kanal dan piezometer guna mencegah laju subsidensi serta bahaya kebakaran rawa."
+description: "Standar pengelolaan water table kebun sawit lahan gambut dengan sekat kanal dan piezometer untuk mencegah subsidensi serta bahaya kebakaran lahan."
 slug: "pengaturan-water-table-sawit-lahan-gambut"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

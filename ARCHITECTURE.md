@@ -140,7 +140,7 @@ const articles = defineCollection({
   loader: glob({ pattern: '*.md', base: './docs/content/articles' }),
   schema: ({ image }) => z.object({
     title: z.string().min(20).max(110),              // H1; naskah saat ini 73–103 karakter
-    metaTitle: z.string().min(30).max(60),           // dari `meta_title` naskah; dipakai apa adanya sebagai <title> artikel (tanpa sufiks)
+    metaTitle: z.string().min(30).max(60),           // dari `meta_title` naskah; <title> = metaTitle + " - Agritani" (55–70 karakter, DEC-022)
     description: z.string().min(120).max(160),       // dari `meta_description` naskah; juga dek
     answer: z.string().optional(),                   // Jawaban Singkat 40–60 kata; wajib untuk non-draft (dicek integritas)
     slug: z.string(),
@@ -237,8 +237,8 @@ Naskah di `docs/content/articles/` (150 file per 2026-09-29) memakai frontmatter
 
 | Naskah | Skema | Aturan |
 | :--- | :--- | :--- |
-| `meta_title` (45–59 karakter) | `metaTitle` | Dipakai apa adanya sebagai `<title>` |
-| `meta_description` (124–155) | `description` | Juga dek artikel |
+| `meta_title` (44–59 karakter) | `metaTitle` | `<title>` = `metaTitle` + " - Agritani" → 55–70 karakter (DEC-022) |
+| `meta_description` (120–155) | `description` | Juga dek artikel; 120–155 karakter (DEC-022) |
 | `tags` | `tags` | Urutan dipertahankan; `tags[0]` = kata kunci utama |
 | `published_date` | `pubDate` | — |
 | `author: "Tim Riset Agronomi Agritani"` | `author: "Arif Prabowo"` | Keputusan penulis (OQ-4) |

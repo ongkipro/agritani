@@ -1,7 +1,7 @@
 ---
 title: "Perawatan Pohon Cengkeh Cegah Penyakit Bakteri Pembuluh Kayu"
 metaTitle: "Penyakit BPKC Pohon Cengkeh: Gejala & Pengendalian"
-description: "Mengenal bahaya penyakit bakteri pembuluh kayu cengkeh (BPKC / mati bujang), gejala ranting meranggas layu, dan metode infus batang untuk selamatkan pohon tua."
+description: "Mengenal penyakit bakteri pembuluh kayu cengkeh (BPKC / mati bujang), gejala ranting meranggas layu, dan metode infus batang untuk selamatkan pohon tua."
 slug: "perawatan-pohon-cengkeh-cegah-penyakit-bpkc"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

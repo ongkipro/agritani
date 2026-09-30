@@ -1,7 +1,7 @@
 ---
 title: "Aklimatisasi Cekaman Panas Heat Stress pada Tanaman Kentang"
 metaTitle: "Heat Stress Tanaman Kentang: Dampak Suhu & Solusi Tuber"
-description: "Pengaruh suhu panas terhadap kegagalan tuberisasi umbi kentang: mekanisme heat shock protein, peran biostimulan L-prolin, dan teknik pendinginan bedengan tanah."
+description: "Pengaruh suhu panas terhadap kegagalan tuberisasi umbi kentang: mekanisme heat shock protein, peran biostimulan L-prolin, dan pendinginan bedengan."
 slug: "cekaman-suhu-tinggi-heat-stress-kentang"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

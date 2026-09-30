@@ -1,7 +1,7 @@
 ---
 title: "Pengukuran Derajat Brix Kemanisan Melon dan Semangka"
 metaTitle: "Uji Derajat Brix Melon: Panduan Refraktometer Buah"
-description: "Cara mengukur tingkat kemanisan buah melon menggunakan refraktometer genggam: teknik sampling nira buah, kalibrasi prisma, dan faktor pupuk pendongkrak Brix."
+description: "Cara mengukur kemanisan buah melon dengan refraktometer genggam: teknik sampling nira buah, kalibrasi prisma, dan faktor pupuk pendongkrak Brix."
 slug: "pengukuran-derajat-brix-kemanisan-melon"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

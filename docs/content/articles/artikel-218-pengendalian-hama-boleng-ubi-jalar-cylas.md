@@ -1,7 +1,7 @@
 ---
 title: "Pengendalian Hama Boleng Kumbang Cylas formicarius Ubi Jalar"
 metaTitle: "Hama Boleng Ubi Jalar Cylas: Gejala & Pencegahan"
-description: "Cara mengatasi hama boleng ubi jalar (Cylas formicarius): teknik pembumbunan tanah guludan penutup retakan, pemasangan feromon, dan sanitasi sisa panen umbi."
+description: "Cara mengatasi hama boleng ubi jalar (Cylas formicarius): pembumbunan guludan penutup retakan tanah, pemasangan feromon, dan sanitasi sisa panen umbi."
 slug: "pengendalian-hama-boleng-ubi-jalar-cylas"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

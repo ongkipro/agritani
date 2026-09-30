@@ -1,7 +1,7 @@
 ---
 title: "Peran Hormon Sitokinin dan Auksin Pertunasan Bawang Merah"
 metaTitle: "Auksin & Sitokinin Bawang Merah: Tunas Cepat Seragam"
-description: "Keseimbangan rasio hormon auksin dan sitokinin pada bibit bawang merah: teknik pemotongan pucuk umbi untuk memecah dominansi apikal dan memacu anakan banyak."
+description: "Keseimbangan hormon auksin dan sitokinin pada bibit bawang merah: teknik pemotongan pucuk umbi untuk memecah dominansi apikal dan memacu anakan."
 slug: "peran-sitokinin-auksin-tunas-bawang-merah"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

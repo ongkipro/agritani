@@ -1,7 +1,7 @@
 ---
 title: "Aplikasi Pupuk Kocor Pangkal Batang pada Bedengan Cabai"
 metaTitle: "Pupuk Kocor Pangkal Batang Cabai: Takaran & Interval"
-description: "Panduan pemupukan kocor pangkal batang pada tanaman cabai: takaran NPK mutiara dan kalsium per lubang tanam, interval aplikasi, serta pencegahan akar hangus."
+description: "Panduan pemupukan kocor pangkal batang tanaman cabai: takaran NPK mutiara dan kalsium per lubang tanam, interval aplikasi, serta pencegahan akar hangus."
 slug: "aplikasi-pupuk-kocor-pangkal-batang-cabai"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

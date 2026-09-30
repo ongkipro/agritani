@@ -1,7 +1,7 @@
 ---
 title: "Pemanfaatan Biochar Sekam Padi Memperbaiki Porositas Tanah"
 metaTitle: "Biochar Sekam Padi: Pembenah Porositas Tanah Abadi"
-description: "Teknologi pembuatan dan aplikasi biochar sekam padi pirolisis: memperbaiki porositas tanah liat memadat, meningkatkan retensi air, dan mengunci karbon tanah."
+description: "Pembuatan dan aplikasi biochar sekam padi pirolisis: memperbaiki porositas tanah liat memadat, meningkatkan retensi air, dan mengunci karbon tanah."
 slug: "pemanfaatan-biochar-sekam-padi-porositas-tanah"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

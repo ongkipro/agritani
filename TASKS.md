@@ -91,6 +91,7 @@ Berlaku untuk agent maupun manusia. Detail aturan agent ada di [AGENTS.md](AGENT
 | T-41 | Pagar aturan pemilik di build (`check-owner-rules`: nama terlarang, penempatan WhatsApp, bayangan/kapital di `<main>`) + unit test; AGENTS.md ringkasan keputusan pemilik; STATUS.md dibersihkan | DEC-019 | AGENTS.md, DESIGN §2.8, §3.3 | R1 | — | T-40 | — | Done 2026-09-30 |
 | T-42 | Terbit massal 288 naskah (total 296), SEO judul/meta tanpa klaim berlebihan, deskripsi tag 120–160, integritas disesuaikan DEC-020 | REQ-07 | DEC-020, `docs/build-notes/t42-publish.md` | R3 | — | T-41 | — | Done 2026-09-30 |
 | T-43 | Tentang Kami diringkas: distributor resmi penjualan online, 4 produk, peluang agen/distributor + WhatsApp tim penjualan, satu baris pengelola | DEC-021 | DESIGN §4.2.3, §2.8 | R2 | — | T-42 | — | Done 2026-09-30 |
+| T-44 | SEO semua halaman: `<title>` 55–70 & description 120–155 (1.825 halaman), `fitText()`, `check-seo` jadi error, 43 deskripsi artikel diringkas | REQ-07 | DEC-022, DESIGN §4.4.2 | R2 | — | T-43 | — | Done 2026-09-30 |
 | T-24 | Rilis produksi & observability | REQ-08 | RELEASE.md, OBSERVABILITY.md | R2 | — | T-15, T-18 | OQ-6 + **persetujuan deploy Paduka Ongki** | Menunggu persetujuan deploy |
 
 Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 → T-23 → T-04 → T-03 → T-05 → (T-06, T-07, T-13, T-14) → T-21 → T-22 → T-09 → T-19 → T-20 → T-26 → T-08 → T-10 → T-17 → T-11 → T-12 → T-16 & T-25 (jalur konten, paralel) → T-18 → T-15 → T-24.

@@ -1,7 +1,7 @@
 ---
 title: "Pematahan Dormansi Benih Padi dengan Perendaman Air Hangat"
 metaTitle: "Pematahan Dormansi Benih Padi: Air Hangat & KNO3"
-description: "Metode mematahkan masa dormansi benih padi pascapanen: perendaman air hangat 50 derajat Celsius, aplikasi larutan KNO3, dan percepatan perkecambahan serempak."
+description: "Metode mematahkan dormansi benih padi pascapanen: perendaman air hangat 50 derajat Celsius, aplikasi larutan KNO3, dan perkecambahan serempak."
 slug: "pematahan-dormansi-benih-padi-air-hangat"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

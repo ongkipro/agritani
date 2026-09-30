@@ -1,7 +1,7 @@
 ---
 title: "Budidaya Tebu Lahan Kering dan Manajemen Rendemen Gula"
 metaTitle: "Budidaya Tebu Lahan Kering: Maksimalkan Rendemen Gula"
-description: "Strategi budidaya tebu lahan tegalan: pengairan fase pematangan, pemupukan kalium pendongkrak derajat Brix, dan disiplin tebang angkut tepat waktu ke pabrik."
+description: "Strategi budidaya tebu lahan tegalan: pengairan fase pematangan, pemupukan kalium pendongkrak derajat Brix, dan disiplin tebang angkut ke pabrik."
 slug: "budidaya-tebu-lahan-kering-maksimalkan-rendemen"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

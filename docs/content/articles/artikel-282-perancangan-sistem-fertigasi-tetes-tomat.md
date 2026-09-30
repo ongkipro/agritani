@@ -1,7 +1,7 @@
 ---
 title: "Perancangan Sistem Fertigasi Tetes Tomat Presisi Berbasis Radiasi"
 metaTitle: "Sistem Fertigasi Tetes Tomat Presisi Berbasis Radiasi"
-description: "Tata cara merancang fertigasi tetes tanaman tomat presisi berdasar akumulasi radiasi surya guna mengoptimalkan serapan nutrisi hara dan efisiensi air lahan."
+description: "Tata cara merancang fertigasi tetes tomat presisi berdasar akumulasi radiasi surya untuk mengoptimalkan serapan hara dan efisiensi air lahan."
 slug: "perancangan-sistem-fertigasi-tetes-tomat"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

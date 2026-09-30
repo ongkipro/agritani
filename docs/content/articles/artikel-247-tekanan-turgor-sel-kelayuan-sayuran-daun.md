@@ -1,7 +1,7 @@
 ---
 title: "Tekanan Turgor Sel dan Mekanisme Kelayuan Daun Sayuran"
 metaTitle: "Tekanan Turgor Sel: Kunci Sayuran Daun Segar Renyah"
-description: "Pentingnya tekanan turgor sel dalam menjaga kesegaran renyah sayuran daun: dinamika vakuola air, proses kelayuan sementara di siang hari, dan titik layu tanah."
+description: "Pentingnya tekanan turgor sel untuk kesegaran renyah sayuran daun: dinamika vakuola air, kelayuan sementara di siang hari, dan titik layu tanah."
 slug: "tekanan-turgor-sel-kelayuan-sayuran-daun"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

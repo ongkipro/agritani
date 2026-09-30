@@ -1,7 +1,7 @@
 ---
 title: "Cara Menghitung C/N Rasio Bahan Organik Pembuatan Kompos"
 metaTitle: "Menghitung C/N Rasio Kompos: Kunci Fermentasi Cepat"
-description: "Panduan menghitung rasio karbon berbanding nitrogen (C/N ratio) bahan baku kompos: perpaduan material cokelat dan hijau, kontrol suhu, dan standar matang SNI."
+description: "Panduan menghitung rasio karbon berbanding nitrogen (C/N ratio) bahan kompos: perpaduan material cokelat dan hijau, kontrol suhu, dan standar matang SNI."
 slug: "cara-menghitung-cn-rasio-bahan-kompos"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

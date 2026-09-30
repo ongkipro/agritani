@@ -1,7 +1,7 @@
 ---
 title: "Ekstraksi Pati Singkong Industri Tapioka Rendemen Tinggi"
 metaTitle: "Ekstraksi Pati Singkong Tapioka: Rendemen & Mutu Tinggi"
-description: "Tahapan pengolahan dan ekstraksi pati singkong (ubi kayu) menjadi tepung tapioka: pemarutan, pemisahan serat onggok, pemutihan alami, dan rendemen di atas 25%."
+description: "Tahapan pengolahan pati singkong (ubi kayu) menjadi tepung tapioka: pemarutan, pemisahan serat onggok, pemutihan alami, dan rendemen di atas 25%."
 slug: "ekstraksi-pati-singkong-industri-tapioka"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

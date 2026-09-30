@@ -1,7 +1,7 @@
 ---
 title: "Seleksi Berbantuan Marka Molekuler MAS dalam Pemuliaan Benih Padi"
 metaTitle: "Seleksi Marka Molekuler MAS Pemuliaan Benih Padi"
-description: "Penerapan marker-assisted selection dengan marka SSR dan SNP untuk mempercepat perakitan galur padi unggul tahan hama wereng dan blas tanpa uji fenotipe lama."
+description: "Penerapan marker-assisted selection dengan marka SSR dan SNP untuk mempercepat perakitan galur padi unggul tahan wereng dan blas tanpa uji fenotipe lama."
 slug: "seleksi-bantuan-marka-molekuler-mas-pemuliaan-benih"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

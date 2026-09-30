@@ -1,7 +1,7 @@
 ---
 title: "Pengolahan Tanah Bedengan Gembur Wortel Oranye Tanpa Cabang"
 metaTitle: "Pengolahan Tanah Wortel: Kunci Umbi Mulus Lurus"
-description: "Teknik olah tanah gembur budidaya wortel: pembersihan batu kerikil penyebab umbi bercabang, pemupukan kalium untuk warna oranye cerah, dan penjarangan bibit."
+description: "Teknik olah tanah gembur budidaya wortel: pembersihan kerikil penyebab umbi bercabang, pemupukan kalium untuk warna oranye cerah, dan penjarangan bibit."
 slug: "pengolahan-tanah-gembur-wortel-umbi-lurus"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

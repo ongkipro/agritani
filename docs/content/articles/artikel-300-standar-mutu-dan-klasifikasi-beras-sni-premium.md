@@ -1,7 +1,7 @@
 ---
 title: "Standar Mutu dan Klasifikasi Beras Giling SNI Premium dan Medium"
 metaTitle: "Standar Mutu Klasifikasi Beras SNI Premium Medium"
-description: "Parameter uji laboratorium mutu beras giling menurut SNI mencakup derajat sosoh butir patah kadar air dan butir kapur untuk penetapan harga eceran tertinggi."
+description: "Parameter uji laboratorium mutu beras giling menurut SNI: derajat sosoh, butir patah, kadar air, dan butir kapur untuk penetapan harga eceran tertinggi."
 slug: "standar-mutu-dan-klasifikasi-beras-sni-premium"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

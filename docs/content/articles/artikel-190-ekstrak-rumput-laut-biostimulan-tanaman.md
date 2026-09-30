@@ -1,7 +1,7 @@
 ---
 title: "Ekstrak Rumput Laut Ascophyllum nodosum sebagai Biostimulan"
 metaTitle: "Biostimulan Rumput Laut: Pompa Imun & Tumbuh Tanaman"
-description: "Kandungan hormon alami dan polisakarida ekstrak rumput laut Ascophyllum nodosum untuk mempercepat pembentukan akar serabut dan melindungi tanaman dari cekaman."
+description: "Kandungan hormon alami dan polisakarida ekstrak rumput laut Ascophyllum nodosum untuk mempercepat akar serabut dan melindungi tanaman dari cekaman."
 slug: "ekstrak-rumput-laut-biostimulan-tanaman"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

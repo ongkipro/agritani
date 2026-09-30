@@ -1,7 +1,7 @@
 ---
 title: "Pengendalian Lalat Buah Bactrocera dorsalis pada Mangga"
 metaTitle: "Kendalikan Lalat Buah Mangga Bactrocera dorsalis"
-description: "Strategi terpadu atasi lalat buah pada mangga: pemikat metil eugenol untuk lalat jantan, pembrongsongan buah dengan kertas semen, dan umpan protein hidrolisat."
+description: "Strategi terpadu atasi lalat buah pada mangga: pemikat metil eugenol untuk lalat jantan, pembrongsongan buah dengan kertas semen, dan umpan protein."
 slug: "pengendalian-lalat-buah-bactrocera-mangga"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

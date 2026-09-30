@@ -769,8 +769,8 @@ lebar di mobile.
 | # | Blok | Elemen HTML | Isi & aturan | Sumber data |
 | :---: | :--- | :--- | :--- | :--- |
 | 1 | Breadcrumb | `<nav aria-label="Breadcrumb"><ol>` | Beranda › Jurnal Tani › {Topik}. Topik tertaut ke hub. Menggantikan kicker. | `cluster` |
-| 2 | Judul | `<h1>` (satu-satunya) | 20–110 karakter (naskah saat ini 55–103; `<title>` memakai `metaTitle`), Newsreader 600, `text-wrap: balance`, maks `24ch` desktop | `title` |
-| 3 | Dek | `<p class="dek">` | Satu kalimat 120–160 karakter = teks yang sama dengan meta description, jadi deskripsi selalu terlihat di halaman | `description` |
+| 2 | Judul | `<h1>` (satu-satunya) | 20–110 karakter (naskah saat ini 55–103; `<title>` memakai `metaTitle` + " - Agritani"), Newsreader 600, `text-wrap: balance`, maks `24ch` desktop | `title` |
+| 3 | Dek | `<p class="dek">` | Satu kalimat 120–155 karakter = teks yang sama dengan meta description, jadi deskripsi selalu terlihat di halaman | `description` |
 | 4 | Byline | `<div>` + `<address>` untuk penulis | Foto 40×40 (`AuthorAvatar`) · "Oleh **Arif Prabowo**" (tautan `/penulis/arif-prabowo/`) · "Konsultan Pertanian Senior · Pengelola Jurnal Tani" | `author` |
 | 5 | Baris metadata | `<p>` + `<time datetime>` | "Terbit 12 Okt 2026 · Diperbarui 3 Jan 2027 · 7 menit baca · {Komoditas}" — "Diperbarui" hanya bila `updatedDate` ada; format `id-ID`, tanpa jam | `pubDate`, `updatedDate`, dihitung |
 | 6 | Aksi artikel | tombol teks | "Bagikan" (`navigator.share` → lembar bagi perangkat, yang sudah memuat WhatsApp; cadangan: salin tautan) · "Cetak Panduan" (`window.print()`). Keduanya disembunyikan tanpa JS; tanpa ikon/warna WhatsApp. | — |
@@ -874,35 +874,35 @@ Satu sumber untuk semua metadata, canonical, Open Graph, breadcrumb, JSON-LD, si
 | Tag | Aturan |
 | :--- | :--- |
 | `<html lang>` | `id` |
-| `<title>` | ≤ 60 karakter. Beranda tanpa sufiks; halaman lain `{judul} - Agritani` (pemisah tanda hubung, **bukan** `|`, preferensi pemilik). Artikel memakai `metaTitle` apa adanya (≤ 60, tanpa sufiks). Unik per halaman. |
-| `meta description` | 120–160 karakter, unik, sama dengan teks yang terlihat (dek/pengantar). Tanpa CTA "beli", tanpa daftar kata kunci. |
+| `<title>` | **55–70 karakter termasuk spasi dan sufiks** (aturan pemilik 2026-09-30, DEC-022). Beranda tanpa sufiks; semua halaman lain `{judul} - Agritani`, termasuk artikel (`metaTitle` + sufiks). Pemisah tanda hubung `-` (atau `:` di dalam judul), **tidak pernah** `|` atau `—`. Judul terlalu pendek dilengkapi kata kunci terkait, bukan kata klaim berlebihan. Judul hasil templat (tag, hub) memakai `fitText()` di `src/lib/seo.ts`. Unik per halaman; dijaga `check-seo` (error). |
+| `meta description` | **120–155 karakter termasuk spasi** (DEC-022), unik, sama dengan teks yang terlihat (dek/pengantar), berakhir dengan titik; kata kunci terkait boleh ditambahkan secara alami. Tanpa CTA "beli", tanpa daftar kata kunci. Dijaga `check-seo` (error). |
 | `link rel="canonical"` | URL absolut `https://agritani.com{path}` dengan trailing slash; self-referencing; **tanpa query string** (status alat `?k=`, `?t=` tidak punya canonical sendiri). |
 | `meta robots` | Default `index, follow, max-image-preview:large, max-snippet:-1`; `noindex, follow` untuk `/cari/`, 404, mode pratinjau draft. |
-| Open Graph | `og:site_name=Agritani`, `og:locale=id_ID`, `og:type` (`website` / `article` / `profile`), `og:title` (= judul tanpa sufiks), `og:description`, `og:url` (= canonical), `og:image` + `og:image:width/height/alt` (1200×630, absolut). Artikel: `article:published_time`, `article:modified_time`, `article:author` (URL profil), `article:section` (topik). |
+| Open Graph | `og:site_name=Agritani`, `og:locale=id_ID`, `og:type` (`website` / `article` / `profile`), `og:title` (= `<title>` lengkap dengan sufiks), `og:description`, `og:url` (= canonical), `og:image` + `og:image:width/height/alt` (1200×630, absolut). Artikel: `article:published_time`, `article:modified_time`, `article:author` (URL profil), `article:section` (topik). |
 | Twitter/X | `twitter:card=summary_large_image`, `twitter:title`, `twitter:description`, `twitter:image`, `twitter:image:alt` |
 | Lainnya | `meta name="author"` (artikel), `meta name="theme-color" content="#1A6335"`, `link rel="icon" href="/favicon.svg" type="image/svg+xml"` + `apple-touch-icon` PNG 180×180, `link rel="sitemap"`. Tanpa `meta keywords`. Satu bahasa → tanpa `hreflang`. |
 
 #### 4.4.3. Template per tipe halaman
 
-| Tipe | `<title>` (contoh, ≤ 60) | Description dari | `og:type` / gambar | Robots | JSON-LD (`@graph`) |
+| Tipe | `<title>` (contoh; final 55–70) | Description dari | `og:type` / gambar | Robots | JSON-LD (`@graph`) |
 | :--- | :--- | :--- | :--- | :---: | :--- |
-| Beranda | `Agritani: Diagnosa Gejala & Jurnal Tani` | teks pendamping hero | website / default situs | index | `Organization`, `WebSite`, `WebPage` |
-| Indeks Alat Tani | `Alat Tani Gratis untuk Petani - Agritani` | pengantar | website / default alat | index | `WebPage`, `BreadcrumbList` |
-| Diagnosa Gejala | `Diagnosa Gejala Tanaman - Agritani` | pengantar | website / gambar alat | index | `WebPage`, `BreadcrumbList` |
-| Kalender Tanam | `Kalender Tanam dari Tanggal Tanam - Agritani` | pengantar | website / gambar alat | index | `WebPage`, `BreadcrumbList` |
-| Cuaca Tani | `Cuaca Tani: Prakiraan BMKG - Agritani` | pengantar | website / gambar alat | index | `WebPage`, `BreadcrumbList` |
-| Kalkulator Dosis | `Kalkulator Dosis Semprot - Agritani` | pengantar | website / gambar alat | index | `WebPage`, `BreadcrumbList` |
-| Konsultasi | `Konsultasi Pertanian via WhatsApp - Agritani` | pengantar | website / default | index | `WebPage`, `BreadcrumbList` |
-| Indeks Jurnal | `Jurnal Tani: Panduan Agronomi - Agritani` | pengantar | website / default jurnal | index | `CollectionPage`, `BreadcrumbList` |
-| Hub topik | `{Nama topik} - Agritani` | `pages/topik-{topik}.md` → fallback: "Kumpulan panduan {topik} dari Jurnal Tani…" (dibentuk dari data, 120–160) | website / gambar topik | index (hanya bila ≥ 1 artikel terbit) | `CollectionPage` (+`ItemList` artikel), `BreadcrumbList` |
-| Hub komoditas | `{Komoditas}: Panduan Budidaya - Agritani` | `pages/komoditas-{komoditas}.md` → fallback dari data (120–160) | website / `komoditas.png` | index (bila ≥ 3 artikel terbit) | `CollectionPage` (+`ItemList`), `BreadcrumbList` |
-| Indeks jurnal hal. 2+ | `Jurnal Tani — Halaman {n} - Agritani` | pengantar + nomor halaman | website / default jurnal | index | `CollectionPage`, `BreadcrumbList` |
-| Artikel | `{metaTitle}` | `description` | article / `heroImage` → gambar topik | index | `Article`, `BreadcrumbList` |
-| Profil penulis | `Arif Prabowo, Konsultan Pertanian Senior - Agritani` | `pages/penulis-arif-prabowo.md` | profile / foto beliau → default | index | `ProfilePage` (`mainEntity` → `Person`), `BreadcrumbList` |
-| Indeks produk | `Produk Agritani untuk Sawit, Padi & Sayur` | pengantar | website / default produk | index | `CollectionPage`, `BreadcrumbList` |
-| Detail produk | `{Nama}: {peran singkat} - Agritani` | `summary` (dipangkas ke 160 di batas kata) | website / `packshot` → default produk | index | `WebPage`, `BreadcrumbList` (tanpa `Product`: tidak ada harga/penawaran) |
-| Tentang Kami | `Tentang Kami - Agritani` | `pages/tentang-kami.md` | website / default | index | `AboutPage`, `Organization`, `BreadcrumbList` |
-| Kemitraan | `Kemitraan Distributor Resmi - Agritani` | pengantar | website / default | index | `WebPage`, `BreadcrumbList` |
+| Beranda | `Agritani: Portal Pertanian, Jurnal Tani & Produk Unggulan Presisi` | teks pendamping hero | website / default situs | index | `Organization`, `WebSite`, `WebPage` |
+| Indeks Alat Tani | `Alat Tani: Kalkulator Dosis, Cuaca BMKG & Kalender Tanam - Agritani` | pengantar | website / default alat | index | `WebPage`, `BreadcrumbList` |
+| Diagnosa Gejala | `Diagnosa Gejala Hama & Penyakit Tanaman di Lahan Pertanian - Agritani` | pengantar | website / gambar alat | index | `WebPage`, `BreadcrumbList` |
+| Kalender Tanam | `Kalender Tanam: Rencana Fase HST, Pemupukan & Panen - Agritani` | pengantar | website / gambar alat | index | `WebPage`, `BreadcrumbList` |
+| Cuaca Tani | `Cuaca Tani BMKG: Prakiraan Hujan & Waktu Semprot per Desa - Agritani` | pengantar | website / gambar alat | index | `WebPage`, `BreadcrumbList` |
+| Kalkulator Dosis | `Kalkulator Dosis Semprot: Takaran per Tangki & per Hektar - Agritani` | pengantar | website / gambar alat | index | `WebPage`, `BreadcrumbList` |
+| Konsultasi | `Konsultasi Agronomi via WhatsApp: Hama, Penyakit & Pupuk - Agritani` | pengantar | website / default | index | `WebPage`, `BreadcrumbList` |
+| Indeks Jurnal | `Jurnal Tani: Panduan Agronomi, Hama & Budidaya Tanaman - Agritani` | pengantar | website / default jurnal | index | `CollectionPage`, `BreadcrumbList` |
+| Hub topik | `{judul SEO topik, peta di halaman topik} - Agritani` | `pages/topik-{topik}.md` → fallback: "Kumpulan panduan {topik} dari Jurnal Tani…" (dibentuk dari data, 120–160) | website / gambar topik | index (hanya bila ≥ 1 artikel terbit) | `CollectionPage` (+`ItemList` artikel), `BreadcrumbList` |
+| Hub komoditas | `{Komoditas}: Panduan Budidaya, Hama & Penyakit Tanaman - Agritani` | `pages/komoditas-{komoditas}.md` → fallback dari data (120–160) | website / `komoditas.png` | index (bila ≥ 3 artikel terbit) | `CollectionPage` (+`ItemList`), `BreadcrumbList` |
+| Indeks jurnal hal. 2+ | `Arsip Jurnal Tani Halaman {n}: Panduan Agronomi Terapan - Agritani` | pengantar + nomor halaman | website / default jurnal | index | `CollectionPage`, `BreadcrumbList` |
+| Artikel | `{metaTitle} - Agritani` | `description` | article / `heroImage` → gambar topik | index | `Article`, `BreadcrumbList` |
+| Profil penulis | `Arif Prabowo, Konsultan Pertanian Senior Jurnal Tani - Agritani` | `pages/penulis-arif-prabowo.md` | profile / foto beliau → default | index | `ProfilePage` (`mainEntity` → `Person`), `BreadcrumbList` |
+| Indeks produk | `Katalog Produk Pertanian: Aussie, BENSU, Kojien & Saratoga - Agritani` | pengantar | website / default produk | index | `CollectionPage`, `BreadcrumbList` |
+| Detail produk | `{Nama}: {peran & sasaran} - Agritani` | `summary` (dipangkas ke 160 di batas kata) | website / `packshot` → default produk | index | `WebPage`, `BreadcrumbList` (tanpa `Product`: tidak ada harga/penawaran) |
+| Tentang Kami | `Tentang Agritani: Distributor Resmi Produk Pertanian Online - Agritani` | `pages/tentang-kami.md` | website / default | index | `AboutPage`, `Organization`, `BreadcrumbList` |
+| Kemitraan | `Kemitraan Agen & Distributor Produk Pertanian Resmi - Agritani` | pengantar | website / default | index | `WebPage`, `BreadcrumbList` |
 | Kebijakan Privasi | `Kebijakan Privasi - Agritani` | `pages/kebijakan-privasi.md` | website / default | index | `WebPage`, `BreadcrumbList` |
 | Cari, 404 | `Cari di Jurnal Tani - Agritani` / `Halaman Tidak Ditemukan - Agritani` | tetap | website / default | **noindex** | — |
 

@@ -1,7 +1,7 @@
 ---
 title: "Pengendalian Penyakit Virus Kuning Gemini pada Tanaman Cabai"
 metaTitle: "Virus Kuning Gemini Cabai: Gejala & Basmi Kutu Kebul"
-description: "Cara mengendalikan penyakit virus kuning gemini pada cabai: gejala daun kuning emas keriting, pembasmian vektor kutu kebul, dan pagar barier tanaman jagung."
+description: "Cara mengendalikan virus kuning gemini pada cabai: gejala daun kuning emas keriting, pengendalian vektor kutu kebul, dan pagar barier tanaman jagung."
 slug: "pengendalian-virus-kuning-gemini-cabai"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

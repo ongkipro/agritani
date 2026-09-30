@@ -1,7 +1,7 @@
 ---
 title: "Perlakuan Benih Seed Dressing Fungisida dan ZPT Sayuran"
 metaTitle: "Perlakuan Benih Seed Dressing Sayuran Daun Sehat"
-description: "Pentingnya perlakuan benih (seed dressing) pada sayuran daun: aplikasi fungisida pelindung dari jamur rebah semai, stimulasi ZPT, dan teknik perendaman benih."
+description: "Pentingnya perlakuan benih (seed dressing) sayuran daun: fungisida pelindung dari jamur rebah semai, stimulasi ZPT, dan teknik perendaman benih."
 slug: "perlakuan-benih-seed-dressing-sayuran-daun"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

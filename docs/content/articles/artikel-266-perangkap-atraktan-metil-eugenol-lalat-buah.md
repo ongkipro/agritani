@@ -1,7 +1,7 @@
 ---
 title: "Perangkap Atraktan Metil Eugenol Pengendali Lalat Buah"
 metaTitle: "Perangkap Metil Eugenol: Basmi Lalat Buah Kebun"
-description: "Cara menggunakan senyawa pemikat atraktan metil eugenol untuk membasmi lalat buah jantan: konstruksi botol perangkap, jarak pasang, dan pemutusan perkawinan."
+description: "Cara memakai atraktan metil eugenol untuk mengendalikan lalat buah jantan: konstruksi botol perangkap, jarak pasang, dan pemutusan siklus perkawinan."
 slug: "perangkap-atraktan-metil-eugenol-lalat-buah"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

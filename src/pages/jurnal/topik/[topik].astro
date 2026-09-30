@@ -5,7 +5,7 @@ import Breadcrumb from '../../../components/Breadcrumb.astro';
 import ArticleList from '../../../components/ArticleList.astro';
 import TopicSidebar from '../../../components/TopicSidebar.astro';
 import { TOPICS } from '../../../lib/topics';
-import type { SeoInput } from '../../../lib/seo';
+import { fitText, TITLE_RANGE, DESC_RANGE, type SeoInput } from '../../../lib/seo';
 import { Picture } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
@@ -49,11 +49,26 @@ const breadcrumbItems = [
   { name: topic.name, url: `/jurnal/topik/${topic.slug}/` },
 ];
 
+// SEO titles 55–70 chars with the " - Agritani" suffix (owner rule 2026-09-30); the H1 keeps topic.name.
+const topicSeoTitles: Record<string, string> = {
+  'proteksi-tanaman': 'Proteksi Tanaman: Pengendalian Hama & Penyakit Tanaman',
+  'tanah-nutrisi': 'Tanah & Nutrisi Tanaman: Pemupukan dan Kesuburan Lahan',
+  'budidaya': 'Teknik Budidaya & Pembibitan Tanaman Pangan dan Buah',
+  'air-irigasi': 'Manajemen Air & Sistem Irigasi Lahan Pertanian',
+  'pascapanen-agribisnis': 'Pascapanen & Agribisnis: Mutu Hasil Panen dan Usaha Tani',
+  'sains-tanaman': 'Sains Tanaman & Fisiologi: Dasar Ilmiah Budidaya',
+};
+
 const seo: SeoInput = {
-  title: topic.name,
-  description:
-    pageEntry?.data.description ||
-    `Kumpulan panduan teknis dan artikel ilmiah terapan tentang ${topic.name} oleh Arif Prabowo di Jurnal Tani Agritani.`,
+  title: topicSeoTitles[topic.slug] ?? fitText([topic.name, `${topic.name}: Artikel Jurnal Tani`, `${topic.name}: Kumpulan Artikel dan Panduan Jurnal Tani`], TITLE_RANGE, 11),
+  description: fitText(
+    [
+      pageEntry?.data.description ?? '',
+      `Kumpulan panduan teknis dan artikel ilmiah terapan tentang ${topic.name} oleh Arif Prabowo di Jurnal Tani Agritani.`,
+      `Kumpulan panduan teknis dan artikel ilmiah terapan tentang ${topic.name} untuk petani Indonesia oleh Arif Prabowo di Jurnal Tani Agritani.`,
+    ].filter(Boolean),
+    DESC_RANGE,
+  ),
   canonicalPath: `/jurnal/topik/${topic.slug}/`,
   breadcrumbs: breadcrumbItems,
   pageType: 'collection',

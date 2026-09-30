@@ -1,7 +1,7 @@
 ---
 title: "Pemasangan Mulsa Plastik Hitam Perak MPHP pada Bedengan Tomat"
 metaTitle: "Mulsa Plastik Hitam Perak Tomat: Pemasangan & Manfaat"
-description: "Panduan pemasangan mulsa plastik hitam perak (MPHP) pada bedengan tomat: teknik penarikan siang hari, efek pantulan perak pengusir thrips, dan cara melubangi."
+description: "Panduan pemasangan mulsa plastik hitam perak (MPHP) pada bedengan tomat: penarikan siang hari, efek pantulan perak pengusir thrips, dan cara melubangi."
 slug: "pemasangan-mulsa-plastik-hitam-perak-tomat"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

@@ -1,7 +1,7 @@
 ---
 title: "Standar Asam Lemak Bebas ALB Rendah pada Panen Sawit"
 metaTitle: "Kadar ALB Sawit Rendah: Standar Mutu Panen TBS CPO"
-description: "Penyebab lonjakan asam lemak bebas (ALB / FFA) pada kelapa sawit: kriteria brondolan matang, pencegahan luka mekanis TBS, dan disiplin angkut 24 jam ke PKS."
+description: "Penyebab lonjakan asam lemak bebas (ALB / FFA) kelapa sawit: kriteria brondolan matang, pencegahan luka mekanis TBS, dan disiplin angkut 24 jam ke PKS."
 slug: "standar-asam-lemak-bebas-alb-panen-sawit"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

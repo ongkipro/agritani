@@ -1,7 +1,7 @@
 ---
 title: "Fungsi Pembuluh Kayu Xilem dan Floem Translokasi Hara Padi"
 metaTitle: "Pembuluh Xilem & Floem Padi: Jalur Translokasi Hara"
-description: "Fungsi pembuluh vaskular xilem dan floem pada tanaman padi sawah: pengangkutan air mineral, aliran gula pengisi malai gabah, dan dinamika tarikan transpirasi."
+description: "Fungsi pembuluh xilem dan floem pada tanaman padi sawah: pengangkutan air mineral, aliran gula pengisi malai gabah, dan dinamika tarikan transpirasi."
 slug: "fungsi-pembuluh-xilem-floem-padi"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

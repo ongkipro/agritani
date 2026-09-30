@@ -53,7 +53,7 @@ Do not start implementation while `STATUS.md` says development authorization is 
   - Positioning (DEC-021): Agritani Official is the official and main distributor for online sales (marketplaces and other platforms).
   - Prices: from `src/data/products.json` only, with the check date; never name or link the source site.
   - Commodity hub: one article list with "Muat Panduan Lainnya", not split by topic. Article tags: "Tag:" + plain `#tag` links, no chips.
-  - Page titles use " - " as the separator, never "|" (T-37).
+  - SEO lengths (DEC-022): final `<title>` 55–70 characters including spaces and the " - Agritani" suffix (home has no suffix); meta description 120–155 characters. Separator " - " (or ":" inside a title), never "|" or "—". Pad short titles/descriptions with related keywords, never with hype words. Generated titles use `fitText()` in `src/lib/seo.ts`; `check-seo` fails the build outside these ranges.
 - **Build guard**: `npm run build` ends with `scripts/check-owner-rules.mjs`, which fails on the forbidden names, WhatsApp placement, and `shadow-*`/`uppercase` inside `<main>`. Fix the page, do not weaken the guard; changing a rule needs a `DECISIONS.md` entry first.
 - **No new dependencies or runtime services** without a `DECISIONS.md` entry. Prefer platform features (native form validation, `<dialog>`, `<details>`, `Intl`, `navigator.share`).
 - **CSP-safe code**: no inline executed scripts, `on*=` attributes, or `style=` attributes (ARCHITECTURE §5).

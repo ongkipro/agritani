@@ -1,7 +1,7 @@
 ---
 title: "Manajemen Fermentasi Biji Kakao Kering Standar Mutu Ekspor"
 metaTitle: "Fermentasi Biji Kakao: Kunci Mutu Cokelat Ekspor"
-description: "Panduan fermentasi biji kakao dalam kotak kayu bertingkat: dinamika suhu mikroba, pembalikan hari ke-3, uji belah cut test, dan standar kadar air kering 7%."
+description: "Panduan fermentasi biji kakao dalam kotak kayu bertingkat: dinamika suhu mikroba, pembalikan hari ke-3, uji belah cut test, dan kadar air kering 7%."
 slug: "manajemen-fermentasi-biji-kakao-mutu-ekspor"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { buildSeo, formatCanonicalUrl, SITE_URL } from './seo.ts';
+import { buildSeo, formatCanonicalUrl, SITE_URL, fitText, clipWords, TITLE_RANGE, DESC_RANGE } from './seo.ts';
 
 describe('SEO & Metadata Builder (DESIGN §4.4)', () => {
   it('adds site suffix to standard page title', () => {
@@ -12,14 +12,14 @@ describe('SEO & Metadata Builder (DESIGN §4.4)', () => {
     assert.equal(seo.og.title, 'Diagnosa Gejala Tanaman - Agritani');
   });
 
-  it('uses metaTitle verbatim without suffix when provided (articles)', () => {
+  it('uses metaTitle over title and appends the site suffix (articles)', () => {
     const seo = buildSeo({
       title: 'Mengapa Jamur Ganoderma Kebal Terhadap Fungisida Kimia?',
       metaTitle: 'Cara Mengatasi Ganoderma Sawit dan Imunitas Alami',
       description: 'Panduan memulihkan kebun kelapa sawit dari busuk pangkal batang.',
     });
-    assert.equal(seo.title, 'Cara Mengatasi Ganoderma Sawit dan Imunitas Alami');
-    assert.equal(seo.og.title, 'Cara Mengatasi Ganoderma Sawit dan Imunitas Alami');
+    assert.equal(seo.title, 'Cara Mengatasi Ganoderma Sawit dan Imunitas Alami - Agritani');
+    assert.equal(seo.og.title, 'Cara Mengatasi Ganoderma Sawit dan Imunitas Alami - Agritani');
   });
 
   it('formats canonical URL with trailing slash and strips query parameters', () => {
@@ -120,5 +120,36 @@ describe('SEO & Metadata Builder (DESIGN §4.4)', () => {
     const articleNode = graph.find((n: any) => n['@type'] === 'Article');
     assert.ok(articleNode);
     assert.deepEqual(articleNode.image, ['https://agritani.com/images/hero-sawit.webp']);
+  });
+});
+
+describe('SEO length helpers (owner rule 2026-09-30)', () => {
+  it('buildSeo appends " - Agritani" to every non-home title', () => {
+    assert.equal(buildSeo({ title: 'Kalkulator Dosis Semprot: Takaran per Tangki', description: 'x', canonicalPath: '/alat/' }).title, 'Kalkulator Dosis Semprot: Takaran per Tangki - Agritani');
+    assert.equal(buildSeo({ title: 'Agritani: Portal Pertanian', description: 'x', canonicalPath: '/' }).title, 'Agritani: Portal Pertanian');
+  });
+
+  it('fitText picks the first candidate within range, counting the suffix', () => {
+    const t = fitText(['Padi', 'Padi: Kumpulan Artikel dan Panduan Jurnal Tani', 'x'.repeat(80)], TITLE_RANGE, 11);
+    assert.equal(t, 'Padi: Kumpulan Artikel dan Panduan Jurnal Tani');
+    assert.ok(t.length + 11 >= 55 && t.length + 11 <= 70);
+  });
+
+  it('fitText falls back to a clause boundary ending with a full stop', () => {
+    const long = 'Artikel Jurnal Tani tentang pengaturan katup bypass venturi pipa irigasi: panduan budidaya dan penanganan di lahan oleh Arif Prabowo, konsultan pertanian senior Agritani.';
+    const d = fitText([long], DESC_RANGE);
+    assert.ok(d.length >= 120 && d.length <= 155, String(d.length));
+    assert.ok(d.endsWith('.'));
+  });
+
+  it('fitText without a clause boundary clips at a word, and handles empty input', () => {
+    const noComma = 'Panduan budidaya tanaman pangan dan hortikultura untuk petani Indonesia oleh Arif Prabowo konsultan pertanian senior Agritani yang mengelola Jurnal Tani sejak lama';
+    const d = fitText([noComma], DESC_RANGE);
+    assert.ok(d.length <= 155 && noComma.startsWith(d) && !d.endsWith('.'));
+    assert.equal(fitText([], DESC_RANGE), '');
+  });
+
+  it('clipWords never cuts inside a word', () => {
+    assert.equal(clipWords('Panduan budidaya cabai merah', 20), 'Panduan budidaya');
   });
 });

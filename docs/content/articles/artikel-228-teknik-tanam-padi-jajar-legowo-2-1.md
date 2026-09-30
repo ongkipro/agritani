@@ -1,7 +1,7 @@
 ---
 title: "Teknik Tanam Padi Sistem Jajar Legowo 2:1 Produktivitas Tinggi"
 metaTitle: "Jajar Legowo 2:1 Padi Sawah: Kunci Panen Berlimpah"
-description: "Panduan penerapan sistem tanam jajar legowo 2:1 pada padi sawah: memanfaatkan efek tanaman pinggir, meningkatkan populasi rumpun, dan mempermudah pemupukan."
+description: "Panduan sistem tanam jajar legowo 2:1 pada padi sawah: memanfaatkan efek tanaman pinggir, meningkatkan populasi rumpun, dan mempermudah pemupukan."
 slug: "teknik-tanam-padi-jajar-legowo-2-1"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

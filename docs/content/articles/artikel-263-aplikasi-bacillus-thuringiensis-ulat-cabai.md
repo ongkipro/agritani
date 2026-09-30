@@ -1,7 +1,7 @@
 ---
 title: "Aplikasi Bacillus thuringiensis Bt Ulat Grayak Cabai"
 metaTitle: "Bacillus thuringiensis Bt: Basmi Ulat Grayak Cabai"
-description: "Cara kerja bioinsektisida bakteri Bacillus thuringiensis (Bt) melumpuhkan saluran cerna ulat grayak cabai: kristal delta-endotoksin dan takaran semprot sore."
+description: "Cara kerja bioinsektisida Bacillus thuringiensis (Bt) melumpuhkan saluran cerna ulat grayak cabai: kristal delta-endotoksin dan takaran semprot sore."
 slug: "aplikasi-bacillus-thuringiensis-ulat-cabai"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"

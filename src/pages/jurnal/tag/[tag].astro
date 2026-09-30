@@ -10,7 +10,7 @@ import Breadcrumb from '../../../components/Breadcrumb.astro';
 import ArticleRow from '../../../components/ArticleRow.astro';
 import TopicSidebar from '../../../components/TopicSidebar.astro';
 import { slugifyTag } from '../../../lib/tags';
-import type { SeoInput } from '../../../lib/seo';
+import { fitText, TITLE_RANGE, DESC_RANGE, type SeoInput } from '../../../lib/seo';
 
 export async function getStaticPaths() {
   const includeDrafts =
@@ -62,16 +62,32 @@ const breadcrumbItems = [
   { name: displayName, url: `/jurnal/tag/${tagSlug}/` },
 ];
 
-// Title: trim at a word boundary so it never ends mid-word (the SEO helper appends " - Agritani").
-const clip = (text: string, max: number) =>
-  text.length <= max ? text : text.slice(0, text.lastIndexOf(' ', max)).replace(/[\s,.;:–-]+$/, '');
-const safeTitle = clip(displayName, 50);
+// Title and description lengths per owner rule (2026-09-30): <title> 55–70 incl. " - Agritani", description 120–155.
+const safeTitle = fitText(
+  [
+    displayName,
+    `${displayName}: Artikel Jurnal Tani`,
+    `${displayName}: Artikel dan Panduan Jurnal Tani`,
+    `${displayName}: Kumpulan Artikel dan Panduan Jurnal Tani`,
+    `${displayName}: Kumpulan Artikel dan Panduan Budidaya Jurnal Tani`,
+    `${displayName}: Kumpulan Artikel, Panduan Budidaya, dan Tips Lahan dari Jurnal Tani`,
+  ],
+  TITLE_RANGE,
+  11,
+);
 
 const count = articles.length;
-// 120–160 characters (check-seo window): long form first, shorter form for long tags, then clip at a word.
-const descLong = `Kumpulan ${count} artikel Jurnal Tani tentang ${tagName}: panduan budidaya dan penanganan di lahan oleh Arif Prabowo, konsultan pertanian senior Agritani.`;
-const descShort = `${count} artikel Jurnal Tani tentang ${tagName}: panduan budidaya dan penanganan di lahan oleh Arif Prabowo, konsultan pertanian Agritani.`;
-const safeDesc = clip(descLong.length <= 160 ? descLong : descShort, 160);
+const lead = count === 1 ? `Artikel Jurnal Tani tentang ${tagName}` : `Kumpulan ${count} artikel Jurnal Tani tentang ${tagName}`;
+const safeDesc = fitText(
+  [
+    `${lead}: panduan budidaya dan penanganan di lahan oleh Arif Prabowo, konsultan pertanian senior Agritani.`,
+    `${lead}: panduan budidaya dan penanganan di lahan oleh Arif Prabowo, konsultan pertanian Agritani.`,
+    `${lead}: panduan budidaya dan penanganan di lahan oleh Arif Prabowo dari Jurnal Tani Agritani.`,
+    `${lead}: panduan budidaya dan penanganan di lahan oleh Arif Prabowo.`,
+    `${lead}: panduan praktis budidaya, pencegahan, dan penanganan masalah tanaman di lahan petani Indonesia.`,
+  ],
+  DESC_RANGE,
+);
 
 const seo: SeoInput = {
   title: safeTitle,

@@ -1,7 +1,7 @@
 ---
 title: "Induksi Pembungaan Serempak Nanas Menggunakan Etefon"
 metaTitle: "Induksi Pembungaan Nanas: Aplikasi Etefon Serentak"
-description: "Teknik merangsang pembungaan serempak tanaman nanas dengan larutan etefon: takaran konsentrasi, cara kocor ke pucuk malam hari, dan penjadwalan panen teratur."
+description: "Teknik merangsang pembungaan serempak nanas dengan larutan etefon: takaran konsentrasi, cara kocor ke pucuk malam hari, dan penjadwalan panen teratur."
 slug: "induksi-pembungaan-nanas-aplikasi-etefon"
 pubDate: "2026-09-30"
 author: "Arif Prabowo"
