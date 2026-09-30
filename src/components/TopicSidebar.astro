@@ -45,14 +45,14 @@ const commodities = (await getCollection('commodities'))
               href={`/jurnal/topik/${t.slug}/`}
               aria-current={active ? 'page' : undefined}
               class:list={[
-                'flex items-center justify-between min-h-[40px] py-2 px-2 -mx-2 rounded-[2px] transition-colors',
+                'flex items-center justify-between min-h-[44px] py-2 px-2 -mx-2 rounded-[2px] transition-colors',
                 active
                   ? 'bg-[var(--color-tint)] font-bold text-[var(--color-brand-strong)] border-l-2 border-[var(--color-brand)]'
                   : 'text-[var(--color-text)] hover:bg-[var(--color-canvas)] hover:text-[var(--color-brand-strong)]',
               ]}
             >
               <span class="flex items-center gap-2.5">
-                <span class="w-2 h-2 rounded-full shrink-0 bg-[var(--topic)]" aria-hidden="true"></span>
+                <span class="w-2 h-2 rounded-[2px] shrink-0 bg-[var(--topic)]" aria-hidden="true"></span>
                 <span>{t.name}</span>
               </span>
               <span class="text-xs text-[var(--color-border-control)]" aria-hidden="true">&rarr;</span>

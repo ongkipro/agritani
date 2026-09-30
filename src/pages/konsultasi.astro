@@ -8,7 +8,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 import { Picture } from 'astro:assets';
 import konsultasiImage from '../assets/images/dummy/konsultasi.webp';
+import { externalLink } from '../lib/links';
 import type { SeoInput } from '../lib/seo';
+
+const waExternalAttrs = externalLink('whatsapp');
 
 const breadcrumbs = [
   { name: 'Beranda', url: '/' },
@@ -190,7 +193,7 @@ const seo: SeoInput = {
                 Aplikasi atau web WhatsApp sedang dibuka di peramban Anda.
               </p>
               <p class="text-xs text-[var(--color-text-muted)]">
-                Jika WhatsApp tidak otomatis terbuka, hubungi nomor resmi kami: <a href="https://wa.me/6287770457256" class="font-semibold text-[var(--color-text)] hover:underline">+62 877-7045-7256</a>
+                Jika WhatsApp tidak otomatis terbuka, hubungi nomor resmi kami: <a href="https://wa.me/6287770457256" target={waExternalAttrs.target} rel={waExternalAttrs.rel} class="font-semibold text-[var(--color-text)] hover:underline">+62 877-7045-7256<span class="sr-only"> {waExternalAttrs.tabNotice}</span></a>
               </p>
             </div>
 
@@ -198,7 +201,7 @@ const seo: SeoInput = {
               <div class="p-4 bg-[var(--color-tint)] border border-[var(--color-border)] rounded-[2px] text-xs text-[var(--color-text)] space-y-1.5">
                 <p class="font-bold text-[var(--color-brand)]">Konsultasi Tanpa JavaScript:</p>
                 <p>Untuk memulai konsultasi teknis, hubungi kontak resmi PT Agritani Internasional:</p>
-                <p class="font-semibold text-[var(--color-text)]"><a href="https://wa.me/6287770457256" class="hover:underline">+62 877-7045-7256</a></p>
+                <p class="font-semibold text-[var(--color-text)]"><a href="https://wa.me/6287770457256" target={waExternalAttrs.target} rel={waExternalAttrs.rel} class="hover:underline">+62 877-7045-7256<span class="sr-only"> {waExternalAttrs.tabNotice}</span></a></p>
               </div>
             </noscript>
 
@@ -351,7 +354,7 @@ const seo: SeoInput = {
       successPanel?.classList.remove('hidden');
 
       // Open WhatsApp in new tab
-      window.open(url, '_blank', 'noopener,noreferrer');
+      window.open(url, '_blank', 'noopener');
     });
   }
 

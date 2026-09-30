@@ -7,7 +7,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import ConsultPrompt from './ConsultPrompt.astro';
+import ExternalLinkIcon from './ExternalLinkIcon.astro';
+import { externalLink } from '../lib/links';
 import type { SprayThresholds } from '../lib/spray-window';
+
+const refLink = externalLink('reference');
 
 // Load spray thresholds at build time (ARCHITECTURE §5b)
 let thresholds: SprayThresholds = null;
@@ -84,16 +88,13 @@ try {
       </button>
       <a
         href="https://www.bmkg.go.id/cuaca/prakiraan-cuaca.bmkg"
-        target="_blank"
-        rel="noopener noreferrer"
+        target={refLink.target}
+        rel={refLink.rel}
         class="inline-flex items-center gap-1.5 px-4 py-2 min-h-[44px] text-xs font-semibold rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)] transition-colors"
       >
         <span>Buka Web Resmi BMKG</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-          <polyline points="15 3 21 3 21 9"/>
-          <line x1="10" x2="21" y1="14" y2="3"/>
-        </svg>
+        <ExternalLinkIcon />
+        <span class="sr-only"> {refLink.tabNotice}</span>
       </a>
     </div>
   </div>
@@ -154,16 +155,13 @@ try {
       </div>
       <a
         href="https://www.bmkg.go.id/"
-        target="_blank"
-        rel="noopener noreferrer"
+        target={refLink.target}
+        rel={refLink.rel}
         class="inline-flex items-center gap-1 font-semibold text-[var(--color-brand-strong)] underline hover:text-[var(--color-brand)]"
       >
         <span>Kunjungi Situs Resmi BMKG</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-          <polyline points="15 3 21 3 21 9"/>
-          <line x1="10" x2="21" y1="14" y2="3"/>
-        </svg>
+        <ExternalLinkIcon />
+        <span class="sr-only"> {refLink.tabNotice}</span>
       </a>
     </div>
 

@@ -15,7 +15,10 @@
  *    - ShieldedTag™ Protection authentication seal card
  */
 
+import { externalLink } from '../lib/links';
+
 const currentYear = new Date().getFullYear();
+const waExternalAttrs = externalLink('whatsapp');
 
 const topicLinks = [
   {
@@ -218,7 +221,7 @@ const productAndStandardLinks = [
             <span>Portal Pertanian Resmi &amp; Produk Unggulan Presisi</span>
           </div>
           <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs">
-            <span>WhatsApp Resmi: <a href="https://wa.me/6287770457256" class="font-bold text-[var(--color-brand-strong)] hover:underline whitespace-nowrap">+62 877-7045-7256</a></span>
+            <span>WhatsApp Resmi: <a href="https://wa.me/6287770457256" target={waExternalAttrs.target} rel={waExternalAttrs.rel} class="font-bold text-[var(--color-brand-strong)] hover:underline whitespace-nowrap">+62 877-7045-7256<span class="sr-only"> {waExternalAttrs.tabNotice}</span></a></span>
             <span class="text-[var(--color-border-control)]" aria-hidden="true">&middot;</span>
             <span>Pengelola Jurnal Tani: <a href="/penulis/arif-prabowo/" class="text-[var(--color-brand-strong)] hover:underline">Arif Prabowo</a></span>
           </div>

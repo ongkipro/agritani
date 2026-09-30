@@ -1,5 +1,6 @@
 ---
 import { waLink, type WaField } from '../lib/whatsapp';
+import { externalLink } from '../lib/links';
 
 interface Props {
   source: string;
@@ -22,6 +23,7 @@ const {
 } = Astro.props;
 
 const href = waLink({ source, fields, note });
+const waAttrs = externalLink('whatsapp');
 
 const isPrimary = variant === 'primary';
 ---
@@ -32,8 +34,8 @@ const isPrimary = variant === 'primary';
   
   <a
     href={href}
-    target="_blank"
-    rel="noopener noreferrer"
+    target={waAttrs.target}
+    rel={waAttrs.rel}
     class={`inline-flex items-center justify-center gap-2.5 px-5 py-3 min-h-[44px] text-sm font-semibold rounded-[2px] transition-colors ${
       isPrimary
         ? 'bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)] text-white'
@@ -44,5 +46,6 @@ const isPrimary = variant === 'primary';
       <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
     </svg>
     <span>{label}</span>
+    <span class="sr-only"> {waAttrs.tabNotice}</span>
   </a>
 </div>

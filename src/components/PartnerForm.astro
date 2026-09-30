@@ -202,7 +202,7 @@
         id="partner-wa-link"
         href="#"
         target="_blank"
-        rel="noopener noreferrer"
+        rel="noopener nofollow"
         data-cta="whatsapp"
         class="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] text-sm font-bold bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)] text-white rounded-[2px] transition-colors"
       >
@@ -210,6 +210,7 @@
           <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
         </svg>
         <span>Buka WhatsApp Sekarang</span>
+        <span class="sr-only"> (membuka tab baru)</span>
       </a>
 
       <div class="text-xs text-[var(--color-text-muted)] tabular-nums">
@@ -324,7 +325,7 @@
       confirmBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
       // Open in new window/tab safely
-      window.open(waUrl, '_blank', 'noopener,noreferrer');
+      window.open(waUrl, '_blank', 'noopener');
     });
   }
 

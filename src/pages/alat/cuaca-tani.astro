@@ -8,7 +8,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import RegionPicker from '../../components/RegionPicker.astro';
 import ForecastTable from '../../components/ForecastTable.astro';
+import ExternalLinkIcon from '../../components/ExternalLinkIcon.astro';
+import { externalLink } from '../../lib/links';
 import type { SeoInput } from '../../lib/seo';
+
+const refLink = externalLink('reference');
 
 const breadcrumbs = [
   { name: 'Beranda', url: '/' },
@@ -55,16 +59,13 @@ const seo: SeoInput = {
           <div class="pt-2">
             <a
               href="https://www.bmkg.go.id/cuaca/prakiraan-cuaca.bmkg"
-              target="_blank"
-              rel="noopener noreferrer"
+              target={refLink.target}
+              rel={refLink.rel}
               class="inline-flex items-center gap-2 px-4 py-2 min-h-[44px] text-xs font-bold rounded-[2px] bg-[var(--color-brand)] !text-white hover:bg-[var(--color-brand-hover)] transition-colors"
             >
               <span>Buka Portal Cuaca Resmi BMKG</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                <polyline points="15 3 21 3 21 9"/>
-                <line x1="10" x2="21" y1="14" y2="3"/>
-              </svg>
+              <ExternalLinkIcon size={14} />
+              <span class="sr-only"> {refLink.tabNotice}</span>
             </a>
           </div>
         </div>

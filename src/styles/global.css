@@ -154,6 +154,121 @@ footer :focus-visible {
 .topic-pascapanen-agribisnis { --topic: var(--color-topic-pascapanen-agribisnis); }
 .topic-sains-tanaman { --topic: var(--color-topic-sains-tanaman); }
 
+/* ==========================================================================
+   Status Tautan & Interaksi (DESIGN §3.6.1, T-33)
+   ========================================================================== */
+
+/* 1. Label Kategori Topik di atas judul (.topic-link & .topic-marker) */
+.topic-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  color: var(--color-soil);
+  text-decoration: none !important;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: color 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.topic-marker {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background-color: var(--topic, var(--color-brand));
+  transform-origin: left center;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+
+@media (hover: hover) {
+  .topic-link:hover {
+    color: var(--color-text);
+    text-decoration: none !important;
+  }
+  .topic-link:hover .topic-marker {
+    transform: scaleX(2); /* memanjang jadi bilah 16px */
+  }
+}
+
+.topic-link:active {
+  color: var(--color-brand-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .topic-marker {
+    transition: none !important;
+  }
+}
+
+/* 2. Prosa: tautan di badan artikel, kebijakan, Daftar Pustaka */
+.prose a,
+.references-list a {
+  color: var(--color-brand-strong);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+  transition: color 0.15s cubic-bezier(0.16, 1, 0.3, 1), text-decoration-thickness 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (hover: hover) {
+  .prose a:hover,
+  .references-list a:hover {
+    color: var(--color-brand-hover);
+    text-decoration-thickness: 2px;
+  }
+}
+
+.prose a:active,
+.references-list a:active {
+  color: var(--color-text);
+}
+
+/* :visited HANYA di badan artikel & Daftar Pustaka */
+.prose a:visited,
+.references-list a:visited {
+  color: var(--color-soil);
+}
+
+/* 3. Judul: di ArticleRow, kolom Jurnal Beranda, produk */
+.title-link,
+article h2 a,
+article h3 a {
+  text-decoration: none;
+  transition: color 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (hover: hover) {
+  .title-link:hover,
+  article h2 a:hover,
+  article h3 a:hover {
+    color: var(--color-brand-strong);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+}
+
+.title-link:active,
+article h2 a:active,
+article h3 a:active {
+  color: var(--color-brand-hover);
+}
+
+/* 4. Tombol: active & disabled states */
+button:active:not(:disabled),
+.button:active:not(:disabled),
+a[role="button"]:active {
+  filter: brightness(0.9);
+}
+
+button:disabled,
+.button:disabled {
+  opacity: 0.55 !important;
+  cursor: not-allowed !important;
+}
+
 /* Modern Farming Editorial Typography & Section Hierarchy */
 .display-editorial {
   font-family: var(--font-serif);

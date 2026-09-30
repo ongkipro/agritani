@@ -13,11 +13,15 @@ export interface ReferenceItem {
   url?: string;
 }
 
+import { externalLink } from '../lib/links';
+import ExternalLinkIcon from './ExternalLinkIcon.astro';
+
 interface Props {
   references?: ReferenceItem[];
 }
 
 const { references = [] } = Astro.props;
+const refLinkAttrs = externalLink('reference');
 ---
 
 {references.length > 0 && (
@@ -35,7 +39,7 @@ const { references = [] } = Astro.props;
         </span>
       </summary>
 
-      <ol class="mt-4 space-y-3.5 list-decimal list-inside text-sm text-[var(--color-text)] leading-relaxed pl-1">
+      <ol class="mt-4 space-y-3.5 list-decimal list-inside text-sm text-[var(--color-text)] leading-relaxed pl-1 references-list">
         {references.map((ref) => {
           const cleanDoi = ref.doi ? ref.doi.replace(/^https?:\/\/doi\.org\//, '') : undefined;
           const doiUrl = cleanDoi ? `https://doi.org/${cleanDoi}` : undefined;
@@ -50,11 +54,13 @@ const { references = [] } = Astro.props;
                   <span class="text-[var(--color-text-muted)]">DOI: </span>
                   <a
                     href={doiUrl}
-                    target="_blank"
-                    rel="noopener"
-                    class="text-[var(--color-brand-strong)] hover:underline break-all"
+                    target={refLinkAttrs.target}
+                    rel={refLinkAttrs.rel}
+                    class="text-[var(--color-brand-strong)] hover:underline break-all inline-flex items-center"
                   >
-                    {doiUrl}
+                    <span>{doiUrl}</span>
+                    <ExternalLinkIcon />
+                    <span class="sr-only"> {refLinkAttrs.tabNotice}</span>
                   </a>
                 </div>
               )}
@@ -62,11 +68,13 @@ const { references = [] } = Astro.props;
                 <div class="mt-0.5 text-xs">
                   <a
                     href={ref.url}
-                    target="_blank"
-                    rel="noopener"
-                    class="text-[var(--color-brand-strong)] hover:underline break-all"
+                    target={refLinkAttrs.target}
+                    rel={refLinkAttrs.rel}
+                    class="text-[var(--color-brand-strong)] hover:underline break-all inline-flex items-center"
                   >
-                    {ref.url}
+                    <span>{ref.url}</span>
+                    <ExternalLinkIcon />
+                    <span class="sr-only"> {refLinkAttrs.tabNotice}</span>
                   </a>
                 </div>
               )}

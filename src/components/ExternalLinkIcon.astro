@@ -1,0 +1,29 @@
+---
+/**
+ * src/components/ExternalLinkIcon.astro
+ * Canonical 12px ArrowUpRight outbound link icon (DESIGN §4.4.12)
+ */
+interface Props {
+  class?: string;
+  size?: number;
+}
+
+const { class: className = 'inline-block ml-1 shrink-0 align-baseline', size = 12 } = Astro.props;
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class={className}
+  aria-hidden="true"
+>
+  <path d="M7 7h10v10"></path>
+  <path d="M7 17 17 7"></path>
+</svg>
