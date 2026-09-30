@@ -602,8 +602,8 @@ menyusun ulang kerangka sendiri.
 | 1b | <1024px | wordmark · ikon Cari · tombol "Menu" (ikon + teks) | Menu = `<dialog>` layar penuh: Alat Tani beserta 4 alat terindentasi, Jurnal Tani, Konsultasi, Produk, Tentang Kami, Ajukan Kemitraan; Esc/tutup mengembalikan fokus |
 | 2 | Breadcrumb | `<nav aria-label="Breadcrumb">` | Semua halaman kecuali Beranda dan 404; + `BreadcrumbList` JSON-LD |
 | 3 | Isi | `<main id="isi">` | Satu `<h1>` per halaman; heading tidak melompat level |
-| 4 | Footer | `<footer>` berlatar `canvas`, teks gelap | Bilah 6 warna topik di atas (§3.3 pengecualian); tanpa garis abu-abu lain |
-| 4a | Kolom footer | Topik Jurnal Tani (6 topik) · Tentang Agritani · Alat Tani · Produk; judul kolom serif sentence case tanpa garis bawah, tautan 44px tanpa garis antar-baris dan tanpa panah | ≥1024px 4 kolom; <1024px 2 kolom (bukan akordeon). Nomor WhatsApp di baris kontak sebagai teks + tautan biasa (teks polos di halaman daftar, `noWhatsApp`), tanpa ikon/tombol berwarna (§2.8) |
+| 4 | Footer | `<footer>` berlatar terang, teks gelap | Bilah 6 warna topik di atas (§3.3 pengecualian). **Footer dikunci pemilik (2026-09-30)**: tampilan persis versi `c94bde2`, tidak ikut aturan kartu/garis halaman |
+| 4a | Kolom footer | Sektor Keilmuan Tani (6 topik) · Organisasi & Riset · Instrumen Lapangan · Produk & Rujukan Resmi; judul kolom kecil bergaris bawah brand, tautan 44px berpemisah garis rambut dan panah | ≥1024px 4 kolom; 640–1023px 2 kolom; <640px 1 kolom (bukan akordeon). Nomor WhatsApp di baris kontak sebagai teks + tautan biasa (teks polos di halaman daftar, `noWhatsApp`), tanpa ikon/tombol berwarna (§2.8) |
 | 4b | Baris legal | "© {tahun} Agritani Official · Portal pertanian dikelola Arif Prabowo" | Tahun dari waktu build |
 
 Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol WhatsApp melayang, widget chat, pengumuman berjalan.
@@ -628,7 +628,7 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 4. **Alat Tani & Instrumen Lapangan**: 4 baris indeks (judul serif · kegunaan · tautan lanjutan C11), tanpa ikon dekoratif dan tanpa kartu.
 5. **Pendampingan Agronomi & Konsultasi Kebun**: foto (dummy) + pengantar + 3 langkah bernomor + tautan ke `/konsultasi/`. **Beranda tanpa CTA WhatsApp** (§2.8).
 6. **Empat Produk Unggulan & Integritas Saprotan**: 4 kolom produk (ilustrasi kemasan §3.5.1 · nama · tagline · ringkasan · "Spesifikasi & izin Kementan") · dua kolom teks: Keaslian kemasan ShieldedTag dan Kemitraan kios saprotan & gapoktan.
-7. **Footer**: bilah 6 warna topik di atas footer (penanda sektor ala teagasc.ie, disetujui pemilik sebagai pengecualian §3.3) · direktori 4 kolom (Topik Jurnal Tani, Tentang Agritani, Alat Tani, Produk) · baris legal (§4.2.1).
+7. **Footer**: bilah 6 warna topik di atas footer (penanda sektor ala teagasc.ie, disetujui pemilik sebagai pengecualian §3.3) · direktori 4 kolom (Sektor Keilmuan Tani, Organisasi & Riset, Instrumen Lapangan, Produk & Rujukan Resmi; dikunci pemilik) · baris legal (§4.2.1).
 
 **Diagnosa Gejala `/alat/diagnosa-gejala/`** (Lapangan) — perilaku di §2.2
 

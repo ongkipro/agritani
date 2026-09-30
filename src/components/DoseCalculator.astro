@@ -359,8 +359,8 @@ import ConsultPrompt from './ConsultPrompt.astro';
     </div>
   </noscript>
 
-  <!-- One WhatsApp Consult CTA (DESIGN §2.8), after the tool -->
-  <div id="dose-consult-wrapper" class="max-w-[60ch]">
+  <!-- One WhatsApp Consult CTA (DESIGN §2.8): after the tool, shown only once a result exists -->
+  <div id="dose-consult-wrapper" class="max-w-[60ch] hidden">
     <ConsultPrompt
       source="[Web·Kalkulator]"
       title="Butuh konsultasi kalibrasi semprot atau pencampuran produk?"
@@ -684,6 +684,7 @@ import ConsultPrompt from './ConsultPrompt.astro';
       if (!doseStr || !areaStr || !sprayVolStr) {
         emptyState?.classList.remove('hidden');
         resultContainer?.classList.add('hidden');
+        document.getElementById('dose-consult-wrapper')?.classList.add('hidden');
         return;
       }
 
@@ -756,12 +757,14 @@ import ConsultPrompt from './ConsultPrompt.astro';
       if (!result.isValid) {
         emptyState?.classList.remove('hidden');
         resultContainer?.classList.add('hidden');
+        document.getElementById('dose-consult-wrapper')?.classList.add('hidden');
         return;
       }
 
       // Show result container, hide empty state
       emptyState?.classList.add('hidden');
       resultContainer?.classList.remove('hidden');
+      document.getElementById('dose-consult-wrapper')?.classList.remove('hidden');
 
       // Update numbers
       if (resPerTank) resPerTank.textContent = formatNumber(result.perTank);
