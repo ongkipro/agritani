@@ -138,18 +138,18 @@ function isActive(match: string): boolean {
     </div>
   </div>
 
-  <!-- Tier 2: Desktop 6-Sector Color-Coded Taxonomy Strip (Canonical Teagasc Anatomy) -->
-  <nav aria-label="Sektor Keilmuan Pertanian" class="hidden lg:block border-t border-[var(--color-border)] bg-white select-none">
+  <!-- Tier 2: Desktop 6-Sector Taxonomy Bar -->
+  <nav aria-label="Sektor Keilmuan Pertanian" class="hidden lg:block border-t border-[var(--color-border)] bg-[#FAFAF8] select-none">
     <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-6 divide-x divide-[var(--color-border)] border-x border-[var(--color-border)]">
+      <div class="flex items-center justify-between gap-1 py-1">
         {
           taxonomySectors.map((sector) => (
             <a
               href={sector.href}
-              class="group flex flex-col items-center py-2.5 px-1 hover:bg-[var(--color-canvas)] transition-colors min-h-[44px] justify-center"
+              class="group flex items-center gap-2 py-2 px-3 hover:bg-white rounded-[2px] transition-colors min-h-[44px]"
             >
-              <span class={`w-full h-1 ${sector.colorClass} mb-2 shrink-0`} aria-hidden="true"></span>
-              <span class={`text-[11px] font-extrabold tracking-wider uppercase text-[var(--color-text)] ${sector.textHoverClass} text-center whitespace-nowrap`}>
+              <span class={`w-2 h-2 rounded-full ${sector.colorClass} shrink-0 transition-transform group-hover:scale-125`} aria-hidden="true"></span>
+              <span class={`text-xs font-bold tracking-tight text-[var(--color-text)] ${sector.textHoverClass} whitespace-nowrap`}>
                 {sector.label}
               </span>
             </a>
@@ -160,13 +160,13 @@ function isActive(match: string): boolean {
   </nav>
 
   <!-- Mobile Horizontal Scroll Taxonomy Strip -->
-  <nav aria-label="Topik Pertanian Cepat" class="lg:hidden border-t border-[var(--color-border)] bg-white overflow-x-auto select-none">
+  <nav aria-label="Topik Pertanian Cepat" class="lg:hidden border-t border-[var(--color-border)] bg-[#FAFAF8] overflow-x-auto select-none">
     <div class="flex items-center px-4 py-2 gap-2 min-w-max">
       {
         taxonomySectors.map((sector) => (
           <a
             href={sector.href}
-            class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-[2px] bg-[var(--color-canvas)] text-[var(--color-text)] border border-[var(--color-border)] hover:border-[var(--color-brand)] whitespace-nowrap min-h-[36px]"
+            class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-semibold rounded-[2px] bg-white text-[var(--color-text)] hover:text-[var(--color-brand-strong)] whitespace-nowrap min-h-[36px] shadow-2xs"
           >
             <span class={`w-2 h-2 rounded-full ${sector.colorClass}`} aria-hidden="true"></span>
             <span>{sector.label}</span>

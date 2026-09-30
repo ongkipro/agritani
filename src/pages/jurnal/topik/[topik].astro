@@ -2,7 +2,7 @@
 import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../../components/Breadcrumb.astro';
-import ArticleRow from '../../../components/ArticleRow.astro';
+import ArticleList from '../../../components/ArticleList.astro';
 import TopicSidebar from '../../../components/TopicSidebar.astro';
 import { TOPICS } from '../../../lib/topics';
 import type { SeoInput } from '../../../lib/seo';
@@ -141,17 +141,13 @@ const topicImage = Object.entries(topicImages).find(([path]) => path.endsWith(`t
         Daftar Artikel {topic.name}
       </h2>
 
-      {articles.length > 0 ? (
-        <div class="divide-y divide-[var(--color-border)]">
-          {articles.map((article: any) => (
-            <ArticleRow article={article} />
-          ))}
-        </div>
-      ) : (
-        <div class="py-12 text-center text-[var(--color-text-muted)]">
-          <p>Belum ada artikel yang diterbitkan untuk topik ini.</p>
-        </div>
-      )}
+      <ArticleList
+        articles={articles}
+        initialCount={6}
+        batchSize={6}
+        listId={`topik-${topic.slug}`}
+        emptyMessage="Belum ada artikel yang diterbitkan untuk topik ini."
+      />
     </section>
     </div>
     </div>

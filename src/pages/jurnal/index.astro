@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
-import ArticleRow from '../../components/ArticleRow.astro';
+import ArticleList from '../../components/ArticleList.astro';
 import TopicSidebar from '../../components/TopicSidebar.astro';
 import type { SeoInput } from '../../lib/seo';
 
@@ -20,10 +20,6 @@ const visibleArticles = includeDrafts
 const sortedArticles = visibleArticles.sort(
   (a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
 );
-
-const pageSize = 30;
-const articlesPage1 = sortedArticles.slice(0, pageSize);
-const totalPages = Math.ceil(sortedArticles.length / pageSize);
 
 const breadcrumbItems = [
   { name: 'Beranda', url: '/' },
@@ -66,32 +62,12 @@ const seo: SeoInput = {
         Daftar Artikel Jurnal Tani
       </h2>
 
-      {articlesPage1.length > 0 ? (
-        <div class="divide-y divide-[var(--color-border)]">
-          {articlesPage1.map((article) => (
-            <ArticleRow article={article} />
-          ))}
-        </div>
-      ) : (
-        <div class="py-12 text-center text-[var(--color-text-muted)]">
-          <p>Belum ada artikel yang diterbitkan untuk saat ini.</p>
-        </div>
-      )}
-
-      <!-- Pagination Controls -->
-      {totalPages > 1 && (
-        <nav class="my-10 flex items-center justify-between border-t border-[var(--color-border)] pt-4" aria-label="Paginasi artikel">
-          <span class="text-xs text-[var(--color-text-muted)]">
-            Halaman 1 dari {totalPages}
-          </span>
-          <a
-            href="/jurnal/halaman/2/"
-            class="px-4 py-2 rounded-[2px] font-semibold text-xs text-white min-h-[44px] flex items-center bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)]"
-          >
-            Halaman Berikutnya →
-          </a>
-        </nav>
-      )}
+      <ArticleList
+        articles={sortedArticles}
+        initialCount={6}
+        batchSize={6}
+        listId="jurnal-index"
+      />
     </section>
     </div>
   </div>

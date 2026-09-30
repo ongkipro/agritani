@@ -2,7 +2,7 @@
 import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../../components/Breadcrumb.astro';
-import ArticleRow from '../../../components/ArticleRow.astro';
+import ArticleList from '../../../components/ArticleList.astro';
 import TopicSidebar from '../../../components/TopicSidebar.astro';
 import type { SeoInput } from '../../../lib/seo';
 
@@ -100,18 +100,20 @@ const seo: SeoInput = {
     </div>
 
     <!-- Article Listing -->
-    <section class="mt-8 " aria-labelledby="daftar-artikel-komoditas-heading">
+    <section class="mt-8" aria-labelledby="daftar-artikel-komoditas-heading">
       <div class="flex items-center justify-between mb-4">
         <h2 id="daftar-artikel-komoditas-heading" class="text-sm font-bold text-[var(--color-soil)]">
           Daftar Artikel ({articles.length} pembahasan)
         </h2>
       </div>
 
-      <div class="divide-y divide-[var(--color-border)]">
-        {articles.map((article: any) => (
-          <ArticleRow article={article} />
-        ))}
-      </div>
+      <ArticleList
+        articles={articles}
+        initialCount={6}
+        batchSize={6}
+        listId={`komoditas-${commodity.id}`}
+        emptyMessage="Belum ada artikel yang diterbitkan untuk komoditas ini."
+      />
     </section>
     </div>
     </div>

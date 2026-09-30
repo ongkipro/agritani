@@ -5,6 +5,8 @@
  * Invariants: Touch target >= 44px, 2px radius, text contrast >= 7:1, no divider lines.
  */
 import type { CollectionEntry } from 'astro:content';
+import { Picture } from 'astro:assets';
+import { getProductImage } from '../lib/product-images';
 
 interface Props {
   product: CollectionEntry<'products'>;
@@ -19,9 +21,28 @@ const p = product.data;
   id={product.id}
   class="scroll-mt-24 py-10 sm:py-12"
 >
-  <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+  <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 lg:gap-8">
+    <!-- Product Packshot Visual -->
+    <a
+      href={`/produk/${product.id}/`}
+      class="w-36 h-36 sm:w-44 sm:h-44 aspect-square shrink-0 bg-white border border-[var(--color-border)] rounded-[2px] p-3 flex items-center justify-center shadow-2xs group self-center sm:self-start"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <Picture
+        src={getProductImage(product.id)}
+        formats={['webp']}
+        widths={[180, 360]}
+        sizes="11rem"
+        quality={80}
+        alt={`Kemasan resmi ${p.name}`}
+        class="w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-105"
+        loading="lazy"
+      />
+    </a>
+
     <!-- Main Info -->
-    <div class="space-y-4 max-w-2xl">
+    <div class="space-y-4 flex-1 max-w-2xl">
       <div>
         <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
           <h2 class="text-2xl sm:text-3xl font-bold font-serif text-[var(--color-brand)] tracking-tight">

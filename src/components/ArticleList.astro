@@ -1,0 +1,140 @@
+---
+import ArticleRow from './ArticleRow.astro';
+
+interface Props {
+  articles: any[];
+  initialCount?: number;
+  batchSize?: number;
+  emptyMessage?: string;
+  listId?: string;
+}
+
+const {
+  articles,
+  initialCount = 6,
+  batchSize = 6,
+  emptyMessage = 'Belum ada artikel yang diterbitkan untuk saat ini.',
+  listId = 'articles',
+} = Astro.props;
+
+const totalCount = articles.length;
+const hasMore = totalCount > initialCount;
+const initialBatchRemaining = Math.min(batchSize, totalCount - initialCount);
+---
+
+<div
+  class="article-list-container"
+  data-article-list
+  data-initial-count={initialCount}
+  data-batch-size={batchSize}
+>
+  {articles.length === 0 ? (
+    <div class="py-12 text-center text-[var(--color-text-muted)]">
+      <p>{emptyMessage}</p>
+    </div>
+  ) : (
+    <>
+      <div
+        id={`article-list-${listId}`}
+        class="space-y-2 sm:space-y-3"
+        role="feed"
+        aria-busy="false"
+        aria-label="Daftar panduan agronomi"
+      >
+        {articles.map((article, index) => {
+          const isInitiallyHidden = index >= initialCount;
+          return (
+            <div
+              class={`article-item-wrapper ${isInitiallyHidden ? 'is-hidden' : ''}`}
+              data-index={index}
+            >
+              <ArticleRow article={article} />
+            </div>
+          );
+        })}
+      </div>
+
+      {hasMore && (
+        <div class="load-more-container mt-10 pt-4 flex flex-col items-center gap-3">
+          <p class="text-xs text-[var(--color-soil)] font-medium">
+            Menampilkan <span class="shown-count">{initialCount}</span> dari <span class="total-count">{totalCount}</span> panduan agronomi
+          </p>
+
+          <button
+            type="button"
+            class="btn-load-more px-6 py-3 rounded-[2px] font-sans font-semibold text-sm text-[var(--color-brand-strong)] bg-white border border-[var(--color-border-control)] hover:bg-[var(--color-tint)] hover:border-[var(--color-brand)] transition-colors min-h-[44px] inline-flex items-center justify-center gap-2 cursor-pointer shadow-2xs focus-visible:outline-2 focus-visible:outline-[var(--color-harvest)]"
+            aria-controls={`article-list-${listId}`}
+          >
+            <span>Muat Panduan Lainnya</span>
+            <span class="batch-badge text-xs px-2 py-0.5 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-soil)] font-mono">
+              +{initialBatchRemaining}
+            </span>
+          </button>
+
+          <p class="all-loaded-message text-xs text-[var(--color-text-muted)] italic hidden">
+            Semua {totalCount} panduan agronomi telah ditampilkan.
+          </p>
+
+          <div class="sr-only live-announcer" aria-live="polite" aria-atomic="true"></div>
+        </div>
+      )}
+    </>
+  )}
+</div>
+
+<script>
+  function initArticleLists() {
+    const listRoots = document.querySelectorAll<HTMLElement>('[data-article-list]');
+    listRoots.forEach((listRoot) => {
+      if (listRoot.dataset.initialized === 'true') return;
+      listRoot.dataset.initialized = 'true';
+
+      const items = listRoot.querySelectorAll<HTMLElement>('.article-item-wrapper');
+      const loadMoreBtn = listRoot.querySelector<HTMLButtonElement>('.btn-load-more');
+      const shownCountEl = listRoot.querySelector<HTMLElement>('.shown-count');
+      const allLoadedMsg = listRoot.querySelector<HTMLElement>('.all-loaded-message');
+      const batchBadge = listRoot.querySelector<HTMLElement>('.batch-badge');
+      const liveAnnouncer = listRoot.querySelector<HTMLElement>('.live-announcer');
+
+      const total = items.length;
+      const batch = parseInt(listRoot.dataset.batchSize || '6', 10);
+      let current = parseInt(listRoot.dataset.initialCount || '6', 10);
+
+      if (!loadMoreBtn) return;
+
+      loadMoreBtn.addEventListener('click', () => {
+        const next = Math.min(current + batch, total);
+        let revealedCount = 0;
+
+        for (let i = current; i < next; i++) {
+          const el = items[i];
+          if (el) {
+            el.classList.remove('is-hidden');
+            el.classList.add('animate-article-fade-in');
+            revealedCount++;
+          }
+        }
+
+        current = next;
+        if (shownCountEl) shownCountEl.textContent = String(current);
+
+        const remaining = total - current;
+        if (batchBadge) {
+          batchBadge.textContent = `+${Math.min(batch, remaining)}`;
+        }
+
+        if (liveAnnouncer) {
+          liveAnnouncer.textContent = `${revealedCount} artikel baru dimuat. Menampilkan ${current} dari ${total} panduan.`;
+        }
+
+        if (current >= total) {
+          loadMoreBtn.classList.add('hidden');
+          if (allLoadedMsg) allLoadedMsg.classList.remove('hidden');
+        }
+      });
+    });
+  }
+
+  initArticleLists();
+  document.addEventListener('astro:page-load', initArticleLists);
+</script>

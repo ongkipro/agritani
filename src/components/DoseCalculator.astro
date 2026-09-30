@@ -30,16 +30,23 @@ import ConsultPrompt from './ConsultPrompt.astro';
             class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] tabular-nums"
             aria-describedby="dose-unit-desc"
           />
-          <select
-            id="input-dose-unit"
-            name="doseUnit"
-            class="w-full px-3 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)]"
-          >
-            <option value="ml/L" selected>ml / Liter (Cair)</option>
-            <option value="g/L">g / Liter (Bubuk / WP)</option>
-            <option value="ml/tangki">ml / tangki</option>
-            <option value="g/tangki">g / tangki</option>
-          </select>
+          <div class="relative">
+            <select
+              id="input-dose-unit"
+              name="doseUnit"
+              class="w-full appearance-none pl-3.5 pr-10 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] shadow-2xs hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-xs sm:text-sm cursor-pointer transition-colors"
+            >
+              <option value="ml/L" selected>ml / Liter (Cair)</option>
+              <option value="g/L">g / Liter (Bubuk / WP)</option>
+              <option value="ml/tangki">ml / tangki</option>
+              <option value="g/tangki">g / tangki</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-[var(--color-soil)]" aria-hidden="true">
+              <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 8 4 4 4-4"/>
+              </svg>
+            </div>
+          </div>
         </div>
         <p id="dose-unit-desc" class="text-xs text-[var(--color-text-muted)] mt-1.5">
           Sesuai angka petunjuk anjuran di botol / kemasan produk resmi.
@@ -110,14 +117,21 @@ import ConsultPrompt from './ConsultPrompt.astro';
             class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] tabular-nums"
             aria-describedby="area-desc"
           />
-          <select
-            id="input-area-unit"
-            name="areaUnit"
-            class="w-full px-3 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)]"
-          >
-            <option value="ha" selected>Hektar (ha)</option>
-            <option value="m2">Meter persegi (m²)</option>
-          </select>
+          <div class="relative">
+            <select
+              id="input-area-unit"
+              name="areaUnit"
+              class="w-full appearance-none pl-3.5 pr-10 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] shadow-2xs hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-xs sm:text-sm cursor-pointer transition-colors"
+            >
+              <option value="ha" selected>Hektar (ha)</option>
+              <option value="m2">Meter persegi (m²)</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-[var(--color-soil)]" aria-hidden="true">
+              <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 8 4 4 4-4"/>
+              </svg>
+            </div>
+          </div>
         </div>
         <p id="area-desc" class="text-xs text-[var(--color-text-muted)] mt-1.5">
           Gunakan satuan baku m² atau ha. Satuan lokal tidak seragam antar daerah.

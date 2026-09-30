@@ -6,10 +6,12 @@
  * Invariants: Single WhatsApp CTA, 0/0/0 CSP, 2px radius, no divider lines, text contrast >= 7:1.
  */
 import { getCollection } from 'astro:content';
+import { Picture } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
-import ArticleRow from '../../components/ArticleRow.astro';
+import ArticleList from '../../components/ArticleList.astro';
 import ConsultPrompt from '../../components/ConsultPrompt.astro';
+import profArifImage from '../../assets/images/dummy/prof-arif-prabowo.webp';
 import type { SeoInput } from '../../lib/seo';
 
 const breadcrumbs = [
@@ -54,12 +56,20 @@ const sortedArticles = visibleArticles.sort(
     <!-- Profile Header (Sains Editorial Canvas) -->
     <header class="max-w-[68ch] mx-auto my-8 sm:my-12">
       <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-6">
-        <!-- Initial Avatar (Official photo pending OQ-4) -->
+        <!-- Official Profile Portrait -->
         <div
-          class="w-20 h-20 sm:w-24 sm:h-24 bg-[var(--color-brand-soft)] border border-[var(--color-border)] rounded-[2px] flex items-center justify-center text-2xl sm:text-3xl font-bold text-[var(--color-brand)] shrink-0"
-          aria-label="Inisial Prof. Arif Prabowo"
+          class="w-24 h-24 sm:w-28 sm:h-28 rounded-[2px] overflow-hidden shrink-0 bg-[var(--color-canvas)]"
         >
-          AP
+          <Picture
+            src={profArifImage}
+            formats={['webp']}
+            widths={[160, 320]}
+            sizes="7rem"
+            quality={85}
+            alt="Foto resmi Prof. Arif Prabowo, Dewan Pakar & Moderator Jurnal Tani"
+            class="w-full h-full object-cover"
+            loading="eager"
+          />
         </div>
 
         <div class="space-y-1">
@@ -80,8 +90,8 @@ const sortedArticles = visibleArticles.sort(
       </div>
 
       <!-- Independence & Disclosure Block (DESIGN §4.3 Blok 16) -->
-      <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] text-xs sm:text-sm text-[var(--color-text-muted)] space-y-2">
-        <span class="font-bold text-[var(--color-text)] block">
+      <div class="py-4 text-xs sm:text-sm text-[var(--color-text-muted)] space-y-1">
+        <span class="font-bold text-[var(--color-soil)] block uppercase tracking-wider text-[11px]">
           Pengungkapan Editorial
         </span>
         <p>
@@ -92,7 +102,7 @@ const sortedArticles = visibleArticles.sort(
 
     <!-- Articles Section -->
     <main class="max-w-[68ch] mx-auto mb-12 sm:mb-16">
-      <div class="flex items-baseline justify-between mb-6 pb-3 border-b border-[var(--color-border)]">
+      <div class="flex items-baseline justify-between mb-6">
         <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[var(--color-text)] tracking-tight">
           Panduan & Karya Tulis
         </h2>
@@ -101,21 +111,17 @@ const sortedArticles = visibleArticles.sort(
         </span>
       </div>
 
-      {sortedArticles.length === 0 ? (
-        <div class="p-8 text-center bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px]">
-          <p class="text-[var(--color-text-muted)]">Belum ada artikel yang diterbitkan untuk saat ini.</p>
-        </div>
-      ) : (
-        <div class="divide-y divide-[var(--color-border)]">
-          {sortedArticles.map((article) => (
-            <ArticleRow article={article} />
-          ))}
-        </div>
-      )}
+      <ArticleList
+        articles={sortedArticles}
+        initialCount={6}
+        batchSize={6}
+        listId="penulis-arif"
+        emptyMessage="Belum ada artikel yang diterbitkan untuk saat ini."
+      />
 
       <!-- Bottom Navigation & Single WhatsApp CTA -->
-      <div class="mt-12 pt-8 border-t border-[var(--color-border)] space-y-6">
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px]">
+      <div class="mt-12 space-y-6">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 py-4">
           <div>
             <h3 class="font-bold text-[var(--color-text)] text-sm sm:text-base">
               Jelajahi Berdasarkan Topik
