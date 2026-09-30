@@ -172,7 +172,7 @@ const nextTools = [
       </aside>
 
       <!-- 2. Main Article Content Container (Columns 4-10) -->
-      <div class="lg:col-span-7 prose-container max-w-[68ch]">
+      <div class="lg:col-span-7 prose-container max-w-[68ch] min-w-0">
         <!-- Article Header -->
         <header class="mb-8">
           <!-- 2. H1 Title -->
@@ -274,12 +274,15 @@ const nextTools = [
             <div class="mt-6 text-sm leading-7">
               <span class="font-semibold text-[var(--color-text)] mr-2">Tag:</span>
               <ul class="inline" aria-label="Tag artikel">
+                {/* Inline items + a real space between them: long tags wrap inside, the list wraps between tags (no horizontal overflow at 320px, T-51). */}
                 {data.tags.map((tag) => (
-                  <li class="inline-block mr-3">
-                    <a href={`/jurnal/tag/${slugifyTag(tag)}/`} class="py-3 text-[var(--color-brand-strong)] hover:underline underline-offset-4 active:text-[var(--color-text)]">
-                      <span class="text-[var(--color-soil)]" aria-hidden="true">#</span>{tag}
-                    </a>
-                  </li>
+                  <>
+                    <li class="inline mr-2">
+                      <a href={`/jurnal/tag/${slugifyTag(tag)}/`} class="py-3 [overflow-wrap:anywhere] text-[var(--color-brand-strong)] hover:underline underline-offset-4 active:text-[var(--color-text)]">
+                        <span class="text-[var(--color-soil)]" aria-hidden="true">#</span>{tag}
+                      </a>
+                    </li>{' '}
+                  </>
                 ))}
               </ul>
             </div>

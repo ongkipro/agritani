@@ -451,6 +451,27 @@ button:disabled,
   display: none;
 }
 
+/* Math (DEC-018, T-51): a long formula scrolls inside its own box instead of widening the page on phones. */
+.prose .katex {
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  vertical-align: middle;
+  -webkit-overflow-scrolling: touch;
+}
+/* A formula alone in its paragraph (from $$...$$) is a centred block with room for the scrollbar. */
+.prose p > .katex:only-child {
+  display: block;
+  padding-block: 0.25rem 0.5rem;
+  text-align: center;
+}
+@media (max-width: 639px) {
+  .prose .katex math {
+    font-size: 0.92em;
+  }
+}
+
 /* Progressive Article Reveal & Modern List Animations */
 .article-item-wrapper.is-hidden {
   display: none !important;

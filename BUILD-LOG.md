@@ -912,3 +912,9 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - Rilis: STATUS `SMOKE_TESTING` → `release-check` VERIFIED (5 probe) → `VERIFIED`; RELEASE.md v1.3.0 (Base `44a3f24`, rollback `a6995e3a`).
 - Live (Playwright, 390px): kalkulator dosis (32 ml/tangki untuk 2 ml/L × 16 L), pencarian "wereng" 33 hasil, Konsultasi & Kemitraan membentuk tautan `wa.me` bersumber `[Web·…]` (tanpa membuka WhatsApp), submit kosong → 7 error dan isian tetap, filter profil penulis, load more hub padi 6→12, 0 px overflow di 11 halaman, 0 pageerror.
 - Catatan proses: `production-gate` (gerbang pra-deploy) tidak dijalankan sebelum deploy hari ini — deploy manual dilakukan atas persetujuan pemilik dengan run ledger + review independen per task; jalankan `production-gate` sebelum deploy berikutnya.
+
+## 2026-10-01 — T-51: Artikel pas di layar HP (PASS)
+
+- Laporan pemilik: `/jurnal/analisis-titik-impas-bep-usaha-tani-padi/` bisa digeser kiri-kanan di HP. Penyebab: rumus BEP (MathML `span.katex`) selebar 572px di layar 390px; ditemukan juga 16 artikel dengan tag panjang (`li.inline-block`) yang melebar 2–20px di 360px dan lebih banyak di 320px.
+- Perbaikan: `.prose .katex` `max-width:100%` + `overflow-x:auto` (rumus panjang digeser di kotaknya sendiri), rumus tunggal sebagai blok di tengah, `0.92em` di <640px; kolom artikel `min-w-0`; tag menjadi `li` inline + spasi + `overflow-wrap:anywhere`.
+- Verifikasi: 296 artikel × 320/360/390px → 0 overflow horizontal (Playwright); 22 halaman non-artikel × 320/360 → 0; astro check 0 error; build PASS.
