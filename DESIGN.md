@@ -680,15 +680,15 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 2a. Sidebar topik kiri (C10).
 3. Hub komoditas tampil di `TopicSidebar` (sidebar ≥1024px, di bawah daftar pada mobile).
 4. Daftar artikel topik (baris; paginasi statis per 30 bila perlu).
-5. Tautan alat relevan (mis. Proteksi Tanaman → Diagnosa Gejala; Air & Irigasi → Cuaca Tani).
+5. Satu kartu tautan alat relevan di bawah header (mis. Proteksi Tanaman → Diagnosa Gejala; Air & Irigasi → Cuaca Tani): nama alat serif · satu kalimat · "Buka alat →" (T-39).
 
 **Hub Komoditas `/jurnal/komoditas/{komoditas}/`** (Sains) — dibangun hanya bila ≥ 3 artikel terbit
 
 1. Breadcrumb · H1 "{Komoditas}: Panduan Budidaya & Penanganan".
 2. Pengantar (opsional, `src/content/pages/komoditas-{komoditas}.md`).
-3. Tautan "Diagnosa gejala {komoditas}" (bila ada data gejala tertinjau) dan "Kalender tanam {komoditas}" (bila ada kalender tertinjau).
+3. Dua kartu tautan alat (§3.3.3): "Diagnosa gejala {komoditas}" dan "Kalender tanam {komoditas}", masing-masing judul serif + satu kalimat.
 4. Artikel komoditas: **satu daftar** `ArticleRow` urut tanggal (tanpa dipecah per topik — keputusan pemilik 2026-09-30, menggantikan pengelompokan T-31), 6 artikel pertama lalu tombol "Muat Panduan Lainnya" (+6 per klik), sama seperti hub topik dan indeks Jurnal.
-5. Produk yang relevan: maksimal 2 produk unggulan yang komoditasnya cocok (urutan: Aussie, Kojien, BENSU, Saratoga), ditampilkan sebagai baris terbuka tanpa kartu/CTA WhatsApp (T-31).
+5. Produk untuk {komoditas}: komponen yang sama dengan artikel (`ArticleProducts`, kartu §3.3.3 + baris "Produk lain"), tanpa CTA WhatsApp (T-39).
 6. `TopicSidebar` dengan komoditas aktif ditandai.
 
 **Artikel `/jurnal/{slug}/`** (Sains) — anatomi lengkap §4.3.

@@ -62,22 +62,22 @@ const seo: SeoInput = {
 // Associated tool recommendation based on topic
 const toolMap: Record<string, { label: string; href: string; desc: string }> = {
   'proteksi-tanaman': {
-    label: 'Buka Diagnosa Gejala',
+    label: 'Diagnosa Gejala',
     href: '/alat/diagnosa-gejala/',
     desc: 'Identifikasi gejala hama dan penyakit di tanaman Anda secara terstruktur.',
   },
   'tanah-nutrisi': {
-    label: 'Kalkulator Dosis Semprot',
+    label: 'Kalkulator Dosis',
     href: '/alat/kalkulator-dosis/',
     desc: 'Hitung kebutuhan tangki dan konsentrasi larutan pupuk daun atau biostimulan.',
   },
   'budidaya': {
-    label: 'Kalender Tanam Mandiri',
+    label: 'Kalender Tanam',
     href: '/alat/kalender-tanam/',
     desc: 'Jadwalkan fase pertumbuhan komoditas pangan dan hortikultura dari tanggal tanam.',
   },
   'air-irigasi': {
-    label: 'Cek Cuaca Tani BMKG',
+    label: 'Cuaca Tani',
     href: '/alat/cuaca-tani/',
     desc: 'Pantau prakiraan hujan dan rekomendasi waktu penyemprotan tingkat desa.',
   },
@@ -102,7 +102,7 @@ const topicImage = Object.entries(topicImages).find(([path]) => path.endsWith(`t
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[var(--color-text)] mb-3 leading-tight text-balance">
           {topic.name}
         </h1>
-        <p class="text-base sm:text-lg text-[var(--color-text-muted)] font-serif leading-relaxed">
+        <p class="pillar-lede">
           {pageEntry ? pageEntry.body : seo.description}
         </p>
       </div>
@@ -123,17 +123,13 @@ const topicImage = Object.entries(topicImages).find(([path]) => path.endsWith(`t
     </header>
 
     {tool && (
-      <div class="my-6 p-4 sm:p-5 rounded-[2px] bg-[var(--color-tint)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <p class="text-sm sm:text-base text-[var(--color-text)]">
-          <strong>Alat terkait:</strong> {tool.desc}
-        </p>
-        <a
-          href={tool.href}
-          class="px-4 py-2 rounded-[2px] font-semibold text-xs text-white shrink-0 min-h-[44px] flex items-center bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)]"
-        >
-          {tool.label} →
-        </a>
-      </div>
+      <a href={tool.href} class="card card-link my-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-6 p-4 sm:p-5 max-w-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]">
+        <span>
+          <span class="block font-serif text-lg font-semibold text-[var(--color-brand-strong)]">{tool.label}</span>
+          <span class="mt-1 block text-sm text-[var(--color-text-muted)]">{tool.desc}</span>
+        </span>
+        <span class="link-more text-sm shrink-0" aria-hidden="true">Buka alat &rarr;</span>
+      </a>
     )}
 
     <section class="mt-8" aria-labelledby="daftar-artikel-topik-heading">

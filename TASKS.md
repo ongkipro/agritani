@@ -86,6 +86,7 @@ Berlaku untuk agent maupun manusia. Detail aturan agent ada di [AGENTS.md](AGENT
 | T-36 | Produk di artikel (baris ringkas), halaman tag sekerangka dengan hub | REQ-03 | DESIGN §4.3.8, §2.5 | R1 | — | T-35 | — | Done 2026-09-30 |
 | T-37 | Pemisah judul " - " (bukan "|"), perbaikan judul ganda, rapikan chip tag | REQ-07 | DESIGN §4.4.2, §4.3.8 | R1 | — | T-36 | — | Done 2026-09-30 |
 | T-38 | Rapikan semua halaman ke pola Beranda: kartu rapi (§3.3.3) untuk produk, alat, penulis, bacaan terkait, formulir; tanpa bayangan/label kapital/garis antar-section; footer dikunci versi pemilik | REQ-08 | DESIGN §3.3.3, §4.2.3, §4.3.8 | R2 | — | T-37 | — | Done 2026-09-30 (DEC-019; review independen APPROVE) |
+| T-39 | Rapikan hub topik & komoditas ke pola kartu (§3.3.3): kartu alat, judul daftar, produk via `ArticleProducts`; bersihkan monospace & bayangan sisa; bersihkan worktree pekerja | REQ-08 | DESIGN §4.2.3, §3.3.3 | R1 | — | T-38 | — | Done 2026-09-30 |
 | T-24 | Rilis produksi & observability | REQ-08 | RELEASE.md, OBSERVABILITY.md | R2 | — | T-15, T-18 | OQ-6 + **persetujuan deploy Paduka Ongki** | Menunggu persetujuan deploy |
 
 Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 → T-23 → T-04 → T-03 → T-05 → (T-06, T-07, T-13, T-14) → T-21 → T-22 → T-09 → T-19 → T-20 → T-26 → T-08 → T-10 → T-17 → T-11 → T-12 → T-16 & T-25 (jalur konten, paralel) → T-18 → T-15 → T-24.

@@ -822,3 +822,11 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - **Verifikasi**: `npx astro check` 0 error; `npm test` 87/87; `npm run build` PASS (check-seo, check-csp 0/0/0, check-placeholders, check-links internal + outbound); audit slop per halaman: bayangan 0 dan label kapital 0 di semua halaman; render 390 & 1440 diperiksa untuk produk, detail produk, artikel, alat, Tentang Kami, Konsultasi, hub komoditas.
 - **Review independen**: `claude-sonnet-5-5` atas `c94bde2..HEAD` → 1 blocker (lompatan h1→h3 di profil penulis) diperbaiki; review ulang → APPROVE.
 - **Catatan proses**: run ledger `RUN-20260930T112317Z-c117f445` ditutup FAIL karena commit dibuat di tengah run (kontrak: HEAD tetap selama run); verifikasi dan review diulang di run baru.
+
+## 2026-09-30 — T-39: Hub topik & komoditas ke pola kartu (PASS)
+
+- Hub komoditas: paragraf pembuka `pillar-lede` (bukan serif tebal); dua kartu tautan alat; judul daftar "{n} artikel tentang {komoditas}"; blok produk memakai `ArticleProducts` (kartu yang sama dengan artikel) menggantikan blok terbuka bergaris.
+- Hub topik: panel alat `tint` + tombol kecil diganti satu kartu tautan; label alat jadi nama alat.
+- `ArticleList`: angka tombol "Muat Panduan Lainnya" tanpa monospace; `CommodityPicker`: bayangan sisa dihapus.
+- Worktree dan branch pekerja paralel yang sudah digabung dihapus.
+- Verifikasi: astro check 0 error, npm test 87/87, npm run build PASS; render 390 & 1440 hub cabai dan Proteksi Tanaman diperiksa.
