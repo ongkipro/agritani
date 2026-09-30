@@ -99,6 +99,7 @@ Berlaku untuk agent maupun manusia. Detail aturan agent ada di [AGENTS.md](AGENT
 | T-49 | `/sitemap.xml` indeks terpecah per jenis (jurnal, topik, komoditas, tag, produk, alat, pages); `robots.txt` ke `/sitemap.xml`; semua halaman diindeks kecuali `/cari/` dan 404 | REQ-07 | DEC-023, DESIGN §4.4.8 | R2 | — | T-48 | — | Done 2026-09-30 |
 | T-51 | Artikel tidak boleh bergeser kiri-kanan di HP: rumus bergulir di kotaknya sendiri, tag panjang membungkus; 296 artikel × 320/360/390px tanpa overflow | REQ-08 | DESIGN §3.3.4 | R1 | — | T-50 | — | Done 2026-10-01 |
 | T-52 | Cuaca Tani: prakiraan tidak muncul saat lokasi tersimpan dipulihkan (event terlewat) — pilihan terakhir disimpan di `window` dan dibaca `ForecastTable` saat siap | REQ-10 | DESIGN §2.6.2 | R1 | — | T-51 | — | Done 2026-10-01 |
+| T-53 | Petunjuk geser rumus panjang: tepi kanan memudar, hilang di ujung (CSS saja) | REQ-08 | DESIGN §3.3.4 | R1 | — | T-52 | — | Done 2026-10-01 |
 | T-24 | Rilis produksi & observability | REQ-08 | RELEASE.md, OBSERVABILITY.md | R2 | — | T-15, T-18 | OQ-6 + **persetujuan deploy Paduka Ongki** | Menunggu persetujuan deploy |
 
 Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 → T-23 → T-04 → T-03 → T-05 → (T-06, T-07, T-13, T-14) → T-21 → T-22 → T-09 → T-19 → T-20 → T-26 → T-08 → T-10 → T-17 → T-11 → T-12 → T-16 & T-25 (jalur konten, paralel) → T-18 → T-15 → T-24.

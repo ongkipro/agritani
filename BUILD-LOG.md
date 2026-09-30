@@ -924,3 +924,9 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - Laporan pemilik: saat lokasi sudah tersimpan, cuaca tidak aktif. Penyebab: `RegionPicker` memulihkan lokasi tersimpan lalu mengirim event `agritani:region-selected`; bila pemulihan selesai sebelum skrip `ForecastTable` memasang pendengarnya (kunjungan ulang, data wilayah dari cache), event terlewat → ringkasan lokasi tampil tetapi prakiraan kosong.
 - Perbaikan: pilihan terakhir juga disimpan di `window.__agritaniRegion`; `ForecastTable` membacanya setelah memasang pendengar dan memuat prakiraan bila belum dimuat.
 - Bukti (Playwright, skrip `ForecastTable` diperlambat 2,5 s, lokasi tersimpan): live versi lama → ringkasan tampil, 0 tabel; build baru → 3 tabel. Regresi: pilih pertama 3 tabel, muat ulang 3 tabel, 1 permintaan BMKG (tanpa ganda), "Ganti wilayah" membuka pilihan lagi.
+
+## 2026-10-01 — T-53: Pudar tepi kanan untuk rumus panjang (PASS)
+
+- `.prose p > .katex:only-child`: `mask-image` dengan pudar 2,5rem di kanan (`@property --katex-fade`), dianimasikan ke 0 lewat `animation-timeline: scroll(self inline)` sehingga pudar hilang saat rumus digeser sampai ujung; `prefers-reduced-motion` mematikan animasi (pudar statis).
+- Temuan: minifier CSS menggabungkan `animation` + `animation-timeline` menjadi shorthand yang ditolak Chrome sehingga aturan terbuang; ditulis sebagai longhand (`animation-name`, `animation-fill-mode`, `animation-timeline`).
+- Bukti (Chrome 154, 390px, rumus BEP): `--katex-fade` 2.5rem di awal → 0px di ujung; tanpa overflow halaman. Diverifikasi di worktree terpisah karena ada pekerjaan agy yang belum selesai di working tree.

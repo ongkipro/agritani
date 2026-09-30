@@ -471,6 +471,38 @@ button:disabled,
     font-size: 0.92em;
   }
 }
+/* Scroll hint for a formula wider than the column (T-53): the right edge fades out, and the fade shrinks to
+   nothing as the formula is scrolled to its end (scroll-driven animation; browsers without it keep a static hint).
+   A formula that fits never scrolls and is centred, so the faded strip is empty space. */
+@property --katex-fade {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 2.5rem;
+}
+.prose p > .katex:only-child {
+  --katex-fade: 2.5rem;
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - var(--katex-fade)), transparent);
+  mask-image: linear-gradient(to right, #000 calc(100% - var(--katex-fade)), transparent);
+}
+@supports (animation-timeline: scroll()) {
+  .prose p > .katex:only-child {
+    /* Longhands on purpose: the CSS minifier would otherwise fold these into an animation shorthand that
+       carries the timeline, which Chrome rejects (the rule was dropped). */
+    animation-name: katex-fade-out;
+    animation-fill-mode: both;
+    animation-timeline: scroll(self inline);
+  }
+}
+@keyframes katex-fade-out {
+  to {
+    --katex-fade: 0px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .prose p > .katex:only-child {
+    animation: none;
+  }
+}
 
 /* Progressive Article Reveal & Modern List Animations */
 .article-item-wrapper.is-hidden {
