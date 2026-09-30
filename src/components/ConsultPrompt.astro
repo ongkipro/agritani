@@ -10,6 +10,8 @@ interface Props {
   note?: string;
   title?: string;
   description?: string;
+  /** Heading level for the title; use 2 when the prompt follows the page H1 directly. */
+  headingLevel?: 2 | 3;
 }
 
 const {
@@ -20,7 +22,9 @@ const {
   note,
   title,
   description,
+  headingLevel = 3,
 } = Astro.props;
+const Heading = headingLevel === 2 ? 'h2' : 'h3';
 
 const href = waLink({ source, fields, note });
 const waAttrs = externalLink('whatsapp');
@@ -29,7 +33,7 @@ const isPrimary = variant === 'primary';
 ---
 
 <div data-cta="whatsapp">
-  {title && <h3 class="font-serif text-xl font-semibold text-[var(--color-brand-strong)] text-balance">{title}</h3>}
+  {title && <Heading class="font-serif text-xl font-semibold text-[var(--color-brand-strong)] text-balance">{title}</Heading>}
   {description && <p class="mt-1.5 text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed max-w-[60ch]">{description}</p>}
   <a
     href={href}

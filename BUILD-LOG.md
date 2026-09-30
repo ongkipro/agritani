@@ -810,3 +810,15 @@ Record only durable implementation changes, validation evidence, and gotchas tha
   - `npx astro check`: 0 errors.
   - `npm test`: 79/79 unit tests PASS.
   - `PUBLIC_INCLUDE_DRAFTS=true npm run build`: 192 halaman terkompilasi, check-seo PASS (0 error, 0 warning), check-csp PASS (0/0/0).
+
+
+## 2026-09-30 — T-35…T-38: Rapikan UI seluruh situs, identitas, dan konten produk (PASS)
+
+- **T-35/T-36 (artikel & hub)**: breadcrumb ikon rumah; daftar isi sticky berhenti di Tag; gambar utama artikel dari foto komoditas; blok penutup (langkah berikutnya, pustaka, penulis, produk, bacaan terkait); arsip tag `noindex` < 3 artikel dan keluar dari sitemap; `TopicSidebar` 5 komoditas + `<details>`; hub/jurnal/tag tanpa tautan WhatsApp di footer (`noWhatsApp`).
+- **DEC-017**: "PT Agritani Internasional" dihapus di 17 berkas sumber → "Agritani" / "Agritani Official".
+- **T-37**: pemisah judul " - "; judul ganda diperbaiki.
+- **T-38 (DEC-019)**: kartu rapi satu gaya (`.card`, DESIGN §3.3.3) untuk katalog produk (`ProductCard`), harga & sifat formula di detail produk, blok penutup artikel, input/hasil alat (hasil sticky), indeks Alat, formulir Konsultasi/Kemitraan, Tentang Kami & Privasi (rail kanan), Cari, 404; tabel perbandingan produk yang dobel dihapus; baris "Pilih sesuai tanaman" + cara aplikasi di kartu; tanpa bayangan/label kapital/garis antar-section; footer dikembalikan ke versi pemilik; tag artikel = "Tag:" + `#tag` teks; nama situs sumber harga dihapus; hub komoditas satu daftar dengan "Muat Panduan Lainnya"; ajakan konsultasi Kalkulator Dosis hanya setelah hasil; judul `ConsultPrompt` h2 di profil penulis; kode sumber WhatsApp alat tidak lagi berkurung ganda.
+- **Proses**: tiga pekerja paralel di worktree terpisah (alat, produk, halaman statis) dengan kontrak komposisi C1–C8; referensi diperiksa lewat tangkapan layar (Koppert, The Sill, GOV.UK, RHS, UMN Extension).
+- **Verifikasi**: `npx astro check` 0 error; `npm test` 87/87; `npm run build` PASS (check-seo, check-csp 0/0/0, check-placeholders, check-links internal + outbound); audit slop per halaman: bayangan 0 dan label kapital 0 di semua halaman; render 390 & 1440 diperiksa untuk produk, detail produk, artikel, alat, Tentang Kami, Konsultasi, hub komoditas.
+- **Review independen**: `claude-sonnet-5-5` atas `c94bde2..HEAD` → 1 blocker (lompatan h1→h3 di profil penulis) diperbaiki; review ulang → APPROVE.
+- **Catatan proses**: run ledger `RUN-20260930T112317Z-c117f445` ditutup FAIL karena commit dibuat di tengah run (kontrak: HEAD tetap selama run); verifikasi dan review diulang di run baru.

@@ -33,7 +33,8 @@ Use `BLOCKED` only as an interruption state. Record the blocker and exact state 
 - **Smoke test**: `release-check .` → `RELEASE_CHECK=VERIFIED` (app, health, article, weather-tool, sitemap) setelah DNS lokal pulih; probe contoh database/background-jobs yang tidak berlaku untuk situs statis dihapus dari OBSERVABILITY.md.
 - **Polish UI pasca-rilis (2026-09-29)**: pass `impeccable` + referensi arah teagasc.ie (DESIGN §4.0, §3.1.1, C9–C10): gambar dummy responsif di hub/Konsultasi/Kemitraan (hero 88 KB di 390px), kicker/border kiri/pemisah section dihapus, grid kartu jadi baris indeks, warna topik + sidebar hub Jurnal. Pemeriksaan `check-links` baru menemukan dan memperbaiki tautan produk footer yang salah (`/produk/pupuk-hayati-aussie/` → `/produk/aussie/`, di semua halaman) dan tautan ke hub komoditas yang tidak dibangun (jagung).
 - **Dokumen lanjutan (2026-09-30)**: ADR-0001 (PROPOSED) menyiapkan R2 media dan D1 lead kemitraan sebagai increment berpemicu (T-29, T-30; OQ-13); audit anatomi DESIGN vs build menghasilkan T-31. Tidak ada perubahan runtime.
-- **Revisi identitas (2026-09-30, DEC-016)**: Arif Prabowo bukan profesor → "Konsultan Pertanian Senior · Pengelola Jurnal Tani"; Agritani = portal dikelola Arif Prabowo dengan 4 produk unggulan dan kerja sama brand/perusahaan. Dokumen sudah diperbarui; source, OG, dan foto dikerjakan di T-32. **Situs live masih memuat identitas lama dan klaim tanpa sumber dari commit `0888c13`** sampai T-32 dideploy.
+- **Revisi identitas (2026-09-30, DEC-016)**: Arif Prabowo bukan profesor → "Konsultan Pertanian Senior · Pengelola Jurnal Tani"; Agritani = portal dikelola Arif Prabowo dengan 4 produk unggulan dan kerja sama brand/perusahaan. T-32 (source, OG, foto) sudah live sejak deploy `a64636b`.
+- **T-35…T-38 (2026-09-30, DEC-017, DEC-019)**: nama PT dihapus → "Agritani"/"Agritani Official"; artikel & hub dirapikan (TOC sticky berhenti di Tag, blok penutup, tag "Tag:" + `#tag`); seluruh halaman memakai satu gaya kartu rapi (§3.3.3) untuk unit (produk, harga, hasil alat, penulis, bacaan terkait, formulir); tanpa WhatsApp di produk; footer dikunci versi pemilik; hub komoditas satu daftar + "Muat Panduan Lainnya"; harga tanpa nama situs sumber. Verifikasi: astro check 0 error, 87/87 test, build + check-seo/csp/links PASS, review independen APPROVE. Rincian: BUILD-LOG 2026-09-30.
 - **Sisa**: beacon Cloudflare Web Analytics disisipkan zona dan diblokir CSP (tidak ada data terkirim) — matikan Web Analytics di dashboard zona; data pemilik OQ-2..OQ-12 (PRD §8); auto-deploy CI butuh secret `CLOUDFLARE_API_TOKEN`.
 
 Kontrak pra-pengembangan diaudit ulang pada 2026-09-29 dengan skill dotfiles terbaru (`development-kit` → `design-taste`):
@@ -157,7 +158,7 @@ Berhenti dan menunggu koordinasi branch `feat/launch-content` dari agent kedua, 
 
 ## Next verified action
 
-T-10: Tentang Kami & Profil Penulis (`src/pages/tentang-kami.astro`, `src/pages/penulis/arif-prabowo.astro`).
+Deploy T-38 ke produksi dan jalankan `release-check`; setelah itu pengembangan dilanjutkan pemilik lewat agy. Data pemilik yang masih terbuka: OQ-2 (nomor izin edar), OQ-4 (bio final), OQ-5 (foto asli), OQ-11 (tinjauan Diagnosa & Kalender), secret `CLOUDFLARE_API_TOKEN` untuk auto-deploy CI, matikan Web Analytics zona.
 
 
 

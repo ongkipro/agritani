@@ -3,9 +3,7 @@ import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../../components/Breadcrumb.astro';
 import ArticleList from '../../../components/ArticleList.astro';
-import ArticleRow from '../../../components/ArticleRow.astro';
 import TopicSidebar from '../../../components/TopicSidebar.astro';
-import { TOPICS, topicName } from '../../../lib/topics';
 import type { SeoInput } from '../../../lib/seo';
 
 export async function getStaticPaths() {
@@ -48,17 +46,6 @@ const { commodity, articles } = Astro.props;
 
 // Fetch optional introductory text
 const pageEntry = await getEntry('pages', `komoditas-${commodity.id}`);
-
-// Group articles by topic if multiple topics exist (T-31 Butir 2a)
-const distinctTopics = Array.from(new Set(articles.map((a: any) => a.data.topic)));
-const hasMultipleTopics = distinctTopics.length >= 2;
-
-const groupedArticles = hasMultipleTopics
-  ? TOPICS.map((t) => ({
-      topic: t,
-      articles: articles.filter((a: any) => a.data.topic === t.slug),
-    })).filter((g) => g.articles.length > 0)
-  : [];
 
 // Relevant products for this commodity (max 2, order: aussie, kojien, bensu, saratoga) (T-31 Butir 2b)
 const allProducts = await getCollection('products');
@@ -131,35 +118,14 @@ const seo: SeoInput = {
         </h2>
       </div>
 
-      {hasMultipleTopics ? (
-        <div class="space-y-10">
-          {groupedArticles.map((group) => (
-            <div class="space-y-4" aria-labelledby={`topic-group-${group.topic.slug}`}>
-              <h2
-                id={`topic-group-${group.topic.slug}`}
-                class={`topic-${group.topic.slug} flex items-center gap-2 text-base sm:text-lg font-bold text-[var(--color-soil)]`}
-              >
-                <span class="w-2.5 h-2.5 rounded-full bg-[var(--topic)]" aria-hidden="true"></span>
-                <span>{topicName(group.topic.slug)}</span>
-                <span class="text-xs font-normal text-[var(--color-text-muted)]">({group.articles.length})</span>
-              </h2>
-              <div class="space-y-2">
-                {group.articles.map((article: any) => (
-                  <ArticleRow article={article} imageBy="topic" />
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <ArticleList
-          articles={articles}
-          initialCount={6}
-          batchSize={6}
-          listId={`komoditas-${commodity.id}`}
-          emptyMessage="Belum ada artikel yang diterbitkan untuk komoditas ini."
-        />
-      )}
+      <ArticleList
+        articles={articles}
+        initialCount={6}
+        batchSize={6}
+        listId={`komoditas-${commodity.id}`}
+        imageBy="topic"
+        emptyMessage="Belum ada artikel yang diterbitkan untuk komoditas ini."
+      />
     </section>
 
     <!-- Relevant Products (T-31 Butir 2b) -->

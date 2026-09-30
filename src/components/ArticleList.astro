@@ -7,6 +7,7 @@ interface Props {
   batchSize?: number;
   emptyMessage?: string;
   listId?: string;
+  imageBy?: 'commodity' | 'topic';
 }
 
 const {
@@ -15,6 +16,7 @@ const {
   batchSize = 6,
   emptyMessage = 'Belum ada artikel yang diterbitkan untuk saat ini.',
   listId = 'articles',
+  imageBy,
 } = Astro.props;
 
 const totalCount = articles.length;
@@ -48,7 +50,7 @@ const initialBatchRemaining = Math.min(batchSize, totalCount - initialCount);
               class={`article-item-wrapper ${isInitiallyHidden ? 'is-hidden' : ''}`}
               data-index={index}
             >
-              <ArticleRow article={article} />
+              <ArticleRow article={article} imageBy={imageBy} />
             </div>
           );
         })}

@@ -248,7 +248,7 @@ Tampilan:
 - `/produk`: empat baris yang dapat dibandingkan (nama, komoditas, peran, metode aplikasi); ≥1024px boleh tabel perbandingan. Empat item sebanding → baris/tabel seragam dibenarkan.
 - Filter/anchor per komoditas ("Untuk sawit", "Untuk padi", "Untuk sayur & buah") agar petani langsung ke produk yang relevan.
 - Dari hasil Diagnosa Gejala dan artikel, tautan produk hanya muncul bila komoditas cocok dan klaimnya diizinkan labelnya.
-- Detail: fungsi, komposisi, dosis & metode aplikasi dari label resmi, **nomor izin edar** (OQ-2), cara cek keaslian kemasan (OQ-8), lalu satu ajakan konsultasi di akhir halaman (§2.8). Tanpa harga, keranjang, atau tautan marketplace (NG-1).
+- Detail: fungsi, komposisi, dosis & metode aplikasi dari label resmi, **nomor izin edar** (OQ-2), cara cek keaslian kemasan (OQ-8). **Tanpa ajakan WhatsApp** (DEC-019). Harga kemasan hanya dari `products.json` dengan tanggal cek, tanpa nama situs sumber; tanpa keranjang atau tautan marketplace (NG-1).
 
 ### 2.6. Alat Tani (REQ-06, REQ-09, REQ-10, REQ-11)
 
@@ -337,7 +337,7 @@ Jurnal Tani (keputusan Paduka Ongki 2026-09-29).
 **Aturan:**
 
 1. **Maksimal satu ajakan WhatsApp per halaman** (satu `ConsultPrompt` atau satu tombol kirim form). Tautan nomor di footer tidak dihitung karena berupa teks kontak, bukan ajakan.
-2. **Di akhir tugas, bukan di awal**: setelah hasil alat, di akhir isi artikel/produk, atau sebagai tombol kirim form. Tidak pernah di header, menu, hero, di atas lipatan pertama sebelum pengguna mendapat nilai, atau di tengah prosa.
+2. **Di akhir tugas, bukan di awal**: setelah hasil alat, di blok Tentang penulis artikel, di bawah bio profil penulis, atau sebagai tombol kirim form (tidak ada di halaman produk, DEC-019). Tidak pernah di header, menu, hero, di atas lipatan pertama sebelum pengguna mendapat nilai, atau di tengah prosa.
 3. **Tidak ada elemen WhatsApp melayang, sticky bar, pop-up, atau per item daftar.**
 4. **Bentuk**: tombol sekunder (outline) dengan ikon `MessageCircle` monokrom dan label kata kerja yang spesifik ("Tanya agronom tentang hasil ini"), bukan hijau khas WhatsApp. Tombol primer hanya di `/konsultasi/` dan `/kemitraan-distributor/`, di mana mengirim ke WhatsApp memang tugas utamanya.
 5. **Bagikan ≠ konsultasi**: fitur bagikan memakai lembar bagi bawaan perangkat (`navigator.share`), yang di HP sudah memuat WhatsApp, sehingga tidak ada ikon WhatsApp kedua di halaman.
@@ -687,7 +687,7 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 1. Breadcrumb · H1 "{Komoditas}: Panduan Budidaya & Penanganan".
 2. Pengantar (opsional, `src/content/pages/komoditas-{komoditas}.md`).
 3. Tautan "Diagnosa gejala {komoditas}" (bila ada data gejala tertinjau) dan "Kalender tanam {komoditas}" (bila ada kalender tertinjau).
-4. Artikel komoditas: dikelompokkan per topik (urutan TOPICS dengan penanda warna topik) bila mencakup ≥ 2 topik berbeda; tetap satu daftar urut tanggal bila hanya 1 topik (T-31).
+4. Artikel komoditas: **satu daftar** `ArticleRow` urut tanggal (tanpa dipecah per topik — keputusan pemilik 2026-09-30, menggantikan pengelompokan T-31), 6 artikel pertama lalu tombol "Muat Panduan Lainnya" (+6 per klik), sama seperti hub topik dan indeks Jurnal.
 5. Produk yang relevan: maksimal 2 produk unggulan yang komoditasnya cocok (urutan: Aussie, Kojien, BENSU, Saratoga), ditampilkan sebagai baris terbuka tanpa kartu/CTA WhatsApp (T-31).
 6. `TopicSidebar` dengan komoditas aktif ditandai.
 
