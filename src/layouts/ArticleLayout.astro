@@ -304,18 +304,18 @@ if ((!activeReferences || activeReferences.length === 0) && import.meta.env.DEV)
             <slot />
           </div>
 
-          <!-- Tags / Kata Kunci Artikel (Clean, Frameless Editorial Typography) -->
+          <!-- Tags / Kata Kunci Artikel (Frameless, Clean Typography) -->
           {data.tags && data.tags.length > 0 && (
-            <div class="my-8 pt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm" aria-label="Tag artikel">
-              <span class="text-xs font-bold text-[var(--color-soil)] uppercase tracking-wider">
+            <div class="mt-5 mb-5 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs sm:text-[13px]" aria-label="Tag artikel">
+              <span class="font-bold text-[var(--color-soil)] uppercase tracking-wider mr-0.5">
                 Tag:
               </span>
               {data.tags.map((tag) => (
                 <a
                   href={`/jurnal/tag/${slugifyTag(tag)}/`}
-                  class="text-[var(--color-text)] hover:text-[var(--color-brand-strong)] hover:underline underline-offset-4 font-medium transition-colors inline-flex items-center min-h-[36px]"
+                  class="text-[var(--color-text-muted)] hover:text-[var(--color-brand-strong)] hover:underline underline-offset-2 font-medium transition-colors inline-flex items-center"
                 >
-                  <span class="text-[var(--color-soil)] mr-0.5">#</span>{tag}
+                  <span class="text-[var(--color-soil)] mr-0.5 font-semibold">#</span>{tag}
                 </a>
               ))}
             </div>

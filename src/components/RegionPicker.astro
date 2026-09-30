@@ -20,22 +20,27 @@ try {
 }
 ---
 
-<div id="region-picker-root" class="bg-[var(--color-surface)] p-6 sm:p-8 border border-[var(--color-border)] rounded-[2px] space-y-6">
-  <div class="border-b border-[var(--color-border)] pb-3">
-    <span class="block text-xs font-bold text-[var(--color-soil)] mb-1">
-      Langkah 1: Tentukan Lokasi Lahan
-    </span>
-    <p class="text-xs text-[var(--color-text-muted)]">
-      Pilih wilayah administrasi desa atau kelurahan untuk mengambil prakiraan cuaca resmi BMKG tingkat tapak.
-    </p>
+<div id="region-picker-root" class="bg-[var(--color-surface)] p-5 sm:p-7 border border-[var(--color-border)] rounded-[2px] space-y-6">
+  <div class="border-b border-[var(--color-border)] pb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+    <div>
+      <span class="block text-xs font-bold text-[var(--color-soil)] mb-0.5">
+        Langkah 1: Tentukan Lokasi Lahan
+      </span>
+      <p class="text-xs text-[var(--color-text-muted)]">
+        Pilih wilayah administrasi desa atau kelurahan untuk mengambil prakiraan cuaca resmi BMKG tingkat tapak.
+      </p>
+    </div>
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
     <!-- Level 1: Provinsi -->
     <div class="space-y-1.5 relative region-level-container" data-level="provinsi">
-      <label id="label-provinsi" for="combobox-trigger-provinsi" class="block text-xs font-bold text-[var(--color-text)]">
-        1. Provinsi
-      </label>
+      <div class="flex items-center justify-between">
+        <label id="label-provinsi" for="combobox-trigger-provinsi" class="block text-xs font-bold text-[var(--color-text)]">
+          1. Provinsi
+        </label>
+        <span id="badge-provinsi" class="text-[11px] font-semibold text-[var(--color-brand-strong)] hidden">✓ Terpilih</span>
+      </div>
       <div class="relative">
         <!-- Native select preserved sr-only for form & automated checks compatibility -->
         <select id="select-provinsi" class="sr-only" tabindex="-1" aria-hidden="true">
@@ -54,7 +59,7 @@ try {
           aria-haspopup="listbox"
           aria-controls="combobox-popover-provinsi"
           aria-labelledby="label-provinsi combobox-label-provinsi"
-          class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] shadow-2xs hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-xs sm:text-sm cursor-pointer transition-colors flex items-center justify-between text-left disabled:opacity-45 disabled:bg-[var(--color-canvas)] disabled:hover:border-[var(--color-border-control)] disabled:cursor-not-allowed"
+          class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] shadow-2xs hover:border-[var(--color-brand)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-strong)] focus-visible:ring-offset-1 text-sm font-medium cursor-pointer transition-colors flex items-center justify-between text-left disabled:opacity-45 disabled:bg-[var(--color-canvas)] disabled:hover:border-[var(--color-border-control)] disabled:cursor-not-allowed"
         >
           <span id="combobox-label-provinsi" class="truncate text-[var(--color-text-muted)]">
             -- Pilih Provinsi --
@@ -74,8 +79,8 @@ try {
           class="hidden absolute top-full left-0 right-0 z-50 mt-1.5 bg-[var(--color-surface)] border border-[var(--color-border-control)] rounded-[2px] shadow-lg overflow-hidden"
         >
           <!-- Search Box (CommandInput style) -->
-          <div class="p-2 border-b border-[var(--color-border)] bg-[var(--color-surface)] flex items-center gap-2">
-            <svg class="w-3.5 h-3.5 text-[var(--color-soil)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <div class="p-2.5 border-b border-[var(--color-border)] bg-[var(--color-surface)] flex items-center gap-2">
+            <svg class="w-4 h-4 text-[var(--color-soil)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="11" cy="11" r="8"></circle>
               <path d="m21 21-4.3-4.3"></path>
             </svg>
@@ -85,14 +90,25 @@ try {
               placeholder="Cari provinsi..."
               autocomplete="off"
               aria-label="Cari provinsi"
-              class="w-full bg-transparent text-xs sm:text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] outline-none border-none p-0 focus:ring-0"
+              class="w-full bg-transparent text-base sm:text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] outline-none border-none p-0 focus:ring-0 font-medium"
             />
+            <button
+              type="button"
+              id="combobox-clear-provinsi"
+              class="hidden p-1 text-[var(--color-text-muted)] hover:text-[var(--color-text)] rounded-[2px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)] cursor-pointer"
+              aria-label="Hapus pencarian provinsi"
+            >
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
           </div>
 
-          <!-- Scrolling List (CommandList style, max-h-52 = 208px, shows ~5 items) -->
+          <!-- Scrolling List (CommandList style, max-h-60 sm:max-h-52 = shows ~5-6 items) -->
           <div
             id="combobox-list-provinsi"
-            class="combobox-scroll-list max-h-52 overflow-y-auto overscroll-contain p-1 space-y-0.5"
+            class="combobox-scroll-list max-h-60 sm:max-h-52 overflow-y-auto overscroll-contain p-1 space-y-0.5"
           >
             {provinces.map((p) => (
               <div
@@ -101,7 +117,7 @@ try {
                 data-label={p.nama}
                 aria-selected="false"
                 tabindex="-1"
-                class="combobox-item px-3 py-2 text-xs sm:text-sm text-[var(--color-text)] rounded-[2px] cursor-pointer flex items-center justify-between hover:bg-[var(--color-tint)] hover:text-[var(--color-brand-strong)] transition-colors min-h-[38px]"
+                class="combobox-item px-3.5 py-2.5 text-sm text-[var(--color-text)] rounded-[2px] cursor-pointer flex items-center justify-between hover:bg-[var(--color-tint)] hover:text-[var(--color-brand-strong)] transition-colors min-h-[44px] select-none"
               >
                 <span class="truncate">{p.nama}</span>
                 <svg class="w-4 h-4 text-[var(--color-brand)] shrink-0 hidden check-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -114,7 +130,7 @@ try {
           <!-- Empty state -->
           <div
             id="combobox-empty-provinsi"
-            class="hidden py-4 px-3 text-center text-xs text-[var(--color-text-muted)]"
+            class="hidden py-6 px-3 text-center text-xs sm:text-sm text-[var(--color-text-muted)]"
           >
             Tidak ada provinsi ditemukan
           </div>
@@ -124,9 +140,12 @@ try {
 
     <!-- Level 2: Kabupaten / Kota -->
     <div class="space-y-1.5 relative region-level-container" data-level="kabupaten">
-      <label id="label-kabupaten" for="combobox-trigger-kabupaten" class="block text-xs font-bold text-[var(--color-text)]">
-        2. Kabupaten / Kota
-      </label>
+      <div class="flex items-center justify-between">
+        <label id="label-kabupaten" for="combobox-trigger-kabupaten" class="block text-xs font-bold text-[var(--color-text)]">
+          2. Kabupaten / Kota
+        </label>
+        <span id="badge-kabupaten" class="text-[11px] font-semibold text-[var(--color-brand-strong)] hidden">✓ Terpilih</span>
+      </div>
       <div class="relative">
         <select id="select-kabupaten" disabled class="sr-only" tabindex="-1" aria-hidden="true">
           <option value="">-- Pilih Kabupaten --</option>
@@ -141,7 +160,7 @@ try {
           aria-haspopup="listbox"
           aria-controls="combobox-popover-kabupaten"
           aria-labelledby="label-kabupaten combobox-label-kabupaten"
-          class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] shadow-2xs hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-xs sm:text-sm cursor-pointer transition-colors flex items-center justify-between text-left disabled:opacity-45 disabled:bg-[var(--color-canvas)] disabled:hover:border-[var(--color-border-control)] disabled:cursor-not-allowed"
+          class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] shadow-2xs hover:border-[var(--color-brand)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-strong)] focus-visible:ring-offset-1 text-sm font-medium cursor-pointer transition-colors flex items-center justify-between text-left disabled:opacity-45 disabled:bg-[var(--color-canvas)] disabled:hover:border-[var(--color-border-control)] disabled:cursor-not-allowed"
         >
           <span id="combobox-label-kabupaten" class="truncate text-[var(--color-text-muted)]">
             -- Pilih Kabupaten --
@@ -159,8 +178,8 @@ try {
           aria-labelledby="label-kabupaten"
           class="hidden absolute top-full left-0 right-0 z-50 mt-1.5 bg-[var(--color-surface)] border border-[var(--color-border-control)] rounded-[2px] shadow-lg overflow-hidden"
         >
-          <div class="p-2 border-b border-[var(--color-border)] bg-[var(--color-surface)] flex items-center gap-2">
-            <svg class="w-3.5 h-3.5 text-[var(--color-soil)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <div class="p-2.5 border-b border-[var(--color-border)] bg-[var(--color-surface)] flex items-center gap-2">
+            <svg class="w-4 h-4 text-[var(--color-soil)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="11" cy="11" r="8"></circle>
               <path d="m21 21-4.3-4.3"></path>
             </svg>
@@ -170,19 +189,30 @@ try {
               placeholder="Cari kabupaten/kota..."
               autocomplete="off"
               aria-label="Cari kabupaten atau kota"
-              class="w-full bg-transparent text-xs sm:text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] outline-none border-none p-0 focus:ring-0"
+              class="w-full bg-transparent text-base sm:text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] outline-none border-none p-0 focus:ring-0 font-medium"
             />
+            <button
+              type="button"
+              id="combobox-clear-kabupaten"
+              class="hidden p-1 text-[var(--color-text-muted)] hover:text-[var(--color-text)] rounded-[2px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)] cursor-pointer"
+              aria-label="Hapus pencarian kabupaten"
+            >
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
           </div>
 
           <div
             id="combobox-list-kabupaten"
-            class="combobox-scroll-list max-h-52 overflow-y-auto overscroll-contain p-1 space-y-0.5"
+            class="combobox-scroll-list max-h-60 sm:max-h-52 overflow-y-auto overscroll-contain p-1 space-y-0.5"
           >
           </div>
 
           <div
             id="combobox-empty-kabupaten"
-            class="hidden py-4 px-3 text-center text-xs text-[var(--color-text-muted)]"
+            class="hidden py-6 px-3 text-center text-xs sm:text-sm text-[var(--color-text-muted)]"
           >
             Tidak ada kabupaten/kota ditemukan
           </div>
@@ -192,9 +222,12 @@ try {
 
     <!-- Level 3: Kecamatan -->
     <div class="space-y-1.5 relative region-level-container" data-level="kecamatan">
-      <label id="label-kecamatan" for="combobox-trigger-kecamatan" class="block text-xs font-bold text-[var(--color-text)]">
-        3. Kecamatan
-      </label>
+      <div class="flex items-center justify-between">
+        <label id="label-kecamatan" for="combobox-trigger-kecamatan" class="block text-xs font-bold text-[var(--color-text)]">
+          3. Kecamatan
+        </label>
+        <span id="badge-kecamatan" class="text-[11px] font-semibold text-[var(--color-brand-strong)] hidden">✓ Terpilih</span>
+      </div>
       <div class="relative">
         <select id="select-kecamatan" disabled class="sr-only" tabindex="-1" aria-hidden="true">
           <option value="">-- Pilih Kecamatan --</option>
@@ -209,7 +242,7 @@ try {
           aria-haspopup="listbox"
           aria-controls="combobox-popover-kecamatan"
           aria-labelledby="label-kecamatan combobox-label-kecamatan"
-          class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] shadow-2xs hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-xs sm:text-sm cursor-pointer transition-colors flex items-center justify-between text-left disabled:opacity-45 disabled:bg-[var(--color-canvas)] disabled:hover:border-[var(--color-border-control)] disabled:cursor-not-allowed"
+          class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] shadow-2xs hover:border-[var(--color-brand)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-strong)] focus-visible:ring-offset-1 text-sm font-medium cursor-pointer transition-colors flex items-center justify-between text-left disabled:opacity-45 disabled:bg-[var(--color-canvas)] disabled:hover:border-[var(--color-border-control)] disabled:cursor-not-allowed"
         >
           <span id="combobox-label-kecamatan" class="truncate text-[var(--color-text-muted)]">
             -- Pilih Kecamatan --
@@ -227,8 +260,8 @@ try {
           aria-labelledby="label-kecamatan"
           class="hidden absolute top-full left-0 right-0 z-50 mt-1.5 bg-[var(--color-surface)] border border-[var(--color-border-control)] rounded-[2px] shadow-lg overflow-hidden"
         >
-          <div class="p-2 border-b border-[var(--color-border)] bg-[var(--color-surface)] flex items-center gap-2">
-            <svg class="w-3.5 h-3.5 text-[var(--color-soil)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <div class="p-2.5 border-b border-[var(--color-border)] bg-[var(--color-surface)] flex items-center gap-2">
+            <svg class="w-4 h-4 text-[var(--color-soil)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="11" cy="11" r="8"></circle>
               <path d="m21 21-4.3-4.3"></path>
             </svg>
@@ -238,19 +271,30 @@ try {
               placeholder="Cari kecamatan..."
               autocomplete="off"
               aria-label="Cari kecamatan"
-              class="w-full bg-transparent text-xs sm:text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] outline-none border-none p-0 focus:ring-0"
+              class="w-full bg-transparent text-base sm:text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] outline-none border-none p-0 focus:ring-0 font-medium"
             />
+            <button
+              type="button"
+              id="combobox-clear-kecamatan"
+              class="hidden p-1 text-[var(--color-text-muted)] hover:text-[var(--color-text)] rounded-[2px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)] cursor-pointer"
+              aria-label="Hapus pencarian kecamatan"
+            >
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
           </div>
 
           <div
             id="combobox-list-kecamatan"
-            class="combobox-scroll-list max-h-52 overflow-y-auto overscroll-contain p-1 space-y-0.5"
+            class="combobox-scroll-list max-h-60 sm:max-h-52 overflow-y-auto overscroll-contain p-1 space-y-0.5"
           >
           </div>
 
           <div
             id="combobox-empty-kecamatan"
-            class="hidden py-4 px-3 text-center text-xs text-[var(--color-text-muted)]"
+            class="hidden py-6 px-3 text-center text-xs sm:text-sm text-[var(--color-text-muted)]"
           >
             Tidak ada kecamatan ditemukan
           </div>
@@ -260,9 +304,12 @@ try {
 
     <!-- Level 4: Desa / Kelurahan -->
     <div class="space-y-1.5 relative region-level-container" data-level="desa">
-      <label id="label-desa" for="combobox-trigger-desa" class="block text-xs font-bold text-[var(--color-text)]">
-        4. Desa / Kelurahan
-      </label>
+      <div class="flex items-center justify-between">
+        <label id="label-desa" for="combobox-trigger-desa" class="block text-xs font-bold text-[var(--color-text)]">
+          4. Desa / Kelurahan
+        </label>
+        <span id="badge-desa" class="text-[11px] font-semibold text-[var(--color-brand-strong)] hidden">✓ Terpilih</span>
+      </div>
       <div class="relative">
         <select id="select-desa" disabled class="sr-only" tabindex="-1" aria-hidden="true">
           <option value="">-- Pilih Desa --</option>
@@ -277,7 +324,7 @@ try {
           aria-haspopup="listbox"
           aria-controls="combobox-popover-desa"
           aria-labelledby="label-desa combobox-label-desa"
-          class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] shadow-2xs hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-xs sm:text-sm cursor-pointer transition-colors flex items-center justify-between text-left disabled:opacity-45 disabled:bg-[var(--color-canvas)] disabled:hover:border-[var(--color-border-control)] disabled:cursor-not-allowed"
+          class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] shadow-2xs hover:border-[var(--color-brand)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-strong)] focus-visible:ring-offset-1 text-sm font-medium cursor-pointer transition-colors flex items-center justify-between text-left disabled:opacity-45 disabled:bg-[var(--color-canvas)] disabled:hover:border-[var(--color-border-control)] disabled:cursor-not-allowed"
         >
           <span id="combobox-label-desa" class="truncate text-[var(--color-text-muted)]">
             -- Pilih Desa --
@@ -295,8 +342,8 @@ try {
           aria-labelledby="label-desa"
           class="hidden absolute top-full left-0 right-0 z-50 mt-1.5 bg-[var(--color-surface)] border border-[var(--color-border-control)] rounded-[2px] shadow-lg overflow-hidden"
         >
-          <div class="p-2 border-b border-[var(--color-border)] bg-[var(--color-surface)] flex items-center gap-2">
-            <svg class="w-3.5 h-3.5 text-[var(--color-soil)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <div class="p-2.5 border-b border-[var(--color-border)] bg-[var(--color-surface)] flex items-center gap-2">
+            <svg class="w-4 h-4 text-[var(--color-soil)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="11" cy="11" r="8"></circle>
               <path d="m21 21-4.3-4.3"></path>
             </svg>
@@ -306,19 +353,30 @@ try {
               placeholder="Cari desa/kelurahan..."
               autocomplete="off"
               aria-label="Cari desa atau kelurahan"
-              class="w-full bg-transparent text-xs sm:text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] outline-none border-none p-0 focus:ring-0"
+              class="w-full bg-transparent text-base sm:text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] outline-none border-none p-0 focus:ring-0 font-medium"
             />
+            <button
+              type="button"
+              id="combobox-clear-desa"
+              class="hidden p-1 text-[var(--color-text-muted)] hover:text-[var(--color-text)] rounded-[2px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)] cursor-pointer"
+              aria-label="Hapus pencarian desa"
+            >
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
           </div>
 
           <div
             id="combobox-list-desa"
-            class="combobox-scroll-list max-h-52 overflow-y-auto overscroll-contain p-1 space-y-0.5"
+            class="combobox-scroll-list max-h-60 sm:max-h-52 overflow-y-auto overscroll-contain p-1 space-y-0.5"
           >
           </div>
 
           <div
             id="combobox-empty-desa"
-            class="hidden py-4 px-3 text-center text-xs text-[var(--color-text-muted)]"
+            class="hidden py-6 px-3 text-center text-xs sm:text-sm text-[var(--color-text-muted)]"
           >
             Tidak ada desa/kelurahan ditemukan
           </div>
@@ -327,10 +385,31 @@ try {
     </div>
   </div>
 
+  <!-- Active Selection Summary Card (Appears when location is fully selected) -->
+  <div id="region-active-summary" class="hidden p-4 bg-[var(--color-tint)] border border-[var(--color-brand)]/20 rounded-[2px] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs sm:text-sm">
+    <div class="flex items-start sm:items-center gap-2.5">
+      <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[var(--color-brand)] text-white text-xs shrink-0 mt-0.5 sm:mt-0 font-bold" aria-hidden="true">✓</span>
+      <div>
+        <span class="font-bold text-[var(--color-brand-strong)]">Lokasi Terpilih:</span>
+        <span id="region-active-text" class="font-medium text-[var(--color-text)] ml-1"></span>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 shrink-0 self-end sm:self-auto">
+      <button
+        type="button"
+        id="region-reset-btn"
+        class="inline-flex items-center gap-1 text-xs font-bold text-[var(--color-brand-strong)] hover:text-[var(--color-brand-hover)] hover:underline min-h-[36px] cursor-pointer"
+      >
+        <span>Ganti Wilayah</span>
+        <span aria-hidden="true">&rarr;</span>
+      </button>
+    </div>
+  </div>
+
   <!-- Status / Loading Indicator for Region Picker -->
   <div class="flex items-center justify-between text-xs text-[var(--color-text-muted)] pt-1">
-    <span id="region-status-text">Pilih provinsi untuk memulai.</span>
-    <span id="region-remember-badge" class="hidden tabular-nums text-[11px] text-[var(--color-soil)]">
+    <span id="region-status-text" class="font-medium">Pilih provinsi untuk memulai.</span>
+    <span id="region-remember-badge" class="hidden tabular-nums text-xs text-[var(--color-soil)] font-medium">
       ✓ Lokasi tersimpan di perangkat
     </span>
   </div>
@@ -423,6 +502,16 @@ try {
     const searchKec = document.getElementById('combobox-search-kecamatan') as HTMLInputElement | null;
     const searchDesa = document.getElementById('combobox-search-desa') as HTMLInputElement | null;
 
+    const clearProv = document.getElementById('combobox-clear-provinsi') as HTMLButtonElement | null;
+    const clearKab = document.getElementById('combobox-clear-kabupaten') as HTMLButtonElement | null;
+    const clearKec = document.getElementById('combobox-clear-kecamatan') as HTMLButtonElement | null;
+    const clearDesa = document.getElementById('combobox-clear-desa') as HTMLButtonElement | null;
+
+    const badgeProv = document.getElementById('badge-provinsi');
+    const badgeKab = document.getElementById('badge-kabupaten');
+    const badgeKec = document.getElementById('badge-kecamatan');
+    const badgeDesa = document.getElementById('badge-desa');
+
     const emptyProv = document.getElementById('combobox-empty-provinsi');
     const emptyKab = document.getElementById('combobox-empty-kabupaten');
     const emptyKec = document.getElementById('combobox-empty-kecamatan');
@@ -430,6 +519,9 @@ try {
 
     const statusText = document.getElementById('region-status-text');
     const rememberBadge = document.getElementById('region-remember-badge');
+    const activeSummary = document.getElementById('region-active-summary');
+    const activeText = document.getElementById('region-active-text');
+    const resetBtn = document.getElementById('region-reset-btn');
 
     if (!selectProv || !selectKab || !selectKec || !selectDesa) return;
     if (!triggerProv || !triggerKab || !triggerKec || !triggerDesa) return;
@@ -446,6 +538,13 @@ try {
       kabupaten: labelKab,
       kecamatan: labelKec,
       desa: labelDesa,
+    };
+
+    const badges: Record<RegionLevel, HTMLElement | null> = {
+      provinsi: badgeProv,
+      kabupaten: badgeKab,
+      kecamatan: badgeKec,
+      desa: badgeDesa,
     };
 
     const popovers: Record<RegionLevel, HTMLElement | null> = {
@@ -467,6 +566,13 @@ try {
       kabupaten: searchKab,
       kecamatan: searchKec,
       desa: searchDesa,
+    };
+
+    const clears: Record<RegionLevel, HTMLButtonElement | null> = {
+      provinsi: clearProv,
+      kabupaten: clearKab,
+      kecamatan: clearKec,
+      desa: clearDesa,
     };
 
     const empties: Record<RegionLevel, HTMLElement | null> = {
@@ -530,9 +636,13 @@ try {
     function closePopover(lvl: RegionLevel) {
       const popover = popovers[lvl];
       const trigger = triggers[lvl];
+      const search = searches[lvl];
       const container = root ? root.querySelector(`.region-level-container[data-level="${lvl}"]`) : null;
 
       if (popover) popover.classList.add('hidden');
+      if (search && document.activeElement === search) {
+        search.blur();
+      }
       if (trigger) {
         trigger.setAttribute('aria-expanded', 'false');
         const chevron = trigger.querySelector('.chevron-icon');
@@ -554,6 +664,7 @@ try {
       const search = searches[lvl];
       const list = lists[lvl];
       const empty = empties[lvl];
+      const clearBtn = clears[lvl];
       const container = root ? root.querySelector(`.region-level-container[data-level="${lvl}"]`) : null;
 
       if (!popover || !trigger || trigger.disabled) return;
@@ -569,7 +680,13 @@ try {
       // Reset search filter
       if (search) {
         search.value = '';
-        search.focus();
+        if (clearBtn) clearBtn.classList.add('hidden');
+
+        // Only autofocus on non-touch / desktop screens to prevent mobile virtual keyboard popup and viewport shifting
+        const isTouch = window.matchMedia('(max-width: 640px)').matches || window.matchMedia('(pointer: coarse)').matches;
+        if (!isTouch) {
+          search.focus();
+        }
       }
       if (list) {
         const items = list.querySelectorAll<HTMLElement>('.combobox-item');
@@ -596,14 +713,19 @@ try {
       const select = selects[lvl];
       const label = labels[lvl];
       const list = lists[lvl];
+      const badge = badges[lvl];
 
       if (select) select.value = kode;
       if (label) {
         label.textContent = nama || PLACEHOLDERS[lvl];
         if (kode) {
           label.classList.remove('text-[var(--color-text-muted)]');
+          label.classList.add('text-[var(--color-text)]', 'font-semibold');
+          if (badge) badge.classList.remove('hidden');
         } else {
           label.classList.add('text-[var(--color-text-muted)]');
+          label.classList.remove('text-[var(--color-text)]', 'font-semibold');
+          if (badge) badge.classList.add('hidden');
         }
       }
 
@@ -641,7 +763,9 @@ try {
       const select = selects[lvl];
       const label = labels[lvl];
       const list = lists[lvl];
+      const badge = badges[lvl];
 
+      if (badge) badge.classList.add('hidden');
       if (trigger) {
         trigger.disabled = true;
         const chevronWrapper = trigger.querySelector('span.pointer-events-none');
@@ -655,6 +779,7 @@ try {
       if (label) {
         label.textContent = PLACEHOLDERS[lvl];
         label.classList.add('text-[var(--color-text-muted)]');
+        label.classList.remove('text-[var(--color-text)]', 'font-semibold');
       }
       if (list) {
         list.innerHTML = '';
@@ -688,7 +813,7 @@ try {
         itemEl.dataset.label = item.nama;
         itemEl.tabIndex = -1;
         itemEl.className =
-          'combobox-item px-3 py-2 text-xs sm:text-sm text-[var(--color-text)] rounded-[2px] cursor-pointer flex items-center justify-between hover:bg-[var(--color-tint)] hover:text-[var(--color-brand-strong)] transition-colors min-h-[38px]';
+          'combobox-item px-3.5 py-2.5 text-sm text-[var(--color-text)] rounded-[2px] cursor-pointer flex items-center justify-between hover:bg-[var(--color-tint)] hover:text-[var(--color-brand-strong)] transition-colors min-h-[44px] select-none';
 
         const isSelected = item.kode === selectedKode;
         itemEl.setAttribute('aria-selected', isSelected ? 'true' : 'false');
@@ -749,13 +874,14 @@ try {
         disableLevel('kecamatan');
         disableLevel('desa');
         activeRegencyData = null;
+        if (activeSummary) activeSummary.classList.add('hidden');
 
         if (!kode) {
           if (statusText) statusText.textContent = 'Pilih provinsi untuk memulai.';
           return;
         }
 
-        if (statusText) statusText.textContent = 'Memuat daftar kabupaten/kota...';
+        if (statusText) statusText.textContent = `Provinsi dipilih: ${nama}. Memuat daftar kabupaten/kota...`;
         if (labels.kabupaten) labels.kabupaten.textContent = 'Memuat...';
 
         try {
@@ -763,7 +889,7 @@ try {
           renderList('kabupaten', regencies);
           enableLevel('kabupaten');
           if (labels.kabupaten) labels.kabupaten.textContent = PLACEHOLDERS.kabupaten;
-          if (statusText) statusText.textContent = 'Pilih kabupaten/kota.';
+          if (statusText) statusText.textContent = `Provinsi ${nama}. Silakan pilih kabupaten/kota.`;
         } catch (err: any) {
           if (statusText) statusText.textContent = err.message || 'Gagal memuat kabupaten.';
           disableLevel('kabupaten');
@@ -772,13 +898,14 @@ try {
         disableLevel('kecamatan');
         disableLevel('desa');
         activeRegencyData = null;
+        if (activeSummary) activeSummary.classList.add('hidden');
 
         if (!kode) {
           if (statusText) statusText.textContent = 'Pilih kabupaten/kota.';
           return;
         }
 
-        if (statusText) statusText.textContent = 'Memuat daftar kecamatan & desa...';
+        if (statusText) statusText.textContent = `Kabupaten dipilih: ${nama}. Memuat daftar kecamatan...`;
         if (labels.kecamatan) labels.kecamatan.textContent = 'Memuat...';
 
         try {
@@ -787,13 +914,14 @@ try {
           renderList('kecamatan', districts);
           enableLevel('kecamatan');
           if (labels.kecamatan) labels.kecamatan.textContent = PLACEHOLDERS.kecamatan;
-          if (statusText) statusText.textContent = 'Pilih kecamatan.';
+          if (statusText) statusText.textContent = `Kabupaten ${nama}. Silakan pilih kecamatan.`;
         } catch (err: any) {
           if (statusText) statusText.textContent = err.message || 'Gagal memuat kecamatan.';
           disableLevel('kecamatan');
         }
       } else if (lvl === 'kecamatan') {
         disableLevel('desa');
+        if (activeSummary) activeSummary.classList.add('hidden');
 
         if (!kode || !activeRegencyData) {
           if (statusText) statusText.textContent = 'Pilih kecamatan.';
@@ -808,7 +936,7 @@ try {
 
         renderList('desa', dist.desa);
         enableLevel('desa');
-        if (statusText) statusText.textContent = 'Pilih desa/kelurahan untuk melihat cuaca BMKG.';
+        if (statusText) statusText.textContent = `Kecamatan ${nama}. Silakan pilih desa/kelurahan.`;
       } else if (lvl === 'desa') {
         const adm4 = kode;
         if (!adm4) return;
@@ -819,7 +947,12 @@ try {
         const desaText = nama;
 
         const fullLabel = `${desaText}, Kec. ${kecText}, ${kabText}, ${provText}`;
-        if (statusText) statusText.textContent = `Lokasi aktif: ${desaText}, ${kecText}`;
+        if (statusText) statusText.textContent = `Prakiraan cuaca siap: ${desaText}, ${kecText}`;
+
+        if (activeSummary && activeText) {
+          activeText.textContent = fullLabel;
+          activeSummary.classList.remove('hidden');
+        }
 
         saveLastLocation({
           prov: selects.provinsi.value,
@@ -832,6 +965,21 @@ try {
       }
     }
 
+    // Reset button to clear selection and start anew
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        disableLevel('desa');
+        disableLevel('kecamatan');
+        disableLevel('kabupaten');
+        setTriggerSelected('provinsi', '', '');
+        activeRegencyData = null;
+        if (activeSummary) activeSummary.classList.add('hidden');
+        if (statusText) statusText.textContent = 'Pilih provinsi untuk memulai.';
+        triggerProv.focus();
+        openPopover('provinsi');
+      });
+    }
+
     // Attach trigger buttons and search inputs listeners
     const levels: RegionLevel[] = ['provinsi', 'kabupaten', 'kecamatan', 'desa'];
     levels.forEach((lvl) => {
@@ -839,6 +987,7 @@ try {
       const search = searches[lvl];
       const list = lists[lvl];
       const empty = empties[lvl];
+      const clearBtn = clears[lvl];
 
       if (trigger) {
         trigger.addEventListener('click', (e) => {
@@ -859,6 +1008,14 @@ try {
       if (search && list && empty) {
         search.addEventListener('input', () => {
           const q = search.value.trim().toLowerCase();
+          if (clearBtn) {
+            if (search.value.length > 0) {
+              clearBtn.classList.remove('hidden');
+            } else {
+              clearBtn.classList.add('hidden');
+            }
+          }
+
           const items = list.querySelectorAll<HTMLElement>('.combobox-item');
           let visibleCount = 0;
           items.forEach((it) => {
@@ -877,6 +1034,15 @@ try {
             empty.classList.add('hidden');
           }
         });
+
+        if (clearBtn) {
+          clearBtn.addEventListener('click', () => {
+            search.value = '';
+            clearBtn.classList.add('hidden');
+            search.dispatchEvent(new Event('input'));
+            search.focus();
+          });
+        }
 
         search.addEventListener('keydown', (e) => {
           if (e.key === 'Escape') {
@@ -1018,8 +1184,12 @@ try {
             enableLevel('desa');
 
             const fullLabel = `${desaName}, Kec. ${kecName}, ${kabName}, ${provName}`;
-            if (statusText) statusText.textContent = `Lokasi aktif: ${desaName}, ${kecName}`;
+            if (statusText) statusText.textContent = `Prakiraan cuaca siap: ${desaName}, ${kecName}`;
             if (rememberBadge) rememberBadge.classList.remove('hidden');
+            if (activeSummary && activeText) {
+              activeText.textContent = fullLabel;
+              activeSummary.classList.remove('hidden');
+            }
 
             dispatchSelectedAdm4(targetDesa, fullLabel);
           }

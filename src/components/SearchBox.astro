@@ -63,17 +63,17 @@ const isLarge = size === 'large';
       autofocus={autofocus}
       autocomplete="off"
       spellcheck="false"
-      class={`w-full pl-10 pr-10 rounded-[2px] bg-white text-[var(--color-text)] border border-[var(--color-border-control)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent transition-colors placeholder:text-[var(--color-border-control)] ${
+      class={`w-full pl-10 pr-10 rounded-[2px] bg-white text-[var(--color-text)] border border-[var(--color-border-control)] focus:outline-none focus:ring-0 focus:border-[var(--color-brand-strong)] transition-colors placeholder:text-[var(--color-border-control)] ${
         isLarge
           ? "py-3.5 text-base sm:text-lg min-h-[52px]"
-          : "py-2.5 text-sm sm:text-base min-h-[44px]"
+          : "py-2.5 text-base min-h-[44px]"
       }`}
     />
 
     <button
       type="button"
       id="search-clear-btn"
-      class="absolute inset-y-0 right-0 pr-3 flex items-center text-[var(--color-border-control)] hover:text-[var(--color-text)] hidden focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] rounded-[2px] min-h-[44px] min-w-[44px] justify-center"
+      class="absolute inset-y-0 right-0 pr-3 flex items-center text-[var(--color-border-control)] hover:text-[var(--color-text)] hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-strong)] rounded-[2px] min-h-[44px] min-w-[44px] justify-center cursor-pointer"
       aria-label="Hapus kata kunci"
     >
       <svg
