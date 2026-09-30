@@ -9,11 +9,11 @@
 
 ## 🌾 Ikhtisar Proyek
 
-**Agritani** adalah situs PT Agritani Internasional (distributor resmi nutrisi & aktivator imun tanaman) dengan empat pilar:
-1. **Jurnal Tani** — artikel agronomi berbasis riset oleh Prof. Arif Prabowo.
+**Agritani** adalah portal pertanian yang dikelola resmi oleh Arif Prabowo (Konsultan Pertanian Senior) untuk PT Agritani Internasional, dengan empat pilar (DEC-016):
+1. **Jurnal Tani** — artikel agronomi berbasis pustaka oleh Arif Prabowo, dengan pengungkapan hubungan komersialnya.
 2. **Alat Tani** — Diagnosa Gejala, Kalender Tanam, Cuaca Tani (data BMKG), Kalkulator Dosis; gratis, tanpa akun.
 3. **Konsultasi** — tanya langsung ke tim agronomi via WhatsApp dengan pesan terstruktur.
-4. **Profil perusahaan** — identitas distributor resmi; 4 produk (Aussie, BENSU, Kojien, Saratoga) sebagai referensi, kemitraan B2B sebagai sasaran kedua.
+4. **Profil perusahaan** — portal yang bekerja sama dengan brand pupuk & perusahaan pertanian; 4 produk unggulan Agritani (Aussie, BENSU, Kojien, Saratoga) sebagai referensi, kemitraan B2B sebagai sasaran kedua.
 
 ---
 

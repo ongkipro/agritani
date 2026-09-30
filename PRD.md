@@ -12,7 +12,7 @@
 Sektor pertanian Indonesia menghadapi jurang informasi kritis:
 1. **Disinformasi & Ketergantungan Kimia Berlebih**: Petani kesulitan membedakan gejala penyakit tanaman di lahan (seperti membedakan thrips vs virus gemini, atau layu fusarium vs layu bakteri), sehingga sering melakukan penyemprotan pestisida kimia secara salah dosis dan tidak efektif.
 2. **Ketiadaan Portal Sains Terbuka yang Kredibel**: Mayoritas media pertanian daring di Indonesia dipenuhi oleh berita seremonial politik atau artikel clickbait tanpa validasi ilmiah dan tanpa protokol penanganan yang teruji.
-3. **Kebutuhan Identitas Korporasi Bioteknologi Berkelanjutan**: PT Agritani Internasional membutuhkan saluran representasi digital yang menggabungkan kredibilitas distributor resmi produk aktivator imun tanaman dengan media publikasi sains agronomi terbuka bergaya *Medium/Substack* untuk mengedukasi pasar dan memperluas jaringan distributor B2B nasional.
+3. **Kebutuhan Identitas Korporasi Bioteknologi Berkelanjutan**: PT Agritani Internasional membutuhkan saluran representasi digital yang menggabungkan kredibilitas produk unggulan aktivator imun tanaman dan kerja sama dengan brand serta perusahaan pertanian (DEC-016) dengan media publikasi sains agronomi terbuka bergaya *Medium/Substack* untuk mengedukasi pasar dan memperluas jaringan distributor B2B nasional.
 
 ---
 
@@ -20,10 +20,10 @@ Sektor pertanian Indonesia menghadapi jurang informasi kritis:
 
 | Pilar | Peran | Halaman |
 | :--- | :--- | :--- |
-| **Jurnal Tani** | Artikel agronomi oleh Prof. Arif Prabowo; sumber trafik organik & kepercayaan | `/jurnal/…`, `/penulis/…` |
+| **Jurnal Tani** | Artikel agronomi oleh Arif Prabowo (Konsultan Pertanian Senior, pengelola portal), dengan pengungkapan hubungan komersial; sumber trafik organik & kepercayaan | `/jurnal/…`, `/penulis/…` |
 | **Alat Tani** | Tools praktis yang dipakai berulang di lahan: Diagnosa Gejala, Kalender Tanam, Cuaca Tani, Kalkulator Dosis | `/alat/…` |
 | **Konsultasi** | Jalur tanya langsung ke tim agronomi via WhatsApp, dengan pesan terstruktur | `/konsultasi/` + tombol berkonteks di seluruh situs |
-| **Profil perusahaan** | Identitas PT Agritani Internasional sebagai distributor resmi | `/tentang-kami/` |
+| **Profil perusahaan** | Agritani sebagai portal pertanian yang dikelola resmi Arif Prabowo untuk PT Agritani Internasional; produk unggulan & kerja sama brand/perusahaan pertanian (DEC-016) | `/tentang-kami/` |
 
 **Produk** (4) tampil sebagai **referensi** yang relevan dengan komoditas, bukan etalase jualan. **B2B/kemitraan** adalah sasaran kedua: tersedia dan mudah ditemukan, tetapi tidak mendominasi pengalaman petani.
 
@@ -70,7 +70,7 @@ Sektor pertanian Indonesia menghadapi jurang informasi kritis:
 ## 5. Requirements (EARS Format)
 
 ### 5.1. Core System & Corporate Profile
-* **REQ-01 (Corporate Authority)**: The system shall present the official identity of PT Agritani Internasional as an official distributor, its immune-cell-activator approach, its technology origins (Thailand, Japan), and its catalogue of exactly four products — Aussie, BENSU, Kojien, and Saratoga — each with target commodities, function, composition, application method, and registration number when provided.
+* **REQ-01 (Corporate Authority)**: The system shall present Agritani as an agriculture portal officially managed by Arif Prabowo for PT Agritani Internasional, partnering with fertilizer brands and agricultural companies that are not named (DEC-016), its immune-cell-activator approach, its technology origins (Thailand, Japan), and its catalogue of exactly four flagship products — Aussie, BENSU, Kojien, and Saratoga — each with target commodities, function, composition, application method, and registration number when provided.
 * **REQ-02 (B2B Distributor Ingestion)**: When a potential partner submits the partnership form with all required fields valid (name, business name, business type, province/regency, area or capacity, WhatsApp number), the system shall open a WhatsApp conversation to the official Agritani partnership number with a prefilled structured message, without storing the submission on any server. If a required field is invalid, the system shall identify the field, explain the correction, and keep all entered values.
 
 ### 5.2. Editorial Publication & Agriculture Journal
@@ -111,7 +111,7 @@ Anatomi setiap tipe halaman: [DESIGN.md](DESIGN.md) §4.2. Semua URL memakai tra
 /jurnal/topik/[topik]/       -> Hub topik (proteksi-tanaman, tanah-nutrisi, budidaya, air-irigasi, pascapanen-agribisnis, sains-tanaman)
 /jurnal/komoditas/[komoditas]/ -> Hub komoditas (dibangun bila ≥ 3 artikel terbit untuk komoditas itu)
 /jurnal/[slug]/              -> Artikel: anatomi DESIGN §4.3
-/penulis/arif-prabowo/       -> Profil penulis & moderator (ProfilePage)
+/penulis/arif-prabowo/       -> Profil penulis & pengelola (ProfilePage)
 /produk/                     -> 4 produk sebagai referensi: Aussie, BENSU, Kojien, Saratoga (per komoditas)
 /produk/[slug]/              -> Detail produk: fungsi, kandungan, cara pakai, legalitas
 /tentang-kami/               -> Profil PT Agritani Internasional
@@ -146,12 +146,12 @@ dibutuhkan implementasi; kolom "Status" diperbarui saat data diterima.
 | OQ-1 | Nomor WhatsApp resmi (kemitraan & konsultasi; boleh satu nomor) + jam layanan | `62…` tanpa spasi; jam & hari layanan dalam teks | Header menu, footer, hasil diagnosa, produk, form kemitraan (T-11, T-12) | Kandidat `+6287770457256` di `docs/research/web-scan.md`, **belum dikonfirmasi** |
 | OQ-2 | Data label 4 produk: nomor izin edar, kategori izin, komposisi, bentuk & ukuran kemasan, dosis & cara aplikasi, komoditas | Foto label depan & belakang tiap kemasan (JPG terbaca) atau dokumen izin | `/produk/`, detail produk (T-11) | Belum |
 | OQ-3 | Pustaka ilmiah tingkat paper per artikel (150 naskah; per 2026-09-29 hanya 1 yang punya bagian referensi) | Penulis, tahun, judul, jurnal/lembaga, DOI/URL — minimal 1 per artikel | Daftar Pustaka (T-16, REQ-05) | Belum; artikel tanpa ini tetap `draft` |
-| OQ-4 | Profil Prof. Arif Prabowo | Foto potret (JPG/PNG, ≥ 800×800 px, latar polos); penulisan gelar lengkap; institusi/universitas (atau "tidak ditampilkan"); 2–4 kalimat bio & bidang keahlian | Byline, Tentang Penulis, `/penulis/arif-prabowo/` (T-05, T-10) | Nama, gelar profesor, peran penulis & moderator, izin foto: **diterima**; file foto, gelar lengkap, institusi: belum |
+| OQ-4 | Profil Arif Prabowo | Foto potret; sebutan; 2–4 kalimat bio & bidang keahlian | Byline, Tentang Penulis, `/penulis/arif-prabowo/`, Beranda (T-05, T-10, T-32) | **Diterima 2026-09-30 (DEC-016):** bukan profesor; sebutan "Konsultan Pertanian Senior · Pengelola Jurnal Tani"; >8 tahun di pertanian & riset (menurut pemilik); juga sales & konsultan produk Agritani; foto (edit foto asli, disetujui). **Belum:** teks bio final dikonfirmasi Arif; pendidikan/institusi tidak ditampilkan sampai diberikan |
 | OQ-6 | Akun Cloudflare & domain | Akses akun Cloudflare yang dipakai; status registrasi `agritani.com` dan siapa registrarnya | T-18, rilis | Hosting diputuskan (DEC-009); akun & domain belum (domain tidak resolve per 2026-09-29) |
 | OQ-7 | Identitas legal | Nama badan hukum, alamat kantor, NIB, email resmi | Footer, Tentang Kami, Kebijakan Privasi (T-04, T-10, T-17) | Belum |
 | OQ-9 | Klaim produk yang diizinkan | Konfirmasi per klaim di DESIGN §2.5 + bukti uji bila klaim hasil dipertahankan | Tagline & fungsi produk (T-11) | Belum; klaim berisiko ditahan |
-| OQ-11 | Tinjauan agronomis Prof. Arif Prabowo: (a) data kalender tanam per komoditas (HST, fase, kegiatan, jendela OPT, MT1–MT3) yang disemai dari agrimarket; (b) ambang indikator aplikasi lapangan Cuaca Tani; (c) dataset gejala awal dari playbook agrimarket | Catatan setuju/revisi per komoditas dan per ambang (boleh berupa komentar di dokumen) | Kalender Tanam, Cuaca Tani, Diagnosa (T-09, T-19, T-20) | Belum |
-| OQ-12 | Pengantar 80–150 kata untuk tiap hub topik (6) dan hub komoditas utama, ditulis/disetujui Prof. Arif | Teks Markdown per hub | Hub `/jurnal/topik/…` (T-05) | Belum; hub tanpa pengantar tetap tampil dengan daftar artikel saja |
+| OQ-11 | Tinjauan agronomis Arif Prabowo: (a) data kalender tanam per komoditas (HST, fase, kegiatan, jendela OPT, MT1–MT3) yang disemai dari agrimarket; (b) ambang indikator aplikasi lapangan Cuaca Tani; (c) dataset gejala awal dari playbook agrimarket | Catatan setuju/revisi per komoditas dan per ambang (boleh berupa komentar di dokumen) | Kalender Tanam, Cuaca Tani, Diagnosa (T-09, T-19, T-20) | Belum |
+| OQ-12 | Pengantar 80–150 kata untuk tiap hub topik (6) dan hub komoditas utama, ditulis/disetujui Arif Prabowo | Teks Markdown per hub | Hub `/jurnal/topik/…` (T-05) | Belum; hub tanpa pengantar tetap tampil dengan daftar artikel saja |
 | OQ-13 | Apakah pengajuan kemitraan perlu disimpan di server (D1) selain dikirim via WhatsApp? Bila ya: siapa yang membaca, berapa lama disimpan, dan teks persetujuan | Keputusan pemilik + retensi (bulan) + teks persetujuan | T-30, ADR-0001, Kebijakan Privasi | Belum; default: tidak disimpan (DEC-006) |
 
 ### 8.2. Penting, tidak memblokir rilis

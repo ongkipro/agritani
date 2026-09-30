@@ -22,7 +22,7 @@ web
 ## Product Purpose
 
 agritani.com is four things in one site (PRD §1.5): **Jurnal Tani** (agronomy
-articles by Prof. Arif Prabowo), **Alat Tani** (symptom diagnosis, planting
+articles by Arif Prabowo, Senior Agricultural Consultant), **Alat Tani** (symptom diagnosis, planting
 calendar, BMKG weather, dose calculator), **Konsultasi** (structured WhatsApp
 questions to the agronomy team), and the **company profile**. Success means
 farmers find credible, traceable answers and reuse the tools; partners can
@@ -30,10 +30,16 @@ apply without friction.
 
 ## Positioning
 
-PT Agritani Internasional is an **official distributor** (owner decision
-2026-09-29) of four products: Aussie, BENSU, Kojien, Saratoga. The difference
-from category sites is a professor-moderated, reference-backed journal plus
-free field tools, with products shown as relevant references, not a storefront.
+Agritani is an agriculture portal officially managed by **Arif Prabowo**
+(Senior Agricultural Consultant; more than 8 years in agriculture and research,
+per the owner) for PT Agritani Internasional (DEC-016, owner decision
+2026-09-30). Aussie, BENSU, Kojien, and Saratoga are Agritani's flagship
+products; Agritani also partners with several fertilizer brands and
+agricultural companies, which the site does not name (NG-3). Arif also works in
+sales and consulting for these products, so every article discloses that
+relationship. The difference from category sites is a practitioner-run,
+reference-backed journal plus free field tools, with products shown as
+relevant references, not a storefront.
 
 ## Constraints
 
@@ -53,4 +59,4 @@ free field tools, with products shown as relevant references, not a storefront.
 - Logo "Tunas A" (`docs/brand/logo/`, DEC-013).
 - Photography is dummy (Pixabay/Pexels, `src/assets/images/dummy/CREDITS.md`)
   until the owner supplies real photos (OQ-5).
-- Prof. Arif Prabowo photo pending from the owner.
+- Arif Prabowo portrait: owner-approved edit of a real photo (2026-09-30), staged for implementation.

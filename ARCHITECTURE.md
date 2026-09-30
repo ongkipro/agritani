@@ -355,7 +355,7 @@ Kandidat saat keputusan diambil (belum dievaluasi, versi & API wajib dicek dari 
 
 | Pendekatan | Contoh kandidat | Cocok bila |
 | :--- | :--- | :--- |
-| Git-based, admin statis | Decap CMS, Sveltia CMS | Editor sedikit (Prof. Arif, admin Agritani), konten tetap di repo, butuh proxy OAuth GitHub |
+| Git-based, admin statis | Decap CMS, Sveltia CMS | Editor sedikit (Arif Prabowo, admin Agritani), konten tetap di repo, butuh proxy OAuth GitHub |
 | Git-based, terintegrasi Astro | Keystatic, TinaCMS | Butuh pengalaman edit lebih kaya; bisa menambah dependensi React/rute server |
 | CMS database (headless) | Payload, Directus, Strapi | Banyak editor, alur persetujuan, penjadwalan; membutuhkan server + database dan memindahkan konten keluar dari repo |
 

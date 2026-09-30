@@ -39,7 +39,7 @@ Berlaku untuk agent maupun manusia. Detail aturan agent ada di [AGENTS.md](AGENT
 | **M1 Kerangka & Jurnal** | T-03, T-04, T-05, T-06, T-07, T-13, T-14 | Artikel (pratinjau draft) tampil sesuai anatomi §4.3; SEO dinamis & pemeriksa pasca-build lulus; pencarian jalan |
 | **M2 Alat Tani & Konsultasi** | T-09, T-19, T-20, T-21, T-22 | Empat alat + konsultasi lolos gate UI; data kalender/gejala berlabel "belum ditinjau" di pratinjau |
 | **M3 Beranda, Profil & B2B** | T-08, T-10, T-11, T-12, T-17 | Semua halaman di peta situs (DESIGN §2.0) ada; data pemilik terisi atau placeholder bertanda |
-| **M4 Konten siap terbit** | T-16, T-25 | Artikel yang dirilis punya pustaka terverifikasi + Jawaban Singkat; data tertinjau Prof. Arif |
+| **M4 Konten siap terbit** | T-16, T-25 | Artikel yang dirilis punya pustaka terverifikasi + Jawaban Singkat; data tertinjau Arif Prabowo |
 | **M5 Rilis** | T-18, T-15, T-24 | Audit akhir di build produksi lulus; deploy produksi **dengan persetujuan**; probe observability lulus |
 
 ---
@@ -79,6 +79,7 @@ Berlaku untuk agent maupun manusia. Detail aturan agent ada di [AGENTS.md](AGENT
 | T-29 | R2 untuk media foto asli | REQ-08 | ADR-0001 §2a, OQ-5 | R2 | — | T-28 | Foto asli dari pemilik + ADR-0001 diterima + persetujuan pembuatan resource | Diblokir (pemicu belum terjadi) |
 | T-30 | D1 penyimpanan pengajuan kemitraan | REQ-02 | ADR-0001 §2b, OQ-13, DEC-006 | R3 | — | T-28 | Keputusan OQ-13 + ADR-0001 diterima + kebijakan privasi disetujui | Diblokir (menunggu OQ-13) |
 | T-31 | Celah anatomi & kebutuhan UI/UX lanjutan | REQ-01 | DESIGN §4.2.3, §3.5.1, §6 | R1 | — | T-27 | — | Siap dikerjakan |
+| T-32 | Identitas baru (DEC-016), foto Arif Prabowo, integritas Beranda, OG | REQ-01 | DEC-016, OQ-4, DESIGN §1.1, §4.2.3, §4.3.1, §4.4 | R2 | — | T-27 | — | Siap dikerjakan (brief: `~/Documents/work/notes/agritani-T32-brief.md`) |
 | T-24 | Rilis produksi & observability | REQ-08 | RELEASE.md, OBSERVABILITY.md | R2 | — | T-15, T-18 | OQ-6 + **persetujuan deploy Paduka Ongki** | Menunggu persetujuan deploy |
 
 Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 → T-23 → T-04 → T-03 → T-05 → (T-06, T-07, T-13, T-14) → T-21 → T-22 → T-09 → T-19 → T-20 → T-26 → T-08 → T-10 → T-17 → T-11 → T-12 → T-16 & T-25 (jalur konten, paralel) → T-18 → T-15 → T-24.
@@ -153,14 +154,14 @@ Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 → T-23 → T-04
 - **Primary:** REQ-06 · **Constraints:** REQ-08 · **Risk:** R2
 - **Owner skill:** `astro-development`, `testing-engineering`, `impeccable`, `ui-validation`
 - **Allowed paths:** `src/data/symptoms.json`, `src/pages/alat/diagnosa-gejala.astro`, `src/components/TriageFilter.astro`
-- **Scope:** Dataset disemai dari (a) gejala yang dibahas di artikel terbit dan (b) `FIELD_PLAYBOOK_DICTIONARY` agrimarket (`problemName`, `visualSymptoms`, `rootCause` saja; tanpa `productPairing`, `prescription`, merek) — semua entri ditinjau Prof. Arif (OQ-11c). Dataset disusun hanya dari gejala yang dibahas di artikel terbit (setiap entri menunjuk artikelnya); `distinguishingSign` wajib untuk diagnosis yang mudah tertukar; `causeType` wajib (penyakit/hama/hara/lingkungan). Perilaku & state DESIGN §2.2.
+- **Scope:** Dataset disemai dari (a) gejala yang dibahas di artikel terbit dan (b) `FIELD_PLAYBOOK_DICTIONARY` agrimarket (`problemName`, `visualSymptoms`, `rootCause` saja; tanpa `productPairing`, `prescription`, merek) — semua entri ditinjau Arif Prabowo (OQ-11c). Dataset disusun hanya dari gejala yang dibahas di artikel terbit (setiap entri menunjuk artikelnya); `distinguishingSign` wajib untuk diagnosis yang mudah tertukar; `causeType` wajib (penyakit/hama/hara/lingkungan). Perilaku & state DESIGN §2.2.
 - **Done when:** Gate UI lulus; alur komoditas → bagian → gejala → hasil ≤ 4 interaksi; URL mencerminkan pilihan dan Back memulihkan state; empty state dan tampilan no-JS terverifikasi di browser; build gagal bila entri menunjuk artikel yang tidak ada (dicek T-02).
 
 ### T-10 — Tentang Kami (UI)
 - **Primary:** REQ-01 · **Constraints:** REQ-08 · **Risk:** R1
 - **Owner skill:** `astro-development`, `copywriting`, `impeccable`, `ui-validation`
 - **Allowed paths:** `src/pages/tentang-kami.astro`, `src/pages/penulis/arif-prabowo.astro`, `src/content/pages/{tentang-kami,penulis-arif-prabowo}.md`
-- **Scope:** Dari `docs/content/company-profile.md`. Klaim legalitas/sertifikasi hanya bila ada bukti resmi. Bagian moderator menaut ke `/penulis/arif-prabowo/` (anatomi DESIGN §4.2.3): Prof. Arif Prabowo, profesor pertanian (lintas komoditas), penulis & moderator Jurnal Tani; foto dari file yang dikirim pemilik (`astro:assets`); institusi & gelar lengkap hanya setelah OQ-4 terjawab.
+- **Scope:** Dari `docs/content/company-profile.md`. Klaim legalitas/sertifikasi hanya bila ada bukti resmi. Bagian moderator menaut ke `/penulis/arif-prabowo/` (anatomi DESIGN §4.2.3): Arif Prabowo, Konsultan Pertanian Senior · Pengelola Jurnal Tani (DEC-016); foto dari file yang dikirim pemilik (`astro:assets`); institusi & gelar lengkap hanya setelah OQ-4 terjawab.
 - **Done when:** Gate UI lulus; tidak ada klaim yang tidak didukung data dari pemilik.
 
 ### T-11 — Katalog & detail produk (UI)
@@ -219,7 +220,7 @@ Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 → T-23 → T-04
 - **Primary:** REQ-09 · **Constraints:** REQ-08, NG-3, DEC-015 · **Risk:** R2
 - **Owner skill:** `astro-development`, `testing-engineering`, `impeccable`, `ui-validation`
 - **Allowed paths:** `src/data/crop-calendars.json`, `src/content.config.ts` (koleksi `cropCalendars`), `src/lib/crop-calendar.ts`, `src/lib/crop-calendar.test.ts`, `src/lib/ics.ts`, `src/pages/alat/kalender-tanam.astro`, `src/components/CropTimeline.astro`
-- **Scope:** DESIGN §2.6.1 + anatomi §4.2.3; ARCHITECTURE §5b. Semai 6 komoditas (padi, jagung, cabai, tomat, bawang merah semusim; kelapa sawit tahunan) dari dokumen agrimarket dengan aturan pembersihan DEC-015; isi `sources` & `seededFrom`; `reviewedBy` dibiarkan kosong sampai Prof. Arif menyetujui.
+- **Scope:** DESIGN §2.6.1 + anatomi §4.2.3; ARCHITECTURE §5b. Semai 6 komoditas (padi, jagung, cabai, tomat, bawang merah semusim; kelapa sawit tahunan) dari dokumen agrimarket dengan aturan pembersihan DEC-015; isi `sources` & `seededFrom`; `reviewedBy` dibiarkan kosong sampai Arif Prabowo menyetujui.
 - **Done when:** Gate UI lulus; tes tabel kasus `crop-calendar` (tanggal tanam lampau/rencana, kabisat, akhir tahun) lulus; `.ics` hasil unduhan terbuka di Google Calendar/iOS tanpa galat; komoditas tanpa `reviewedBy` tidak tampil (diverifikasi); `grep` merek/harga/dosis pestisida pada `crop-calendars.json` = 0; tabel musim MT1–MT3 terbaca tanpa JS.
 
 ### T-20 — Cuaca Tani (UI)
@@ -252,10 +253,10 @@ Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 → T-23 → T-04
 ### T-25 — Konten siap terbit (jalur konten)
 - **Primary:** REQ-03 · **Constraints:** REQ-05, REQ-09, DEC-015 · **Risk:** R1
 - **Owner skill:** `content`, `volumx-writer`, `copywriting` (panjang judul/deskripsi)
-- **Allowed paths:** `docs/content/articles/*.md` (field `answer`, `title`, `metaTitle`, `description`, `draft` saja), `src/content/pages/{topik,komoditas}-*.md`, `src/data/crop-calendars.json` & `src/data/symptoms.json` & `src/data/spray-thresholds.json` (hanya field `reviewedBy`/`reviewedAt` setelah persetujuan tertulis Prof. Arif)
+- **Allowed paths:** `docs/content/articles/*.md` (field `answer`, `title`, `metaTitle`, `description`, `draft` saja), `src/content/pages/{topik,komoditas}-*.md`, `src/data/crop-calendars.json` & `src/data/symptoms.json` & `src/data/spray-thresholds.json` (hanya field `reviewedBy`/`reviewedAt` setelah persetujuan tertulis Arif Prabowo)
 - **Koordinasi:** naskah artikel dikerjakan di device lain; task ini hanya berjalan setelah naskah terbaru di-pull, dan tidak menyentuh isi artikel di luar field di atas.
 - **Scope:** Jawaban Singkat 40–60 kata per artikel (ditulis/disetujui penulis); revisi 6 judul berklaim absolut ("100%", "Ampuh", "Tuntas" — artikel-10x penyerbukan vanili/durian, pengendalian rumput teki, usir siput, parit isolasi Ganoderma, sambung pucuk, dormansi benih padi) sesuai DESIGN §1.3; pengantar hub (OQ-12); pencatatan persetujuan data kalender/gejala/ambang (OQ-11). Artikel diubah ke `draft: false` hanya bila integritas (ARCHITECTURE §3.1) lulus. Skala: 150 naskah — terbitkan bertahap per topik, dimulai dari `proteksi-tanaman` (paling dekat dengan Diagnosa Gejala).
-- **Done when:** `npm run build` produksi lulus dengan artikel terbit; daftar artikel terbit vs draft dan catatan persetujuan Prof. Arif (tanggal, cakupan) tercatat di BUILD-LOG.
+- **Done when:** `npm run build` produksi lulus dengan artikel terbit; daftar artikel terbit vs draft dan catatan persetujuan Arif Prabowo (tanggal, cakupan) tercatat di BUILD-LOG.
 
 ### T-26 — Gambar dummy WebP (10 slot)
 - **Primary:** REQ-01 · **Constraints:** REQ-08, OQ-5 · **Risk:** R1
@@ -294,8 +295,15 @@ Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 → T-23 → T-04
   2. Hub komoditas: artikel dikelompokkan per topik bila ≥ 2 topik; maksimal 2 baris produk yang komoditasnya cocok.
   3. Avatar inisial "AP" persegi radius 2px di `AuthorByline` dan `AuthorBio` (saat ini lingkaran; DESIGN §3.5.1).
   4. Setelah OQ-2: bagian Legalitas (nomor izin edar) di detail produk dan kolom izin di tabel `/produk/`.
-  5. Setelah OQ-5: ganti 11 gambar dummy dengan foto asli; foto kemasan di detail produk; foto Prof. Arif (OQ-4).
+  5. Setelah OQ-5: ganti 11 gambar dummy dengan foto asli; foto kemasan di detail produk; foto Arif Prabowo sudah diterima, dikerjakan di T-32.
 - **Done when:** butir 1–3 terbangun dan dirender di 390 & 1440 px; build produksi lulus seluruh pemeriksaan; butir 4–5 tetap terbuka sampai data pemilik ada.
+
+### T-32 — Identitas baru (DEC-016), foto Arif Prabowo, integritas Beranda, gambar OG
+- **Primary:** REQ-01 · **Constraints:** DEC-016, OQ-4, DESIGN §1.1, §3.5.1, §4.2.3, §4.3.1 (blok 4 & 16), §4.4 · **Risk:** R2
+- **Owner skill:** `astro-development`, `seo-website-builder`, `copywriting`, `impeccable`, `ui-validation`
+- **Allowed paths:** `src/**`, `public/og/**`, `scripts/**`, `DESIGN.md`, `TASKS.md`
+- **Scope:** (a) hapus gelar "Prof."/"Profesor" di seluruh UI, schema, dan tes; sebutan "Konsultan Pertanian Senior · Pengelola Jurnal Tani"; bio sesuai DESIGN §4.2.3 Profil Penulis; teks Pengungkapan artikel baru (DESIGN §4.3.1 blok 16); (b) posisi "distributor resmi" → portal dikelola Arif Prabowo + produk unggulan + kerja sama brand/perusahaan (tanpa nama); (c) foto `arif-prabowo.webp` via `AuthorAvatar` di semua avatar; (d) perbaikan integritas & invariant di Beranda dari commit `0888c13` (kutipan palsu, klaim tanpa sumber, kicker, kata jaminan, alt menyesatkan, radius/shadow/garis section/warna non-token); (e) buat ulang 14 gambar `public/og/*.png` tanpa teks "Distributor Resmi" dan tanpa "AGRITANI NUSANTARA".
+- **Done when:** `grep -rniE "prof\.|profesor|distributor resmi|nusantara" src public/og` hanya menyisakan pemakaian yang sah untuk program mitra ("Kemitraan Distributor", judul "Kemitraan Distributor Resmi | Agritani"); ke-14 gambar OG dibuka dan diperiksa visual (teks di dalam PNG tidak terjangkau grep); build produksi lulus seluruh pemeriksaan; render 390 & 1440 Beranda, profil, satu artikel, Tentang Kami diperiksa; review independen (R2).
 
 ### T-24 — Rilis produksi & observability
 - **Primary:** REQ-08 · **Constraints:** RELEASE.md, OBSERVABILITY.md · **Risk:** R2
