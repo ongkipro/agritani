@@ -40,32 +40,33 @@ const popularQueries = [
     <Breadcrumb items={breadcrumbItems} />
 
     <!-- Page Header -->
-    <header class="my-6 sm:my-8 max-w-[68ch]">
+    <header class="mt-6 sm:mt-8 mb-10 max-w-[68ch]">
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold text-[var(--color-text)] leading-tight tracking-[-0.015em] text-balance mb-3">
         Pencarian Jurnal Tani
       </h1>
-      <p class="text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed">
+      <p class="text-lg sm:text-xl text-[var(--color-text-muted)] leading-relaxed max-w-[60ch]">
         Temukan panduan pencegahan penyakit, teknik budidaya lapangan, dan ulasan ilmiah tanaman langsung dari naskah <strong>Arif Prabowo</strong>.
       </p>
     </header>
 
     <!-- Search Box Area -->
-    <div class="max-w-[48rem] mb-6">
+    <div class="card p-6 max-w-[48rem] mb-6">
       <SearchBox
         id="search-query-input"
         size="large"
+        visibleLabel="Kata kunci"
         placeholder="Ketik masalah tanaman (mis. patek cabai, ganoderma, blas padi)..."
         autofocus={true}
       />
 
       <!-- Popular Query Chips -->
-      <div class="mt-4 flex flex-wrap items-center gap-2 text-xs text-[var(--color-text-muted)]">
-        <span class="font-medium text-[var(--color-soil)]">Sering dicari:</span>
+      <div class="mt-5 flex flex-wrap items-center gap-2 text-sm text-[var(--color-text-muted)]">
+        <span class="font-semibold text-[var(--color-text)] mr-1">Sering dicari:</span>
         {
           popularQueries.map((q) => (
             <button
               type="button"
-              class="quick-search-btn px-2.5 py-1 rounded-[2px] bg-[var(--color-tint)] hover:bg-[var(--color-harvest)] hover:text-[var(--color-text)] font-semibold text-[var(--color-text)] transition-colors min-h-[44px] flex items-center"
+              class="quick-search-btn px-3 rounded-[2px] bg-[var(--color-tint)] hover:bg-[var(--color-harvest-tint)] font-medium text-[var(--color-brand-strong)] transition-colors min-h-[44px] flex items-center cursor-pointer"
               data-query={q}
             >
               {q}
@@ -78,7 +79,7 @@ const popularQueries = [
     <!-- Search Status & Results Container -->
     <div
       id="search-results-area"
-      class="max-w-[48rem] min-h-[300px] pt-4"
+      class="max-w-[48rem] min-h-[300px] pt-2 mb-12 lg:mb-16"
       aria-live="polite"
     >
       <!-- Initial State (rendered server-side before search) -->

@@ -53,11 +53,11 @@ const sortedArticles = visibleArticles.sort(
     <Breadcrumb items={breadcrumbs} />
 
     <!-- Profile Header (Sains Editorial Canvas) -->
-    <header class="max-w-[68ch] mx-auto my-8 sm:my-12">
-      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-6">
-        <AuthorAvatar size={96} class="w-20 h-20 sm:w-24 sm:h-24" decorative={false} />
+    <header class="max-w-[52rem] mt-6 sm:mt-8 mb-12 lg:mb-16 grid grid-cols-1 sm:grid-cols-[6rem_1fr] gap-x-8 gap-y-5">
+      <AuthorAvatar size={96} class="w-20 h-20 sm:w-24 sm:h-24" decorative={false} />
 
-        <div class="space-y-1">
+      <div>
+        <div class="space-y-1.5 mb-5">
           <h1 class="text-3xl sm:text-4xl font-serif font-semibold text-[var(--color-text)] leading-tight tracking-[-0.015em] text-balance">
             Arif Prabowo
           </h1>
@@ -65,10 +65,9 @@ const sortedArticles = visibleArticles.sort(
             Konsultan Pertanian Senior · Pengelola Jurnal Tani
           </p>
         </div>
-      </div>
 
       <!-- Bio Prose: Strictly limited to authorized fact (DEC-016) -->
-      <div class="space-y-4 text-base sm:text-lg text-[var(--color-text)] leading-relaxed font-sans mb-8">
+      <div class="text-base sm:text-[17px] leading-[1.7] text-[var(--color-text)] max-w-[65ch] mb-8">
         <p>
           Arif Prabowo memiliki pengalaman lebih dari 8 tahun di bidang pertanian dan riset, mempelajari beragam komoditas serta praktik budidaya di berbagai wilayah Indonesia. Saat ini beliau bertindak sebagai sales dan konsultan produk unggulan Agritani (Aussie, BENSU, Saratoga, dan Kojien), serta mengelola resmi portal pertanian Agritani yang bekerja sama dengan beberapa brand pupuk dan perusahaan pertanian.
         </p>
@@ -84,18 +83,19 @@ const sortedArticles = visibleArticles.sort(
       />
 
       <!-- Pengungkapan (DESIGN §4.3.1 blok 16, DEC-016) -->
-      <div class="mt-8 text-xs sm:text-sm text-[var(--color-text-muted)] space-y-1">
+      <div class="mt-8 max-w-[65ch] text-xs sm:text-sm text-[var(--color-text-muted)] space-y-1">
         <p class="font-semibold text-[var(--color-text)]">Pengungkapan</p>
         <p>
           Arif Prabowo juga bekerja sebagai sales dan konsultan produk Agritani (Aussie, BENSU, Kojien, Saratoga). Hubungan ini juga dicantumkan di bio penulis pada setiap artikel Jurnal Tani. Ikuti selalu petunjuk pada label kemasan.
         </p>
       </div>
+      </div>
     </header>
 
     <!-- Articles Section -->
-    <main class="max-w-[68ch] mx-auto mb-12 sm:mb-16">
+    <section class="max-w-[52rem] mb-12 lg:mb-16" aria-labelledby="karya-tulis">
       <div class="flex items-baseline justify-between gap-4 mb-6">
-        <h2 class="section-title !mb-0">
+        <h2 id="karya-tulis" class="section-title !mb-0">
           Panduan dan karya tulis
         </h2>
         <span class="text-xs sm:text-sm text-[var(--color-text-muted)] tabular-nums">
@@ -119,6 +119,6 @@ const sortedArticles = visibleArticles.sort(
         </p>
         <a href="/jurnal/" class="link-more text-sm">Buka indeks Jurnal Tani &rarr;</a>
       </div>
-    </main>
+    </section>
   </div>
 </BaseLayout>

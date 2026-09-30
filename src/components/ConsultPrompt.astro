@@ -28,16 +28,16 @@ const waAttrs = externalLink('whatsapp');
 const isPrimary = variant === 'primary';
 ---
 
-<div class="space-y-2" data-cta="whatsapp">
-  {title && <h3 class="font-serif text-lg sm:text-xl font-semibold text-[var(--color-brand-strong)] text-balance">{title}</h3>}
-  {description && <p class="text-sm sm:text-base text-[var(--color-text-muted)] max-w-[60ch]">{description}</p>}
+<div data-cta="whatsapp">
+  {title && <h3 class="font-serif text-xl font-semibold text-[var(--color-brand-strong)] text-balance">{title}</h3>}
+  {description && <p class="mt-1.5 text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed max-w-[60ch]">{description}</p>}
   <a
     href={href}
     target={waAttrs.target}
     rel={waAttrs.rel}
     class={isPrimary
-      ? 'inline-flex items-center justify-center gap-2.5 px-5 py-3 min-h-[44px] text-sm font-semibold rounded-[2px] transition-colors bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)] text-white'
-      : 'link-more min-h-[44px] text-sm sm:text-base'}
+      ? 'mt-4 inline-flex items-center justify-center gap-2.5 px-5 py-3 min-h-[44px] text-sm font-semibold rounded-[2px] transition-colors bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)] text-white'
+      : 'mt-4 inline-flex items-center justify-center gap-2.5 px-5 py-2.5 min-h-[44px] text-sm font-semibold rounded-[2px] transition-colors border border-[var(--color-border-control)] bg-[var(--color-surface)] text-[var(--color-brand-strong)] hover:border-[var(--color-brand-strong)] hover:bg-[var(--color-tint)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-strong)]'}
   >
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />

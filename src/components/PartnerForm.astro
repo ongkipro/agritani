@@ -6,14 +6,14 @@
  */
 ---
 
-<div class="p-6 sm:p-8 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px]">
+<div class="card p-6 lg:p-8">
   <form id="partner-form" class="space-y-6" novalidate>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
       
       <!-- Field 1: Nama Lengkap -->
       <div>
-        <label for="partner-name" class="block text-xs font-bold text-[var(--color-text)] mb-2">
-          Nama Lengkap <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+        <label for="partner-name" class="block text-sm font-semibold text-[var(--color-text)] mb-1.5">
+          Nama lengkap <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
         </label>
         <input
           type="text"
@@ -22,15 +22,15 @@
           required
           autocomplete="name"
           placeholder="Contoh: Budi Santoso"
-          class="w-full px-3.5 py-2.5 min-h-[44px] text-sm bg-[var(--color-surface-raised)] border border-[var(--color-border)] focus:border-[var(--color-brand-strong)] focus:ring-0 rounded-[2px] text-[var(--color-text)] outline-none transition-colors"
+          class="w-full px-3.5 py-3 min-h-[48px] text-base bg-[var(--color-surface)] border border-[var(--color-border-control)] focus:border-[var(--color-brand-strong)] focus:ring-0 rounded-[2px] text-[var(--color-text)] outline-none transition-colors"
         />
-        <p id="err-name" class="hidden text-xs font-semibold text-[var(--color-danger)] mt-1.5" role="alert"></p>
+        <p id="err-name" class="hidden text-[13px] font-semibold text-[var(--color-danger)] mt-1.5" role="alert"></p>
       </div>
 
       <!-- Field 2: Nama Usaha / Kebun -->
       <div>
-        <label for="partner-business" class="block text-xs font-bold text-[var(--color-text)] mb-2">
-          Nama Usaha / Kios / Kebun <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+        <label for="partner-business" class="block text-sm font-semibold text-[var(--color-text)] mb-1.5">
+          Nama usaha, kios, atau kebun <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
         </label>
         <input
           type="text"
@@ -39,9 +39,9 @@
           required
           autocomplete="organization"
           placeholder="Contoh: Kios Tani Makmur"
-          class="w-full px-3.5 py-2.5 min-h-[44px] text-sm bg-[var(--color-surface-raised)] border border-[var(--color-border)] focus:border-[var(--color-brand-strong)] focus:ring-0 rounded-[2px] text-[var(--color-text)] outline-none transition-colors"
+          class="w-full px-3.5 py-3 min-h-[48px] text-base bg-[var(--color-surface)] border border-[var(--color-border-control)] focus:border-[var(--color-brand-strong)] focus:ring-0 rounded-[2px] text-[var(--color-text)] outline-none transition-colors"
         />
-        <p id="err-business" class="hidden text-xs font-semibold text-[var(--color-danger)] mt-1.5" role="alert"></p>
+        <p id="err-business" class="hidden text-[13px] font-semibold text-[var(--color-danger)] mt-1.5" role="alert"></p>
       </div>
 
     </div>
@@ -50,15 +50,15 @@
 
       <!-- Field 3: Jenis Usaha -->
       <div>
-        <label for="partner-type" class="block text-xs font-bold text-[var(--color-text)] mb-2">
-          Jenis Usaha <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+        <label for="partner-type" class="block text-sm font-semibold text-[var(--color-text)] mb-1.5">
+          Jenis usaha <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
         </label>
         <div class="relative">
           <select
             id="partner-type"
             name="businessType"
             required
-            class="w-full appearance-none pl-3.5 pr-10 py-2.5 min-h-[44px] text-sm bg-[var(--color-surface-raised)] border border-[var(--color-border)] hover:border-[var(--color-brand)] focus:border-[var(--color-brand-strong)] focus:ring-0 rounded-[2px] text-[var(--color-text)] outline-none transition-colors cursor-pointer"
+            class="w-full appearance-none pl-3.5 pr-10 py-3 min-h-[48px] text-base bg-[var(--color-surface)] border border-[var(--color-border-control)] hover:border-[var(--color-brand-strong)] focus:border-[var(--color-brand-strong)] focus:ring-0 rounded-[2px] text-[var(--color-text)] outline-none transition-colors cursor-pointer"
           >
             <option value="">-- Pilih Jenis Usaha --</option>
             <option value="Kebun / Perkebunan">Kebun / Perkebunan</option>
@@ -72,12 +72,12 @@
             </svg>
           </div>
         </div>
-        <p id="err-type" class="hidden text-xs font-semibold text-[var(--color-danger)] mt-1.5" role="alert"></p>
+        <p id="err-type" class="hidden text-[13px] font-semibold text-[var(--color-danger)] mt-1.5" role="alert"></p>
       </div>
 
       <!-- Field 4: Provinsi -->
       <div>
-        <label for="partner-province" class="block text-xs font-bold text-[var(--color-text)] mb-2">
+        <label for="partner-province" class="block text-sm font-semibold text-[var(--color-text)] mb-1.5">
           Provinsi <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
         </label>
         <input
@@ -86,15 +86,15 @@
           name="province"
           required
           placeholder="Contoh: Jawa Timur"
-          class="w-full px-3.5 py-2.5 min-h-[44px] text-sm bg-[var(--color-surface-raised)] border border-[var(--color-border)] focus:border-[var(--color-brand-strong)] focus:ring-0 rounded-[2px] text-[var(--color-text)] outline-none transition-colors"
+          class="w-full px-3.5 py-3 min-h-[48px] text-base bg-[var(--color-surface)] border border-[var(--color-border-control)] focus:border-[var(--color-brand-strong)] focus:ring-0 rounded-[2px] text-[var(--color-text)] outline-none transition-colors"
         />
-        <p id="err-province" class="hidden text-xs font-semibold text-[var(--color-danger)] mt-1.5" role="alert"></p>
+        <p id="err-province" class="hidden text-[13px] font-semibold text-[var(--color-danger)] mt-1.5" role="alert"></p>
       </div>
 
       <!-- Field 5: Kabupaten / Kota -->
       <div>
-        <label for="partner-city" class="block text-xs font-bold text-[var(--color-text)] mb-2">
-          Kabupaten / Kota <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+        <label for="partner-city" class="block text-sm font-semibold text-[var(--color-text)] mb-1.5">
+          Kabupaten/kota <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
         </label>
         <input
           type="text"
@@ -102,9 +102,9 @@
           name="city"
           required
           placeholder="Contoh: Jember"
-          class="w-full px-3.5 py-2.5 min-h-[44px] text-sm bg-[var(--color-surface-raised)] border border-[var(--color-border)] focus:border-[var(--color-brand-strong)] focus:ring-0 rounded-[2px] text-[var(--color-text)] outline-none transition-colors"
+          class="w-full px-3.5 py-3 min-h-[48px] text-base bg-[var(--color-surface)] border border-[var(--color-border-control)] focus:border-[var(--color-brand-strong)] focus:ring-0 rounded-[2px] text-[var(--color-text)] outline-none transition-colors"
         />
-        <p id="err-city" class="hidden text-xs font-semibold text-[var(--color-danger)] mt-1.5" role="alert"></p>
+        <p id="err-city" class="hidden text-[13px] font-semibold text-[var(--color-danger)] mt-1.5" role="alert"></p>
       </div>
 
     </div>
@@ -113,8 +113,8 @@
 
       <!-- Field 6: Luas Lahan atau Kapasitas -->
       <div>
-        <label for="partner-scale" class="block text-xs font-bold text-[var(--color-text)] mb-2">
-          Luas Lahan (ha) / Kapasitas <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+        <label for="partner-scale" class="block text-sm font-semibold text-[var(--color-text)] mb-1.5">
+          Luas lahan (ha) atau kapasitas <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
         </label>
         <input
           type="text"
@@ -122,14 +122,14 @@
           name="scale"
           required
           placeholder="Contoh: 15 ha atau 500 botol/bulan"
-          class="w-full px-3.5 py-2.5 min-h-[44px] text-sm bg-[var(--color-surface-raised)] border border-[var(--color-border)] focus:border-[var(--color-brand-strong)] focus:ring-0 rounded-[2px] text-[var(--color-text)] outline-none transition-colors"
+          class="w-full px-3.5 py-3 min-h-[48px] text-base bg-[var(--color-surface)] border border-[var(--color-border-control)] focus:border-[var(--color-brand-strong)] focus:ring-0 rounded-[2px] text-[var(--color-text)] outline-none transition-colors"
         />
-        <p id="err-scale" class="hidden text-xs font-semibold text-[var(--color-danger)] mt-1.5" role="alert"></p>
+        <p id="err-scale" class="hidden text-[13px] font-semibold text-[var(--color-danger)] mt-1.5" role="alert"></p>
       </div>
 
       <!-- Field 7: Nomor WhatsApp -->
       <div>
-        <label for="partner-phone" class="block text-xs font-bold text-[var(--color-text)] mb-2">
+        <label for="partner-phone" class="block text-sm font-semibold text-[var(--color-text)] mb-1.5">
           Nomor WhatsApp Anda <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
         </label>
         <input
@@ -140,24 +140,24 @@
           inputmode="tel"
           autocomplete="tel"
           placeholder="Contoh: 081234567890"
-          class="w-full px-3.5 py-2.5 min-h-[44px] text-sm bg-[var(--color-surface-raised)] border border-[var(--color-border)] focus:border-[var(--color-brand-strong)] focus:ring-0 rounded-[2px] text-[var(--color-text)] outline-none transition-colors"
+          class="w-full px-3.5 py-3 min-h-[48px] text-base bg-[var(--color-surface)] border border-[var(--color-border-control)] focus:border-[var(--color-brand-strong)] focus:ring-0 rounded-[2px] text-[var(--color-text)] outline-none transition-colors"
         />
-        <p id="err-phone" class="hidden text-xs font-semibold text-[var(--color-danger)] mt-1.5" role="alert"></p>
+        <p id="err-phone" class="hidden text-[13px] font-semibold text-[var(--color-danger)] mt-1.5" role="alert"></p>
       </div>
 
     </div>
 
     <!-- Field 8: Catatan Tambahan (Opsional) -->
     <div>
-      <label for="partner-notes" class="block text-xs font-bold text-[var(--color-text)] mb-2">
-        Catatan Tambahan / Komoditas Utama (Opsional)
+      <label for="partner-notes" class="block text-sm font-semibold text-[var(--color-text)] mb-1.5">
+        Catatan tambahan atau komoditas utama (opsional)
       </label>
       <textarea
         id="partner-notes"
         name="notes"
         rows="3"
         placeholder="Sebutkan jenis tanaman prioritas, tantangan patogen lapangan, atau wilayah jangkauan kios Anda..."
-        class="w-full px-3.5 py-2.5 text-sm bg-[var(--color-surface-raised)] border border-[var(--color-border)] focus:border-[var(--color-brand-strong)] focus:ring-0 rounded-[2px] text-[var(--color-text)] outline-none transition-colors"
+        class="w-full px-3.5 py-3 text-base leading-relaxed bg-[var(--color-surface)] border border-[var(--color-border-control)] focus:border-[var(--color-brand-strong)] focus:ring-0 rounded-[2px] text-[var(--color-text)] outline-none transition-colors"
       ></textarea>
     </div>
 
@@ -166,9 +166,9 @@
       <button
         type="submit"
         id="partner-submit-btn"
-        class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 min-h-[44px] text-sm font-bold bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)] text-white rounded-[2px] transition-colors cursor-pointer"
+        class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3 min-h-[48px] text-base font-semibold bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)] text-white rounded-[2px] transition-colors cursor-pointer"
       >
-        <span>Ajukan Kemitraan via WhatsApp</span>
+        <span>Ajukan kemitraan via WhatsApp</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
         </svg>
@@ -199,17 +199,17 @@
         target="_blank"
         rel="noopener nofollow"
         data-cta="whatsapp"
-        class="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] text-sm font-bold bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)] text-white rounded-[2px] transition-colors"
+        class="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[48px] text-base font-semibold bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)] text-white rounded-[2px] transition-colors"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
         </svg>
-        <span>Buka WhatsApp Sekarang</span>
+        <span>Buka WhatsApp sekarang</span>
         <span class="sr-only"> (membuka tab baru)</span>
       </a>
 
-      <div class="text-xs text-[var(--color-text-muted)] tabular-nums">
-        Saluran Alternatif: <strong>+62 877-7045-7256</strong>
+      <div class="text-sm text-[var(--color-text-muted)] tabular-nums">
+        Saluran alternatif: <strong>+62 877-7045-7256</strong>
       </div>
     </div>
   </div>

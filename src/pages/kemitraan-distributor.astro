@@ -31,12 +31,12 @@ const seo: SeoInput = {
     <Breadcrumb items={breadcrumbs} />
 
     <!-- Page Header with media (DESIGN §4.2.3; dummy image, OQ-5) -->
-    <header class="my-8 sm:my-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+    <header class="mt-6 sm:mt-8 mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
       <div class="lg:col-span-7">
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold text-[var(--color-text)] leading-tight tracking-[-0.015em] text-balance mb-4">
           Kemitraan Distributor & Kios
         </h1>
-        <p class="text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed max-w-[60ch]">
+        <p class="text-lg sm:text-xl text-[var(--color-text-muted)] leading-relaxed max-w-[60ch]">
           Agritani membuka peluang kemitraan pasokan sarana produksi pertanian presisi bagi pemilik perkebunan, kios saprotan, dan distributor daerah di berbagai wilayah Indonesia. Kami menyediakan pasokan resmi langsung, perlindungan keaslian formula, serta panduan teknis lapangan.
         </p>
       </div>
@@ -48,49 +48,41 @@ const seo: SeoInput = {
           widths={[480, 800, 1200]}
           sizes="(min-width: 1024px) 26rem, calc(100vw - 2rem)"
           alt="Tumpukan karung pasokan di gudang distribusi"
-          class="w-full aspect-[3/2] object-cover rounded-[2px]"
+          class="w-full aspect-[3/2] object-cover"
           loading="eager"
         />
       </div>
     </header>
 
-    <!-- Partnership flow: order carries meaning, so numbered list -->
-    <section class="mb-16 grid grid-cols-1 lg:grid-cols-12 gap-x-12" aria-labelledby="alur-kemitraan">
-      <h2 id="alur-kemitraan" class="lg:col-span-4 section-title !mb-2 lg:pt-4">
-        Alur kemitraan distributor
-      </h2>
-      <ol class="lg:col-span-8 divide-y divide-[var(--color-border)]">
-        <li class="grid grid-cols-[2.5rem_1fr] gap-x-4 py-5">
-          <span class="text-2xl font-serif font-bold text-[var(--color-soil)] tabular-nums leading-none pt-0.5" aria-hidden="true">1</span>
-          <div class="space-y-1.5">
-            <h3 class="font-serif text-lg font-semibold text-[var(--color-text)]">Pengajuan profil usaha</h3>
-            <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed max-w-[60ch]">Isi formulir pendaftaran di bawah dengan rincian wilayah kerja, jenis komoditas utama, dan estimasi luas lahan atau kapasitas kios Anda.</p>
-          </div>
+    <!-- Partnership flow: three comparable, ordered steps as equal cards -->
+    <section class="mb-12 lg:mb-16" aria-labelledby="alur-kemitraan">
+      <h2 id="alur-kemitraan" class="section-title">Alur kemitraan distributor</h2>
+      <ol class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <li class="card p-6">
+          <span class="block font-serif text-3xl font-semibold leading-none text-[var(--color-brand-strong)] tabular-nums" aria-hidden="true">1</span>
+          <h3 class="mt-4 font-serif text-lg font-semibold text-[var(--color-text)]">Pengajuan profil usaha</h3>
+          <p class="mt-1.5 text-sm leading-relaxed text-[var(--color-text-muted)]">Isi formulir pendaftaran di bawah dengan rincian wilayah kerja, jenis komoditas utama, dan estimasi luas lahan atau kapasitas kios Anda.</p>
         </li>
-        <li class="grid grid-cols-[2.5rem_1fr] gap-x-4 py-5">
-          <span class="text-2xl font-serif font-bold text-[var(--color-soil)] tabular-nums leading-none pt-0.5" aria-hidden="true">2</span>
-          <div class="space-y-1.5">
-            <h3 class="font-serif text-lg font-semibold text-[var(--color-text)]">Verifikasi dan alokasi wilayah</h3>
-            <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed max-w-[60ch]">Tim kemitraan Agritani akan memverifikasi kesiapan operasional dan ketersediaan kuota distribusi per kabupaten/kota.</p>
-          </div>
+        <li class="card p-6">
+          <span class="block font-serif text-3xl font-semibold leading-none text-[var(--color-brand-strong)] tabular-nums" aria-hidden="true">2</span>
+          <h3 class="mt-4 font-serif text-lg font-semibold text-[var(--color-text)]">Verifikasi dan alokasi wilayah</h3>
+          <p class="mt-1.5 text-sm leading-relaxed text-[var(--color-text-muted)]">Tim kemitraan Agritani akan memverifikasi kesiapan operasional dan ketersediaan kuota distribusi per kabupaten/kota.</p>
         </li>
-        <li class="grid grid-cols-[2.5rem_1fr] gap-x-4 py-5">
-          <span class="text-2xl font-serif font-bold text-[var(--color-soil)] tabular-nums leading-none pt-0.5" aria-hidden="true">3</span>
-          <div class="space-y-1.5">
-            <h3 class="font-serif text-lg font-semibold text-[var(--color-text)]">Pasokan resmi dan pendampingan</h3>
-            <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed max-w-[60ch]">Akses langsung pasokan produk dengan proteksi segel ShieldedTag, materi teknis budidaya, dan jalur konsultasi prioritas bagi mitra.</p>
-          </div>
+        <li class="card p-6">
+          <span class="block font-serif text-3xl font-semibold leading-none text-[var(--color-brand-strong)] tabular-nums" aria-hidden="true">3</span>
+          <h3 class="mt-4 font-serif text-lg font-semibold text-[var(--color-text)]">Pasokan resmi dan pendampingan</h3>
+          <p class="mt-1.5 text-sm leading-relaxed text-[var(--color-text-muted)]">Akses langsung pasokan produk dengan proteksi segel ShieldedTag, materi teknis budidaya, dan jalur konsultasi prioritas bagi mitra.</p>
         </li>
       </ol>
     </section>
 
     <!-- Application Form Section -->
-    <section class="max-w-4xl mb-16" aria-label="Formulir Kemitraan">
+    <section class="max-w-[56rem] mb-12 lg:mb-16" aria-labelledby="formulir-kemitraan">
       <div class="mb-6">
-        <h2 class="section-title !mb-0">
+        <h2 id="formulir-kemitraan" class="section-title !mb-0">
           Formulir pengajuan kemitraan
         </h2>
-        <p class="text-sm text-[var(--color-text-muted)] mt-1">
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mt-2 max-w-[60ch]">
           Lengkapi isian berikut. Tombol kirim akan menyusun draf percakapan terstruktur secara otomatis untuk dikirimkan melalui WhatsApp resmi Agritani.
         </p>
       </div>
