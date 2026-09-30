@@ -27,17 +27,19 @@ const fromPrice = variants.length ? Math.min(...variants.map((v) => v.price)) : 
 ---
 
 <article id={product.id} class="card card-link relative scroll-mt-24 grid grid-cols-[7rem_1fr] sm:flex sm:flex-col h-full overflow-hidden">
-  <div class="card-media aspect-square self-start sm:self-auto">
+  <div class="card-media w-[7rem] h-[7rem] sm:w-full sm:h-auto aspect-square self-start sm:self-auto shrink-0 overflow-hidden">
     <Picture
       src={getProductImage(product.id)}
       formats={['webp']}
+      fallbackFormat="webp"
       widths={[240, 480, 720]}
       sizes="(min-width: 1024px) 17rem, (min-width: 640px) 45vw, 7rem"
       quality={80}
-      alt={`Kemasan ${p.name}`}
+      alt={`Kemasan ${p.name}, ${p.role}`}
       class="w-full h-full object-cover"
       pictureAttributes={{ class: 'block w-full h-full' }}
       loading="lazy"
+      decoding="async"
     />
   </div>
 

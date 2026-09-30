@@ -3,6 +3,7 @@ import { Picture } from 'astro:assets';
 import { topicName } from '../lib/topics';
 import { getReadingTime } from '../lib/reading-time';
 import { getArticleImage, getTopicImage } from '../lib/topic-images';
+import { articleImageAlt } from '../lib/image-alt';
 
 interface Props {
   article: {
@@ -42,13 +43,15 @@ const formattedDate = new Intl.DateTimeFormat('id-ID', {
     <Picture
       src={imageBy === 'topic' ? getTopicImage(article.data.topic) : getArticleImage(article.data)}
       formats={['webp']}
+      fallbackFormat="webp"
       widths={[240, 420]}
       sizes="(min-width: 640px) 13rem, 100vw"
       quality={70}
-      alt=""
+      alt={articleImageAlt(article.data)}
       pictureAttributes={{ class: 'block h-full' }}
       class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
       loading="lazy"
+      decoding="async"
     />
   </a>
   <div class="flex-1 min-w-0">

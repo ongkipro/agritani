@@ -31,6 +31,7 @@ const seo: SeoInput = {
 ---
 
 <BaseLayout seo={seo} currentPath="/alat/cuaca-tani/">
+  <link rel="dns-prefetch" href="https://api.bmkg.go.id" slot="head" />
   <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 pb-16 lg:pb-24">
     <Breadcrumb items={breadcrumbs} />
 

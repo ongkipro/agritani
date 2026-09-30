@@ -42,6 +42,7 @@ draft: false
 - **Rujukan:** hanya yang bisa ditelusuri (DOI/URL). Tanpa rujukan boleh terbit (DEC-020); halaman menampilkan "Rujukan ilmiah untuk artikel ini sedang dilengkapi."
 - **Badan artikel:** hindari klaim absolut ("100% efektif", "dijamin sembuh"); tidak ada nama merek pihak ketiga di luar daftar pustaka; tidak ada placeholder `TODO(`.
 - **Produk Agritani:** tidak menulis dosis atau klaim produk baru; halaman artikel menampilkan kartu produk otomatis dari data produk.
+- **Gambar:** hanya WebP (sumber di `src/assets/`); ALT wajib 10–125 karakter dan memuat kata kunci artikel (komoditas/topik + judul). Gambar utama artikel tanpa `heroImage` otomatis memakai foto komoditas/topik dengan ALT dari `articleImageAlt()`. Dicek `npm run check:images` (bagian dari build).
 - **Rumus:** LaTeX `$...$` / `$$...$$` dirender otomatis (DEC-018); jangan ubah rumus yang sudah ada kecuali salah.
 
 ## 4. Verifikasi sebelum commit

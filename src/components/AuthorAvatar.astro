@@ -20,10 +20,13 @@ const { size, class: className = '', decorative = true, loading = 'eager' } = As
 
 <Image
   src={portrait}
+  format="webp"
   widths={[size, size * 2]}
   sizes={`${size}px`}
   quality={70}
-  alt={decorative ? '' : 'Foto Arif Prabowo'}
+  alt={decorative ? 'Foto Arif Prabowo' : 'Foto Arif Prabowo, Konsultan Pertanian Senior Agritani'}
+  aria-hidden={decorative ? 'true' : undefined}
   loading={loading}
+  decoding="async"
   class={`aspect-square object-cover object-[50%_22%] rounded-[2px] shrink-0 ${className}`}
 />

@@ -36,3 +36,4 @@ export function getArticleImage(data: { topic: string; commodities?: Array<strin
   }
   return getTopicImage(data.topic);
 }
+

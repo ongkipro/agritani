@@ -51,13 +51,15 @@ const heading = hasMatch
             <Picture
               src={getProductImage(p.id)}
               formats={['webp']}
+              fallbackFormat="webp"
               widths={[96, 192]}
               sizes="5.5rem"
               quality={70}
-              alt={`Kemasan ${p.data.name}`}
+              alt={match.length ? `Kemasan ${p.data.name} untuk ${match.map((c) => (names.get(c) ?? c).toLowerCase()).join(", ")}` : `Kemasan ${p.data.name}, ${p.data.role}`}
               class="w-full h-full object-cover"
               pictureAttributes={{ class: 'block w-full h-full' }}
               loading="lazy"
+              decoding="async"
             />
           </span>
           <span class="flex flex-col gap-1 p-3 sm:p-4 min-w-0">

@@ -49,11 +49,14 @@ const seo: SeoInput = {
         <Picture
           src={konsultasiImage}
           formats={['webp']}
+          fallbackFormat="webp"
           quality={60}
           widths={[480, 800]}
           sizes="(min-width: 1024px) 26rem, calc(100vw - 2rem)"
           alt="Buah cabai hijau menggantung di tanaman"
           class="w-full aspect-[3/2] object-cover"
+          loading="eager"
+          fetchpriority="high"
         />
 
         <section class="!mt-8 space-y-2">

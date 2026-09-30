@@ -52,6 +52,10 @@ const seo = buildSeo(seoInput);
 <meta name="twitter:image" content={seo.twitter.image} />
 <meta name="twitter:image:alt" content={seo.twitter.imageAlt} />
 
+<!-- Font Preloads (Core Web Vitals FCP & CLS optimization) -->
+<link rel="preload" href="/fonts/plus-jakarta-sans-400.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+<link rel="preload" href="/fonts/newsreader-600.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+
 <!-- Icons & Sitemap -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

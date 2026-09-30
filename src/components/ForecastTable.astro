@@ -80,15 +80,15 @@ try {
 
     <!-- Location & Metadata Header -->
     <div class="space-y-4">
-      <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
+      <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
         <div>
-          <h2 id="result-location-title" class="font-serif text-2xl font-semibold text-[var(--color-brand-strong)] mb-1">
+          <h2 id="result-location-title" class="font-serif text-2xl sm:text-3xl font-semibold text-[var(--color-brand-strong)] mb-1">
             Desa / Kelurahan
           </h2>
-          <p id="result-location-sub" class="text-sm text-[var(--color-text-muted)]"></p>
+          <p id="result-location-sub" class="text-sm text-[var(--color-text-muted)] font-medium"></p>
         </div>
-        <div class="text-left sm:text-right tabular-nums text-[13px] text-[var(--color-text-muted)]">
-          <div id="result-analysis-time">Diperbarui BMKG: -</div>
+        <div class="text-left sm:text-right tabular-nums text-xs text-[var(--color-text-muted)]">
+          <div id="result-analysis-time" class="font-medium text-[var(--color-text)]">Diperbarui BMKG: -</div>
           <div id="result-coords" class="mt-0.5"></div>
         </div>
       </div>
@@ -104,8 +104,12 @@ try {
       </p>
     </div>
 
+    <!-- Current-conditions card: nearest 3-hour slot + today's range (one card, plain definition list) -->
+    <div id="forecast-current-hero" class="hidden">
+    </div>
+
     <!-- Daily Forecast Tables Container -->
-    <div id="daily-tables-container" class="space-y-10">
+    <div id="daily-tables-container" class="space-y-8">
     </div>
 
     <!-- Mandatory BMKG Attribution (DEC-014, DESIGN §2.6.2) -->
@@ -158,6 +162,7 @@ try {
     const resultsContainer = document.getElementById('forecast-results');
     const btnRetry = document.getElementById('btn-retry-bmkg');
 
+    const currentHeroContainer = document.getElementById('forecast-current-hero');
     const locationTitle = document.getElementById('result-location-title');
     const locationSub = document.getElementById('result-location-sub');
     const analysisTimeEl = document.getElementById('result-analysis-time');
@@ -166,6 +171,24 @@ try {
     const sprayBanner = document.getElementById('spray-summary-banner');
     const spraySummaryText = document.getElementById('spray-summary-text');
     const dailyTablesContainer = document.getElementById('daily-tables-container');
+
+    // BMKG strings are data, never markup: escape before any innerHTML use.
+    const esc = (v: unknown) =>
+      String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c] as string);
+    // Only BMKG-hosted weather icons (CSP img-src allows api-apps.bmkg.go.id).
+    const safeIcon = (url?: string) => (url && /^https:\/\/api-apps\.bmkg\.go\.id\//.test(url) ? url : '');
+    // BMKG utc_datetime is "YYYY-MM-DD HH:MM:SS" in UTC; compare in UTC so the "now" slot is right in any browser timezone.
+    const slotUtcMs = (sl: { utc_datetime?: string; datetime?: string }) => {
+      if (sl.utc_datetime) return Date.parse(sl.utc_datetime.replace(' ', 'T') + 'Z');
+      if (sl.datetime && /Z$/.test(sl.datetime)) return Date.parse(sl.datetime);
+      return NaN;
+    };
+    const range = (nums: number[], unit: string) => {
+      if (!nums.length) return '';
+      const lo = Math.min(...nums);
+      const hi = Math.max(...nums);
+      return lo === hi ? `${lo}${unit}` : `${lo}–${hi}${unit}`;
+    };
 
     let currentAdm4 = '';
     let currentLabel = '';
@@ -178,6 +201,8 @@ try {
       initialCard?.classList.add('hidden');
       errorCard?.classList.add('hidden');
       resultsContainer?.classList.add('hidden');
+      currentHeroContainer?.classList.add('hidden');
+      if (currentHeroContainer) currentHeroContainer.innerHTML = '';
       loadingCard?.classList.remove('hidden');
 
       try {
@@ -250,12 +275,64 @@ try {
         sprayBanner.classList.add('hidden');
       }
 
+      // Current-conditions card: the slot closest to now (UTC-based), plus today's ranges
+      if (currentHeroContainer && forecast.days.length > 0) {
+        const allSlots = forecast.days.flatMap((d) => d.slots);
+        let currentSlot = allSlots[0];
+        let minDiff = Infinity;
+        const nowMs = Date.now();
+        for (const sl of allSlots) {
+          const ms = slotUtcMs(sl);
+          if (Number.isFinite(ms) && Math.abs(ms - nowMs) < minDiff) {
+            minDiff = Math.abs(ms - nowMs);
+            currentSlot = sl;
+          }
+        }
+        const isNow = minDiff <= 90 * 60 * 1000; // within the 3-hour slot
+        const TZ: Record<string, string> = { 'Asia/Jakarta': 'WIB', 'Asia/Pontianak': 'WIB', 'Asia/Makassar': 'WITA', 'Asia/Jayapura': 'WIT' };
+        const tz = TZ[loc.timezone] || loc.timezone || 'WIB';
+        const todaySlots = forecast.days[0].slots;
+        const todayTemps = todaySlots.map((sl) => Number(sl.t)).filter(Number.isFinite);
+        const todayHus = todaySlots.map((sl) => Number(sl.hu)).filter(Number.isFinite);
+        const todayRain = todaySlots.filter((sl) => Number(sl.tp) > 0);
+        const todayRainTotal = Math.round(todayRain.reduce((sum, sl) => sum + Number(sl.tp), 0) * 10) / 10;
+        const icon = safeIcon(currentSlot.image);
+        const rows: Array<[string, string]> = [
+          ['Suhu hari ini', range(todayTemps, '°C')],
+          ['Hujan hari ini', todayRain.length ? `${todayRainTotal.toLocaleString('id-ID')} mm pada jam ${todayRain.map((sl) => formatSlotTime(sl.local_datetime)).join(', ')}` : 'Tanpa hujan'],
+          ['Kelembapan', `${currentSlot.hu}%${todayHus.length ? ` (hari ini ${range(todayHus, '%')})` : ''}`],
+          ['Angin', `${currentSlot.ws} km/j dari ${formatWindDirection(currentSlot.wd)}`],
+        ];
+
+        currentHeroContainer.innerHTML = `
+          <div class="card p-4 sm:p-6">
+            <div class="flex items-center gap-4">
+              ${icon ? `<img src="${esc(icon)}" alt="${esc(`Ikon cuaca ${currentSlot.weather_desc}`)}" width="56" height="56" class="w-12 h-12 sm:w-14 sm:h-14 shrink-0" aria-hidden="true" />` : ''}
+              <div class="min-w-0">
+                <p class="text-sm text-[var(--color-text-muted)]">${isNow ? 'Perkiraan saat ini' : 'Perkiraan terdekat'}, pukul ${esc(formatSlotTime(currentSlot.local_datetime))} ${esc(tz)}</p>
+                <p class="mt-0.5 flex flex-wrap items-baseline gap-x-3">
+                  <span class="font-serif text-3xl sm:text-4xl font-semibold text-[var(--color-brand-strong)] tabular-nums">${esc(currentSlot.t)}°C</span>
+                  <span class="text-base sm:text-lg font-semibold text-[var(--color-text)]">${esc(currentSlot.weather_desc)}</span>
+                </p>
+              </div>
+            </div>
+            <dl class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 text-sm">
+              ${rows
+                .filter(([, v]) => v)
+                .map(([k, v]) => `<div><dt class="text-[var(--color-text-muted)]">${esc(k)}</dt><dd class="font-semibold text-[var(--color-text)] tabular-nums">${esc(v)}</dd></div>`)
+                .join('')}
+            </dl>
+          </div>
+        `;
+        currentHeroContainer.classList.remove('hidden');
+      }
+
       // Render Tables per Day
       if (!dailyTablesContainer) return;
       dailyTablesContainer.innerHTML = '';
 
       forecast.days.forEach((day, dayIndex) => {
-        // One card per day (DESIGN §3.3.3: a tool result is a unit), with a one-line summary from the BMKG slots.
+        // One card per day (DESIGN §3.3.3: a tool result is a unit), with a one-line text summary from the BMKG slots.
         const dayCard = document.createElement('div');
         dayCard.className = 'card p-3 sm:p-6 space-y-3';
 
@@ -278,15 +355,19 @@ try {
         const temps = day.slots.map((sl) => Number(sl.t)).filter((n) => Number.isFinite(n));
         const rainSlots = day.slots.filter((sl) => Number(sl.tp) > 0);
         const rainTotal = Math.round(rainSlots.reduce((sum, sl) => sum + Number(sl.tp), 0) * 10) / 10;
+        const hus = day.slots.map((sl) => Number(sl.hu)).filter((n) => Number.isFinite(n));
+        const wss = day.slots.map((sl) => Number(sl.ws)).filter((n) => Number.isFinite(n));
+        const parts = [
+          temps.length ? `Suhu ${range(temps, '°C')}` : '',
+          rainSlots.length
+            ? `hujan ${rainTotal.toLocaleString('id-ID')} mm pada jam ${rainSlots.map((sl) => formatSlotTime(sl.local_datetime)).join(', ')}`
+            : 'tanpa hujan',
+          hus.length ? `lembap ${range(hus, '%')}` : '',
+          wss.length ? `angin maks ${Math.max(...wss).toLocaleString('id-ID')} km/j` : '',
+        ].filter(Boolean);
+        const line = parts.join(' · ') + '.';
         const summary = document.createElement('p');
         summary.className = 'text-sm text-[var(--color-text-muted)] tabular-nums';
-        const tMin = Math.min(...temps);
-        const tMax = Math.max(...temps);
-        const tempText = temps.length ? (tMin === tMax ? `Suhu ${tMin}°C` : `Suhu ${tMin}–${tMax}°C`) : '';
-        const rainText = rainSlots.length
-          ? `hujan ${rainTotal.toLocaleString('id-ID')} mm pada jam ${rainSlots.map((sl) => formatSlotTime(sl.local_datetime)).join(', ')}`
-          : 'tanpa hujan';
-        const line = [tempText, rainText].filter(Boolean).join(' · ') + '.';
         summary.textContent = line.charAt(0).toUpperCase() + line.slice(1);
         dayCard.appendChild(summary);
 
@@ -342,10 +423,10 @@ try {
             const reasonStr = sprayRes.reasons[0] || '';
             sprayCellHtml = `
               <td class="py-3 px-2 sm:px-3 first:pl-0 last:pr-0">
-                <span class="inline-block text-[11px] font-semibold px-2 py-0.5 rounded-[2px] ${badgeClass}">
+                <span class="inline-block text-xs font-semibold px-2 py-0.5 rounded-[2px] ${badgeClass}">
                   ${label}
                 </span>
-                ${reasonStr ? `<span class="block text-[10px] text-[var(--color-text-muted)] mt-0.5">${reasonStr}</span>` : ''}
+                ${reasonStr ? `<span class="block text-xs text-[var(--color-text-muted)] mt-0.5">${esc(reasonStr)}</span>` : ''}
               </td>
             `;
           }
@@ -355,26 +436,26 @@ try {
               ${timeFormatted}
             </td>
             <td class="py-3 px-2 sm:px-3 first:pl-0 last:pr-0">
-              <div class="inline-flex items-center gap-1.5 font-medium text-[var(--color-text)]">
-                ${slot.image ? `<img src="${slot.image}" alt="" class="w-5 h-5 inline-block shrink-0" aria-hidden="true" />` : ''}
-                <span class="whitespace-nowrap">${slot.weather_desc}</span>
+              <div class="inline-flex items-center gap-2 font-medium text-[var(--color-text)]">
+                ${safeIcon(slot.image) ? `<img src="${esc(safeIcon(slot.image))}" alt="${esc(`Ikon cuaca ${slot.weather_desc}`)}" width="20" height="20" class="w-5 h-5 inline-block shrink-0" aria-hidden="true" />` : ''}
+                <span class="whitespace-nowrap">${esc(slot.weather_desc)}</span>
               </div>
               <div class="block md:hidden text-xs text-[var(--color-text-muted)] tabular-nums mt-0.5">
-                <span>Angin ${slot.ws} km/j (${slot.wd})</span> · <span>Lembap ${slot.hu}%</span>
+                <span>Angin ${esc(slot.ws)} km/j (${esc(slot.wd)})</span> · <span>Lembap ${esc(slot.hu)}%</span>
               </div>
             </td>
             <td class="py-3 px-2 sm:px-3 first:pl-0 last:pr-0 text-right font-semibold text-[var(--color-text)] whitespace-nowrap">
-              ${slot.t}°C
+              ${esc(slot.t)}°C
             </td>
             <td class="py-3 px-2 sm:px-3 first:pl-0 last:pr-0 text-right font-medium text-[var(--color-text)] whitespace-nowrap">
-              ${slot.tp > 0 ? `<span class="text-[var(--color-soil)] font-bold">${slot.tp} mm</span>` : '0 mm'}
+              ${slot.tp > 0 ? `<span class="text-[var(--color-soil)] font-bold">${esc(slot.tp)} mm</span>` : '0 mm'}
             </td>
             <td class="py-3 px-2 sm:px-3 first:pl-0 last:pr-0 text-right text-[var(--color-text-muted)] whitespace-nowrap hidden md:table-cell">
-              ${slot.hu}%
+              ${esc(slot.hu)}%
             </td>
             <td class="py-3 px-2 sm:px-3 first:pl-0 last:pr-0 text-[var(--color-text-muted)] whitespace-nowrap hidden md:table-cell">
-              <span>${slot.ws} km/j</span>
-              <span class="text-xs block sm:inline sm:ml-1 tabular-nums">${slot.wd} (${windDir})</span>
+              <span>${esc(slot.ws)} km/j</span>
+              <span class="text-xs block sm:inline sm:ml-1 tabular-nums">${esc(slot.wd)} (${esc(windDir)})</span>
             </td>
             ${sprayCellHtml}
           `;

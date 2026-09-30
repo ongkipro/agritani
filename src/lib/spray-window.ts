@@ -3,21 +3,17 @@
  * Pure spray suitability evaluation engine (REQ-10, ARCHITECTURE §5b, DEC-014).
  * Enforces review gating: if thresholds are null or unreviewed, status is null.
  */
-import { z } from 'zod';
+export interface SprayThresholdsData {
+  rainTundaMm: number;
+  windTundaKmh: number;
+  windHatiKmh: number;
+  tempHatiC: number;
+  humidityHatiPct: number;
+  reviewedBy?: string;
+  sources: string[];
+}
 
-export const sprayThresholdsSchema = z
-  .object({
-    rainTundaMm: z.number(), // tp slot ini atau slot berikut >= nilai -> Tunda
-    windTundaKmh: z.number(), // ws >= nilai -> Tunda
-    windHatiKmh: z.number(), // ws >= nilai -> Hati-hati
-    tempHatiC: z.number(), // t >= nilai -> Hati-hati
-    humidityHatiPct: z.number(), // hu <= nilai -> Hati-hati
-    reviewedBy: z.string().optional(),
-    sources: z.array(z.string()),
-  })
-  .nullable();
-
-export type SprayThresholds = z.infer<typeof sprayThresholdsSchema>;
+export type SprayThresholds = SprayThresholdsData | null;
 
 export interface WeatherSlot {
   local_datetime: string;

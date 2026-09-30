@@ -123,12 +123,14 @@ const topicImage = Object.entries(topicImages).find(([path]) => path.endsWith(`t
         <Picture
           src={topicImage}
           formats={['webp']}
+          fallbackFormat="webp"
           quality={60}
           widths={[480, 800, 1200]}
           sizes="(min-width: 1024px) 26rem, calc(100vw - 2rem)"
-          alt=""
+          alt={`Ilustrasi topik ${topic.name} di Jurnal Tani Agritani`}
           class="w-full aspect-[16/9] object-cover rounded-[2px]"
           loading="eager"
+          fetchpriority="high"
         />
         </div>
       )}

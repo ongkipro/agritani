@@ -16,6 +16,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 import AuthorAvatar from '../../components/AuthorAvatar.astro';
 import { TOPICS, topicName } from '../../lib/topics';
 import { getArticleImage } from '../../lib/topic-images';
+import { articleImageAlt } from '../../lib/image-alt';
 import { getReadingTime } from '../../lib/reading-time';
 import { waLink } from '../../lib/whatsapp';
 import { externalLink } from '../../lib/links';
@@ -329,10 +330,11 @@ function formatDate(d: Date | string) {
                     <Picture
                       src={getArticleImage(article.data)}
                       formats={['webp']}
+                      fallbackFormat="webp"
                       widths={[180, 360]}
                       sizes="(min-width: 640px) 11rem, 6rem"
                       quality={70}
-                      alt=""
+                      alt={articleImageAlt(article.data)}
                       class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                       loading={index < 3 ? "eager" : "lazy"}
                       decoding={index < 3 ? "sync" : "async"}

@@ -488,6 +488,12 @@ Pemilik: "boleh pakai card namun rapi". Kartu dipakai **hanya untuk satu unit ut
 - Teknis: `astro:assets`, `width`/`height` eksplisit, AVIF/WebP, hero ≤ 90 KB di 390px; `alt` mendeskripsikan isi agronomis.
 - Bila tidak ada foto layak, region lapangan tetap lengkap tanpa foto (lihat C3). Situs harus tetap berfungsi tanpa gambar.
 
+#### 3.5.0. Aturan gambar (pemilik 2026-10-01, T-54)
+
+- **Format:** semua gambar halaman WebP lewat `astro:assets` (`formats={['webp']}`); SVG hanya untuk ikon/logo; PNG hanya untuk gambar OG (`public/og/`) dan `apple-touch-icon.png` (dibutuhkan platform sosial dan iOS). Sumber baru di `src/assets/` wajib `.webp`.
+- **ALT wajib berkata kunci (10–125 karakter):** gambar artikel "Ilustrasi {komoditas|topik}: {judul}" (`articleImageAlt()`), kemasan produk "Kemasan {nama}, {peran}" (di artikel: "Kemasan {nama} untuk {komoditas}"), avatar "Foto Arif Prabowo, Konsultan Pertanian Senior Agritani", ikon cuaca "Ikon cuaca {deskripsi BMKG}", gambar lain menjelaskan isi + topik halaman. Gambar yang berdampingan dengan teks yang sama tetap ber-ALT tetapi boleh `aria-hidden` agar pembaca layar tidak mengulang.
+- Dijaga `scripts/check-images.mjs` (bagian `npm run build`).
+
 #### 3.5.1. Gambar Dummy Sementara (T-26)
 
 Diminta Paduka Ongki 2026-09-29 agar situs tidak kosong sebelum foto asli (OQ-5) tersedia. Semua gambar di sini berstatus sementara dan wajib diganti foto asli.

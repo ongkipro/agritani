@@ -930,3 +930,15 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - `.prose p > .katex:only-child`: `mask-image` dengan pudar 2,5rem di kanan (`@property --katex-fade`), dianimasikan ke 0 lewat `animation-timeline: scroll(self inline)` sehingga pudar hilang saat rumus digeser sampai ujung; `prefers-reduced-motion` mematikan animasi (pudar statis).
 - Temuan: minifier CSS menggabungkan `animation` + `animation-timeline` menjadi shorthand yang ditolak Chrome sehingga aturan terbuang; ditulis sebagai longhand (`animation-name`, `animation-fill-mode`, `animation-timeline`).
 - Bukti (Chrome 154, 390px, rumus BEP): `--katex-fade` 2.5rem di awal → 0px di ujung; tanpa overflow halaman. Diverifikasi di worktree terpisah karena ada pekerjaan agy yang belum selesai di working tree.
+
+## 2026-10-01 — T-54: Integrasi pekerjaan agy + aturan gambar (PASS)
+
+- Dipantau sampai agy idle dan pohon kerja stabil 2 menit. Permintaan pemilik ke agy: Tentang Kami dilengkapi, PageSpeed (WebP, preload font, `fetchpriority`), Kalender Tanam "Tanggal tanam atau pindah tanam" + dropdown shadcn, Cuaca Tani output, repo publik.
+- Review independen: CHANGES_REQUIRED. Diperbaiki (pekerja paralel per berkas):
+  - Tentang Kami: klaim karangan dihapus ("Jaminan 100%", "terbukti", metrik palsu, harga/stok/ekspedisi), kicker/garis/ikon dekoratif/kartu bersarang/11px dihapus; isi lengkap berbasis fakta (DEC-016/021), jumlah artikel dihitung.
+  - Cuaca Tani: emoji & kicker & pill dihapus; kondisi "saat ini" dari `utc_datetime` (bug zona waktu browser), label WIB/WITA/WIT; string BMKG di-escape; ALT ikon "Ikon cuaca {deskripsi}".
+  - Kalender Tanam: dropdown jadi satu-satunya kontrol dengan keyboard penuh; popover tanggal non-modal dengan fokus benar, panah/Home/End, `<input type="date">` bawaan dikembalikan; target 44px; tanggal hard-coded dihapus; produksi tetap "sedang ditinjau".
+  - Produk: tautan 36px → 44px; blok `image.service` tak berlaku dihapus dari `astro.config.mjs`; `verify-tools-interactive.mjs` memakai `BASE_URL` (bukan IP Tailscale); bukti agy PNG → WebP.
+- Aturan gambar (pemilik): `scripts/check-images.mjs` di build — setiap `<img>` ALT 10–125 karakter non-generik, src WebP/SVG; sumber `src/assets`/`public` WebP kecuali OG/apple-touch PNG. `articleImageAlt()` ("Ilustrasi {komoditas|topik}: {judul}") untuk semua gambar artikel; kemasan "Kemasan {nama}, {peran}" / "untuk {komoditas}"; avatar ber-ALT. Hasil: 5.505 gambar di 1.826 halaman ber-ALT (sebelumnya 4.608 ALT kosong), 61% ALT memuat kata judul/H1 halaman; sisanya menyebut item yang ditampilkan (artikel/produk).
+- Verifikasi: astro check 0/0; npm test 108/108; build PASS (artikel, SEO, CSP 0/0/0, 198.440 tautan internal, owner-rules, images). Uji fungsi: kalkulator (32 ml/tangki, 25 tangki untuk 1 ha × 400 L/ha), Cuaca Tani BMKG 200 + 3 hari + muat ulang, Kalender produksi jujur & pratinjau menghasilkan rencana Padi + .ics, pencarian 25 hasil, Konsultasi → wa.me; 0 pageerror.
+- Repo publik (permintaan pemilik ke agy): `security-check` tidak menemukan rahasia.

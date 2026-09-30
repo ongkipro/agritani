@@ -21,6 +21,7 @@ const { seo, currentPath, noWhatsApp = false } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <SeoHead seo={seo} />
+    <slot name="head" />
   </head>
   <body class="min-h-screen flex flex-col bg-[var(--color-canvas)] text-[var(--color-text)] font-sans antialiased">
     <!-- Skip to main content link for accessibility -->

@@ -173,13 +173,15 @@ const seo: SeoInput = {
           <Picture
             src={getProductImage(product.id)}
             formats={['webp']}
+            fallbackFormat="webp"
             widths={[320, 640]}
             sizes="(min-width: 1024px) 28rem, 22rem"
             quality={90}
-            alt={`Kemasan ${p.name}`}
+            alt={`Kemasan ${p.name}, ${p.role}`}
             class="w-full h-full object-cover"
             pictureAttributes={{ class: 'block w-full h-full' }}
             loading="eager"
+            fetchpriority="high"
           />
         </div>
       </div>
@@ -356,12 +358,14 @@ const seo: SeoInput = {
                   <Picture
                     src={photo.image}
                     formats={['webp']}
+                    fallbackFormat="webp"
                     widths={[300, 600]}
                     sizes="(min-width: 1024px) 24rem, (min-width: 640px) 50vw, 100vw"
                     quality={85}
                     alt={photo.caption}
                     class="w-full h-full object-cover"
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <figcaption class="mt-2 text-xs text-[var(--color-text-muted)] leading-relaxed">

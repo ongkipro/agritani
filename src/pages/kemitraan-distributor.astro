@@ -44,12 +44,14 @@ const seo: SeoInput = {
         <Picture
           src={kemitraanImage}
           formats={['webp']}
+          fallbackFormat="webp"
           quality={60}
           widths={[480, 800, 1200]}
           sizes="(min-width: 1024px) 26rem, calc(100vw - 2rem)"
           alt="Tumpukan karung pasokan di gudang distribusi"
           class="w-full aspect-[3/2] object-cover"
           loading="eager"
+          fetchpriority="high"
         />
       </div>
     </header>

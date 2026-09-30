@@ -1,19 +1,24 @@
 ---
 /**
  * src/pages/tentang-kami.astro
- * Tentang Kami (DESIGN §4.2.3, DEC-021): who Agritani is, the four flagship products,
- * the agent/distributor opportunity with one WhatsApp CTA to the sales team, and a one-line manager note.
- * Invariants: one WhatsApp CTA (DESIGN §2.8), cards only for products (§3.3.3), no invented claims.
+ * Tentang Kami (DESIGN §4.2.3, DEC-016, DEC-017, DEC-019, DEC-021, DEC-022).
+ * Fuller page per owner request ("jika isinya kurang lengkap kembangkan"), facts only:
+ * - Agritani Official = distributor resmi dan utama untuk penjualan online (DEC-021).
+ * - What the portal offers: 4 flagship products, Jurnal Tani (count from the collection), Alat Tani.
+ * - Keaslian kemasan facts reused from /produk/.
+ * - Agent/distributor section with exactly one WhatsApp CTA to the sales team (DESIGN §2.8).
+ * - One short line about Arif Prabowo (DEC-016).
+ * Invariants: cards only for products, no kicker/divider lines/decorative icons, radius 2px, text >= 12px.
  */
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
-import AuthorAvatar from '../components/AuthorAvatar.astro';
 import ProductCard from '../components/ProductCard.astro';
 import ConsultPrompt from '../components/ConsultPrompt.astro';
 import type { SeoInput } from '../lib/seo';
 import tentangKamiImg from '../assets/images/dummy/tentang-kami.webp';
+import arifPortrait from '../assets/images/authors/arif-prabowo.webp';
 
 const breadcrumbs = [
   { name: 'Beranda', url: '/' },
@@ -32,33 +37,86 @@ const seo: SeoInput = {
 const order = ['aussie', 'bensu', 'kojien', 'saratoga'];
 const products = (await getCollection('products')).sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
 const commoditiesMap = new Map((await getCollection('commodities')).map((c) => [c.id, c.data.name]));
+const publishedArticles = (await getCollection('articles')).filter((a) => !a.data.draft).length;
+
+const tools = [
+  { href: '/alat/kalkulator-dosis/', name: 'Kalkulator Dosis', desc: 'takaran per tangki dan kebutuhan per luas lahan' },
+  { href: '/alat/cuaca-tani/', name: 'Cuaca Tani', desc: 'prakiraan BMKG per 3 jam untuk desa Anda' },
+  { href: '/alat/kalender-tanam/', name: 'Kalender Tanam', desc: 'jadwal fase dari tanggal tanam atau pindah tanam' },
+  { href: '/alat/diagnosa-gejala/', name: 'Diagnosa Gejala', desc: 'mencocokkan gejala di lahan dengan kemungkinan penyebabnya' },
+];
+
+const keaslian = [
+  { title: 'Segel ShieldedTag™', body: 'Tutup botol dikunci segel hologram yang robek saat dibuka pertama kali. Jangan terima kemasan dengan segel rusak.' },
+  { title: 'Sifat cairan', body: 'Cairan asli berupa konsentrat tanpa endapan kasar, beraroma khas fermentasi organik, dan larut merata dalam air tangki.' },
+  { title: 'Nomor izin edar', body: 'Nomor izin edar tercetak pada label botol.' },
+];
 ---
 
 <BaseLayout seo={seo} currentPath="/tentang-kami/">
   <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
     <Breadcrumb items={breadcrumbs} />
 
-    <header class="mt-6 sm:mt-8 mb-8 max-w-[68ch]">
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold text-[var(--color-text)] leading-tight tracking-[-0.015em] text-balance mb-4">
-        Tentang Agritani
-      </h1>
-      <p class="pillar-lede">
-        Agritani Official adalah distributor resmi dan utama untuk penjualan online, baik di marketplace maupun platform lainnya, yang berdedikasi menjembatani inovasi hayati mutakhir dengan kebutuhan nyata petani Indonesia.
-      </p>
-    </header>
+    <!-- 1. Opening: text 7/12 + photo 5/12 on desktop -->
+    <section class="mt-6 sm:mt-8 mb-12 sm:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center" aria-labelledby="tentang-kami-heading">
+      <div class="lg:col-span-7 max-w-[68ch]">
+        <h1 id="tentang-kami-heading" class="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold text-[var(--color-text)] leading-tight tracking-[-0.015em] text-balance mb-4">
+          Tentang Agritani
+        </h1>
+        <p class="pillar-lede">
+          Agritani Official adalah distributor resmi dan utama untuk penjualan online, baik di marketplace maupun platform lainnya, yang berdedikasi menjembatani inovasi hayati mutakhir dengan kebutuhan nyata petani Indonesia.
+        </p>
+        <p class="mt-4 text-base sm:text-[17px] leading-relaxed text-[var(--color-text)]">
+          Di satu tempat, Agritani menghadirkan empat produk unggulan, panduan agronomi di Jurnal Tani, dan alat bantu lapangan yang bisa dipakai gratis oleh petani.
+        </p>
+      </div>
+      <figure class="lg:col-span-5">
+        <Image
+          src={tentangKamiImg}
+          format="webp"
+          alt="Lahan sawah terasering, ilustrasi pertanian Indonesia untuk profil Agritani"
+          widths={[480, 800, 1080]}
+          sizes="(min-width: 1024px) 28rem, calc(100vw - 2rem)"
+          quality={75}
+          class="w-full aspect-[4/3] object-cover"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </figure>
+    </section>
 
-    <figure class="mb-12 sm:mb-16 max-w-[48rem]">
-      <Image
-        src={tentangKamiImg}
-        alt="Lanskap perbukitan sawah terasering tropis di masa panen"
-        widths={[480, 800, 1200]}
-        sizes="(min-width: 1024px) 48rem, calc(100vw - 2rem)"
-        quality={60}
-        class="w-full h-auto object-cover"
-        loading="eager"
-      />
-    </figure>
+    <!-- 2. What Agritani offers: open text blocks, no cards -->
+    <section class="mb-12 sm:mb-16" aria-labelledby="yang-kami-hadirkan-heading">
+      <h2 id="yang-kami-hadirkan-heading" class="section-title">Yang Agritani hadirkan</h2>
+      <div class="grid gap-8 md:grid-cols-3 md:gap-10">
+        <div>
+          <h3 class="font-serif text-lg font-semibold text-[var(--color-text)]">Produk unggulan</h3>
+          <p class="mt-1.5 text-sm sm:text-base leading-relaxed text-[var(--color-text-muted)]">
+            Aussie, BENSU, Kojien, dan Saratoga, dijual langsung oleh Agritani Official secara online.
+          </p>
+          <a href="/produk/" class="link-more mt-2 text-sm">Lihat katalog &rarr;</a>
+        </div>
+        <div>
+          <h3 class="font-serif text-lg font-semibold text-[var(--color-text)]">Jurnal Tani</h3>
+          <p class="mt-1.5 text-sm sm:text-base leading-relaxed text-[var(--color-text-muted)]">
+            {publishedArticles} artikel panduan budidaya dan penanganan hama penyakit yang dapat dibaca bebas, dikelola Arif Prabowo.
+          </p>
+          <a href="/jurnal/" class="link-more mt-2 text-sm">Baca Jurnal Tani &rarr;</a>
+        </div>
+        <div>
+          <h3 class="font-serif text-lg font-semibold text-[var(--color-text)]">Alat Tani</h3>
+          <ul class="mt-1.5 space-y-1 text-sm sm:text-base leading-relaxed text-[var(--color-text-muted)]">
+            {tools.map((t) => (
+              <li>
+                <a href={t.href} class="inline-block py-3 -my-3 font-semibold text-[var(--color-brand-strong)] hover:underline underline-offset-4">{t.name}</a>: {t.desc}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
 
+    <!-- 3. Flagship products: the only cards on this page (whole units) -->
     <section class="mb-12 sm:mb-16" aria-labelledby="produk-unggulan-heading">
       <h2 id="produk-unggulan-heading" class="section-title">Produk unggulan Agritani</h2>
       <p class="-mt-3 mb-6 max-w-[60ch] text-base sm:text-[17px] leading-relaxed text-[var(--color-text)]">
@@ -70,6 +128,20 @@ const commoditiesMap = new Map((await getCollection('commodities')).map((c) => [
       <p class="mt-4 text-xs text-[var(--color-text-muted)]">Harga per 30 September 2026 dan dapat berubah sewaktu-waktu.</p>
     </section>
 
+    <!-- 4. Authenticity: same facts as /produk/ -->
+    <section class="mb-12 sm:mb-16" aria-labelledby="keaslian-heading">
+      <h2 id="keaslian-heading" class="section-title">Memeriksa keaslian kemasan</h2>
+      <dl class="grid gap-6 sm:grid-cols-3 sm:gap-8 text-sm sm:text-base leading-relaxed max-w-5xl">
+        {keaslian.map((k) => (
+          <div>
+            <dt class="font-semibold text-[var(--color-text)]">{k.title}</dt>
+            <dd class="mt-1 text-[var(--color-text-muted)]">{k.body}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+
+    <!-- 5. Agent / distributor: one WhatsApp CTA to the sales team (DEC-021) -->
     <section class="mb-12 sm:mb-16 max-w-[68ch]" aria-labelledby="agen-heading">
       <h2 id="agen-heading" class="section-title">Menjadi agen atau distributor</h2>
       <p class="text-base sm:text-[17px] leading-relaxed text-[var(--color-text)]">
@@ -86,14 +158,28 @@ const commoditiesMap = new Map((await getCollection('commodities')).map((c) => [
           fields={[{ label: 'Keperluan', value: 'Konsultasi / penawaran agen atau distributor' }]}
         />
       </div>
+      <p class="mt-4 text-sm text-[var(--color-text-muted)]">
+        Lebih suka mengisi formulir? <a href="/kemitraan-distributor/" class="inline-block py-3 -my-3 font-semibold text-[var(--color-brand-strong)] underline underline-offset-4">Ajukan kemitraan</a>.
+      </p>
     </section>
 
+    <!-- 6. Manager: one short line (DEC-016) -->
     <section class="mb-12 sm:mb-16 max-w-[68ch]" aria-label="Pengelola Jurnal Tani">
       <p class="flex items-center gap-3 text-sm sm:text-base text-[var(--color-text-muted)]">
-        <AuthorAvatar size={40} class="w-10 h-10 shrink-0" />
+        <Image
+          src={arifPortrait}
+          format="webp"
+          widths={[40, 80]}
+          sizes="40px"
+          quality={70}
+          alt="Foto Arif Prabowo, pengelola Jurnal Tani Agritani"
+          loading="lazy"
+          decoding="async"
+          class="w-10 h-10 aspect-square object-cover object-[50%_22%] rounded-[2px] shrink-0"
+        />
         <span>
-          Jurnal Tani dikelola <strong class="font-semibold text-[var(--color-text)]">Arif Prabowo</strong>, Konsultan Pertanian Senior.{' '}
-          <a href="/penulis/arif-prabowo/" class="font-semibold text-[var(--color-brand-strong)] underline underline-offset-4 py-3">Lihat profil</a>
+          Jurnal Tani dikelola <strong class="font-semibold text-[var(--color-text)]">Arif Prabowo</strong>, Konsultan Pertanian Senior dengan pengalaman lebih dari 8 tahun di bidang pertanian dan riset.{' '}
+          <a href="/penulis/arif-prabowo/" class="inline-block py-3 -my-3 font-semibold text-[var(--color-brand-strong)] underline underline-offset-4">Lihat profil</a>
         </span>
       </p>
     </section>

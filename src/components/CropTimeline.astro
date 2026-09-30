@@ -48,79 +48,204 @@ const monthNames = [
     <!-- Step 1: Pilih Komoditas -->
     <div class="space-y-3">
       <div class="flex flex-wrap items-baseline justify-between gap-x-4">
-        <h2 class="font-serif text-xl font-semibold text-[var(--color-brand-strong)]"><label for="select-crop-commodity">Pilih komoditas tanaman</label></h2>
+        <h2 class="font-serif text-xl font-semibold text-[var(--color-brand-strong)]">
+          <label for="crop-comm-trigger">Pilih komoditas tanaman</label>
+        </h2>
         <span class="text-sm text-[var(--color-text-muted)] tabular-nums">
           {availableCommodities.length} komoditas terdaftar
         </span>
       </div>
 
-      <!-- Quick Button Chips (Tap-first) -->
       {availableCommodities.length === 0 && (
         <p class="text-sm text-[var(--color-text-muted)] leading-relaxed max-w-[60ch]">
           Data kalender komoditas sedang ditinjau dan akan tampil di sini setelah terbit.
         </p>
       )}
-      <div class="flex flex-wrap gap-2" id="group-crop-commodity" role="radiogroup" aria-label="Pilih Komoditas">
-        {availableCommodities.map((comm) => (
-          <button
-            type="button"
-            role="radio"
-            aria-checked="false"
-            data-commodity={comm.id}
-            data-crop-type={comm.type}
-            class="crop-comm-btn px-4 py-2.5 min-h-[44px] text-sm font-semibold border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] transition-all cursor-pointer inline-flex items-center gap-2"
-          >
-            <span class="w-1.5 h-1.5 rounded-[2px] bg-[var(--color-border-control)] comm-dot transition-colors" aria-hidden="true"></span>
-            <span>{comm.name}</span>
-          </button>
-        ))}
+
+      <!-- Shadcn UI Select Component (Commodity Dropdown) -->
+      <div class="relative max-w-sm">
+        <!-- Trigger Button -->
+        <button
+          type="button"
+          id="crop-comm-trigger"
+          role="combobox"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+          aria-controls="crop-comm-dropdown"
+          aria-label="Pilih komoditas tanaman"
+          disabled={availableCommodities.length === 0}
+          class="disabled:opacity-50 disabled:cursor-not-allowed w-full flex items-center justify-between px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] transition-all cursor-pointer text-left"
+        >
+          <div class="flex items-center gap-2.5 min-w-0">
+            <span class="w-2 h-2 rounded-[2px] bg-[var(--color-brand)] shrink-0" aria-hidden="true"></span>
+            <span id="crop-comm-selected-name" class="font-semibold text-sm sm:text-base text-[var(--color-text)] truncate">
+              Pilih komoditas...
+            </span>
+            <span id="crop-comm-selected-type" class="text-xs text-[var(--color-text-muted)] font-normal shrink-0"></span>
+          </div>
+          <svg class="w-4 h-4 text-[var(--color-soil)] shrink-0 transition-transform duration-200" id="crop-comm-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m6 8 4 4 4-4"/>
+          </svg>
+        </button>
+
+        <!-- Dropdown Menu (Shadcn SelectContent style) -->
+        <div
+          id="crop-comm-dropdown"
+          role="listbox"
+          aria-label="Daftar komoditas tanaman"
+          class="absolute left-0 top-full mt-1.5 z-40 w-full p-1.5 bg-[var(--color-surface)] border border-[var(--color-border-control)] rounded-[2px] hidden"
+        >
+          <div class="space-y-0.5 max-h-60 overflow-y-auto overscroll-contain" id="crop-comm-options-container">
+            {availableCommodities.map((comm) => (
+              <button
+                type="button"
+                role="option"
+                data-commodity={comm.id}
+                data-name={comm.name}
+                data-type={comm.type === 'semusim' ? 'Semusim' : 'Tahunan'}
+                aria-selected="false"
+                tabindex="-1"
+                class="crop-dropdown-option w-full flex items-center justify-between px-3 py-2.5 min-h-[44px] text-sm text-[var(--color-text)] rounded-[2px] hover:bg-[var(--color-tint)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer text-left select-none"
+              >
+                <div class="flex items-center gap-2 min-w-0">
+                  <span class="font-medium truncate">{comm.name}</span>
+                  <span class="text-xs text-[var(--color-text-muted)] shrink-0">
+                    {comm.type === 'semusim' ? 'Semusim' : 'Tahunan'}
+                  </span>
+                </div>
+                <svg class="w-4 h-4 text-[var(--color-brand)] shrink-0 hidden option-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="m4 10 4 4 8-8"/>
+                </svg>
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
-      <!-- Preserved for screen readers / automated tests -->
-      <select id="select-crop-commodity" class="sr-only" tabindex="-1" aria-hidden="true">
-        {availableCommodities.map((comm) => (
-          <option value={comm.id}>{comm.name} ({comm.type === 'semusim' ? 'Semusim' : 'Tahunan'})</option>
-        ))}
-      </select>
     </div>
 
     <!-- Step 2: Tanggal Tanam / Pindah Tanam (Shadcn Date Picker Pattern) -->
     <div id="section-plant-date" class="space-y-4">
       <div class="flex flex-wrap items-baseline justify-between gap-x-4">
-        <h2 class="font-serif text-xl font-semibold text-[var(--color-brand-strong)]"><label for="input-plant-date">Tanggal tanam atau pindah tanam</label></h2>
+        <h2 class="font-serif text-xl font-semibold text-[var(--color-brand-strong)]"><label for="date-picker-trigger">Tanggal tanam atau pindah tanam</label></h2>
         <span id="label-date-mode" class="text-sm font-semibold text-[var(--color-brand-strong)] tabular-nums">
           Hari Ini · 0 HST
         </span>
       </div>
 
-      <!-- Styled Date Input Trigger with Calendar Icon & Actions -->
+      <!-- Shadcn UI Popover Date Picker Trigger & Action Button -->
       <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-        <div class="relative max-w-sm flex-1 group">
-          <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-[var(--color-brand)] group-focus-within:text-[var(--color-brand-strong)] transition-colors" aria-hidden="true">
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
-              <line x1="16" x2="16" y1="2" y2="6"/>
-              <line x1="8" x2="8" y1="2" y2="6"/>
-              <line x1="3" x2="21" y1="10" y2="10"/>
-            </svg>
-          </div>
-          <input
-            type="date"
-            id="input-plant-date"
-            class="w-full appearance-none pl-10 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] font-semibold border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-sm cursor-pointer transition-colors"
-          />
-          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-[var(--color-soil)]" aria-hidden="true">
-            <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <div class="relative max-w-sm flex-1">
+          <!-- Shadcn Trigger Button -->
+          <button
+            type="button"
+            id="date-picker-trigger"
+            aria-haspopup="dialog"
+            aria-expanded="false"
+            aria-controls="date-popover"
+            class="w-full flex items-center justify-between px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] transition-all cursor-pointer text-left"
+          >
+            <div class="flex items-center gap-2.5 min-w-0">
+              <svg class="w-4 h-4 text-[var(--color-brand)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+                <line x1="16" x2="16" y1="2" y2="6"/>
+                <line x1="8" x2="8" y1="2" y2="6"/>
+                <line x1="3" x2="21" y1="10" y2="10"/>
+              </svg>
+              <span id="date-display-val" class="font-bold text-sm sm:text-base tabular-nums text-[var(--color-text)]">Pilih tanggal</span>
+              <span id="date-display-extra" class="text-xs text-[var(--color-text-muted)] font-normal truncate"></span>
+            </div>
+            <svg class="w-4 h-4 text-[var(--color-soil)] shrink-0 transition-transform duration-200" id="date-picker-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="m6 8 4 4 4-4"/>
             </svg>
+          </button>
+
+
+          <!-- Popover Calendar Overlay (Shadcn Calendar in PopoverContent) -->
+          <div
+            id="date-popover"
+            role="dialog"
+            aria-label="Pilih tanggal tanam atau pindah tanam"
+            class="absolute left-0 top-full mt-2 z-40 w-[calc(100vw-2.25rem)] max-w-[22rem] sm:w-[22rem] p-2 sm:p-3 bg-[var(--color-surface)] border border-[var(--color-border-control)] rounded-[2px] hidden"
+          >
+            <!-- Native date input: keyboard-friendly primary control, same state as the grid below (T-54) -->
+            <div class="pb-2 mb-2 border-b border-[var(--color-border)]">
+              <label for="input-plant-date" class="block text-sm font-semibold text-[var(--color-text)] mb-1">Tanggal tanam atau pindah tanam</label>
+              <input
+                type="date"
+                id="input-plant-date"
+                name="plantDate"
+                class="w-full min-h-[44px] px-3 text-base text-[var(--color-text)] bg-[var(--color-surface)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)]"
+              />
+            </div>
+            <!-- Calendar Navigation Header -->
+            <div class="flex items-center justify-between pb-2 mb-2 border-b border-[var(--color-border)]">
+              <button
+                type="button"
+                id="cal-prev-month"
+                class="w-11 h-11 flex items-center justify-center rounded-[2px] border border-[var(--color-border)] hover:bg-[var(--color-tint)] text-[var(--color-text)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer"
+                aria-label="Bulan sebelumnya"
+              >
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+              </button>
+              <span id="cal-month-year-title" class="font-serif font-bold text-sm text-[var(--color-text)]">
+                Oktober 2026
+              </span>
+              <button
+                type="button"
+                id="cal-next-month"
+                class="w-11 h-11 flex items-center justify-center rounded-[2px] border border-[var(--color-border)] hover:bg-[var(--color-tint)] text-[var(--color-text)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer"
+                aria-label="Bulan berikutnya"
+              >
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
+
+            <!-- Weekday Headers -->
+            <div class="grid grid-cols-7 text-center text-xs font-semibold text-[var(--color-text-muted)] mb-1" aria-hidden="true">
+              <span class="py-1 text-[var(--color-danger)]">Min</span>
+              <span class="py-1">Sen</span>
+              <span class="py-1">Sel</span>
+              <span class="py-1">Rab</span>
+              <span class="py-1">Kam</span>
+              <span class="py-1">Jum</span>
+              <span class="py-1">Sab</span>
+            </div>
+
+            <!-- Days Grid -->
+            <div id="cal-days-grid" class="grid grid-cols-7 text-center text-sm">
+              <!-- Rendered dynamically -->
+            </div>
+
+            <!-- Popover Actions Footer -->
+            <div class="mt-2 pt-1 border-t border-[var(--color-border)] flex items-center justify-between text-sm">
+              <button
+                type="button"
+                id="btn-popover-today"
+                class="min-h-[44px] px-3 font-semibold text-[var(--color-brand-strong)] hover:underline cursor-pointer"
+              >
+                Pakai Hari Ini
+              </button>
+              <button
+                type="button"
+                id="btn-popover-close"
+                class="min-h-[44px] px-3 font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text)] cursor-pointer"
+              >
+                Tutup
+              </button>
+            </div>
           </div>
         </div>
 
+        <!-- Pakai Hari Ini Button (Primary Trigger Action) -->
         <button
           type="button"
           id="btn-set-today"
-          class="px-4 py-2.5 min-h-[44px] text-sm font-semibold border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:bg-[var(--color-tint)] hover:border-[var(--color-brand)] text-[var(--color-brand-strong)] rounded-[2px] transition-colors shrink-0 cursor-pointer inline-flex items-center justify-center gap-1.5"
+          class="px-4 py-2.5 min-h-[44px] text-sm font-semibold border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:bg-[var(--color-tint)] hover:border-[var(--color-brand)] text-[var(--color-brand-strong)] rounded-[2px] transition-colors shrink-0 cursor-pointer inline-flex items-center justify-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)]"
         >
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
           <span>Pakai hari ini</span>
         </button>
       </div>
@@ -412,10 +537,25 @@ const monthNames = [
       calendars = [];
     }
 
-    const commodityBtns = Array.from(root.querySelectorAll<HTMLButtonElement>('.crop-comm-btn'));
-    const selectCropCommodity = document.getElementById('select-crop-commodity') as HTMLSelectElement | null;
+    const cropCommTrigger = document.getElementById('crop-comm-trigger');
+    const cropCommSelectedName = document.getElementById('crop-comm-selected-name');
+    const cropCommSelectedType = document.getElementById('crop-comm-selected-type');
+    const cropCommChevron = document.getElementById('crop-comm-chevron');
+    const cropCommDropdown = document.getElementById('crop-comm-dropdown');
+    const cropDropdownOptions = Array.from(root.querySelectorAll<HTMLButtonElement>('.crop-dropdown-option'));
     const plantDateInput = document.getElementById('input-plant-date') as HTMLInputElement | null;
     const btnSetToday = document.getElementById('btn-set-today');
+    const datePickerTrigger = document.getElementById('date-picker-trigger');
+    const dateDisplayVal = document.getElementById('date-display-val');
+    const dateDisplayExtra = document.getElementById('date-display-extra');
+    const datePickerChevron = document.getElementById('date-picker-chevron');
+    const datePopover = document.getElementById('date-popover');
+    const calPrevMonth = document.getElementById('cal-prev-month');
+    const calNextMonth = document.getElementById('cal-next-month');
+    const calMonthYearTitle = document.getElementById('cal-month-year-title');
+    const calDaysGrid = document.getElementById('cal-days-grid');
+    const btnPopoverToday = document.getElementById('btn-popover-today');
+    const btnPopoverClose = document.getElementById('btn-popover-close');
     const datePresetBtns = Array.from(root.querySelectorAll<HTMLButtonElement>('.date-preset-btn'));
     const labelDateMode = document.getElementById('label-date-mode');
     const dateContextText = document.getElementById('date-context-text');
@@ -449,6 +589,9 @@ const monthNames = [
     let selectedPlantDate: string = '';
     let currentPlan: CropPlanResult | null = null;
 
+    let calViewYear: number = new Date().getFullYear();
+    let calViewMonth: number = new Date().getMonth(); // 0-11
+
     // Helper: today YYYY-MM-DD string in local time
     function getTodayIso(): string {
       const now = new Date();
@@ -456,6 +599,210 @@ const monthNames = [
       const m = String(now.getMonth() + 1).padStart(2, '0');
       const d = String(now.getDate()).padStart(2, '0');
       return `${y}-${m}-${d}`;
+    }
+
+    function formatDdMmYyyy(iso: string): string {
+      if (!iso || !/^\d{4}-\d{2}-\d{2}$/.test(iso)) return '';
+      const [y, m, d] = iso.split('-');
+      return `${d}/${m}/${y}`;
+    }
+
+    function getDayNameId(iso: string): string {
+      if (!iso || !/^\d{4}-\d{2}-\d{2}$/.test(iso)) return '';
+      const [y, m, d] = iso.split('-').map(Number);
+      const dt = new Date(y, m - 1, d);
+      return new Intl.DateTimeFormat('id-ID', { weekday: 'long' }).format(dt);
+    }
+
+    function selectDate(iso: string) {
+      const wasOpen = !!datePopover && !datePopover.classList.contains('hidden');
+      selectedPlantDate = iso;
+      if (plantDateInput) plantDateInput.value = iso;
+      closePopover();
+      updateUrlAndStorage();
+      syncUI();
+      if (wasOpen) (datePickerTrigger as HTMLButtonElement | null)?.focus();
+    }
+
+    function selectCommodity(id: string) {
+      if (id && selectedCommodityId !== id) {
+        selectedCommodityId = id;
+        closeCommodityDropdown();
+        updateUrlAndStorage();
+        syncUI();
+      } else {
+        closeCommodityDropdown();
+      }
+      (cropCommTrigger as HTMLButtonElement | null)?.focus();
+    }
+
+    function openCommodityDropdown() {
+      if (!cropCommDropdown) return;
+      closePopover();
+      cropCommDropdown.classList.remove('hidden');
+      cropCommTrigger?.setAttribute('aria-expanded', 'true');
+      cropCommChevron?.classList.add('rotate-180');
+      // Move focus into the list (selected option, else the first) so arrow keys work right away.
+      const target = cropDropdownOptions.find((o) => o.dataset.commodity === selectedCommodityId) || cropDropdownOptions[0];
+      target?.focus();
+    }
+
+    function closeCommodityDropdown() {
+      if (!cropCommDropdown) return;
+      cropCommDropdown.classList.add('hidden');
+      cropCommTrigger?.setAttribute('aria-expanded', 'false');
+      cropCommChevron?.classList.remove('rotate-180');
+    }
+
+    function toggleCommodityDropdown() {
+      if (!cropCommDropdown) return;
+      if (cropCommDropdown.classList.contains('hidden')) {
+        openCommodityDropdown();
+      } else {
+        closeCommodityDropdown();
+      }
+    }
+
+    function openPopover() {
+      if (!datePopover) return;
+      closeCommodityDropdown();
+      datePopover.classList.remove('hidden');
+      datePickerTrigger?.setAttribute('aria-expanded', 'true');
+      datePickerChevron?.classList.add('rotate-180');
+
+      if (selectedPlantDate && /^\d{4}-\d{2}-\d{2}$/.test(selectedPlantDate)) {
+        const [y, m] = selectedPlantDate.split('-').map(Number);
+        calViewYear = y;
+        calViewMonth = m - 1;
+      } else {
+        const now = new Date();
+        calViewYear = now.getFullYear();
+        calViewMonth = now.getMonth();
+      }
+      renderCalendarGrid();
+      // Focus the roving day (selected, else today, else first day) so the keyboard starts inside the dialog.
+      calDaysGrid?.querySelector<HTMLButtonElement>('button[tabindex="0"]')?.focus();
+    }
+
+    function closePopover() {
+      if (!datePopover) return;
+      datePopover.classList.add('hidden');
+      datePickerTrigger?.setAttribute('aria-expanded', 'false');
+      datePickerChevron?.classList.remove('rotate-180');
+    }
+
+    function togglePopover() {
+      if (!datePopover) return;
+      if (datePopover.classList.contains('hidden')) {
+        openPopover();
+      } else {
+        closePopover();
+      }
+    }
+
+    function renderCalendarGrid() {
+      if (!calDaysGrid || !calMonthYearTitle) return;
+
+      calMonthYearTitle.textContent = `${monthNamesId[calViewMonth]} ${calViewYear}`;
+      calDaysGrid.innerHTML = '';
+
+      const todayIso = getTodayIso();
+      const firstDayOfWeek = new Date(calViewYear, calViewMonth, 1).getDay();
+      const daysInMonth = new Date(calViewYear, calViewMonth + 1, 0).getDate();
+      const daysInPrevMonth = new Date(calViewYear, calViewMonth, 0).getDate();
+
+      const frag = document.createDocumentFragment();
+
+      // Leading padding days from previous month
+      for (let i = 0; i < firstDayOfWeek; i++) {
+        const dayNum = daysInPrevMonth - firstDayOfWeek + 1 + i;
+        const prevMonth = calViewMonth === 0 ? 11 : calViewMonth - 1;
+        const prevYear = calViewMonth === 0 ? calViewYear - 1 : calViewYear;
+        const padIso = `${prevYear}-${String(prevMonth + 1).padStart(2, '0')}-${String(dayNum).padStart(2, '0')}`;
+
+        const cell = document.createElement('button');
+        cell.type = 'button';
+        cell.className = 'w-full h-11 flex items-center justify-center text-sm text-[var(--color-text-muted)] opacity-50 hover:opacity-90 rounded-[2px] transition-colors cursor-pointer';
+        cell.tabIndex = -1;
+        cell.dataset.iso = padIso;
+        cell.textContent = String(dayNum);
+        cell.setAttribute('aria-label', `${dayNum} ${monthNamesId[prevMonth]} ${prevYear}`);
+        cell.addEventListener('click', (e) => {
+          e.stopPropagation();
+          selectDate(padIso);
+        });
+        frag.appendChild(cell);
+      }
+
+      // Days in active month
+      for (let dayNum = 1; dayNum <= daysInMonth; dayNum++) {
+        const dayIso = `${calViewYear}-${String(calViewMonth + 1).padStart(2, '0')}-${String(dayNum).padStart(2, '0')}`;
+        const isSelected = dayIso === selectedPlantDate;
+        const isToday = dayIso === todayIso;
+        const dayOfWeek = new Date(calViewYear, calViewMonth, dayNum).getDay();
+        const isSunday = dayOfWeek === 0;
+
+        const cell = document.createElement('button');
+        cell.type = 'button';
+        cell.textContent = String(dayNum);
+        cell.setAttribute('aria-label', `${dayNum} ${monthNamesId[calViewMonth]} ${calViewYear}${isToday ? ' (Hari ini)' : ''}`);
+
+        let classes = 'w-full h-11 flex items-center justify-center text-sm rounded-[2px] transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-strong)] ';
+        cell.tabIndex = -1;
+        cell.dataset.iso = dayIso;
+        cell.dataset.inMonth = '1';
+        if (isToday) cell.setAttribute('aria-current', 'date');
+
+        if (isSelected) {
+          classes += 'bg-[var(--color-brand)] text-white font-bold ';
+          cell.setAttribute('aria-pressed', 'true');
+        } else if (isToday) {
+          classes += 'border border-[var(--color-brand)] text-[var(--color-brand-strong)] font-semibold hover:bg-[var(--color-tint)] ';
+        } else {
+          classes += (isSunday ? 'text-[var(--color-danger)] ' : 'text-[var(--color-text)] ') + 'hover:bg-[var(--color-tint)] font-medium ';
+        }
+
+        cell.className = classes;
+        cell.addEventListener('click', (e) => {
+          e.stopPropagation();
+          selectDate(dayIso);
+        });
+        frag.appendChild(cell);
+      }
+
+      // Trailing padding days for next month
+      const totalCells = firstDayOfWeek + daysInMonth;
+      const remainder = totalCells % 7;
+      const nextDaysCount = remainder === 0 ? 0 : 7 - remainder;
+
+      for (let dayNum = 1; dayNum <= nextDaysCount; dayNum++) {
+        const nextMonth = calViewMonth === 11 ? 0 : calViewMonth + 1;
+        const nextYear = calViewMonth === 11 ? calViewYear + 1 : calViewYear;
+        const padIso = `${nextYear}-${String(nextMonth + 1).padStart(2, '0')}-${String(dayNum).padStart(2, '0')}`;
+
+        const cell = document.createElement('button');
+        cell.type = 'button';
+        cell.className = 'w-full h-11 flex items-center justify-center text-sm text-[var(--color-text-muted)] opacity-50 hover:opacity-90 rounded-[2px] transition-colors cursor-pointer';
+        cell.tabIndex = -1;
+        cell.dataset.iso = padIso;
+        cell.textContent = String(dayNum);
+        cell.setAttribute('aria-label', `${dayNum} ${monthNamesId[nextMonth]} ${nextYear}`);
+        cell.addEventListener('click', (e) => {
+          e.stopPropagation();
+          selectDate(padIso);
+        });
+        frag.appendChild(cell);
+      }
+
+      calDaysGrid.appendChild(frag);
+
+      // Roving tabindex: one tab stop in the grid (selected day, else today, else the 1st of the month).
+      const inMonth = Array.from(calDaysGrid.querySelectorAll<HTMLButtonElement>('button[data-in-month="1"]'));
+      const rover =
+        inMonth.find((b) => b.dataset.iso === selectedPlantDate) ||
+        inMonth.find((b) => b.dataset.iso === todayIso) ||
+        inMonth[0];
+      if (rover) rover.tabIndex = 0;
     }
 
     // Read URL & LocalStorage state
@@ -521,29 +868,30 @@ const monthNames = [
     }
 
     function syncUI() {
-      // 1. Sync Commodity Radio Buttons
-      commodityBtns.forEach((btn) => {
-        const id = btn.dataset.commodity;
+      // 1. Sync the commodity dropdown (single control since T-54)
+      const activeOpt = cropDropdownOptions.find((opt) => opt.dataset.commodity === selectedCommodityId);
+      if (activeOpt) {
+        if (cropCommSelectedName) {
+          cropCommSelectedName.textContent = activeOpt.dataset.name || selectedCommodityId || 'Pilih komoditas...';
+        }
+        if (cropCommSelectedType) {
+          cropCommSelectedType.textContent = activeOpt.dataset.type ? `(${activeOpt.dataset.type})` : '';
+        }
+      }
+
+      cropDropdownOptions.forEach((opt) => {
+        const id = opt.dataset.commodity;
         const isSelected = id === selectedCommodityId;
-        btn.setAttribute('aria-checked', String(isSelected));
-        const dot = btn.querySelector('.comm-dot');
+        opt.setAttribute('aria-selected', String(isSelected));
+        const checkIcon = opt.querySelector('.option-check');
         if (isSelected) {
-          btn.classList.add('bg-[var(--color-brand)]', 'text-white', 'border-[var(--color-brand)]');
-          btn.classList.remove('bg-[var(--color-surface)]', 'text-[var(--color-text)]');
-          dot?.classList.add('bg-white');
-          dot?.classList.remove('bg-[var(--color-border-control)]');
+          checkIcon?.classList.remove('hidden');
+          opt.classList.add('bg-[var(--color-tint)]', 'text-[var(--color-brand-strong)]', 'font-semibold');
         } else {
-          btn.classList.remove('bg-[var(--color-brand)]', 'text-white', 'border-[var(--color-brand)]');
-          btn.classList.add('bg-[var(--color-surface)]', 'text-[var(--color-text)]');
-          dot?.classList.remove('bg-white');
-          dot?.classList.add('bg-[var(--color-border-control)]');
+          checkIcon?.classList.add('hidden');
+          opt.classList.remove('bg-[var(--color-tint)]', 'text-[var(--color-brand-strong)]', 'font-semibold');
         }
       });
-
-      // 1b. Sync Commodity Dropdown
-      if (selectCropCommodity && selectedCommodityId) {
-        selectCropCommodity.value = selectedCommodityId;
-      }
 
       // 1c. Sync Date Context & Presets
       if (selectedPlantDate) {
@@ -587,6 +935,18 @@ const monthNames = [
           contextDesc = `${dateFormatted} — Rencana tanam ${diffDays} hari mendatang`;
         }
 
+        // Update trigger display values (DD/MM/YYYY and weekday)
+        if (dateDisplayVal) {
+          dateDisplayVal.textContent = formatDdMmYyyy(selectedPlantDate);
+        }
+        if (dateDisplayExtra) {
+          const dayName = getDayNameId(selectedPlantDate);
+          dateDisplayExtra.textContent = dayName ? `(${dayName})` : '';
+        }
+        if (datePopover && !datePopover.classList.contains('hidden')) {
+          renderCalendarGrid();
+        }
+
         if (labelDateMode) labelDateMode.textContent = modeDesc;
         if (dateContextText) dateContextText.textContent = contextDesc;
       }
@@ -624,8 +984,7 @@ const monthNames = [
     }
 
     function renderPlan(plan: CropPlanResult, calendar: CropCalendarEntry) {
-      const commBtn = commodityBtns.find((b) => b.dataset.commodity === plan.commodityId);
-      const commName = commBtn?.textContent?.trim() || plan.commodityId;
+      const commName = cropDropdownOptions.find((o) => o.dataset.commodity === plan.commodityId)?.dataset.name || plan.commodityId;
 
       if (planTitle) {
         planTitle.textContent = `Rencana Tanam: ${commName}`;
@@ -847,47 +1206,155 @@ const monthNames = [
       }
     }
 
-    // Event listener for Commodity Buttons
-    commodityBtns.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const id = btn.dataset.commodity;
-        if (id && selectedCommodityId !== id) {
-          selectedCommodityId = id;
-          updateUrlAndStorage();
-          syncUI();
-        }
-      });
+    // Keyboard: commodity listbox (ArrowUp/Down, Home/End move; Enter/Space select natively; Tab closes).
+    cropCommTrigger?.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        openCommodityDropdown();
+      }
+    });
+    cropCommDropdown?.addEventListener('keydown', (e) => {
+      const idx = cropDropdownOptions.indexOf(document.activeElement as HTMLButtonElement);
+      let next = -1;
+      if (e.key === 'ArrowDown') next = Math.min(idx + 1, cropDropdownOptions.length - 1);
+      else if (e.key === 'ArrowUp') next = Math.max(idx - 1, 0);
+      else if (e.key === 'Home') next = 0;
+      else if (e.key === 'End') next = cropDropdownOptions.length - 1;
+      else if (e.key === 'Tab') closeCommodityDropdown();
+      if (next >= 0) {
+        e.preventDefault();
+        cropDropdownOptions[next]?.focus();
+      }
     });
 
-    // Event listener for Commodity Dropdown (Synchronized with Buttons)
-    selectCropCommodity?.addEventListener('change', () => {
-      const val = selectCropCommodity.value;
-      if (val && selectedCommodityId !== val) {
-        selectedCommodityId = val;
-        updateUrlAndStorage();
-        syncUI();
+    // Keyboard: day grid (arrows move by day/week, Home/End jump to first/last day of the month).
+    calDaysGrid?.addEventListener('keydown', (e) => {
+      const cells = Array.from(calDaysGrid.querySelectorAll<HTMLButtonElement>('button'));
+      const idx = cells.indexOf(document.activeElement as HTMLButtonElement);
+      if (idx < 0) return;
+      const step: Record<string, number> = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -7, ArrowDown: 7 };
+      let next = -1;
+      if (e.key in step) next = idx + step[e.key];
+      else if (e.key === 'Home') next = cells.findIndex((c) => c.dataset.inMonth === '1');
+      else if (e.key === 'End') {
+        const inMonth = cells.filter((c) => c.dataset.inMonth === '1');
+        next = cells.indexOf(inMonth[inMonth.length - 1]);
       }
+      if (next >= 0 && next < cells.length) {
+        e.preventDefault();
+        cells[idx].tabIndex = -1;
+        cells[next].tabIndex = 0;
+        cells[next].focus();
+      }
+    });
+
+    // Event listener for Shadcn Commodity Dropdown Trigger
+    cropCommTrigger?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleCommodityDropdown();
+    });
+
+    // Event listener for Shadcn Commodity Dropdown Options
+    cropDropdownOptions.forEach((opt) => {
+      opt.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = opt.dataset.commodity;
+        if (id) selectCommodity(id);
+      });
     });
 
     // Event listener for Date Input (change & input)
     const handleDateChange = () => {
       if (!plantDateInput) return;
       const val = plantDateInput.value;
-      if (val && selectedPlantDate !== val) {
+      if (val && /^\d{4}-\d{2}-\d{2}$/.test(val) && selectedPlantDate !== val) {
         selectedPlantDate = val;
         updateUrlAndStorage();
         syncUI();
+        // Keep the popover open while typing; move the grid to the typed month.
+        if (datePopover && !datePopover.classList.contains('hidden')) {
+          const [y, m] = val.split('-').map(Number);
+          calViewYear = y;
+          calViewMonth = m - 1;
+          renderCalendarGrid();
+        }
       }
     };
     plantDateInput?.addEventListener('change', handleDateChange);
     plantDateInput?.addEventListener('input', handleDateChange);
 
+    // Event listener for Shadcn Date Picker Trigger (open/close popover)
+    datePickerTrigger?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      togglePopover();
+    });
+
+    // Month Navigation in Popover
+    calPrevMonth?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      calViewMonth--;
+      if (calViewMonth < 0) {
+        calViewMonth = 11;
+        calViewYear--;
+      }
+      renderCalendarGrid();
+    });
+
+    calNextMonth?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      calViewMonth++;
+      if (calViewMonth > 11) {
+        calViewMonth = 0;
+        calViewYear++;
+      }
+      renderCalendarGrid();
+    });
+
+    // Event listener for Popover Footer "Pakai Hari Ini" button
+    btnPopoverToday?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      selectDate(getTodayIso());
+    });
+
+    // Event listener for Popover Footer "Tutup" button
+    btnPopoverClose?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closePopover();
+      (datePickerTrigger as HTMLButtonElement | null)?.focus();
+    });
+
+    // Close popover and dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      const target = e.target as Node;
+      if (datePopover && !datePopover.classList.contains('hidden')) {
+        if (!datePickerTrigger?.contains(target) && !datePopover.contains(target)) {
+          closePopover();
+        }
+      }
+      if (cropCommDropdown && !cropCommDropdown.classList.contains('hidden')) {
+        if (!cropCommTrigger?.contains(target) && !cropCommDropdown.contains(target)) {
+          closeCommodityDropdown();
+        }
+      }
+    });
+
+    // Close popover and dropdown on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (datePopover && !datePopover.classList.contains('hidden')) {
+          closePopover();
+          (datePickerTrigger as HTMLButtonElement | null)?.focus();
+        }
+        if (cropCommDropdown && !cropCommDropdown.classList.contains('hidden')) {
+          closeCommodityDropdown();
+          (cropCommTrigger as HTMLButtonElement | null)?.focus();
+        }
+      }
+    });
+
     // Event listener for Set Hari Ini button
     btnSetToday?.addEventListener('click', () => {
-      selectedPlantDate = getTodayIso();
-      if (plantDateInput) plantDateInput.value = selectedPlantDate;
-      updateUrlAndStorage();
-      syncUI();
+      selectDate(getTodayIso());
     });
 
     // Event listener for Quick Date Presets
@@ -899,18 +1366,14 @@ const monthNames = [
         const y = target.getFullYear();
         const m = String(target.getMonth() + 1).padStart(2, '0');
         const d = String(target.getDate()).padStart(2, '0');
-        selectedPlantDate = `${y}-${m}-${d}`;
-        if (plantDateInput) plantDateInput.value = selectedPlantDate;
-        updateUrlAndStorage();
-        syncUI();
+        selectDate(`${y}-${m}-${d}`);
       });
     });
 
     // Action: Save to .ics
     btnSaveIcs?.addEventListener('click', () => {
       if (!currentPlan) return;
-      const commBtn = commodityBtns.find((b) => b.dataset.commodity === currentPlan?.commodityId);
-      const commName = commBtn?.textContent?.trim() || currentPlan.commodityId;
+      const commName = cropDropdownOptions.find((o) => o.dataset.commodity === currentPlan?.commodityId)?.dataset.name || currentPlan.commodityId;
 
       const icsString = generateCropCalendarIcs(currentPlan, commName);
       const blob = new Blob([icsString], { type: 'text/calendar;charset=utf-8' });
@@ -931,8 +1394,7 @@ const monthNames = [
 
     // Action: Share Schedule
     btnShareSchedule?.addEventListener('click', async () => {
-      const commBtn = commodityBtns.find((b) => b.dataset.commodity === currentPlan?.commodityId);
-      const commName = commBtn?.textContent?.trim() || 'Tanaman';
+      const commName = cropDropdownOptions.find((o) => o.dataset.commodity === currentPlan?.commodityId)?.dataset.name || 'Tanaman';
       const shareUrl = window.location.href;
       const shareTitle = `Jadwal Tanam ${commName} - Agritani`;
 
