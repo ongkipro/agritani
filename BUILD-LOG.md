@@ -905,3 +905,10 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - `/sitemap.xml` (indeks; salinan `sitemap-index.xml` dibuat di hook `astro:build:done`) → 7 sitemap per jenis lewat opsi `chunks` bawaan `@astrojs/sitemap` 3.7.4: jurnal 306, topik 6, komoditas 24, tag 1.471, produk 5, alat 5, pages 6 = 1.823 URL.
 - DEC-023: arsip tag tidak lagi `noindex`; halaman `noindex` tinggal `/cari/`, `/404.html`, `/404/`. 1.826 halaman HTML = 1.823 di sitemap + 3 noindex.
 - `robots.txt` & `<link rel="sitemap">` → `/sitemap.xml`; `check-seo` membaca `/sitemap.xml` dan tetap melarang halaman noindex di sitemap.
+
+## 2026-10-01 — T-50: Validasi sistem pasca-rilis v1.3.0 (PASS)
+
+- Repo: astro check 0 error/0 peringatan; npm test 104/104; check:contrast PASS; npm run build PASS termasuk semua cek (artikel, komoditas, SEO, CSP, placeholder, tautan 194.781 internal/642 outbound, owner-rules); `delivery-ledger verify` VERIFIED.
+- Rilis: STATUS `SMOKE_TESTING` → `release-check` VERIFIED (5 probe) → `VERIFIED`; RELEASE.md v1.3.0 (Base `44a3f24`, rollback `a6995e3a`).
+- Live (Playwright, 390px): kalkulator dosis (32 ml/tangki untuk 2 ml/L × 16 L), pencarian "wereng" 33 hasil, Konsultasi & Kemitraan membentuk tautan `wa.me` bersumber `[Web·…]` (tanpa membuka WhatsApp), submit kosong → 7 error dan isian tetap, filter profil penulis, load more hub padi 6→12, 0 px overflow di 11 halaman, 0 pageerror.
+- Catatan proses: `production-gate` (gerbang pra-deploy) tidak dijalankan sebelum deploy hari ini — deploy manual dilakukan atas persetujuan pemilik dengan run ledger + review independen per task; jalankan `production-gate` sebelum deploy berikutnya.

@@ -1,6 +1,6 @@
 # Status — agritani
 
-Updated: 2026-09-30
+Updated: 2026-10-01
 Status: Active
 State: VERIFIED
 Review-Risk: R3
@@ -69,6 +69,7 @@ Tidak ada blocker teknis. Menunggu data/aksi pemilik:
 
 ## Verification evidence
 
+- Rilis v1.3.0 (2026-10-01, `3b20588`, Cloudflare `87d4a669`): `release-check .` → `RELEASE_CHECK=VERIFIED` (app, health, article, weather-tool, sitemap). Gerbang repo: `astro check` 0/0, `npm test` 104/104, `check:contrast` PASS, `npm run build` PASS (check-articles 300 naskah, SEO 0/0, CSP 0/0/0, 1.826 halaman bebas placeholder, 194.781 tautan internal + 642 outbound valid, owner-rules). `delivery-ledger verify` VERIFIED. Uji alur live (390px): kalkulator dosis, pencarian Pagefind, formulir Konsultasi & Kemitraan (tautan WhatsApp terstruktur, validasi mempertahankan isian), filter profil penulis, load more hub, 0 overflow horizontal di 11 halaman, 0 error JS; 404 kustom disajikan dengan status 404.
 - T-35…T-45 (2026-09-30): setiap run `delivery-ledger` PASS dengan review independen; `npx astro check` 0 error, `npm test` PASS, `npm run build` PASS termasuk `check-owner-rules`; live agritani.com diverifikasi 200 per halaman utama setelah deploy. Rincian per task di `BUILD-LOG.md`.
 - T-01 fondasi Astro 7.3.5 + Tailwind 4.3.3 + sitemap 3.7.4 selesai dan ter-commit.
 - T-02 lokal: `src/lib/content-integrity.test.ts` (9 kasus uji PASS dalam 5.5ms), `npx astro check` PASS, `npm run build` PASS, `npm run check:contrast` PASS.
