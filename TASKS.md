@@ -80,6 +80,7 @@ Berlaku untuk agent maupun manusia. Detail aturan agent ada di [AGENTS.md](AGENT
 | T-30 | D1 penyimpanan pengajuan kemitraan | REQ-02 | ADR-0001 §2b, OQ-13, DEC-006 | R3 | — | T-28 | Keputusan OQ-13 + ADR-0001 diterima + kebijakan privasi disetujui | Diblokir (menunggu OQ-13) |
 | T-31 | Celah anatomi & kebutuhan UI/UX lanjutan | REQ-01 | DESIGN §4.2.3, §3.5.1, §6 | R1 | — | T-27 | — | Siap dikerjakan |
 | T-32 | Identitas baru (DEC-016), foto Arif Prabowo, integritas Beranda, OG | REQ-01 | DEC-016, OQ-4, DESIGN §1.1, §4.2.3, §4.3.1, §4.4 | R2 | — | T-27 | — | Siap dikerjakan (brief: `~/Documents/work/notes/agritani-T32-brief.md`) |
+| T-33 | Aturan tautan keluar & status tautan (hover/active) | REQ-08 | DESIGN §3.6.1, §4.4.12 | R1 | — | T-32 | — | Siap dikerjakan |
 | T-24 | Rilis produksi & observability | REQ-08 | RELEASE.md, OBSERVABILITY.md | R2 | — | T-15, T-18 | OQ-6 + **persetujuan deploy Paduka Ongki** | Menunggu persetujuan deploy |
 
 Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 → T-23 → T-04 → T-03 → T-05 → (T-06, T-07, T-13, T-14) → T-21 → T-22 → T-09 → T-19 → T-20 → T-26 → T-08 → T-10 → T-17 → T-11 → T-12 → T-16 & T-25 (jalur konten, paralel) → T-18 → T-15 → T-24.
@@ -306,6 +307,13 @@ Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 → T-23 → T-04
 - **Allowed paths:** `src/**`, `public/og/**`, `scripts/**`, `DESIGN.md`, `TASKS.md`
 - **Scope:** (a) hapus gelar "Prof."/"Profesor" di seluruh UI, schema, dan tes; sebutan "Konsultan Pertanian Senior · Pengelola Jurnal Tani"; bio sesuai DESIGN §4.2.3 Profil Penulis; teks Pengungkapan artikel baru (DESIGN §4.3.1 blok 16); (b) posisi "distributor resmi" → portal dikelola Arif Prabowo + produk unggulan + kerja sama brand/perusahaan (tanpa nama); (c) foto `arif-prabowo.webp` via `AuthorAvatar` di semua avatar; (d) perbaikan integritas & invariant di Beranda dari commit `0888c13` (kutipan palsu, klaim tanpa sumber, kicker, kata jaminan, alt menyesatkan, radius/shadow/garis section/warna non-token); (e) buat ulang 14 gambar `public/og/*.png` tanpa teks "Distributor Resmi" dan tanpa "AGRITANI NUSANTARA".
 - **Done when:** `grep -rniE "prof\.|profesor|distributor resmi|nusantara" src public/og` hanya menyisakan pemakaian yang sah untuk program mitra ("Kemitraan Distributor", judul "Kemitraan Distributor Resmi | Agritani"); ke-14 gambar OG dibuka dan diperiksa visual (teks di dalam PNG tidak terjangkau grep); build produksi lulus seluruh pemeriksaan; render 390 & 1440 Beranda, profil, satu artikel, Tentang Kami diperiksa; review independen (R2).
+
+### T-33 — Aturan tautan keluar & status tautan (hover/active)
+- **Primary:** REQ-08 · **Constraints:** DESIGN §3.6.1, §4.4.12, §6 · **Risk:** R1
+- **Owner skill:** `seo-website-builder`, `impeccable`, `ui-validation`, `astro-development`
+- **Allowed paths:** `src/**`, `astro.config.mjs`, `scripts/check-links.mjs`, `DESIGN.md`, `TASKS.md`
+- **Scope:** (a) `src/lib/links.ts` helper `externalLink(kind)` → atribut `target`/`rel` + teks `sr-only` sesuai §4.4.12; pakai di `References`, `ForecastTable`, `cuaca-tani`, `konsultasi`, `Footer`, `waLink` pemanggil; (b) plugin rehype kecil milik repo untuk tautan keluar di badan Markdown (jenis rujukan); (c) kelas `.topic-link`/`.topic-marker` di `global.css` menggantikan `hover:underline` pada label kategori di `ArticleRow`, kolom Beranda, dan tempat lain; tinggi sentuh 44px; (d) status §3.6.1 untuk prosa (`:visited` di artikel & pustaka), judul, nav, indeks, tombol `:active`/`disabled`, hover dibungkus `@media (hover:hover)`; (e) perluas `check-links.mjs` sesuai §4.4.12.
+- **Done when:** `npm run build` lulus termasuk aturan tautan keluar baru; tidak ada `hover:underline` pada label kategori; render 390 & 1440 + uji keyboard (Tab) menunjukkan ring fokus; tidak ada `noreferrer`, redirect perantara, atau URL tersamar.
 
 ### T-24 — Rilis produksi & observability
 - **Primary:** REQ-08 · **Constraints:** RELEASE.md, OBSERVABILITY.md · **Risk:** R2

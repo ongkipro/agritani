@@ -481,7 +481,30 @@ Diminta Paduka Ongki 2026-09-29 agar situs tidak kosong sebelum foto asli (OQ-5)
 
 ### 3.6. Permukaan bawaan browser
 
-Diberi tema dari palet, bukan dibiarkan default: `::selection` (latar `--color-harvest`, teks `--color-text`), `caret-color: var(--color-brand-strong)`, `accent-color: var(--color-brand)` untuk radio/checkbox native, tautan `text-underline-offset: 0.2em` + `text-decoration-thickness: 1px` (2px saat hover), `font-variant-numeric: tabular-nums` di tabel, `scroll-margin-top` setinggi header untuk target anchor, `scrollbar-color` netral hanya pada wrapper tabel.
+Diberi tema dari palet, bukan dibiarkan default: `::selection` (latar `--color-harvest`, teks `--color-text`), `caret-color: var(--color-brand-strong)`, `accent-color: var(--color-brand)` untuk radio/checkbox native, tautan mengikuti §3.6.1, `font-variant-numeric: tabular-nums` di tabel, `scroll-margin-top` setinggi header untuk target anchor, `scrollbar-color` netral hanya pada wrapper tabel.
+
+#### 3.6.1. Status tautan & interaksi (aturan UI, 2026-09-30)
+
+Satu sistem untuk seluruh situs. Hover **tidak pernah** menjadi satu-satunya umpan
+balik (HP tidak punya hover): setiap jenis punya status `:active` (saat ditekan) dan
+`:focus-visible`. Efek hover yang bergerak dibungkus `@media (hover: hover)` agar
+tidak "lengket" di layar sentuh; `prefers-reduced-motion` mematikan transisi gerak
+(warna tetap berubah). Transisi 150–250 ms, ease-out eksponensial.
+
+| Jenis tautan | Contoh | Diam | Hover | Ditekan (`:active`) | Halaman/status aktif |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Prosa** | tautan di badan artikel, kebijakan, Daftar Pustaka | Garis bawah 1px, offset 0.2em, `brand-strong` | Garis 2px + warna `brand-hover` | Warna `text` | `:visited` hanya di badan artikel & Daftar Pustaka: `soil` (pembaca melihat rujukan yang sudah dibuka) |
+| **Judul** | judul di `ArticleRow`, kolom Jurnal Beranda, produk | Tanpa garis | Garis 2px offset 4px + `brand-strong` | Warna `brand-hover` | — |
+| **Label kategori** (topik/komoditas di atas judul) | `ArticleRow`, kolom Beranda, hub | Teks `soil`, kotak penanda 8px warna topik (§3.1.1), **tanpa garis bawah** | Kotak penanda memanjang jadi bilah 16px (`transform: scaleX(2)`, asal kiri) + teks berubah ke `text` | Teks `brand-strong` | Di hub topiknya sendiri label tidak ditautkan ulang |
+| **Navigasi header** | Alat Tani, Jurnal Tani, … | Teks putih | Bilah 2px `harvest` 40% di bawah item | Bilah penuh | `aria-current="page"`: bilah 2px `harvest` penuh |
+| **Indeks/sidebar** | `TopicSidebar`, daftar alat, baris produk | Teks `text-muted` | Teks `brand-strong` (tanpa garis) | Teks `text` | `aria-current="page"`: tebal + penanda warna |
+| **Tautan lanjutan** (`.link-more`, C11) | "Semua artikel…" | Italic + bilah 2rem | Bilah melebar penuh | Warna `brand-hover` | — |
+| **Tombol** | primer/aksen/sekunder | Isi sesuai §5 | Isi lebih gelap (`*-hover`) | Satu tingkat lebih gelap, tanpa skala/geser | `disabled`: opasitas 55% + `cursor: not-allowed`, tetap terbaca |
+
+Wajib untuk semua: tinggi area sentuh ≥ 44px (boleh lewat padding), `:focus-visible` ring 2px
+`brand-strong` offset 2px (di latar `brand`: `harvest`); `:focus:not(:focus-visible)` boleh tanpa
+outline (klik mouse). Label kategori diimplementasikan sebagai satu kelas `.topic-link` +
+`.topic-marker` di `src/styles/global.css`, dipakai ulang di semua tempat.
 
 ### 3.7. Motion
 
@@ -942,6 +965,33 @@ Aturan:
 Search Console & Bing Webmaster (§4.3.7) per halaman: impresi, klik, CTR, posisi, status indeks, hasil rich result. Tanpa pelacak di situs.
 
 ---
+
+#### 4.4.12. Tautan keluar (outbound) — aturan rel & tab
+
+Dasar: panduan Google tentang atribut `rel` tautan keluar
+(developers.google.com/search/docs/crawling-indexing/qualify-outbound-links),
+WCAG teknik G201 (beri tahu pengguna bila tautan membuka tab baru), dan
+header situs `Referrer-Policy: strict-origin-when-cross-origin` yang sudah aktif.
+
+| Jenis | Contoh | `target` | `rel` | Penanda |
+| :--- | :--- | :--- | :--- | :--- |
+| Internal | semua `agritani.com` | tab sama | — | — |
+| Rujukan ilmiah & pemerintah (dipilih redaksi) | DOI, jurnal, BMKG, Kementan | `_blank` | `noopener` (tetap *follow*: rujukan editorial yang dipercaya) | ikon `ArrowUpRight` 12px + teks `sr-only` "(membuka tab baru)" |
+| WhatsApp | `wa.me/…` via `waLink()` | `_blank` | `noopener nofollow` | label kata kerja; ikon `MessageCircle` sudah cukup |
+| Mitra komersial / merek (bila kelak ditampilkan) | tautan brand mitra | `_blank` | `sponsored noopener` | ikon + `sr-only` |
+| Tautan belum ditinjau / dari pengguna (bila kelak ada) | komentar, kiriman | `_blank` | `nofollow ugc noopener` | ikon + `sr-only` |
+
+Aturan:
+- `noreferrer` **tidak** dipakai: `Referrer-Policy` situs sudah hanya mengirim origin, dan
+  jurnal/BMKG boleh tahu kunjungan berasal dari agritani.com.
+- **Tanpa "penyamaran" URL**: tidak ada redirect perantara, pemendek, enkode/enkripsi, atau
+  `href` yang berbeda dari tujuan sebenarnya. Pola ini melanggar kebijakan spam Google
+  (sneaky redirects/cloaking), merusak kepercayaan, dan membuat rujukan tidak bisa diperiksa.
+- Semua tautan keluar di komponen memakai satu helper (`externalLink(kind)` di `src/lib/links.ts`);
+  tautan keluar di badan Markdown diberi atribut oleh plugin rehype kecil milik repo (tanpa
+  dependensi baru), dengan jenis "rujukan" sebagai bawaan.
+- `scripts/check-links.mjs` memeriksa setiap `<a href="http…">` ke domain luar: wajib
+  `target="_blank"`, `rel` memuat `noopener`, dan teks `sr-only` tab baru; `wa.me` wajib `nofollow`.
 
 ## 5. Component Contracts
 
