@@ -1,13 +1,12 @@
 ---
 /**
  * src/pages/tentang-kami.astro
- * Company profile page for Agritani & PT Agritani Internasional (DEC-016, DESIGN §4.2.3)
- * Position: Portal pertanian yang dikelola resmi oleh Arif Prabowo untuk PT Agritani Internasional.
+ * Company profile page for Agritani & Agritani (DEC-016, DESIGN §4.2.3)
+ * Position: Portal pertanian yang dikelola resmi oleh Arif Prabowo sebagai Agritani Official.
  * Invariants: Single WhatsApp CTA, 0/0/0 CSP, 2px radius, no divider lines, text contrast >= 7:1.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
-import ConsultPrompt from '../components/ConsultPrompt.astro';
 import AuthorAvatar from '../components/AuthorAvatar.astro';
 import { Image } from 'astro:assets';
 import type { SeoInput } from '../lib/seo';
@@ -21,7 +20,7 @@ const breadcrumbs = [
 const seo: SeoInput = {
   title: 'Tentang Kami',
   description:
-    'Profil Agritani, portal pertanian yang dikelola resmi oleh Arif Prabowo untuk PT Agritani Internasional dengan empat produk unggulan nutrisi tanaman presisi.',
+    'Profil Agritani, portal pertanian yang dikelola resmi oleh Arif Prabowo sebagai Agritani Official dengan empat produk unggulan nutrisi tanaman presisi.',
   canonicalPath: '/tentang-kami/',
   breadcrumbs,
   pageType: 'about',
@@ -40,7 +39,7 @@ const seo: SeoInput = {
           Tentang Agritani
         </h1>
         <p class="text-lg sm:text-xl text-[var(--color-text-muted)] leading-relaxed font-sans">
-          Portal pertanian yang dikelola resmi oleh Arif Prabowo untuk PT Agritani Internasional, berdedikasi menjembatani inovasi hayati mutakhir dengan kebutuhan nyata petani Indonesia.
+          Portal pertanian yang dikelola resmi oleh Arif Prabowo sebagai Agritani Official, berdedikasi menjembatani inovasi hayati mutakhir dengan kebutuhan nyata petani Indonesia.
         </p>
       </header>
 
@@ -69,7 +68,7 @@ const seo: SeoInput = {
             Menjembatani Inovasi Hayati dengan Lahan Pertanian
           </h2>
           <p>
-            <strong>Agritani</strong> adalah portal pertanian yang dikelola resmi oleh <strong>Arif Prabowo</strong> untuk <strong>PT Agritani Internasional</strong> sebagai entitas legal pengelola. Agritani menghadirkan empat produk unggulan (Aussie, BENSU, Kojien, dan Saratoga) serta bekerja sama dengan beberapa brand pupuk dan perusahaan pertanian terkemuka untuk menyalurkan teknologi hayati teruji ke jaringan pertanian di seluruh Indonesia.
+            <strong>Agritani</strong> adalah portal pertanian yang dikelola resmi oleh <strong>Arif Prabowo</strong> sebagai <strong>Agritani Official</strong> sebagai entitas legal pengelola. Agritani menghadirkan empat produk unggulan (Aussie, BENSU, Kojien, dan Saratoga) serta bekerja sama dengan beberapa brand pupuk dan perusahaan pertanian terkemuka untuk menyalurkan teknologi hayati teruji ke jaringan pertanian di seluruh Indonesia.
           </p>
           <p>
             Langkah ini berawal dari kenyataan di lapangan: penurunan kesuburan tanah akibat pemakaian pupuk kimia sintetis berkepanjangan, resistensi patogen tanaman yang kian sulit dikendalikan, dan lonjakan biaya input yang memberatkan petani. Agritani hadir menjembatani aliansi teknologi teruji dari dua sentra agrikultur terkemuka di Asia:
@@ -214,16 +213,6 @@ const seo: SeoInput = {
                 Buka Alat Tani Gratis
               </a>
             </div>
-          </div>
-
-          <!-- Single WhatsApp CTA per Page (DESIGN §2.8) -->
-          <div class="pt-4">
-            <ConsultPrompt
-              source="tentang-kami"
-              title="Hubungi Sekretariat PT Agritani Internasional"
-              description="Pertanyaan umum seputar portal agritani, produk unggulan, atau informasi kemitraan dapat disampaikan langsung ke nomor WhatsApp resmi kami."
-              label="Hubungi WhatsApp Agritani"
-            />
           </div>
         </section>
 

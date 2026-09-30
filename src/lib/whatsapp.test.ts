@@ -30,7 +30,7 @@ describe('WhatsApp Link Generator (DESIGN §2.7, G-6)', () => {
         },
         {
           name: 'Error',
-          message: /\[OQ-1\] Nomor WhatsApp resmi PT Agritani Internasional belum diisi/,
+          message: /\[OQ-1\] Nomor WhatsApp resmi Agritani belum diisi/,
         }
       );
     } finally {

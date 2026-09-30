@@ -115,6 +115,16 @@ const products = defineCollection({
       registrationCategory: z.string().optional(),
       authenticityCheck: z.string().optional(),
       packshot: image().optional(),
+      variants: z
+        .array(
+          z.object({
+            size: z.string(),
+            volumeMl: z.number().optional(),
+            price: z.number(),
+            comparePrice: z.number().optional(),
+          })
+        )
+        .optional(),
     }),
 });
 

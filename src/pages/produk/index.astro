@@ -2,7 +2,7 @@
 /**
  * src/pages/produk/index.astro
  * Product Catalog & Comparison Index (T-11, DESIGN §2.5, §4.2.3)
- * Invariants: Zero WhatsApp CTAs (DESIGN §2.8), 2px radius, text contrast >= 7:1, 0/0/0 CSP.
+ * Invariants: Zero WhatsApp CTAs (DESIGN §2.8), 2px radius, text contrast >= 7:1, 0/0/0 CSP, tabular numbers.
  */
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -22,15 +22,18 @@ const sortedProducts = [...allProducts].sort((a, b) => {
   return (indexA === -1 ? 99 : indexA) - (indexB === -1 ? 99 : indexB);
 });
 
+const formatRupiah = (val: number) =>
+  new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(val);
+
 const breadcrumbs = [
   { name: 'Beranda', url: '/' },
   { name: 'Produk', url: '/produk/' },
 ];
 
 const seo: SeoInput = {
-  title: 'Katalog Produk Pertanian',
+  title: 'Katalog Produk Pertanian Resmi',
   description:
-    'Katalog empat produk unggulan Agritani: Aussie, Kojien, BENSU, dan Saratoga. Panduan peran, dosis aplikasi, dan sasaran komoditas tanaman.',
+    'Katalog empat formula biostimulan dan aktivator imun Agritani: Aussie, Kojien, BENSU, dan Saratoga. Pilihan kemasan 500 ml dan 1 Liter, dosis aplikasi, dan sasaran komoditas.',
   canonicalPath: '/produk/',
   breadcrumbs,
   pageType: 'website',
@@ -41,76 +44,88 @@ const seo: SeoInput = {
   <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
     <Breadcrumb items={breadcrumbs} />
 
-    <!-- Page Header (Lapangan Canvas) -->
+    <!-- Page Header (Editorial Canvas) -->
     <header class="my-8 sm:my-12">
-      <div class="max-w-4xl space-y-4">
+      <div class="max-w-3xl space-y-4">
         <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--color-text)] tracking-tight leading-tight">
           Produk Agritani
         </h1>
         <p class="text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed">
-          Empat produk unggulan Agritani menghadirkan teknologi biostimulan dan nutrisi tanaman teruji dari Thailand dan Jepang. Diformulasikan secara presisi untuk memperkuat ketahanan seluler alami tanaman serta mengoptimalkan produktivitas panen di iklim tropis Indonesia.
+          Empat formula biostimulan dan aktivator kekebalan sel tanaman berlisensi teknologi Thailand dan Jepang. Diformulasikan khusus untuk memperkokoh ketahanan tanaman terhadap infeksi patogen tular tanah dan memacu produktivitas panen di iklim tropis Indonesia.
         </p>
       </div>
     </header>
 
-    <!-- Commodity Anchor Shortcuts -->
-    <nav class="mb-12" aria-label="Navigasi cepat per komoditas">
-      <p class="text-sm font-semibold text-[var(--color-text)] mb-3">
-        Lompat ke produk sesuai tanaman Anda:
-      </p>
-      <div class="flex flex-wrap gap-2.5">
+    <!-- Commodity Quick Filters / Anchor Jump -->
+    <nav class="mb-10 sm:mb-12" aria-label="Navigasi cepat produk per jenis tanaman">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] mr-1">
+          Pilihan Cepat:
+        </span>
         <a
           href="#aussie"
-          class="inline-flex items-center px-4 py-2.5 min-h-[44px] text-sm font-semibold bg-[var(--color-surface)] hover:bg-[var(--color-tint)] border border-[var(--color-border-control)]/40 hover:border-[var(--color-brand)] text-[var(--color-text)] rounded-[2px] transition-colors shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
+          class="inline-flex items-center px-3.5 py-2 min-h-[44px] text-xs sm:text-sm font-medium bg-[var(--color-surface)] hover:bg-[var(--color-tint)] border border-[var(--color-border-control)]/40 hover:border-[var(--color-brand)] text-[var(--color-text)] rounded-[2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
         >
           Sawit & Tanaman Keras (Aussie)
         </a>
         <a
           href="#kojien"
-          class="inline-flex items-center px-4 py-2.5 min-h-[44px] text-sm font-semibold bg-[var(--color-surface)] hover:bg-[var(--color-tint)] border border-[var(--color-border-control)]/40 hover:border-[var(--color-brand)] text-[var(--color-text)] rounded-[2px] transition-colors shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
+          class="inline-flex items-center px-3.5 py-2 min-h-[44px] text-xs sm:text-sm font-medium bg-[var(--color-surface)] hover:bg-[var(--color-tint)] border border-[var(--color-border-control)]/40 hover:border-[var(--color-brand)] text-[var(--color-text)] rounded-[2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
         >
           Spesialis Padi (Kojien)
         </a>
         <a
           href="#bensu"
-          class="inline-flex items-center px-4 py-2.5 min-h-[44px] text-sm font-semibold bg-[var(--color-surface)] hover:bg-[var(--color-tint)] border border-[var(--color-border-control)]/40 hover:border-[var(--color-brand)] text-[var(--color-text)] rounded-[2px] transition-colors shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
+          class="inline-flex items-center px-3.5 py-2 min-h-[44px] text-xs sm:text-sm font-medium bg-[var(--color-surface)] hover:bg-[var(--color-tint)] border border-[var(--color-border-control)]/40 hover:border-[var(--color-brand)] text-[var(--color-text)] rounded-[2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
         >
-          Palawija & Sayuran (BENSU)
+          Pangan & Hortikultura (BENSU)
         </a>
         <a
           href="#saratoga"
-          class="inline-flex items-center px-4 py-2.5 min-h-[44px] text-sm font-semibold bg-[var(--color-surface)] hover:bg-[var(--color-tint)] border border-[var(--color-border-control)]/40 hover:border-[var(--color-brand)] text-[var(--color-text)] rounded-[2px] transition-colors shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
+          class="inline-flex items-center px-3.5 py-2 min-h-[44px] text-xs sm:text-sm font-medium bg-[var(--color-surface)] hover:bg-[var(--color-tint)] border border-[var(--color-border-control)]/40 hover:border-[var(--color-brand)] text-[var(--color-text)] rounded-[2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
         >
-          Semua Tanaman & Bunga (Saratoga)
+          Serum Asam Amino (Saratoga)
         </a>
       </div>
     </nav>
 
-    <!-- Desktop Comparison Table (Visible on lg screens >= 1024px) -->
-    <section class="hidden lg:block mb-12" aria-label="Tabel Perbandingan Produk">
-      <h2 class="text-xl font-bold font-serif text-[var(--color-brand)] mb-4">
-        Tabel Perbandingan Produk
-      </h2>
-      <div class="overflow-x-auto border border-[var(--color-border)] rounded-[2px] bg-[var(--color-surface)] shadow-2xs">
+    <!-- Desktop Technical Comparison Matrix (Visible on lg screens >= 1024px) -->
+    <section class="hidden lg:block mb-14" aria-label="Tabel Spesifikasi dan Perbandingan Formula">
+      <div class="flex items-baseline justify-between mb-3">
+        <h2 class="text-xl font-bold font-serif text-[var(--color-brand)]">
+          Matriks Perbandingan Formula
+        </h2>
+        <span class="text-xs text-[var(--color-text-muted)]">
+          Distribusi resmi berizin Kementan RI
+        </span>
+      </div>
+
+      <div class="overflow-x-auto border border-[var(--color-border-control)]/30 rounded-[2px] bg-[var(--color-surface)] shadow-2xs">
         <table class="w-full text-left border-collapse text-sm">
           <thead>
-            <tr class="bg-[var(--color-tint)] border-b border-[var(--color-border)] text-xs uppercase tracking-wider text-[var(--color-text)]">
-              <th scope="col" class="py-3.5 px-4 font-bold">Produk</th>
-              <th scope="col" class="py-3.5 px-4 font-bold">Peran Utama</th>
-              <th scope="col" class="py-3.5 px-4 font-bold">Sasaran Komoditas</th>
-              <th scope="col" class="py-3.5 px-4 font-bold">Bentuk & Aplikasi</th>
-              <th scope="col" class="py-3.5 px-4 font-bold text-right">Rincian</th>
+            <tr class="bg-[var(--color-tint)]/60 border-b border-[var(--color-border-control)]/20 text-xs font-bold uppercase tracking-wider text-[var(--color-text)]">
+              <th scope="col" class="py-3 px-4">Formula</th>
+              <th scope="col" class="py-3 px-4">Peran & Sasaran Masalah</th>
+              <th scope="col" class="py-3 px-4">Komoditas Utama</th>
+              <th scope="col" class="py-3 px-4">Kemasan & Harga Resmi</th>
+              <th scope="col" class="py-3 px-4 text-right">Aksi</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-[var(--color-border)]">
+          <tbody class="divide-y divide-[var(--color-border-control)]/20">
             {sortedProducts.map((p) => {
               const d = p.data;
+              const minPrice = d.variants && d.variants.length > 0
+                ? Math.min(...d.variants.map((v) => v.price))
+                : null;
               return (
-                <tr class="hover:bg-[var(--color-tint)]/40 transition-colors">
+                <tr class="hover:bg-[var(--color-tint)]/30 transition-colors">
                   <td class="py-4 px-4 font-bold font-serif text-[var(--color-brand)] text-base whitespace-nowrap">
-                    {d.name}
+                    <div>{d.name}</div>
+                    <span class="block text-[11px] font-sans font-normal text-[var(--color-text-muted)]">
+                      {d.tagline}
+                    </span>
                   </td>
-                  <td class="py-4 px-4 text-[var(--color-text)] font-medium max-w-xs text-xs sm:text-sm">
+                  <td class="py-4 px-4 text-[var(--color-text)] text-xs sm:text-sm max-w-xs leading-relaxed">
                     {d.role}
                   </td>
                   <td class="py-4 px-4 text-[var(--color-text-muted)] text-xs">
@@ -119,15 +134,26 @@ const seo: SeoInput = {
                       {d.commodities.length > 4 && ` +${d.commodities.length - 4} lainnya`}
                     </span>
                   </td>
-                  <td class="py-4 px-4 text-[var(--color-text-muted)] text-xs whitespace-nowrap">
-                    {d.applicationMethods.join(', ')}
+                  <td class="py-4 px-4 text-xs whitespace-nowrap">
+                    {minPrice ? (
+                      <div>
+                        <div class="font-bold text-[var(--color-brand-strong)] tabular-nums text-sm">
+                          Mulai {formatRupiah(minPrice)}
+                        </div>
+                        <span class="text-[var(--color-text-muted)] text-[11px]">
+                          500 ml & 1 Liter
+                        </span>
+                      </div>
+                    ) : (
+                      <span class="text-[var(--color-text-muted)]">Mitra Resmi</span>
+                    )}
                   </td>
                   <td class="py-4 px-4 text-right whitespace-nowrap">
                     <a
                       href={`/produk/${p.id}/`}
-                      class="inline-flex items-center justify-center px-3 py-1.5 min-h-[44px] text-xs font-semibold text-[var(--color-brand-strong)] hover:text-[var(--color-brand)] underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
+                      class="inline-flex items-center justify-center px-3.5 py-1.5 min-h-[44px] text-xs font-semibold text-[var(--color-brand-strong)] hover:text-[var(--color-brand)] underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
                     >
-                      Buka Detail →
+                      Buka Rincian →
                     </a>
                   </td>
                 </tr>
@@ -138,57 +164,61 @@ const seo: SeoInput = {
       </div>
     </section>
 
-    <!-- Product Rows List -->
-    <section class="mb-16 divide-y divide-[var(--color-border)]" aria-label="Daftar Rincian Produk">
+    <!-- Product Rows List (Clean Editorial Flow) -->
+    <section class="mb-16 divide-y divide-[var(--color-border-control)]/30" aria-label="Rincian Masing-Masing Produk">
       {sortedProducts.map((product) => (
         <ProductRow product={product} commoditiesMap={commoditiesMap} />
       ))}
     </section>
 
-    <!-- Section: Cara Memastikan Produk Asli (OQ-8) -->
-    <section class="mb-12" aria-labelledby="heading-keaslian">
-      <h2 id="heading-keaslian" class="text-2xl font-bold font-serif text-[var(--color-brand)] tracking-tight mb-3">
-        Memastikan Keaslian Produk Resmi
-      </h2>
-      <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed mb-6">
-        Setiap produk biostimulan dan aktivator imun yang didistribusikan secara sah oleh PT Agritani Internasional dilengkapi dengan standar keamanan kemasan resmi untuk melindungi petani dari pemalsuan di lapangan:
-      </p>
+    <!-- Section: Keaslian Kemasan Resmi (Clean Editorial Design, No AI Slop Cards) -->
+    <section class="mb-14 pt-8 border-t border-[var(--color-border-control)]/20" aria-labelledby="heading-keaslian">
+      <div class="max-w-2xl mb-8">
+        <h2 id="heading-keaslian" class="text-2xl font-bold font-serif text-[var(--color-brand)] tracking-tight">
+          Verifikasi Keaslian Formula Resmi
+        </h2>
+        <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">
+          Agritani menerapkan standar pengamanan fisik berjenjang untuk memastikan setiap petani menerima formula murni tanpa pemalsuan atau pengoplosan di rantai distribusi lapangan.
+        </p>
+      </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] shadow-2xs">
-          <div class="flex items-center gap-2 mb-2">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="space-y-2">
+          <div class="flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-[var(--color-brand)] shrink-0" aria-hidden="true"></span>
-            <h3 class="font-bold text-sm sm:text-base text-[var(--color-text)]">Segel ShieldedTag™</h3>
+            <h3 class="font-bold text-sm sm:text-base text-[var(--color-text)]">
+              Segel Fisik ShieldedTag™
+            </h3>
           </div>
           <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
-            Setiap botol dan jeriken resmi memiliki segel fisik anti-rusak yang merekatkan tutup kemasan. Jangan terima kemasan dengan segel sobek.
+            Setiap tutup botol dikunci dengan segel hologram anti-rusak khusus yang robek saat dibuka pertama kali. Jangan terima kemasan dengan segel rusak.
           </p>
         </div>
 
-        <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] shadow-2xs">
-          <div class="flex items-center gap-2 mb-2">
+        <div class="space-y-2">
+          <div class="flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-[var(--color-brand)] shrink-0" aria-hidden="true"></span>
-            <h3 class="font-bold text-sm sm:text-base text-[var(--color-text)]">Karakter Fisik Formula</h3>
+            <h3 class="font-bold text-sm sm:text-base text-[var(--color-text)]">
+              Karakteristik Fisik Formula
+            </h3>
           </div>
           <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
-            Cairan asli sedikit keruh alami beraroma khas hasil fermentasi organik. Variasi rona warna hijau muda hingga pekat adalah wajar dan aman.
+            Formula asli berbentuk konsentrat bebas endapan kasar dengan aroma khas fermentasi organik stabil, larut sempurna dalam air tangki semprot.
           </p>
         </div>
 
-        <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] shadow-2xs">
-          <div class="flex items-center gap-2 mb-2">
+        <div class="space-y-2">
+          <div class="flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-[var(--color-brand)] shrink-0" aria-hidden="true"></span>
-            <h3 class="font-bold text-sm sm:text-base text-[var(--color-text)]">Izin Edar Kementan</h3>
+            <h3 class="font-bold text-sm sm:text-base text-[var(--color-text)]">
+              Registrasi Resmi Kementan
+            </h3>
           </div>
           <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
-            Terdaftar resmi di Kementerian Pertanian Republik Indonesia. Nomor izin edar fisik tercetak pada label resmi setiap botol produk.
+            Seluruh formula didaftarkan dan diuji secara resmi di Kementerian Pertanian Republik Indonesia. Nomor izin edar fisik tercetak pada label botol.
           </p>
         </div>
       </div>
-
-      <p class="text-xs sm:text-sm text-[var(--color-text-muted)]">
-        Pilihlah salah satu produk di atas untuk membaca panduan dosis resmi dan rekomendasi waktu aplikasi lapangan.
-      </p>
     </section>
   </div>
 </BaseLayout>

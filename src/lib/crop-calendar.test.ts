@@ -191,7 +191,7 @@ describe('iCalendar (.ics) Generation (RFC 5545)', () => {
 
     assert.ok(icsContent.startsWith('BEGIN:VCALENDAR'));
     assert.ok(icsContent.includes('VERSION:2.0'));
-    assert.ok(icsContent.includes('PRODID:-//PT Agritani Internasional//Kalender Tanam//ID'));
+    assert.ok(icsContent.includes('PRODID:-//Agritani//Kalender Tanam//ID'));
     assert.ok(icsContent.includes('BEGIN:VEVENT'));
     assert.ok(icsContent.includes('SUMMARY:[Padi] Vegetatif Awal'));
     assert.ok(icsContent.includes('SUMMARY:🌾 Perkiraan Panen: Padi'));

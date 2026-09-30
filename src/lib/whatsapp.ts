@@ -4,7 +4,7 @@
  * All outbound WhatsApp links MUST pass through this function.
  */
 
-// Nomor WhatsApp resmi PT Agritani Internasional (sumber: docs/research/web-scan.md baris 146)
+// Nomor WhatsApp resmi Agritani (sumber: docs/research/web-scan.md baris 146)
 export const DEFAULT_WA_PHONE = '6287770457256';
 export const DEV_PLACEHOLDER_PHONE = '62000000000';
 
@@ -39,7 +39,7 @@ export function waLink(options: WaLinkOptions): string {
 
     if (isProd) {
       throw new Error(
-        '[OQ-1] Nomor WhatsApp resmi PT Agritani Internasional belum diisi (DEFAULT_WA_PHONE is empty). Dilarang build produksi dengan nomor kosong.'
+        '[OQ-1] Nomor WhatsApp resmi Agritani belum diisi (DEFAULT_WA_PHONE is empty). Dilarang build produksi dengan nomor kosong.'
       );
     }
     targetPhone = DEV_PLACEHOLDER_PHONE;

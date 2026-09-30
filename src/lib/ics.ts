@@ -68,7 +68,7 @@ export function generateCropCalendarIcs(plan: CropPlanResult, commodityName: str
   const lines: string[] = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//PT Agritani Internasional//Kalender Tanam//ID',
+    'PRODID:-//Agritani//Kalender Tanam//ID',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
     `X-WR-CALNAME:Jadwal Tanam ${commodityName} - Agritani`,

@@ -22,7 +22,21 @@
       "Kocor pangkal batang"
     ],
     "dosage": "Sesuai dosis anjuran pada label kemasan",
-    "authenticityCheck": "Fitur verifikasi keaslian ShieldedTag pada setiap kemasan resmi"
+    "authenticityCheck": "Fitur verifikasi keaslian ShieldedTag pada setiap kemasan resmi",
+    "variants": [
+      {
+        "size": "500 ml",
+        "volumeMl": 500,
+        "price": 150000,
+        "comparePrice": 229000
+      },
+      {
+        "size": "1 Liter",
+        "volumeMl": 1000,
+        "price": 275000,
+        "comparePrice": 349000
+      }
+    ]
   },
   {
     "id": "kojien",
@@ -39,7 +53,21 @@
       "Semprot rata pada rumpun padi"
     ],
     "dosage": "Sesuai dosis anjuran pada label kemasan",
-    "authenticityCheck": "Fitur verifikasi keaslian ShieldedTag pada setiap kemasan resmi"
+    "authenticityCheck": "Fitur verifikasi keaslian ShieldedTag pada setiap kemasan resmi",
+    "variants": [
+      {
+        "size": "500 ml",
+        "volumeMl": 500,
+        "price": 130000,
+        "comparePrice": 198000
+      },
+      {
+        "size": "1 Liter",
+        "volumeMl": 1000,
+        "price": 215000,
+        "comparePrice": 298000
+      }
+    ]
   },
   {
     "id": "bensu",
@@ -63,7 +91,21 @@
       "Kocor perakaran"
     ],
     "dosage": "Sesuai dosis anjuran pada label kemasan",
-    "authenticityCheck": "Fitur verifikasi keaslian ShieldedTag pada setiap kemasan resmi"
+    "authenticityCheck": "Fitur verifikasi keaslian ShieldedTag pada setiap kemasan resmi",
+    "variants": [
+      {
+        "size": "500 ml",
+        "volumeMl": 500,
+        "price": 130000,
+        "comparePrice": 198000
+      },
+      {
+        "size": "1 Liter",
+        "volumeMl": 1000,
+        "price": 215000,
+        "comparePrice": 298000
+      }
+    ]
   },
   {
     "id": "saratoga",
@@ -88,6 +130,20 @@
       "Semprot halus pada daun, tangkai bunga, dan bakal buah"
     ],
     "dosage": "Sesuai dosis anjuran pada label kemasan",
-    "authenticityCheck": "Fitur verifikasi keaslian ShieldedTag pada setiap kemasan resmi"
+    "authenticityCheck": "Fitur verifikasi keaslian ShieldedTag pada setiap kemasan resmi",
+    "variants": [
+      {
+        "size": "500 ml",
+        "volumeMl": 500,
+        "price": 135000,
+        "comparePrice": 198000
+      },
+      {
+        "size": "1 Liter",
+        "volumeMl": 1000,
+        "price": 268000,
+        "comparePrice": 389000
+      }
+    ]
   }
 ]

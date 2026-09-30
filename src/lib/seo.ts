@@ -155,11 +155,11 @@ export function buildSeo(input: SeoInput): SeoOutput {
     {
       '@type': 'Organization',
       '@id': `${SITE_URL}/#organization`,
-      name: 'PT Agritani Internasional',
-      alternateName: 'Agritani',
+      name: 'Agritani',
+      alternateName: 'Agritani Official',
       url: `${SITE_URL}/`,
       logo: `${SITE_URL}/favicon.svg`,
-      description: 'Portal pertanian resmi PT Agritani Internasional yang dikelola Arif Prabowo, menghadirkan empat produk unggulan dan panduan agronomi lapangan.',
+      description: 'Portal pertanian resmi Agritani yang dikelola Arif Prabowo, menghadirkan empat produk unggulan dan panduan agronomi lapangan.',
     },
     {
       '@type': 'WebSite',
