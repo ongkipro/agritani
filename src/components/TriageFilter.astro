@@ -49,42 +49,24 @@ const partLabels: Record<string, string> = {
 ---
 
 {visibleSymptoms.length === 0 ? (
-  <div class="p-8 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] text-center space-y-4">
-    <div class="inline-flex items-center justify-center w-12 h-12 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-brand)] mb-1">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
-      </svg>
-    </div>
-    <h2 class="text-xl sm:text-2xl font-extrabold text-[var(--color-text)]">
-      Diagnosa Gejala Sedang Disiapkan
+  <div class="max-w-[60ch] space-y-3">
+    <h2 class="section-title !mb-0">
+      Diagnosa gejala sedang disiapkan
     </h2>
-    <p class="text-sm text-[var(--color-text-muted)] max-w-[55ch] mx-auto leading-relaxed">
+    <p class="text-base text-[var(--color-text-muted)] leading-relaxed">
       Basis data diagnosa visual hama dan penyakit tanaman saat ini sedang dalam proses peninjauan dan validasi agronomis oleh Arif Prabowo.
     </p>
-    <div class="pt-2">
-      <a
-        href="/jurnal/"
-        class="inline-flex items-center gap-2 px-5 py-2.5 min-h-[44px] text-sm font-bold rounded-[2px] bg-[var(--color-brand)] !text-white hover:bg-[var(--color-brand-hover)] transition-colors"
-      >
-        <span>Telusuri Artikel Jurnal Tani</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M5 12h14"/>
-          <path d="m12 5 7 7-7 7"/>
-        </svg>
-      </a>
-    </div>
+    <a href="/jurnal/" class="link-more min-h-[44px]">Telusuri artikel Jurnal Tani &rarr;</a>
   </div>
 ) : (
-<div id="triage-engine-root" class="space-y-8" data-symptoms={JSON.stringify(serializedSymptoms)}>
+<div id="triage-engine-root" class="space-y-14" data-symptoms={JSON.stringify(serializedSymptoms)}>
   
   <!-- Interactive Form Area -->
-  <div class="bg-[var(--color-surface)] p-6 sm:p-8 border border-[var(--color-border)] rounded-[2px] space-y-6">
+  <div class="space-y-10">
     
     <!-- Step 1: Komoditas (Big Button Radio Group) -->
     <div>
-      <span class="block text-xs font-bold text-[var(--color-soil)] mb-2">
-        Langkah 1: Pilih Komoditas Tanaman
-      </span>
+      <h2 class="section-title !mb-3">Pilih komoditas tanaman</h2>
       <div class="flex flex-wrap gap-2.5" id="group-commodity" role="radiogroup" aria-label="Pilih Komoditas">
         {activeCommodities.map((comm) => (
           <button
@@ -102,9 +84,7 @@ const partLabels: Record<string, string> = {
 
     <!-- Step 2: Bagian Tanaman -->
     <div id="section-part" class="opacity-50 pointer-events-none transition-opacity">
-      <span class="block text-xs font-bold text-[var(--color-soil)] mb-2">
-        Langkah 2: Pilih Bagian yang Bergejala
-      </span>
+      <h2 class="section-title !mb-3">Pilih bagian yang bergejala</h2>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="group-part" role="radiogroup" aria-label="Pilih Bagian Tanaman">
         {Object.entries(partLabels).map(([partKey, partName]) => (
           <button
@@ -124,11 +104,9 @@ const partLabels: Record<string, string> = {
 
     <!-- Step 3: Gejala Visual Lapangan -->
     <div id="section-symptom" class="opacity-50 pointer-events-none transition-opacity space-y-3">
-      <div class="flex items-center justify-between gap-2">
-        <span class="block text-xs font-bold text-[var(--color-soil)]">
-          Langkah 3: Pilih Tanda Visual yang Tampak
-        </span>
-        <span id="symptom-count" class="text-xs text-[var(--color-text-muted)] tabular-nums"></span>
+      <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+        <h2 class="section-title !mb-0">Pilih tanda visual yang tampak</h2>
+        <span id="symptom-count" class="text-sm text-[var(--color-text-muted)] tabular-nums"></span>
       </div>
 
       <!-- Quick Text Filter for Mobile -->
@@ -142,8 +120,8 @@ const partLabels: Record<string, string> = {
       </div>
 
       <!-- Symptoms List -->
-      <div id="symptoms-list" class="space-y-2 max-h-[360px] overflow-y-auto pr-1">
-        <p class="text-xs text-[var(--color-text-muted)] italic">
+      <div id="symptoms-list" class="divide-y divide-[var(--color-border)] max-h-[360px] overflow-y-auto pr-1">
+        <p class="py-3 text-sm text-[var(--color-text-muted)] italic">
           Pilih komoditas dan bagian tanaman terlebih dahulu.
         </p>
       </div>
@@ -155,43 +133,32 @@ const partLabels: Record<string, string> = {
   <section id="triage-result-area" aria-live="polite" class="space-y-6 hidden">
     
     <!-- Result Header Breadcrumb Trail -->
-    <div class="border-b border-[var(--color-border)] pb-3">
-      <h2 id="result-path-heading" class="text-lg sm:text-xl font-extrabold text-[var(--color-text)] leading-snug">
+    <div class="max-w-[68ch]">
+      <h2 id="result-path-heading" class="section-title !mb-2">
         Hasil Diagnosa Lapangan
       </h2>
-      <p class="text-xs text-[var(--color-text-muted)] mt-1" id="result-disclaimer">
+      <p class="text-sm text-[var(--color-text-muted)] leading-relaxed" id="result-disclaimer">
         Panduan awal ini adalah instrumen bantu identifikasi visual, bukan pengganti pemeriksaan laboratorium atau rekomendasi agronomis langsung di kebun.
       </p>
     </div>
 
     <!-- Empty State -->
-    <div id="result-empty" class="hidden p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] text-center space-y-3">
-      <p class="text-base font-bold text-[var(--color-text)]">
+    <div id="result-empty" class="hidden max-w-[60ch] space-y-2">
+      <p class="font-serif text-xl font-semibold text-[var(--color-brand-strong)]">
         Belum ada diagnosis spesifik untuk kombinasi gejala ini.
       </p>
-      <p class="text-xs text-[var(--color-text-muted)] max-w-[50ch] mx-auto leading-relaxed">
+      <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
         Pola serangan hama atau penyakit di kebun Anda mungkin melibatkan faktor sekunder atau gejala campuran. Anda dapat menelusuri artikel budidaya kami atau berkonsultasi langsung.
       </p>
-      <div class="pt-2">
-        <a
-          href="/jurnal/"
-          class="inline-flex items-center gap-1.5 px-4 py-2 min-h-[44px] text-xs font-bold text-[var(--color-brand-strong)] underline hover:text-[var(--color-brand)]"
-        >
-          <span>Telusuri Artikel Jurnal Tani</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 12h14"/>
-            <path d="m12 5 7 7-7 7"/>
-          </svg>
-        </a>
-      </div>
+      <a href="/jurnal/" class="link-more min-h-[44px]">Telusuri artikel Jurnal Tani &rarr;</a>
     </div>
 
     <!-- Candidate Cards Container -->
-    <div id="candidates-container" class="space-y-4">
+    <div id="candidates-container" class="divide-y divide-[var(--color-border)]">
     </div>
 
     <!-- Single WhatsApp Consultation Prompt (DESIGN §2.2 & §2.8) -->
-    <div id="triage-consult-wrapper" class="pt-4 border-t border-[var(--color-border)]">
+    <div id="triage-consult-wrapper">
       <ConsultPrompt
         source="[Web·Diagnosa]"
         title="Masih ragu memastikan gejala di tanaman Anda?"
@@ -205,12 +172,12 @@ const partLabels: Record<string, string> = {
 
   <!-- No-JS Fallback: Static Comprehensive Symptoms Index (DESIGN §2.2) -->
   <noscript>
-    <div class="p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-6">
-      <div class="border-b border-[var(--color-border)] pb-3">
-        <h2 class="text-lg font-bold text-[var(--color-brand)]">
-          Daftar Gejala & Diagnosa Lengkap (Mode Tanpa JavaScript)
+    <div class="space-y-8">
+      <div class="max-w-[68ch]">
+        <h2 class="section-title !mb-2">
+          Daftar gejala dan diagnosa lengkap (mode tanpa JavaScript)
         </h2>
-        <p class="text-xs text-[var(--color-text-muted)] mt-1">
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
           Peramban Anda menjalankan mode statis. Anda dapat langsung menelusuri katalog gejala tanaman di bawah ini:
         </p>
       </div>
@@ -220,39 +187,27 @@ const partLabels: Record<string, string> = {
           const commSymptoms = visibleSymptoms.filter((s) => s.data.commodity.id === comm.id);
           return (
             <div class="space-y-3">
-              <h3 class="text-base font-extrabold text-[var(--color-text)] flex items-center gap-2">
-                <span class="w-2.5 h-2.5 bg-[var(--color-brand)] rounded-[2px]"></span>
+              <h3 class="font-serif text-xl font-semibold text-[var(--color-brand-strong)]">
                 <span>{comm.name} ({commSymptoms.length} gejala)</span>
               </h3>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pl-4">
+              <div class="divide-y divide-[var(--color-border)]">
                 {commSymptoms.map((s) => (
-                  <div class="p-4 bg-[var(--color-tint)] border border-[var(--color-border)] rounded-[2px] space-y-2">
+                  <div class="py-4 space-y-2">
                     <div class="flex items-center justify-between gap-2">
-                      <span class="text-xs font-semibold px-2 py-0.5 rounded-[2px] bg-[var(--color-surface)] text-[var(--color-soil)]">
+                      <span class="text-sm font-semibold text-[var(--color-soil)]">
                         {partLabels[s.data.part] || s.data.part} · {s.data.causeType}
                       </span>
                     </div>
                     <p class="text-sm font-bold text-[var(--color-text)]">
                       {s.data.diagnosis} {s.data.scientificName && <em class="text-xs font-normal text-[var(--color-text-muted)]">({s.data.scientificName})</em>}
                     </p>
-                    <p class="text-xs text-[var(--color-text)]">
-                      <strong>Tanda Khas:</strong> {s.data.symptom}
+                    <p class="text-sm text-[var(--color-text)]">
+                      <strong>Tanda khas:</strong> {s.data.symptom}
                     </p>
-                    <p class="text-xs text-[var(--color-text-muted)]">
-                      <strong>Tanda Pembeda:</strong> {s.data.distinguishingSign}
+                    <p class="text-sm text-[var(--color-text-muted)]">
+                      <strong>Tanda pembeda:</strong> {s.data.distinguishingSign}
                     </p>
-                    <div class="pt-1">
-                      <a
-                        href={`/jurnal/${s.data.article}/`}
-                        class="text-xs font-bold text-[var(--color-brand-strong)] underline hover:text-[var(--color-brand)] inline-flex items-center gap-1 min-h-[44px]"
-                      >
-                        <span>Baca Protokol Penanganan</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                          <path d="M5 12h14"/>
-                          <path d="m12 5 7 7-7 7"/>
-                        </svg>
-                      </a>
-                    </div>
+                    <a href={`/jurnal/${s.data.article}/`} class="link-more min-h-[44px]">Baca protokol penanganan &rarr;</a>
                   </div>
                 ))}
               </div>
@@ -426,7 +381,7 @@ const partLabels: Record<string, string> = {
       if (!selectedCommodity || !selectedPart) {
         sectionSymptom?.classList.add('opacity-50', 'pointer-events-none');
         if (symptomsList) {
-          symptomsList.innerHTML = '<p class="text-xs text-[var(--color-text-muted)] italic">Pilih komoditas dan bagian tanaman terlebih dahulu.</p>';
+          symptomsList.innerHTML = '<p class="py-3 text-sm text-[var(--color-text-muted)] italic">Pilih komoditas dan bagian tanaman terlebih dahulu.</p>';
         }
         if (symptomCount) symptomCount.textContent = '';
       } else {
@@ -457,7 +412,7 @@ const partLabels: Record<string, string> = {
       }
 
       if (filtered.length === 0) {
-        symptomsList.innerHTML = '<p class="text-xs text-[var(--color-text-muted)] italic">Tidak ada gejala yang cocok dengan kata kunci saringan.</p>';
+        symptomsList.innerHTML = '<p class="py-3 text-sm text-[var(--color-text-muted)] italic">Tidak ada gejala yang cocok dengan kata kunci saringan.</p>';
         return;
       }
 
@@ -467,11 +422,12 @@ const partLabels: Record<string, string> = {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.dataset.symptomId = item.id;
-        btn.className = `w-full text-left p-3.5 min-h-[44px] rounded-[2px] border transition-all text-xs sm:text-sm cursor-pointer flex flex-col gap-1 ${
+        btn.className = `w-full text-left px-3 py-3 min-h-[44px] rounded-[2px] transition-colors text-sm cursor-pointer flex flex-col gap-1 ${
           isSelected
-            ? 'border-[var(--color-brand-strong)] bg-[var(--color-tint)] ring-2 ring-[var(--color-brand-strong)] font-semibold'
-            : 'border-[var(--color-border-control)] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-brand)]'
+            ? 'bg-[var(--color-tint)] font-semibold'
+            : 'text-[var(--color-text)] hover:bg-[var(--color-tint)]'
         }`;
+        btn.setAttribute('aria-pressed', String(isSelected));
 
         const topRow = document.createElement('div');
         topRow.className = 'flex items-center justify-between gap-2';
@@ -542,9 +498,7 @@ const partLabels: Record<string, string> = {
           const cConf = causeConfig[cand.causeType] || { label: cand.causeType, badgeClass: 'bg-[var(--color-tint)] text-[var(--color-soil)]' };
 
           const card = document.createElement('article');
-          card.className = `p-5 sm:p-6 bg-[var(--color-surface)] border rounded-[2px] transition-all space-y-4 ${
-            isPrimary ? 'border-[var(--color-brand)] ring-1 ring-[var(--color-brand)]/20' : 'border-[var(--color-border)] opacity-90'
-          }`;
+          card.className = 'py-6 space-y-3';
 
           // Header line with Cause Type and Verification Status
           const headRow = document.createElement('div');
@@ -565,7 +519,7 @@ const partLabels: Record<string, string> = {
           // Diagnosis Title and Scientific Name
           const titleDiv = document.createElement('div');
           const title = document.createElement('h3');
-          title.className = 'text-xl font-extrabold text-[var(--color-text)] leading-tight';
+          title.className = `font-serif font-semibold text-[var(--color-brand-strong)] leading-tight ${isPrimary ? 'text-2xl' : 'text-xl'}`;
           title.textContent = cand.diagnosis;
 
           if (cand.scientificName) {
@@ -579,24 +533,18 @@ const partLabels: Record<string, string> = {
 
           // Tanda Pembeda (Distinguishing Sign - Critical field per DESIGN §2.2)
           const signBox = document.createElement('div');
-          signBox.className = 'p-3.5 bg-[var(--color-harvest-tint)] border border-[var(--color-harvest)]/40 rounded-[2px] text-xs sm:text-sm text-[var(--color-text)]';
-          signBox.innerHTML = `<strong>Tanda Pembeda Kunci:</strong> ${cand.distinguishingSign}`;
+          signBox.className = 'px-4 py-3 bg-[var(--color-harvest-tint)] rounded-[2px] text-sm text-[var(--color-text)] leading-relaxed max-w-[68ch]';
+          signBox.innerHTML = `<strong>Tanda pembeda kunci:</strong> ${cand.distinguishingSign}`;
           card.appendChild(signBox);
 
           // Action Link (Only "Baca penanganan", DESIGN §2.2)
           const actionDiv = document.createElement('div');
-          actionDiv.className = 'pt-1 flex items-center justify-between';
+          actionDiv.className = 'flex items-center';
 
           const readLink = document.createElement('a');
           readLink.href = `/jurnal/${cand.article}/`;
-          readLink.className = 'inline-flex items-center gap-2 px-4 py-2 min-h-[44px] text-xs sm:text-sm font-bold rounded-[2px] bg-[var(--color-brand)] !text-white hover:bg-[var(--color-brand-hover)] transition-colors';
-          readLink.innerHTML = `
-            <span>Baca Penanganan Lengkap</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M5 12h14"/>
-              <path d="m12 5 7 7-7 7"/>
-            </svg>
-          `;
+          readLink.className = 'link-more min-h-[44px]';
+          readLink.textContent = 'Baca penanganan lengkap →';
 
           actionDiv.appendChild(readLink);
           card.appendChild(actionDiv);

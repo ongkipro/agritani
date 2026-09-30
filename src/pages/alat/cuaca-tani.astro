@@ -36,7 +36,7 @@ const seo: SeoInput = {
 
     <!-- Page Header (Lapangan Layout) -->
     <header class="my-6 sm:my-8 max-w-[68ch]">
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--color-text)] mb-3 leading-tight tracking-tight">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[var(--color-text)] mb-3 leading-tight">
         Cuaca Tani
       </h1>
       <p class="text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed">
@@ -45,23 +45,23 @@ const seo: SeoInput = {
     </header>
 
     <!-- Main Tool Workspace -->
-    <div class="space-y-8 max-w-[64rem]">
+    <div class="space-y-14 max-w-[64rem]">
       
       <!-- No-JS Fallback Banner (DESIGN §2.6.2) -->
       <noscript>
-        <div class="p-6 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px] space-y-3 text-center sm:text-left">
-          <h2 class="text-base font-bold text-[var(--color-brand)]">
-            Mode Statis (Tanpa JavaScript)
+        <div class="max-w-[60ch] space-y-3">
+          <h2 class="section-title !mb-0">
+            Mode statis (tanpa JavaScript)
           </h2>
-          <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
+          <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed">
             Pengambilan data cuaca real-time langsung dari API BMKG membutuhkan peramban dengan JavaScript aktif. Anda tetap dapat memantau prakiraan cuaca daerah Anda secara langsung melalui tautan portal resmi BMKG di bawah ini:
           </p>
-          <div class="pt-2">
+          <div>
             <a
               href="https://www.bmkg.go.id/cuaca/prakiraan-cuaca.bmkg"
               target={refLink.target}
               rel={refLink.rel}
-              class="inline-flex items-center gap-2 px-4 py-2 min-h-[44px] text-xs font-bold rounded-[2px] bg-[var(--color-brand)] !text-white hover:bg-[var(--color-brand-hover)] transition-colors"
+              class="inline-flex items-center gap-2 px-5 py-2 min-h-[44px] text-sm font-semibold rounded-[2px] bg-[var(--color-brand)] !text-white hover:bg-[var(--color-brand-hover)] transition-colors"
             >
               <span>Buka Portal Cuaca Resmi BMKG</span>
               <ExternalLinkIcon size={14} />

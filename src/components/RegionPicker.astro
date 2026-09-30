@@ -20,16 +20,12 @@ try {
 }
 ---
 
-<div id="region-picker-root" class="bg-[var(--color-surface)] p-5 sm:p-7 border border-[var(--color-border)] rounded-[2px] space-y-6">
-  <div class="border-b border-[var(--color-border)] pb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-    <div>
-      <span class="block text-xs font-bold text-[var(--color-soil)] mb-0.5">
-        Langkah 1: Tentukan Lokasi Lahan
-      </span>
-      <p class="text-xs text-[var(--color-text-muted)]">
-        Pilih wilayah administrasi desa atau kelurahan untuk mengambil prakiraan cuaca resmi BMKG tingkat tapak.
-      </p>
-    </div>
+<div id="region-picker-root" class="space-y-6">
+  <div class="max-w-[60ch]">
+    <h2 class="section-title !mb-2">Tentukan lokasi lahan</h2>
+    <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed">
+      Pilih wilayah administrasi desa atau kelurahan untuk mengambil prakiraan cuaca resmi BMKG tingkat tapak.
+    </p>
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -59,7 +55,7 @@ try {
           aria-haspopup="listbox"
           aria-controls="combobox-popover-provinsi"
           aria-labelledby="label-provinsi combobox-label-provinsi"
-          class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] shadow-2xs hover:border-[var(--color-brand)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-strong)] focus-visible:ring-offset-1 text-sm font-medium cursor-pointer transition-colors flex items-center justify-between text-left disabled:opacity-45 disabled:bg-[var(--color-canvas)] disabled:hover:border-[var(--color-border-control)] disabled:cursor-not-allowed"
+          class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-strong)] focus-visible:ring-offset-1 text-sm font-medium cursor-pointer transition-colors flex items-center justify-between text-left disabled:opacity-45 disabled:bg-[var(--color-canvas)] disabled:hover:border-[var(--color-border-control)] disabled:cursor-not-allowed"
         >
           <span id="combobox-label-provinsi" class="truncate text-[var(--color-text-muted)]">
             -- Pilih Provinsi --
@@ -76,7 +72,7 @@ try {
           id="combobox-popover-provinsi"
           role="listbox"
           aria-labelledby="label-provinsi"
-          class="hidden absolute top-full left-0 right-0 z-50 mt-1.5 bg-[var(--color-surface)] border border-[var(--color-border-control)] rounded-[2px] shadow-lg overflow-hidden"
+          class="hidden absolute top-full left-0 right-0 z-50 mt-1.5 bg-[var(--color-surface)] border border-[var(--color-border-control)] rounded-[2px] overflow-hidden"
         >
           <!-- Search Box (CommandInput style) -->
           <div class="p-2.5 border-b border-[var(--color-border)] bg-[var(--color-surface)] flex items-center gap-2">
@@ -160,7 +156,7 @@ try {
           aria-haspopup="listbox"
           aria-controls="combobox-popover-kabupaten"
           aria-labelledby="label-kabupaten combobox-label-kabupaten"
-          class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] shadow-2xs hover:border-[var(--color-brand)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-strong)] focus-visible:ring-offset-1 text-sm font-medium cursor-pointer transition-colors flex items-center justify-between text-left disabled:opacity-45 disabled:bg-[var(--color-canvas)] disabled:hover:border-[var(--color-border-control)] disabled:cursor-not-allowed"
+          class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-strong)] focus-visible:ring-offset-1 text-sm font-medium cursor-pointer transition-colors flex items-center justify-between text-left disabled:opacity-45 disabled:bg-[var(--color-canvas)] disabled:hover:border-[var(--color-border-control)] disabled:cursor-not-allowed"
         >
           <span id="combobox-label-kabupaten" class="truncate text-[var(--color-text-muted)]">
             -- Pilih Kabupaten --
@@ -176,7 +172,7 @@ try {
           id="combobox-popover-kabupaten"
           role="listbox"
           aria-labelledby="label-kabupaten"
-          class="hidden absolute top-full left-0 right-0 z-50 mt-1.5 bg-[var(--color-surface)] border border-[var(--color-border-control)] rounded-[2px] shadow-lg overflow-hidden"
+          class="hidden absolute top-full left-0 right-0 z-50 mt-1.5 bg-[var(--color-surface)] border border-[var(--color-border-control)] rounded-[2px] overflow-hidden"
         >
           <div class="p-2.5 border-b border-[var(--color-border)] bg-[var(--color-surface)] flex items-center gap-2">
             <svg class="w-4 h-4 text-[var(--color-soil)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -242,7 +238,7 @@ try {
           aria-haspopup="listbox"
           aria-controls="combobox-popover-kecamatan"
           aria-labelledby="label-kecamatan combobox-label-kecamatan"
-          class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] shadow-2xs hover:border-[var(--color-brand)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-strong)] focus-visible:ring-offset-1 text-sm font-medium cursor-pointer transition-colors flex items-center justify-between text-left disabled:opacity-45 disabled:bg-[var(--color-canvas)] disabled:hover:border-[var(--color-border-control)] disabled:cursor-not-allowed"
+          class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-strong)] focus-visible:ring-offset-1 text-sm font-medium cursor-pointer transition-colors flex items-center justify-between text-left disabled:opacity-45 disabled:bg-[var(--color-canvas)] disabled:hover:border-[var(--color-border-control)] disabled:cursor-not-allowed"
         >
           <span id="combobox-label-kecamatan" class="truncate text-[var(--color-text-muted)]">
             -- Pilih Kecamatan --
@@ -258,7 +254,7 @@ try {
           id="combobox-popover-kecamatan"
           role="listbox"
           aria-labelledby="label-kecamatan"
-          class="hidden absolute top-full left-0 right-0 z-50 mt-1.5 bg-[var(--color-surface)] border border-[var(--color-border-control)] rounded-[2px] shadow-lg overflow-hidden"
+          class="hidden absolute top-full left-0 right-0 z-50 mt-1.5 bg-[var(--color-surface)] border border-[var(--color-border-control)] rounded-[2px] overflow-hidden"
         >
           <div class="p-2.5 border-b border-[var(--color-border)] bg-[var(--color-surface)] flex items-center gap-2">
             <svg class="w-4 h-4 text-[var(--color-soil)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -324,7 +320,7 @@ try {
           aria-haspopup="listbox"
           aria-controls="combobox-popover-desa"
           aria-labelledby="label-desa combobox-label-desa"
-          class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] shadow-2xs hover:border-[var(--color-brand)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-strong)] focus-visible:ring-offset-1 text-sm font-medium cursor-pointer transition-colors flex items-center justify-between text-left disabled:opacity-45 disabled:bg-[var(--color-canvas)] disabled:hover:border-[var(--color-border-control)] disabled:cursor-not-allowed"
+          class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-strong)] focus-visible:ring-offset-1 text-sm font-medium cursor-pointer transition-colors flex items-center justify-between text-left disabled:opacity-45 disabled:bg-[var(--color-canvas)] disabled:hover:border-[var(--color-border-control)] disabled:cursor-not-allowed"
         >
           <span id="combobox-label-desa" class="truncate text-[var(--color-text-muted)]">
             -- Pilih Desa --
@@ -340,7 +336,7 @@ try {
           id="combobox-popover-desa"
           role="listbox"
           aria-labelledby="label-desa"
-          class="hidden absolute top-full left-0 right-0 z-50 mt-1.5 bg-[var(--color-surface)] border border-[var(--color-border-control)] rounded-[2px] shadow-lg overflow-hidden"
+          class="hidden absolute top-full left-0 right-0 z-50 mt-1.5 bg-[var(--color-surface)] border border-[var(--color-border-control)] rounded-[2px] overflow-hidden"
         >
           <div class="p-2.5 border-b border-[var(--color-border)] bg-[var(--color-surface)] flex items-center gap-2">
             <svg class="w-4 h-4 text-[var(--color-soil)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -386,28 +382,25 @@ try {
   </div>
 
   <!-- Active Selection Summary Card (Appears when location is fully selected) -->
-  <div id="region-active-summary" class="hidden p-4 bg-[var(--color-tint)] border border-[var(--color-brand)]/20 rounded-[2px] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs sm:text-sm">
-    <div class="flex items-start sm:items-center gap-2.5">
-      <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[var(--color-brand)] text-white text-xs shrink-0 mt-0.5 sm:mt-0 font-bold" aria-hidden="true">✓</span>
-      <div>
-        <span class="font-bold text-[var(--color-brand-strong)]">Lokasi Terpilih:</span>
-        <span id="region-active-text" class="font-medium text-[var(--color-text)] ml-1"></span>
-      </div>
-    </div>
+  <div id="region-active-summary" class="hidden px-4 py-2 bg-[var(--color-tint)] rounded-[2px] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-x-3 text-sm">
+    <p>
+      <span class="font-semibold text-[var(--color-brand-strong)]">Lokasi terpilih:</span>
+      <span id="region-active-text" class="font-medium text-[var(--color-text)] ml-1"></span>
+    </p>
     <div class="flex items-center gap-3 shrink-0 self-end sm:self-auto">
       <button
         type="button"
         id="region-reset-btn"
-        class="inline-flex items-center gap-1 text-xs font-bold text-[var(--color-brand-strong)] hover:text-[var(--color-brand-hover)] hover:underline min-h-[36px] cursor-pointer"
+        class="inline-flex items-center gap-1 text-xs font-bold text-[var(--color-brand-strong)] hover:text-[var(--color-brand-hover)] hover:underline min-h-[44px] cursor-pointer"
       >
-        <span>Ganti Wilayah</span>
+        <span>Ganti wilayah</span>
         <span aria-hidden="true">&rarr;</span>
       </button>
     </div>
   </div>
 
   <!-- Status / Loading Indicator for Region Picker -->
-  <div class="flex items-center justify-between text-xs text-[var(--color-text-muted)] pt-1">
+  <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-sm text-[var(--color-text-muted)]">
     <span id="region-status-text" class="font-medium">Pilih provinsi untuk memulai.</span>
     <span id="region-remember-badge" class="hidden tabular-nums text-xs text-[var(--color-soil)] font-medium">
       ✓ Lokasi tersimpan di perangkat
