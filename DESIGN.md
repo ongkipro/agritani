@@ -397,7 +397,7 @@ Aturan pemakaian:
 - Kuning Panen adalah **fill dengan teks gelap**, tidak pernah teks kuning di latar terang.
 - Hijau dan kuning tidak pernah menjadi satu-satunya pembawa makna; selalu ada label atau ikon.
 - **Anti-klise kategori** (§4.0): hijau jenuh + kuning adalah bahasa visual umum situs pupuk Indonesia. Agritani membedakan diri lewat takaran: latar selalu `canvas`/`tint` yang terang; fill `brand` hanya untuk header, tombol primer, dan footer; `harvest` maksimal satu elemen per viewport; tanpa kolase CGI daun/pabrik.
-- Tanpa gradien, tanpa hijau neon, tanpa latar foto di balik teks panjang.
+- Tanpa gradien, tanpa hijau neon, tanpa latar foto di balik teks panjang. **Pengecualian pemilik (2026-09-30):** hero Beranda boleh teks pendek (H1 + satu kalimat + tombol) di atas foto dengan gradien `brand-strong` dari bawah, asalkan latar teks terukur ≥ 7:1 di 390 & 1440.
 
 ### 3.1.1. Warna topik Jurnal (diadaptasi dari kode sektor teagasc.ie)
 
@@ -437,8 +437,14 @@ Sumber tunggal slug → nama → warna: `src/lib/topics.ts`.
 - Kontainer: maks `72rem`, gutter `1rem` (<640px) / `1.5rem` / `2rem` (≥1024px). Grid 12 kolom di ≥1024px; satu kolom di bawahnya.
 - Radius: `0` untuk section, band, dan foto; `2px` untuk tombol, input, tabel, panel. Tanpa `rounded-2xl/3xl`, pill dekoratif, bayangan kartu.
 - Elevasi hanya untuk menu mobile/dialog (satu bayangan).
-- **Tidak ada garis pemisah antar-section** atau di atas/bawah hero dan footer. Transisi section memakai spasi dan pergantian latar (`canvas` ↔ `tint`). Garis hanya di dalam komponen (baris tabel/indeks, border input).
+- **Tidak ada garis pemisah antar-section** atau di atas/bawah hero dan footer. Satu pengecualian pemilik (2026-09-30): bilah 6 warna topik di atas footer sebagai penanda sektor (bukan garis abu-abu pemisah). Transisi section memakai spasi dan pergantian latar (`canvas` ↔ `tint`). Garis hanya di dalam komponen (baris tabel/indeks, border input).
 - Tanpa garis tebal di sisi kiri kartu/panel sebagai aksen; panel dibedakan oleh latar `tint` dan judulnya.
+
+#### 3.3.1. Presisi media–teks (aturan, 2026-09-30)
+
+- Baris artikel dengan thumbnail (Beranda, dan daftar artikel lain yang memakai thumbnail); baris produk memakai gambar `object-contain` berukuran tetap dan tidak termasuk aturan ini: **tepi atas gambar = tepi atas teks label**, **tepi bawah gambar = tepi bawah baris meta**. Caranya: baris `display:flex; align-items:stretch`; gambar `align-self:stretch` dengan lebar tetap (`w-28` / `sm:w-32`), tinggi minimum `4.5rem`, `object-fit: cover`, dan digeser turun sebesar jarak visual teks label di dalam area sentuh 44px (`mt-3`), sehingga area sentuh tetap ≥ 44px tanpa merusak garis sejajar. Kelas grid/tinggi diletakkan di `pictureAttributes` agar `<picture>` ikut meregang.
+- Toleransi terukur: selisih ≤ 1px di 390 & 1440 (skrip ukur geometri di bukti UI). Gambar dekoratif di baris yang sudah punya judul memakai `alt=""` dan tautan `aria-hidden`/`tabindex="-1"`.
+- Jarak tetap label → judul 4px, judul → meta 8px; judul maksimal 2 baris (`line-clamp-2`).
 
 ### 3.4. Ikon & ilustrasi
 
@@ -451,7 +457,7 @@ Sumber tunggal slug → nama → warna: `src/lib/topics.ts`.
 
 - Prioritas: foto lahan Indonesia asli milik Agritani atau mitra dengan izin tertulis (kebun sawit, cabai, sawah, kios saprotan, tangan petani yang bekerja). Cahaya siang alami, warna tidak disaturasi berlebihan, tanpa pose studio.
 - Sebelum aset asli ada (OQ-5): foto berlisensi boleh dipakai **hanya sebagai ilustrasi konteks** dengan kredit, tidak pernah disajikan sebagai demplot, mitra, pelanggan, hasil panen, atau produk Agritani.
-- Dilarang: foto petani luar negeri, traktor gaya Amerika/Eropa, tangan memegang kecambah bercahaya, laboratorium stok, dan gambar AI yang menyerupai kemasan atau hasil lapangan.
+- Dilarang: foto petani luar negeri, traktor gaya Amerika/Eropa, tangan memegang kecambah bercahaya, laboratorium stok, dan gambar AI yang menyerupai kemasan (kecuali ilustrasi kemasan 4 produk yang disetujui pemilik, §3.5.1) atau hasil lapangan.
 - Teknis: `astro:assets`, `width`/`height` eksplisit, AVIF/WebP, hero ≤ 90 KB di 390px; `alt` mendeskripsikan isi agronomis.
 - Bila tidak ada foto layak, region lapangan tetap lengkap tanpa foto (lihat C3). Situs harus tetap berfungsi tanpa gambar.
 
@@ -473,9 +479,10 @@ Diminta Paduka Ongki 2026-09-29 agar situs tidak kosong sebelum foto asli (OQ-5)
 | `tentang-kami.webp` | 3:2 | Gambar utama `/tentang-kami/` |
 | `topik-{topik}.webp` ×6 | 16:9 | Header hub topik |
 
+- **Ilustrasi kemasan produk** (`produk-{aussie,bensu,kojien,saratoga}.webp`): buatan AI, **disetujui pemilik 2026-09-30** sebagai ilustrasi sementara sampai foto kemasan asli (OQ-5); alt "Kemasan {nama produk}"; dicatat di `CREDITS.md`. Teks kecil pada label ilustrasi tidak boleh dijadikan sumber klaim produk.
 - **Pengiriman**: selalu lewat `<Picture>`/`<Image>` `astro:assets` dengan `widths` + `sizes` dan `quality` 52–60; kelas grid diletakkan di `pictureAttributes`, bukan di `<img>`. Gambar pilar dekoratif memakai `alt=""`; gambar yang membawa isi memakai `alt` deskriptif.
 - **Placeholder Non-Foto**:
-  - Kemasan produk: kotak `tint` bertuliskan "Foto kemasan menyusul" (OQ-5).
+  - Kemasan produk: ilustrasi AI yang disetujui pemilik (lihat butir "Ilustrasi kemasan produk" di atas) sampai foto asli (OQ-5).
   - Foto Arif Prabowo: **terpasang 2026-09-30** (edit foto asli, disetujui pemilik), sebagai `src/assets/images/authors/arif-prabowo.webp` + komponen `AuthorAvatar` (persegi, radius 2px, crop wajah) sama di Beranda, byline, dan profil (T-31/T-32).
   - Pembuatan gambar AI (Higgsfield) dicoba 2026-09-29 dan ditolak paket akun; bila dipakai kelak, hanya untuk ilustrasi konteks tanpa orang, teks, logo, atau produk, dan diberi label di `CREDITS.md`.
 
@@ -546,10 +553,10 @@ Sintesis (terinferensi dari observasi di atas):
 ### 4.1. Composition contract — PROPOSED
 
 - **C1 Skeleton homepage per breakpoint**
-  - ≥1024px (revisi 2026-09-29, teagasc.ie): header → hero dua kolom (teks + pemilih komoditas 7/12, foto 5/12) → baris editorial "Jurnal Tani terbaru" (3 kolom teks 8/12 + daftar topik/komoditas 4/12) → pilar bergambar Alat Tani (foto kiri) → pilar bergambar Konsultasi di band `tint` (foto kanan) → produk (judul 4/12 + 4 baris 8/12) → pengelola (Arif Prabowo) → band `harvest-tint` pilar Kemitraan bergambar → footer (urutan & isi: §4.2.3 Beranda).
+  - ≥1024px (disetujui pemilik 2026-09-30): header + strip topik → hero (foto bertulisan 7/12 + instrumen cepat 5/12) → pengelola → Jurnal (artikel utama 7/12 + 3 baris 5/12 + komoditas unggulan) → Alat Tani (baris indeks) → Konsultasi bergambar → 4 produk unggulan + keaslian / kemitraan → bilah topik + footer direktori (rinci: §4.2.3 Beranda).
   - <1024px: satu kolom dengan urutan sama; media hero pindah **di bawah** pemilih komoditas atau dihilangkan; pemilih komoditas terlihat tanpa scroll di 390×740.
 - **C2 Frame**: rata kiri di seluruh halaman; judul hero maks `16ch`; paragraf pendamping maks `52ch`; prosa artikel `68ch`.
-- **C3 Hero**: fokus utama = pertanyaan "Tanaman apa yang bermasalah?" + tombol komoditas dari data (min 48px tinggi, grid 2 kolom mobile / 3 kolom desktop); kedua = tautan teks "atau cari gejala" (Pagefind); ketiga = tautan ke Jurnal Tani. Tanpa pola badge → headline tengah → dua tombol. Bila foto belum ada, kolom media diganti **Ringkasan Lapangan contoh dari artikel nyata** (bukan kosong, bukan ilustrasi generik).
+- **C3 Hero** (*digantikan 2026-09-30 oleh hero bertulisan di atas foto, §4.2.3 Beranda butir 1; pemilih komoditas pindah ke baris "Panduan Berdasarkan Komoditas Unggulan"*). Versi awal: fokus utama = pertanyaan "Tanaman apa yang bermasalah?" + tombol komoditas dari data (min 48px tinggi, grid 2 kolom mobile / 3 kolom desktop); kedua = tautan teks "atau cari gejala" (Pagefind); ketiga = tautan ke Jurnal Tani. Tanpa pola badge → headline tengah → dua tombol. Bila foto belum ada, kolom media diganti **Ringkasan Lapangan contoh dari artikel nyata** (bukan kosong, bukan ilustrasi generik).
 - **C4 Hierarki tipe**: region lapangan = Plus Jakarta Sans 800 untuk display, 600 untuk H2; region sains = Newsreader 600. Di Beranda, H1 hero tetap Plus Jakarta Sans 800, sedangkan judul pilar (`.pillar-title`) memakai Newsreader 600 hijau sebagai suara editorial (teagasc.ie). Satu halaman tidak mencampur dua font display di satu region.
 - **C5 Ritme**: band lapangan padat (spasi 1–1.5rem di dalam), band editorial lapang (2–3rem). Pergantian band `canvas` ↔ `tint` menandai perubahan tugas, bukan dekorasi.
 - **C6 Elemen khas**: (a) tombol komoditas besar tap-first; (b) Ringkasan Lapangan berlatar `tint` dengan label field `soil`; (c) langkah bernomor `01–03` hanya untuk urutan nyata (langkah kemitraan, alur distribusi), tidak untuk daftar produk; (d) daftar topik berpenanda warna (§3.1.1) dan hub komoditas dengan jumlah artikel nyata; (e) judul pilar serif + tautan C11.
@@ -591,18 +598,18 @@ Tidak ada di kerangka: banner cookie (tidak ada cookie), popup langganan, tombol
 
 #### 4.2.3. Anatomi per tipe halaman
 
-**Beranda `/`** (Lapangan) — komposisi rinci di C1–C8 (§4.1); revisi 2026-09-29 mengikuti referensi arah teagasc.ie (§4.0, C9–C11)
+**Beranda `/`** (Lapangan) — **disetujui pemilik 2026-09-30** (versi hasil konsolidasi `58f431d`, referensi arah teagasc.ie §4.0). Anatomi di bawah mencatat yang dibangun; C1 di §4.1 mengikuti ini.
 
-1. Hero: H1 "Tanaman Anda bermasalah? Kenali dari gejalanya." · paragraf pendamping · "Pilih tanaman Anda…" + tombol komoditas (dari data; tujuan dinamis per §2.2) · tautan "cari gejala dengan kata kunci" & "Jelajahi Jurnal Tani" · kolom kanan 5/12: foto lapangan (dummy sampai OQ-5).
-2. Baris editorial "Jurnal Tani terbaru" (pola *News & Publications* teagasc.ie): H2 + garis rambut (C9); ≥1024px 8/12 = 3 artikel terbaru sebagai kolom teks tanpa kotak, dipisah garis rambut vertikal (penanda warna topik · judul serif · dek · tanggal) + tautan "Semua artikel" (C11); 4/12 = daftar Topik (warna topik) dan hub komoditas yang dibangun (komponen `TopicSidebar`). <1024px: artikel bertumpuk, lalu daftar topik.
-3. Section pilar bergambar (pola *Farm Advisory* teagasc.ie), berselang kiri/kanan, masing-masing: foto 5/12 · garis rambut di atas konten · H2 serif besar hijau · 1–2 kalimat · isi pilar · tautan C11:
-   - **Alat Tani**: 4 baris alat (nama · kegunaan · status "Segera hadir" bila disembunyikan) → `/alat/…`.
-   - **Konsultasi**: 2 kalimat + daftar singkat yang perlu disiapkan + tautan "Cara konsultasi" → `/konsultasi/` (bukan WhatsApp; Beranda tanpa tombol WhatsApp).
-4. "Produk untuk lahan Anda": judul + pengantar 4/12 kiri, 4 baris produk 8/12 kanan (nama · tagline · ringkasan) → `/produk/{id}/`. Tanpa foto sampai packshot asli tersedia.
-5. Pengelola: foto `AuthorAvatar` · H2 nama "Arif Prabowo" · peran "Konsultan Pertanian Senior · Pengelola Jurnal Tani" · satu kalimat pengalaman (>8 tahun pertanian & riset) · satu kalimat fakta (artikel terbit ditulis/dimoderasi beliau dan wajib berpustaka, REQ-05) · tautan profil. Tanpa bio karangan.
-6. Band `harvest-tint` — pilar Kemitraan bergambar: foto gudang 5/12 · H2 · pengantar · langkah 1–3 (urutan nyata) · tombol aksen "Ajukan Kemitraan Distributor".
-
-Tidak ada kotak/kartu di Beranda selain tombol komoditas; tidak ada band yang hanya berisi daftar pendek.
+0. Header: logo + tagline "Portal Pertanian Sains & Lapangan" · navigasi · pencarian di tempat · "Ajukan Kemitraan". Di bawahnya **strip 6 topik** berpenanda warna (§3.1.1), tautan ke hub topik.
+1. **Hero** (≥1024px 7/12 + 5/12):
+   - Kiri: foto lapangan penuh kotak dengan **teks di atas foto** — H1 serif "Standar Agronomi Presisi & Sains Lapangan Tropis", satu kalimat (portal dikelola Arif Prabowo, DEC-016), tombol aksen "Buka Instrumen Tani" + tombol sekunder "Jelajahi Jurnal Ilmiah". Gradien `brand-strong` dari bawah (95% → 95% di 60% tinggi → transparan) agar latar teks ≥ 7:1 (terukur median 7,6–7,9 di 390 & 1440, 2026-09-30).
+   - Kanan: "Instrumen Cepat Lapangan" · 4 baris alat (nama · kegunaan) · tautan teks "Butuh telaah kebun langsung? Pelajari alur konsultasi" → `/konsultasi/` (bukan WhatsApp).
+2. **Pengelola**: foto `AuthorAvatar` · nama "Arif Prabowo" · "Konsultan Pertanian Senior · Pengelola Jurnal Tani" · pengalaman > 8 tahun · pernyataan fakta (artikel terbit ditulis/dimoderasi beliau dan wajib berpustaka) · tautan profil.
+3. **Jurnal Tani & Riset Lapangan**: judul + pengantar + tautan "Lihat seluruh arsip jurnal"; artikel utama 7/12 (gambar topik 16:9, label topik, judul serif besar, dek, penulis · tanggal · waktu baca); 3 baris artikel 5/12 dengan thumbnail (aturan presisi §3.3.1); lalu "Panduan Berdasarkan Komoditas Unggulan" (3 kolom, jumlah artikel **dihitung dari koleksi terbit**, tautan ke hub yang dibangun). Pemilih komoditas tap-first dari hero lama pindah ke baris ini.
+4. **Alat Tani & Instrumen Lapangan**: 4 baris indeks (judul serif · kegunaan · tautan lanjutan C11), tanpa ikon dekoratif dan tanpa kartu.
+5. **Pendampingan Agronomi & Konsultasi Kebun**: foto (dummy) + pengantar + 3 langkah bernomor + tautan ke `/konsultasi/`. **Beranda tanpa CTA WhatsApp** (§2.8).
+6. **Empat Produk Unggulan & Integritas Saprotan**: 4 kolom produk (ilustrasi kemasan §3.5.1 · nama · tagline · ringkasan · "Spesifikasi & izin Kementan") · dua kolom teks: Keaslian kemasan ShieldedTag dan Kemitraan kios saprotan & gapoktan.
+7. **Footer**: bilah 6 warna topik di atas footer (penanda sektor ala teagasc.ie, disetujui pemilik sebagai pengecualian §3.3) · direktori 4 kolom (Sektor keilmuan, Organisasi, Instrumen, Produk & rujukan) · baris legal (§4.2.1).
 
 **Diagnosa Gejala `/alat/diagnosa-gejala/`** (Lapangan) — perilaku di §2.2
 

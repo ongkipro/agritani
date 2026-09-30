@@ -79,8 +79,9 @@ Berlaku untuk agent maupun manusia. Detail aturan agent ada di [AGENTS.md](AGENT
 | T-29 | R2 untuk media foto asli | REQ-08 | ADR-0001 §2a, OQ-5 | R2 | — | T-28 | Foto asli dari pemilik + ADR-0001 diterima + persetujuan pembuatan resource | Diblokir (pemicu belum terjadi) |
 | T-30 | D1 penyimpanan pengajuan kemitraan | REQ-02 | ADR-0001 §2b, OQ-13, DEC-006 | R3 | — | T-28 | Keputusan OQ-13 + ADR-0001 diterima + kebijakan privasi disetujui | Diblokir (menunggu OQ-13) |
 | T-31 | Celah anatomi & kebutuhan UI/UX lanjutan | REQ-01 | DESIGN §4.2.3, §3.5.1, §6 | R1 | — | T-27 | — | Siap dikerjakan |
-| T-32 | Identitas baru (DEC-016), foto Arif Prabowo, integritas Beranda, OG | REQ-01 | DEC-016, OQ-4, DESIGN §1.1, §4.2.3, §4.3.1, §4.4 | R2 | — | T-27 | — | Siap dikerjakan (brief: `~/Documents/work/notes/agritani-T32-brief.md`) |
-| T-33 | Aturan tautan keluar & status tautan (hover/active) | REQ-08 | DESIGN §3.6.1, §4.4.12 | R1 | — | T-32 | — | Siap dikerjakan |
+| T-32 | Identitas baru (DEC-016), foto Arif Prabowo, integritas Beranda, OG | REQ-01 | DEC-016, OQ-4, DESIGN §1.1, §4.2.3, §4.3.1, §4.4 | R2 | — | T-27 | — | Done 2026-09-30 (live; kemasan AI disetujui pemilik) |
+| T-33 | Aturan tautan keluar & status tautan (hover/active) | REQ-08 | DESIGN §3.6.1, §4.4.12 | R1 | — | T-32 | — | Done 2026-09-30 (`11cdd25`) |
+| T-34 | Konsolidasi worktree, presisi media–teks, kontras hero, DESIGN Beranda disetujui | REQ-01 | DESIGN §3.3.1, §4.2.3, §3.5.1 | R1 | — | T-32, T-33 | — | Done 2026-09-30 |
 | T-24 | Rilis produksi & observability | REQ-08 | RELEASE.md, OBSERVABILITY.md | R2 | — | T-15, T-18 | OQ-6 + **persetujuan deploy Paduka Ongki** | Menunggu persetujuan deploy |
 
 Urutan kerja yang disarankan (lihat Milestones): T-01 → T-02 → T-23 → T-04 → T-03 → T-05 → (T-06, T-07, T-13, T-14) → T-21 → T-22 → T-09 → T-19 → T-20 → T-26 → T-08 → T-10 → T-17 → T-11 → T-12 → T-16 & T-25 (jalur konten, paralel) → T-18 → T-15 → T-24.
