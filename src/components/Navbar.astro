@@ -35,132 +35,245 @@ function isActive(match: string): boolean {
 }
 ---
 
-<header class="bg-white text-[var(--color-text)] w-full border-b border-[var(--color-border)]">
+<header class="relative bg-white text-[var(--color-text)] w-full border-b border-[var(--color-border)]">
   
   <!-- Tier 1: Main Bar (Brand, Desktop Nav, Search, B2B CTA) -->
-  <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-    <!-- Brand Logo -->
-    <a
-      href="/"
-      class="flex items-center gap-3 min-h-[44px] min-w-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)] rounded-[2px]"
-      aria-label="Beranda Agritani"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 231 64"
-        class="h-8 w-auto shrink-0"
-        role="img"
-        aria-label="Agritani"
-      >
-        <path d="M10 57 L29 8" stroke="#1A6335" stroke-width="9" stroke-linecap="round" fill="none" />
-        <path d="M30 7 C49 15 58 37 54 58 C39 50 31 31 30 7 Z" fill="#F2B632" />
-        <path d="M17 41 H44" stroke="#1A6335" stroke-width="8" stroke-linecap="round" />
-        <path
-          d="M78.44 55.0 88.52 25.2H96.76L106.84 55.0H100.08L98.08 48.92H87.16L85.16 55.0ZM88.88 43.519999999999996H96.36L91.8 29.439999999999998H93.48ZM118.60000000000001 63.8Q116.08000000000001 63.8 113.92000000000002 62.959999999999994Q111.76 62.12 110.22 60.62Q108.68 59.12 108.0 57.08L113.56 55.12Q114.0 56.64 115.36000000000001 57.519999999999996Q116.72000000000001 58.4 118.60000000000001 58.4Q120.08000000000001 58.4 121.16000000000001 57.86Q122.24000000000001 57.32 122.82000000000001 56.28Q123.4 55.24 123.4 53.84V48.84L124.56 50.28Q123.44000000000001 52.12 121.68 53.019999999999996Q119.92 53.92 117.56 53.92Q114.52000000000001 53.92 112.12 52.54Q109.72000000000001 51.16 108.36000000000001 48.739999999999995Q107.0 46.32 107.0 43.24Q107.0 40.16 108.36000000000001 37.78Q109.72000000000001 35.4 112.08000000000001 34.04Q114.44000000000001 32.68 117.44000000000001 32.68Q119.80000000000001 32.68 121.56 33.620000000000005Q123.32000000000001 34.56 124.56 36.480000000000004L123.80000000000001 37.92V33.16H129.4V53.84Q129.4 56.72 128.0 58.980000000000004Q126.60000000000001 61.24 124.18 62.519999999999996Q121.76 63.8 118.60000000000001 63.8ZM118.4 48.48Q119.92 48.48 121.04 47.84Q122.16000000000001 47.2 122.78 46.04Q123.4 44.879999999999995 123.4 43.32Q123.4 41.76 122.76 40.58Q122.12 39.4 121.0 38.739999999999995Q119.88000000000001 38.08 118.4 38.08Q116.88000000000001 38.08 115.70000000000002 38.739999999999995Q114.52000000000001 39.4 113.86000000000001 40.58Q113.2 41.76 113.2 43.32Q113.2 44.84 113.86000000000001 46.0Q114.52000000000001 47.16 115.70000000000002 47.81999999999999Q116.88000000000001 48.48 118.4 48.48ZM133.0 55.0V33.16H138.60000000000002V38.4L138.20000000000002 37.64Q138.92000000000002 34.879999999999995 140.58 33.9Q142.24 32.92 144.52 32.92H145.8V38.120000000000005H143.92000000000002Q141.72 38.120000000000005 140.36 39.46Q139.0 40.8 139.0 43.24V55.0ZM147.64 55.0V33.16H153.64V55.0ZM147.64 31.2V25.2H153.64V31.2ZM167.76000000000002 55.24Q163.8 55.24 161.62 53.1Q159.44000000000003 50.96 159.44000000000003 47.12V38.36H155.76000000000002V33.16H155.96Q157.64000000000001 33.16 158.54000000000002 32.32Q159.44000000000003 31.48 159.44000000000003 29.8V28.2H165.44000000000003V33.16H170.56000000000003V38.36H165.44000000000003V46.72Q165.44000000000003 47.84 165.84000000000003 48.58Q166.24 49.32 167.08 49.68Q167.92000000000002 50.04 169.16000000000003 50.04Q169.44000000000003 50.04 169.8 50.0Q170.16000000000003 49.96 170.56000000000003 49.92V55.0Q169.96 55.08 169.20000000000002 55.16Q168.44000000000003 55.24 167.76000000000002 55.24ZM180.04 55.48Q177.67999999999998 55.48 175.95999999999998 54.72Q174.23999999999998 53.96 173.32 52.54Q172.39999999999998 51.12 172.39999999999998 49.16Q172.39999999999998 47.32 173.23999999999998 45.900000000000006Q174.07999999999998 44.480000000000004 175.82 43.52Q177.55999999999997 42.56 180.16 42.16L186.83999999999997 41.08V45.480000000000004L181.23999999999998 46.480000000000004Q179.95999999999998 46.72 179.27999999999997 47.3Q178.6 47.88 178.6 48.96Q178.6 49.96 179.35999999999999 50.519999999999996Q180.11999999999998 51.08 181.23999999999998 51.08Q182.71999999999997 51.08 183.83999999999997 50.44Q184.95999999999998 49.8 185.57999999999998 48.7Q186.2 47.6 186.2 46.28V40.6Q186.2 39.36 185.21999999999997 38.519999999999996Q184.23999999999998 37.68 182.55999999999997 37.68Q180.95999999999998 37.68 179.73999999999998 38.56Q178.51999999999998 39.44 177.95999999999998 40.879999999999995L173.16 38.6Q173.79999999999998 36.76 175.2 35.44Q176.6 34.120000000000005 178.56 33.400000000000006Q180.51999999999998 32.68 182.83999999999997 32.68Q185.6 32.68 187.71999999999997 33.68Q189.83999999999997 34.68 191.01999999999998 36.459999999999994Q192.2 38.239999999999995 192.2 40.6V55.0H186.6V51.48L187.95999999999998 51.24Q186.99999999999997 52.68 185.83999999999997 53.620000000000005Q184.67999999999998 54.56 183.23999999999998 55.019999999999996Q181.79999999999998 55.48 180.04 55.48ZM195.8 55.0V33.16H201.40000000000003V37.480000000000004L201.08 36.519999999999996Q201.84000000000003 34.56 203.54000000000002 33.620000000000005Q205.24 32.68 207.52 32.68Q210.00000000000003 32.68 211.86 33.72Q213.72000000000003 34.76 214.76000000000002 36.620000000000005Q215.8 38.480000000000004 215.8 40.97209302325581V55.0H209.8V42.24Q209.8 40.96 209.3 40.04Q208.8 39.12 207.896275862069 38.599999999999994Q206.99255172413797 38.08 205.81627586206898 38.08Q204.64000000000001 38.08 203.72000000000003 38.599999999999994Q202.8 39.12 202.3 40.04Q201.8 40.96 201.8 42.24V55.0ZM218.95999999999998 55.0V33.16H224.95999999999998V55.0ZM218.95999999999998 31.2V25.2H224.95999999999998V31.2Z"
-        fill="#1A6335"
-      />
-      </svg>
-      <span class="hidden sm:inline-block pl-3 border-l border-[var(--color-border)] text-xs font-semibold text-[var(--color-text-muted)] leading-tight">
-        Portal Pertanian<br />Sains & Lapangan
-      </span>
-    </a>
-
-    <!-- Desktop Navigation -->
-    <nav aria-label="Menu Utama" class="hidden md:flex items-center gap-1 lg:gap-2">
-      {
-        navLinks.map((link) => {
-          const active = isActive(link.match);
-          return (
-            <a
-              href={link.href}
-              class={`group relative px-3 py-2 min-h-[44px] flex items-center text-sm font-semibold tracking-tight transition-colors duration-200 rounded-[2px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)] ${
-                active
-                  ? 'text-[var(--color-brand-strong)] font-bold'
-                  : 'text-[var(--color-text)] hover:text-[var(--color-brand-strong)]'
-              }`}
-              aria-current={active ? 'page' : undefined}
-            >
-              <span>{link.label}</span>
-              <span
-                class={`absolute bottom-2 left-3 right-3 h-[2px] rounded-full transition-all duration-250 ease-out ${
-                  active
-                    ? 'bg-[var(--color-brand)] scale-x-100'
-                    : 'bg-[var(--color-brand)] scale-x-0 group-hover:scale-x-100 origin-left'
-                }`}
-                aria-hidden="true"
-              />
-            </a>
-          );
-        })
-      }
-
-      <!-- Search Link -->
+  <div class="relative max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <!-- State 1: Normal Bar -->
+    <div id="nav-default-bar" class="w-full flex items-center justify-between">
+      <!-- Brand Logo -->
       <a
-        href="/cari/"
-        class="group relative min-h-[44px] px-3 py-2 flex items-center gap-2 rounded-[2px] text-[var(--color-text)] hover:text-[var(--color-brand-strong)] text-sm font-semibold transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)] ml-1"
-        aria-label="Cari artikel dan informasi"
+        href="/"
+        class="flex items-center gap-3 min-h-[44px] min-w-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)] rounded-[2px]"
+        aria-label="Beranda Agritani"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-          class="transition-transform duration-200 group-hover:scale-110"
+          viewBox="0 0 231 64"
+          class="h-8 w-auto shrink-0"
+          role="img"
+          aria-label="Agritani"
         >
-          <circle cx="11" cy="11" r="8" />
-          <path d="m21 21-4.3-4.3" />
+          <path d="M10 57 L29 8" stroke="#1A6335" stroke-width="9" stroke-linecap="round" fill="none" />
+          <path d="M30 7 C49 15 58 37 54 58 C39 50 31 31 30 7 Z" fill="#F2B632" />
+          <path d="M17 41 H44" stroke="#1A6335" stroke-width="8" stroke-linecap="round" />
+          <path
+            d="M78.44 55.0 88.52 25.2H96.76L106.84 55.0H100.08L98.08 48.92H87.16L85.16 55.0ZM88.88 43.519999999999996H96.36L91.8 29.439999999999998H93.48ZM118.60000000000001 63.8Q116.08000000000001 63.8 113.92000000000002 62.959999999999994Q111.76 62.12 110.22 60.62Q108.68 59.12 108.0 57.08L113.56 55.12Q114.0 56.64 115.36000000000001 57.519999999999996Q116.72000000000001 58.4 118.60000000000001 58.4Q120.08000000000001 58.4 121.16000000000001 57.86Q122.24000000000001 57.32 122.82000000000001 56.28Q123.4 55.24 123.4 53.84V48.84L124.56 50.28Q123.44000000000001 52.12 121.68 53.019999999999996Q119.92 53.92 117.56 53.92Q114.52000000000001 53.92 112.12 52.54Q109.72000000000001 51.16 108.36000000000001 48.739999999999995Q107.0 46.32 107.0 43.24Q107.0 40.16 108.36000000000001 37.78Q109.72000000000001 35.4 112.08000000000001 34.04Q114.44000000000001 32.68 117.44000000000001 32.68Q119.80000000000001 32.68 121.56 33.620000000000005Q123.32000000000001 34.56 124.56 36.480000000000004L123.80000000000001 37.92V33.16H129.4V53.84Q129.4 56.72 128.0 58.980000000000004Q126.60000000000001 61.24 124.18 62.519999999999996Q121.76 63.8 118.60000000000001 63.8ZM118.4 48.48Q119.92 48.48 121.04 47.84Q122.16000000000001 47.2 122.78 46.04Q123.4 44.879999999999995 123.4 43.32Q123.4 41.76 122.76 40.58Q122.12 39.4 121.0 38.739999999999995Q119.88000000000001 38.08 118.4 38.08Q116.88000000000001 38.08 115.70000000000002 38.739999999999995Q114.52000000000001 39.4 113.86000000000001 40.58Q113.2 41.76 113.2 43.32Q113.2 44.84 113.86000000000001 46.0Q114.52000000000001 47.16 115.70000000000002 47.81999999999999Q116.88000000000001 48.48 118.4 48.48ZM133.0 55.0V33.16H138.60000000000002V38.4L138.20000000000002 37.64Q138.92000000000002 34.879999999999995 140.58 33.9Q142.24 32.92 144.52 32.92H145.8V38.120000000000005H143.92000000000002Q141.72 38.120000000000005 140.36 39.46Q139.0 40.8 139.0 43.24V55.0ZM147.64 55.0V33.16H153.64V55.0ZM147.64 31.2V25.2H153.64V31.2ZM167.76000000000002 55.24Q163.8 55.24 161.62 53.1Q159.44000000000003 50.96 159.44000000000003 47.12V38.36H155.76000000000002V33.16H155.96Q157.64000000000001 33.16 158.54000000000002 32.32Q159.44000000000003 31.48 159.44000000000003 29.8V28.2H165.44000000000003V33.16H170.56000000000003V38.36H165.44000000000003V46.72Q165.44000000000003 47.84 165.84000000000003 48.58Q166.24 49.32 167.08 49.68Q167.92000000000002 50.04 169.16000000000003 50.04Q169.44000000000003 50.04 169.8 50.0Q170.16000000000003 49.96 170.56000000000003 49.92V55.0Q169.96 55.08 169.20000000000002 55.16Q168.44000000000003 55.24 167.76000000000002 55.24ZM180.04 55.48Q177.67999999999998 55.48 175.95999999999998 54.72Q174.23999999999998 53.96 173.32 52.54Q172.39999999999998 51.12 172.39999999999998 49.16Q172.39999999999998 47.32 173.23999999999998 45.900000000000006Q174.07999999999998 44.480000000000004 175.82 43.52Q177.55999999999997 42.56 180.16 42.16L186.83999999999997 41.08V45.480000000000004L181.23999999999998 46.480000000000004Q179.95999999999998 46.72 179.27999999999997 47.3Q178.6 47.88 178.6 48.96Q178.6 49.96 179.35999999999999 50.519999999999996Q180.11999999999998 51.08 181.23999999999998 51.08Q182.71999999999997 51.08 183.83999999999997 50.44Q184.95999999999998 49.8 185.57999999999998 48.7Q186.2 47.6 186.2 46.28V40.6Q186.2 39.36 185.21999999999997 38.519999999999996Q184.23999999999998 37.68 182.55999999999997 37.68Q180.95999999999998 37.68 179.73999999999998 38.56Q178.51999999999998 39.44 177.95999999999998 40.879999999999995L173.16 38.6Q173.79999999999998 36.76 175.2 35.44Q176.6 34.120000000000005 178.56 33.400000000000006Q180.51999999999998 32.68 182.83999999999997 32.68Q185.6 32.68 187.71999999999997 33.68Q189.83999999999997 34.68 191.01999999999998 36.459999999999994Q192.2 38.239999999999995 192.2 40.6V55.0H186.6V51.48L187.95999999999998 51.24Q186.99999999999997 52.68 185.83999999999997 53.620000000000005Q184.67999999999998 54.56 183.23999999999998 55.019999999999996Q181.79999999999998 55.48 180.04 55.48ZM195.8 55.0V33.16H201.40000000000003V37.480000000000004L201.08 36.519999999999996Q201.84000000000003 34.56 203.54000000000002 33.620000000000005Q205.24 32.68 207.52 32.68Q210.00000000000003 32.68 211.86 33.72Q213.72000000000003 34.76 214.76000000000002 36.620000000000005Q215.8 38.480000000000004 215.8 40.97209302325581V55.0H209.8V42.24Q209.8 40.96 209.3 40.04Q208.8 39.12 207.896275862069 38.599999999999994Q206.99255172413797 38.08 205.81627586206898 38.08Q204.64000000000001 38.08 203.72000000000003 38.599999999999994Q202.8 39.12 202.3 40.04Q201.8 40.96 201.8 42.24V55.0ZM218.95999999999998 55.0V33.16H224.95999999999998V55.0ZM218.95999999999998 31.2V25.2H224.95999999999998V31.2Z"
+            fill="#1A6335"
+          />
         </svg>
-        <span class="hidden lg:inline">Cari</span>
-        <span
-          class="absolute bottom-2 left-3 right-3 h-[2px] rounded-full bg-[var(--color-brand)] scale-x-0 group-hover:scale-x-100 origin-left transition-all duration-250 ease-out"
-          aria-hidden="true"
-        />
+        <span class="hidden sm:inline-block pl-3 border-l border-[var(--color-border)] text-xs font-semibold text-[var(--color-text-muted)] leading-tight">
+          Portal Pertanian<br />Sains & Lapangan
+        </span>
       </a>
 
-      <!-- B2B Action (Outline button per DESIGN §2.1, text-sm >= 14px) -->
-      <a
-        href="/kemitraan-distributor/"
-        class="ml-2 px-3.5 py-1.5 min-h-[44px] flex items-center border border-[var(--color-brand)] text-[var(--color-brand)] hover:bg-[var(--color-brand)] hover:text-white active:scale-[0.98] text-sm font-bold rounded-[2px] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)] focus-visible:ring-offset-2"
-      >
-        Ajukan Kemitraan
-      </a>
-    </nav>
+      <!-- Desktop Navigation -->
+      <nav aria-label="Menu Utama" class="hidden md:flex items-center gap-1 lg:gap-2">
+        {
+          navLinks.map((link) => {
+            const active = isActive(link.match);
+            return (
+              <a
+                href={link.href}
+                class={`group relative px-3 py-2 min-h-[44px] flex items-center text-sm font-semibold tracking-tight transition-colors duration-200 rounded-[2px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)] ${
+                  active
+                    ? 'text-[var(--color-brand-strong)] font-bold'
+                    : 'text-[var(--color-text)] hover:text-[var(--color-brand-strong)]'
+                }`}
+                aria-current={active ? 'page' : undefined}
+              >
+                <span>{link.label}</span>
+                <span
+                  class={`absolute bottom-2 left-3 right-3 h-[2px] rounded-full transition-all duration-250 ease-out ${
+                    active
+                      ? 'bg-[var(--color-brand)] scale-x-100'
+                      : 'bg-[var(--color-brand)] scale-x-0 group-hover:scale-x-100 origin-left'
+                  }`}
+                  aria-hidden="true"
+                />
+              </a>
+            );
+          })
+        }
 
-    <!-- Mobile Controls -->
-    <div class="flex md:hidden items-center gap-1">
-      <a
-        href="/cari/"
-        class="min-h-[44px] min-w-[44px] flex items-center justify-center p-2 rounded-[2px] text-[var(--color-text)] hover:text-[var(--color-brand-strong)] hover:bg-[var(--color-tint)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)] transition-colors"
-        aria-label="Cari"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="11" cy="11" r="8" />
-          <path d="m21 21-4.3-4.3" />
-        </svg>
-      </a>
+        <!-- Search Trigger Button -->
+        <a
+          href="/cari/"
+          id="header-search-trigger-desktop"
+          class="group relative min-h-[44px] px-3 py-2 flex items-center gap-2 rounded-[2px] text-[var(--color-text)] hover:text-[var(--color-brand-strong)] text-sm font-semibold transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)] ml-1"
+          aria-label="Buka pencarian"
+          aria-expanded="false"
+          aria-controls="header-search-bar"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            class="transition-transform duration-200 group-hover:scale-110"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.3-4.3" />
+          </svg>
+          <span class="hidden lg:inline">Cari</span>
+          <span
+            class="absolute bottom-2 left-3 right-3 h-[2px] rounded-full bg-[var(--color-brand)] scale-x-0 group-hover:scale-x-100 origin-left transition-all duration-250 ease-out"
+            aria-hidden="true"
+          />
+        </a>
 
-      <button
-        type="button"
-        id="menu-open-btn"
-        class="min-h-[44px] min-w-[44px] flex items-center justify-center p-2 rounded-[2px] text-[var(--color-text)] hover:text-[var(--color-brand-strong)] hover:bg-[var(--color-tint)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)] transition-colors"
-        aria-label="Buka Menu"
-        aria-expanded="false"
-        aria-controls="mobile-menu-dialog"
+        <!-- B2B Action (Outline button per DESIGN §2.1, text-sm >= 14px) -->
+        <a
+          href="/kemitraan-distributor/"
+          class="ml-2 px-3.5 py-1.5 min-h-[44px] flex items-center border border-[var(--color-brand)] text-[var(--color-brand)] hover:bg-[var(--color-brand)] hover:text-white active:scale-[0.98] text-sm font-bold rounded-[2px] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)] focus-visible:ring-offset-2"
+        >
+          Ajukan Kemitraan
+        </a>
+      </nav>
+
+      <!-- Mobile Controls -->
+      <div class="flex md:hidden items-center gap-1">
+        <a
+          href="/cari/"
+          id="header-search-trigger-mobile"
+          class="min-h-[44px] min-w-[44px] flex items-center justify-center p-2 rounded-[2px] text-[var(--color-text)] hover:text-[var(--color-brand-strong)] hover:bg-[var(--color-tint)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)] transition-colors"
+          aria-label="Buka pencarian"
+          aria-expanded="false"
+          aria-controls="header-search-bar"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.3-4.3" />
+          </svg>
+        </a>
+
+        <button
+          type="button"
+          id="menu-open-btn"
+          class="min-h-[44px] min-w-[44px] flex items-center justify-center p-2 rounded-[2px] text-[var(--color-text)] hover:text-[var(--color-brand-strong)] hover:bg-[var(--color-tint)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)] transition-colors"
+          aria-label="Buka Menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu-dialog"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="4" x2="20" y1="12" y2="12" />
+            <line x1="4" x2="20" y1="6" y2="6" />
+            <line x1="4" x2="20" y1="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- State 2: Search Input Area (Hidden by default, shown when Cari is clicked) -->
+    <div
+      id="header-search-bar"
+      class="w-full hidden items-center justify-between gap-2 sm:gap-3 h-full"
+      role="search"
+    >
+      <form
+        action="/cari/"
+        method="get"
+        id="header-search-form"
+        class="w-full flex items-center gap-2 sm:gap-3"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <line x1="4" x2="20" y1="12" y2="12" />
-          <line x1="4" x2="20" y1="6" y2="6" />
-          <line x1="4" x2="20" y1="18" y2="18" />
-        </svg>
-      </button>
+        <div class="text-[var(--color-brand)] shrink-0 pl-1" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.3-4.3" />
+          </svg>
+        </div>
+
+        <div class="relative flex-1">
+          <label for="header-search-input" class="sr-only">Cari panduan agronomi dan artikel Jurnal Tani</label>
+          <input
+            type="search"
+            name="q"
+            id="header-search-input"
+            placeholder="Ketik masalah tanaman (mis. patek cabai, blas padi, ganoderma)..."
+            autocomplete="off"
+            spellcheck="false"
+            class="w-full py-2.5 sm:py-3 px-3.5 text-sm sm:text-base text-[var(--color-text)] bg-[var(--color-canvas)] border border-[var(--color-border-control)] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] placeholder:text-[var(--color-text-muted)] font-medium"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="shrink-0 px-4 py-2.5 sm:px-5 min-h-[44px] bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)] text-white text-xs sm:text-sm font-bold rounded-[2px] transition-colors flex items-center justify-center cursor-pointer"
+        >
+          Cari
+        </button>
+
+        <button
+          type="button"
+          id="header-search-close-btn"
+          class="shrink-0 px-3 py-2 min-h-[44px] min-w-[44px] flex items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-tint)] border border-transparent hover:border-[var(--color-border)] rounded-[2px] transition-colors cursor-pointer"
+          aria-label="Tutup pencarian"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
+          <span class="hidden sm:inline">Tutup</span>
+        </button>
+      </form>
     </div>
   </div>
+
+  <!-- Live Search Results Dropdown -->
+  <div
+    id="header-search-dropdown"
+    class="hidden absolute top-20 left-0 right-0 bg-white border-b border-[var(--color-border)] shadow-lg z-50 max-h-[75vh] overflow-y-auto"
+  >
+    <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <!-- Quick suggestions when query is empty -->
+      <div id="header-search-quick-queries" class="py-2">
+        <div class="text-xs font-bold text-[var(--color-soil)] mb-2">Pencarian Populer:</div>
+        <div class="flex flex-wrap gap-2">
+          {
+            ['patek cabai', 'blas padi', 'wereng batang coklat', 'ganoderma sawit', 'kutu kebul', 'tanah masam'].map((q) => (
+              <button
+                type="button"
+                class="header-quick-chip px-2.5 py-1 text-xs font-semibold bg-[var(--color-tint)] hover:bg-[var(--color-harvest)] text-[var(--color-text)] rounded-[2px] transition-colors min-h-[36px] flex items-center cursor-pointer"
+                data-query={q}
+              >
+                {q}
+              </button>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Loading Indicator -->
+      <div id="header-search-loading" class="hidden py-6 text-center text-xs font-semibold text-[var(--color-soil)]">
+        <span class="inline-block animate-pulse">Sedang mencari naskah Jurnal Tani...</span>
+      </div>
+
+      <!-- Results List -->
+      <div id="header-search-results-list" class="divide-y divide-[var(--color-border)]" aria-live="polite"></div>
+
+      <!-- Empty Result State -->
+      <div id="header-search-empty" class="hidden py-6 text-center text-xs sm:text-sm text-[var(--color-text-muted)]">
+        <p>Tidak ditemukan panduan langsung untuk <strong id="header-search-empty-term" class="text-[var(--color-text)]"></strong>.</p>
+        <p class="mt-1 text-xs text-[var(--color-soil)]">Tekan Enter atau tombol "Cari" untuk membuka hasil pencarian.</p>
+      </div>
+
+      <!-- View All Link (when query length >= 2) -->
+      <div id="header-search-footer" class="hidden pt-3 mt-3 border-t border-[var(--color-border)] flex items-center justify-between text-xs sm:text-sm font-semibold">
+        <a id="header-search-view-all" href="/cari/" class="text-[var(--color-brand-strong)] hover:underline inline-flex items-center gap-1.5 py-1 min-h-[36px]">
+          <span>Lihat semua hasil pencarian</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+        <span class="text-[var(--color-text-muted)] text-[11px] hidden sm:inline">Tekan Enter untuk membuka halaman hasil</span>
+      </div>
+    </div>
+  </div>
+
 
   <!-- Tier 2: Desktop 6-Sector Taxonomy Bar -->
   <nav aria-label="Sektor Keilmuan Pertanian" class="hidden lg:block border-t border-[var(--color-border)] bg-[var(--color-canvas)] select-none">
@@ -365,4 +478,222 @@ function isActive(match: string): boolean {
       }
     });
   }
+
+  // Header In-Place Search Bar Logic
+  const defaultBar = document.getElementById('nav-default-bar');
+  const searchBar = document.getElementById('header-search-bar');
+  const searchInput = document.getElementById('header-search-input') as HTMLInputElement | null;
+  const searchCloseBtn = document.getElementById('header-search-close-btn');
+  const searchDropdown = document.getElementById('header-search-dropdown');
+  const resultsList = document.getElementById('header-search-results-list');
+  const quickQueries = document.getElementById('header-search-quick-queries');
+  const loadingIndicator = document.getElementById('header-search-loading');
+  const emptyState = document.getElementById('header-search-empty');
+  const emptyTerm = document.getElementById('header-search-empty-term');
+  const searchFooter = document.getElementById('header-search-footer');
+  const viewAllLink = document.getElementById('header-search-view-all') as HTMLAnchorElement | null;
+  const triggerDesktop = document.getElementById('header-search-trigger-desktop');
+  const triggerMobile = document.getElementById('header-search-trigger-mobile');
+
+  let lastActiveTrigger: HTMLElement | null = null;
+  let pagefindInstance: any = null;
+  let isPagefindLoading = false;
+
+  async function getHeaderPagefind() {
+    if (pagefindInstance) return pagefindInstance;
+    if (isPagefindLoading) {
+      while (isPagefindLoading) {
+        await new Promise((r) => setTimeout(r, 50));
+      }
+      return pagefindInstance;
+    }
+    isPagefindLoading = true;
+    try {
+      const pagefindUrl = new URL('/pagefind/pagefind.js', window.location.origin).href;
+      // @ts-ignore
+      const pf = await import(/* @vite-ignore */ pagefindUrl);
+      await pf.init();
+      pagefindInstance = pf;
+      return pagefindInstance;
+    } catch {
+      return null;
+    } finally {
+      isPagefindLoading = false;
+    }
+  }
+
+  function openHeaderSearch(trigger: HTMLElement | null) {
+    if (!defaultBar || !searchBar || !searchInput) return;
+    lastActiveTrigger = trigger;
+    defaultBar.classList.add('hidden');
+    searchBar.classList.remove('hidden');
+    searchBar.classList.add('flex');
+    if (searchDropdown) searchDropdown.classList.remove('hidden');
+    if (trigger) trigger.setAttribute('aria-expanded', 'true');
+    searchInput.focus();
+    getHeaderPagefind();
+  }
+
+  function closeHeaderSearch() {
+    if (!defaultBar || !searchBar) return;
+    searchBar.classList.add('hidden');
+    searchBar.classList.remove('flex');
+    defaultBar.classList.remove('hidden');
+    if (searchDropdown) searchDropdown.classList.add('hidden');
+    if (lastActiveTrigger) {
+      lastActiveTrigger.setAttribute('aria-expanded', 'false');
+      lastActiveTrigger.focus();
+    }
+  }
+
+  if (triggerDesktop) {
+    triggerDesktop.addEventListener('click', (e) => {
+      e.preventDefault();
+      openHeaderSearch(triggerDesktop);
+    });
+  }
+
+  if (triggerMobile) {
+    triggerMobile.addEventListener('click', (e) => {
+      e.preventDefault();
+      openHeaderSearch(triggerMobile);
+    });
+  }
+
+  if (searchCloseBtn) {
+    searchCloseBtn.addEventListener('click', () => {
+      closeHeaderSearch();
+    });
+  }
+
+  // Quick query chips in header search dropdown
+  document.querySelectorAll('.header-quick-chip').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const q = btn.getAttribute('data-query');
+      if (q && searchInput) {
+        searchInput.value = q;
+        searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+        searchInput.focus();
+      }
+    });
+  });
+
+  // Debounced live search with Pagefind
+  let debounceTimer: any = null;
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      clearTimeout(debounceTimer);
+      const query = searchInput.value.trim();
+
+      if (viewAllLink) {
+        viewAllLink.href = `/cari/?q=${encodeURIComponent(query)}`;
+      }
+
+      if (query.length < 2) {
+        if (quickQueries) quickQueries.classList.remove('hidden');
+        if (resultsList) resultsList.innerHTML = '';
+        if (emptyState) emptyState.classList.add('hidden');
+        if (searchFooter) searchFooter.classList.add('hidden');
+        if (loadingIndicator) loadingIndicator.classList.add('hidden');
+        return;
+      }
+
+      if (quickQueries) quickQueries.classList.add('hidden');
+      if (loadingIndicator) loadingIndicator.classList.remove('hidden');
+      if (emptyState) emptyState.classList.add('hidden');
+
+      debounceTimer = setTimeout(async () => {
+        const pf = await getHeaderPagefind();
+        if (loadingIndicator) loadingIndicator.classList.add('hidden');
+
+        if (!pf) {
+          if (searchFooter) searchFooter.classList.remove('hidden');
+          return;
+        }
+
+        try {
+          const searchResponse = await pf.search(query);
+          const rawResults = await Promise.all(
+            searchResponse.results.slice(0, 15).map((r: any) => r.data())
+          );
+
+          const queryTokens = query
+            .toLowerCase()
+            .split(/\s+/)
+            .map((t: string) => t.trim())
+            .filter((t: string) => t.length >= 2);
+
+          const filtered = rawResults.filter((item: any) => {
+            const textToSearch = `${item.meta?.title || ''} ${item.excerpt || ''} ${item.raw_title || ''}`.toLowerCase();
+            if (queryTokens.length === 0) return true;
+            return queryTokens.some((tok: string) => textToSearch.includes(tok));
+          }).slice(0, 4);
+
+          if (resultsList) {
+            resultsList.innerHTML = '';
+            if (filtered.length === 0) {
+              if (emptyState) {
+                emptyState.classList.remove('hidden');
+                if (emptyTerm) emptyTerm.textContent = `"${query}"`;
+              }
+            } else {
+              filtered.forEach((item: any) => {
+                const title = item.meta?.title || item.raw_title || 'Naskah Jurnal Tani';
+                const rawExcerpt = item.excerpt ? item.excerpt.replace(/<[^>]+>/g, '').trim() : '';
+                const excerpt = rawExcerpt.length > 110 ? rawExcerpt.slice(0, 110) + '...' : rawExcerpt;
+                
+                const a = document.createElement('a');
+                a.href = item.url;
+                a.className = 'block py-3 px-3 -mx-3 hover:bg-[var(--color-tint)] rounded-[2px] transition-colors group';
+                
+                const titleEl = document.createElement('div');
+                titleEl.className = 'text-sm font-serif font-bold text-[var(--color-text)] group-hover:text-[var(--color-brand-strong)] leading-snug';
+                titleEl.textContent = title;
+                a.appendChild(titleEl);
+
+                if (excerpt) {
+                  const excerptEl = document.createElement('div');
+                  excerptEl.className = 'text-xs text-[var(--color-text-muted)] line-clamp-1 mt-1';
+                  excerptEl.textContent = excerpt;
+                  a.appendChild(excerptEl);
+                }
+
+                resultsList.appendChild(a);
+              });
+            }
+          }
+
+          if (searchFooter) searchFooter.classList.remove('hidden');
+        } catch {
+          if (searchFooter) searchFooter.classList.remove('hidden');
+        }
+      }, 200);
+    });
+
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeHeaderSearch();
+      }
+    });
+  }
+
+  // Close when clicked outside
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement | null;
+    if (!target) return;
+    const isInsideSearch = target.closest('#header-search-bar') ||
+      target.closest('#header-search-dropdown') ||
+      target.closest('#header-search-trigger-desktop') ||
+      target.closest('#header-search-trigger-mobile');
+    if (!isInsideSearch && searchBar && !searchBar.classList.contains('hidden')) {
+      closeHeaderSearch();
+    }
+  });
+
+  // Global Esc key listener
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && searchBar && !searchBar.classList.contains('hidden')) {
+      closeHeaderSearch();
+    }
+  });
 </script>
