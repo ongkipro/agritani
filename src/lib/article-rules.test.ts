@@ -43,3 +43,10 @@ test('drafts only need a valid slug', () => {
   assert.deepEqual(checkArticle(make({ draft: 'true', metaTitle: '"x"', description: '"y"' })), []);
   assert.ok(checkArticle(make({ draft: 'true', slug: '"Slug Salah"' })).length > 0);
 });
+
+test('updatedDate must be YYYY-MM-DD, not before pubDate, not in the future', () => {
+  assert.deepEqual(checkArticle(make({ updatedDate: '"2026-09-30"' })), []);
+  assert.ok(checkArticle(make({ updatedDate: '"30-09-2026"' })).some((p: string) => p.includes('updatedDate')));
+  assert.ok(checkArticle(make({ updatedDate: '"2026-09-01"' })).some((p: string) => p.includes('sebelum pubDate')));
+  assert.ok(checkArticle(make({ updatedDate: '"2999-01-01"' })).some((p: string) => p.includes('masa depan')));
+});

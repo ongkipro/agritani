@@ -66,11 +66,13 @@ export default defineConfig({
         try {
           const url = new URL(page);
           const p = url.pathname;
-          // Only search results and 404 are noindex (owner 2026-09-30, DEC-023); dev specimens and drafts never ship.
+          // Dev specimens and drafts never ship. Everything else is listed exactly when the built page is
+          // indexable: /cari/, 404 and tag archives under TAG_INDEX_MIN carry noindex (DEC-023, DEC-025).
           if (p.includes('/cari') || p.includes('/404') || p.includes('/spesimen') || draftSet.has(p)) {
             return false;
           }
-          return true;
+          const html = path.resolve('dist', `.${p}`, 'index.html');
+          return !(fs.existsSync(html) && /<meta name="robots" content="noindex/.test(fs.readFileSync(html, 'utf-8')));
         } catch {
           return true;
         }

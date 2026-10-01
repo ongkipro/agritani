@@ -38,7 +38,7 @@ describe('SEO & Metadata Builder (DESIGN §4.4)', () => {
       description: 'Halaman yang Anda cari tidak ditemukan.',
       noindex: true,
     });
-    assert.equal(seo.robots, 'noindex, nofollow');
+    assert.equal(seo.robots, 'noindex, follow');
   });
 
   it('sets full index robots directive when noindex is false', () => {

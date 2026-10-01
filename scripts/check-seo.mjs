@@ -8,7 +8,7 @@
  * - Unique titles and descriptions across indexed pages
  * - Valid and parseable JSON-LD @graph schema with stable @id
  * - No noindex pages in the sitemap (/sitemap.xml index and its chunks)
- * - Robots.txt references sitemap and disallows /cari/
+ * - Robots.txt references sitemap and disallows no path (noindex pages must stay crawlable, DEC-024)
  * - Apple touch icon and static OG images exist (< 150 KB)
  */
 

@@ -4,6 +4,13 @@
  */
 
 /**
+ * A tag archive is indexed (and listed in the sitemap) only from this many published articles (DEC-025).
+ * Smaller archives stay reachable for readers with `noindex, follow`: a page listing one or two
+ * articles duplicates those articles and reads as thin content to search engines.
+ */
+export const TAG_INDEX_MIN = 3;
+
+/**
  * Converts a raw tag string into a clean, URL-safe slug.
  * e.g. "pengendalian wereng coklat padi" -> "pengendalian-wereng-coklat-padi"
  */

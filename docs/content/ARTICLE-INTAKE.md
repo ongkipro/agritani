@@ -19,11 +19,12 @@ metaTitle: "Judul SEO 44–59 karakter (menjadi 55–70 dengan ' - Agritani')"
 description: "Meta description 120–155 karakter, satu kalimat utuh diakhiri titik, berisi kata kunci terkait."
 slug: "huruf-kecil-dengan-tanda-hubung"
 pubDate: "YYYY-MM-DD"
+updatedDate: "YYYY-MM-DD"  # opsional; isi saat revisi isi yang berarti (lihat §3)
 author: "Arif Prabowo"
 topic: "proteksi-tanaman"   # salah satu: proteksi-tanaman, tanah-nutrisi, budidaya, air-irigasi, pascapanen-agribisnis, sains-tanaman
 commodities:              # opsional; id dari src/data/commodities.json, harus cocok dengan judul/tag
   - "cabai"
-tags:                     # minimal 1, huruf kecil
+tags:                     # 3–6, huruf kecil; pakai ulang tag yang sudah ada (lihat §3)
   - "antraknosa cabai"
 references:               # opsional; hanya rujukan nyata dengan doi atau url — jangan dikarang
   - authors: "Nama A, Nama B"
@@ -43,6 +44,9 @@ draft: false
 - **Badan artikel:** hindari klaim absolut ("100% efektif", "dijamin sembuh"); tidak ada nama merek pihak ketiga di luar daftar pustaka; tidak ada placeholder `TODO(`.
 - **Produk Agritani:** tidak menulis dosis atau klaim produk baru; halaman artikel menampilkan kartu produk otomatis dari data produk.
 - **Gambar:** hanya WebP (sumber di `src/assets/`); ALT wajib 10–125 karakter dan memuat kata kunci artikel (komoditas/topik + judul). Gambar utama artikel tanpa `heroImage` otomatis memakai foto komoditas/topik dengan ALT dari `articleImageAlt()`. Dicek `npm run check:images` (bagian dari build).
+- **Tag (DEC-025):** tag adalah kosakata bersama, bukan ringkasan judul. Pakai ulang tag yang sudah ada sebelum membuat tag baru (cek daftar di `/jurnal/tag/…` atau `grep -h -A8 '^tags:' docs/content/articles/*.md`). Bentuk yang baik: nama hama/penyakit ("wereng batang coklat"), gejala, praktik ("pemupukan berimbang"), atau masalah lahan ("tanah masam"); 1–4 kata, tanpa nama komoditas jika komoditas sudah di `commodities`. Arsip tag baru diindeks dan masuk sitemap setelah dipakai ≥ 3 artikel terbit (`TAG_INDEX_MIN`); di bawah itu halaman tetap ada untuk pembaca dengan `noindex, follow`.
+- **`updatedDate`:** isi dengan tanggal hari ini setiap kali isi artikel direvisi secara berarti (fakta, angka, dosis, langkah, rujukan, bagian baru). Jangan diisi untuk koreksi ejaan atau format. Nilainya menjadi `dateModified` dan `lastmod` sitemap; build menolak format selain YYYY-MM-DD, tanggal sebelum `pubDate`, dan tanggal di masa depan.
+- **Tautan keluar (DEC-024):** tautan ke situs luar di badan artikel otomatis `nofollow` dan membuka tab baru; jangan menulis HTML `<a>` manual dan jangan memakai pemendek/redirect.
 - **Rumus:** LaTeX `$...$` / `$$...$$` dirender otomatis (DEC-018); jangan ubah rumus yang sudah ada kecuali salah.
 
 ## 4. Verifikasi sebelum commit

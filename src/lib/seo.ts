@@ -151,7 +151,7 @@ export function buildSeo(input: SeoInput): SeoOutput {
   const resolvedOgImage = chosenOg.startsWith('http') ? chosenOg : `${SITE_URL}${chosenOg}`;
 
   const robots = noindex
-    ? 'noindex, nofollow'
+    ? 'noindex, follow'
     : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
 
   // Build JSON-LD @graph (DESIGN §4.4.3, §4.4.5 & DEC-007)

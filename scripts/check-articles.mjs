@@ -49,6 +49,7 @@ export function parseFrontmatter(text) {
     description: get('description'),
     slug: get('slug'),
     pubDate: get('pubDate'),
+    updatedDate: get('updatedDate'),
     author: get('author'),
     topic: get('topic'),
     draft: get('draft') !== 'false',
@@ -71,6 +72,13 @@ export function checkArticle(text) {
   }
   if (fm.topic && !TOPICS.includes(fm.topic)) out.push(`topic "${fm.topic}" bukan salah satu dari: ${TOPICS.join(', ')}`);
   if (fm.pubDate && !/^\d{4}-\d{2}-\d{2}$/.test(fm.pubDate)) out.push(`pubDate "${fm.pubDate}" harus YYYY-MM-DD`);
+  if (fm.updatedDate) {
+    // updatedDate = last substantive revision; it feeds dateModified and the sitemap lastmod (ARTICLE-INTAKE.md).
+    const today = new Date().toISOString().slice(0, 10);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(fm.updatedDate)) out.push(`updatedDate "${fm.updatedDate}" harus YYYY-MM-DD`);
+    else if (fm.pubDate && fm.updatedDate < fm.pubDate) out.push(`updatedDate ${fm.updatedDate} sebelum pubDate ${fm.pubDate}`);
+    else if (fm.updatedDate > today) out.push(`updatedDate ${fm.updatedDate} di masa depan`);
+  }
   if (fm.tags.length === 0) out.push('tags minimal 1');
   if (fm.metaTitle) {
     const n = fm.metaTitle.length;

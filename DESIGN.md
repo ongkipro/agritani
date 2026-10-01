@@ -852,7 +852,7 @@ Urutan di kolom artikel (7/12, measure 68ch): breadcrumb → H1 → dek → bari
 
 Kolom kiri ≥1024px (3/12): **Daftar isi sticky yang berhenti setelah Tag** (blok penutup — alat, pustaka, penulis, produk, bacaan terkait — ada di baris grid terpisah tanpa kolom kiri), dengan progres baca dan penanda bagian aktif (garis 1px `brand-strong`, bukan bilah tebal), aturan §3.3.2. Kartu penulis sticky dihapus (info penulis sudah di byline, Tentang Penulis, dan Pengungkapan). Tidak ada data contoh di mode dev: ringkasan dan pustaka hanya dari frontmatter.
 
-Arsip tag `/jurnal/tag/{tag}/`: diindeks dan masuk `sitemap-tag-0.xml` (DEC-023). Kerangka sama dengan hub topik/komoditas: `TopicSidebar` kiri 3/12 (sticky §3.3.2; <1024px di bawah daftar), konten 9/12, H1 = nama tag tanpa "#" dan tanpa label kapital, satu kalimat jumlah artikel, daftar `ArticleRow`. SEO: `<title>` = nama tag (huruf awal kapital, dipotong di batas kata ≤ 50 karakter) + " - Agritani", tanpa "Tag:" dan "#"; deskripsi netral "{n} artikel Jurnal Tani tentang {tag} oleh Arif Prabowo, konsultan pertanian senior Agritani."; breadcrumb memakai nama yang sama.
+Arsip tag `/jurnal/tag/{tag}/`: diindeks dan masuk `sitemap-tag-0.xml` bila dipakai ≥ 3 artikel terbit (`TAG_INDEX_MIN`, DEC-025); di bawah itu `noindex, follow`. Kerangka sama dengan hub topik/komoditas: `TopicSidebar` kiri 3/12 (sticky §3.3.2; <1024px di bawah daftar), konten 9/12, H1 = nama tag tanpa "#" dan tanpa label kapital, satu kalimat jumlah artikel, daftar `ArticleRow`. SEO: `<title>` = nama tag (huruf awal kapital, dipotong di batas kata ≤ 50 karakter) + " - Agritani", tanpa "Tag:" dan "#"; deskripsi netral "{n} artikel Jurnal Tani tentang {tag} oleh Arif Prabowo, konsultan pertanian senior Agritani."; breadcrumb memakai nama yang sama.
 
 **Produk di artikel** (setelah Tentang Penulis): hanya produk yang komoditas sasarannya cocok dengan artikel, sebagai kartu (≥640px 2 kolom; packshot 88px `object-cover` di kiri · nama · kalimat konteks dari data produk — artikel Proteksi Tanaman memakai `summary` dan mengurutkan produk yang ringkasannya menyebut patogen/imun lebih dulu; topik lain memakai `role`; tanpa klaim baru · "Sasaran: {komoditas}" dari data produk; seluruh kartu menaut ke detail produk); produk lain satu baris teks; catatan "Ikuti selalu dosis pada label kemasan." Tanpa artikel yang cocok: keempat produk tampil sebagai kartu yang sama (keputusan pemilik 2026-09-30). **Bacaan terkait**: kartu horizontal (gambar artikel 128px kiri — foto komoditas, bukan gambar topik yang sama untuk semua — · judul serif maks 2 baris · waktu baca), lalu tautan teks 44px ke Diagnosa dan hub topik.
 
@@ -992,7 +992,7 @@ Aturan:
 
 #### 4.4.8. Sitemap & robots
 
-- **Indeksasi (DEC-023):** semua halaman diindeks kecuali `/cari/` (hasil pencarian) dan halaman 404; arsip tag juga diindeks dan masuk sitemap.
+- **Indeksasi (DEC-023, DEC-025):** semua halaman diindeks kecuali `/cari/` (hasil pencarian), halaman 404, dan arsip tag dengan < 3 artikel terbit (`noindex, follow`). Sitemap = persis halaman hasil build tanpa `noindex` (filter membaca meta robots di `dist/`).
 - **Sitemap dipecah per jenis** (`chunks` di `@astrojs/sitemap`): `/sitemap.xml` (indeks, salinan `sitemap-index.xml`) → `sitemap-jurnal-0.xml` (artikel, indeks & paginasi Jurnal), `sitemap-topik-0.xml`, `sitemap-komoditas-0.xml`, `sitemap-tag-0.xml`, `sitemap-produk-0.xml`, `sitemap-alat-0.xml`, `sitemap-pages-0.xml` (halaman statis). Per 2026-09-30: 1.823 URL.
 - `@astrojs/sitemap` dengan `filter` yang membuang `/cari/`, `/404/`, `/spesimen/`, dan draf; `serialize` mengisi `lastmod` dari `updatedDate ?? pubDate` (artikel), `reviewedAt` (kalender), atau `updatedDate` koleksi `pages`; halaman tanpa tanggal perubahan bermakna **tidak** diberi `lastmod` (Google hanya memakai `lastmod` yang akurat). Tanpa `priority`/`changefreq` (diabaikan Google — developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap, diakses 2026-09-29).
 - `public/robots.txt`:
@@ -1004,7 +1004,7 @@ Aturan:
   ```
   `/cari/` dan 404 **tidak** diblokir di `robots.txt`: keduanya `noindex`, dan Google hanya membaca `noindex` pada halaman yang boleh di-crawl (DEC-024).
   Kebijakan crawler AI tidak dibedakan di v1 (semua diizinkan); bila ingin membatasi pelatihan model, keputusan baru via skill `ai-traffic-os`.
-- Arsip tag `/jurnal/tag/{tag}/` diindeks dan masuk `sitemap-tag-0.xml` (DEC-023, menggantikan aturan T-35 "noindex bila < 3 artikel").
+- Arsip tag `/jurnal/tag/{tag}/` diindeks dan masuk `sitemap-tag-0.xml` hanya bila ≥ 3 artikel terbit (DEC-025, mengubah DEC-023). Per 2026-10-01: 1.462 dari 1.471 tag berisi 1 artikel, 9 berisi 2, sehingga belum ada arsip tag yang diindeks; tag menjadi indeks begitu dipakai ulang oleh artikel baru.
 
 #### 4.4.9. Indeksasi & verifikasi (setelah rilis — tindakan eksternal, butuh persetujuan)
 
