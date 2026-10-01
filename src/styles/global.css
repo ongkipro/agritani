@@ -437,17 +437,30 @@ button:disabled,
 }
 .card-link {
   transition: border-color 0.2s ease;
+  cursor: pointer;
 }
 .card-link:hover,
 .card-link:focus-within {
   border-color: var(--color-brand-strong);
 }
+.card-link:hover .link-more::after,
+.card-link:focus-within .link-more::after {
+  width: 100%;
+}
 .card-media {
   background: var(--color-tint);
 }
 
-/* Cuaca Tani region picker (T-45): once a village is chosen, show only the one-line summary + "Ganti wilayah". */
-#region-picker-root:has(#region-active-summary:not(.hidden)) :is(.region-levels, .region-intro, .region-status) {
+/* Cuaca Tani region picker (T-45): once a village is chosen, compress padding and show only the one-line summary + "Ganti wilayah". */
+#region-picker-root:has(#region-active-summary:not(.hidden)) {
+  padding: 1rem 1.25rem;
+}
+@media (min-width: 640px) {
+  #region-picker-root:has(#region-active-summary:not(.hidden)) {
+    padding: 1.25rem 1.5rem;
+  }
+}
+#region-picker-root:has(#region-active-summary:not(.hidden)) :is(.region-header, .region-levels, .region-intro, .region-status) {
   display: none;
 }
 

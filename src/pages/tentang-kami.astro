@@ -64,10 +64,10 @@ const keaslian = [
           Tentang Agritani
         </h1>
         <p class="pillar-lede">
-          Agritani Official adalah distributor resmi dan utama untuk penjualan online, baik di marketplace maupun platform lainnya, yang berdedikasi menjembatani inovasi hayati mutakhir dengan kebutuhan nyata petani Indonesia.
+          Agritani Official adalah distributor resmi dan utama untuk penjualan online—baik di marketplace maupun platform digital lainnya—yang berdedikasi menjembatani inovasi hayati mutakhir dengan kebutuhan nyata petani Indonesia.
         </p>
         <p class="mt-4 text-base sm:text-[17px] leading-relaxed text-[var(--color-text)]">
-          Di satu tempat, Agritani menghadirkan empat produk unggulan, panduan agronomi di Jurnal Tani, dan alat bantu lapangan yang bisa dipakai gratis oleh petani.
+          Melalui platform online terpusat, kami memastikan pasokan sarana produksi pertanian (saprotan) bioteknologi bermutu tinggi dapat diakses secara transparan, langsung, dan merata oleh para petani di seluruh pelosok Nusantara.
         </p>
       </div>
       <figure class="lg:col-span-5">
@@ -78,59 +78,82 @@ const keaslian = [
           widths={[480, 800, 1080]}
           sizes="(min-width: 1024px) 28rem, calc(100vw - 2rem)"
           quality={75}
-          class="w-full aspect-[4/3] object-cover"
+          class="w-full aspect-[4/3] object-cover rounded-[2px]"
           loading="eager"
           fetchpriority="high"
         />
       </figure>
     </section>
 
-    <!-- 2. What Agritani offers: open text blocks, no cards -->
-    <section class="mb-12 sm:mb-16" aria-labelledby="yang-kami-hadirkan-heading">
-      <h2 id="yang-kami-hadirkan-heading" class="section-title">Yang Agritani hadirkan</h2>
-      <div class="grid gap-8 md:grid-cols-3 md:gap-10">
-        <div>
-          <h3 class="font-serif text-lg font-semibold text-[var(--color-text)]">Produk unggulan</h3>
-          <p class="mt-1.5 text-sm sm:text-base leading-relaxed text-[var(--color-text-muted)]">
-            Aussie, BENSU, Kojien, dan Saratoga, dijual langsung oleh Agritani Official secara online.
+    <!-- 2. Sinergi Distribusi Daring & Kemitraan Wilayah: 2-column desktop -->
+    <section class="mb-12 sm:mb-16" aria-labelledby="kemitraan-wilayah-heading">
+      <div class="mb-8">
+        <h2 id="kemitraan-wilayah-heading" class="section-title">Distribusi Daring &amp; Jaringan Kemitraan Wilayah</h2>
+        <p class="-mt-3 max-w-[70ch] text-base sm:text-[17px] leading-relaxed text-[var(--color-text-muted)]">
+          Agritani Official menyinergikan kemudahan distribusi digital dengan kesiapsiagaan rantai pasok di tingkat wilayah untuk melayani kebutuhan riil para petani di lapangan.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+        <div class="space-y-4 text-base sm:text-[17px] leading-relaxed text-[var(--color-text)]">
+          <h3 class="font-serif text-xl sm:text-2xl font-semibold text-[var(--color-text)]">
+            Distribusi Daring Terpadu &amp; Transparan
+          </h3>
+          <p>
+            Sebagai distributor resmi dan utama untuk penjualan online—baik melalui marketplace maupun platform digital resmi lainnya—Agritani memastikan produk sarana produksi pertanian bioteknologi bermutu tinggi dapat diakses secara transparan, langsung, dan merata oleh petani di seluruh pelosok Nusantara.
           </p>
-          <a href="/produk/" class="link-more mt-2 text-sm">Lihat katalog &rarr;</a>
-        </div>
-        <div>
-          <h3 class="font-serif text-lg font-semibold text-[var(--color-text)]">Jurnal Tani</h3>
-          <p class="mt-1.5 text-sm sm:text-base leading-relaxed text-[var(--color-text-muted)]">
-            {publishedArticles} artikel panduan budidaya dan penanganan hama penyakit yang dapat dibaca bebas, dikelola Arif Prabowo.
+          <p>
+            Rantai distribusi digital terpusat memangkas risiko manipulasi harga dan menjamin keaslian setiap botol formula yang dikirim langsung ke alamat pekebun dengan perlindungan segel pengaman standar pabrik.
           </p>
-          <a href="/jurnal/" class="link-more mt-2 text-sm">Baca Jurnal Tani &rarr;</a>
         </div>
-        <div>
-          <h3 class="font-serif text-lg font-semibold text-[var(--color-text)]">Alat Tani</h3>
-          <ul class="mt-1.5 space-y-1 text-sm sm:text-base leading-relaxed text-[var(--color-text-muted)]">
-            {tools.map((t) => (
-              <li>
-                <a href={t.href} class="inline-block py-3 -my-3 font-semibold text-[var(--color-brand-strong)] hover:underline underline-offset-4">{t.name}</a>: {t.desc}
-              </li>
-            ))}
-          </ul>
+
+        <div class="space-y-4 text-base sm:text-[17px] leading-relaxed text-[var(--color-text)]">
+          <h3 class="font-serif text-xl sm:text-2xl font-semibold text-[var(--color-text)]">
+            Kehadiran Fisik &amp; Kesiapan Lapangan
+          </h3>
+          <p>
+            Meskipun pemesanan online memberikan kemudahan akses, denyut utama pertanian tropis bertumpu pada kedekatan fisik. Penanganan serangan hama mendadak, konsultasi dosis musim tanam, serta ketersediaan stok siap pakai di tingkat kecamatan membutuhkan mitra lokal yang tanggap.
+          </p>
+          <p>
+            Oleh karena itu, Agritani membuka kesempatan kerja sama strategis bagi pemilik kios saprotan, kelompok tani (gapoktan), dan wirausahawan agribisnis di daerah untuk menjadi <strong>agen atau distributor resmi Agritani</strong>. Fokus pada empat formula pilihan mempermudah pengelolaan inventaris dan mempercepat perputaran modal mitra.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- 3. Flagship products: the only cards on this page (whole units) -->
+    <!-- 3. Empat Produk Unggulan Agritani -->
     <section class="mb-12 sm:mb-16" aria-labelledby="produk-unggulan-heading">
-      <h2 id="produk-unggulan-heading" class="section-title">Produk unggulan Agritani</h2>
-      <p class="-mt-3 mb-6 max-w-[60ch] text-base sm:text-[17px] leading-relaxed text-[var(--color-text)]">
-        Agritani Official menghadirkan empat produk unggulan: Aussie, BENSU, Kojien, dan Saratoga. Pilih sesuai komoditas Anda, lalu buka rinciannya untuk dosis dan cara aplikasi.
-      </p>
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6">
+        <div>
+          <h2 id="produk-unggulan-heading" class="section-title">Empat Produk Unggulan Agritani</h2>
+          <p class="-mt-3 max-w-[65ch] text-base sm:text-[17px] leading-relaxed text-[var(--color-text)]">
+            Agritani Official menghadirkan portofolio inti empat produk unggulan yang dirancang untuk mengatasi fase-fase kritis tanaman pangan, hortikultura, dan perkebunan: <strong>Aussie</strong>, <strong>BENSU</strong>, <strong>Kojien</strong>, dan <strong>Saratoga</strong>. Setiap formula memiliki peran fisiologis spesifik yang saling melengkapi.
+          </p>
+        </div>
+        <div class="shrink-0 pb-1">
+          <a href="/produk/" class="link-more text-sm inline-flex items-center min-h-[44px]">
+            Buka katalog produk &rarr;
+          </a>
+        </div>
+      </div>
+
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6">
         {products.map((product) => <ProductCard product={product} commoditiesMap={commoditiesMap} />)}
       </div>
-      <p class="mt-4 text-xs text-[var(--color-text-muted)]">Harga per 30 September 2026 dan dapat berubah sewaktu-waktu.</p>
+      <div class="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-[var(--color-text-muted)]">
+        <p>Harga per 30 September 2026 dan dapat berubah sewaktu-waktu.</p>
+        <a href="/produk/" class="font-medium text-[var(--color-brand-strong)] hover:underline inline-flex items-center gap-1 min-h-[36px]">
+          Lihat panduan aplikasi &amp; perbandingan di katalog lengkap &rarr;
+        </a>
+      </div>
     </section>
 
-    <!-- 4. Authenticity: same facts as /produk/ -->
+    <!-- 4. Jaminan Keaslian Kemasan & Perlindungan Rantai Pasok -->
     <section class="mb-12 sm:mb-16" aria-labelledby="keaslian-heading">
-      <h2 id="keaslian-heading" class="section-title">Memeriksa keaslian kemasan</h2>
+      <h2 id="keaslian-heading" class="section-title">Jaminan Keaslian Kemasan &amp; Legalitas</h2>
+      <p class="-mt-3 mb-6 max-w-[65ch] text-base sm:text-[17px] leading-relaxed text-[var(--color-text-muted)]">
+        Untuk melindungi reputasi mitra agen serta menghindarkan petani dari bahaya produk tiruan yang marak di pasar daring, setiap botol resmi yang didistribusikan Agritani Official diproteksi standar kendali mutu ketat:
+      </p>
       <dl class="grid gap-6 sm:grid-cols-3 sm:gap-8 text-sm sm:text-base leading-relaxed max-w-5xl">
         {keaslian.map((k) => (
           <div>
@@ -141,29 +164,104 @@ const keaslian = [
       </dl>
     </section>
 
-    <!-- 5. Agent / distributor: one WhatsApp CTA to the sales team (DEC-021) -->
-    <section class="mb-12 sm:mb-16 max-w-[68ch]" aria-labelledby="agen-heading">
-      <h2 id="agen-heading" class="section-title">Menjadi agen atau distributor</h2>
-      <p class="text-base sm:text-[17px] leading-relaxed text-[var(--color-text)]">
-        Saat ini kami membuka kesempatan kerja sama untuk menjadi agen atau distributor Agritani di wilayah Anda, dengan mengembangkan dan memasarkan produk-produk terbaik kami. Untuk penawaran dan harga terbaik bagi agen atau distributor, hubungi tim penjualan kami.
+    <!-- 5. Ekosistem Pendukung: Sains & Praktek Lapangan -->
+    <section class="mb-12 sm:mb-16" aria-labelledby="ekosistem-heading">
+      <h2 id="ekosistem-heading" class="section-title">Ekosistem Edukasi &amp; Instrumen Lapangan</h2>
+      <p class="-mt-3 mb-6 max-w-[65ch] text-base sm:text-[17px] leading-relaxed text-[var(--color-text-muted)]">
+        Kemitraan bersama Agritani tidak sekadar transaksi dagang. Agen dan petani binaan di daerah didukung oleh ekosistem agronomi digital yang dapat diakses bebas tanpa biaya:
       </p>
-      <div class="mt-6">
-        <ConsultPrompt
-          source="Web·TentangKami"
-          variant="primary"
-          headingLevel={3}
-          title="Hubungi tim penjualan"
-          description="Konsultasi produk, penawaran, dan harga agen atau distributor langsung lewat WhatsApp resmi Agritani."
-          label="Chat tim penjualan via WhatsApp"
-          fields={[{ label: 'Keperluan', value: 'Konsultasi / penawaran agen atau distributor' }]}
-        />
+
+      <div class="grid gap-8 md:grid-cols-2 md:gap-10">
+        <div>
+          <h3 class="font-serif text-lg font-semibold text-[var(--color-text)]">Jurnal Tani Berbasis Riset</h3>
+          <p class="mt-2 text-sm sm:text-base leading-relaxed text-[var(--color-text-muted)]">
+            Tersedia {publishedArticles} naskah panduan budidaya, penanganan hama penyakit terpadu, dan telaah fisiologi tanaman yang dimoderasi oleh tim agronomi dan Arif Prabowo. Naskah ini menjadi rujukan edukasi lapangan yang membantu agen menjawab keluhan petani secara ilmiah dan terpercaya.
+          </p>
+          <a href="/jurnal/" class="link-more mt-3 text-sm inline-flex items-center min-h-[44px]">Buka arsip Jurnal Tani &rarr;</a>
+        </div>
+        <div>
+          <h3 class="font-serif text-lg font-semibold text-[var(--color-text)]">Instrumen Tani Mandiri</h3>
+          <p class="mt-2 text-sm sm:text-base leading-relaxed text-[var(--color-text-muted)]">
+            Empat kalkulator dan simulator lapangan digital gratis untuk memastikan aplikasi produk tepat sasaran tanpa pemborosan dosis:
+          </p>
+          <ul class="mt-2 space-y-1.5 text-sm sm:text-base leading-relaxed text-[var(--color-text-muted)]">
+            {tools.map((t) => (
+              <li>
+                <a href={t.href} class="inline-block py-2 -my-2 font-semibold text-[var(--color-brand-strong)] hover:underline underline-offset-4">{t.name}</a>: {t.desc}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-      <p class="mt-4 text-sm text-[var(--color-text-muted)]">
-        Lebih suka mengisi formulir? <a href="/kemitraan-distributor/" class="inline-block py-3 -my-3 font-semibold text-[var(--color-brand-strong)] underline underline-offset-4">Ajukan kemitraan</a>.
-      </p>
     </section>
 
-    <!-- 6. Manager: one short line (DEC-016) -->
+    <!-- 6. Bergabung Menjadi Agen atau Distributor: 2-column desktop layout -->
+    <section class="mb-12 sm:mb-16" aria-labelledby="agen-heading">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        <!-- Kolom Kiri: Keterangan & Manfaat Kemitraan (7 cols) -->
+        <div class="lg:col-span-7 space-y-5 text-base sm:text-[17px] leading-relaxed text-[var(--color-text)]">
+          <div>
+            <h2 id="agen-heading" class="section-title">Bergabung Menjadi Agen atau Distributor</h2>
+            <p class="-mt-3 text-base sm:text-[17px] leading-relaxed text-[var(--color-text)]">
+              Bagi Anda yang mengelola kios pertanian, asosiasi petani, atau distributor saprotan regional yang ingin mendistribusikan Aussie, BENSU, Kojien, dan Saratoga di wilayah Anda, kami membuka pintu kemitraan resmi dengan skema saling menguntungkan:
+            </p>
+          </div>
+
+          <dl class="grid sm:grid-cols-2 gap-x-6 gap-y-5 pt-1">
+            <div>
+              <dt class="font-semibold text-[var(--color-text)]">Harga Grosir &amp; Margin Sehat</dt>
+              <dd class="mt-1 text-sm text-[var(--color-text-muted)] leading-relaxed">
+                Skema harga bertingkat bagi agen dan distributor resmi yang memberikan margin usaha kompetitif dan berjangka panjang.
+              </dd>
+            </div>
+            <div>
+              <dt class="font-semibold text-[var(--color-text)]">Pasokan Terjamin Langsung</dt>
+              <dd class="mt-1 text-sm text-[var(--color-text-muted)] leading-relaxed">
+                Suplai produk langsung dari distributor utama tanpa perantara, mengamankan stok Anda menjelang musim tanam raya.
+              </dd>
+            </div>
+            <div>
+              <dt class="font-semibold text-[var(--color-text)]">Dukungan Agronomi Terpadu</dt>
+              <dd class="mt-1 text-sm text-[var(--color-text-muted)] leading-relaxed">
+                Konsultasi produk serta akses ratusan materi Jurnal Tani untuk mempermudah edukasi teknis kepada petani binaan Anda.
+              </dd>
+            </div>
+            <div>
+              <dt class="font-semibold text-[var(--color-text)]">Jalur Pengajuan Fleksibel</dt>
+              <dd class="mt-1 text-sm text-[var(--color-text-muted)] leading-relaxed">
+                Dapat berkonsultasi via percakapan WhatsApp atau mengajukan profil wilayah melalui formulir pendaftaran tertulis.
+              </dd>
+            </div>
+          </dl>
+
+          <div class="pt-2 text-sm text-[var(--color-text-muted)]">
+            <p>
+              Lebih suka mengajukan profil kios atau wilayah secara tertulis?{' '}
+              <a href="/kemitraan-distributor/" class="inline-block py-2 -my-2 font-semibold text-[var(--color-brand-strong)] underline underline-offset-4">
+                Buka formulir kemitraan distributor &rarr;
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Kolom Kanan: Kotak Aksi WhatsApp CTA (5 cols) -->
+        <div class="lg:col-span-5 lg:sticky lg:top-24">
+          <div class="card p-6 border border-[var(--color-border-control)] bg-[var(--color-surface)]">
+            <ConsultPrompt
+              source="Web·TentangKami"
+              variant="primary"
+              headingLevel={3}
+              title="Hubungi Tim Penjualan Resmi"
+              description="Dapatkan rincian skema kemitraan, katalog teknis, serta penawaran harga terbaik bagi agen atau distributor langsung lewat WhatsApp resmi Agritani."
+              label="Chat tim penjualan via WhatsApp"
+              fields={[{ label: 'Keperluan', value: 'Konsultasi / penawaran agen atau distributor' }]}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Pengelola Jurnal Tani: Arif Prabowo -->
     <section class="mb-12 sm:mb-16 max-w-[68ch]" aria-label="Pengelola Jurnal Tani">
       <p class="flex items-center gap-3 text-sm sm:text-base text-[var(--color-text-muted)]">
         <Image

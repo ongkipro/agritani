@@ -28,12 +28,34 @@ try {
 
 <section id="forecast-table-root" class="space-y-6" data-thresholds={JSON.stringify(thresholds)}>
 
-  <!-- Initial Placeholder State -->
-  <div id="forecast-initial" class="max-w-[60ch] space-y-2">
-    <h2 class="font-serif text-xl font-semibold text-[var(--color-brand-strong)]">Pilih lokasi untuk menampilkan cuaca BMKG</h2>
-    <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
-      Gunakan pilihan wilayah di atas untuk melihat suhu udara, kelembapan, curah hujan, arah serta kecepatan angin hingga 3 hari ke depan.
-    </p>
+  <!-- Initial Placeholder State: Contextual Field Intelligence (Before Location Selection) -->
+  <div id="forecast-initial" class="card p-6 sm:p-8 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2px]">
+    <div class="max-w-[64ch] space-y-3">
+      <h2 class="font-serif text-xl sm:text-2xl font-bold text-[var(--color-text)] tracking-tight">
+        Integrasi Data Resmi BMKG Tingkat Tapak Desa
+      </h2>
+      <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed">
+        Prakiraan cuaca diambil langsung dari server BMKG Republik Indonesia secara real-time tanpa perantara. Tentukan lokasi lahan Anda pada formulir di atas untuk memantau indikator penting agronomi lapangan:
+      </p>
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs sm:text-sm text-[var(--color-text)]">
+        <li class="flex items-start gap-2.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand)] mt-1.5 shrink-0" aria-hidden="true"></span>
+          <span><strong>Prakiraan Hujan 3 Jam:</strong> Menghindari risiko pencucian bahan aktif pupuk dan pestisida oleh hujan.</span>
+        </li>
+        <li class="flex items-start gap-2.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand)] mt-1.5 shrink-0" aria-hidden="true"></span>
+          <span><strong>Kecepatan &amp; Arah Angin:</strong> Mencegah semprotan melayang (drift) keluar dari target gulma atau hama.</span>
+        </li>
+        <li class="flex items-start gap-2.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand)] mt-1.5 shrink-0" aria-hidden="true"></span>
+          <span><strong>Suhu Udara Maksimum:</strong> Mengoptimalkan waktu bukaan stomata tanaman saat aplikasi foliar.</span>
+        </li>
+        <li class="flex items-start gap-2.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand)] mt-1.5 shrink-0" aria-hidden="true"></span>
+          <span><strong>Kelembapan Relatif:</strong> Mengantisipasi kondisi mikro lembap pemicu infeksi spora jamur patogen.</span>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <!-- Loading State (Skeleton Rows, without full-screen spinner per DESIGN §2.6.2) -->
@@ -76,20 +98,20 @@ try {
   </div>
 
   <!-- Results Content Area (ARIA Live) -->
-  <div id="forecast-results" aria-live="polite" class="hidden space-y-6 max-w-4xl">
+  <div id="forecast-results" aria-live="polite" class="hidden space-y-8 w-full">
 
     <!-- Location & Metadata Header -->
-    <div class="space-y-4">
-      <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
+    <div class="space-y-4 pb-3 border-b border-[var(--color-border)]">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-x-6 gap-y-3">
         <div>
-          <h2 id="result-location-title" class="font-serif text-2xl sm:text-3xl font-semibold text-[var(--color-brand-strong)] mb-1">
+          <h2 id="result-location-title" class="font-serif text-2xl sm:text-3xl font-bold text-[var(--color-text)] tracking-tight mb-1">
             Desa / Kelurahan
           </h2>
-          <p id="result-location-sub" class="text-sm text-[var(--color-text-muted)] font-medium"></p>
+          <p id="result-location-sub" class="text-sm text-[var(--color-soil)] font-semibold"></p>
         </div>
-        <div class="text-left sm:text-right tabular-nums text-xs text-[var(--color-text-muted)]">
-          <div id="result-analysis-time" class="font-medium text-[var(--color-text)]">Diperbarui BMKG: -</div>
-          <div id="result-coords" class="mt-0.5"></div>
+        <div class="text-left sm:text-right tabular-nums text-xs text-[var(--color-text-muted)] space-y-0.5">
+          <div id="result-analysis-time" class="font-semibold text-[var(--color-text)]">Diperbarui BMKG: -</div>
+          <div id="result-coords"></div>
         </div>
       </div>
 
@@ -297,30 +319,48 @@ try {
         const todayRain = todaySlots.filter((sl) => Number(sl.tp) > 0);
         const todayRainTotal = Math.round(todayRain.reduce((sum, sl) => sum + Number(sl.tp), 0) * 10) / 10;
         const icon = safeIcon(currentSlot.image);
-        const rows: Array<[string, string]> = [
-          ['Suhu hari ini', range(todayTemps, '°C')],
-          ['Hujan hari ini', todayRain.length ? `${todayRainTotal.toLocaleString('id-ID')} mm pada jam ${todayRain.map((sl) => formatSlotTime(sl.local_datetime)).join(', ')}` : 'Tanpa hujan'],
-          ['Kelembapan', `${currentSlot.hu}%${todayHus.length ? ` (hari ini ${range(todayHus, '%')})` : ''}`],
-          ['Angin', `${currentSlot.ws} km/j dari ${formatWindDirection(currentSlot.wd)}`],
-        ];
 
         currentHeroContainer.innerHTML = `
-          <div class="card p-4 sm:p-6">
-            <div class="flex items-center gap-4">
-              ${icon ? `<img src="${esc(icon)}" alt="${esc(`Ikon cuaca ${currentSlot.weather_desc}`)}" width="56" height="56" class="w-12 h-12 sm:w-14 sm:h-14 shrink-0" aria-hidden="true" />` : ''}
-              <div class="min-w-0">
-                <p class="text-sm text-[var(--color-text-muted)]">${isNow ? 'Perkiraan saat ini' : 'Perkiraan terdekat'}, pukul ${esc(formatSlotTime(currentSlot.local_datetime))} ${esc(tz)}</p>
-                <p class="mt-0.5 flex flex-wrap items-baseline gap-x-3">
-                  <span class="font-serif text-3xl sm:text-4xl font-semibold text-[var(--color-brand-strong)] tabular-nums">${esc(currentSlot.t)}°C</span>
-                  <span class="text-base sm:text-lg font-semibold text-[var(--color-text)]">${esc(currentSlot.weather_desc)}</span>
-                </p>
+          <div class="card p-5 sm:p-6 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div class="flex items-center gap-4 sm:gap-5">
+                ${icon ? `<img src="${esc(icon)}" alt="${esc(`Ikon cuaca ${currentSlot.weather_desc}`)}" width="56" height="56" class="w-14 h-14 sm:w-16 sm:h-16 shrink-0" aria-hidden="true" />` : ''}
+                <div>
+                  <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-brand-strong)] text-xs font-semibold mb-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand)] animate-pulse" aria-hidden="true"></span>
+                    <span>${isNow ? 'Perkiraan Saat Ini' : 'Perkiraan Terdekat'} · Pukul ${esc(formatSlotTime(currentSlot.local_datetime))} ${esc(tz)}</span>
+                  </div>
+                  <div class="flex flex-wrap items-baseline gap-x-3">
+                    <span class="font-serif text-3xl sm:text-4xl font-bold text-[var(--color-brand-strong)] tabular-nums">${esc(currentSlot.t)}°C</span>
+                    <span class="text-base sm:text-lg font-semibold text-[var(--color-text)]">${esc(currentSlot.weather_desc)}</span>
+                  </div>
+                </div>
               </div>
             </div>
-            <dl class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 text-sm">
-              ${rows
-                .filter(([, v]) => v)
-                .map(([k, v]) => `<div><dt class="text-[var(--color-text-muted)]">${esc(k)}</dt><dd class="font-semibold text-[var(--color-text)] tabular-nums">${esc(v)}</dd></div>`)
-                .join('')}
+            <dl class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 pt-5 border-t border-[var(--color-border)]">
+              <div class="p-3 sm:p-3.5 bg-[var(--color-canvas)] rounded-[2px] border border-[var(--color-border)] flex flex-col justify-between">
+                <dt class="text-xs text-[var(--color-text-muted)] font-medium">Suhu Hari Ini</dt>
+                <dd class="mt-1 font-serif text-lg sm:text-xl font-bold text-[var(--color-text)] tabular-nums">${esc(range(todayTemps, '°C') || `${currentSlot.t}°C`)}</dd>
+              </div>
+              <div class="p-3 sm:p-3.5 bg-[var(--color-canvas)] rounded-[2px] border border-[var(--color-border)] flex flex-col justify-between">
+                <dt class="text-xs text-[var(--color-text-muted)] font-medium">Estimasi Hujan</dt>
+                <dd class="mt-1 text-sm sm:text-base font-semibold ${todayRainTotal > 0 ? 'text-[var(--color-soil)] font-bold' : 'text-[var(--color-text)]'} tabular-nums">
+                  ${todayRain.length ? `${todayRainTotal.toLocaleString('id-ID')} mm` : 'Tanpa Hujan'}
+                  ${todayRain.length ? `<span class="block text-xs font-normal text-[var(--color-text-muted)] mt-0.5">Jam ${esc(todayRain.map((sl) => formatSlotTime(sl.local_datetime)).join(', '))}</span>` : ''}
+                </dd>
+              </div>
+              <div class="p-3 sm:p-3.5 bg-[var(--color-canvas)] rounded-[2px] border border-[var(--color-border)] flex flex-col justify-between">
+                <dt class="text-xs text-[var(--color-text-muted)] font-medium">Kelembapan Udara</dt>
+                <dd class="mt-1 font-serif text-lg sm:text-xl font-bold text-[var(--color-text)] tabular-nums">${esc(currentSlot.hu)}%
+                  ${todayHus.length ? `<span class="block font-sans text-xs font-normal text-[var(--color-text-muted)] mt-0.5">Rentang: ${esc(range(todayHus, '%'))}</span>` : ''}
+                </dd>
+              </div>
+              <div class="p-3 sm:p-3.5 bg-[var(--color-canvas)] rounded-[2px] border border-[var(--color-border)] flex flex-col justify-between">
+                <dt class="text-xs text-[var(--color-text-muted)] font-medium">Laju Angin</dt>
+                <dd class="mt-1 font-serif text-lg sm:text-xl font-bold text-[var(--color-text)] tabular-nums">${esc(currentSlot.ws)} <span class="font-sans text-xs font-normal text-[var(--color-text-muted)]">km/j</span>
+                  <span class="block font-sans text-xs font-normal text-[var(--color-text-muted)] mt-0.5">Dari ${esc(formatWindDirection(currentSlot.wd))} (${esc(currentSlot.wd)})</span>
+                </dd>
+              </div>
             </dl>
           </div>
         `;
@@ -334,23 +374,26 @@ try {
       forecast.days.forEach((day, dayIndex) => {
         // One card per day (DESIGN §3.3.3: a tool result is a unit), with a one-line text summary from the BMKG slots.
         const dayCard = document.createElement('div');
-        dayCard.className = 'card p-3 sm:p-6 space-y-3';
+        dayCard.className = 'card p-4 sm:p-6 space-y-4';
 
         // Day Header
         const header = document.createElement('div');
-        header.className = 'flex items-baseline justify-between gap-3';
+        header.className = 'flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[var(--color-border)]';
         
+        const titleRow = document.createElement('div');
+        titleRow.className = 'flex items-center gap-2.5';
+
         const h3 = document.createElement('h3');
-        h3.className = 'font-serif text-lg sm:text-xl font-semibold text-[var(--color-brand-strong)]';
+        h3.className = 'font-serif text-lg sm:text-xl font-bold text-[var(--color-brand-strong)]';
         h3.textContent = day.dateStr;
-        header.appendChild(h3);
+        titleRow.appendChild(h3);
 
         const badge = document.createElement('span');
-        badge.className = 'text-sm font-semibold text-[var(--color-soil)]';
+        badge.className = 'text-xs font-semibold px-2 py-0.5 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-brand-strong)]';
         badge.textContent = dayIndex === 0 ? 'Hari Ini' : dayIndex === 1 ? 'Besok' : 'Lusa';
-        header.appendChild(badge);
+        titleRow.appendChild(badge);
 
-        dayCard.appendChild(header);
+        header.appendChild(titleRow);
 
         const temps = day.slots.map((sl) => Number(sl.t)).filter((n) => Number.isFinite(n));
         const rainSlots = day.slots.filter((sl) => Number(sl.tp) > 0);
@@ -367,41 +410,43 @@ try {
         ].filter(Boolean);
         const line = parts.join(' · ') + '.';
         const summary = document.createElement('p');
-        summary.className = 'text-sm text-[var(--color-text-muted)] tabular-nums';
+        summary.className = 'text-xs sm:text-sm text-[var(--color-text-muted)] tabular-nums';
         summary.textContent = line.charAt(0).toUpperCase() + line.slice(1);
-        dayCard.appendChild(summary);
+        header.appendChild(summary);
+
+        dayCard.appendChild(header);
 
         // Responsive Scrollable Table Wrapper (DESIGN §2.6.2)
         const tableWrapper = document.createElement('div');
-        tableWrapper.className = 'overflow-x-auto';
+        tableWrapper.className = 'overflow-x-auto rounded-[2px] border border-[var(--color-border)]';
 
         const table = document.createElement('table');
         table.className = 'w-full text-left text-xs sm:text-sm border-collapse';
 
         // Table Head (Jam, Cuaca, Suhu, Hujan always visible; Lembap, Angin visible on md+)
         const thead = document.createElement('thead');
-        thead.className = 'border-b border-[var(--color-border-control)] text-xs text-[var(--color-text-muted)] font-semibold';
+        thead.className = 'bg-[var(--color-canvas)] text-xs text-[var(--color-text-muted)] font-semibold border-b border-[var(--color-border)]';
         thead.innerHTML = `
           <tr>
-            <th scope="col" class="py-3 px-2 sm:px-3 first:pl-0 last:pr-0 font-bold text-[var(--color-text)]">Jam</th>
-            <th scope="col" class="py-3 px-2 sm:px-3 first:pl-0 last:pr-0">Cuaca</th>
-            <th scope="col" class="py-3 px-2 sm:px-3 first:pl-0 last:pr-0 text-right">Suhu</th>
-            <th scope="col" class="py-3 px-2 sm:px-3 first:pl-0 last:pr-0 text-right">Hujan</th>
-            <th scope="col" class="py-3 px-2 sm:px-3 first:pl-0 last:pr-0 text-right hidden md:table-cell">Lembap</th>
-            <th scope="col" class="py-3 px-2 sm:px-3 first:pl-0 last:pr-0 hidden md:table-cell">Angin</th>
-            ${hasThresholds ? '<th scope="col" class="py-3 px-2 sm:px-3 first:pl-0 last:pr-0">Status Semprot</th>' : ''}
+            <th scope="col" class="py-2.5 sm:py-3 pl-3 pr-2 sm:px-4 font-bold text-[var(--color-text)]">Jam</th>
+            <th scope="col" class="py-2.5 sm:py-3 px-2 sm:px-4">Kondisi Cuaca</th>
+            <th scope="col" class="py-2.5 sm:py-3 px-2 sm:px-4 text-right">Suhu</th>
+            <th scope="col" class="py-2.5 sm:py-3 pl-2 pr-3 sm:px-4 text-right">Hujan</th>
+            <th scope="col" class="py-2.5 sm:py-3 px-2 sm:px-4 text-right hidden md:table-cell">Kelembapan</th>
+            <th scope="col" class="py-2.5 sm:py-3 px-2 sm:px-4 hidden md:table-cell">Angin</th>
+            ${hasThresholds ? '<th scope="col" class="py-2.5 sm:py-3 px-2 sm:px-4">Status Semprot</th>' : ''}
           </tr>
         `;
         table.appendChild(thead);
 
         // Table Body
         const tbody = document.createElement('tbody');
-        tbody.className = 'divide-y divide-[var(--color-border)] tabular-nums';
+        tbody.className = 'divide-y divide-[var(--color-border)] tabular-nums bg-[var(--color-surface)]';
 
         day.slots.forEach((slot, slotIdx) => {
           const nextSlot = day.slots[slotIdx + 1] || null;
           const tr = document.createElement('tr');
-          tr.className = 'hover:bg-[var(--color-tint)]/50 transition-colors';
+          tr.className = 'hover:bg-[var(--color-tint)]/40 transition-colors';
 
           const timeFormatted = formatSlotTime(slot.local_datetime);
           const windDir = formatWindDirection(slot.wd);
@@ -422,7 +467,7 @@ try {
 
             const reasonStr = sprayRes.reasons[0] || '';
             sprayCellHtml = `
-              <td class="py-3 px-2 sm:px-3 first:pl-0 last:pr-0">
+              <td class="py-2.5 sm:py-3 px-2 sm:px-4">
                 <span class="inline-block text-xs font-semibold px-2 py-0.5 rounded-[2px] ${badgeClass}">
                   ${label}
                 </span>
@@ -432,30 +477,32 @@ try {
           }
 
           tr.innerHTML = `
-            <td class="py-3 px-2 sm:px-3 first:pl-0 last:pr-0 font-bold text-[var(--color-text)] whitespace-nowrap">
+            <td class="py-2.5 sm:py-3 pl-3 pr-2 sm:px-4 font-bold text-[var(--color-text)] whitespace-nowrap">
               ${timeFormatted}
             </td>
-            <td class="py-3 px-2 sm:px-3 first:pl-0 last:pr-0">
+            <td class="py-2.5 sm:py-3 px-2 sm:px-4">
               <div class="inline-flex items-center gap-2 font-medium text-[var(--color-text)]">
-                ${safeIcon(slot.image) ? `<img src="${esc(safeIcon(slot.image))}" alt="${esc(`Ikon cuaca ${slot.weather_desc}`)}" width="20" height="20" class="w-5 h-5 inline-block shrink-0" aria-hidden="true" />` : ''}
-                <span class="whitespace-nowrap">${esc(slot.weather_desc)}</span>
+                ${safeIcon(slot.image) ? `<img src="${esc(safeIcon(slot.image))}" alt="${esc(`Ikon cuaca ${slot.weather_desc}`)}" width="22" height="22" class="w-5 h-5 inline-block shrink-0" aria-hidden="true" />` : ''}
+                <span class="whitespace-nowrap font-medium">${esc(slot.weather_desc)}</span>
               </div>
-              <div class="block md:hidden text-xs text-[var(--color-text-muted)] tabular-nums mt-0.5">
-                <span>Angin ${esc(slot.ws)} km/j (${esc(slot.wd)})</span> · <span>Lembap ${esc(slot.hu)}%</span>
+              <div class="block md:hidden text-xs text-[var(--color-text-muted)] tabular-nums mt-1 space-x-1.5">
+                <span>Angin ${esc(slot.ws)} km/j (${esc(windDir)})</span>
+                <span>·</span>
+                <span>Lembap ${esc(slot.hu)}%</span>
               </div>
             </td>
-            <td class="py-3 px-2 sm:px-3 first:pl-0 last:pr-0 text-right font-semibold text-[var(--color-text)] whitespace-nowrap">
+            <td class="py-2.5 sm:py-3 px-2 sm:px-4 text-right font-semibold text-[var(--color-text)] whitespace-nowrap">
               ${esc(slot.t)}°C
             </td>
-            <td class="py-3 px-2 sm:px-3 first:pl-0 last:pr-0 text-right font-medium text-[var(--color-text)] whitespace-nowrap">
-              ${slot.tp > 0 ? `<span class="text-[var(--color-soil)] font-bold">${esc(slot.tp)} mm</span>` : '0 mm'}
+            <td class="py-2.5 sm:py-3 pl-2 pr-3 sm:px-4 text-right whitespace-nowrap">
+              ${Number(slot.tp) > 0 ? `<span class="inline-block px-2 py-0.5 rounded-[2px] bg-[var(--color-harvest-tint)] font-bold text-[var(--color-soil)]">${esc(slot.tp)} mm</span>` : '<span class="text-[var(--color-text-muted)]">0 mm</span>'}
             </td>
-            <td class="py-3 px-2 sm:px-3 first:pl-0 last:pr-0 text-right text-[var(--color-text-muted)] whitespace-nowrap hidden md:table-cell">
+            <td class="py-2.5 sm:py-3 px-2 sm:px-4 text-right text-[var(--color-text)] whitespace-nowrap hidden md:table-cell">
               ${esc(slot.hu)}%
             </td>
-            <td class="py-3 px-2 sm:px-3 first:pl-0 last:pr-0 text-[var(--color-text-muted)] whitespace-nowrap hidden md:table-cell">
-              <span>${esc(slot.ws)} km/j</span>
-              <span class="text-xs block sm:inline sm:ml-1 tabular-nums">${esc(slot.wd)} (${esc(windDir)})</span>
+            <td class="py-2.5 sm:py-3 px-2 sm:px-4 text-[var(--color-text)] whitespace-nowrap hidden md:table-cell">
+              <span class="font-medium">${esc(slot.ws)} km/j</span>
+              <span class="text-xs text-[var(--color-text-muted)] ml-1">${esc(windDir)} (${esc(slot.wd)})</span>
             </td>
             ${sprayCellHtml}
           `;

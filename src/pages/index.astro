@@ -20,9 +20,41 @@ import { getProductImage } from '../lib/product-images';
 import type { SeoInput } from '../lib/seo';
 
 // Media assets
-import heroImage from '../assets/images/dummy/hero-beranda.webp';
+import heroSawah from '../assets/images/hero/hero-sawah-padi.webp';
+import heroSawit from '../assets/images/hero/hero-kebun-sawit.webp';
+import heroCabai from '../assets/images/hero/hero-hortikultura-cabai.webp';
+import heroJagung from '../assets/images/hero/hero-kebun-jagung.webp';
+import heroIrigasi from '../assets/images/hero/hero-irigasi-pertanian.webp';
 import konsultasiImage from '../assets/images/dummy/konsultasi.webp';
-import AuthorAvatar from '../components/AuthorAvatar.astro';
+import arifPortrait from '../assets/images/authors/arif-prabowo.webp';
+
+const heroSlides = [
+  {
+    image: heroSawah,
+    alt: 'Hamparan sawah padi bertingkat hijau di Indonesia untuk panduan budidaya Agritani',
+    badge: 'Padi & Tanaman Pangan',
+  },
+  {
+    image: heroSawit,
+    alt: 'Perkebunan kelapa sawit produktif tropis Indonesia dengan perawatan agronomi Agritani',
+    badge: 'Perkebunan Sawit Presisi',
+  },
+  {
+    image: heroCabai,
+    alt: 'Pertanian tanaman cabai merah subur di dataran tinggi Indonesia bersama Agritani',
+    badge: 'Hortikultura & Sayuran',
+  },
+  {
+    image: heroJagung,
+    alt: 'Lahan perkebunan jagung berbulir emas subur di Indonesia dalam riset Agritani',
+    badge: 'Palawija & Jagung Hibrida',
+  },
+  {
+    image: heroIrigasi,
+    alt: 'Saluran irigasi pertanian presisi mengairi persawahan hijau subur di Agritani',
+    badge: 'Irigasi & Manajemen Lahan',
+  },
+];
 
 // 1. Fetch articles (respecting draft preview environment)
 const isDraftPreview = import.meta.env.PUBLIC_INCLUDE_DRAFTS === 'true';
@@ -77,48 +109,94 @@ const seoProps: SeoInput = {
       <!-- Asymmetric Editorial Grid (7/12 Landscape Visual + 5/12 Field Utility Deck) -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
         
-        <!-- Left Column: Photographic Editorial Masthead (Fokus Image, Vignette Halus Bawah) -->
-        <div class="lg:col-span-7 relative min-h-[440px] sm:min-h-[520px] flex flex-col justify-end p-6 sm:p-8 lg:p-10 rounded-[2px] overflow-hidden group">
-          <Picture
-            src={heroImage}
-            formats={['webp']}
-            fallbackFormat="webp"
-            widths={[480, 800, 1200, 1600]}
-            sizes="(min-width: 1024px) 46rem, 100vw"
-            quality={60}
-            alt="Hamparan sawah terasering tropis di Indonesia dengan saluran irigasi alami dan tanaman subur"
-            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-            loading="eager"
-            fetchpriority="high"
-          />
+        <!-- Left Column: Photographic Editorial Masthead (Auto Slider Continuously, 5 Lanskap Unggulan) -->
+        <div
+          id="hero-masthead-slider"
+          class="lg:col-span-7 relative min-h-[460px] sm:min-h-[540px] flex flex-col justify-end p-6 sm:p-8 lg:p-10 rounded-[2px] overflow-hidden group select-none"
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="Galeri lanskap pertanian unggulan Agritani"
+        >
+          <!-- Background Slides Container -->
+          <div class="absolute inset-0 overflow-hidden" aria-live="off">
+            {heroSlides.map((slide, idx) => (
+              <div
+                class={`hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out ${idx === 0 ? 'opacity-100 z-1' : 'opacity-0 z-0'}`}
+                data-slide-index={idx}
+                aria-hidden={idx === 0 ? 'false' : 'true'}
+              >
+                <Picture
+                  src={slide.image}
+                  formats={['webp']}
+                  fallbackFormat="webp"
+                  widths={[480, 800, 1200, 1600]}
+                  sizes="(min-width: 1024px) 46rem, 100vw"
+                  quality={80}
+                  alt={slide.alt}
+                  class="w-full h-full object-cover transition-transform duration-7000 ease-out transform scale-100 group-hover:scale-[1.02]"
+                  loading={idx === 0 ? 'eager' : 'lazy'}
+                  fetchpriority={idx === 0 ? 'high' : 'auto'}
+                />
+              </div>
+            ))}
+          </div>
+
           <!-- Atmospheric Bottom-Weighted Vignette: Bagian Atas Gambar Jernih, Bawah Bergradasi Halus -->
           <div
-            class="absolute inset-0 bg-gradient-to-t from-[var(--color-brand-strong)]/95 via-[var(--color-brand-strong)]/85 via-45% to-transparent to-80%"
+            class="absolute inset-0 bg-gradient-to-t from-[var(--color-brand-strong)]/95 via-[var(--color-brand-strong)]/85 via-45% to-transparent to-80% z-2 pointer-events-none"
             aria-hidden="true"
           ></div>
 
-          <!-- Hero Content: Headline Proporsional & Elegan (Tidak Terlalu Besar) -->
-          <div class="relative z-10 max-w-[42ch]">
+          <!-- Bottom Content: Headline, Deskripsi, CTAs & Slider Arrows -->
+          <div class="relative z-10 max-w-[44ch] mt-auto">
             <h1 class="font-serif text-2xl sm:text-3xl lg:text-[2.25rem] font-bold text-white leading-tight tracking-tight">
               Standar Agronomi Presisi & Sains Lapangan Tropis
             </h1>
             <p class="mt-3 text-sm sm:text-base text-white/95 leading-relaxed max-w-[38ch]">
               Portal pertanian resmi Agritani yang dikelola Arif Prabowo bersama tim agronomi lapangan.
             </p>
-            <div class="mt-6 sm:mt-7 flex flex-wrap items-center gap-3 sm:gap-4">
-              <a
-                href="/alat/"
-                class="inline-flex items-center gap-2 px-5 py-3 min-h-[44px] rounded-[2px] bg-[var(--color-harvest)] text-[var(--color-text)] font-extrabold text-xs sm:text-sm hover:bg-[var(--color-harvest-hover)] transition-colors focus:outline-none focus:ring-2 focus:ring-white"
-              >
-                <span>Buka Instrumen Tani</span>
-                <span aria-hidden="true">&rarr;</span>
-              </a>
-              <a
-                href="/jurnal/"
-                class="inline-flex items-center gap-2 px-5 py-3 min-h-[44px] rounded-[2px] bg-white/15 hover:bg-white/25 text-white text-xs sm:text-sm font-bold transition-colors backdrop-blur-xs focus:outline-none focus:ring-2 focus:ring-white"
-              >
-                <span>Jelajahi Jurnal Ilmiah</span>
-              </a>
+
+            <!-- CTAs and Navigation Controls -->
+            <div class="mt-6 sm:mt-7 flex flex-wrap items-center justify-between gap-4">
+              <div class="flex flex-wrap items-center gap-3 sm:gap-4">
+                <a
+                  href="/alat/"
+                  class="inline-flex items-center gap-2 px-5 py-3 min-h-[44px] rounded-[2px] bg-[var(--color-harvest)] text-[var(--color-text)] font-extrabold text-xs sm:text-sm hover:bg-[var(--color-harvest-hover)] transition-colors focus:outline-none focus:ring-2 focus:ring-white"
+                >
+                  <span>Buka Instrumen Tani</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
+                <a
+                  href="/jurnal/"
+                  class="inline-flex items-center gap-2 px-5 py-3 min-h-[44px] rounded-[2px] bg-white/15 hover:bg-white/25 text-white text-xs sm:text-sm font-bold transition-colors backdrop-blur-xs focus:outline-none focus:ring-2 focus:ring-white"
+                >
+                  <span>Jelajahi Jurnal Ilmiah</span>
+                </a>
+              </div>
+
+              <!-- Compact Nav Controls: Prev / Next Buttons -->
+              <div class="hidden sm:flex items-center gap-1.5">
+                <button
+                  type="button"
+                  id="hero-slider-prev"
+                  aria-label="Slide sebelumnya"
+                  class="w-9 h-9 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-[2px] bg-white/15 hover:bg-white/30 text-white backdrop-blur-xs transition-colors cursor-pointer focus:outline-none focus:ring-1 focus:ring-white"
+                >
+                  <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="m13 16-6-6 6-6"/>
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  id="hero-slider-next"
+                  aria-label="Slide berikutnya"
+                  class="w-9 h-9 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-[2px] bg-white/15 hover:bg-white/30 text-white backdrop-blur-xs transition-colors cursor-pointer focus:outline-none focus:ring-1 focus:ring-white"
+                >
+                  <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="m7 16 6-6-6-6"/>
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -231,39 +309,98 @@ const seoProps: SeoInput = {
   <!-- 2. Profil Pengelola: Arif Prabowo & Agritani -->
   <section class="py-16 sm:py-24 bg-[var(--color-surface)]" aria-labelledby="authority-heading">
     <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-        
-        <!-- Left: Profile Identity -->
-        <div class="lg:col-span-4 flex flex-col items-start">
-          <div class="flex items-center gap-4 sm:gap-5 mb-4">
-            <AuthorAvatar size={112} class="w-20 h-20 sm:w-24 sm:h-24" decorative={false} />
-            <div>
-              <h2 id="authority-heading" class="font-serif text-2xl sm:text-3xl font-bold text-[var(--color-text)] tracking-tight leading-tight">
-                Arif Prabowo
-              </h2>
-              <span class="text-xs text-[var(--color-soil)] font-semibold mt-0.5 block">
-                Konsultan Pertanian Senior · Pengelola Jurnal Tani
-              </span>
-            </div>
-          </div>
-          <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed mt-1">
-            Pengalaman lebih dari 8 tahun riset pertanian dan budidaya lapangan; sales dan konsultan produk unggulan Agritani.
+      
+      <!-- Section Header (Standard Site-Wide Rhythm) -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-12">
+        <div>
+          <h2 id="authority-heading" class="section-headline">
+            Integritas Sains &amp; Riset Terapan Lapangan
+          </h2>
+          <p class="section-subheading">
+            Standar kurasi agronomi dan moderasi naskah Jurnal Tani yang dipimpin langsung oleh Arif Prabowo.
           </p>
-          <div class="mt-4">
-            <a href="/penulis/arif-prabowo/" class="link-more text-sm">
-              Profil lengkap & panduan agronomi &rarr;
-            </a>
+        </div>
+        <div class="shrink-0">
+          <a href="/penulis/arif-prabowo/" class="link-more text-sm">
+            Profil lengkap &amp; arsip panduan &rarr;
+          </a>
+        </div>
+      </div>
+
+      <!-- Balanced Editorial Grid (4 cols Author Identity + 8 cols Editorial Standards & Metrics) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        
+        <!-- Left: Foto Profil & Identitas Penulis (4 cols) -->
+        <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-4 sm:gap-6 lg:gap-4 items-start">
+          <div class="shrink-0 w-full max-w-[260px] sm:max-w-[220px] lg:max-w-[280px]">
+            <Picture
+              src={arifPortrait}
+              formats={['webp']}
+              fallbackFormat="webp"
+              widths={[240, 360, 560]}
+              sizes="(min-width: 1024px) 18rem, (min-width: 640px) 14rem, 16rem"
+              quality={85}
+              alt="Foto Arif Prabowo, Konsultan Pertanian Senior Agritani"
+              class="w-full aspect-[4/5] object-cover object-[50%_18%] rounded-[2px] border border-[var(--color-border)] bg-[var(--color-canvas)]"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="flex-1 min-w-0 space-y-1">
+            <h3 class="font-serif text-xl sm:text-2xl font-bold text-[var(--color-text)] tracking-tight">
+              Arif Prabowo
+            </h3>
+            <p class="text-xs sm:text-sm font-semibold text-[var(--color-soil)]">
+              Konsultan Pertanian Senior · Pengelola Jurnal Tani
+            </p>
+            <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed pt-1">
+              Praktisi budidaya lapangan tropis lebih dari 8 tahun; sales dan konsultan teknis produk hayati unggulan Agritani Official.
+            </p>
           </div>
         </div>
 
-        <!-- Right: Integritas Artikel Jurnal Tani (Kalimat Biasa, Tanpa Kutipan) -->
-        <div class="lg:col-span-8 flex flex-col justify-center space-y-6 pt-2">
-          <p class="font-serif text-xl sm:text-2xl text-[var(--color-text)] leading-relaxed">
-            Artikel Jurnal Tani ditulis dan dimoderasi oleh Arif Prabowo; rujukan ilmiah dicantumkan di akhir artikel bila tersedia.
-          </p>
-          <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed">
-            Setiap pembahasan disusun berdasarkan observasi riil di lapangan tropis Indonesia, telaah fisiologi tanaman teruji, dan kalibrasi rekomendasi dosis yang bertanggung jawab untuk melindungi tanaman petani dari risiko kerusakan.
-          </p>
+        <!-- Right: Pernyataan Editorial & Metrik Kunci (8 cols) -->
+        <div class="lg:col-span-8 flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <p class="font-serif text-xl sm:text-2xl text-[var(--color-text)] leading-snug">
+              Artikel Jurnal Tani ditulis dan dimoderasi langsung oleh Arif Prabowo; rujukan ilmiah terpercaya dicantumkan di akhir naskah bila tersedia.
+            </p>
+            <p class="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed">
+              Setiap pembahasan disusun berdasarkan observasi riil di lahan tropis Indonesia, telaah fisiologi tanaman teruji, dan kalibrasi rekomendasi dosis yang bertanggung jawab untuk melindungi tanaman petani dari risiko kerusakan serta pemborosan biaya input. Seluruh materi disajikan terbuka tanpa pungutan biaya demi mendukung kemandirian petani di sentra pangan Nusantara.
+            </p>
+          </div>
+
+          <!-- Prinsip Lapangan Terbuka (Open Typography, No Card-Borders, DEC-019) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 pt-1 text-xs sm:text-sm">
+            <div>
+              <span class="font-bold text-[var(--color-text)] block">Observasi Nyata Lapangan</span>
+              <span class="text-[var(--color-text-muted)] leading-relaxed block mt-0.5">
+                Diuji langsung pada komoditas pangan dan perkebunan di iklim tropis Nusantara sebelum dipublikasikan.
+              </span>
+            </div>
+            <div>
+              <span class="font-bold text-[var(--color-text)] block">Kalibrasi Dosis Bertanggung Jawab</span>
+              <span class="text-[var(--color-text-muted)] leading-relaxed block mt-0.5">
+                Rekomendasi takaran presisi untuk menjaga kelestarian hara tanah dan melindungi keselamatan tanaman.
+              </span>
+            </div>
+          </div>
+
+          <!-- 3 Kolom Poin Kunci Presisi -->
+          <div class="grid grid-cols-3 gap-4 sm:gap-6 pt-6 border-t border-[var(--color-border)] text-[var(--color-text)]">
+            <div>
+              <span class="block font-serif text-2xl sm:text-3xl font-bold text-[var(--color-brand-strong)] tabular-nums">&gt;8 Tahun</span>
+              <span class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-tight block mt-1">Riset Lapangan Tropis</span>
+            </div>
+            <div>
+              <span class="block font-serif text-2xl sm:text-3xl font-bold text-[var(--color-brand-strong)] tabular-nums">296 Panduan</span>
+              <span class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-tight block mt-1">Naskah Jurnal Terbit</span>
+            </div>
+            <div>
+              <span class="block font-serif text-2xl sm:text-3xl font-bold text-[var(--color-brand-strong)] tabular-nums">Akses Terbuka</span>
+              <span class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-tight block mt-1">Edukasi Tanpa Biaya</span>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -719,4 +856,126 @@ const seoProps: SeoInput = {
     </div>
   </section>
 
+  <!-- Client Script for Hero Auto Slider -->
+  <script>
+    function initHeroSlider() {
+      const slider = document.getElementById('hero-masthead-slider');
+      if (!slider) return;
+
+      const slides = Array.from(slider.querySelectorAll<HTMLElement>('.hero-slide'));
+      const btnPrev = document.getElementById('hero-slider-prev');
+      const btnNext = document.getElementById('hero-slider-next');
+
+      if (slides.length <= 1) return;
+
+      let currentIndex = 0;
+      let timer: ReturnType<typeof setInterval> | null = null;
+      let isPaused = false;
+      const intervalMs = 5000;
+
+      function goToSlide(targetIndex: number) {
+        if (targetIndex === currentIndex) return;
+
+        const prevSlide = slides[currentIndex];
+        const nextSlide = slides[targetIndex];
+
+        // Crossfade slides
+        prevSlide.classList.remove('opacity-100', 'z-1');
+        prevSlide.classList.add('opacity-0', 'z-0');
+        prevSlide.setAttribute('aria-hidden', 'true');
+
+        nextSlide.classList.remove('opacity-0', 'z-0');
+        nextSlide.classList.add('opacity-100', 'z-1');
+        nextSlide.setAttribute('aria-hidden', 'false');
+
+        currentIndex = targetIndex;
+      }
+
+      function nextSlide() {
+        const next = (currentIndex + 1) % slides.length;
+        goToSlide(next);
+      }
+
+      function prevSlide() {
+        const prev = (currentIndex - 1 + slides.length) % slides.length;
+        goToSlide(prev);
+      }
+
+      function startTimer() {
+        stopTimer();
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (isPaused) return;
+        timer = setInterval(nextSlide, intervalMs);
+      }
+
+      function stopTimer() {
+        if (timer) {
+          clearInterval(timer);
+          timer = null;
+        }
+      }
+
+      btnPrev?.addEventListener('click', () => {
+        prevSlide();
+        startTimer();
+      });
+
+      btnNext?.addEventListener('click', () => {
+        nextSlide();
+        startTimer();
+      });
+
+      slider.addEventListener('mouseenter', () => {
+        isPaused = true;
+        stopTimer();
+      });
+
+      slider.addEventListener('mouseleave', () => {
+        isPaused = false;
+        startTimer();
+      });
+
+      slider.addEventListener('focusin', () => {
+        isPaused = true;
+        stopTimer();
+      });
+
+      slider.addEventListener('focusout', () => {
+        isPaused = false;
+        startTimer();
+      });
+
+      // Touch swipe support for mobile
+      let touchStartX = 0;
+      slider.addEventListener(
+        'touchstart',
+        (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        },
+        { passive: true }
+      );
+
+      slider.addEventListener(
+        'touchend',
+        (e) => {
+          const touchEndX = e.changedTouches[0].screenX;
+          const diffX = touchEndX - touchStartX;
+          if (Math.abs(diffX) > 40) {
+            if (diffX < 0) {
+              nextSlide();
+            } else {
+              prevSlide();
+            }
+            startTimer();
+          }
+        },
+        { passive: true }
+      );
+
+      startTimer();
+    }
+
+    initHeroSlider();
+    document.addEventListener('astro:page-load', initHeroSlider);
+  </script>
 </BaseLayout>

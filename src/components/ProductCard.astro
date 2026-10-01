@@ -26,7 +26,7 @@ const variants = p.variants ?? [];
 const fromPrice = variants.length ? Math.min(...variants.map((v) => v.price)) : null;
 ---
 
-<article id={product.id} class="card card-link relative scroll-mt-24 grid grid-cols-[7rem_1fr] sm:flex sm:flex-col h-full overflow-hidden">
+<article id={product.id} class="card card-link group relative scroll-mt-24 grid grid-cols-[7rem_1fr] sm:flex sm:flex-col h-full overflow-hidden">
   <div class="card-media w-[7rem] h-[7rem] sm:w-full sm:h-auto aspect-square self-start sm:self-auto shrink-0 overflow-hidden">
     <Picture
       src={getProductImage(product.id)}
@@ -36,7 +36,7 @@ const fromPrice = variants.length ? Math.min(...variants.map((v) => v.price)) : 
       sizes="(min-width: 1024px) 17rem, (min-width: 640px) 45vw, 7rem"
       quality={80}
       alt={`Kemasan ${p.name}, ${p.role}`}
-      class="w-full h-full object-cover"
+      class="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
       pictureAttributes={{ class: 'block w-full h-full' }}
       loading="lazy"
       decoding="async"
@@ -62,7 +62,13 @@ const fromPrice = variants.length ? Math.min(...variants.map((v) => v.price)) : 
           <span class="text-lg font-semibold text-[var(--color-text)]">{formatRupiah(fromPrice)}</span>
           <span class="block text-[13px] text-[var(--color-text-muted)]">{variants.map((v) => v.size).join(' · ')}</span>
         </p>
-        <span class="link-more text-sm shrink-0" aria-hidden="true">Rincian &rarr;</span>
+        <a
+          href={`/produk/${product.id}/`}
+          class="link-more text-sm shrink-0 relative z-10 inline-flex items-center min-h-[44px] py-1 text-[var(--color-brand-strong)] hover:text-[var(--color-brand)]"
+          aria-label={`Rincian produk ${p.name}`}
+        >
+          Rincian &rarr;
+        </a>
       </div>
     )}
   </div>

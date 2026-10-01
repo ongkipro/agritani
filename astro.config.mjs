@@ -10,10 +10,29 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-// Pre-build article and page lastmod lookup and draft filter (DESIGN §4.4.8)
+// Pre-build article and page lastmod lookup and draft filter (DESIGN §4.4.8, DEC-023, DEC-025)
 const lastmodMap = new Map();
 const draftSet = new Set();
 try {
+  let maxArticleDate = new Date('2026-09-30');
+  const topicLatest = new Map();
+  const commodityLatest = new Map();
+
+  /** @type {Record<string, string>} */
+  const catToTopic = {
+    'Hama & Proteksi Tanaman': 'proteksi-tanaman',
+    'Perkebunan & Patologi Tanaman': 'proteksi-tanaman',
+    'Patologi Tanaman & Hortikultura': 'proteksi-tanaman',
+    'Ilmu Tanah & Kesuburan Lahan': 'tanah-nutrisi',
+    'Nutrisi Tanaman, Pupuk & Biostimulan': 'tanah-nutrisi',
+    'Cairan Nutrisi Organik': 'tanah-nutrisi',
+    'Teknik Budidaya & Manajemen Lahan': 'budidaya',
+    'Tanaman Pangan & Budidaya Padi': 'budidaya',
+    'Urban Farming & Hidroponik': 'budidaya',
+    'Fisiologi & Anatomi Tumbuhan': 'sains-tanaman',
+    'Fisiologi Tanaman & Perawatan': 'sains-tanaman',
+  };
+
   const articlesDir = path.resolve('docs/content/articles');
   if (fs.existsSync(articlesDir)) {
     for (const f of fs.readdirSync(articlesDir)) {
@@ -24,16 +43,76 @@ try {
         const isDraft = /^draft:\s*true/m.test(content);
         if (isDraft) {
           draftSet.add(`/jurnal/${slug}/`);
+          continue;
         }
         const pubMatch = content.match(/^pubDate:\s*['"]?([0-9T:.-]+)['"]?/m);
         const updMatch = content.match(/^updatedDate:\s*['"]?([0-9T:.-]+)['"]?/m);
-        const d = updMatch ? updMatch[1] : (pubMatch ? pubMatch[1] : null);
-        if (d) {
-          lastmodMap.set(`/jurnal/${slug}/`, new Date(d));
+        const catMatch = content.match(/^category:\s*['"]?(.*?)['"]?$/m);
+        const commMatch = content.match(/^commodities:\s*\[(.*?)\]/m);
+
+        const dStr = updMatch ? updMatch[1] : (pubMatch ? pubMatch[1] : null);
+        if (dStr) {
+          const d = new Date(dStr);
+          lastmodMap.set(`/jurnal/${slug}/`, d);
+          if (d > maxArticleDate) maxArticleDate = d;
+
+          if (catMatch && catToTopic[catMatch[1].trim()]) {
+            const t = catToTopic[catMatch[1].trim()];
+            if (!topicLatest.has(t) || d > topicLatest.get(t)) topicLatest.set(t, d);
+          }
+
+          if (commMatch) {
+            const comms = commMatch[1].split(',').map((s) => s.trim().replace(/^['"]|['"]$/g, ''));
+            for (const c of comms) {
+              if (c && (!commodityLatest.has(c) || d > commodityLatest.get(c))) {
+                commodityLatest.set(c, d);
+              }
+            }
+          }
         }
       }
     }
   }
+
+  // Jurnal hub & pagination
+  lastmodMap.set('/jurnal/', maxArticleDate);
+  for (let i = 2; i <= 20; i++) {
+    lastmodMap.set(`/jurnal/halaman/${i}/`, maxArticleDate);
+  }
+
+  // Topics
+  for (const t of ['air-irigasi', 'budidaya', 'pascapanen-agribisnis', 'proteksi-tanaman', 'sains-tanaman', 'tanah-nutrisi']) {
+    lastmodMap.set(`/jurnal/topik/${t}/`, topicLatest.get(t) || maxArticleDate);
+  }
+
+  // Commodities
+  const commFile = path.resolve('src/data/commodities.json');
+  if (fs.existsSync(commFile)) {
+    const comms = JSON.parse(fs.readFileSync(commFile, 'utf8'));
+    for (const c of comms) {
+      lastmodMap.set(`/jurnal/komoditas/${c.id}/`, commodityLatest.get(c.id) || maxArticleDate);
+    }
+  }
+
+  // Products (verified 2026-09-30)
+  lastmodMap.set('/produk/', new Date('2026-09-30'));
+  for (const p of ['aussie', 'bensu', 'kojien', 'saratoga']) {
+    lastmodMap.set(`/produk/${p}/`, new Date('2026-09-30'));
+  }
+
+  // Tools (reviewed 2026-09-30)
+  lastmodMap.set('/alat/', new Date('2026-09-30'));
+  for (const a of ['cuaca-tani', 'diagnosa-gejala', 'kalender-tanam', 'kalkulator-dosis']) {
+    lastmodMap.set(`/alat/${a}/`, new Date('2026-09-30'));
+  }
+
+  // Pages
+  lastmodMap.set('/', new Date('2026-10-01'));
+  lastmodMap.set('/tentang-kami/', new Date('2026-10-01'));
+  lastmodMap.set('/kemitraan-distributor/', new Date('2026-09-30'));
+  lastmodMap.set('/konsultasi/', new Date('2026-09-30'));
+  lastmodMap.set('/kebijakan-privasi/', new Date('2026-09-30'));
+  lastmodMap.set('/penulis/arif-prabowo/', new Date('2026-09-30'));
 } catch {
   // Silent fallback
 }
@@ -198,6 +277,55 @@ export default defineConfig({
           const sitemapIndex = path.join(distDir, 'sitemap-index.xml');
           if (fs.existsSync(sitemapIndex)) fs.copyFileSync(sitemapIndex, path.join(distDir, 'sitemap.xml'));
 
+          // Normalize and format all XML sitemaps to ensure pristine standard Google XML parsing
+          const sitemapFiles = fs.readdirSync(distDir).filter((f) => f.startsWith('sitemap') && f.endsWith('.xml'));
+          for (const sFile of sitemapFiles) {
+            const xmlFilePath = path.join(distDir, sFile);
+            const rawContent = fs.readFileSync(xmlFilePath, 'utf8');
+
+            const isIndex = sFile === 'sitemap.xml' || sFile === 'sitemap-index.xml';
+            let formattedXml = '';
+
+            if (isIndex) {
+              const sitemaps = [...rawContent.matchAll(/<sitemap>[\s\S]*?<\/sitemap>/g)].map((m) => {
+                const loc = m[0].match(/<loc>(.*?)<\/loc>/)?.[1] || '';
+                const lastmod = m[0].match(/<lastmod>(.*?)<\/lastmod>/)?.[1] || '';
+                let block = `  <sitemap>\n    <loc>${loc}</loc>`;
+                if (lastmod) block += `\n    <lastmod>${lastmod}</lastmod>`;
+                block += `\n  </sitemap>`;
+                return block;
+              });
+              formattedXml = [
+                '<?xml version="1.0" encoding="UTF-8"?>',
+                '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+                ...sitemaps,
+                '</sitemapindex>',
+                '',
+              ].join('\n');
+            } else {
+              const rootOpen =
+                rawContent.match(/<urlset[^>]*>/)?.[0] ||
+                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+              const urls = [...rawContent.matchAll(/<url>[\s\S]*?<\/url>/g)].map((m) => {
+                const loc = m[0].match(/<loc>(.*?)<\/loc>/)?.[1] || '';
+                const lastmod = m[0].match(/<lastmod>(.*?)<\/lastmod>/)?.[1] || '';
+                let block = `  <url>\n    <loc>${loc}</loc>`;
+                if (lastmod) block += `\n    <lastmod>${lastmod}</lastmod>`;
+                block += `\n  </url>`;
+                return block;
+              });
+              formattedXml = [
+                '<?xml version="1.0" encoding="UTF-8"?>',
+                rootOpen,
+                ...urls,
+                '</urlset>',
+                '',
+              ].join('\n');
+            }
+
+            fs.writeFileSync(xmlFilePath, formattedXml, 'utf8');
+          }
+
           // Ensure /404/ directory index also exists alongside 404.html
           const html404 = path.join(distDir, '404.html');
           if (fs.existsSync(html404)) {
@@ -227,6 +355,17 @@ export default defineConfig({
               handle: (req, res, next) => {
                 if (!req.url) return next();
                 const [pathname, search] = req.url.split('?');
+
+                // Serve sitemaps directly in dev mode from dist
+                if (pathname.startsWith('/sitemap') && pathname.endsWith('.xml')) {
+                  const xmlName = pathname.slice(1);
+                  const distXml = path.join(process.cwd(), 'dist', xmlName);
+                  if (fs.existsSync(distXml)) {
+                    res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+                    res.end(fs.readFileSync(distXml, 'utf8'));
+                    return;
+                  }
+                }
                 if (
                   pathname.startsWith('/@') ||
                   pathname.startsWith('/_astro') ||

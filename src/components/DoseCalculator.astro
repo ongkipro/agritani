@@ -19,238 +19,275 @@ import ConsultPrompt from './ConsultPrompt.astro';
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-x-6 gap-y-7">
+    <div class="space-y-6">
       
-      <!-- Field 1: Dosis Label -->
-      <div class="space-y-2">
-        <label for="input-dose" class="block text-sm font-semibold text-[var(--color-text)]">
-          Dosis dari label kemasan <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
-        </label>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          <input
-            type="number"
-            id="input-dose"
-            name="dose"
-            value=""
-            placeholder="Misal: 2 atau 1.5"
-            step="any"
-            min="0.001"
-            required
-            class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-base sm:text-sm tabular-nums"
-            aria-describedby="dose-unit-desc"
-          />
+      <!-- Group 1: Data Dosis Label Kemasan -->
+      <div class="space-y-4">
+        <div class="flex items-center justify-between pb-1">
+          <h3 class="font-serif text-base font-semibold text-[var(--color-brand-strong)]">
+            1. Takaran pada Label Produk
+          </h3>
+          <span class="text-xs text-[var(--color-text-muted)]">Data botol / kemasan</span>
+        </div>
 
-          <!-- Custom Select for Dose Unit (shadcn Select pattern) -->
-          <div class="relative" id="wrapper-dose-unit-select">
-            <select id="input-dose-unit" name="doseUnit" class="sr-only" tabindex="-1" aria-hidden="true">
-              <option value="ml/L" selected>ml / Liter (Cair)</option>
-              <option value="g/L">g / Liter (Bubuk / WP)</option>
-              <option value="ml/tangki">ml / tangki</option>
-              <option value="g/tangki">g / tangki</option>
-            </select>
+        <!-- Field 1: Dosis Label -->
+        <div class="space-y-1.5">
+          <label for="input-dose" class="block text-sm font-semibold text-[var(--color-text)]">
+            Dosis anjuran produk <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+          </label>
+          <div class="relative flex items-stretch rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] focus-within:border-[var(--color-brand-strong)] focus-within:ring-2 focus-within:ring-[var(--color-brand-strong)]/20 transition-all">
+            <input
+              type="number"
+              id="input-dose"
+              name="dose"
+              value=""
+              placeholder="Misal: 2 atau 1.5"
+              step="any"
+              min="0.001"
+              required
+              class="flex-1 min-w-0 px-3.5 py-2.5 min-h-[44px] bg-transparent text-[var(--color-text)] border-0 focus:outline-none text-base sm:text-sm tabular-nums"
+              aria-describedby="dose-unit-desc"
+            />
+            <div class="w-px bg-[var(--color-border-control)] my-2" aria-hidden="true"></div>
 
-            <button
-              type="button"
-              id="trigger-dose-unit"
-              role="combobox"
-              aria-expanded="false"
-              aria-haspopup="listbox"
-              aria-controls="popover-dose-unit"
-              aria-label="Pilih satuan dosis"
-              class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-base sm:text-sm cursor-pointer transition-colors flex items-center justify-between text-left"
-            >
-              <span id="label-dose-unit" class="truncate font-medium">ml / Liter (Cair)</span>
-              <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-[var(--color-soil)] transition-transform duration-200" aria-hidden="true">
-                <svg class="w-4 h-4 chevron-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m6 8 4 4 4-4"/>
-                </svg>
-              </span>
-            </button>
+            <!-- Custom Select for Dose Unit (shadcn Select pattern) -->
+            <div class="relative shrink-0 w-[145px] sm:w-[175px]" id="wrapper-dose-unit-select">
+              <select id="input-dose-unit" name="doseUnit" class="sr-only" tabindex="-1" aria-hidden="true">
+                <option value="ml/L" selected>ml / Liter (Cair)</option>
+                <option value="g/L">g / Liter (Bubuk / WP)</option>
+                <option value="ml/tangki">ml / tangki</option>
+                <option value="g/tangki">g / tangki</option>
+              </select>
 
-            <div
-              id="popover-dose-unit"
-              role="listbox"
-              class="hidden absolute top-full left-0 right-0 z-50 mt-1 bg-[var(--color-surface)] border border-[var(--color-border-control)] rounded-[2px] overflow-hidden p-1 space-y-0.5"
-            >
-              <div role="option" data-value="ml/L" data-label="ml / Liter (Cair)" aria-selected="true" class="dose-unit-opt px-3 py-2 text-xs sm:text-sm rounded-[2px] cursor-pointer flex items-center justify-between bg-[var(--color-tint)] font-semibold text-[var(--color-brand-strong)] hover:bg-[var(--color-tint)] transition-colors min-h-[44px]">
-                <span>ml / Liter (Cair)</span>
-                <svg class="w-4 h-4 text-[var(--color-brand)] shrink-0 check-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10 4 4 8-8"/></svg>
-              </div>
-              <div role="option" data-value="g/L" data-label="g / Liter (Bubuk / WP)" aria-selected="false" class="dose-unit-opt px-3 py-2 text-xs sm:text-sm text-[var(--color-text)] rounded-[2px] cursor-pointer flex items-center justify-between hover:bg-[var(--color-tint)] hover:text-[var(--color-brand-strong)] transition-colors min-h-[44px]">
-                <span>g / Liter (Bubuk / WP)</span>
-                <svg class="w-4 h-4 text-[var(--color-brand)] shrink-0 hidden check-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10 4 4 8-8"/></svg>
-              </div>
-              <div role="option" data-value="ml/tangki" data-label="ml / tangki" aria-selected="false" class="dose-unit-opt px-3 py-2 text-xs sm:text-sm text-[var(--color-text)] rounded-[2px] cursor-pointer flex items-center justify-between hover:bg-[var(--color-tint)] hover:text-[var(--color-brand-strong)] transition-colors min-h-[44px]">
-                <span>ml / tangki</span>
-                <svg class="w-4 h-4 text-[var(--color-brand)] shrink-0 hidden check-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10 4 4 8-8"/></svg>
-              </div>
-              <div role="option" data-value="g/tangki" data-label="g / tangki" aria-selected="false" class="dose-unit-opt px-3 py-2 text-xs sm:text-sm text-[var(--color-text)] rounded-[2px] cursor-pointer flex items-center justify-between hover:bg-[var(--color-tint)] hover:text-[var(--color-brand-strong)] transition-colors min-h-[44px]">
-                <span>g / tangki</span>
-                <svg class="w-4 h-4 text-[var(--color-brand)] shrink-0 hidden check-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10 4 4 8-8"/></svg>
+              <button
+                type="button"
+                id="trigger-dose-unit"
+                role="combobox"
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                aria-controls="popover-dose-unit"
+                aria-label="Pilih satuan dosis"
+                class="w-full h-full pl-3 pr-8 py-2.5 min-h-[44px] bg-transparent text-[var(--color-text)] font-medium text-xs sm:text-sm cursor-pointer transition-colors flex items-center justify-between text-left focus:outline-none"
+              >
+                <span id="label-dose-unit" class="truncate font-medium">ml / Liter (Cair)</span>
+                <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2.5 text-[var(--color-soil)] transition-transform duration-200" aria-hidden="true">
+                  <svg class="w-4 h-4 chevron-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m6 8 4 4 4-4"/>
+                  </svg>
+                </span>
+              </button>
+
+              <div
+                id="popover-dose-unit"
+                role="listbox"
+                class="hidden absolute top-full right-0 z-50 mt-1 w-[220px] bg-[var(--color-surface)] border border-[var(--color-border-control)] rounded-[2px] overflow-hidden p-1 space-y-0.5"
+              >
+                <div role="option" data-value="ml/L" data-label="ml / Liter (Cair)" aria-selected="true" class="dose-unit-opt px-3 py-2 text-xs sm:text-sm rounded-[2px] cursor-pointer flex items-center justify-between bg-[var(--color-tint)] font-semibold text-[var(--color-brand-strong)] hover:bg-[var(--color-tint)] transition-colors min-h-[44px]">
+                  <span>ml / Liter (Cair)</span>
+                  <svg class="w-4 h-4 text-[var(--color-brand)] shrink-0 check-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10 4 4 8-8"/></svg>
+                </div>
+                <div role="option" data-value="g/L" data-label="g / Liter (Bubuk / WP)" aria-selected="false" class="dose-unit-opt px-3 py-2 text-xs sm:text-sm text-[var(--color-text)] rounded-[2px] cursor-pointer flex items-center justify-between hover:bg-[var(--color-tint)] hover:text-[var(--color-brand-strong)] transition-colors min-h-[44px]">
+                  <span>g / Liter (Bubuk / WP)</span>
+                  <svg class="w-4 h-4 text-[var(--color-brand)] shrink-0 hidden check-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10 4 4 8-8"/></svg>
+                </div>
+                <div role="option" data-value="ml/tangki" data-label="ml / tangki" aria-selected="false" class="dose-unit-opt px-3 py-2 text-xs sm:text-sm text-[var(--color-text)] rounded-[2px] cursor-pointer flex items-center justify-between hover:bg-[var(--color-tint)] hover:text-[var(--color-brand-strong)] transition-colors min-h-[44px]">
+                  <span>ml / tangki</span>
+                  <svg class="w-4 h-4 text-[var(--color-brand)] shrink-0 hidden check-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10 4 4 8-8"/></svg>
+                </div>
+                <div role="option" data-value="g/tangki" data-label="g / tangki" aria-selected="false" class="dose-unit-opt px-3 py-2 text-xs sm:text-sm text-[var(--color-text)] rounded-[2px] cursor-pointer flex items-center justify-between hover:bg-[var(--color-tint)] hover:text-[var(--color-brand-strong)] transition-colors min-h-[44px]">
+                  <span>g / tangki</span>
+                  <svg class="w-4 h-4 text-[var(--color-brand)] shrink-0 hidden check-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10 4 4 8-8"/></svg>
+                </div>
               </div>
             </div>
           </div>
+          <p id="dose-unit-desc" class="text-[13px] leading-snug text-[var(--color-text-muted)]">
+            Sesuai angka petunjuk anjuran di botol / kemasan produk resmi.
+          </p>
+          <p id="err-dose" class="text-[13px] font-medium text-[var(--color-danger)] hidden"></p>
         </div>
-        <p id="dose-unit-desc" class="text-[13px] leading-snug text-[var(--color-text-muted)]">
-          Sesuai angka petunjuk anjuran di botol / kemasan produk resmi.
-        </p>
-        <p id="err-dose" class="text-[13px] font-medium text-[var(--color-danger)] hidden"></p>
-      </div>
 
-      <!-- Field 1b: Volume Tangki pada Label (khusus per tangki) -->
-      <div id="wrapper-label-tank" class="space-y-2 hidden">
-        <label for="input-label-tank-vol" class="block text-sm font-semibold text-[var(--color-text)]">
-          Volume tangki pada label (liter) <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
-        </label>
-        <input
-          type="number"
-          id="input-label-tank-vol"
-          name="labelTankVolume"
-          value="16"
-          step="any"
-          min="1"
-          max="1000"
-          class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-base sm:text-sm tabular-nums"
-          aria-describedby="label-tank-desc"
-        />
-        <p id="label-tank-desc" class="text-[13px] leading-snug text-[var(--color-text-muted)]">
-          Ukuran tangki yang diasumsikan label produk (umumnya 16 Liter).
-        </p>
-        <p id="err-label-tank-vol" class="text-[13px] font-medium text-[var(--color-danger)] hidden"></p>
-      </div>
-
-      <!-- Field 2: Volume Tangki Pengguna -->
-      <div class="space-y-2">
-        <label for="input-tank-vol" class="block text-sm font-semibold text-[var(--color-text)]">
-          Kapasitas tangki semprot Anda (liter) <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
-        </label>
-        <input
-          type="number"
-          id="input-tank-vol"
-          name="tankVolume"
-          value="16"
-          step="any"
-          min="1"
-          max="1000"
-          required
-          class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-base sm:text-sm tabular-nums"
-          aria-describedby="tank-vol-desc"
-        />
-        <div class="flex flex-wrap items-center gap-2">
-          <span class="text-[13px] text-[var(--color-text-muted)] mr-1">Pintasan:</span>
-          <button type="button" aria-pressed="false" data-tank-preset="14" class="tank-preset-btn px-3 min-h-[44px] text-[13px] font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">14 L (Solo)</button>
-          <button type="button" aria-pressed="true" data-tank-preset="16" class="tank-preset-btn px-3 min-h-[44px] text-[13px] font-bold border border-[var(--color-brand)] bg-[var(--color-tint)] text-[var(--color-brand-strong)] rounded-[2px] transition-colors cursor-pointer">16 L (Standar)</button>
-          <button type="button" aria-pressed="false" data-tank-preset="20" class="tank-preset-btn px-3 min-h-[44px] text-[13px] font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">20 L (Elektrik)</button>
-          <button type="button" aria-pressed="false" data-tank-preset="200" class="tank-preset-btn px-3 min-h-[44px] text-[13px] font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">200 L (Drum)</button>
+        <!-- Field 1b: Volume Tangki pada Label (khusus per tangki) -->
+        <div id="wrapper-label-tank" class="space-y-1.5 hidden pt-1">
+          <label for="input-label-tank-vol" class="block text-sm font-semibold text-[var(--color-text)]">
+            Volume tangki rujukan label (liter) <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+          </label>
+          <div class="relative flex items-stretch rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] focus-within:border-[var(--color-brand-strong)] focus-within:ring-2 focus-within:ring-[var(--color-brand-strong)]/20 transition-all">
+            <input
+              type="number"
+              id="input-label-tank-vol"
+              name="labelTankVolume"
+              value="16"
+              step="any"
+              min="1"
+              max="1000"
+              class="flex-1 min-w-0 px-3.5 py-2.5 min-h-[44px] bg-transparent text-[var(--color-text)] border-0 focus:outline-none text-base sm:text-sm tabular-nums"
+              aria-describedby="label-tank-desc"
+            />
+            <div class="flex items-center pr-3.5 text-xs sm:text-sm font-medium text-[var(--color-text-muted)] select-none">
+              Liter
+            </div>
+          </div>
+          <p id="label-tank-desc" class="text-[13px] leading-snug text-[var(--color-text-muted)]">
+            Ukuran tangki yang diasumsikan label produk (umumnya 16 Liter).
+          </p>
+          <p id="err-label-tank-vol" class="text-[13px] font-medium text-[var(--color-danger)] hidden"></p>
         </div>
-        <p id="tank-vol-desc" class="text-[13px] leading-snug text-[var(--color-text-muted)]">
-          Kapasitas tangki semprot punggung Anda (bawaan 16 Liter).
-        </p>
-        <p id="err-tank-vol" class="text-[13px] font-medium text-[var(--color-danger)] hidden"></p>
       </div>
 
-      <!-- Field 3: Luas Lahan -->
-      <div class="space-y-2">
-        <label for="input-area" class="block text-sm font-semibold text-[var(--color-text)]">
-          Luas lahan semprot <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
-        </label>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          <input
-            type="number"
-            id="input-area"
-            name="area"
-            value=""
-            placeholder="Misal: 1 atau 2500"
-            step="any"
-            min="0.001"
-            required
-            class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-base sm:text-sm tabular-nums"
-            aria-describedby="area-desc"
-          />
+      <!-- Group 2: Kondisi Alat Semprot & Ukuran Lahan Anda -->
+      <div class="space-y-5 pt-2">
+        <div class="flex items-center justify-between pb-1">
+          <h3 class="font-serif text-base font-semibold text-[var(--color-brand-strong)]">
+            2. Kondisi Alat &amp; Luas Lahan Anda
+          </h3>
+          <span class="text-xs text-[var(--color-text-muted)]">Kalibrasi lapangan</span>
+        </div>
 
-          <!-- Custom Select for Area Unit (shadcn Select pattern) -->
-          <div class="relative" id="wrapper-area-unit-select">
-            <select id="input-area-unit" name="areaUnit" class="sr-only" tabindex="-1" aria-hidden="true">
-              <option value="ha" selected>Hektar (ha)</option>
-              <option value="m2">Meter persegi (m²)</option>
-            </select>
+        <!-- Field 2: Volume Tangki Pengguna -->
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between">
+            <label for="input-tank-vol" class="block text-sm font-semibold text-[var(--color-text)]">
+              Kapasitas tangki semprot <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+            </label>
+            <span class="text-xs text-[var(--color-text-muted)]">Standar knapsack: 16 L</span>
+          </div>
+          <div class="relative flex items-stretch rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] focus-within:border-[var(--color-brand-strong)] focus-within:ring-2 focus-within:ring-[var(--color-brand-strong)]/20 transition-all">
+            <input
+              type="number"
+              id="input-tank-vol"
+              name="tankVolume"
+              value="16"
+              step="any"
+              min="1"
+              max="1000"
+              required
+              class="flex-1 min-w-0 px-3.5 py-2.5 min-h-[44px] bg-transparent text-[var(--color-text)] border-0 focus:outline-none text-base sm:text-sm tabular-nums"
+              aria-describedby="tank-vol-desc"
+            />
+            <div class="flex items-center pr-3.5 text-xs sm:text-sm font-medium text-[var(--color-text-muted)] select-none">
+              Liter
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-1.5 pt-1">
+            <span class="text-xs text-[var(--color-text-muted)] mr-1">Pilihan:</span>
+            <button type="button" aria-pressed="false" data-tank-preset="14" class="tank-preset-btn px-2.5 py-1 min-h-[36px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">14 L (Solo)</button>
+            <button type="button" aria-pressed="true" data-tank-preset="16" class="tank-preset-btn px-2.5 py-1 min-h-[36px] text-xs font-bold border border-[var(--color-brand)] bg-[var(--color-tint)] text-[var(--color-brand-strong)] rounded-[2px] transition-colors cursor-pointer">16 L (Standar)</button>
+            <button type="button" aria-pressed="false" data-tank-preset="20" class="tank-preset-btn px-2.5 py-1 min-h-[36px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">20 L (Elektrik)</button>
+            <button type="button" aria-pressed="false" data-tank-preset="200" class="tank-preset-btn px-2.5 py-1 min-h-[36px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">200 L (Drum)</button>
+          </div>
+          <p id="err-tank-vol" class="text-[13px] font-medium text-[var(--color-danger)] hidden"></p>
+        </div>
 
-            <button
-              type="button"
-              id="trigger-area-unit"
-              role="combobox"
-              aria-expanded="false"
-              aria-haspopup="listbox"
-              aria-controls="popover-area-unit"
-              aria-label="Pilih satuan luas lahan"
-              class="w-full pl-3.5 pr-9 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-base sm:text-sm cursor-pointer transition-colors flex items-center justify-between text-left"
-            >
-              <span id="label-area-unit" class="truncate font-medium">Hektar (ha)</span>
-              <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-[var(--color-soil)] transition-transform duration-200" aria-hidden="true">
-                <svg class="w-4 h-4 chevron-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m6 8 4 4 4-4"/>
-                </svg>
-              </span>
-            </button>
+        <!-- Field 3: Luas Lahan -->
+        <div class="space-y-1.5 pt-1">
+          <div class="flex items-center justify-between">
+            <label for="input-area" class="block text-sm font-semibold text-[var(--color-text)]">
+              Luas lahan semprot <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+            </label>
+            <span class="text-xs text-[var(--color-text-muted)]">Satuan baku: ha atau m²</span>
+          </div>
+          <div class="relative flex items-stretch rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] focus-within:border-[var(--color-brand-strong)] focus-within:ring-2 focus-within:ring-[var(--color-brand-strong)]/20 transition-all">
+            <input
+              type="number"
+              id="input-area"
+              name="area"
+              value=""
+              placeholder="Misal: 1 atau 2500"
+              step="any"
+              min="0.001"
+              required
+              class="flex-1 min-w-0 px-3.5 py-2.5 min-h-[44px] bg-transparent text-[var(--color-text)] border-0 focus:outline-none text-base sm:text-sm tabular-nums"
+              aria-describedby="area-desc"
+            />
+            <div class="w-px bg-[var(--color-border-control)] my-2" aria-hidden="true"></div>
 
-            <div
-              id="popover-area-unit"
-              role="listbox"
-              class="hidden absolute top-full left-0 right-0 z-50 mt-1 bg-[var(--color-surface)] border border-[var(--color-border-control)] rounded-[2px] overflow-hidden p-1 space-y-0.5"
-            >
-              <div role="option" data-value="ha" data-label="Hektar (ha)" aria-selected="true" class="area-unit-opt px-3 py-2 text-xs sm:text-sm rounded-[2px] cursor-pointer flex items-center justify-between bg-[var(--color-tint)] font-semibold text-[var(--color-brand-strong)] hover:bg-[var(--color-tint)] transition-colors min-h-[44px]">
-                <span>Hektar (ha)</span>
-                <svg class="w-4 h-4 text-[var(--color-brand)] shrink-0 check-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10 4 4 8-8"/></svg>
-              </div>
-              <div role="option" data-value="m2" data-label="Meter persegi (m²)" aria-selected="false" class="area-unit-opt px-3 py-2 text-xs sm:text-sm text-[var(--color-text)] rounded-[2px] cursor-pointer flex items-center justify-between hover:bg-[var(--color-tint)] hover:text-[var(--color-brand-strong)] transition-colors min-h-[44px]">
-                <span>Meter persegi (m²)</span>
-                <svg class="w-4 h-4 text-[var(--color-brand)] shrink-0 hidden check-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10 4 4 8-8"/></svg>
+            <!-- Custom Select for Area Unit (shadcn Select pattern) -->
+            <div class="relative shrink-0 w-[150px] sm:w-[175px]" id="wrapper-area-unit-select">
+              <select id="input-area-unit" name="areaUnit" class="sr-only" tabindex="-1" aria-hidden="true">
+                <option value="ha" selected>Hektar (ha)</option>
+                <option value="m2">Meter persegi (m²)</option>
+              </select>
+
+              <button
+                type="button"
+                id="trigger-area-unit"
+                role="combobox"
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                aria-controls="popover-area-unit"
+                aria-label="Pilih satuan luas lahan"
+                class="w-full h-full pl-3 pr-8 py-2.5 min-h-[44px] bg-transparent text-[var(--color-text)] font-medium text-xs sm:text-sm cursor-pointer transition-colors flex items-center justify-between text-left focus:outline-none"
+              >
+                <span id="label-area-unit" class="truncate font-medium">Hektar (ha)</span>
+                <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2.5 text-[var(--color-soil)] transition-transform duration-200" aria-hidden="true">
+                  <svg class="w-4 h-4 chevron-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m6 8 4 4 4-4"/>
+                  </svg>
+                </span>
+              </button>
+
+              <div
+                id="popover-area-unit"
+                role="listbox"
+                class="hidden absolute top-full right-0 z-50 mt-1 w-[200px] bg-[var(--color-surface)] border border-[var(--color-border-control)] rounded-[2px] overflow-hidden p-1 space-y-0.5"
+              >
+                <div role="option" data-value="ha" data-label="Hektar (ha)" aria-selected="true" class="area-unit-opt px-3 py-2 text-xs sm:text-sm rounded-[2px] cursor-pointer flex items-center justify-between bg-[var(--color-tint)] font-semibold text-[var(--color-brand-strong)] hover:bg-[var(--color-tint)] transition-colors min-h-[44px]">
+                  <span>Hektar (ha)</span>
+                  <svg class="w-4 h-4 text-[var(--color-brand)] shrink-0 check-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10 4 4 8-8"/></svg>
+                </div>
+                <div role="option" data-value="m2" data-label="Meter persegi (m²)" aria-selected="false" class="area-unit-opt px-3 py-2 text-xs sm:text-sm text-[var(--color-text)] rounded-[2px] cursor-pointer flex items-center justify-between hover:bg-[var(--color-tint)] hover:text-[var(--color-brand-strong)] transition-colors min-h-[44px]">
+                  <span>Meter persegi (m²)</span>
+                  <svg class="w-4 h-4 text-[var(--color-brand)] shrink-0 hidden check-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10 4 4 8-8"/></svg>
+                </div>
               </div>
             </div>
           </div>
+
+          <div class="flex flex-wrap items-center gap-1.5 pt-1">
+            <span class="text-xs text-[var(--color-text-muted)] mr-1">Pilihan:</span>
+            <button type="button" data-area-val="1000" data-area-unit="m2" class="area-preset-btn px-2.5 py-1 min-h-[36px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">1.000 m²</button>
+            <button type="button" data-area-val="2500" data-area-unit="m2" class="area-preset-btn px-2.5 py-1 min-h-[36px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">2.500 m² (1/4 ha)</button>
+            <button type="button" data-area-val="0.5" data-area-unit="ha" class="area-preset-btn px-2.5 py-1 min-h-[36px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">0.5 ha</button>
+            <button type="button" data-area-val="1" data-area-unit="ha" class="area-preset-btn px-2.5 py-1 min-h-[36px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">1 ha</button>
+          </div>
+          <p id="err-area" class="text-[13px] font-medium text-[var(--color-danger)] hidden"></p>
         </div>
 
-        <div class="flex flex-wrap items-center gap-2">
-          <span class="text-[13px] text-[var(--color-text-muted)] mr-1">Pintasan:</span>
-          <button type="button" data-area-val="1000" data-area-unit="m2" class="area-preset-btn px-3 min-h-[44px] text-[13px] font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">1.000 m²</button>
-          <button type="button" data-area-val="2500" data-area-unit="m2" class="area-preset-btn px-3 min-h-[44px] text-[13px] font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">2.500 m² (1/4 ha)</button>
-          <button type="button" data-area-val="0.5" data-area-unit="ha" class="area-preset-btn px-3 min-h-[44px] text-[13px] font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">0.5 ha</button>
-          <button type="button" data-area-val="1" data-area-unit="ha" class="area-preset-btn px-3 min-h-[44px] text-[13px] font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">1 ha</button>
+        <!-- Field 4: Volume Semprot per Ha -->
+        <div class="space-y-1.5 pt-1">
+          <div class="flex items-center justify-between">
+            <label for="input-spray-vol" class="block text-sm font-semibold text-[var(--color-text)]">
+              Volume semprot larutan (L/ha) <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
+            </label>
+            <span class="text-xs text-[var(--color-text-muted)]">Anjuran umum: 200–400 L/ha</span>
+          </div>
+          <div class="relative flex items-stretch rounded-[2px] border border-[var(--color-border-control)] bg-[var(--color-surface)] hover:border-[var(--color-brand)] focus-within:border-[var(--color-brand-strong)] focus-within:ring-2 focus-within:ring-[var(--color-brand-strong)]/20 transition-all">
+            <input
+              type="number"
+              id="input-spray-vol"
+              name="sprayVolumePerHa"
+              value=""
+              placeholder="Misal: 200 atau 300"
+              step="any"
+              min="50"
+              max="1000"
+              required
+              class="flex-1 min-w-0 px-3.5 py-2.5 min-h-[44px] bg-transparent text-[var(--color-text)] border-0 focus:outline-none text-base sm:text-sm tabular-nums"
+              aria-describedby="spray-vol-desc"
+            />
+            <div class="flex items-center pr-3.5 text-xs sm:text-sm font-medium text-[var(--color-text-muted)] select-none">
+              L / ha
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-1.5 pt-1">
+            <span class="text-xs text-[var(--color-text-muted)] mr-1">Pilihan:</span>
+            <button type="button" aria-pressed="false" data-spray-preset="200" class="spray-preset-btn px-2.5 py-1 min-h-[36px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">200 L/ha (Rendah)</button>
+            <button type="button" aria-pressed="false" data-spray-preset="300" class="spray-preset-btn px-2.5 py-1 min-h-[36px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">300 L/ha (Standar)</button>
+            <button type="button" aria-pressed="false" data-spray-preset="400" class="spray-preset-btn px-2.5 py-1 min-h-[36px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">400 L/ha (Lebat)</button>
+          </div>
+          <p id="err-spray-vol" class="text-[13px] font-medium text-[var(--color-danger)] hidden"></p>
         </div>
-        <p id="area-desc" class="text-[13px] leading-snug text-[var(--color-text-muted)]">
-          Gunakan satuan baku m² atau ha. Satuan lokal tidak seragam antar daerah.
-        </p>
-        <p id="err-area" class="text-[13px] font-medium text-[var(--color-danger)] hidden"></p>
-      </div>
-
-      <!-- Field 4: Volume Semprot per Ha -->
-      <div class="space-y-2">
-        <label for="input-spray-vol" class="block text-sm font-semibold text-[var(--color-text)]">
-          Volume semprot larutan (L/ha) <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
-        </label>
-        <input
-          type="number"
-          id="input-spray-vol"
-          name="sprayVolumePerHa"
-          value=""
-          placeholder="Misal: 200 atau 400"
-          step="any"
-          min="50"
-          max="1000"
-          required
-          class="w-full px-3.5 py-2.5 min-h-[44px] bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border-control)] rounded-[2px] hover:border-[var(--color-brand)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-strong)] focus:border-transparent text-base sm:text-sm tabular-nums"
-          aria-describedby="spray-vol-desc"
-        />
-        <div class="flex flex-wrap items-center gap-2">
-          <span class="text-[13px] text-[var(--color-text-muted)] mr-1">Pintasan:</span>
-          <button type="button" aria-pressed="false" data-spray-preset="200" class="spray-preset-btn px-3 min-h-[44px] text-[13px] font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">200 L/ha (Rendah)</button>
-          <button type="button" aria-pressed="false" data-spray-preset="300" class="spray-preset-btn px-3 min-h-[44px] text-[13px] font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">300 L/ha (Standar)</button>
-          <button type="button" aria-pressed="false" data-spray-preset="400" class="spray-preset-btn px-3 min-h-[44px] text-[13px] font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">400 L/ha (Lebat)</button>
-        </div>
-        <p id="spray-vol-desc" class="text-[13px] leading-snug text-[var(--color-text-muted)]">
-          Volume semprot air per hektar sesuai anjuran label produk atau tanyakan agronom lapangan.
-        </p>
-        <p id="err-spray-vol" class="text-[13px] font-medium text-[var(--color-danger)] hidden"></p>
       </div>
 
     </div>

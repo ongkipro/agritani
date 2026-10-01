@@ -21,7 +21,7 @@ try {
 ---
 
 <div id="region-picker-root" class="card p-4 sm:p-6 lg:p-8 space-y-6">
-  <div class="max-w-[60ch] space-y-1.5">
+  <div class="region-header max-w-[60ch] space-y-1.5">
     <h2 class="font-serif text-xl font-semibold text-[var(--color-brand-strong)]">Tentukan lokasi lahan</h2>
     <p class="region-intro text-sm text-[var(--color-text-muted)] leading-relaxed">
       Pilih wilayah administrasi desa atau kelurahan untuk mengambil prakiraan cuaca resmi BMKG tingkat tapak.
@@ -383,14 +383,17 @@ try {
 
   <!-- Chosen location: one line + "Ganti wilayah"; the four pickers hide while this shows (global.css, T-45) -->
   <div id="region-active-summary" class="hidden flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-6">
-    <p class="flex items-start gap-2.5 min-w-0">
-      <svg class="w-5 h-5 mt-0.5 shrink-0 text-[var(--color-brand-strong)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
-      <span class="min-w-0">
-        <span class="sr-only">Lokasi terpilih: </span>
-        <span id="region-active-text" class="block font-semibold text-[var(--color-text)] leading-snug"></span>
-        <span id="region-remember-badge" class="hidden block mt-0.5 text-[13px] text-[var(--color-text-muted)]">Tersimpan di perangkat ini</span>
+    <div class="flex items-start sm:items-center gap-3 min-w-0">
+      <span class="w-8 h-8 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-brand-strong)] flex items-center justify-center shrink-0 mt-0.5 sm:mt-0" aria-hidden="true">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
       </span>
-    </p>
+      <div class="min-w-0">
+        <span class="sr-only">Lokasi terpilih: </span>
+        <span class="text-xs text-[var(--color-soil)] font-semibold block">Lokasi Lahan Aktif</span>
+        <span id="region-active-text" class="block font-bold text-base sm:text-lg text-[var(--color-text)] leading-snug"></span>
+        <span id="region-remember-badge" class="hidden block mt-0.5 text-xs text-[var(--color-text-muted)]">Tersimpan otomatis di peramban perangkat ini</span>
+      </div>
+    </div>
     <button
       type="button"
       id="region-reset-btn"
