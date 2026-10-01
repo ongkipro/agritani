@@ -3,14 +3,12 @@ import assert from 'node:assert/strict';
 import { externalLink, isExternalUrl, resolveLinkKind } from './links.ts';
 
 describe('Outbound Link Qualification Engine (DESIGN §4.4.12)', () => {
-  it('qualifies scientific & government reference links (dofollow with noopener)', () => {
+  it('qualifies scientific & government reference links (nofollow with noopener, DEC-024)', () => {
     const attrs = externalLink('reference');
     assert.equal(attrs.target, '_blank');
-    assert.equal(attrs.rel, 'noopener');
+    assert.equal(attrs.rel, 'noopener nofollow');
     assert.equal(attrs.tabNotice, '(membuka tab baru)');
     assert.equal(attrs.isExternal, true);
-    // MUST NOT contain nofollow (editorial citation)
-    assert.equal(attrs.rel.includes('nofollow'), false);
     // MUST NOT contain noreferrer
     assert.equal(attrs.rel.includes('noreferrer'), false);
   });
@@ -25,7 +23,7 @@ describe('Outbound Link Qualification Engine (DESIGN §4.4.12)', () => {
   it('qualifies sponsored partner links', () => {
     const attrs = externalLink('sponsored');
     assert.equal(attrs.target, '_blank');
-    assert.equal(attrs.rel, 'sponsored noopener');
+    assert.equal(attrs.rel, 'sponsored nofollow noopener');
     assert.equal(attrs.rel.includes('noreferrer'), false);
   });
 

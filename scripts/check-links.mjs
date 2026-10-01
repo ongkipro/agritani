@@ -4,7 +4,7 @@
 //    - target="_blank"
 //    - rel contains "noopener"
 //    - rel NEVER contains "noreferrer"
-//    - wa.me links must include "nofollow"
+//    - every outbound link includes "nofollow" (DEC-024)
 //    - screen-reader tab notice (e.g. sr-only "(membuka tab baru)")
 //    - Prohibit intermediate redirects, shorteners, or cloaked/encrypted URLs.
 
@@ -134,11 +134,10 @@ for (const file of walk(dist)) {
       );
     }
 
-    // Guard: WhatsApp must include nofollow
-    const isWhatsApp = host === 'wa.me' || host.endsWith('whatsapp.com');
-    if (isWhatsApp && !relTokens.includes('nofollow')) {
+    // Guard: every outbound link is nofollow (owner rule DEC-024)
+    if (!relTokens.includes('nofollow')) {
       outboundErrors.push(
-        `${relFile}: WhatsApp link rel must contain "nofollow": "${href}" (found: "${rel}")`
+        `${relFile}: Outbound link rel must contain "nofollow" (DEC-024): "${href}" (found: "${rel}")`
       );
     }
 

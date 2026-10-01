@@ -1,7 +1,7 @@
 /**
  * src/lib/rehype-external-links.mjs
  * Native rehype plugin for:
- * 1. Qualifying Markdown outbound links with target="_blank", rel="noopener" (DESIGN §4.4.12)
+ * 1. Qualifying Markdown outbound links with target="_blank", rel="noopener nofollow" (DESIGN §4.4.12, DEC-024)
  * 2. Enhancing GitHub-style blockquote callouts ([!NOTE], [!TIP], etc.) into clean editorial panels
  * Zero external dependencies.
  */
@@ -34,8 +34,7 @@ export function rehypeExternalLinks() {
         const href = node.properties?.href;
         if (href && isExternal(href)) {
           node.properties.target = '_blank';
-          const isWa = /wa\.me|api\.whatsapp\.com/i.test(href);
-          node.properties.rel = isWa ? 'noopener nofollow' : 'noopener';
+          node.properties.rel = 'noopener nofollow';
 
           if (!Array.isArray(node.children)) {
             node.children = [];

@@ -999,10 +999,10 @@ Aturan:
   ```
   User-agent: *
   Allow: /
-  Disallow: /cari/
 
   Sitemap: https://agritani.com/sitemap.xml
   ```
+  `/cari/` dan 404 **tidak** diblokir di `robots.txt`: keduanya `noindex`, dan Google hanya membaca `noindex` pada halaman yang boleh di-crawl (DEC-024).
   Kebijakan crawler AI tidak dibedakan di v1 (semua diizinkan); bila ingin membatasi pelatihan model, keputusan baru via skill `ai-traffic-os`.
 - Arsip tag `/jurnal/tag/{tag}/` diindeks dan masuk `sitemap-tag-0.xml` (DEC-023, menggantikan aturan T-35 "noindex bila < 3 artikel").
 
@@ -1035,9 +1035,9 @@ header situs `Referrer-Policy: strict-origin-when-cross-origin` yang sudah aktif
 | Jenis | Contoh | `target` | `rel` | Penanda |
 | :--- | :--- | :--- | :--- | :--- |
 | Internal | semua `agritani.com` | tab sama | — | — |
-| Rujukan ilmiah & pemerintah (dipilih redaksi) | DOI, jurnal, BMKG, Kementan | `_blank` | `noopener` (tetap *follow*: rujukan editorial yang dipercaya) | ikon `ArrowUpRight` 12px + teks `sr-only` "(membuka tab baru)" |
+| Rujukan ilmiah & pemerintah (dipilih redaksi) | DOI, jurnal, BMKG, Kementan | `_blank` | `noopener nofollow` (DEC-024: semua tautan keluar *nofollow*) | ikon `ArrowUpRight` 12px + teks `sr-only` "(membuka tab baru)" |
 | WhatsApp | `wa.me/…` via `waLink()` | `_blank` | `noopener nofollow` | label kata kerja; ikon `MessageCircle` sudah cukup |
-| Mitra komersial / merek (bila kelak ditampilkan) | tautan brand mitra | `_blank` | `sponsored noopener` | ikon + `sr-only` |
+| Mitra komersial / merek (bila kelak ditampilkan) | tautan brand mitra | `_blank` | `sponsored nofollow noopener` | ikon + `sr-only` |
 | Tautan belum ditinjau / dari pengguna (bila kelak ada) | komentar, kiriman | `_blank` | `nofollow ugc noopener` | ikon + `sr-only` |
 
 Aturan:
@@ -1050,7 +1050,7 @@ Aturan:
   tautan keluar di badan Markdown diberi atribut oleh plugin rehype kecil milik repo (tanpa
   dependensi baru), dengan jenis "rujukan" sebagai bawaan.
 - `scripts/check-links.mjs` memeriksa setiap `<a href="http…">` ke domain luar: wajib
-  `target="_blank"`, `rel` memuat `noopener`, dan teks `sr-only` tab baru; `wa.me` wajib `nofollow`.
+  `target="_blank"`, `rel` memuat `noopener` dan `nofollow` (DEC-024), dan teks `sr-only` tab baru.
 
 ## 5. Component Contracts
 

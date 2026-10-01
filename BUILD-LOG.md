@@ -942,3 +942,9 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - Aturan gambar (pemilik): `scripts/check-images.mjs` di build — setiap `<img>` ALT 10–125 karakter non-generik, src WebP/SVG; sumber `src/assets`/`public` WebP kecuali OG/apple-touch PNG. `articleImageAlt()` ("Ilustrasi {komoditas|topik}: {judul}") untuk semua gambar artikel; kemasan "Kemasan {nama}, {peran}" / "untuk {komoditas}"; avatar ber-ALT. Hasil: 5.505 gambar di 1.826 halaman ber-ALT (sebelumnya 4.608 ALT kosong), 61% ALT memuat kata judul/H1 halaman; sisanya menyebut item yang ditampilkan (artikel/produk).
 - Verifikasi: astro check 0/0; npm test 108/108; build PASS (artikel, SEO, CSP 0/0/0, 198.440 tautan internal, owner-rules, images). Uji fungsi: kalkulator (32 ml/tangki, 25 tangki untuk 1 ha × 400 L/ha), Cuaca Tani BMKG 200 + 3 hari + muat ulang, Kalender produksi jujur & pratinjau menghasilkan rencana Padi + .ics, pencarian 25 hasil, Konsultasi → wa.me; 0 pageerror.
 - Repo publik (permintaan pemilik ke agy): `security-check` tidak menemukan rahasia.
+
+## 2026-10-01 — T-55: Tautan keluar nofollow + robots.txt (PASS)
+
+- Audit build sebelum perubahan: 1.826 halaman, noindex hanya `/cari/` dan 404, canonical lengkap; tautan keluar: 616 `wa.me` sudah `nofollow`, 23 `doi.org` dan 3 `bmkg.go.id` masih *follow*.
+- Pemilik: semua tautan keluar `nofollow` (DEC-024). `externalLink('reference')` → `noopener nofollow`, `sponsored` → `sponsored nofollow noopener`, plugin rehype Markdown → `noopener nofollow`; `check-links.mjs` kini menolak setiap tautan keluar tanpa `nofollow`.
+- `robots.txt`: `Disallow: /cari/` dihapus; `/cari/` tetap `noindex` dan kini bisa di-crawl sehingga `noindex` terbaca. `check-seo.mjs` menolak `Disallow` path.

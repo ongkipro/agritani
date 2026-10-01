@@ -3,9 +3,9 @@
  * Outbound link helper and qualification engine (DESIGN §4.4.12, REQ-08)
  *
  * Enforces Google outbound link rules and WCAG G201:
- * - Editorial academic/gov references (DOI, BMKG, Kementan) = target="_blank" rel="noopener" (dofollow)
+ * - Every outbound link is nofollow (owner rule DEC-024): references (DOI, BMKG, Kementan) = rel="noopener nofollow"
  * - WhatsApp = target="_blank" rel="noopener nofollow"
- * - Commercial partners = target="_blank" rel="sponsored noopener"
+ * - Commercial partners = target="_blank" rel="sponsored nofollow noopener"
  * - User/unreviewed = target="_blank" rel="nofollow ugc noopener"
  * - STRICTLY FORBIDDEN: noreferrer (Referrer-Policy header handles privacy)
  * - Notice: sr-only "(membuka tab baru)" + 12px ArrowUpRight icon
@@ -32,14 +32,14 @@ export function externalLink(kind: ExternalLinkKind = 'reference'): ExternalLink
       rel = 'noopener nofollow';
       break;
     case 'sponsored':
-      rel = 'sponsored noopener';
+      rel = 'sponsored nofollow noopener';
       break;
     case 'ugc':
       rel = 'nofollow ugc noopener';
       break;
     case 'reference':
     default:
-      rel = 'noopener';
+      rel = 'noopener nofollow';
       break;
   }
 

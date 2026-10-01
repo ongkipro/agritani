@@ -39,8 +39,9 @@ if (!fs.existsSync(robotsPath)) {
   if (!robotsContent.includes('Sitemap: https://agritani.com/sitemap.xml')) {
     errors.push('dist/robots.txt must reference https://agritani.com/sitemap.xml');
   }
-  if (!robotsContent.includes('Disallow: /cari/')) {
-    errors.push('dist/robots.txt must contain Disallow: /cari/');
+  // /cari/ is noindex; it must stay crawlable or Google never sees the noindex (DEC-024).
+  if (/^Disallow:\s*\/\S/m.test(robotsContent)) {
+    errors.push('dist/robots.txt must not Disallow paths; use noindex instead (DEC-024)');
   }
 }
 
