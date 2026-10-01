@@ -948,3 +948,10 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - Audit build sebelum perubahan: 1.826 halaman, noindex hanya `/cari/` dan 404, canonical lengkap; tautan keluar: 616 `wa.me` sudah `nofollow`, 23 `doi.org` dan 3 `bmkg.go.id` masih *follow*.
 - Pemilik: semua tautan keluar `nofollow` (DEC-024). `externalLink('reference')` → `noopener nofollow`, `sponsored` → `sponsored nofollow noopener`, plugin rehype Markdown → `noopener nofollow`; `check-links.mjs` kini menolak setiap tautan keluar tanpa `nofollow`.
 - `robots.txt`: `Disallow: /cari/` dihapus; `/cari/` tetap `noindex` dan kini bisa di-crawl sehingga `noindex` terbaca. `check-seo.mjs` menolak `Disallow` path.
+
+## 2026-10-01 — T-56: Arsip tag tipis noindex + aturan revisi artikel (PASS)
+
+- Data tag terbit: 1.471 tag; 1.462 berisi 1 artikel, 9 berisi 2, 0 berisi ≥ 3. Arsip seperti ini menduplikasi satu artikel (risiko konten tipis), sehingga pemilik menyetujui ambang `TAG_INDEX_MIN = 3` (DEC-025, mengubah DEC-023).
+- Arsip tag < 3 artikel: `noindex, follow` (semua halaman `noindex` kini `follow` agar tautan artikel tetap diikuti). Filter sitemap di `astro.config.mjs` membaca meta robots halaman hasil build, jadi sitemap = persis halaman yang boleh diindeks; `sitemap-tag-0.xml` otomatis muncul kembali ketika ada tag yang mencapai ambang.
+- `check-articles`: `updatedDate` wajib YYYY-MM-DD, tidak sebelum `pubDate`, tidak di masa depan (+ test). ARTICLE-INTAKE §3: tag dipakai ulang (3–6 tag kosakata bersama), `updatedDate` diisi pada revisi isi yang berarti, tautan keluar otomatis nofollow. AGENTS.md diperbarui.
+- Verifikasi: npm test 109/109; astro check 0/0; build PASS (check-seo: tidak ada URL noindex di sitemap). Live (versi 23ed6f70): indeks sitemap 6 berkas (jurnal 306, komoditas 24, topik 6, pages 6, produk 5, alat 5 URL), `/sitemap-tag-0.xml` 404, `/jurnal/tag/bep-padi/` `noindex, follow`, artikel `index, follow`.
