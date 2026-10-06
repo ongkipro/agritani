@@ -451,6 +451,35 @@ button:disabled,
   background: var(--color-tint);
 }
 
+/* Preset chip (PresetChips.astro): quick-fill option under a tool input. 44px target; selection = aria-pressed. */
+.preset-chip {
+  min-height: 2.75rem;
+  padding: 0 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-control);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.preset-chip:hover {
+  border-color: var(--color-brand);
+  color: var(--color-brand-strong);
+}
+.preset-chip[aria-pressed='true'] {
+  border-color: var(--color-brand);
+  background: var(--color-tint);
+  color: var(--color-brand-strong);
+  font-weight: 700;
+}
+.preset-chip:focus-visible {
+  outline: 2px solid var(--color-brand-strong);
+  outline-offset: 2px;
+}
+
 /* Cuaca Tani region picker (T-45): once a village is chosen, compress padding and show only the one-line summary + "Ganti wilayah". */
 #region-picker-root:has(#region-active-summary:not(.hidden)) {
   padding: 1rem 1.25rem;

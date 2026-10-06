@@ -213,8 +213,8 @@ const seoProps: SeoInput = {
               </span>
             </div>
 
-            <!-- Modern Farming Utility List (Free of Card-Borders) -->
-            <div class="space-y-4">
+            <!-- Modern Farming Utility List (Free of Card-Borders); -mx cancels row padding so text aligns with the heading -->
+            <div class="-mx-3.5 space-y-2">
               
               <!-- Tool 1: Cuaca Tani BMKG -->
               <a
@@ -387,18 +387,18 @@ const seoProps: SeoInput = {
           </div>
 
           <!-- 3 Kolom Poin Kunci Presisi -->
-          <div class="grid grid-cols-3 gap-4 sm:gap-6 pt-6 border-t border-[var(--color-border)] text-[var(--color-text)]">
-            <div>
-              <span class="block font-serif text-2xl sm:text-3xl font-bold text-[var(--color-brand-strong)] tabular-nums">&gt;8 Tahun</span>
-              <span class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-tight block mt-1">Riset Lapangan Tropis</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6 pt-6 border-t border-[var(--color-border)] text-[var(--color-text)]">
+            <div class="flex items-baseline gap-3 sm:block">
+              <span class="block shrink-0 font-serif text-2xl sm:text-3xl font-bold text-[var(--color-brand-strong)] tabular-nums">&gt;8 Tahun</span>
+              <span class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-tight block sm:mt-1">Riset Lapangan Tropis</span>
             </div>
-            <div>
-              <span class="block font-serif text-2xl sm:text-3xl font-bold text-[var(--color-brand-strong)] tabular-nums">296 Panduan</span>
-              <span class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-tight block mt-1">Naskah Jurnal Terbit</span>
+            <div class="flex items-baseline gap-3 sm:block">
+              <span class="block shrink-0 font-serif text-2xl sm:text-3xl font-bold text-[var(--color-brand-strong)] tabular-nums">{allArticles.length} Panduan</span>
+              <span class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-tight block sm:mt-1">Naskah Jurnal Terbit</span>
             </div>
-            <div>
-              <span class="block font-serif text-2xl sm:text-3xl font-bold text-[var(--color-brand-strong)] tabular-nums">Akses Terbuka</span>
-              <span class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-tight block mt-1">Edukasi Tanpa Biaya</span>
+            <div class="flex items-baseline gap-3 sm:block">
+              <span class="block shrink-0 font-serif text-2xl sm:text-3xl font-bold text-[var(--color-brand-strong)] tabular-nums">Akses Terbuka</span>
+              <span class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-tight block sm:mt-1">Edukasi Tanpa Biaya</span>
             </div>
           </div>
         </div>
@@ -535,11 +535,11 @@ const seoProps: SeoInput = {
 
       <!-- Curated Commodity Tracks (Clean Editorial Typography, No Bulky Card-Soup) -->
       <div class="mt-16">
-        <div class="flex items-baseline justify-between mb-4">
+        <div class="flex items-baseline justify-between gap-4 mb-4">
           <h3 class="text-sm font-bold text-[var(--color-text)]">
             Panduan Berdasarkan Komoditas Unggulan
           </h3>
-          <a href="/jurnal/" class="link-more text-xs">
+          <a href="/jurnal/" class="link-more text-xs shrink-0 whitespace-nowrap">
             Semua komoditas &rarr;
           </a>
         </div>

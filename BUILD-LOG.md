@@ -955,3 +955,15 @@ Record only durable implementation changes, validation evidence, and gotchas tha
 - Arsip tag < 3 artikel: `noindex, follow` (semua halaman `noindex` kini `follow` agar tautan artikel tetap diikuti). Filter sitemap di `astro.config.mjs` membaca meta robots halaman hasil build, jadi sitemap = persis halaman yang boleh diindeks; `sitemap-tag-0.xml` otomatis muncul kembali ketika ada tag yang mencapai ambang.
 - `check-articles`: `updatedDate` wajib YYYY-MM-DD, tidak sebelum `pubDate`, tidak di masa depan (+ test). ARTICLE-INTAKE §3: tag dipakai ulang (3–6 tag kosakata bersama), `updatedDate` diisi pada revisi isi yang berarti, tautan keluar otomatis nofollow. AGENTS.md diperbarui.
 - Verifikasi: npm test 109/109; astro check 0/0; build PASS (check-seo: tidak ada URL noindex di sitemap). Live (versi 23ed6f70): indeks sitemap 6 berkas (jurnal 306, komoditas 24, topik 6, pages 6, produk 5, alat 5 URL), `/sitemap-tag-0.xml` 404, `/jurnal/tag/bep-padi/` `noindex, follow`, artikel `index, follow`.
+
+## 2026-10-06 — T-57: Pindai indeks/tautan keluar + presisi UI mobile & desktop (PASS)
+
+- Pindai build (1.826 halaman): 352 `index, follow, max-image-preview:large…`; `noindex, follow` hanya `/cari/`, 404, dan 1.471 arsip tag < 3 artikel (DEC-025, disengaja). 642 tautan keluar (616 `wa.me`, 23 `doi.org`, 3 `bmkg.go.id`) semuanya `noopener nofollow`; 0 tautan internal `nofollow`. Tidak ada perubahan SEO yang diperlukan.
+- Pindai UI 20 halaman × 360/1440 (Playwright): 0 overflow horizontal. Temuan dan perbaikan:
+  - Kalkulator Dosis: tombol preset 36px → komponen `PresetChips.astro` + kelas `.preset-chip` (44px, status dari `aria-pressed`, `role="group"`); JS hanya mengisi nilai, `recompute()` menyinkronkan status sehingga mengetik angka manual melepas pilihan, dan preset luas kini punya status terpilih. Label + petunjuk (mis. "Standar knapsack: 16 L") membungkus ke bawah label di HP, tidak lagi berhimpitan.
+  - Beranda: baris "Instrumen Cepat Lapangan" sejajar kiri dengan judulnya (padding hover keluar lewat `-mx`); statistik di HP satu baris per poin (sebelumnya ">8 / Tahun" patah); "296 Panduan" dihitung dari koleksi; "Semua komoditas →" tidak patah dua baris.
+  - `ArticleRow`: di HP topik di baris sendiri, lalu "menit baca · tanggal" — tidak ada lagi "·" menggantung di ujung baris.
+  - Strip topik HP di header: chip tetap 36px secara visual, area sentuh 44px lewat `::before`.
+- Verifikasi: astro check 0/0; npm test 109/109; check:contrast PASS; build PASS (SEO, CSP 0/0/0, links, owner-rules, images); `proof/ui/t57/verify.mjs` 30/30 PASS (360 & 1440: chip ≥ 44px, klik/ketik/Enter, hasil muncul, tanpa overflow, kesejajaran, statistik satu baris, hit area chip topik). Bukti: `proof/ui/t57/*.webp`.
+- Review independen (Claude Sonnet subagent): APPROVE, 0 blocker. Nit diperbaiki: `syncPresets()` juga dipanggil saat inisialisasi (nilai formulir yang dipulihkan browser), jarak baris meta artikel di HP dirapatkan.
+

@@ -1,0 +1,32 @@
+---
+/**
+ * src/components/PresetChips.astro
+ * Quick-fill options under a tool input (DESIGN §3.3.4: targets >= 44px).
+ * Selection lives in aria-pressed; `.preset-chip[aria-pressed='true']` styles it, so the tool script only syncs the attribute.
+ */
+interface Props {
+  /** Class the tool script queries, e.g. 'tank-preset-btn'. */
+  group: string;
+  /** Accessible name of the option group, e.g. 'Pilihan kapasitas tangki'. */
+  label: string;
+  items: Array<{ label: string; data: Record<string, string>; pressed?: boolean }>;
+}
+
+const { group, label, items } = Astro.props;
+---
+
+<div role="group" aria-label={label} class="flex flex-wrap items-center gap-2 pt-1">
+  <span class="text-xs text-[var(--color-text-muted)]" aria-hidden="true">Pilihan:</span>
+  {
+    items.map(({ label: text, data, pressed = false }) => (
+      <button
+        type="button"
+        aria-pressed={pressed ? 'true' : 'false'}
+        class={`preset-chip ${group}`}
+        {...Object.fromEntries(Object.entries(data).map(([k, v]) => [`data-${k}`, v]))}
+      >
+        {text}
+      </button>
+    ))
+  }
+</div>

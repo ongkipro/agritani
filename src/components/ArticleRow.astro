@@ -55,7 +55,8 @@ const formattedDate = new Intl.DateTimeFormat('id-ID', {
     />
   </a>
   <div class="flex-1 min-w-0">
-    <div class="flex flex-wrap items-center gap-2 text-xs text-[var(--color-soil)] font-medium mb-1.5">
+    <!-- Phones: topic on its own line so a wrapped meta row never ends or starts with a dangling separator. -->
+    <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-[var(--color-soil)] font-medium mb-1.5">
       <a
         href={`/jurnal/topik/${article.data.topic}/`}
         class={`topic-${article.data.topic} topic-link focus-visible:outline-2 focus-visible:outline-[var(--color-harvest)]`}
@@ -63,7 +64,8 @@ const formattedDate = new Intl.DateTimeFormat('id-ID', {
         <span class="topic-marker" aria-hidden="true"></span>
         <span>{topicName(article.data.topic)}</span>
       </a>
-      <span aria-hidden="true">&middot;</span>
+      <span class="basis-full -mt-1 sm:hidden" aria-hidden="true"></span>
+      <span class="hidden sm:inline" aria-hidden="true">&middot;</span>
       <span>{readingTime.text}</span>
       <span aria-hidden="true">&middot;</span>
       <time datetime={new Date(article.data.pubDate).toISOString()}>

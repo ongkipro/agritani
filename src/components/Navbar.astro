@@ -328,7 +328,7 @@ function isActive(match: string): boolean {
     </div>
   </nav>
 
-  <!-- Mobile Horizontal Scroll Taxonomy Strip -->
+  <!-- Mobile Horizontal Scroll Taxonomy Strip (chips look 36px; ::before stretches the hit area to 44px inside the strip padding) -->
   <nav aria-label="Topik Pertanian Cepat" class="lg:hidden border-t border-[var(--color-border)] bg-[var(--color-surface)] overflow-x-auto select-none">
     <div class="flex items-center px-4 py-2 gap-2 min-w-max">
       {
@@ -337,7 +337,7 @@ function isActive(match: string): boolean {
           return (
             <a
               href={sector.href}
-              class={`inline-flex items-center gap-2 px-3 py-1.5 text-xs font-semibold rounded-[2px] whitespace-nowrap min-h-[36px] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)] ${
+              class={`relative inline-flex items-center gap-2 px-3 py-1.5 text-xs font-semibold rounded-[2px] whitespace-nowrap min-h-[36px] before:absolute before:inset-x-0 before:-inset-y-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)] ${
                 isTopicActive
                   ? 'bg-[var(--color-tint)] text-[var(--color-brand-strong)] font-bold border border-[var(--color-brand)]'
                   : 'bg-[var(--color-canvas)] text-[var(--color-text)] hover:text-[var(--color-brand-strong)]'

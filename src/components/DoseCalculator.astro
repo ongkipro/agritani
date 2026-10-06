@@ -6,6 +6,7 @@
  * No prefilled product dosage (PRD REQ-11 & DESIGN §2.6.3 strict rule).
  */
 import ConsultPrompt from './ConsultPrompt.astro';
+import PresetChips from './PresetChips.astro';
 ---
 
 <div class="space-y-12 lg:space-y-16" id="dose-calculator-root">
@@ -23,7 +24,7 @@ import ConsultPrompt from './ConsultPrompt.astro';
       
       <!-- Group 1: Data Dosis Label Kemasan -->
       <div class="space-y-4">
-        <div class="flex items-center justify-between pb-1">
+        <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5 pb-1">
           <h3 class="font-serif text-base font-semibold text-[var(--color-brand-strong)]">
             1. Takaran pada Label Produk
           </h3>
@@ -137,7 +138,7 @@ import ConsultPrompt from './ConsultPrompt.astro';
 
       <!-- Group 2: Kondisi Alat Semprot & Ukuran Lahan Anda -->
       <div class="space-y-5 pt-2">
-        <div class="flex items-center justify-between pb-1">
+        <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5 pb-1">
           <h3 class="font-serif text-base font-semibold text-[var(--color-brand-strong)]">
             2. Kondisi Alat &amp; Luas Lahan Anda
           </h3>
@@ -146,7 +147,7 @@ import ConsultPrompt from './ConsultPrompt.astro';
 
         <!-- Field 2: Volume Tangki Pengguna -->
         <div class="space-y-1.5">
-          <div class="flex items-center justify-between">
+          <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
             <label for="input-tank-vol" class="block text-sm font-semibold text-[var(--color-text)]">
               Kapasitas tangki semprot <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
             </label>
@@ -169,19 +170,18 @@ import ConsultPrompt from './ConsultPrompt.astro';
               Liter
             </div>
           </div>
-          <div class="flex flex-wrap items-center gap-1.5 pt-1">
-            <span class="text-xs text-[var(--color-text-muted)] mr-1">Pilihan:</span>
-            <button type="button" aria-pressed="false" data-tank-preset="14" class="tank-preset-btn px-2.5 py-1 min-h-[36px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">14 L (Solo)</button>
-            <button type="button" aria-pressed="true" data-tank-preset="16" class="tank-preset-btn px-2.5 py-1 min-h-[36px] text-xs font-bold border border-[var(--color-brand)] bg-[var(--color-tint)] text-[var(--color-brand-strong)] rounded-[2px] transition-colors cursor-pointer">16 L (Standar)</button>
-            <button type="button" aria-pressed="false" data-tank-preset="20" class="tank-preset-btn px-2.5 py-1 min-h-[36px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">20 L (Elektrik)</button>
-            <button type="button" aria-pressed="false" data-tank-preset="200" class="tank-preset-btn px-2.5 py-1 min-h-[36px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">200 L (Drum)</button>
-          </div>
+          <PresetChips group="tank-preset-btn" label="Pilihan kapasitas tangki" items={[
+            { label: '14 L (Solo)', data: { 'tank-preset': '14' } },
+            { label: '16 L (Standar)', data: { 'tank-preset': '16' }, pressed: true },
+            { label: '20 L (Elektrik)', data: { 'tank-preset': '20' } },
+            { label: '200 L (Drum)', data: { 'tank-preset': '200' } },
+          ]} />
           <p id="err-tank-vol" class="text-[13px] font-medium text-[var(--color-danger)] hidden"></p>
         </div>
 
         <!-- Field 3: Luas Lahan -->
         <div class="space-y-1.5 pt-1">
-          <div class="flex items-center justify-between">
+          <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
             <label for="input-area" class="block text-sm font-semibold text-[var(--color-text)]">
               Luas lahan semprot <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
             </label>
@@ -244,19 +244,18 @@ import ConsultPrompt from './ConsultPrompt.astro';
             </div>
           </div>
 
-          <div class="flex flex-wrap items-center gap-1.5 pt-1">
-            <span class="text-xs text-[var(--color-text-muted)] mr-1">Pilihan:</span>
-            <button type="button" data-area-val="1000" data-area-unit="m2" class="area-preset-btn px-2.5 py-1 min-h-[36px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">1.000 m²</button>
-            <button type="button" data-area-val="2500" data-area-unit="m2" class="area-preset-btn px-2.5 py-1 min-h-[36px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">2.500 m² (1/4 ha)</button>
-            <button type="button" data-area-val="0.5" data-area-unit="ha" class="area-preset-btn px-2.5 py-1 min-h-[36px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">0.5 ha</button>
-            <button type="button" data-area-val="1" data-area-unit="ha" class="area-preset-btn px-2.5 py-1 min-h-[36px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">1 ha</button>
-          </div>
+          <PresetChips group="area-preset-btn" label="Pilihan luas lahan" items={[
+            { label: '1.000 m²', data: { 'area-val': '1000', 'area-unit': 'm2' } },
+            { label: '2.500 m² (1/4 ha)', data: { 'area-val': '2500', 'area-unit': 'm2' } },
+            { label: '0.5 ha', data: { 'area-val': '0.5', 'area-unit': 'ha' } },
+            { label: '1 ha', data: { 'area-val': '1', 'area-unit': 'ha' } },
+          ]} />
           <p id="err-area" class="text-[13px] font-medium text-[var(--color-danger)] hidden"></p>
         </div>
 
         <!-- Field 4: Volume Semprot per Ha -->
         <div class="space-y-1.5 pt-1">
-          <div class="flex items-center justify-between">
+          <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
             <label for="input-spray-vol" class="block text-sm font-semibold text-[var(--color-text)]">
               Volume semprot larutan (L/ha) <span class="text-[var(--color-danger)]" aria-hidden="true">*</span>
             </label>
@@ -280,12 +279,11 @@ import ConsultPrompt from './ConsultPrompt.astro';
               L / ha
             </div>
           </div>
-          <div class="flex flex-wrap items-center gap-1.5 pt-1">
-            <span class="text-xs text-[var(--color-text-muted)] mr-1">Pilihan:</span>
-            <button type="button" aria-pressed="false" data-spray-preset="200" class="spray-preset-btn px-2.5 py-1 min-h-[36px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">200 L/ha (Rendah)</button>
-            <button type="button" aria-pressed="false" data-spray-preset="300" class="spray-preset-btn px-2.5 py-1 min-h-[36px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">300 L/ha (Standar)</button>
-            <button type="button" aria-pressed="false" data-spray-preset="400" class="spray-preset-btn px-2.5 py-1 min-h-[36px] text-xs font-medium border border-[var(--color-border-control)] rounded-[2px] bg-[var(--color-surface)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand-strong)] transition-colors cursor-pointer">400 L/ha (Lebat)</button>
-          </div>
+          <PresetChips group="spray-preset-btn" label="Pilihan volume semprot" items={[
+            { label: '200 L/ha (Rendah)', data: { 'spray-preset': '200' } },
+            { label: '300 L/ha (Standar)', data: { 'spray-preset': '300' } },
+            { label: '400 L/ha (Lebat)', data: { 'spray-preset': '400' } },
+          ]} />
           <p id="err-spray-vol" class="text-[13px] font-medium text-[var(--color-danger)] hidden"></p>
         </div>
       </div>
@@ -625,36 +623,24 @@ import ConsultPrompt from './ConsultPrompt.astro';
       }
     });
 
-    // Preset Buttons
+    // Preset chips (PresetChips.astro): a click fills the input; recompute() syncs aria-pressed with the current values.
     const tankPresets = document.querySelectorAll<HTMLButtonElement>('.tank-preset-btn');
+    const areaPresets = document.querySelectorAll<HTMLButtonElement>('.area-preset-btn');
+    const sprayPresets = document.querySelectorAll<HTMLButtonElement>('.spray-preset-btn');
+
     tankPresets.forEach((btn) => {
       btn.addEventListener('click', () => {
-        const val = btn.dataset.tankPreset || '16';
-        if (inputTankVol) {
-          inputTankVol.value = val;
-          tankPresets.forEach((b) => {
-            if (b === btn) {
-              b.classList.add('border-[var(--color-brand)]', 'bg-[var(--color-tint)]', 'text-[var(--color-brand-strong)]', 'font-bold');
-              b.classList.remove('font-medium');
-              b.setAttribute('aria-pressed', 'true');
-            } else {
-              b.classList.remove('border-[var(--color-brand)]', 'bg-[var(--color-tint)]', 'text-[var(--color-brand-strong)]', 'font-bold');
-              b.classList.add('font-medium');
-              b.setAttribute('aria-pressed', 'false');
-            }
-          });
-          recompute();
-        }
+        if (!inputTankVol) return;
+        inputTankVol.value = btn.dataset.tankPreset || '16';
+        recompute();
       });
     });
 
-    const areaPresets = document.querySelectorAll<HTMLButtonElement>('.area-preset-btn');
     areaPresets.forEach((btn) => {
       btn.addEventListener('click', () => {
-        const val = btn.dataset.areaVal || '1';
         const unit = btn.dataset.areaUnit || 'ha';
         if (inputArea && inputAreaUnit) {
-          inputArea.value = val;
+          inputArea.value = btn.dataset.areaVal || '1';
           inputAreaUnit.value = unit;
           if (labelAreaUnit) {
             labelAreaUnit.textContent = unit === 'ha' ? 'Hektar (ha)' : 'Meter persegi (m²)';
@@ -679,27 +665,22 @@ import ConsultPrompt from './ConsultPrompt.astro';
       });
     });
 
-    const sprayPresets = document.querySelectorAll<HTMLButtonElement>('.spray-preset-btn');
     sprayPresets.forEach((btn) => {
       btn.addEventListener('click', () => {
-        const val = btn.dataset.sprayPreset || '300';
-        if (inputSprayVol) {
-          inputSprayVol.value = val;
-          sprayPresets.forEach((b) => {
-            if (b === btn) {
-              b.classList.add('border-[var(--color-brand)]', 'bg-[var(--color-tint)]', 'text-[var(--color-brand-strong)]', 'font-bold');
-              b.classList.remove('font-medium');
-              b.setAttribute('aria-pressed', 'true');
-            } else {
-              b.classList.remove('border-[var(--color-brand)]', 'bg-[var(--color-tint)]', 'text-[var(--color-brand-strong)]', 'font-bold');
-              b.classList.add('font-medium');
-              b.setAttribute('aria-pressed', 'false');
-            }
-          });
-          recompute();
-        }
+        if (!inputSprayVol) return;
+        inputSprayVol.value = btn.dataset.sprayPreset || '300';
+        recompute();
       });
     });
+
+    function syncPresets() {
+      const press = (b: HTMLButtonElement, on: boolean) => b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      tankPresets.forEach((b) => press(b, Number(b.dataset.tankPreset) === Number(inputTankVol?.value)));
+      sprayPresets.forEach((b) => press(b, Number(b.dataset.sprayPreset) === Number(inputSprayVol?.value)));
+      areaPresets.forEach((b) =>
+        press(b, Number(b.dataset.areaVal) === Number(inputArea?.value) && b.dataset.areaUnit === inputAreaUnit?.value),
+      );
+    }
 
     function toggleLabelTankVisibility() {
       const unit = inputDoseUnit?.value || '';
@@ -712,6 +693,7 @@ import ConsultPrompt from './ConsultPrompt.astro';
 
     function recompute() {
       toggleLabelTankVisibility();
+      syncPresets();
 
       const doseStr = inputDose?.value.trim() || '';
       const areaStr = inputArea?.value.trim() || '';
@@ -853,6 +835,7 @@ import ConsultPrompt from './ConsultPrompt.astro';
     });
 
     toggleLabelTankVisibility();
+    syncPresets(); // restored form values (back/forward) must match the pressed chip
   }
 
   // Support direct and view transitions
