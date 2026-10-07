@@ -297,7 +297,9 @@ Sebelum DEC-020 artikel baru terbit setelah pustaka terverifikasi (OQ-3/T-16); m
    X-Content-Type-Options: nosniff
    Referrer-Policy: strict-origin-when-cross-origin
    Permissions-Policy: camera=(), microphone=(), geolocation=()
+   Strict-Transport-Security: max-age=31536000
    ```
+   HSTS (T-59, pemilik 2026-10-07) tanpa `includeSubDomains`/`preload` agar subdomain lain tidak ikut terkunci ke HTTPS; dinaikkan hanya dengan keputusan baru.
    `'wasm-unsafe-eval'` dan `worker-src 'self' blob:` dibutuhkan Pagefind (pagefind.app/docs/hosting, diakses 2026-09-29); `connect-src` BMKG untuk Cuaca Tani (DEC-014); `img-src` `api-apps.bmkg.go.id` untuk ikon cuaca yang dirujuk respons BMKG (ditemukan saat uji live 2026-09-29). Konsekuensi: tanpa script inline yang dieksekusi, tanpa atribut `onclick`/`style="…"`, CSS tidak di-inline (`build.inlineStylesheets: 'never'`), inisialisasi Pagefind di file JS sendiri, data untuk script memakai `<script type="application/json">` (data block, tidak dieksekusi). Astro dapat meng-inline script terproses yang kecil; T-18 memeriksa HTML hasil build bahwa tidak ada `<script>` inline yang dieksekusi (selain data block JSON) dan mematikan inlining bila ada. Bila Astro versi terpasang menyediakan CSP berbasis hash bawaan, evaluasi di T-18 sebelum melonggarkan kebijakan.
 5. **Privasi**: tanpa cookie dan pelacak pihak ketiga. Pilihan Alat Tani hanya di `localStorage` perangkat; Cuaca Tani mengirim kode `adm4` ke BMKG dari browser pengguna (diungkap di Kebijakan Privasi). Bila analitik ditambah kemudian, butuh keputusan baru + pembaruan kebijakan privasi.
 

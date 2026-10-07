@@ -14,105 +14,59 @@ import { fileURLToPath } from 'node:url';
 const lastmodMap = new Map();
 const draftSet = new Set();
 try {
-  let maxArticleDate = new Date('2026-09-30');
+  // Dates come only from data (DESIGN §4.4.8): article updatedDate/pubDate; hubs, home and author page = newest article
+  // in them; products = the price check date shown on those pages. Pages without a meaningful change date get no lastmod.
+  /** @type {Date | null} */
+  let maxArticleDate = null;
+  /** @type {Map<string, Date>} */
   const topicLatest = new Map();
+  /** @type {Map<string, Date>} */
   const commodityLatest = new Map();
-
-  /** @type {Record<string, string>} */
-  const catToTopic = {
-    'Hama & Proteksi Tanaman': 'proteksi-tanaman',
-    'Perkebunan & Patologi Tanaman': 'proteksi-tanaman',
-    'Patologi Tanaman & Hortikultura': 'proteksi-tanaman',
-    'Ilmu Tanah & Kesuburan Lahan': 'tanah-nutrisi',
-    'Nutrisi Tanaman, Pupuk & Biostimulan': 'tanah-nutrisi',
-    'Cairan Nutrisi Organik': 'tanah-nutrisi',
-    'Teknik Budidaya & Manajemen Lahan': 'budidaya',
-    'Tanaman Pangan & Budidaya Padi': 'budidaya',
-    'Urban Farming & Hidroponik': 'budidaya',
-    'Fisiologi & Anatomi Tumbuhan': 'sains-tanaman',
-    'Fisiologi Tanaman & Perawatan': 'sains-tanaman',
+  /** @param {Map<string, Date>} map @param {string} key @param {Date} d */
+  const later = (map, key, d) => {
+    const prev = map.get(key);
+    if (!prev || d > prev) map.set(key, d);
   };
 
   const articlesDir = path.resolve('docs/content/articles');
   if (fs.existsSync(articlesDir)) {
     for (const f of fs.readdirSync(articlesDir)) {
-      if (f.endsWith('.md')) {
-        const content = fs.readFileSync(path.join(articlesDir, f), 'utf-8');
-        const slugMatch = content.match(/^slug:\s*['"]?([a-z0-9-]+)['"]?/m);
-        const slug = slugMatch ? slugMatch[1] : f.replace(/\.md$/, '');
-        const isDraft = /^draft:\s*true/m.test(content);
-        if (isDraft) {
-          draftSet.add(`/jurnal/${slug}/`);
-          continue;
-        }
-        const pubMatch = content.match(/^pubDate:\s*['"]?([0-9T:.-]+)['"]?/m);
-        const updMatch = content.match(/^updatedDate:\s*['"]?([0-9T:.-]+)['"]?/m);
-        const catMatch = content.match(/^category:\s*['"]?(.*?)['"]?$/m);
-        const commMatch = content.match(/^commodities:\s*\[(.*?)\]/m);
-
-        const dStr = updMatch ? updMatch[1] : (pubMatch ? pubMatch[1] : null);
-        if (dStr) {
-          const d = new Date(dStr);
-          lastmodMap.set(`/jurnal/${slug}/`, d);
-          if (d > maxArticleDate) maxArticleDate = d;
-
-          if (catMatch && catToTopic[catMatch[1].trim()]) {
-            const t = catToTopic[catMatch[1].trim()];
-            if (!topicLatest.has(t) || d > topicLatest.get(t)) topicLatest.set(t, d);
-          }
-
-          if (commMatch) {
-            const comms = commMatch[1].split(',').map((s) => s.trim().replace(/^['"]|['"]$/g, ''));
-            for (const c of comms) {
-              if (c && (!commodityLatest.has(c) || d > commodityLatest.get(c))) {
-                commodityLatest.set(c, d);
-              }
-            }
-          }
-        }
+      if (!f.endsWith('.md')) continue;
+      const content = fs.readFileSync(path.join(articlesDir, f), 'utf-8');
+      const fm = content.match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+      const slug = fm.match(/^slug:\s*['"]?([a-z0-9-]+)['"]?/m)?.[1] ?? f.replace(/\.md$/, '');
+      if (/^draft:\s*true/m.test(fm)) {
+        draftSet.add(`/jurnal/${slug}/`);
+        continue;
       }
+      const dStr = fm.match(/^updatedDate:\s*['"]?([0-9T:.-]+)['"]?/m)?.[1] ?? fm.match(/^pubDate:\s*['"]?([0-9T:.-]+)['"]?/m)?.[1];
+      if (!dStr) continue;
+      const d = new Date(dStr);
+      lastmodMap.set(`/jurnal/${slug}/`, d);
+      if (!maxArticleDate || d > maxArticleDate) maxArticleDate = d;
+
+      const topic = fm.match(/^topic:\s*['"]?([a-z0-9-]+)['"]?/m)?.[1];
+      if (topic) later(topicLatest, topic, d);
+
+      // commodities: inline `[a, b]` or a YAML block list (`- a` lines)
+      const inline = fm.match(/^commodities:\s*\[(.*?)\]/m)?.[1];
+      const block = fm.match(/^commodities:\s*\r?\n((?:[ \t]+-[^\n]*\r?\n?)+)/m)?.[1];
+      const comms = inline !== undefined ? inline.split(',') : (block ?? '').split('\n').map((l) => l.replace(/^\s*-\s*/, ''));
+      for (const c of comms.map((x) => x.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean)) later(commodityLatest, c, d);
     }
   }
 
-  // Jurnal hub & pagination
-  lastmodMap.set('/jurnal/', maxArticleDate);
-  for (let i = 2; i <= 20; i++) {
-    lastmodMap.set(`/jurnal/halaman/${i}/`, maxArticleDate);
+  if (maxArticleDate) {
+    for (const p of ['/', '/jurnal/', '/penulis/arif-prabowo/']) lastmodMap.set(p, maxArticleDate);
+    for (let i = 2; i <= 20; i++) lastmodMap.set(`/jurnal/halaman/${i}/`, maxArticleDate);
   }
+  for (const [t, d] of topicLatest) lastmodMap.set(`/jurnal/topik/${t}/`, d);
+  for (const [c, d] of commodityLatest) lastmodMap.set(`/jurnal/komoditas/${c}/`, d);
 
-  // Topics
-  for (const t of ['air-irigasi', 'budidaya', 'pascapanen-agribisnis', 'proteksi-tanaman', 'sains-tanaman', 'tanah-nutrisi']) {
-    lastmodMap.set(`/jurnal/topik/${t}/`, topicLatest.get(t) || maxArticleDate);
-  }
-
-  // Commodities
-  const commFile = path.resolve('src/data/commodities.json');
-  if (fs.existsSync(commFile)) {
-    const comms = JSON.parse(fs.readFileSync(commFile, 'utf8'));
-    for (const c of comms) {
-      lastmodMap.set(`/jurnal/komoditas/${c.id}/`, commodityLatest.get(c.id) || maxArticleDate);
-    }
-  }
-
-  // Products (verified 2026-09-30)
-  lastmodMap.set('/produk/', new Date('2026-09-30'));
-  for (const p of ['aussie', 'bensu', 'kojien', 'saratoga']) {
-    lastmodMap.set(`/produk/${p}/`, new Date('2026-09-30'));
-  }
-
-  // Tools (reviewed 2026-09-30)
-  lastmodMap.set('/alat/', new Date('2026-09-30'));
-  for (const a of ['cuaca-tani', 'diagnosa-gejala', 'kalender-tanam', 'kalkulator-dosis']) {
-    lastmodMap.set(`/alat/${a}/`, new Date('2026-09-30'));
-  }
-
-  // Pages
-  lastmodMap.set('/', new Date('2026-10-01'));
-  lastmodMap.set('/tentang-kami/', new Date('2026-10-01'));
-  lastmodMap.set('/kemitraan-distributor/', new Date('2026-09-30'));
-  lastmodMap.set('/konsultasi/', new Date('2026-09-30'));
-  lastmodMap.set('/kebijakan-privasi/', new Date('2026-09-30'));
-  lastmodMap.set('/penulis/arif-prabowo/', new Date('2026-09-30'));
+  // Products: price check date printed on /produk/ and each product page ("Harga per 30 September 2026")
+  const priceChecked = new Date('2026-09-30');
+  lastmodMap.set('/produk/', priceChecked);
+  for (const p of ['aussie', 'bensu', 'kojien', 'saratoga']) lastmodMap.set(`/produk/${p}/`, priceChecked);
 } catch {
   // Silent fallback
 }

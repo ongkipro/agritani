@@ -100,6 +100,10 @@ if (fs.existsSync(sitemapIndexPath)) {
     const subPath = path.join(DIST_DIR, subFilename);
     if (fs.existsSync(subPath)) {
       const subContent = fs.readFileSync(subPath, 'utf-8');
+      // Google ignores <priority>/<changefreq>; they are not part of the contract (DESIGN §4.4.8, DEC-026)
+      if (/<(priority|changefreq)>/.test(subContent)) {
+        errors.push(`${subFilename} must not contain <priority> or <changefreq> (DEC-026)`);
+      }
       const pageMatches = subContent.matchAll(/<loc>(.*?)<\/loc>/g);
       for (const p of pageMatches) {
         sitemapUrls.add(p[1]);
