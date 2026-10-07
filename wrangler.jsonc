@@ -11,6 +11,10 @@
     {
       "pattern": "agritani.com",
       "custom_domain": true
+    },
+    {
+      "pattern": "www.agritani.com",
+      "custom_domain": true
     }
   ]
 }
