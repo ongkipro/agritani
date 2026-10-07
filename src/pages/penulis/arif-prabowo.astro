@@ -10,7 +10,8 @@
  * - Strict DEC-016 bio and single WhatsApp CTA (DESIGN §2.8)
  */
 import { getCollection } from 'astro:content';
-import { Picture } from 'astro:assets';
+import { Picture, getImage } from 'astro:assets';
+import portrait from '../../assets/images/authors/arif-prabowo.webp';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import AuthorAvatar from '../../components/AuthorAvatar.astro';
@@ -36,6 +37,12 @@ const seo: SeoInput = {
   breadcrumbs,
   pageType: 'profile',
   ogType: 'profile',
+  // Person node facts (DEC-016). No sameAs: the repository holds no verified profile URLs.
+  person: {
+    image: (await getImage({ src: portrait, format: 'webp', width: 400 })).src,
+    description:
+      'Konsultan Pertanian Senior Agritani dengan pengalaman lebih dari 8 tahun di bidang pertanian dan riset; pengelola Jurnal Tani.',
+  },
 };
 
 const includeDrafts =

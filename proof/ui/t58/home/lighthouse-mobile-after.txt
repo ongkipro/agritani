@@ -1,0 +1,9 @@
+{
+  score: 0.98,
+  FCP: '1.6 s',
+  LCP: '2.3 s',
+  TBT: '0 ms',
+  CLS: '0.001',
+  SI: '1.6 s',
+  totalBytes: 'Total size was 299 KiB'
+}

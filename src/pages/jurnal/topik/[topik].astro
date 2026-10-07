@@ -4,6 +4,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../../components/Breadcrumb.astro';
 import ArticleList from '../../../components/ArticleList.astro';
 import TopicSidebar from '../../../components/TopicSidebar.astro';
+import CommodityPicker from '../../../components/CommodityPicker.astro';
 import { TOPICS } from '../../../lib/topics';
 import { fitText, TITLE_RANGE, DESC_RANGE, type SeoInput } from '../../../lib/seo';
 import { Picture } from 'astro:assets';
@@ -106,8 +107,8 @@ const topicImage = Object.entries(topicImages).find(([path]) => path.endsWith(`t
   <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
     <Breadcrumb items={breadcrumbItems} />
 
-    <div class="flex flex-col lg:grid lg:grid-cols-12 lg:gap-x-12">
-    <div class="lg:col-start-4 lg:col-span-9 lg:row-start-1">
+    <div class="lg:grid lg:grid-cols-12 lg:gap-x-12">
+    <div class="min-w-0 lg:col-start-4 lg:col-span-9 lg:row-start-1">
 
     <header class={`topic-${topic.slug} my-6 sm:my-10 pt-5 border-t-[3px] border-[var(--topic)] grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center`}>
       <div class="lg:col-span-7 max-w-[68ch]">
@@ -137,7 +138,7 @@ const topicImage = Object.entries(topicImages).find(([path]) => path.endsWith(`t
     </header>
 
     {tool && (
-      <a href={tool.href} class="card card-link my-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-6 p-4 sm:p-5 max-w-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]">
+      <a href={tool.href} class="card card-link my-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-6 p-4 sm:p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]">
         <span>
           <span class="block font-serif text-lg font-semibold text-[var(--color-brand-strong)]">{tool.label}</span>
           <span class="mt-1 block text-sm text-[var(--color-text-muted)]">{tool.desc}</span>
@@ -146,6 +147,9 @@ const topicImage = Object.entries(topicImages).find(([path]) => path.endsWith(`t
       </a>
     )}
 
+    <!-- <1024px: commodity jump block in place of the sidebar (DESIGN §4.2.3) -->
+    <CommodityPicker visible={6} class="lg:hidden mt-8" />
+
     <section class="mt-8" aria-labelledby="daftar-artikel-topik-heading">
       <h2 id="daftar-artikel-topik-heading" class="sr-only">
         Daftar Artikel {topic.name}
@@ -153,15 +157,16 @@ const topicImage = Object.entries(topicImages).find(([path]) => path.endsWith(`t
 
       <ArticleList
         articles={articles}
-        initialCount={6}
-        batchSize={6}
+        initialCount={12}
+        batchSize={12}
         listId={`topik-${topic.slug}`}
+        hideTopic
         emptyMessage="Belum ada artikel yang diterbitkan untuk topik ini."
       />
     </section>
     </div>
-    <!-- Sidebar after the content in DOM so the page H1 comes first; grid placement keeps it on the left at >=1024px -->
-    <aside class="order-last my-8 lg:my-0 lg:mt-10 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:sticky lg:top-6 self-start">
+    <!-- >=1024px only; after the content in DOM so the page H1 comes first; grid placement keeps it on the left -->
+    <aside class="hidden lg:block lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:self-start lg:sticky lg:top-6 lg:mt-10">
       <TopicSidebar currentTopic={topic.slug} />
     </aside>
     </div>

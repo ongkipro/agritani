@@ -1,0 +1,129 @@
+{
+  "origin": "http://localhost:4402",
+  "label": "after",
+  "viewports": {
+    "360": {
+      "heroAtLoad": [
+        "hero-sawah-padi.v01gts52_9UvRD.webp"
+      ],
+      "heroTotal": [
+        "hero-sawah-padi.v01gts52_9UvRD.webp",
+        "hero-kebun-sawit.NmVMiTDq_Z16DcnE.webp"
+      ],
+      "imageCountAtLoad": 2,
+      "imageBytesAtLoad": 88404,
+      "heroBytesAtLoad": 62750,
+      "loadEventEnd": 123,
+      "heroAtLoadPlus2500ms": [
+        "hero-sawah-padi.v01gts52_9UvRD.webp",
+        "hero-kebun-sawit.NmVMiTDq_Z16DcnE.webp"
+      ],
+      "heroAfterIdleMs": 6007,
+      "heroAfterIdle": [
+        "hero-sawah-padi.v01gts52_9UvRD.webp",
+        "hero-kebun-sawit.NmVMiTDq_Z16DcnE.webp",
+        "hero-hortikultura-cabai.y07eqbtr_Zcxhg0.webp"
+      ],
+      "toggleVisible": true,
+      "toggleBox": {
+        "x": 276,
+        "y": 550,
+        "width": 44,
+        "height": 44
+      },
+      "toggleAfterClick": {
+        "pressed": null,
+        "label": "Putar slide otomatis"
+      },
+      "pausedIndexSequence": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "toggleFocusedByKeyboard": true,
+      "toggleAfterResume": {
+        "pressed": null,
+        "label": "Jeda slide otomatis"
+      },
+      "resumeAdvanced": true,
+      "cls": 0,
+      "overflow": 0,
+      "searchFocus": {
+        "focused": true,
+        "outline": "solid 2px rgb(15, 92, 51)",
+        "offset": "2px"
+      },
+      "doseFocus": {
+        "focused": true,
+        "inputOutline": "none 3px",
+        "wrapperOutline": "solid 2px rgb(15, 92, 51)",
+        "wrapperOffset": "0px"
+      },
+      "consoleErrors": []
+    },
+    "1440": {
+      "heroAtLoad": [
+        "hero-sawah-padi.v01gts52_9UvRD.webp"
+      ],
+      "heroTotal": [
+        "hero-sawah-padi.v01gts52_9UvRD.webp"
+      ],
+      "imageCountAtLoad": 5,
+      "imageBytesAtLoad": 100736,
+      "heroBytesAtLoad": 62750,
+      "loadEventEnd": 138,
+      "heroAtLoadPlus2500ms": [
+        "hero-sawah-padi.v01gts52_9UvRD.webp",
+        "hero-kebun-sawit.NmVMiTDq_Z16DcnE.webp"
+      ],
+      "heroAfterIdleMs": 6005,
+      "heroAfterIdle": [
+        "hero-sawah-padi.v01gts52_9UvRD.webp",
+        "hero-kebun-sawit.NmVMiTDq_Z16DcnE.webp",
+        "hero-hortikultura-cabai.y07eqbtr_Zcxhg0.webp"
+      ],
+      "toggleVisible": true,
+      "toggleBox": {
+        "x": 266,
+        "y": 630,
+        "width": 44,
+        "height": 44
+      },
+      "toggleAfterClick": {
+        "pressed": null,
+        "label": "Putar slide otomatis"
+      },
+      "pausedIndexSequence": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "toggleFocusedByKeyboard": true,
+      "toggleAfterResume": {
+        "pressed": null,
+        "label": "Jeda slide otomatis"
+      },
+      "resumeAdvanced": true,
+      "cls": 0.0010693479184751158,
+      "overflow": 0,
+      "searchFocus": {
+        "focused": true,
+        "outline": "solid 2px rgb(15, 92, 51)",
+        "offset": "2px"
+      },
+      "doseFocus": {
+        "focused": true,
+        "inputOutline": "none 3px",
+        "wrapperOutline": "solid 2px rgb(15, 92, 51)",
+        "wrapperOffset": "0px"
+      },
+      "consoleErrors": []
+    }
+  }
+}

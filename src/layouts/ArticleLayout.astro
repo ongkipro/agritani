@@ -1,6 +1,6 @@
 ---
 import { topicName } from '../lib/topics';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import { Picture } from 'astro:assets';
 import BaseLayout from './BaseLayout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
@@ -14,6 +14,7 @@ import { getReadingTime } from '../lib/reading-time';
 import { getArticleImage } from '../lib/topic-images';
 import { articleImageAlt } from '../lib/image-alt';
 import { slugifyTag } from '../lib/tags';
+import { promoteHeadingsHtml } from '../lib/headings';
 import type { SeoInput } from '../lib/seo';
 import type { ImageMetadata } from 'astro';
 
@@ -78,11 +79,18 @@ const primaryCommodity = data.commodities?.[0]
 
 // Commodity hubs exist only with >= 3 visible articles (DESIGN §4.4.3); otherwise show plain text
 const includeDrafts = import.meta.env.PUBLIC_INCLUDE_DRAFTS === 'true' || import.meta.env.DEV;
-const commodityHubExists = primaryCommodity
+const commodityCount = primaryCommodity
   ? (await getCollection('articles')).filter(
       (a) => (includeDrafts || !a.data.draft) && a.data.commodities.some((c: any) => (typeof c === 'string' ? c : c.id) === primaryCommodity)
-    ).length >= 3
-  : false;
+    ).length
+  : 0;
+const commodityHubExists = commodityCount >= 3;
+const commodityLabel = primaryCommodity
+  ? (await getEntry('commodities', primaryCommodity))?.data.name ?? primaryCommodity.replace(/-/g, ' ')
+  : '';
+
+// Markdown sections mostly start at ###: promote them so the outline never skips h1 -> h3 (src/lib/headings.ts).
+const bodyHtml = promoteHeadingsHtml(await Astro.slots.render('default'));
 
 const breadcrumbItems = [
   { name: 'Beranda', url: '/' },
@@ -139,6 +147,8 @@ const nextTools = [
 ---
 
 <BaseLayout seo={seo}>
+  <!-- Mobile reading progress (<1024px): CSS scroll-driven, no JS; desktop shows progress in the TOC. -->
+  <div class="reading-progress print:hidden" aria-hidden="true"></div>
   <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
     <!-- 1. Breadcrumb: Aligned with Column 4-10 matching header and article prose (DESIGN §4.3.2) -->
     <div class="lg:grid lg:grid-cols-12 lg:gap-8 mb-4">
@@ -187,47 +197,43 @@ const nextTools = [
           </p>
 
           <!-- 4. Metadata & Actions (Unified Editorial Meta Bar) -->
-          <div class="py-3 border-y border-[var(--color-border)] my-6 flex flex-wrap items-center justify-between gap-y-2 gap-x-4 text-xs text-[var(--color-text-muted)]">
-            <div class="flex flex-wrap items-center gap-x-2.5 gap-y-1">
-              <span class="inline-flex items-center gap-1 font-medium text-[var(--color-text)]">
-                Oleh <a href="/penulis/arif-prabowo/" class="hover:underline hover:text-[var(--color-brand-strong)] font-semibold text-[var(--color-text)]">{data.author}</a>
-                <span aria-hidden="true" class="text-[var(--color-text-muted)]">·</span>
-              </span>
-              <span>Terbit <time datetime={new Date(data.pubDate).toISOString()}>{formattedPubDate}</time></span>
-              {formattedUpdatedDate && (
-                <>
-                  <span aria-hidden="true">·</span>
-                  <span>Diperbarui <time datetime={new Date(data.updatedDate!).toISOString()}>{formattedUpdatedDate}</time></span>
-                </>
-              )}
-              <span aria-hidden="true">·</span>
-              <span>{readingTime.text}</span>
-              {primaryCommodity && (
-                <>
-                  <span aria-hidden="true">·</span>
-                  {commodityHubExists ? (
-                    <a
-                      href={`/jurnal/komoditas/${primaryCommodity}/`}
-                      class="hover:underline capitalize font-semibold text-[var(--color-soil)]"
-                    >
-                      {primaryCommodity.replace(/-/g, ' ')}
-                    </a>
-                  ) : (
-                    <span class="capitalize font-medium">{primaryCommodity.replace(/-/g, ' ')}</span>
-                  )}
-                </>
-              )}
+          <div class="py-1 border-y border-[var(--color-border)] my-6 flex flex-wrap items-center justify-between gap-x-4 text-sm text-[var(--color-text-muted)]">
+            <!-- Separators are ::before of each item; the list overhangs left by one separator width and is
+                 clipped horizontally, so a wrapped line never starts with "·" (T-58B). Links grow their hit
+                 area vertically to 44px via ::after without changing line height. -->
+            <div class="meta-clip grow min-w-0 py-2">
+              <ul class="meta-list" aria-label="Info artikel">
+                <li class="font-medium text-[var(--color-text)]">
+                  Oleh <a href="/penulis/arif-prabowo/" class="meta-link font-semibold text-[var(--color-text)] hover:text-[var(--color-brand-strong)]">{data.author}</a>
+                </li>
+                <li>Terbit <time datetime={new Date(data.pubDate).toISOString()}>{formattedPubDate}</time></li>
+                {formattedUpdatedDate && (
+                  <li>Diperbarui <time datetime={new Date(data.updatedDate!).toISOString()}>{formattedUpdatedDate}</time></li>
+                )}
+                <li>{readingTime.text}</li>
+                {primaryCommodity && (
+                  <li>
+                    {commodityHubExists ? (
+                      <a href={`/jurnal/komoditas/${primaryCommodity}/`} class="meta-link font-semibold text-[var(--color-soil)] hover:text-[var(--color-brand-strong)]">
+                        {commodityLabel}
+                      </a>
+                    ) : (
+                      <span class="font-medium">{commodityLabel}</span>
+                    )}
+                  </li>
+                )}
+              </ul>
             </div>
 
             <!-- 6. Article Actions -->
             <div class="flex items-center gap-4 print:hidden font-semibold">
               <button
                 type="button"
-                id="share-btn"
+                data-action="share"
                 class="text-[var(--color-brand-strong)] hover:text-[var(--color-brand-hover)] hover:underline inline-flex items-center gap-1.5 py-1 min-h-[44px] cursor-pointer"
               >
                 <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
-                <span id="share-btn-text">Bagikan</span>
+                <span data-share-label>Bagikan</span>
               </button>
               <button
                 type="button"
@@ -268,7 +274,7 @@ const nextTools = [
         <!-- 11. Article Prose -->
         <article data-pagefind-body>
           <div class="prose text-[var(--color-text)] text-[1.0625rem] sm:text-[1.125rem] leading-[1.75]">
-            <slot />
+            <Fragment set:html={bodyHtml} />
           </div>
 
           <!-- Tags: "Tag:" label + inline #links, no chip/card/border (owner 2026-09-30); py-2.5 widens the hit area without loosening the lines -->
@@ -290,6 +296,16 @@ const nextTools = [
             </div>
           )}
 
+          <!-- Second share action at the natural end of reading; same handler as the meta bar button. -->
+          <p class="mt-4 print:hidden" data-pagefind-ignore>
+            <button
+              type="button"
+              data-action="share"
+              class="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-semibold text-[var(--color-brand-strong)] hover:underline underline-offset-4 cursor-pointer"
+            >
+              <span data-share-label>Bagikan artikel ini</span>
+            </button>
+          </p>
         </article>
       </div>
 
@@ -340,40 +356,34 @@ const nextTools = [
             <h2 id="bacaan-terkait-heading" class="font-serif text-xl font-semibold text-[var(--color-text)] mb-4">
               Bacaan terkait
             </h2>
-            <ul class="grid gap-3">
+            <!-- Text cards (one .card per item): topic, title, reading time. No photo: the related set usually
+                 shares one commodity, so thumbnails were identical (T-58B). -->
+            <ul class="grid gap-3 sm:grid-cols-2">
               {relatedArticles.map((rel) => (
-                <li class="card card-link relative grid grid-cols-[6rem_1fr] sm:grid-cols-[8rem_1fr] overflow-hidden">
-                  <span class="card-media block h-full min-h-[4.5rem]">
-                    <Picture
-                      src={(rel.data as any).heroImage?.src ?? getArticleImage(rel.data as any)}
-                      formats={['webp']}
-                      fallbackFormat="webp"
-                      widths={[192, 256]}
-                      sizes="8rem"
-                      quality={60}
-                      alt={articleImageAlt(rel.data as any)}
-                      class="w-full h-full object-cover"
-                      pictureAttributes={{ class: 'block w-full h-full' }}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </span>
-                  <span class="flex flex-col justify-center gap-1 p-3 sm:p-4 min-w-0">
-                    <a
-                      href={`/jurnal/${rel.data.slug}/`}
-                      class="font-serif font-semibold text-base leading-snug text-[var(--color-text)] line-clamp-2 after:absolute after:inset-0 focus-visible:outline-none focus-visible:underline"
-                    >
-                      {rel.data.title}
-                    </a>
-                    <span class="text-xs text-[var(--color-text-muted)] tabular-nums">{getReadingTime(rel.body || '').text}</span>
-                  </span>
+                <li>
+                  <a
+                    href={`/jurnal/${rel.data.slug}/`}
+                    class="card card-link related-card flex h-full flex-col gap-1.5 p-4 min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]"
+                  >
+                    <span class={`topic-${rel.data.topic} inline-flex items-center gap-2 text-sm font-medium text-[var(--color-soil)]`}>
+                      <span class="topic-marker" aria-hidden="true"></span>
+                      {topicName(rel.data.topic)}
+                    </span>
+                    <span class="font-serif font-semibold text-[1.0625rem] sm:text-lg leading-snug text-[var(--color-text)] text-pretty">{rel.data.title}</span>
+                    <span class="mt-auto pt-1 text-sm text-[var(--color-text-muted)] tabular-nums">{getReadingTime(rel.body || '').text}</span>
+                  </a>
                 </li>
               ))}
             </ul>
-            <div class="mt-4 flex flex-wrap gap-x-6 text-sm font-semibold text-[var(--color-brand-strong)]">
+            <div class="mt-4 flex flex-col items-start text-sm font-semibold text-[var(--color-brand-strong)]">
               {primaryCommodity && !toolsUpcoming && (
                 <a href={`/alat/diagnosa-gejala/?k=${primaryCommodity}`} class="inline-flex items-center min-h-[44px] hover:underline">
-                  Diagnosa gejala {primaryCommodity.replace(/-/g, ' ')} →
+                  Diagnosa gejala {commodityLabel} →
+                </a>
+              )}
+              {commodityHubExists && (
+                <a href={`/jurnal/komoditas/${primaryCommodity}/`} class="inline-flex items-center min-h-[44px] hover:underline" data-hub-link>
+                  Lihat {commodityCount} artikel {commodityLabel} →
                 </a>
               )}
               <a href={`/jurnal/topik/${data.topic}/`} class="inline-flex items-center min-h-[44px] hover:underline">
@@ -390,6 +400,84 @@ const nextTools = [
 </BaseLayout>
 
 <style>
+  /* Meta bar (T-58B): "·" separators belong to each item's ::before. The list overhangs left by one
+     separator width inside a horizontally clipped wrapper, so the first item of every wrapped line hides
+     its separator and no line starts or ends with a dangling "·". */
+  .meta-clip {
+    overflow-x: clip;
+  }
+  .meta-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: 0.5rem;
+    margin-left: -1.25rem;
+    line-height: 1.5rem;
+  }
+  .meta-list > li {
+    white-space: nowrap;
+  }
+  .meta-list > li::before {
+    content: '·' / '';
+    display: inline-block;
+    width: 1.25rem;
+    text-align: center;
+    color: var(--color-text-muted);
+  }
+  /* 44px tall hit area around 24px text lines, without loosening the bar. */
+  .meta-link {
+    position: relative;
+    text-decoration: underline;
+    text-decoration-color: var(--color-border-control);
+    text-underline-offset: 4px;
+  }
+  .meta-link::after {
+    content: '';
+    position: absolute;
+    /* 18px inline box + 2 x 13px = 44px tall; at least 44px wide for short names ("Padi"). */
+    top: -13px;
+    bottom: -13px;
+    left: 50%;
+    width: max(100% + 8px, 44px);
+    translate: -50% 0;
+  }
+  .meta-link:hover {
+    text-decoration-color: currentColor;
+  }
+
+  /* Mobile reading progress: functional scroll position cue, brand colour, 3px. */
+  .reading-progress {
+    display: none;
+  }
+  @supports (animation-timeline: scroll()) {
+    @media (max-width: 1023.98px) and (prefers-reduced-motion: no-preference) {
+      .reading-progress {
+        display: block;
+        position: fixed;
+        inset: 0 0 auto 0;
+        height: 3px;
+        z-index: 60;
+        background: var(--color-brand);
+        transform-origin: 0 50%;
+        transform: scaleX(0);
+        pointer-events: none;
+        animation-name: reading-progress;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
+      }
+      /* Separate rule: the CSS minifier folds longhands into an `animation` shorthand that Chrome
+         rejects when it carries a timeline; keep the timeline on its own selector. */
+      div.reading-progress {
+        animation-timeline: scroll(root block);
+      }
+    }
+  }
+  @keyframes reading-progress {
+    to {
+      transform: scaleX(1);
+    }
+  }
+
   /* Ensure article body measure is between 65ch and 72ch (DESIGN §4.3.2) */
   .prose-container {
     max-width: 68ch;
@@ -589,39 +677,39 @@ const nextTools = [
       });
     });
 
-    // 2. Native Web Share API with clipboard copy fallback
-    const shareBtn = document.getElementById('share-btn');
-    const shareBtnText = document.getElementById('share-btn-text');
-    if (shareBtn) {
-      shareBtn.addEventListener('click', async () => {
+    // 2. Native Web Share API with clipboard copy fallback (every [data-action="share"] button)
+    document.querySelectorAll<HTMLButtonElement>('[data-action="share"]').forEach((btn) => {
+      if (btn.dataset.shareBound) return;
+      btn.dataset.shareBound = '1';
+      const label = btn.querySelector<HTMLElement>('[data-share-label]');
+      btn.addEventListener('click', async () => {
         const shareData = {
           title: document.title,
           text: document.querySelector('meta[name="description"]')?.getAttribute('content') || document.title,
           url: window.location.href,
         };
-
         if (navigator.share) {
           try {
             await navigator.share(shareData);
           } catch {
             // User dismissed share
           }
-        } else {
-          try {
-            await navigator.clipboard.writeText(window.location.href);
-            if (shareBtnText) {
-              const orig = shareBtnText.textContent;
-              shareBtnText.textContent = 'Tautan Tersalin!';
-              setTimeout(() => {
-                shareBtnText.textContent = orig;
-              }, 2000);
-            }
-          } catch {
-            // Clipboard copy failed
+          return;
+        }
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          if (label) {
+            const orig = label.textContent;
+            label.textContent = 'Tautan Tersalin!';
+            setTimeout(() => {
+              label.textContent = orig;
+            }, 2000);
           }
+        } catch {
+          // Clipboard copy failed
         }
       });
-    }
+    });
 
     // 3. Keyboard accessibility for pre, table, and scrollable containers (WCAG 2.1.1)
     document.querySelectorAll<HTMLElement>('.prose pre, .prose table, .prose .katex-display').forEach((el) => {

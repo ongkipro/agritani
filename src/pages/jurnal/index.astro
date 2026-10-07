@@ -1,25 +1,16 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import ArticleList from '../../components/ArticleList.astro';
+import CommodityPicker from '../../components/CommodityPicker.astro';
 import TopicSidebar from '../../components/TopicSidebar.astro';
+import { getVisibleArticles, JOURNAL_PAGE_SIZE } from '../../lib/journal';
 import type { SeoInput } from '../../lib/seo';
 
-const includeDrafts =
-  import.meta.env.PUBLIC_INCLUDE_DRAFTS === 'true' || import.meta.env.DEV;
-
-const allArticles = await getCollection('articles');
-
-// Filter according to draft mode
-const visibleArticles = includeDrafts
-  ? allArticles
-  : allArticles.filter((a) => !a.data.draft);
-
-// Sort by pubDate descending
-const sortedArticles = visibleArticles.sort(
-  (a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
-);
+// Page 1 of the archive: the newest JOURNAL_PAGE_SIZE articles; /jurnal/halaman/2/ continues at the next one.
+const sortedArticles = await getVisibleArticles();
+const pageArticles = sortedArticles.slice(0, JOURNAL_PAGE_SIZE);
+const totalPages = Math.ceil(sortedArticles.length / JOURNAL_PAGE_SIZE);
 
 const breadcrumbItems = [
   { name: 'Beranda', url: '/' },
@@ -41,34 +32,66 @@ const seo: SeoInput = {
     <Breadcrumb items={breadcrumbItems} />
 
     <div class="lg:grid lg:grid-cols-12 lg:gap-x-12">
+      <div class="min-w-0 lg:col-start-4 lg:col-span-9 lg:row-start-1">
+        <header class="my-6 sm:my-8 max-w-[68ch]">
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[var(--color-text)] mb-3 leading-tight">
+            Jurnal Tani
+          </h1>
+          <p class="text-base sm:text-lg text-[var(--color-text-muted)] font-serif leading-relaxed">
+            Ruang belajar dan rujukan agronomi yang dikelola oleh <strong>Arif Prabowo</strong>. Mengulas sains proteksi tanaman tropis, kesuburan tanah alami, dan efisiensi budidaya langsung dari temuan di lahan.
+          </p>
+        </header>
 
-    <!-- Page Header -->
-    <header class="my-6 sm:my-8 max-w-[68ch] lg:col-start-4 lg:col-span-9 lg:row-start-1">
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[var(--color-text)] mb-3 leading-tight">
-        Jurnal Tani
-      </h1>
-      <p class="text-base sm:text-lg text-[var(--color-text-muted)] font-serif leading-relaxed">
-        Ruang belajar dan rujukan agronomi yang dikelola oleh <strong>Arif Prabowo</strong>. Mengulas sains proteksi tanaman tropis, kesuburan tanah alami, dan efisiensi budidaya langsung dari temuan di lahan.
-      </p>
-    </header>
+        <!-- <1024px: commodity jump block in place of the sidebar (DESIGN §4.2.3 item 2) -->
+        <CommodityPicker visible={6} class="lg:hidden mb-8" />
 
-    <aside class="my-6 lg:my-0 lg:mt-10 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:row-span-2 lg:sticky lg:top-6 self-start">
-      <TopicSidebar />
-    </aside>
+        <section aria-labelledby="daftar-artikel-heading">
+          <h2 id="daftar-artikel-heading" class="font-serif text-xl font-semibold text-[var(--color-text)]">
+            Artikel terbaru
+          </h2>
+          <p class="mt-1 text-sm text-[var(--color-text-muted)]">
+            {pageArticles.length} dari {sortedArticles.length} artikel terbit, terbaru lebih dulu.
+          </p>
 
-    <!-- Articles List -->
-    <section class="lg:col-start-4 lg:col-span-9 lg:row-start-2" aria-labelledby="daftar-artikel-heading">
-      <h2 id="daftar-artikel-heading" class="sr-only">
-        Daftar Artikel Jurnal Tani
-      </h2>
+          <ArticleList
+            articles={pageArticles}
+            initialCount={10}
+            batchSize={10}
+            listId="jurnal-index"
+            eagerFirst
+          />
 
-      <ArticleList
-        articles={sortedArticles}
-        initialCount={6}
-        batchSize={6}
-        listId="jurnal-index"
-      />
-    </section>
+          {totalPages > 1 && (
+            <nav class="mt-10" aria-label="Halaman arsip Jurnal Tani">
+              <p class="text-sm text-[var(--color-text-muted)]">Halaman 1 dari {totalPages}</p>
+              <ul class="mt-3 flex flex-wrap gap-2" role="list">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+                  <li>
+                    <a
+                      href={p === 1 ? '/jurnal/' : `/jurnal/halaman/${p}/`}
+                      aria-current={p === 1 ? 'page' : undefined}
+                      class:list={[
+                        'inline-flex items-center justify-center min-w-[44px] min-h-[44px] px-2 rounded-[2px] border text-sm font-semibold tabular-nums transition-colors',
+                        p === 1
+                          ? 'border-[var(--color-brand-strong)] bg-[var(--color-brand-strong)] text-white'
+                          : 'border-[var(--color-border-control)] text-[var(--color-text)] hover:bg-[var(--color-tint)] hover:border-[var(--color-brand)]',
+                      ]}
+                    >{p}</a>
+                  </li>
+                ))}
+              </ul>
+              <a href="/jurnal/halaman/2/" rel="next" class="mt-4 inline-flex items-center min-h-[44px] px-4 rounded-[2px] bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)] text-white text-sm font-semibold">
+                Halaman berikutnya &rarr;
+              </a>
+            </nav>
+          )}
+        </section>
+      </div>
+
+      <!-- >=1024px only; after the content in DOM so the page H1 comes first (DESIGN §3.3.4) -->
+      <aside class="hidden lg:block lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:self-start lg:sticky lg:top-6 lg:mt-10">
+        <TopicSidebar />
+      </aside>
     </div>
   </div>
 </BaseLayout>

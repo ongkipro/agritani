@@ -2,10 +2,11 @@
 /**
  * src/components/TopicSidebar.astro
  * Jurnal hub navigation (DESIGN §4.1 C10, adapted from teagasc.ie sector nav).
- * >=1024px: left sidebar list with topic colour marker; <1024px: wrapping link row.
+ * Desktop only (>=1024px, the page hides its <aside> below that): topic list with colour marker + commodity hubs.
+ * Below 1024px the page renders CommodityPicker under the intro instead; topics live in the Navbar strip.
  */
-import { getCollection } from 'astro:content';
 import { TOPICS } from '../lib/topics';
+import { getCommodityCounts } from '../lib/journal';
 
 interface Props {
   currentTopic?: string;
@@ -14,16 +15,7 @@ interface Props {
 
 const { currentTopic, currentCommodity } = Astro.props;
 
-const includeDrafts = import.meta.env.PUBLIC_INCLUDE_DRAFTS === 'true' || import.meta.env.DEV;
-const articles = (await getCollection('articles')).filter((a) => includeDrafts || !a.data.draft);
-const commodities = (await getCollection('commodities'))
-  .map((c) => ({
-    id: c.id,
-    name: c.data.name,
-    count: articles.filter((a) => a.data.commodities.some((x: any) => (typeof x === 'string' ? x : x.id) === c.id)).length,
-  }))
-  .filter((c) => c.count >= 3)
-  .sort((a, b) => b.count - a.count);
+const commodities = await getCommodityCounts();
 
 // Collapsed sidebar fits a 700px-tall viewport without scrolling: top 5 visible, the rest behind a disclosure (open when the current one is inside).
 const primary = commodities.slice(0, 5);

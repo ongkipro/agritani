@@ -1,41 +1,28 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../../components/Breadcrumb.astro';
-import ArticleRow from '../../../components/ArticleRow.astro';
+import ArticleList from '../../../components/ArticleList.astro';
+import CommodityPicker from '../../../components/CommodityPicker.astro';
+import TopicSidebar from '../../../components/TopicSidebar.astro';
+import { getVisibleArticles, JOURNAL_PAGE_SIZE } from '../../../lib/journal';
 import type { SeoInput } from '../../../lib/seo';
 
 export async function getStaticPaths() {
-  const includeDrafts =
-    import.meta.env.PUBLIC_INCLUDE_DRAFTS === 'true' || import.meta.env.DEV;
-
-  const allArticles = await getCollection('articles');
-  const visibleArticles = includeDrafts
-    ? allArticles
-    : allArticles.filter((a) => !a.data.draft);
-
-  const sorted = visibleArticles.sort(
-    (a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
-  );
-
-  const pageSize = 30;
-  const totalPages = Math.ceil(sorted.length / pageSize);
-
-  if (totalPages <= 1) {
-    return [];
-  }
+  // Same list and page size as /jurnal/ (page 1), so page n starts right after page n-1 with no gap or duplicate.
+  const sorted = await getVisibleArticles();
+  const totalPages = Math.ceil(sorted.length / JOURNAL_PAGE_SIZE);
 
   const paths = [];
   for (let p = 2; p <= totalPages; p++) {
-    const start = (p - 1) * pageSize;
-    const end = start + pageSize;
-    const pageArticles = sorted.slice(start, end);
+    const start = (p - 1) * JOURNAL_PAGE_SIZE;
     paths.push({
       params: { n: String(p) },
       props: {
         pageNumber: p,
         totalPages,
-        articles: pageArticles,
+        totalArticles: sorted.length,
+        firstIndex: start + 1,
+        articles: sorted.slice(start, start + JOURNAL_PAGE_SIZE),
       },
     });
   }
@@ -43,7 +30,8 @@ export async function getStaticPaths() {
   return paths;
 }
 
-const { pageNumber, totalPages, articles } = Astro.props;
+const { pageNumber, totalPages, totalArticles, firstIndex, articles } = Astro.props;
+const lastIndex = firstIndex + articles.length - 1;
 
 const breadcrumbItems = [
   { name: 'Beranda', url: '/' },
@@ -67,48 +55,70 @@ const nextHref = pageNumber < totalPages ? `/jurnal/halaman/${pageNumber + 1}/` 
   <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
     <Breadcrumb items={breadcrumbItems} />
 
-    <header class="my-6 sm:my-8">
-      <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[var(--color-text)] mb-2">
-        Jurnal Tani — Halaman {pageNumber}
-      </h1>
-      <p class="text-sm text-[var(--color-text-muted)]">
-        Menampilkan artikel {((pageNumber - 1) * 30) + 1} sampai {Math.min(pageNumber * 30, ((pageNumber - 1) * 30) + articles.length)} dari total artikel terbit.
-      </p>
-    </header>
+    <!-- Same 3/9 frame as /jurnal/ and the hubs (DESIGN §4.1 C10, §3.3.2) -->
+    <div class="lg:grid lg:grid-cols-12 lg:gap-x-12">
+      <div class="min-w-0 lg:col-start-4 lg:col-span-9 lg:row-start-1">
+        <header class="my-6 sm:my-8 max-w-[68ch]">
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[var(--color-text)] mb-3 leading-tight">
+            Jurnal Tani: Halaman {pageNumber}
+          </h1>
+          <p class="text-base sm:text-lg text-[var(--color-text-muted)] font-serif leading-relaxed">
+            Artikel {firstIndex}–{lastIndex} dari {totalArticles} artikel terbit, terbaru lebih dulu.
+          </p>
+        </header>
 
-    <section aria-labelledby="daftar-artikel-halaman-heading">
-      <h2 id="daftar-artikel-halaman-heading" class="sr-only">
-        Daftar Artikel Jurnal Tani Halaman {pageNumber}
-      </h2>
+        <!-- <1024px: commodity jump block in place of the sidebar (DESIGN §4.2.3 item 2) -->
+        <CommodityPicker visible={6} class="lg:hidden mb-8" />
 
-      <div class="divide-y divide-[var(--color-border)]">
-        {articles.map((article: any) => (
-          <ArticleRow article={article} />
-        ))}
+        <section aria-labelledby="daftar-artikel-halaman-heading">
+          <h2 id="daftar-artikel-halaman-heading" class="sr-only">
+            Daftar Artikel Jurnal Tani Halaman {pageNumber}
+          </h2>
+
+          <ArticleList
+            articles={articles}
+            initialCount={10}
+            batchSize={10}
+            listId={`jurnal-halaman-${pageNumber}`}
+            eagerFirst
+          />
+
+          <nav class="mt-10" aria-label="Halaman arsip Jurnal Tani">
+            <p class="text-sm text-[var(--color-text-muted)]">Halaman {pageNumber} dari {totalPages}</p>
+            <ul class="mt-3 flex flex-wrap gap-2" role="list">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+                <li>
+                  <a
+                    href={p === 1 ? '/jurnal/' : `/jurnal/halaman/${p}/`}
+                    aria-current={p === pageNumber ? 'page' : undefined}
+                    class:list={[
+                      'inline-flex items-center justify-center min-w-[44px] min-h-[44px] px-2 rounded-[2px] border text-sm font-semibold tabular-nums transition-colors',
+                      p === pageNumber
+                        ? 'border-[var(--color-brand-strong)] bg-[var(--color-brand-strong)] text-white'
+                        : 'border-[var(--color-border-control)] text-[var(--color-text)] hover:bg-[var(--color-tint)] hover:border-[var(--color-brand)]',
+                    ]}
+                  >{p}</a>
+                </li>
+              ))}
+            </ul>
+            <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+              <a href={prevHref} rel="prev" class="inline-flex items-center min-h-[44px] px-4 rounded-[2px] border border-[var(--color-border-control)] text-[var(--color-text)] hover:bg-[var(--color-tint)] text-sm font-semibold">
+                &larr; Halaman sebelumnya
+              </a>
+              {nextHref && (
+                <a href={nextHref} rel="next" class="inline-flex items-center min-h-[44px] px-4 rounded-[2px] bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)] text-white text-sm font-semibold">
+                  Halaman berikutnya &rarr;
+                </a>
+              )}
+            </div>
+          </nav>
+        </section>
       </div>
 
-      <!-- Pagination Navigation -->
-      <nav class="my-10 flex items-center justify-between border-t border-[var(--color-border)] pt-4" aria-label="Paginasi navigasi">
-        <a
-          href={prevHref}
-          class="px-4 py-2 rounded-[2px] font-semibold text-xs border border-[var(--color-border-control)] text-[var(--color-text)] hover:bg-[var(--color-tint)] min-h-[44px] flex items-center"
-        >
-          ← Halaman Sebelumnya
-        </a>
-        <span class="text-xs text-[var(--color-text-muted)]">
-          {pageNumber} / {totalPages}
-        </span>
-        {nextHref ? (
-          <a
-            href={nextHref}
-            class="px-4 py-2 rounded-[2px] font-semibold text-xs text-white min-h-[44px] flex items-center bg-[var(--color-brand)] hover:bg-[var(--color-brand-hover)]"
-          >
-            Halaman Berikutnya →
-          </a>
-        ) : (
-          <span class="text-xs text-[var(--color-text-muted)]">Halaman Terakhir</span>
-        )}
-      </nav>
-    </section>
+      <!-- >=1024px only; after the content in DOM so the page H1 comes first (DESIGN §3.3.4) -->
+      <aside class="hidden lg:block lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:self-start lg:sticky lg:top-6 lg:mt-10">
+        <TopicSidebar />
+      </aside>
+    </div>
   </div>
 </BaseLayout>

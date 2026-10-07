@@ -1,0 +1,390 @@
+{
+  "origin": "http://localhost:4402",
+  "failures": [],
+  "results": {
+    "jurnal@360": {
+      "overflow": 0,
+      "picker": {
+        "top": 422,
+        "width": 328,
+        "contentWidth": 328
+      },
+      "aside": null,
+      "firstRowTop": 758,
+      "items": 30,
+      "shown": 10,
+      "maxRowHeight": 137,
+      "rowHeights": [
+        137,
+        137,
+        125,
+        137,
+        137,
+        125,
+        125,
+        125,
+        137,
+        125
+      ],
+      "small": [],
+      "firstImg": {
+        "loading": "eager",
+        "fetchpriority": "high",
+        "w": 96,
+        "src": "komoditas-padi.B-cAkNm1_ZxSYLV.webp"
+      },
+      "commodityDisclosure": {
+        "before": 6,
+        "after": 24
+      },
+      "loadMore": {
+        "before": 10,
+        "after": 20
+      }
+    },
+    "halaman2@360": {
+      "overflow": 0,
+      "picker": {
+        "top": 344,
+        "width": 328,
+        "contentWidth": 328
+      },
+      "aside": null,
+      "firstRowTop": 628,
+      "items": 30,
+      "shown": 10,
+      "maxRowHeight": 137,
+      "rowHeights": [
+        137,
+        137,
+        137,
+        137,
+        137,
+        137,
+        137,
+        137,
+        137,
+        125
+      ],
+      "small": [],
+      "firstImg": {
+        "loading": "eager",
+        "fetchpriority": "high",
+        "w": 96,
+        "src": "komoditas-sayuran-daun.CuTxxDmk_1nbhd0.webp"
+      },
+      "commodityDisclosure": {
+        "before": 6,
+        "after": 24
+      },
+      "loadMore": {
+        "before": 10,
+        "after": 20
+      }
+    },
+    "topik@360": {
+      "overflow": 0,
+      "picker": {
+        "top": 879,
+        "width": 328,
+        "contentWidth": 328
+      },
+      "aside": null,
+      "firstRowTop": 1163,
+      "items": 78,
+      "shown": 12,
+      "maxRowHeight": 125,
+      "rowHeights": [
+        125,
+        125,
+        125,
+        125,
+        125,
+        125,
+        125,
+        125,
+        125,
+        125,
+        125,
+        125
+      ],
+      "small": [],
+      "firstImg": {
+        "loading": "lazy",
+        "fetchpriority": null,
+        "w": 96,
+        "src": "komoditas-cabai.C20pc2w9_ZRrd9b.webp"
+      },
+      "commodityDisclosure": {
+        "before": 6,
+        "after": 24
+      },
+      "loadMore": {
+        "before": 12,
+        "after": 24
+      }
+    },
+    "komoditas@360": {
+      "overflow": 0,
+      "picker": {
+        "top": 674,
+        "width": 328,
+        "contentWidth": 328
+      },
+      "aside": null,
+      "firstRowTop": 1002,
+      "items": 55,
+      "shown": 12,
+      "maxRowHeight": 115,
+      "rowHeights": [
+        115,
+        115,
+        115,
+        115,
+        115,
+        115,
+        115,
+        115,
+        115,
+        115,
+        115,
+        115
+      ],
+      "small": [],
+      "firstImg": null,
+      "commodityDisclosure": {
+        "before": 6,
+        "after": 24
+      },
+      "loadMore": {
+        "before": 12,
+        "after": 24
+      }
+    },
+    "tag@360": {
+      "overflow": 0,
+      "picker": {
+        "top": 388,
+        "width": 328,
+        "contentWidth": 328
+      },
+      "aside": null,
+      "firstRowTop": 672,
+      "items": 2,
+      "shown": 2,
+      "maxRowHeight": 137,
+      "rowHeights": [
+        137,
+        136
+      ],
+      "small": [],
+      "firstImg": {
+        "loading": "eager",
+        "fetchpriority": "high",
+        "w": 96,
+        "src": "komoditas-padi.B-cAkNm1_ZxSYLV.webp"
+      },
+      "commodityDisclosure": {
+        "before": 6,
+        "after": 24
+      }
+    },
+    "jurnal@1440": {
+      "overflow": 0,
+      "picker": null,
+      "aside": {
+        "position": "sticky",
+        "top": "24px",
+        "width": 236
+      },
+      "firstRowTop": 449,
+      "items": 30,
+      "shown": 10,
+      "maxRowHeight": 259,
+      "rowHeights": [
+        231,
+        259,
+        231,
+        259,
+        231,
+        231,
+        231,
+        231,
+        259,
+        231
+      ],
+      "small": [],
+      "firstImg": {
+        "loading": "eager",
+        "fetchpriority": "high",
+        "w": 208,
+        "src": "komoditas-padi.B-cAkNm1_KmvhR.webp"
+      },
+      "loadMore": {
+        "before": 10,
+        "after": 20
+      }
+    },
+    "halaman2@1440": {
+      "overflow": 0,
+      "picker": null,
+      "aside": {
+        "position": "sticky",
+        "top": "24px",
+        "width": 236
+      },
+      "firstRowTop": 367,
+      "items": 30,
+      "shown": 10,
+      "maxRowHeight": 259,
+      "rowHeights": [
+        259,
+        259,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231
+      ],
+      "small": [],
+      "firstImg": {
+        "loading": "eager",
+        "fetchpriority": "high",
+        "w": 208,
+        "src": "komoditas-sayuran-daun.CuTxxDmk_IVUjF.webp"
+      },
+      "loadMore": {
+        "before": 10,
+        "after": 20
+      }
+    },
+    "topik@1440": {
+      "overflow": 0,
+      "picker": null,
+      "aside": {
+        "position": "sticky",
+        "top": "24px",
+        "width": 236
+      },
+      "firstRowTop": 672,
+      "items": 78,
+      "shown": 12,
+      "maxRowHeight": 259,
+      "rowHeights": [
+        231,
+        231,
+        231,
+        231,
+        231,
+        259,
+        231,
+        259,
+        259,
+        259,
+        231,
+        259
+      ],
+      "small": [],
+      "firstImg": {
+        "loading": "lazy",
+        "fetchpriority": null,
+        "w": 208,
+        "src": "komoditas-cabai.C20pc2w9_ZWodSU.webp"
+      },
+      "loadMore": {
+        "before": 12,
+        "after": 24
+      }
+    },
+    "komoditas@1440": {
+      "overflow": 0,
+      "picker": null,
+      "aside": {
+        "position": "sticky",
+        "top": "24px",
+        "width": 236
+      },
+      "firstRowTop": 559,
+      "items": 55,
+      "shown": 12,
+      "maxRowHeight": 231,
+      "rowHeights": [
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231
+      ],
+      "small": [],
+      "firstImg": null,
+      "loadMore": {
+        "before": 12,
+        "after": 24
+      }
+    },
+    "tag@1440": {
+      "overflow": 0,
+      "picker": null,
+      "aside": {
+        "position": "sticky",
+        "top": "24px",
+        "width": 236
+      },
+      "firstRowTop": 454,
+      "items": 2,
+      "shown": 2,
+      "maxRowHeight": 259,
+      "rowHeights": [
+        259,
+        258
+      ],
+      "small": [],
+      "firstImg": {
+        "loading": "eager",
+        "fetchpriority": "high",
+        "w": 208,
+        "src": "komoditas-padi.B-cAkNm1_KmvhR.webp"
+      }
+    },
+    "jurnal@nojs": {
+      "total": 30,
+      "visible": 30,
+      "loadMoreVisible": false
+    },
+    "halaman2@nojs": {
+      "total": 30,
+      "visible": 30,
+      "loadMoreVisible": false
+    },
+    "topik@nojs": {
+      "total": 78,
+      "visible": 78,
+      "loadMoreVisible": false
+    },
+    "komoditas@nojs": {
+      "total": 55,
+      "visible": 55,
+      "loadMoreVisible": false
+    },
+    "tag@nojs": {
+      "total": 2,
+      "visible": 2,
+      "loadMoreVisible": false
+    },
+    "archive": {
+      "pages": 10,
+      "rows": 296,
+      "unique": 296
+    }
+  }
+}

@@ -10,7 +10,7 @@
  */
 
 import { getCollection } from 'astro:content';
-import { Picture } from 'astro:assets';
+import { Picture, getImage } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { topicName } from '../lib/topics';
 import { getReadingTime } from '../lib/reading-time';
@@ -56,6 +56,18 @@ const heroSlides = [
   },
 ];
 
+// Hero slider images. Slide 0 is the eager LCP <Picture>; slides 1–4 ship only data-src/data-srcset
+// (built here with the same widths) so the browser does not fetch them on first paint. The slider
+// script swaps them in after `load` (idle) or right before a slide is shown.
+const HERO_WIDTHS = [480, 800, 1200, 1600];
+const HERO_SIZES = '(min-width: 1024px) 46rem, 100vw';
+const HERO_QUALITY = 60;
+const deferredHero = await Promise.all(
+  heroSlides.slice(1).map((slide) =>
+    getImage({ src: slide.image, widths: HERO_WIDTHS, sizes: HERO_SIZES, format: 'webp', quality: HERO_QUALITY }),
+  ),
+);
+
 // 1. Fetch articles (respecting draft preview environment)
 const isDraftPreview = import.meta.env.PUBLIC_INCLUDE_DRAFTS === 'true';
 const allArticles = await getCollection('articles', ({ data }) => {
@@ -69,13 +81,26 @@ const getCommodityArticleCount = (commId: string) => {
   }).length;
 };
 
-// Sort articles by publication date descending
-const sortedArticles = [...allArticles].sort((a, b) => {
-  return new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime();
-});
+// Newest first. Many manuscripts share a pubDate, so break ties by updatedDate (falling back to
+// pubDate), then by manuscript number descending (artikel-300 before artikel-299) — deterministic and
+// never alphabetical by title.
+const lastTouched = (a: (typeof allArticles)[number]) => (a.data.updatedDate ?? a.data.pubDate).getTime();
+const sortedArticles = [...allArticles].sort(
+  (a, b) =>
+    b.data.pubDate.getTime() - a.data.pubDate.getTime() ||
+    lastTouched(b) - lastTouched(a) ||
+    b.id.localeCompare(a.id, 'en', { numeric: true }),
+);
 
 const featuredArticle = sortedArticles[0];
-const recentDispatches = sortedArticles.slice(1, 4);
+// Three recent picks: the newest article of each topic not shown yet, then plain recency to fill.
+const recentPool = sortedArticles.slice(1);
+const usedTopics = new Set(featuredArticle ? [featuredArticle.data.topic] : []);
+const recentDispatches = recentPool.filter((a) => !usedTopics.has(a.data.topic) && usedTopics.add(a.data.topic)).slice(0, 3);
+for (const a of recentPool) {
+  if (recentDispatches.length >= 3) break;
+  if (!recentDispatches.includes(a)) recentDispatches.push(a);
+}
 const dateFmt = new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
 
 // 2. Fetch products collection (verified data only, DEC-010)
@@ -125,18 +150,31 @@ const seoProps: SeoInput = {
                 data-slide-index={idx}
                 aria-hidden={idx === 0 ? 'false' : 'true'}
               >
-                <Picture
-                  src={slide.image}
-                  formats={['webp']}
-                  fallbackFormat="webp"
-                  widths={[480, 800, 1200, 1600]}
-                  sizes="(min-width: 1024px) 46rem, 100vw"
-                  quality={80}
-                  alt={slide.alt}
-                  class="w-full h-full object-cover transition-transform duration-7000 ease-out transform scale-100 group-hover:scale-[1.02]"
-                  loading={idx === 0 ? 'eager' : 'lazy'}
-                  fetchpriority={idx === 0 ? 'high' : 'auto'}
-                />
+                {idx === 0 ? (
+                  <Picture
+                    src={slide.image}
+                    formats={['webp']}
+                    fallbackFormat="webp"
+                    widths={HERO_WIDTHS}
+                    sizes={HERO_SIZES}
+                    quality={HERO_QUALITY}
+                    alt={slide.alt}
+                    class="w-full h-full object-cover transition-transform duration-7000 ease-out transform scale-100 group-hover:scale-[1.02]"
+                    loading="eager"
+                    fetchpriority="high"
+                  />
+                ) : (
+                  <img
+                    data-src={deferredHero[idx - 1].src}
+                    data-srcset={deferredHero[idx - 1].srcSet.attribute}
+                    sizes={HERO_SIZES}
+                    alt={slide.alt}
+                    width={slide.image.width}
+                    height={slide.image.height}
+                    decoding="async"
+                    class="w-full h-full object-cover transition-transform duration-7000 ease-out transform scale-100 group-hover:scale-[1.02]"
+                  />
+                )}
               </div>
             ))}
           </div>
@@ -157,7 +195,7 @@ const seoProps: SeoInput = {
             </p>
 
             <!-- CTAs and Navigation Controls -->
-            <div class="mt-6 sm:mt-7 flex flex-wrap items-center justify-between gap-4">
+            <div class="mt-6 sm:mt-7 flex sm:flex-wrap items-end sm:items-center justify-between gap-4">
               <div class="flex flex-wrap items-center gap-3 sm:gap-4">
                 <a
                   href="/alat/"
@@ -174,13 +212,14 @@ const seoProps: SeoInput = {
                 </a>
               </div>
 
-              <!-- Compact Nav Controls: Prev / Next Buttons -->
-              <div class="hidden sm:flex items-center gap-1.5">
+              <!-- Compact Nav Controls: Prev / Pause-Play / Next. Swipe replaces prev/next on phones; the
+                   pause control stays visible everywhere because autoplay must be stoppable (WCAG 2.2.2). -->
+              <div class="flex items-center gap-1.5">
                 <button
                   type="button"
                   id="hero-slider-prev"
                   aria-label="Slide sebelumnya"
-                  class="w-9 h-9 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-[2px] bg-white/15 hover:bg-white/30 text-white backdrop-blur-xs transition-colors cursor-pointer focus:outline-none focus:ring-1 focus:ring-white"
+                  class="hidden sm:flex w-9 h-9 min-h-[44px] min-w-[44px] items-center justify-center rounded-[2px] bg-white/15 hover:bg-white/30 text-white backdrop-blur-xs transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 >
                   <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="m13 16-6-6 6-6"/>
@@ -188,9 +227,23 @@ const seoProps: SeoInput = {
                 </button>
                 <button
                   type="button"
+                  id="hero-slider-toggle"
+                  aria-label="Jeda slide otomatis"
+                  class="w-9 h-9 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-[2px] bg-white/15 hover:bg-white/30 text-white backdrop-blur-xs transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                >
+                  <svg data-icon="pause" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <rect x="4.5" y="3.5" width="3.5" height="13" />
+                    <rect x="12" y="3.5" width="3.5" height="13" />
+                  </svg>
+                  <svg data-icon="play" class="w-4 h-4 hidden" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path d="M6 3.5v13l10.5-6.5z" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
                   id="hero-slider-next"
                   aria-label="Slide berikutnya"
-                  class="w-9 h-9 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-[2px] bg-white/15 hover:bg-white/30 text-white backdrop-blur-xs transition-colors cursor-pointer focus:outline-none focus:ring-1 focus:ring-white"
+                  class="hidden sm:flex w-9 h-9 min-h-[44px] min-w-[44px] items-center justify-center rounded-[2px] bg-white/15 hover:bg-white/30 text-white backdrop-blur-xs transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 >
                   <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="m7 16 6-6-6-6"/>
@@ -339,7 +392,7 @@ const seoProps: SeoInput = {
               fallbackFormat="webp"
               widths={[240, 360, 560]}
               sizes="(min-width: 1024px) 18rem, (min-width: 640px) 14rem, 16rem"
-              quality={85}
+              quality={75}
               alt="Foto Arif Prabowo, Konsultan Pertanian Senior Agritani"
               class="w-full aspect-[4/5] object-cover object-[50%_18%] rounded-[2px] border border-[var(--color-border)] bg-[var(--color-canvas)]"
               loading="lazy"
@@ -860,26 +913,48 @@ const seoProps: SeoInput = {
   <script>
     function initHeroSlider() {
       const slider = document.getElementById('hero-masthead-slider');
-      if (!slider) return;
+      if (!slider || slider.dataset.sliderReady) return;
+      slider.dataset.sliderReady = 'true';
 
       const slides = Array.from(slider.querySelectorAll<HTMLElement>('.hero-slide'));
       const btnPrev = document.getElementById('hero-slider-prev');
       const btnNext = document.getElementById('hero-slider-next');
+      const btnToggle = document.getElementById('hero-slider-toggle');
 
-      if (slides.length <= 1) return;
+      if (slides.length <= 1) {
+        btnToggle?.classList.add('hidden');
+        return;
+      }
 
       let currentIndex = 0;
+      let navToken = 0;
       let timer: ReturnType<typeof setInterval> | null = null;
-      let isPaused = false;
+      // Autoplay stops for any of: the user pressed Jeda (or prefers reduced motion), pointer hover, focus inside.
+      let userPaused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let hoverPaused = false;
+      let focusPaused = false;
       const intervalMs = 5000;
 
-      function goToSlide(targetIndex: number) {
+      /** Swap a deferred slide's data-src/data-srcset in and resolve once it can paint. */
+      function loadSlide(index: number): Promise<void> {
+        const img = slides[index]?.querySelector<HTMLImageElement>('img[data-src]');
+        if (!img) return Promise.resolve();
+        img.srcset = img.dataset.srcset ?? '';
+        img.src = img.dataset.src ?? '';
+        img.removeAttribute('data-src');
+        img.removeAttribute('data-srcset');
+        return img.decode().catch(() => undefined);
+      }
+
+      async function goToSlide(targetIndex: number) {
         if (targetIndex === currentIndex) return;
+        const token = ++navToken;
+        await loadSlide(targetIndex); // never fade to an empty frame
+        if (token !== navToken) return; // a newer navigation won
 
         const prevSlide = slides[currentIndex];
         const nextSlide = slides[targetIndex];
 
-        // Crossfade slides
         prevSlide.classList.remove('opacity-100', 'z-1');
         prevSlide.classList.add('opacity-0', 'z-0');
         prevSlide.setAttribute('aria-hidden', 'true');
@@ -889,24 +964,11 @@ const seoProps: SeoInput = {
         nextSlide.setAttribute('aria-hidden', 'false');
 
         currentIndex = targetIndex;
+        void loadSlide((currentIndex + 1) % slides.length); // warm only the next slide
       }
 
-      function nextSlide() {
-        const next = (currentIndex + 1) % slides.length;
-        goToSlide(next);
-      }
-
-      function prevSlide() {
-        const prev = (currentIndex - 1 + slides.length) % slides.length;
-        goToSlide(prev);
-      }
-
-      function startTimer() {
-        stopTimer();
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        if (isPaused) return;
-        timer = setInterval(nextSlide, intervalMs);
-      }
+      const nextSlide = () => goToSlide((currentIndex + 1) % slides.length);
+      const prevSlide = () => goToSlide((currentIndex - 1 + slides.length) % slides.length);
 
       function stopTimer() {
         if (timer) {
@@ -915,33 +977,55 @@ const seoProps: SeoInput = {
         }
       }
 
+      function startTimer() {
+        stopTimer();
+        if (userPaused || hoverPaused || focusPaused) return;
+        timer = setInterval(nextSlide, intervalMs);
+      }
+
+      function renderToggle() {
+        if (!btnToggle) return;
+        btnToggle.setAttribute('aria-label', userPaused ? 'Putar slide otomatis' : 'Jeda slide otomatis');
+        btnToggle.querySelector('[data-icon="pause"]')?.classList.toggle('hidden', userPaused);
+        btnToggle.querySelector('[data-icon="play"]')?.classList.toggle('hidden', !userPaused);
+      }
+
+      btnToggle?.addEventListener('click', () => {
+        userPaused = !userPaused;
+        // An explicit Putar overrides the passive hover/focus pause that the click itself caused.
+        if (!userPaused) hoverPaused = focusPaused = false;
+        renderToggle();
+        startTimer();
+      });
+
       btnPrev?.addEventListener('click', () => {
-        prevSlide();
+        void prevSlide();
         startTimer();
       });
 
       btnNext?.addEventListener('click', () => {
-        nextSlide();
+        void nextSlide();
         startTimer();
       });
 
       slider.addEventListener('mouseenter', () => {
-        isPaused = true;
+        hoverPaused = true;
         stopTimer();
       });
 
       slider.addEventListener('mouseleave', () => {
-        isPaused = false;
+        hoverPaused = false;
         startTimer();
       });
 
-      slider.addEventListener('focusin', () => {
-        isPaused = true;
+      slider.addEventListener('focusin', (e) => {
+        if (e.target === btnToggle) return; // the pause control states its own intent
+        focusPaused = true;
         stopTimer();
       });
 
       slider.addEventListener('focusout', () => {
-        isPaused = false;
+        focusPaused = false;
         startTimer();
       });
 
@@ -962,9 +1046,9 @@ const seoProps: SeoInput = {
           const diffX = touchEndX - touchStartX;
           if (Math.abs(diffX) > 40) {
             if (diffX < 0) {
-              nextSlide();
+              void nextSlide();
             } else {
-              prevSlide();
+              void prevSlide();
             }
             startTimer();
           }
@@ -972,6 +1056,15 @@ const seoProps: SeoInput = {
         { passive: true }
       );
 
+      // Fetch the second slide only after `load`, when the main thread is idle.
+      const warmNext = () => {
+        if ('requestIdleCallback' in window) window.requestIdleCallback(() => void loadSlide(1), { timeout: 3000 });
+        else setTimeout(() => void loadSlide(1), 1500);
+      };
+      if (document.readyState === 'complete') warmNext();
+      else window.addEventListener('load', warmNext, { once: true });
+
+      renderToggle();
       startTimer();
     }
 

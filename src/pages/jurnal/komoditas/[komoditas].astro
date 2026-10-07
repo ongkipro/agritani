@@ -1,46 +1,25 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
+import { getVisibleArticles, getCommodityCounts, refId } from '../../../lib/journal';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../../components/Breadcrumb.astro';
 import ArticleList from '../../../components/ArticleList.astro';
 import TopicSidebar from '../../../components/TopicSidebar.astro';
+import CommodityPicker from '../../../components/CommodityPicker.astro';
 import ArticleProducts from '../../../components/ArticleProducts.astro';
 import { fitText, TITLE_RANGE, DESC_RANGE, type SeoInput } from '../../../lib/seo';
 
 export async function getStaticPaths() {
-  const includeDrafts =
-    import.meta.env.PUBLIC_INCLUDE_DRAFTS === 'true' || import.meta.env.DEV;
+  // Hubs exist only for commodities with >= COMMODITY_HUB_MIN visible articles (same list as TopicSidebar/CommodityPicker).
+  const [articles, hubs, commodities] = await Promise.all([getVisibleArticles(), getCommodityCounts(), getCollection('commodities')]);
 
-  const allArticles = await getCollection('articles');
-  const commodities = await getCollection('commodities');
-
-  const visibleArticles = includeDrafts
-    ? allArticles
-    : allArticles.filter((a) => !a.data.draft);
-
-  // Commodity hubs are ONLY created when commodity has >= 3 published (or visible) articles
-  const validCommodities = commodities.filter((c) => {
-    const count = visibleArticles.filter((a) =>
-      a.data.commodities.some((x: any) => (typeof x === 'string' ? x : x.id) === c.id)
-    ).length;
-    return count >= 3;
-  });
-
-  return validCommodities.map((c) => {
-    const commodityArticles = visibleArticles
-      .filter((a) =>
-        a.data.commodities.some((x: any) => (typeof x === 'string' ? x : x.id) === c.id)
-      )
-      .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
-
-    return {
-      params: { komoditas: c.id },
-      props: {
-        commodity: c.data,
-        articles: commodityArticles,
-      },
-    };
-  });
+  return hubs.map((h) => ({
+    params: { komoditas: h.id },
+    props: {
+      commodity: commodities.find((c) => c.id === h.id)!.data,
+      articles: articles.filter((a) => a.data.commodities.some((x) => refId(x) === h.id)),
+    },
+  }));
 }
 
 const { commodity, articles } = Astro.props;
@@ -73,8 +52,8 @@ const seo: SeoInput = {
   <div class="max-w-[72rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
     <Breadcrumb items={breadcrumbItems} />
 
-    <div class="flex flex-col lg:grid lg:grid-cols-12 lg:gap-x-12">
-    <div class="lg:col-start-4 lg:col-span-9 lg:row-start-1">
+    <div class="lg:grid lg:grid-cols-12 lg:gap-x-12">
+    <div class="min-w-0 lg:col-start-4 lg:col-span-9 lg:row-start-1">
 
     <header class="my-6 sm:my-8 max-w-[68ch]">
       <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[var(--color-text)] mb-3 leading-tight">
@@ -86,7 +65,7 @@ const seo: SeoInput = {
     </header>
 
     <!-- Relevant tools for this commodity: link cards (DESIGN §3.3.3) -->
-    <div class="my-6 grid gap-3 sm:grid-cols-2 max-w-3xl">
+    <div class="my-6 grid gap-3 sm:grid-cols-2">
       <a href={`/alat/diagnosa-gejala/?k=${commodity.id}`} class="card card-link block p-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]">
         <span class="block font-serif text-lg font-semibold text-[var(--color-brand-strong)]">Diagnosa gejala {commodity.name.toLowerCase()}</span>
         <span class="mt-1 block text-sm text-[var(--color-text-muted)]">Cocokkan gejala di lahan dengan kemungkinan penyebabnya.</span>
@@ -97,6 +76,9 @@ const seo: SeoInput = {
       </a>
     </div>
 
+    <!-- <1024px: jump to another commodity hub, in place of the sidebar (DESIGN §4.2.3) -->
+    <CommodityPicker visible={6} current={commodity.id} class="lg:hidden mt-8" />
+
     <!-- Article Listing -->
     <section class="mt-8" aria-labelledby="daftar-artikel-komoditas-heading">
       <h2 id="daftar-artikel-komoditas-heading" class="font-serif text-xl font-semibold text-[var(--color-text)] mb-4">
@@ -105,10 +87,10 @@ const seo: SeoInput = {
 
       <ArticleList
         articles={articles}
-        initialCount={6}
-        batchSize={6}
+        initialCount={12}
+        batchSize={12}
         listId={`komoditas-${commodity.id}`}
-        imageBy="topic"
+        imageBy="none"
         emptyMessage="Belum ada artikel yang diterbitkan untuk komoditas ini."
       />
     </section>
@@ -117,8 +99,8 @@ const seo: SeoInput = {
     <ArticleProducts topic="" commodities={[commodity.id]} />
 
     </div>
-    <!-- Sidebar after the content in DOM so the page H1 comes first; grid placement keeps it on the left at >=1024px -->
-    <aside class="order-last my-8 lg:my-0 lg:mt-10 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:sticky lg:top-6 self-start">
+    <!-- >=1024px only; after the content in DOM so the page H1 comes first; grid placement keeps it on the left -->
+    <aside class="hidden lg:block lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:self-start lg:sticky lg:top-6 lg:mt-10">
       <TopicSidebar currentCommodity={commodity.id} />
     </aside>
     </div>

@@ -2,6 +2,8 @@
 import { getCollection, render } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 import { assertContentIntegrity } from '../../lib/content-integrity';
+import { buildRelatedMap } from '../../lib/related';
+import { promoteDepths } from '../../lib/headings';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles');
@@ -26,73 +28,38 @@ export async function getStaticPaths() {
     ? articles
     : articles.filter((a) => !a.data.draft);
 
-  return visibleArticles.map((article) => {
-    const artCommIds = article.data.commodities.map((c: any) =>
-      typeof c === 'string' ? c : c.id
-    );
+  // Related reading: computed once across all visible articles so links spread (src/lib/related.ts).
+  const commodityIds = (a: (typeof visibleArticles)[number]) =>
+    a.data.commodities.map((c: any) => (typeof c === 'string' ? c : c.id));
+  const relatedMap = buildRelatedMap(
+    visibleArticles.map((a) => ({
+      slug: a.data.slug,
+      topic: a.data.topic,
+      commodities: commodityIds(a),
+      tags: a.data.tags ?? [],
+    }))
+  );
+  const bySlug = new Map(visibleArticles.map((a) => [a.data.slug, a]));
 
-    // Rank related articles: prioritize shared commodities, then shared tags, then topic
-    // Articles with distinct commodities never cross-match
-    const related = visibleArticles
-      .filter((a) => a.data.slug !== article.data.slug)
-      .map((a) => {
-        const candCommIds = a.data.commodities.map((c: any) =>
-          typeof c === 'string' ? c : c.id
-        );
-        const sharedCommodities = artCommIds.filter((c: string) =>
-          candCommIds.includes(c)
-        ).length;
-
-        // Disjoint crop filter: don't cross-link different specific crops
-        if (
-          artCommIds.length > 0 &&
-          candCommIds.length > 0 &&
-          sharedCommodities === 0
-        ) {
-          return { article: a, score: 0 };
-        }
-
-        const candTags = (a.data.tags || []).map((t: string) => t.toLowerCase());
-        const sharedTags = (article.data.tags || []).filter((t: string) =>
-          candTags.includes(t.toLowerCase())
-        ).length;
-
-        const sameTopic = a.data.topic === article.data.topic ? 1 : 0;
-
-        let score = 0;
-        if (sharedCommodities > 0) {
-          score = sharedCommodities * 100 + sharedTags * 10 + sameTopic;
-        } else if (artCommIds.length === 0 && candCommIds.length === 0) {
-          // Both are general crop articles
-          score = sharedTags * 10 + sameTopic;
-        } else if (artCommIds.length === 0 || candCommIds.length === 0) {
-          // One is general crop, only match if meaningful shared tags exist
-          if (sharedTags > 0) {
-            score = sharedTags * 10 + sameTopic;
-          }
-        }
-
-        return { article: a, score };
-      })
-      .filter((item) => item.score > 0)
-      .sort((x, y) => y.score - x.score)
-      .slice(0, 3)
-      .map((item) => item.article);
-
-    return {
-      params: { slug: article.data.slug },
-      props: { article, relatedArticles: related },
-    };
-  });
+  return visibleArticles.map((article) => ({
+    params: { slug: article.data.slug },
+    props: {
+      article,
+      relatedArticles: (relatedMap.get(article.data.slug) ?? []).map((s) => bySlug.get(s)!),
+    },
+  }));
 }
 
 const { article, relatedArticles } = Astro.props;
 const { Content, headings } = await render(article);
+// Same outline repair as the layout applies to the HTML (src/lib/headings.ts).
+const promoted = promoteDepths(headings.map((h) => h.depth));
+const tocHeadings = headings.map((h, i) => ({ ...h, depth: promoted[i] }));
 ---
 
 <ArticleLayout
   article={article}
-  headings={headings}
+  headings={tocHeadings}
   relatedArticles={relatedArticles}
 >
   <Content />

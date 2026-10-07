@@ -113,25 +113,24 @@ footer :focus-visible {
   outline-offset: 2px;
 }
 
-/* Form controls focus: eliminate intrusive floating frame box / outline */
-input:not([type="checkbox"]):not([type="radio"]),
-textarea,
-select {
+/* Form controls focus: a solid 2px ring readable outdoors (WCAG 2.4.7/1.4.11). Unlayered, so it
+   overrides `focus:outline-none` utilities; brand-strong also in header/footer (light backgrounds). */
+input:not([type="checkbox"]):not([type="radio"]):focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-brand-strong);
+  outline-offset: 2px;
+}
+
+/* Borderless input inside a framed input group (e.g. Kalkulator Dosis: input | unit select): ring the
+   frame instead of the input, flush on its border, so there is one ring and nothing clips. */
+input.border-0:not([type="checkbox"]):not([type="radio"]):focus-visible {
   outline: none;
 }
 
-input:not([type="checkbox"]):not([type="radio"]):focus,
-input:not([type="checkbox"]):not([type="radio"]):focus-visible,
-textarea:focus,
-textarea:focus-visible,
-select:focus,
-select:focus-visible,
-header input:focus,
-header input:focus-visible,
-footer input:focus,
-footer input:focus-visible {
-  outline: none !important;
-  outline-offset: 0 !important;
+div:has(> input.border-0:focus-visible) {
+  outline: 2px solid var(--color-brand-strong);
+  outline-offset: 0;
 }
 
 /* Suppress native WebKit search cancel and decoration buttons so custom clear button doesn't collide */
@@ -546,8 +545,17 @@ button:disabled,
   }
 }
 
-/* Progressive Article Reveal & Modern List Animations */
-.article-item-wrapper.is-hidden {
+/* Progressive Article Reveal & Modern List Animations (ArticleList.astro).
+   With scripting enabled, rows past initialCount are hidden from first paint (no shift when the module script runs);
+   with JS off every row shows. [data-initialized] covers browsers without the `scripting` media feature.
+   Load-more controls stay hidden until the script runs. */
+@media (scripting: enabled) {
+  [data-article-list] .article-item-wrapper.is-hidden {
+    display: none !important;
+  }
+}
+[data-article-list][data-initialized] .article-item-wrapper.is-hidden,
+[data-article-list]:not([data-initialized]) .load-more-container {
   display: none !important;
 }
 

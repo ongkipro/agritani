@@ -164,3 +164,38 @@ describe('author & publisher meta (owner 2026-09-30)', () => {
     assert.equal(page.publisher, 'Agritani Official');
   });
 });
+
+describe('author entity graph (T-58B)', () => {
+  it('Article keeps mainEntityOfPage and drops the meaningless mainEntity URL', () => {
+    const seo = buildSeo({ title: 'Artikel uji', description: 'x', canonicalPath: '/jurnal/x/', ogType: 'article', article: { pubDate: new Date('2026-09-29') } });
+    const art = (seo.jsonLd as any)['@graph'].find((n: any) => n['@type'] === 'Article');
+    assert.equal(art.mainEntity, undefined);
+    assert.deepEqual(art.mainEntityOfPage, { '@id': 'https://agritani.com/jurnal/x/#webpage' });
+  });
+
+  it('ProfilePage points mainEntity at the Person node, which carries only supplied facts', () => {
+    const seo = buildSeo({
+      title: 'Arif Prabowo',
+      description: 'x',
+      canonicalPath: '/penulis/arif-prabowo/',
+      pageType: 'profile',
+      ogType: 'profile',
+      person: { image: '/_astro/arif.webp', description: 'Konsultan.' },
+    });
+    const graph = (seo.jsonLd as any)['@graph'];
+    const page = graph.find((n: any) => n['@type'] === 'ProfilePage');
+    const person = graph.find((n: any) => n['@type'] === 'Person');
+    assert.deepEqual(page.mainEntity, { '@id': 'https://agritani.com/penulis/arif-prabowo/#person' });
+    assert.equal(person['@id'], page.mainEntity['@id']);
+    assert.equal(person.jobTitle, 'Konsultan Pertanian Senior');
+    assert.equal(person.image, 'https://agritani.com/_astro/arif.webp');
+    assert.equal(person.description, 'Konsultan.');
+    assert.equal(person.url, 'https://agritani.com/penulis/arif-prabowo/');
+    assert.equal(person.sameAs, undefined, 'no invented sameAs');
+  });
+
+  it('non-profile pages get no Person node', () => {
+    const graph = (buildSeo({ title: 'Produk', description: 'x', canonicalPath: '/produk/', pageType: 'website' }).jsonLd as any)['@graph'];
+    assert.equal(graph.some((n: any) => n['@type'] === 'Person'), false);
+  });
+});

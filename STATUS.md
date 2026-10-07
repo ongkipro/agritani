@@ -1,6 +1,6 @@
 # Status — agritani
 
-Updated: 2026-10-06
+Updated: 2026-10-07
 Status: Active
 State: VERIFIED
 Review-Risk: R3
@@ -54,7 +54,7 @@ Kontrak pra-pengembangan diaudit ulang pada 2026-09-29 dengan skill dotfiles ter
 
 ### Active work
 
-Tidak ada task yang sedang berjalan. Terakhir: T-57 (2026-10-06) — pindai indeks/tautan keluar (sudah sesuai) + presisi UI 360/1440 (`PresetChips`, beranda, meta artikel), commit `1c3b713`, live sejak 2026-10-06 (versi Workers `30084be8`, smoke 30/30 PASS). Sebelumnya (2026-09-30): T-35…T-45 — identitas (DEC-017), tata letak kartu (DEC-019), tampilan HP (T-40), pagar aturan pemilik di build (T-41), terbit massal 296/300 artikel (T-42, DEC-020), Tentang Kami distributor resmi online (T-43, DEC-021), panjang title 55–70 & description 120–155 di semua halaman (T-44, DEC-022), Cuaca Tani + meta author/publisher (T-45). Riwayat lengkap ada di `BUILD-LOG.md`; antrean di `TASKS.md`.
+Tidak ada task yang sedang berjalan. Terakhir: T-58 (2026-10-07) — retensi & presisi seluruh situs (hub HP, baris ringkas, paginasi tertaut, bacaan terkait tersebar, heading, hero beranda), branch `feat/T-58-retention`; keputusan pemilik yang tertunda di BUILD-LOG 2026-10-07. Sebelumnya: T-57 (2026-10-06) — pindai indeks/tautan keluar (sudah sesuai) + presisi UI 360/1440 (`PresetChips`, beranda, meta artikel), commit `1c3b713`, live sejak 2026-10-06 (versi Workers `30084be8`, smoke 30/30 PASS). Sebelumnya (2026-09-30): T-35…T-45 — identitas (DEC-017), tata letak kartu (DEC-019), tampilan HP (T-40), pagar aturan pemilik di build (T-41), terbit massal 296/300 artikel (T-42, DEC-020), Tentang Kami distributor resmi online (T-43, DEC-021), panjang title 55–70 & description 120–155 di semua halaman (T-44, DEC-022), Cuaca Tani + meta author/publisher (T-45). Riwayat lengkap ada di `BUILD-LOG.md`; antrean di `TASKS.md`.
 
 Aturan pemilik yang berlaku untuk semua agent diringkas di `AGENTS.md` ("Owner decisions 2026-09-30") dan dijaga otomatis oleh `scripts/check-owner-rules.mjs` di `npm run build`.
 

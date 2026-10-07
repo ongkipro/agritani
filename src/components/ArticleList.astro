@@ -7,7 +7,11 @@ interface Props {
   batchSize?: number;
   emptyMessage?: string;
   listId?: string;
-  imageBy?: 'commodity' | 'topic';
+  imageBy?: 'commodity' | 'topic' | 'none';
+  /** Passed to every row: hide the topic label on the topic's own hub. */
+  hideTopic?: boolean;
+  /** Load the first row's thumbnail eagerly (it is the LCP candidate on listings without a header image). */
+  eagerFirst?: boolean;
 }
 
 const {
@@ -17,6 +21,8 @@ const {
   emptyMessage = 'Belum ada artikel yang diterbitkan untuk saat ini.',
   listId = 'articles',
   imageBy,
+  hideTopic,
+  eagerFirst = false,
 } = Astro.props;
 
 const totalCount = articles.length;
@@ -36,13 +42,8 @@ const initialBatchRemaining = Math.min(batchSize, totalCount - initialCount);
     </div>
   ) : (
     <>
-      <div
-        id={`article-list-${listId}`}
-        class="space-y-2 sm:space-y-3"
-        role="feed"
-        aria-busy="false"
-        aria-label="Daftar panduan agronomi"
-      >
+      <!-- Items beyond initialCount: hidden from first paint when scripting is on (global.css), all shown with JS off. -->
+      <div id={`article-list-${listId}`} class="divide-y divide-[var(--color-border)]">
         {articles.map((article, index) => {
           const isInitiallyHidden = index >= initialCount;
           return (
@@ -50,15 +51,15 @@ const initialBatchRemaining = Math.min(batchSize, totalCount - initialCount);
               class={`article-item-wrapper ${isInitiallyHidden ? 'is-hidden' : ''}`}
               data-index={index}
             >
-              <ArticleRow article={article} imageBy={imageBy} />
+              <ArticleRow article={article} imageBy={imageBy} hideTopic={hideTopic} eager={eagerFirst && index === 0} />
             </div>
           );
         })}
       </div>
 
       {hasMore && (
-        <div class="load-more-container mt-10 pt-4 flex flex-col items-center gap-3">
-          <p class="text-xs text-[var(--color-soil)] font-medium">
+        <div class="load-more-container mt-8 flex flex-col items-center gap-3">
+          <p class="text-sm text-[var(--color-soil)] font-medium">
             Menampilkan <span class="shown-count">{initialCount}</span> dari <span class="total-count">{totalCount}</span> panduan agronomi
           </p>
 
@@ -68,12 +69,12 @@ const initialBatchRemaining = Math.min(batchSize, totalCount - initialCount);
             aria-controls={`article-list-${listId}`}
           >
             <span>Muat Panduan Lainnya</span>
-            <span class="batch-badge text-xs px-2 py-0.5 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-soil)] tabular-nums">
+            <span class="batch-badge text-sm px-2 py-0.5 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-soil)] tabular-nums">
               +{initialBatchRemaining}
             </span>
           </button>
 
-          <p class="all-loaded-message text-xs text-[var(--color-text-muted)] italic hidden">
+          <p class="all-loaded-message text-sm text-[var(--color-text-muted)] italic hidden">
             Semua {totalCount} panduan agronomi telah ditampilkan.
           </p>
 

@@ -7,9 +7,11 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../../components/Breadcrumb.astro';
-import ArticleRow from '../../../components/ArticleRow.astro';
+import ArticleList from '../../../components/ArticleList.astro';
+import CommodityPicker from '../../../components/CommodityPicker.astro';
 import TopicSidebar from '../../../components/TopicSidebar.astro';
 import { slugifyTag, TAG_INDEX_MIN } from '../../../lib/tags';
+import { getCommodityCounts } from '../../../lib/journal';
 import { fitText, TITLE_RANGE, DESC_RANGE, type SeoInput } from '../../../lib/seo';
 
 export async function getStaticPaths() {
@@ -77,6 +79,8 @@ const safeTitle = fitText(
 );
 
 const count = articles.length;
+// A tag that matches a built commodity hub (e.g. #padi) points to the hub, which is the fuller guide (T-58A).
+const hub = (await getCommodityCounts()).find((c) => c.id === tagSlug);
 const lead = count === 1 ? `Artikel Jurnal Tani tentang ${tagName}` : `Kumpulan ${count} artikel Jurnal Tani tentang ${tagName}`;
 const safeDesc = fitText(
   [
@@ -104,8 +108,8 @@ const seo: SeoInput = {
     <Breadcrumb items={breadcrumbItems} />
 
     <!-- Same frame as topic/commodity hubs (DESIGN §4.1 C10, §3.3.2) -->
-    <div class="flex flex-col lg:grid lg:grid-cols-12 lg:gap-x-12">
-      <div class="lg:col-start-4 lg:col-span-9 lg:row-start-1">
+    <div class="lg:grid lg:grid-cols-12 lg:gap-x-12">
+      <div class="min-w-0 lg:col-start-4 lg:col-span-9 lg:row-start-1">
         <header class="my-6 sm:my-10 pt-5 border-t border-[var(--color-border)] max-w-[68ch]">
           <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[var(--color-text)] mb-3 leading-tight text-balance">
             {displayName}
@@ -113,18 +117,28 @@ const seo: SeoInput = {
           <p class="text-base sm:text-lg text-[var(--color-text-muted)] font-serif leading-relaxed">
             {articles.length} artikel Jurnal Tani dengan tag ini.
           </p>
+          {hub && (
+            <a href={`/jurnal/komoditas/${hub.id}/`} class="link-more text-base mt-3">
+              Lihat {hub.count} artikel di panduan {hub.name} &rarr;
+            </a>
+          )}
         </header>
 
-        <section class="mt-8" aria-label={`Artikel dengan tag ${tagName}`}>
-          <div class="divide-y divide-[var(--color-border)]">
-            {articles.map((art) => (
-              <ArticleRow article={art} />
-            ))}
-          </div>
+        <!-- <1024px: commodity jump block in place of the sidebar (DESIGN §4.2.3) -->
+        <CommodityPicker visible={6} class="lg:hidden mb-8" />
+
+        <section aria-label={`Artikel dengan tag ${tagName}`}>
+          <ArticleList
+            articles={articles}
+            initialCount={12}
+            batchSize={12}
+            listId={`tag-${tagSlug}`}
+            eagerFirst
+          />
         </section>
       </div>
-    <!-- Sidebar after the content in DOM so the page H1 comes first; grid placement keeps it on the left at >=1024px -->
-      <aside class="order-last my-8 lg:my-0 lg:mt-10 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:sticky lg:top-6 self-start">
+      <!-- >=1024px only; after the content in DOM so the page H1 comes first; grid placement keeps it on the left -->
+      <aside class="hidden lg:block lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:self-start lg:sticky lg:top-6 lg:mt-10">
         <TopicSidebar />
       </aside>
     </div>

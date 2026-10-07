@@ -19,58 +19,77 @@ interface Props {
       draft?: boolean;
     };
   };
-  /** Thumbnail source: 'commodity' (default) or 'topic' on commodity hubs, where every row shares one commodity. */
-  imageBy?: 'commodity' | 'topic';
+  /**
+   * Thumbnail source: 'commodity' (default), 'topic', or 'none' (text row). Commodity hubs use 'none': every row shares
+   * one commodity, so its photo would repeat on every row and topic photos show unrelated crops (T-58A).
+   */
+  imageBy?: 'commodity' | 'topic' | 'none';
+  /** Omit the topic label on the topic's own hub (DESIGN §3.6.1: the label is not relinked there). */
+  hideTopic?: boolean;
+  /** First row of a listing: load the thumbnail eagerly with high fetch priority (LCP candidate). */
+  eager?: boolean;
 }
 
-const { article, imageBy = 'commodity' } = Astro.props;
+const { article, imageBy = 'commodity', hideTopic = false, eager = false } = Astro.props;
 const readingTime = getReadingTime(article.body || '');
+const href = `/jurnal/${article.data.slug}/`;
+const topic = topicName(article.data.topic);
 
 const formattedDate = new Intl.DateTimeFormat('id-ID', {
   day: 'numeric',
   month: 'short',
   year: 'numeric',
 }).format(new Date(article.data.pubDate));
+const isoDate = new Date(article.data.pubDate).toISOString();
 ---
 
-<article class="py-5 sm:py-6 flex flex-col sm:flex-row gap-1.5 sm:gap-6 items-start sm:items-stretch group">
-  <a
-    href={`/jurnal/${article.data.slug}/`}
-    class="w-full sm:w-44 md:w-52 aspect-[16/10] sm:aspect-auto sm:mt-3.5 sm:self-stretch sm:min-h-[6.5rem] rounded-[2px] overflow-hidden shrink-0 bg-[var(--color-canvas)] block"
-    tabindex="-1"
-    aria-hidden="true"
-  >
-    <Picture
-      src={imageBy === 'topic' ? getTopicImage(article.data.topic) : getArticleImage(article.data)}
-      formats={['webp']}
-      fallbackFormat="webp"
-      widths={[240, 420]}
-      sizes="(min-width: 640px) 13rem, 100vw"
-      quality={70}
-      alt={articleImageAlt(article.data)}
-      pictureAttributes={{ class: 'block h-full' }}
-      class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-      loading="lazy"
-      decoding="async"
-    />
-  </a>
+<!--
+  <640px: compact horizontal row — 96px square thumbnail, topic line, title (3 lines max), one meta line.
+  >=640px: the editorial row of DESIGN §3.3.1 (label row, title, deck, link-more).
+  At every width the title link's ::after covers the whole row (hit area >= 44px); the topic link sits above it (z-10).
+-->
+<article class="relative py-3.5 sm:py-6 flex gap-3 sm:gap-6 items-start sm:items-stretch group">
+  {imageBy !== 'none' && (
+    <a
+      href={href}
+      class="w-24 h-24 sm:w-44 md:w-52 sm:h-auto sm:mt-3.5 sm:self-stretch sm:min-h-[6.5rem] rounded-[2px] overflow-hidden shrink-0 bg-[var(--color-canvas)] block"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <Picture
+        src={imageBy === 'topic' ? getTopicImage(article.data.topic) : getArticleImage(article.data)}
+        formats={['webp']}
+        fallbackFormat="webp"
+        widths={[96, 192, 288, 420]}
+        sizes="(min-width: 768px) 13rem, (min-width: 640px) 11rem, 6rem"
+        quality={70}
+        alt={articleImageAlt(article.data)}
+        pictureAttributes={{ class: 'block h-full' }}
+        class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+        loading={eager ? 'eager' : 'lazy'}
+        fetchpriority={eager ? 'high' : undefined}
+        decoding="async"
+      />
+    </a>
+  )}
   <div class="flex-1 min-w-0">
-    <!-- Phones: topic on its own line so a wrapped meta row never ends or starts with a dangling separator. -->
-    <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-[var(--color-soil)] font-medium mb-1.5">
-      <a
-        href={`/jurnal/topik/${article.data.topic}/`}
-        class={`topic-${article.data.topic} topic-link focus-visible:outline-2 focus-visible:outline-[var(--color-harvest)]`}
-      >
-        <span class="topic-marker" aria-hidden="true"></span>
-        <span>{topicName(article.data.topic)}</span>
-      </a>
-      <span class="basis-full -mt-1 sm:hidden" aria-hidden="true"></span>
-      <span class="hidden sm:inline" aria-hidden="true">&middot;</span>
+    <!-- >=640px label row: topic link · reading time · date (44px tall so the §3.3.1 image/label alignment holds). -->
+    <div class="hidden sm:flex flex-wrap items-center gap-x-2 min-h-[44px] text-xs text-[var(--color-soil)] font-medium mb-1.5">
+      {!hideTopic && (
+        <>
+          <a
+            href={`/jurnal/topik/${article.data.topic}/`}
+            class={`topic-${article.data.topic} topic-link relative z-10 focus-visible:outline-2 focus-visible:outline-[var(--color-harvest)]`}
+          >
+            <span class="topic-marker" aria-hidden="true"></span>
+            <span>{topic}</span>
+          </a>
+          <span aria-hidden="true">&middot;</span>
+        </>
+      )}
       <span>{readingTime.text}</span>
       <span aria-hidden="true">&middot;</span>
-      <time datetime={new Date(article.data.pubDate).toISOString()}>
-        {formattedDate}
-      </time>
+      <time datetime={isoDate}>{formattedDate}</time>
       {article.data.draft && (
         <span class="ml-2 px-1.5 py-0.5 rounded-[2px] bg-[var(--color-tint)] text-[var(--color-soil)] text-[11px] font-semibold">
           Draf
@@ -78,26 +97,35 @@ const formattedDate = new Intl.DateTimeFormat('id-ID', {
       )}
     </div>
 
-    <h2 class="text-lg sm:text-xl font-serif font-bold text-[var(--color-text)] mb-2 leading-snug">
+    <!-- <640px topic line: plain text (the row itself is the tap target; topics are in the Navbar strip). -->
+    {!hideTopic && (
+      <p class={`topic-${article.data.topic} sm:hidden flex items-center gap-2 text-xs font-semibold text-[var(--color-soil)] leading-4 mb-1`}>
+        <span class="topic-marker" aria-hidden="true"></span>
+        <span class="truncate">{topic}</span>
+      </p>
+    )}
+
+    <h2 class="text-base sm:text-xl font-serif font-bold text-[var(--color-text)] leading-snug max-sm:line-clamp-3 sm:mb-2">
       <a
-        href={`/jurnal/${article.data.slug}/`}
-        class="group-hover:text-[var(--color-brand-strong)] group-hover:underline group-hover:decoration-[var(--color-brand)]/40 group-hover:decoration-2 group-hover:underline-offset-4 transition-all duration-200 inline-block py-0.5"
+        href={href}
+        class="sm:inline-block sm:py-0.5 after:absolute after:inset-0 group-hover:text-[var(--color-brand-strong)] group-hover:underline group-hover:decoration-[var(--color-brand)]/40 group-hover:decoration-2 group-hover:underline-offset-4 active:text-[var(--color-brand-hover)] transition-colors duration-200"
       >
         {article.data.title}
       </a>
     </h2>
 
-    <p class="text-sm sm:text-base text-[var(--color-text-muted)] line-clamp-2 leading-relaxed">
+    <!-- <640px meta line -->
+    <p class="sm:hidden mt-1.5 text-xs leading-4 text-[var(--color-soil)] font-medium">
+      {readingTime.text} <span aria-hidden="true">&middot;</span> <time datetime={isoDate}>{formattedDate}</time>
+      {article.data.draft && <span class="ml-1 font-semibold">· Draf</span>}
+    </p>
+
+    <p class="max-sm:hidden text-base text-[var(--color-text-muted)] line-clamp-2 leading-relaxed">
       {article.data.description}
     </p>
 
-    <div class="mt-2 sm:-mb-0.5">
-      <a
-        href={`/jurnal/${article.data.slug}/`}
-        class="link-more text-xs"
-        tabindex="-1"
-        aria-hidden="true"
-      >
+    <div class="hidden sm:block mt-2 sm:-mb-0.5">
+      <a href={href} class="link-more text-xs" tabindex="-1" aria-hidden="true">
         Baca telaah agronomi &rarr;
       </a>
     </div>

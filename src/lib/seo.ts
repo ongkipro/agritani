@@ -38,6 +38,34 @@ export interface SeoInput {
   pageType?: 'website' | 'article' | 'profile' | 'about' | 'collection';
   article?: SeoArticleMeta;
   breadcrumbs?: BreadcrumbItem[];
+  /** Profile pages (pageType 'profile'): facts for the Person node that the ProfilePage is about. */
+  person?: SeoPersonMeta;
+}
+
+/** Only real, repository-held facts (DEC-016); no invented sameAs/credentials. */
+export interface SeoPersonMeta {
+  image?: string;
+  description?: string;
+  sameAs?: string[];
+}
+
+export const AUTHOR_URL = `${SITE_URL}/penulis/arif-prabowo/`;
+export const AUTHOR_ID = `${AUTHOR_URL}#person`;
+
+/** Person node for Arif Prabowo (DEC-016, DESIGN §4.4.5); shared by Article and ProfilePage graphs. */
+export function buildPersonNode(name = 'Arif Prabowo', meta: SeoPersonMeta = {}): Record<string, unknown> {
+  const node: Record<string, unknown> = {
+    '@type': 'Person',
+    '@id': AUTHOR_ID,
+    name,
+    jobTitle: 'Konsultan Pertanian Senior',
+    worksFor: { '@id': `${SITE_URL}/#organization` },
+    url: AUTHOR_URL,
+  };
+  if (meta.image) node.image = meta.image.startsWith('http') ? meta.image : `${SITE_URL}${meta.image}`;
+  if (meta.description) node.description = meta.description;
+  if (meta.sameAs && meta.sameAs.length > 0) node.sameAs = meta.sameAs;
+  return node;
 }
 
 export interface SeoOutput {
@@ -137,6 +165,7 @@ export function buildSeo(input: SeoInput): SeoOutput {
     pageType,
     article,
     breadcrumbs,
+    person,
   } = input;
 
   // Title (DESIGN §4.4.2): metaTitle wins over title; every page except home ends with " - Agritani".
@@ -254,14 +283,21 @@ export function buildSeo(input: SeoInput): SeoOutput {
         '@id': `${canonical}#breadcrumb`,
       };
     }
+    // ProfilePage is about the author: mainEntity -> Person (Google ProfilePage guidelines).
+    if (resolvedPageType === 'ProfilePage') {
+      webPageNode.mainEntity = { '@id': AUTHOR_ID };
+    }
     graph.push(webPageNode);
+    if (resolvedPageType === 'ProfilePage') {
+      graph.push(buildPersonNode('Arif Prabowo', person));
+    }
   }
 
   // Article schema
   let articleOgMeta: { publishedTime: string; modifiedTime: string; author: string; section?: string } | undefined;
   if (ogType === 'article' && article) {
     const authorName = article.author || 'Arif Prabowo';
-    const authorUrl = `${SITE_URL}/penulis/arif-prabowo/`;
+    const authorUrl = AUTHOR_URL;
     const publishedTime = article.pubDate.toISOString();
     const modifiedTime = (article.updatedDate || article.pubDate).toISOString();
 
@@ -285,11 +321,10 @@ export function buildSeo(input: SeoInput): SeoOutput {
       description,
       datePublished: publishedTime,
       dateModified: modifiedTime,
-      mainEntity: canonical,
       inLanguage: 'id-ID',
       author: {
         '@type': 'Person',
-        '@id': `${SITE_URL}/penulis/arif-prabowo/#person`,
+        '@id': AUTHOR_ID,
         name: authorName,
         url: authorUrl,
       },
@@ -324,16 +359,7 @@ export function buildSeo(input: SeoInput): SeoOutput {
     graph.push(articleNode);
 
     // Person schema node for author (DEC-016, DESIGN §4.4.5)
-    graph.push({
-      '@type': 'Person',
-      '@id': `${SITE_URL}/penulis/arif-prabowo/#person`,
-      name: authorName,
-      jobTitle: 'Konsultan Pertanian Senior',
-      worksFor: {
-        '@id': `${SITE_URL}/#organization`,
-      },
-      url: authorUrl,
-    });
+    graph.push(buildPersonNode(authorName));
   }
 
   return {

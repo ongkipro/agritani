@@ -32,7 +32,7 @@ const filteredHeadings = headings.filter(
           <span class="font-serif font-semibold text-base text-[var(--color-text)]">
             Daftar isi
           </span>
-          <span class="text-xs text-[var(--color-text-muted)] tabular-nums">
+          <span class="text-sm text-[var(--color-text-muted)] tabular-nums">
             {filteredHeadings.length} bagian
           </span>
         </div>
@@ -57,7 +57,7 @@ const filteredHeadings = headings.filter(
               href={`#${h.slug}`}
               class:list={[
                 'flex items-center gap-2.5 min-h-[44px] py-2 text-[var(--color-text)] hover:text-[var(--color-brand-strong)] transition-colors active:bg-[var(--color-tint)]/50',
-                isH3 ? 'pl-5 text-xs text-[var(--color-text-muted)]' : 'text-sm font-medium'
+                isH3 ? 'pl-5 text-sm text-[var(--color-text-muted)]' : 'text-sm font-medium'
               ]}
               data-mobile-toc-link
             >
@@ -80,8 +80,7 @@ const filteredHeadings = headings.filter(
           </span>
           <span
             id="toc-progress-text"
-            class="text-xs text-[var(--color-text-muted)] tabular-nums"
-            aria-live="polite"
+            class="text-sm text-[var(--color-text-muted)] tabular-nums"
           >
             0% dibaca
           </span>
@@ -105,8 +104,8 @@ const filteredHeadings = headings.filter(
                 class:list={[
                   'toc-item block transition-all duration-150 leading-snug',
                   isH3
-                    ? 'pl-5 pr-2 py-1 text-xs text-[var(--color-text-muted)] hover:text-[var(--color-brand-strong)]'
-                    : 'pl-3 pr-2 py-1.5 text-[13px] font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text)]',
+                    ? 'pl-5 pr-2 py-1 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-brand-strong)]'
+                    : 'pl-3 pr-2 py-1.5 text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text)]',
                   'border-l border-transparent -ml-px hover:border-[var(--color-border-control)]',
                   'focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]'
                 ]}

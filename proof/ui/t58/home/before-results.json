@@ -1,0 +1,96 @@
+{
+  "origin": "http://localhost:4403",
+  "label": "before",
+  "viewports": {
+    "360": {
+      "heroAtLoad": [
+        "hero-sawah-padi.v01gts52_E6Am6.webp",
+        "hero-kebun-sawit.NmVMiTDq_Z11BlRe.webp",
+        "hero-hortikultura-cabai.y07eqbtr_bS5Nx.webp",
+        "hero-kebun-jagung.Ces56wOi_1J1nRj.webp",
+        "hero-irigasi-pertanian.D4n72BVa_1cjBtm.webp"
+      ],
+      "heroTotal": [
+        "hero-sawah-padi.v01gts52_E6Am6.webp",
+        "hero-kebun-sawit.NmVMiTDq_Z11BlRe.webp",
+        "hero-hortikultura-cabai.y07eqbtr_bS5Nx.webp",
+        "hero-kebun-jagung.Ces56wOi_1J1nRj.webp",
+        "hero-irigasi-pertanian.D4n72BVa_1cjBtm.webp"
+      ],
+      "imageCountAtLoad": 6,
+      "imageBytesAtLoad": 513334,
+      "heroBytesAtLoad": 472088,
+      "loadEventEnd": 299,
+      "heroAfterIdleMs": 67,
+      "heroAfterIdle": [
+        "hero-sawah-padi.v01gts52_E6Am6.webp",
+        "hero-kebun-sawit.NmVMiTDq_Z11BlRe.webp",
+        "hero-hortikultura-cabai.y07eqbtr_bS5Nx.webp",
+        "hero-kebun-jagung.Ces56wOi_1J1nRj.webp",
+        "hero-irigasi-pertanian.D4n72BVa_1cjBtm.webp"
+      ],
+      "toggleVisible": false,
+      "cls": 0,
+      "overflow": 0,
+      "searchFocus": {
+        "focused": true,
+        "outline": "none 3px rgb(22, 33, 26)",
+        "offset": "0px"
+      },
+      "doseFocus": {
+        "focused": true,
+        "inputOutline": "none 3px",
+        "wrapperOutline": "none 3px rgb(22, 33, 26)",
+        "wrapperOffset": "0px"
+      },
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ]
+    },
+    "1440": {
+      "heroAtLoad": [
+        "hero-sawah-padi.v01gts52_E6Am6.webp",
+        "hero-kebun-sawit.NmVMiTDq_Z11BlRe.webp",
+        "hero-hortikultura-cabai.y07eqbtr_bS5Nx.webp",
+        "hero-kebun-jagung.Ces56wOi_1J1nRj.webp",
+        "hero-irigasi-pertanian.D4n72BVa_1cjBtm.webp"
+      ],
+      "heroTotal": [
+        "hero-sawah-padi.v01gts52_E6Am6.webp",
+        "hero-kebun-sawit.NmVMiTDq_Z11BlRe.webp",
+        "hero-hortikultura-cabai.y07eqbtr_bS5Nx.webp",
+        "hero-kebun-jagung.Ces56wOi_1J1nRj.webp",
+        "hero-irigasi-pertanian.D4n72BVa_1cjBtm.webp"
+      ],
+      "imageCountAtLoad": 9,
+      "imageBytesAtLoad": 597148,
+      "heroBytesAtLoad": 472088,
+      "loadEventEnd": 327,
+      "heroAfterIdleMs": 37,
+      "heroAfterIdle": [
+        "hero-sawah-padi.v01gts52_E6Am6.webp",
+        "hero-kebun-sawit.NmVMiTDq_Z11BlRe.webp",
+        "hero-hortikultura-cabai.y07eqbtr_bS5Nx.webp",
+        "hero-kebun-jagung.Ces56wOi_1J1nRj.webp",
+        "hero-irigasi-pertanian.D4n72BVa_1cjBtm.webp"
+      ],
+      "toggleVisible": false,
+      "cls": 0.04531133116419913,
+      "overflow": 0,
+      "searchFocus": {
+        "focused": true,
+        "outline": "none 3px rgb(22, 33, 26)",
+        "offset": "0px"
+      },
+      "doseFocus": {
+        "focused": true,
+        "inputOutline": "none 3px",
+        "wrapperOutline": "none 3px rgb(22, 33, 26)",
+        "wrapperOffset": "0px"
+      },
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ]
+    }
+  }
+}
